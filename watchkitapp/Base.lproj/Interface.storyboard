@@ -1,17 +1,13 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="10032"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="11077"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="american_typewriter_regular.ttf">
+        <array key="american_typewriter_regular.ttf">
             <string>AmericanTypewriter</string>
-            <string>AmericanTypewriter</string>
-            <string>AmericanTypewriter</string>
-            <string>AmericanTypewriter</string>
-            <string>AmericanTypewriter</string>
-        </mutableArray>
+        </array>
     </customFonts>
     <scenes>
         <!--Interface Controller-->
@@ -22,38 +18,37 @@
                         <separator alignment="left" semanticContentAttribute="spatial" alpha="0.0" id="Pia-g8-Zc6"/>
                         <imageView width="1" alignment="center" image="logo" contentMode="center" id="g3O-YU-52c"/>
                         <separator alignment="left" semanticContentAttribute="spatial" alpha="0.0" id="n1J-zY-UF5"/>
-                        <label width="0.94999999999999996" alignment="center" text="Kidderminster Harriers" textAlignment="center" minimumScaleFactor="0.5" id="G1I-Dx-f1N">
-                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <fontDescription key="font" name="AmericanTypewriter" family="American Typewriter" pointSize="16"/>
-                        </label>
-                        <label width="0.94999999999999996" alignment="center" text="L 0-2" textAlignment="center" minimumScaleFactor="0.5" id="Nqg-lj-NH6">
-                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <fontDescription key="font" name="AmericanTypewriter" family="American Typewriter" pointSize="16"/>
-                        </label>
-                        <label width="0.94999999999999996" alignment="center" text="BROMSGROVE SPORTING" textAlignment="center" minimumScaleFactor="0.5" id="Tj5-Pp-pS2">
-                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <fontDescription key="font" name="AmericanTypewriter" family="American Typewriter" pointSize="16"/>
-                        </label>
-                        <label width="0.94999999999999996" alignment="center" text="Tue 02 Aug" textAlignment="center" minimumScaleFactor="0.5" id="WSg-Tk-m4q">
-                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <fontDescription key="font" name="AmericanTypewriter" family="American Typewriter" pointSize="16"/>
-                        </label>
-                        <label width="0.94999999999999996" alignment="center" text="*best guess from Twitter" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="fUg-IL-WJ7">
-                            <fontDescription key="font" name="AmericanTypewriter" family="American Typewriter" pointSize="10"/>
-                        </label>
+                        <table alignment="left" id="aGY-fu-J3s">
+                            <items>
+                                <tableRow identifier="FixtureRowType" selectable="NO" id="iCM-SX-B06" customClass="FixtureRowType" customModule="watchkitapp_Extension">
+                                    <group key="rootItem" width="1" height="27" alignment="left" layout="vertical" spacing="0.0" id="2PX-Tg-cBr">
+                                        <items>
+                                            <label width="136" alignment="left" text="  " textAlignment="left" minimumScaleFactor="0.80000000000000004" id="AqB-kH-yuq">
+                                                <fontDescription key="font" name="AmericanTypewriter" family="American Typewriter" pointSize="10"/>
+                                            </label>
+                                            <label width="136" height="13" alignment="left" text="  " textAlignment="right" id="byH-JI-B4J">
+                                                <fontDescription key="font" name="AmericanTypewriter" family="American Typewriter" pointSize="10"/>
+                                            </label>
+                                        </items>
+                                        <color key="backgroundColor" red="0.023529411764705882" green="0.11372549019607843" blue="0.28627450980392155" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </group>
+                                    <connections>
+                                        <outlet property="labelOpponent" destination="AqB-kH-yuq" id="928-p9-4QV"/>
+                                        <outlet property="labelScore" destination="byH-JI-B4J" id="egs-wR-w3O"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                            <color key="backgroundColor" red="0.023529411760000001" green="0.1137254902" blue="0.28627450980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </table>
                     </items>
-                    <color key="backgroundColor" red="0.023529411764705882" green="0.11372549019607843" blue="0.28627450980392155" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.023529411764705882" green="0.11372549019607843" blue="0.28627450980392155" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <connections>
-                        <outlet property="bottomScoreLabel" destination="WSg-Tk-m4q" id="tBj-i9-KWH"/>
-                        <outlet property="bottomTeamLabel" destination="Tj5-Pp-pS2" id="ioz-h6-UbL"/>
-                        <outlet property="footnoteLabel" destination="fUg-IL-WJ7" id="33B-0Z-4F8"/>
-                        <outlet property="topScoreLabel" destination="Nqg-lj-NH6" id="4mb-Fq-hQO"/>
-                        <outlet property="topTeamLabel" destination="G1I-Dx-f1N" id="0gq-hF-VHe"/>
+                        <outlet property="fixtureTable" destination="aGY-fu-J3s" id="XCc-Um-9T2"/>
                     </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="218" y="343"/>
         </scene>
     </scenes>
-    <color key="tintColor" red="0.023529411760000001" green="0.2156862745" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
+    <color key="tintColor" red="0.023529411760000001" green="0.2156862745" blue="0.58823529409999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

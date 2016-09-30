@@ -71,6 +71,7 @@
 		52E711A41D9CF5F40002446A /* Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236AE51D17DFF8004903AB /* Fixture.swift */; };
 		52E711A51D9CFDD50002446A /* matches.json in Resources */ = {isa = PBXBuildFile; fileRef = 52236AEA1D17ECB4004903AB /* matches.json */; };
 		52E711A61D9CFDD90002446A /* gamescore.json in Resources */ = {isa = PBXBuildFile; fileRef = 52176BAD1D4A1AF600B7EFAE /* gamescore.json */; };
+		52E711A81D9E52080002446A /* FixtureTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E711A71D9E52080002446A /* FixtureTableRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -199,6 +200,7 @@
 		52E3DF7D1CD9FA78009F18BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		52E3DF801CD9FA78009F18BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		52E3DF821CD9FA78009F18BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		52E711A71D9E52080002446A /* FixtureTableRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixtureTableRow.swift; sourceTree = "<group>"; };
 		6C2886E0C6D579332BF2A5A8 /* Pods-yeltzland.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yeltzland.debug.xcconfig"; path = "Pods/Target Support Files/Pods-yeltzland/Pods-yeltzland.debug.xcconfig"; sourceTree = "<group>"; };
 		9BE281ED4B32969698046889 /* Pods_yeltzland.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_yeltzland.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C11AF69119A85B889C5CADB2 /* Pods-yeltzland.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yeltzland.release.xcconfig"; path = "Pods/Target Support Files/Pods-yeltzland/Pods-yeltzland.release.xcconfig"; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 				52176BD21D4B6D5900B7EFAE /* Assets.xcassets */,
 				52176BD41D4B6D5900B7EFAE /* Info.plist */,
 				52176BC81D4B6D5900B7EFAE /* Supporting Files */,
+				52E711A71D9E52080002446A /* FixtureTableRow.swift */,
 			);
 			path = "watchkitapp Extension";
 			sourceTree = "<group>";
@@ -758,6 +761,7 @@
 				52176BE41D4B6EF000B7EFAE /* WatchGameSettings.swift in Sources */,
 				52176BD11D4B6D5900B7EFAE /* ComplicationController.swift in Sources */,
 				52E711A31D9CF5EB0002446A /* GameScoreManager.swift in Sources */,
+				52E711A81D9E52080002446A /* FixtureTableRow.swift in Sources */,
 				52E711A11D9CF5C90002446A /* FixtureManager.swift in Sources */,
 				52176BCD1D4B6D5900B7EFAE /* ExtensionDelegate.swift in Sources */,
 				52E711A41D9CF5F40002446A /* Fixture.swift in Sources */,

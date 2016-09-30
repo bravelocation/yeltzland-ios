@@ -11,13 +11,7 @@ import Foundation
 
 class InterfaceController: WKInterfaceController {
     
-    @IBOutlet var topTeamLabel: WKInterfaceLabel!
-    @IBOutlet var topScoreLabel: WKInterfaceLabel!
-    
-    @IBOutlet var bottomTeamLabel: WKInterfaceLabel!
-    @IBOutlet var bottomScoreLabel: WKInterfaceLabel!
-    
-    @IBOutlet var footnoteLabel: WKInterfaceLabel!
+    @IBOutlet var fixtureTable: WKInterfaceTable!
     
     override init() {
         super.init()
@@ -38,32 +32,53 @@ class InterfaceController: WKInterfaceController {
     
     private func updateViewData() {
         let gameSettings = WatchGameSettings.instance
-    
-        // Setup colors
-        self.topTeamLabel.setTextColor(AppColors.WatchTextColor)
-        self.bottomTeamLabel.setTextColor(AppColors.WatchTextColor)
-        self.bottomScoreLabel.setTextColor(AppColors.WatchTextColor)
         
-        if (gameSettings.lastGameYeltzScore > gameSettings.lastGameOpponentScore) {
-            self.topScoreLabel.setTextColor(AppColors.WatchFixtureWin)
-        } else if (gameSettings.lastGameYeltzScore == gameSettings.lastGameOpponentScore) {
-            self.topScoreLabel.setTextColor(AppColors.WatchFixtureDraw)
-        } else if (gameSettings.lastGameYeltzScore < gameSettings.lastGameOpponentScore) {
-            self.topScoreLabel.setTextColor(AppColors.WatchFixtureLose)
-        }
+        // How many rows?
+        let nextFixtures = FixtureManager.instance.GetNextFixtures(6)
         
-        // Set label text
-        self.topTeamLabel.setText(gameSettings.truncateLastOpponent)
-        self.topScoreLabel.setText(gameSettings.lastScore)
-        self.bottomTeamLabel.setText(gameSettings.truncateNextOpponent)
+        let numberOfRows = nextFixtures.count + 1
         
-        // Do we have a current score?
-        if (gameSettings.gameScoreForCurrentGame) {
-            self.bottomScoreLabel.setText(gameSettings.currentScore)
-            self.footnoteLabel.setText("(*best guess from Twitter)")
-        } else {
-            self.bottomScoreLabel.setText(gameSettings.nextKickoffTime)
-            self.footnoteLabel.setText("")
+        self.fixtureTable.setNumberOfRows(numberOfRows, withRowType: "FixtureRowType")
+        for i in 0...numberOfRows - 1 {
+            var opponent: String = ""
+            var gameDetails = ""
+            var scoreColor = AppColors.WatchTextColor
+            
+            let row:FixtureRowType = self.fixtureTable.rowControllerAtIndex(i) as! FixtureRowType
+            
+            if (i == 0) {
+                opponent = gameSettings.displayLastOpponent
+                gameDetails = gameSettings.lastScore
+                
+                if (gameSettings.lastGameYeltzScore > gameSettings.lastGameOpponentScore) {
+                    scoreColor = AppColors.WatchFixtureWin
+                } else if (gameSettings.lastGameYeltzScore == gameSettings.lastGameOpponentScore) {
+                    scoreColor = AppColors.WatchFixtureDraw
+                } else if (gameSettings.lastGameYeltzScore < gameSettings.lastGameOpponentScore) {
+                    scoreColor = AppColors.WatchFixtureLose
+                }
+
+            } else {
+                if (i == 1 && gameSettings.gameScoreForCurrentGame) {
+                    opponent = gameSettings.displayNextOpponent
+                    gameDetails = gameSettings.currentScore
+                } else if (nextFixtures.count >= i) {
+                    opponent = nextFixtures[i - 1].displayOpponent
+                    gameDetails = nextFixtures[i - 1].fullKickoffTime
+                }
+            }
+            
+            if (opponent.characters.count > 0) {
+                row.labelOpponent?.setText(opponent)
+                row.labelScore?.setText(gameDetails)
+            } else {
+                row.labelOpponent?.setText("")
+                row.labelScore?.setText("")
+            }
+            
+            // Setup colors
+            row.labelOpponent?.setTextColor(AppColors.WatchTextColor)
+            row.labelScore?.setTextColor(scoreColor)
         }
     }
     

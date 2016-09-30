@@ -153,7 +153,7 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
             cell.textLabel?.text = opponent
             cell.detailTextLabel?.text = gameDetails
         } else {
-            cell.textLabel?.text = "  None"
+            cell.textLabel?.text = ""
             cell.detailTextLabel?.text = ""
         }
 
