@@ -38,35 +38,35 @@ public class WatchGameSettings : BaseSettings, WCSessionDelegate {
 
     func initialiseWatchSession() {
         if (self.watchSessionInitialised) {
-            NSLog("Watch session already initialised")
+            print("Watch session already initialised")
             return
         }
         
         self.watchSessionInitialised = true
-        NSLog("Watch session starting initialisation...")
+        print("Watch session starting initialisation...")
         
         // Set up watch setting if appropriate
         if (WCSession.isSupported()) {
-            NSLog("Setting up watch session ...")
+            print("Setting up watch session ...")
             let session: WCSession = WCSession.defaultSession();
             session.delegate = self
             session.activateSession()
-            NSLog("Watch session activated")
+            print("Watch session activated")
         } else {
-            NSLog("No watch session set up")
+            print("No watch session set up")
         }
     }
 
     // MARK:- WCSessionDelegate implementation - update local settings when transfered from phone
     @objc
     public func session(session: WCSession, didReceiveUserInfo userInfo: [String : AnyObject]) {
-        NSLog("New user info transfer data received on watch")
+        print("New user info transfer data received on watch")
         self.updateSettings(userInfo)
     }
     
     @objc
     public func session(session: WCSession, didReceiveUpdate receivedApplicationContext: [String : AnyObject]) {
-        NSLog("New context transfer data received on watch")
+        print("New context transfer data received on watch")
         self.updateSettings(receivedApplicationContext)
     }
     
@@ -89,7 +89,7 @@ public class WatchGameSettings : BaseSettings, WCSessionDelegate {
         
         // Send a notification for the view controllers to refresh
         NSNotificationCenter.defaultCenter().postNotificationName(BaseSettings.SettingsUpdateNotification, object:nil, userInfo:nil)
-        NSLog("Sent 'Update Settings' notification")
+        print("Sent 'Update Settings' notification")
     }
 }
 

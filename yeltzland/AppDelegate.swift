@@ -70,7 +70,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication,
                      performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
-        NSLog("In background refresh ...")
+        print("In background refresh ...")
         let now = NSDate()
         
         let differenceInMinutes = NSCalendar.currentCalendar().components(.Minute, fromDate: now, toDate: GameSettings.instance.nextGameTime, options: []).minute
@@ -89,7 +89,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: (Bool) -> Void) {
-        NSLog("3D Touch when from shortcut action");
+        print("3D Touch when from shortcut action");
         let handledShortCut = self.handleShortcut(shortcutItem)
         
         // Reset selected tab
@@ -110,7 +110,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func handleShortcut(shortcutItem: UIApplicationShortcutItem) -> Bool {
-        NSLog("Handling shortcut item %@", shortcutItem.type);
+        print("Handling shortcut item %@", shortcutItem.type);
         
         if (shortcutItem.type == "com.bravelocation.yeltzland.forum") {
             GameSettings.instance.lastSelectedTab = 0

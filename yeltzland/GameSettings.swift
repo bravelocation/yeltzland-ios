@@ -37,22 +37,22 @@ public class GameSettings : BaseSettings, WCSessionDelegate {
 
     func initialiseWatchSession() {
         if (self.watchSessionInitialised) {
-            NSLog("Watch session already initialised")
+            print("Watch session already initialised")
             return
         }
         
         self.watchSessionInitialised = true
-        NSLog("Watch session starting initialisation...")
+        print("Watch session starting initialisation...")
         
         // Set up watch setting if appropriate
         if (WCSession.isSupported()) {
-            NSLog("Setting up watch session ...")
+            print("Setting up watch session ...")
             let session: WCSession = WCSession.defaultSession();
             session.delegate = self
             session.activateSession()
-            NSLog("Watch session activated")
+            print("Watch session activated")
         } else {
-            NSLog("No watch session set up")
+            print("No watch session set up")
         }
     }
     
@@ -91,7 +91,7 @@ public class GameSettings : BaseSettings, WCSessionDelegate {
                 session.transferUserInfo(updatedSettings)
             }
             
-            NSLog("Settings pushed to watch")
+            print("Settings pushed to watch")
         }
     }
     

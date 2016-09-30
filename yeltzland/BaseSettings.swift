@@ -201,7 +201,7 @@ public class BaseSettings : NSObject {
         self.gameTimeTweetsEnabled = defaults.boolForKey("GameTimeTweetsEnabled")
         self.migratedToGroupSettings = true
         
-        NSLog("Migrated settings to group")
+        print("Migrated settings to group")
     }
     
     public var truncateLastOpponent: String {
@@ -448,7 +448,7 @@ public class BaseSettings : NSObject {
     }
     
     public func refreshFixtures() {
-        NSLog("Updating game fixture settings ...")
+        print("Updating game fixture settings ...")
         
         var updated = false
         var lastGameTeam = ""
@@ -525,12 +525,12 @@ public class BaseSettings : NSObject {
             
             NSNotificationCenter.defaultCenter().postNotificationName(BaseSettings.SettingsUpdateNotification, object: nil)
         } else {
-            NSLog("No fixture settings changed")
+            print("No fixture settings changed")
         }
     }
     
     public func refreshGameScore() {
-        NSLog("Updating game score settings ...")
+        print("Updating game score settings ...")
         
         let currentlyInGame = self.currentGameState() == GameState.During
         
@@ -560,7 +560,7 @@ public class BaseSettings : NSObject {
                 self.pushAllSettingsToWatch(currentlyInGame)
                 NSNotificationCenter.defaultCenter().postNotificationName(BaseSettings.SettingsUpdateNotification, object: nil)
             } else {
-                NSLog("No game settings changed")
+                print("No game settings changed")
             }
         }
     }

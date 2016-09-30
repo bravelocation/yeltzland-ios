@@ -97,7 +97,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         let requestTime = NSDate().dateByAddingTimeInterval(minutesToNextUpdate * 60.0)
         handler(requestTime)
         
-        NSLog("Requested for complications to be updated in %3.0f minutes", minutesToNextUpdate)
+        print("Requested for complications to be updated in %3.0f minutes", minutesToNextUpdate)
     }
     
     // MARK: - Placeholder Templates

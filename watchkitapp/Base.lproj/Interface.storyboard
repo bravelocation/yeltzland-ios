@@ -4,11 +4,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="11077"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="american_typewriter_regular.ttf">
-            <string>AmericanTypewriter</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Interface Controller-->
         <scene sceneID="aou-V4-d1y">
@@ -21,13 +16,13 @@
                         <table alignment="left" id="aGY-fu-J3s">
                             <items>
                                 <tableRow identifier="FixtureRowType" selectable="NO" id="iCM-SX-B06" customClass="FixtureRowType" customModule="watchkitapp_Extension">
-                                    <group key="rootItem" width="1" height="27" alignment="left" layout="vertical" spacing="0.0" id="2PX-Tg-cBr">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" spacing="0.0" id="2PX-Tg-cBr">
                                         <items>
                                             <label width="136" alignment="left" text="  " textAlignment="left" minimumScaleFactor="0.80000000000000004" id="AqB-kH-yuq">
-                                                <fontDescription key="font" name="AmericanTypewriter" family="American Typewriter" pointSize="10"/>
+                                                <fontDescription key="font" style="UICTFontTextStyleBody"/>
                                             </label>
                                             <label width="136" height="13" alignment="left" text="  " textAlignment="right" id="byH-JI-B4J">
-                                                <fontDescription key="font" name="AmericanTypewriter" family="American Typewriter" pointSize="10"/>
+                                                <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                             </label>
                                         </items>
                                         <color key="backgroundColor" red="0.023529411764705882" green="0.11372549019607843" blue="0.28627450980392155" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

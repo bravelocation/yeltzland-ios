@@ -22,10 +22,11 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     
     private func setupNotificationWatchers() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ExtensionDelegate.settingsUpdated), name: BaseSettings.SettingsUpdateNotification, object: nil)
-        print("Setup notification handlers for fixture or score updates in watch game settings")
+        print("Setup notification handlers for settings updates in extension delegate")
     }
 
     func applicationDidBecomeActive() {
+        print("Application did become active")
         WatchGameSettings.instance.initialiseWatchSession()
         
         // Go and fetch the latest data
@@ -95,7 +96,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     
     func settingsUpdated() {
         // Update complications
-        NSLog("Updating complications...")
+        print("Updating complications...")
         let complicationServer = CLKComplicationServer.sharedInstance()
         let activeComplications = complicationServer.activeComplications
         
@@ -104,7 +105,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                 complicationServer.reloadTimelineForComplication(complication)
             }
         }
-        NSLog("Complications updated")
+        print("Complications updated")
         
         // Schedule snapshot
         print("Scheduling snapshot")

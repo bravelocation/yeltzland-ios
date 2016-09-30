@@ -41,9 +41,9 @@ public class LocationManager {
                         }
                     }
                 }
-                NSLog("Loaded locations from cache")
+                print("Loaded locations from cache")
             } catch {
-                NSLog("Error loading locations from cache ...")
+                print("Error loading locations from cache ...")
                 print(error)
             }
         }

@@ -41,65 +41,74 @@ public class GameScoreManager {
         let data:NSData? = NSData.init(contentsOfFile: self.appDirectoryFilePath("gamescore", fileType: "json"))
         
         if (data == nil) {
-            NSLog("Couldn't load game score from cache")
+            print("Couldn't load game score from cache")
             return
         }
         
         do {
-            NSLog("Loading game score from cache ...")
+            print("Loading game score from cache ...")
             let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions()) as? [String : AnyObject]
             
             if (json == nil) {
-                NSLog("Couldn't parse game score from cache")
+                print("Couldn't parse game score from cache")
                 return
             }
             
             self.parseGameScoreJson(json!)
-            NSLog("Loaded game score from cache")
+            print("Loaded game score from cache")
         } catch {
-            NSLog("Error loading game score from cache ...")
+            print("Error loading game score from cache ...")
             print(error)
         }
     }
     
     public func getLatestGameScore() {
+        print("Preparing to fetch game score ...")
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
             
-            NSLog("Loading game scores from server ...")
+            print("Loading game scores from server ...")
             let dataUrl = NSURL(string: "http://bravelocation.com/automation/feeds/gamescore.json")!
             let serverData:NSData? = NSData.init(contentsOfURL: dataUrl)
             
             if (serverData == nil) {
-                NSLog("Couldn't download game score from server")
+                print("Couldn't download game score from server")
                 return
             }
             
-            do {
-                let json = try NSJSONSerialization.JSONObjectWithData(serverData!, options: NSJSONReadingOptions()) as? [String : AnyObject]
-                
-                if (json == nil) {
-                    NSLog("Couldn't parse game score from server")
-                    return
-                }
-                
-                self.parseGameScoreJson(json!)
-                
-                // Fetch went OK, so write to local file for next startup
-                if (self.MatchDate != nil) {
-                    NSLog("Saving server game score to cache")
-                    
-                    try serverData?.writeToFile(self.appDirectoryFilePath("gamescore", fileType: "json"), options: .DataWritingAtomic)
-                }
-                
-                NSLog("Loaded game score from server")
-                
-                // Post notification message
-                NSNotificationCenter.defaultCenter().postNotificationName(GameScoreManager.GameScoreNotification, object: nil)
-            } catch {
-                NSLog("Error loading game score from server ...")
-                print(error)
-            }
+            self.loadGameScoreData(serverData)
         }
+    }
+    
+    public func loadGameScoreData(data:NSData?) {
+        do {
+            let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions()) as? [String : AnyObject]
+            
+            if (json == nil) {
+                print("Couldn't parse game score from server")
+                return
+            }
+            
+            self.parseGameScoreJson(json!)
+            
+            // Fetch went OK, so write to local file for next startup
+            if (self.MatchDate != nil) {
+                print("Saving server game score to cache")
+                
+                try data?.writeToFile(self.appDirectoryFilePath("gamescore", fileType: "json"), options: .DataWritingAtomic)
+            }
+            
+            print("Loaded game score from server")
+            
+            // Post notification message
+            NSNotificationCenter.defaultCenter().postNotificationName(GameScoreManager.GameScoreNotification, object: nil)
+        } catch {
+            print("Error loading game score from server ...")
+            print(error)
+        }
+    }
+
+    public func CacheFileUrl() -> NSURL {
+        return NSURL(fileURLWithPath: appDirectoryFilePath("gamescore", fileType: "json"))
     }
     
     private func parseGameScoreJson(json:[String:AnyObject]) {
@@ -127,13 +136,15 @@ public class GameScoreManager {
         if (self.checkAppDirectoryExists(fileName, fileType:fileType))
         {
             // If file already exists, return
-            //return
+            print("GameScore file exists, don't copy from bundle")
+            return
         }
         
         let fileManager = NSFileManager.defaultManager()
         let bundlePath = NSBundle.mainBundle().pathForResource(fileName, ofType: fileType)!
         if fileManager.fileExistsAtPath(bundlePath) == false {
             // No bundle file exists
+            print("Missing bundle file")
             return
         }
         

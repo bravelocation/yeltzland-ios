@@ -34,64 +34,41 @@ public class FixtureManager {
         let data:NSData? = NSData.init(contentsOfFile: self.appDirectoryFilePath("matches", fileType: "json"))
         
         if (data == nil) {
-            NSLog("Couldn't load fixtures from cache")
+            print("Couldn't load fixtures from cache")
             return
         }
         
         do {
-            NSLog("Loading fixtures from cache ...")
+            print("Loading fixtures from cache ...")
             let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions()) as? [String : AnyObject]
             
             if (json == nil) {
-                NSLog("Couldn't parse fixtures from cache")
+                print("Couldn't parse fixtures from cache")
                 return
             }
             
             self.parseMatchesJson(json!)
-            NSLog("Loaded fixtures from cache")
+            print("Loaded fixtures from cache")
         } catch {
-            NSLog("Error loading fixtures from cache ...")
+            print("Error loading fixtures from cache ...")
             print(error)
         }
     }
     
     public func getLatestFixtures() {
+        print("Preparing to fetch fixtures ...")
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
             
-            NSLog("Loading fixtures from server ...")
+            print("Loading fixtures from server ...")
             let dataUrl = NSURL(string: "http://yeltz.co.uk/fantasyisland/matches.json.php")!
             let serverData:NSData? = NSData.init(contentsOfURL: dataUrl)
             
             if (serverData == nil) {
-                NSLog("Couldn't download fixtures from server")
+                print("Couldn't download fixtures from server")
                 return
             }
             
-            do {
-                let json = try NSJSONSerialization.JSONObjectWithData(serverData!, options: NSJSONReadingOptions()) as? [String : AnyObject]
-                
-                if (json == nil) {
-                    NSLog("Couldn't parse fixtures from server")
-                    return
-                }
-                
-                self.parseMatchesJson(json!)
-                
-                // Fetch went OK, so write to local file for next startup
-                if (self.Months.count > 0) {
-                    NSLog("Saving server fixtures to cache")
-                    
-                    try serverData?.writeToFile(self.appDirectoryFilePath("matches", fileType: "json"), options: .DataWritingAtomic)
-                }
-                
-                NSLog("Loaded fixtures from server")
-                
-                // Post notification message
-                NSNotificationCenter.defaultCenter().postNotificationName(FixtureManager.FixturesNotification, object: nil)
-            } catch {
-                NSLog("Error loading fixtures from server ...")
-                print(error)
-            }
+            self.loadFixtureData(serverData);
         }
     }
     
@@ -174,6 +151,38 @@ public class FixtureManager {
         return nil
     }
     
+    public func loadFixtureData(data: NSData?) {
+        do {
+            let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions()) as? [String : AnyObject]
+            
+            if (json == nil) {
+                print("Couldn't parse fixtures from server")
+                return
+            }
+            
+            self.parseMatchesJson(json!)
+            
+            // Fetch went OK, so write to local file for next startup
+            if (self.Months.count > 0) {
+                print("Saving server fixtures to cache")
+                
+                try data?.writeToFile(self.appDirectoryFilePath("matches", fileType: "json"), options: .DataWritingAtomic)
+            }
+            
+            print("Loaded fixtures from server")
+            
+            // Post notification message
+            NSNotificationCenter.defaultCenter().postNotificationName(FixtureManager.FixturesNotification, object: nil)
+        } catch {
+            print("Error loading fixtures from server ...")
+            print(error)
+        }
+    }
+    
+    public func CacheFileUrl() -> NSURL {
+        return NSURL(fileURLWithPath: appDirectoryFilePath("matches", fileType: "json"))
+    }
+    
     private func parseMatchesJson(json:[String:AnyObject]) {
         guard let matches = json["Matches"] as? Array<AnyObject> else { return }
         
@@ -209,21 +218,25 @@ public class FixtureManager {
         if (self.checkAppDirectoryExists(fileName, fileType:fileType))
         {
             // If file already exists, return
-            //return
+            print("Fixtures file exists, don't copy from bundle")
+            return
         }
         
         let fileManager = NSFileManager.defaultManager()
         let bundlePath = NSBundle.mainBundle().pathForResource(fileName, ofType: fileType)!
         if fileManager.fileExistsAtPath(bundlePath) == false {
             // No bundle file exists
+            print("Missing bundle file")
             return
         }
         
         // Finally, copy the bundle file
         do {
             try fileManager.copyItemAtPath(bundlePath, toPath: self.appDirectoryFilePath(fileName, fileType: fileType))
+            print("Copied Fixtures from bundle to cache")
         }
         catch {
+            print("Problem copying fixtures file from bundle to cache")
             return
         }
     }

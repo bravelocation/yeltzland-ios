@@ -173,7 +173,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         if let requestUrl = self.homeUrl {
             let req = NSURLRequest(URL: requestUrl)
             self.webView.loadRequest(req)
-            NSLog("Loading page: %@", self.homeUrl)
+            print("Loading page: %@", self.homeUrl)
         }
     }
     
@@ -183,7 +183,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         
         let req = NSURLRequest(URL: requestUrl)
         self.webView.loadRequest(req)
-        NSLog("Loading page: %@", requestUrl)
+        print("Loading page: %@", requestUrl)
     }
     
     func shareButtonTouchUp() {
