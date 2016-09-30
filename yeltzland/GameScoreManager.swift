@@ -64,19 +64,28 @@ public class GameScoreManager {
     
     public func getLatestGameScore() {
         print("Preparing to fetch game score ...")
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
+        
+        let dataUrl = NSURL(string: "http://bravelocation.com/automation/feeds/gamescore.json")!
+        let urlRequest = NSMutableURLRequest(URL: dataUrl)
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithRequest(urlRequest) {
+            (serverData, response, error) -> Void in
+            let httpResponse = response as! NSHTTPURLResponse
+            let statusCode = httpResponse.statusCode
             
-            print("Loading game scores from server ...")
-            let dataUrl = NSURL(string: "http://bravelocation.com/automation/feeds/gamescore.json")!
-            let serverData:NSData? = NSData.init(contentsOfURL: dataUrl)
-            
-            if (serverData == nil) {
-                print("Couldn't download game score from server")
-                return
+            if (statusCode == 200) {
+                if (serverData == nil) {
+                    print("Couldn't download game score from server")
+                    return
+                }
+                
+                self.loadGameScoreData(serverData);
+            } else {
+                print("Error response from server: \(statusCode)")
             }
-            
-            self.loadGameScoreData(serverData)
         }
+        
+        task.resume()
     }
     
     public func loadGameScoreData(data:NSData?) {

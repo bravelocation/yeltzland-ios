@@ -57,19 +57,28 @@ public class FixtureManager {
     
     public func getLatestFixtures() {
         print("Preparing to fetch fixtures ...")
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)) {
+        
+        let dataUrl = NSURL(string: "http://yeltz.co.uk/fantasyisland/matches.json.php")!
+        let urlRequest = NSMutableURLRequest(URL: dataUrl)
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithRequest(urlRequest) {
+            (serverData, response, error) -> Void in
+            let httpResponse = response as! NSHTTPURLResponse
+            let statusCode = httpResponse.statusCode
             
-            print("Loading fixtures from server ...")
-            let dataUrl = NSURL(string: "http://yeltz.co.uk/fantasyisland/matches.json.php")!
-            let serverData:NSData? = NSData.init(contentsOfURL: dataUrl)
-            
-            if (serverData == nil) {
-                print("Couldn't download fixtures from server")
-                return
+            if (statusCode == 200) {
+                if (serverData == nil) {
+                    print("Couldn't download fixtures from server")
+                    return
+                }
+                
+                self.loadFixtureData(serverData);
+            } else {
+                print("Error response from server: \(statusCode)")
             }
-            
-            self.loadFixtureData(serverData);
         }
+        
+        task.resume()
     }
     
     public func getAwayGames(opponent:String) -> [Fixture] {

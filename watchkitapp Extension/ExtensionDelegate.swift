@@ -10,6 +10,8 @@ import WatchKit
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
+    var backgroundTaskSetup:Bool = false
+    
     override init() {
         super.init()
         self.setupNotificationWatchers()
@@ -29,11 +31,13 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         print("Application did become active")
         WatchGameSettings.instance.initialiseWatchSession()
         
-        // Go and fetch the latest data
-        FixtureManager.instance.getLatestFixtures()
-        GameScoreManager.instance.getLatestGameScore()
-        
-        self.setupBackgroundRefresh()
+        if (self.backgroundTaskSetup == false) {
+            self.setupBackgroundRefresh()
+            
+            // Go and fetch the latest data in the background
+            FixtureManager.instance.getLatestFixtures()
+            GameScoreManager.instance.getLatestGameScore()
+        }
     }
  
     func setupBackgroundRefresh() {
@@ -70,7 +74,8 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
             }
         })
         
-        print("Setup background task for \(nextRefreshTime)")
+        print("Setup background task for \(nextRefreshTime!)")
+        self.backgroundTaskSetup = true
     }
 
     
