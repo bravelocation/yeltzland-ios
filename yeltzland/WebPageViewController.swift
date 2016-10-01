@@ -233,7 +233,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         // Show brief error message
         if (error.code != NSURLErrorCancelled) {
             print("didFailProvisionalNavigation error occurred: ", error.localizedDescription, ":", error.code)
-            MakeToast.Show(self.view, message: "Couldn't connect to the website right now")
+            MakeToast.Show(self.view, message: "Couldn't connect to the website right now", delay: 2.0)
             self.hideSpinner()
         }
     }
@@ -278,7 +278,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         // Show brief error message
         if (error.code != NSURLErrorCancelled) {
             print("Navigation error occurred: ", error.localizedDescription)
-            MakeToast.Show(self.view, message: "Couldn't connect to the website right now")
+            MakeToast.Show(self.view, message: "Couldn't connect to the website right now", delay: 2.0)
             self.hideSpinner()
         }
     }

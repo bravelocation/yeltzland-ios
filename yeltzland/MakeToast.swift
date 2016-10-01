@@ -11,7 +11,7 @@ import UIKit
 
 public class MakeToast {
     
-    public static func Show(view:UIView, message:String) {
+    public static func Show(view:UIView, message:String, delay: Double) {
         // Make label with rounded corners tto show
         let toastLabel = UILabel(frame: CGRectMake(view.frame.size.width/2 - 150, view.frame.size.height-100, 300, 35))
         toastLabel.backgroundColor = AppColors.ToastBackgroundColor
@@ -22,7 +22,7 @@ public class MakeToast {
         
         toastLabel.adjustsFontSizeToFitWidth = true
         toastLabel.allowsDefaultTighteningForTruncation = true
-        toastLabel.minimumScaleFactor = 0.5
+        toastLabel.minimumScaleFactor = 0.8
         
         toastLabel.alpha = 1.0
         toastLabel.layer.cornerRadius = 10;
@@ -32,7 +32,7 @@ public class MakeToast {
         view.addSubview(toastLabel)
 
         // Fade the label out
-        UIView.animateWithDuration(1.0, delay: 2.0, options: .CurveEaseOut, animations: {
+        UIView.animateWithDuration(1.0, delay: delay, options: .CurveEaseOut, animations: {
             toastLabel.alpha = 0.0
             }, completion: {(value: Bool) in
                 // Remove the label from the view when done
