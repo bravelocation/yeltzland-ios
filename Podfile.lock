@@ -7,7 +7,6 @@ PODS:
     - Fabric
   - TwitterKit (2.5.0):
     - TwitterCore (= 2.5.0)
-  - Whisper (3.1.1)
 
 DEPENDENCIES:
   - Crashlytics
@@ -15,7 +14,6 @@ DEPENDENCIES:
   - Font-Awesome-Swift (~> 1.4.7)
   - TwitterCore
   - TwitterKit
-  - Whisper
 
 SPEC CHECKSUMS:
   Crashlytics: 27acca95a01b042a8294291dd6dff27f8f6af6d7
@@ -23,8 +21,7 @@ SPEC CHECKSUMS:
   Font-Awesome-Swift: 354c9440b0e4d692e31171c84091f3510e8f9468
   TwitterCore: 95c46af93112768a7983bd370d66023553601d01
   TwitterKit: dd8042698b0ff5bd3066fa919b3b2b50d8eed829
-  Whisper: 74decae53daf8caff5acf8628e24b92d3f05a453
 
-PODFILE CHECKSUM: 9da8e74b675cf9dcb8f1849709170c071c6e7e6f
+PODFILE CHECKSUM: 7c9dd9730bbd3aec45fd34eba74d93b24ca4c91d
 
 COCOAPODS: 1.1.0.rc.2

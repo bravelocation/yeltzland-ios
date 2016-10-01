@@ -8,7 +8,6 @@ target 'yeltzland' do
   pod 'Crashlytics'
   pod 'TwitterKit'
   pod 'TwitterCore'
-  pod 'Whisper'
 end
 
 post_install do |installer|

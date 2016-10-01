@@ -67,10 +67,11 @@ class AppColors {
     static var Archive: UIColor = YeltzBlueColor
     static var TwitterIcon: UIColor = TwitterColor
     
-    static var ActiveAlertBackground: UIColor = YeltzBlueColor
-    static var ActiveAlertText: UIColor = UIColor.whiteColor()
-    
     static var SpinnerColor = YeltzBlueColor
+    
+    static var ToastBackgroundColor = YeltzBlueColor
+    static var ToastTextColor = UIColor.whiteColor()
+    static var ToastTextSize = headlineDescriptor.pointSize
     
     static var FixtureWin = UIColor(red: 0.0/255.0, green: 63.0/255.0, blue: 0.0/255.0, alpha: 1.0)
     static var FixtureDraw = UIColor(red: 0.0/255.0, green: 0.0/255.0, blue: 63.0/255.0, alpha: 1.0)

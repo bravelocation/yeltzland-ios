@@ -10,7 +10,6 @@ import UIKit
 import Fabric
 import Crashlytics
 import TwitterKit
-import Whisper
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -164,19 +163,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Go and update the game score
         GameScoreManager.instance.getLatestGameScore()
         
-        // If app in foreground, show a whisper
+        // If app in foreground, show a toast
         if (application.applicationState == .Active) {
             if let aps = userInfo["aps"] as? NSDictionary {
                 if let alert = aps["alert"] as? NSDictionary {
                     if let body = alert["body"] as? NSString {
-                        let message = Message(title: body as String, backgroundColor: AppColors.ActiveAlertBackground, textColor: AppColors.ActiveAlertText)
                         
                         // Show and hide a message after delay
                         if (self.window != nil && self.window?.rootViewController != nil) {
                             if let tabController : UITabBarController? = (self.window?.rootViewController as! UITabBarController) {
                                 if let navigationController : UINavigationController? = tabController!.viewControllers![0] as? UINavigationController {
-                                    show(whisper: message, to: navigationController!, action: .Show)
-                                    hide(whisperFrom: navigationController!, after: 2.0)
+                                    MakeToast.Show(navigationController!.view!, message: body as String)
                                 }
                             }
                         }
