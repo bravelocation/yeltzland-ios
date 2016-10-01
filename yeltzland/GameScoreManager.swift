@@ -70,6 +70,11 @@ public class GameScoreManager {
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithRequest(urlRequest) {
             (serverData, response, error) -> Void in
+            if (error != nil) {
+                print("Error downloading game score from server: \(error.debugDescription)")
+                return
+            }
+            
             let httpResponse = response as! NSHTTPURLResponse
             let statusCode = httpResponse.statusCode
             
@@ -114,10 +119,6 @@ public class GameScoreManager {
             print("Error loading game score from server ...")
             print(error)
         }
-    }
-
-    public func CacheFileUrl() -> NSURL {
-        return NSURL(fileURLWithPath: appDirectoryFilePath("gamescore", fileType: "json"))
     }
     
     private func parseGameScoreJson(json:[String:AnyObject]) {

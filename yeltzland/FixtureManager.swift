@@ -63,6 +63,11 @@ public class FixtureManager {
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithRequest(urlRequest) {
             (serverData, response, error) -> Void in
+            if (error != nil) {
+                print("Error downloading fixtures from server: \(error.debugDescription)")
+                return
+            }
+            
             let httpResponse = response as! NSHTTPURLResponse
             let statusCode = httpResponse.statusCode
             
@@ -186,10 +191,6 @@ public class FixtureManager {
             print("Error loading fixtures from server ...")
             print(error)
         }
-    }
-    
-    public func CacheFileUrl() -> NSURL {
-        return NSURL(fileURLWithPath: appDirectoryFilePath("matches", fileType: "json"))
     }
     
     private func parseMatchesJson(json:[String:AnyObject]) {
