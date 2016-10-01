@@ -25,7 +25,7 @@
                                                 <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                             </label>
                                         </items>
-                                        <color key="backgroundColor" red="0.023529411764705882" green="0.11372549019607843" blue="0.28627450980392155" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.023529411764705882" green="0.21568627450980393" blue="0.58823529411764708" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </group>
                                     <connections>
                                         <outlet property="labelOpponent" destination="AqB-kH-yuq" id="928-p9-4QV"/>
@@ -36,7 +36,7 @@
                             <color key="backgroundColor" red="0.023529411760000001" green="0.1137254902" blue="0.28627450980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </table>
                     </items>
-                    <color key="backgroundColor" red="0.023529411764705882" green="0.11372549019607843" blue="0.28627450980392155" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.023529411760000001" green="0.1137254902" blue="0.28627450980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <connections>
                         <outlet property="fixtureTable" destination="aGY-fu-J3s" id="XCc-Um-9T2"/>
                     </connections>
