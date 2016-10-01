@@ -12,6 +12,7 @@
                     <items>
                         <separator alignment="left" semanticContentAttribute="spatial" alpha="0.0" id="Pia-g8-Zc6"/>
                         <imageView width="1" alignment="center" image="logo" contentMode="center" id="g3O-YU-52c"/>
+                        <separator alignment="left" semanticContentAttribute="spatial" alpha="0.0" id="7nE-Lf-mUq"/>
                         <table alignment="left" id="aGY-fu-J3s">
                             <items>
                                 <tableRow identifier="FixtureRowType" selectable="NO" id="iCM-SX-B06" customClass="FixtureRowType" customModule="watchkitapp_Extension">
