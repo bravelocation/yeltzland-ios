@@ -12,7 +12,6 @@
                     <items>
                         <separator alignment="left" semanticContentAttribute="spatial" alpha="0.0" id="Pia-g8-Zc6"/>
                         <imageView width="1" alignment="center" image="logo" contentMode="center" id="g3O-YU-52c"/>
-                        <separator alignment="left" semanticContentAttribute="spatial" alpha="0.0" id="n1J-zY-UF5"/>
                         <table alignment="left" id="aGY-fu-J3s">
                             <items>
                                 <tableRow identifier="FixtureRowType" selectable="NO" id="iCM-SX-B06" customClass="FixtureRowType" customModule="watchkitapp_Extension">
@@ -25,7 +24,7 @@
                                                 <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                             </label>
                                         </items>
-                                        <color key="backgroundColor" red="0.023529411764705882" green="0.21568627450980393" blue="0.58823529411764708" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.023529411760000001" green="0.1137254902" blue="0.28627450980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </group>
                                     <connections>
                                         <outlet property="labelOpponent" destination="AqB-kH-yuq" id="928-p9-4QV"/>
@@ -33,10 +32,10 @@
                                     </connections>
                                 </tableRow>
                             </items>
-                            <color key="backgroundColor" red="0.023529411760000001" green="0.1137254902" blue="0.28627450980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </table>
                     </items>
-                    <color key="backgroundColor" red="0.023529411760000001" green="0.1137254902" blue="0.28627450980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="fixtureTable" destination="aGY-fu-J3s" id="XCc-Um-9T2"/>
                     </connections>
