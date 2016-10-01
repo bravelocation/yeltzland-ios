@@ -20,11 +20,19 @@ public class FixtureManager {
     }
     
     public var Months: [String] {
-        return Array(self.fixtureList.keys).sort()
+        if (self.fixtureList.keys.count > 0) {
+            return Array(self.fixtureList.keys).sort()
+        }
+        
+        return []
     }
     
     public func FixturesForMonth(monthKey: String) -> [Fixture]? {
-        return self.fixtureList[monthKey]
+        if (self.fixtureList.indexForKey(monthKey) != nil) {
+            return self.fixtureList[monthKey]
+        }
+        
+        return nil
     }
     
     init() {
@@ -59,7 +67,7 @@ public class FixtureManager {
         print("Preparing to fetch fixtures ...")
         
         let dataUrl = NSURL(string: "http://yeltz.co.uk/fantasyisland/matches.json.php")!
-        let urlRequest = NSMutableURLRequest(URL: dataUrl)
+        let urlRequest = NSURLRequest(URL: dataUrl, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData, timeoutInterval: 60.0)
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithRequest(urlRequest) {
             (serverData, response, error) -> Void in
