@@ -102,6 +102,10 @@ class FixturesTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
         let months = FixtureManager.instance.Months;
+        if (months.count <= section) {
+            return 0
+        }
+        
         let fixturesForMonth = FixtureManager.instance.FixturesForMonth(months[section])
         
         if (fixturesForMonth == nil || fixturesForMonth?.count == 0) {
@@ -117,10 +121,13 @@ class FixturesTableViewController: UITableViewController {
         // Find the fixture
         var currentFixture:Fixture? = nil
         let months = FixtureManager.instance.Months;
-        let fixturesForMonth = FixtureManager.instance.FixturesForMonth(months[indexPath.section])
         
-        if (fixturesForMonth != nil && fixturesForMonth?.count > indexPath.row) {
-            currentFixture = fixturesForMonth![indexPath.row]
+        if (months.count > indexPath.section) {
+            let fixturesForMonth = FixtureManager.instance.FixturesForMonth(months[indexPath.section])
+        
+            if (fixturesForMonth != nil && fixturesForMonth?.count > indexPath.row) {
+                currentFixture = fixturesForMonth![indexPath.row]
+            }
         }
 
         cell.selectionStyle = .None
@@ -165,6 +172,10 @@ class FixturesTableViewController: UITableViewController {
     override func tableView( tableView : UITableView,  titleForHeaderInSection section: Int)->String
     {
         let months = FixtureManager.instance.Months;
+        if (months.count <= section) {
+            return ""
+        }
+        
         let fixturesForMonth = FixtureManager.instance.FixturesForMonth(months[section])
         if (fixturesForMonth == nil || fixturesForMonth?.count == 0) {
             return ""

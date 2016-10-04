@@ -66,7 +66,7 @@ public class FixtureManager {
     public func getLatestFixtures() {
         print("Preparing to fetch fixtures ...")
         
-        let dataUrl = NSURL(string: "http://yeltz.co.uk/fantasyisland/matches.json.php")!
+        let dataUrl = NSURL(string: "https://bravelocation.com/automation/feeds/matches.json")!
         let urlRequest = NSURLRequest(URL: dataUrl, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData, timeoutInterval: 60.0)
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithRequest(urlRequest) {

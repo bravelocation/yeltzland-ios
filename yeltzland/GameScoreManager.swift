@@ -65,7 +65,7 @@ public class GameScoreManager {
     public func getLatestGameScore() {
         print("Preparing to fetch game score ...")
         
-        let dataUrl = NSURL(string: "http://bravelocation.com/automation/feeds/gamescore.json")!
+        let dataUrl = NSURL(string: "https://bravelocation.com/automation/feeds/gamescore.json")!
         let urlRequest = NSURLRequest(URL: dataUrl, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData, timeoutInterval: 60.0)
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithRequest(urlRequest) {

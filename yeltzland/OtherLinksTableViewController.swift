@@ -203,7 +203,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
                 break
             }
         } else if (indexPath.section == 4) {
-            url = NSURL(string: "http://bravelocation.com/apps")
+            url = NSURL(string: "https://bravelocation.com/apps")
         }
         
         if (url != nil) {
