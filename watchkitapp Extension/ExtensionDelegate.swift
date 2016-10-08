@@ -46,7 +46,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
         // Setup a background refresh based on game state
         var backgroundRefreshMinutes = 6 * 60;
-        
+         
         let gameState = WatchGameSettings.instance.currentGameState()
         switch (gameState) {
             case .gameDayBefore:
