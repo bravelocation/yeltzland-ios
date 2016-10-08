@@ -10,7 +10,7 @@ import WatchKit
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
-    var backgroundTaskSetup:Bool = false
+    var backgroundTaskSetup = false
     
     override init() {
         super.init()
@@ -40,7 +40,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         }
     }
  
-    func setupBackgroundRefresh() {
+    func setupBackgroundRefresh() {       
         let globalCalendar = Calendar.autoupdatingCurrent
         let now = Date()
 
@@ -68,19 +68,12 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         
         let nextRefreshTime = (globalCalendar as NSCalendar).date(byAdding: .minute, value: backgroundRefreshMinutes, to: now, options: [])
         
-        WKExtension.shared().scheduleBackgroundRefresh(withPreferredDate: nextRefreshTime!, userInfo: nil, scheduledCompletion: { (error: NSError?) in
-                if error != nil {
-                    print("Error occurred while scheduling background refresh: \(error?.localizedDescription)")
-                } else {
-                    print("Scheduled background task")
-                }
-            } as! (Error?) -> Void)
+        WKExtension.shared().scheduleBackgroundRefresh(withPreferredDate: nextRefreshTime!, userInfo: nil, scheduledCompletion: self.backgroundRefreshRunning)
         
         print("Setup background task for \(nextRefreshTime!)")
         self.backgroundTaskSetup = true
     }
 
-    
     func handle(_ backgroundTasks: Set<WKRefreshBackgroundTask>) {
         print("Handling background task started")
         
@@ -117,10 +110,13 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         // Schedule snapshot
         print("Scheduling snapshot")
         let soon =  (Calendar.autoupdatingCurrent as NSCalendar).date(byAdding: .second, value: 5, to: Date(), options: [])
-        WKExtension.shared().scheduleSnapshotRefresh(withPreferredDate: soon!, userInfo: nil, scheduledCompletion: { (error: NSError?) in
-            if error != nil {
-                print("Error occurred while scheduling snapshot: \(error?.localizedDescription)")
-            }} as! (Error?) -> Void)
+        WKExtension.shared().scheduleSnapshotRefresh(withPreferredDate: soon!, userInfo: nil, scheduledCompletion: self.backgroundRefreshRunning)
         print("Snapshot scheduled")
+    }
+    
+    private func backgroundRefreshRunning(error: Error?) {
+        if (error != nil) {
+            print("Error running background task: \(error.debugDescription)")
+        }
     }
 }
