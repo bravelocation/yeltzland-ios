@@ -8,29 +8,29 @@
 
 import Foundation
 
-public class GameScoreManager {
-    public static let GameScoreNotification:String = "YLZGameScoreNotification"
+open class GameScoreManager {
+    open static let GameScoreNotification:String = "YLZGameScoreNotification"
     
-    private var matchDate:NSDate? = nil
-    private var yeltzScore:Int = 0
-    private var opponentScore:Int = 0
+    fileprivate var matchDate:Date? = nil
+    fileprivate var yeltzScore:Int = 0
+    fileprivate var opponentScore:Int = 0
     
-    private static let sharedInstance = GameScoreManager()
+    fileprivate static let sharedInstance = GameScoreManager()
     class var instance:GameScoreManager {
         get {
             return sharedInstance
         }
     }
     
-    public var MatchDate: NSDate? {
+    open var MatchDate: Date? {
         return self.matchDate
     }
     
-    public var YeltzScore: Int {
+    open var YeltzScore: Int {
         return self.yeltzScore
     }
     
-    public var OpponentScore: Int {
+    open var OpponentScore: Int {
         return self.opponentScore
     }
     
@@ -38,7 +38,7 @@ public class GameScoreManager {
         // Setup local data
         self.moveSingleBundleFileToAppDirectory("gamescore", fileType: "json")
         
-        let data:NSData? = NSData.init(contentsOfFile: self.appDirectoryFilePath("gamescore", fileType: "json"))
+        let data:Data? = try? Data.init(contentsOf: URL(fileURLWithPath: self.appDirectoryFilePath("gamescore", fileType: "json")))
         
         if (data == nil) {
             print("Couldn't load game score from cache")
@@ -47,7 +47,7 @@ public class GameScoreManager {
         
         do {
             print("Loading game score from cache ...")
-            let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions()) as? [String : AnyObject]
+            let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions()) as? [String : AnyObject]
             
             if (json == nil) {
                 print("Couldn't parse game score from cache")
@@ -62,20 +62,20 @@ public class GameScoreManager {
         }
     }
     
-    public func getLatestGameScore() {
+    open func getLatestGameScore() {
         print("Preparing to fetch game score ...")
         
-        let dataUrl = NSURL(string: "https://bravelocation.com/automation/feeds/gamescore.json")!
-        let urlRequest = NSURLRequest(URL: dataUrl, cachePolicy: NSURLRequestCachePolicy.ReloadIgnoringLocalCacheData, timeoutInterval: 60.0)
-        let session = NSURLSession.sharedSession()
-        let task = session.dataTaskWithRequest(urlRequest) {
+        let dataUrl = URL(string: "https://bravelocation.com/automation/feeds/gamescore.json")!
+        let urlRequest = URLRequest(url: dataUrl, cachePolicy: NSURLRequest.CachePolicy.reloadIgnoringLocalCacheData, timeoutInterval: 60.0)
+        let session = URLSession.shared
+        let task = session.dataTask(with: urlRequest, completionHandler: {
             (serverData, response, error) -> Void in
             if (error != nil) {
                 print("Error downloading game score from server: \(error.debugDescription)")
                 return
             }
             
-            let httpResponse = response as! NSHTTPURLResponse
+            let httpResponse = response as! HTTPURLResponse
             let statusCode = httpResponse.statusCode
             
             if (statusCode == 200) {
@@ -88,14 +88,14 @@ public class GameScoreManager {
             } else {
                 print("Error response from server: \(statusCode)")
             }
-        }
+        }) 
         
         task.resume()
     }
     
-    public func loadGameScoreData(data:NSData?) {
+    open func loadGameScoreData(_ data:Data?) {
         do {
-            let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions()) as? [String : AnyObject]
+            let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions()) as? [String : AnyObject]
             
             if (json == nil) {
                 print("Couldn't parse game score from server")
@@ -108,20 +108,20 @@ public class GameScoreManager {
             if (self.MatchDate != nil) {
                 print("Saving server game score to cache")
                 
-                try data?.writeToFile(self.appDirectoryFilePath("gamescore", fileType: "json"), options: .DataWritingAtomic)
+                try data?.write(to: URL(fileURLWithPath: self.appDirectoryFilePath("gamescore", fileType: "json")), options: .atomic)
             }
             
             print("Loaded game score from server")
             
             // Post notification message
-            NSNotificationCenter.defaultCenter().postNotificationName(GameScoreManager.GameScoreNotification, object: nil)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: GameScoreManager.GameScoreNotification), object: nil)
         } catch {
             print("Error loading game score from server ...")
             print(error)
         }
     }
     
-    private func parseGameScoreJson(json:[String:AnyObject]) {
+    fileprivate func parseGameScoreJson(_ json:[String:AnyObject]) {
         // Clear settings
         self.matchDate = nil
         self.yeltzScore = 0
@@ -129,7 +129,7 @@ public class GameScoreManager {
         
         if let currentMatch = json["match"] {
             if let fixture = Fixture(fromJson: currentMatch as! [String : AnyObject]) {
-                self.matchDate = fixture.fixtureDate
+                self.matchDate = fixture.fixtureDate as Date
             }
         }
 
@@ -142,7 +142,7 @@ public class GameScoreManager {
         }
     }
     
-    private func moveSingleBundleFileToAppDirectory(fileName:String, fileType:String) {
+    fileprivate func moveSingleBundleFileToAppDirectory(_ fileName:String, fileType:String) {
         if (self.checkAppDirectoryExists(fileName, fileType:fileType))
         {
             // If file already exists, return
@@ -150,9 +150,9 @@ public class GameScoreManager {
             return
         }
         
-        let fileManager = NSFileManager.defaultManager()
-        let bundlePath = NSBundle.mainBundle().pathForResource(fileName, ofType: fileType)!
-        if fileManager.fileExistsAtPath(bundlePath) == false {
+        let fileManager = FileManager.default
+        let bundlePath = Bundle.main.path(forResource: fileName, ofType: fileType)!
+        if fileManager.fileExists(atPath: bundlePath) == false {
             // No bundle file exists
             print("Missing bundle file")
             return
@@ -160,38 +160,38 @@ public class GameScoreManager {
         
         // Finally, copy the bundle file
         do {
-            try fileManager.copyItemAtPath(bundlePath, toPath: self.appDirectoryFilePath(fileName, fileType: fileType))
+            try fileManager.copyItem(atPath: bundlePath, toPath: self.appDirectoryFilePath(fileName, fileType: fileType))
         }
         catch {
             return
         }
     }
     
-    private func appDirectoryFilePath(fileName:String, fileType:String) -> String {
+    fileprivate func appDirectoryFilePath(_ fileName:String, fileType:String) -> String {
         let appDirectoryPath = self.applicationDirectory()?.path
         let filePath = String.init(format: "%@.%@", fileName, fileType)
-        return (appDirectoryPath?.stringByAppendingString(filePath))!
+        return ((appDirectoryPath)! + filePath)
     }
     
-    private func checkAppDirectoryExists(fileName:String, fileType:String) -> Bool {
-        let fileManager = NSFileManager.defaultManager()
+    fileprivate func checkAppDirectoryExists(_ fileName:String, fileType:String) -> Bool {
+        let fileManager = FileManager.default
         
-        return fileManager.fileExistsAtPath(self.appDirectoryFilePath(fileName, fileType:fileType))
+        return fileManager.fileExists(atPath: self.appDirectoryFilePath(fileName, fileType:fileType))
     }
     
-    private func applicationDirectory() -> NSURL? {
-        let bundleId = NSBundle.mainBundle().bundleIdentifier
-        let fileManager = NSFileManager.defaultManager()
-        var dirPath: NSURL? = nil
+    fileprivate func applicationDirectory() -> URL? {
+        let bundleId = Bundle.main.bundleIdentifier
+        let fileManager = FileManager.default
+        var dirPath: URL? = nil
         
         // Find the application support directory in the home directory.
-        let appSupportDir = fileManager.URLsForDirectory(.ApplicationSupportDirectory, inDomains: .UserDomainMask)
+        let appSupportDir = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask)
         if (appSupportDir.count > 0) {
             // Append the bundle ID to the URL for the Application Support directory
-            dirPath = appSupportDir[0].URLByAppendingPathComponent(bundleId!, isDirectory: true)
+            dirPath = appSupportDir[0].appendingPathComponent(bundleId!, isDirectory: true)
             
             do {
-                try fileManager.createDirectoryAtURL(dirPath!, withIntermediateDirectories: true, attributes: nil)
+                try fileManager.createDirectory(at: dirPath!, withIntermediateDirectories: true, attributes: nil)
             }
             catch {
                 return nil

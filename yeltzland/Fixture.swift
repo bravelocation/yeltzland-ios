@@ -7,9 +7,29 @@
 //
 
 import Foundation
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
 
-public class Fixture {
-    var fixtureDate: NSDate
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
+
+open class Fixture {
+    var fixtureDate: Date
     var opponent: String
     var home: Bool
     var teamScore: Int?
@@ -17,11 +37,11 @@ public class Fixture {
     
     init?(fromJson: [String:AnyObject]) {
         // Parse properties from JSON match properties
-        let formatter = NSDateFormatter()
+        let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         
         guard let matchDateTime = fromJson["MatchDateTime"] as! String? else { return nil }
-        self.fixtureDate = formatter.dateFromString(matchDateTime)!
+        self.fixtureDate = formatter.date(from: matchDateTime)!
         
         guard let opponent = fromJson["Opponent"] as! String? else { return nil }
         self.opponent = opponent
@@ -39,7 +59,7 @@ public class Fixture {
         }
     }
     
-    init(date: NSDate, opponent:String, home:Bool, teamScore: Int?, opponentScore: Int?) {
+    init(date: Date, opponent:String, home:Bool, teamScore: Int?, opponentScore: Int?) {
         self.fixtureDate = date
         self.opponent = opponent
         self.home = home
@@ -49,43 +69,43 @@ public class Fixture {
     
     var kickoffTime: String {
         get {
-            let formatter = NSDateFormatter()
+            let formatter = DateFormatter()
             formatter.dateFormat = "EEE dd"
             
-            return formatter.stringFromDate(self.fixtureDate)
+            return formatter.string(from: self.fixtureDate)
         }
     }
     
     var fullKickoffTime: String {
         get {
-            let formatter = NSDateFormatter()
+            let formatter = DateFormatter()
             formatter.dateFormat = "EEE dd MMM"
             
-            return formatter.stringFromDate(self.fixtureDate)
+            return formatter.string(from: self.fixtureDate)
         }
     }
     
     var fixtureMonth: String {
         get {
-            let formatter = NSDateFormatter()
+            let formatter = DateFormatter()
             formatter.dateFormat = "MMMM yyyy"
             
-            return formatter.stringFromDate(self.fixtureDate)
+            return formatter.string(from: self.fixtureDate)
         }
     }
     
     var monthKey: String {
         get {
-            let formatter = NSDateFormatter()
+            let formatter = DateFormatter()
             formatter.dateFormat = "yyyyMM"
             
-            return formatter.stringFromDate(self.fixtureDate)
+            return formatter.string(from: self.fixtureDate)
         }
     }
     
     var displayOpponent: String {
         get {
-            return self.home ? self.opponent.uppercaseString : self.opponent
+            return self.home ? self.opponent.uppercased() : self.opponent
         }
     }
     

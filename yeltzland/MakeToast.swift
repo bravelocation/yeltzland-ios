@@ -9,14 +9,14 @@
 import Foundation
 import UIKit
 
-public class MakeToast {
+open class MakeToast {
     
-    public static func Show(view:UIView, message:String, delay: Double) {
+    open static func Show(_ view:UIView, message:String, delay: Double) {
         // Make label with rounded corners tto show
-        let toastLabel = UILabel(frame: CGRectMake(view.frame.size.width/2 - 150, view.frame.size.height-100, 300, 35))
+        let toastLabel = UILabel(frame: CGRect(x: view.frame.size.width/2 - 150, y: view.frame.size.height-100, width: 300, height: 35))
         toastLabel.backgroundColor = AppColors.ToastBackgroundColor
         toastLabel.textColor = AppColors.ToastTextColor
-        toastLabel.textAlignment = NSTextAlignment.Center;
+        toastLabel.textAlignment = NSTextAlignment.center;
         toastLabel.text = message
         toastLabel.font = UIFont(name: AppColors.AppFontName, size:AppColors.ToastTextSize)!
         
@@ -32,7 +32,7 @@ public class MakeToast {
         view.addSubview(toastLabel)
 
         // Fade the label out
-        UIView.animateWithDuration(1.0, delay: delay, options: .CurveEaseOut, animations: {
+        UIView.animate(withDuration: 1.0, delay: delay, options: .curveEaseOut, animations: {
             toastLabel.alpha = 0.0
             }, completion: {(value: Bool) in
                 // Remove the label from the view when done

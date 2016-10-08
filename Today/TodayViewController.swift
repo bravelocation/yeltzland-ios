@@ -28,7 +28,7 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
     override func viewDidLoad() {
         super.viewDidLoad()
         if #available(iOSApplicationExtension 10.0, *) {
-            self.extensionContext?.widgetLargestAvailableDisplayMode = NCWidgetDisplayMode.Expanded
+            self.extensionContext?.widgetLargestAvailableDisplayMode = NCWidgetDisplayMode.expanded
         } else {
             // Fallback on earlier versions
         }
@@ -40,11 +40,11 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
         self.tableView.separatorColor = AppColors.TodaySeparator
     }
     
-    func widgetMarginInsetsForProposedMarginInsets(defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
+    func widgetMarginInsets(forProposedMarginInsets defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
         return UIEdgeInsetsMake(0, 0, 0, 0)
     }
     
-    func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)) {
+    func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
         // Fetch latest fixtures
         FixtureManager.instance.getLatestFixtures()
         GameScoreManager.instance.getLatestGameScore()
@@ -54,13 +54,13 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
             rowCount = 9.0
         }
         
-        self.preferredContentSize = CGSizeMake(0.0, self.CellRowHeight * rowCount)
-        completionHandler(NCUpdateResult.NewData)
+        self.preferredContentSize = CGSize(width: 0.0, height: self.CellRowHeight * rowCount)
+        completionHandler(NCUpdateResult.newData)
     }
     
     @available(iOSApplicationExtension 10.0, *)
-    func widgetActiveDisplayModeDidChange(activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
-        if (activeDisplayMode == NCWidgetDisplayMode.Compact) {
+    func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
+        if (activeDisplayMode == NCWidgetDisplayMode.compact) {
             self.preferredContentSize = maxSize
             self.inExpandedMode = false
         }
@@ -73,24 +73,24 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
         print("Removed notification handler for fixture updates in today view")
     }
     
-    private func setupNotificationWatchers() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(TodayViewController.fixturesUpdated), name: BaseSettings.SettingsUpdateNotification, object: nil)
+    fileprivate func setupNotificationWatchers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(TodayViewController.fixturesUpdated), name: NSNotification.Name(rawValue: BaseSettings.SettingsUpdateNotification), object: nil)
         print("Setup notification handlers for fixture or score updates in today view")
     }
     
-    @objc private func fixturesUpdated(notification: NSNotification) {
+    @objc fileprivate func fixturesUpdated(_ notification: Notification) {
         print("Fixture update message received in today view")
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+        DispatchQueue.main.async(execute: { () -> Void in
             self.tableView.reloadData()
         })
     }
 
     // MARK: - Table view data source
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         if (self.gameSettings.gameScoreForCurrentGame) {
             return 3
         }
@@ -98,7 +98,7 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
         return 2
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch (section) {
         case 0:
             return 1
@@ -122,30 +122,30 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
         }
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "FixtureTodayCell")
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: "FixtureTodayCell")
        
         // Figure out data to show
         let nextFixtures = FixtureManager.instance.GetNextFixtures(6)
         var opponent: String = ""
         var gameDetails = ""
         
-        if (indexPath.section == 0) {
+        if ((indexPath as NSIndexPath).section == 0) {
             opponent = self.gameSettings.displayLastOpponent
             gameDetails = self.gameSettings.lastScore
-        } else if (indexPath.section == 1) {
+        } else if ((indexPath as NSIndexPath).section == 1) {
             if (self.gameSettings.gameScoreForCurrentGame) {
                 opponent = self.gameSettings.displayNextOpponent
                 gameDetails = self.gameSettings.currentScore
-            } else if (nextFixtures.count > indexPath.row){
-                opponent = nextFixtures[indexPath.row].displayOpponent
-                gameDetails = indexPath.row == 0 ? self.gameSettings.nextKickoffTime : nextFixtures[indexPath.row].fullKickoffTime
+            } else if (nextFixtures.count > (indexPath as NSIndexPath).row){
+                opponent = nextFixtures[(indexPath as NSIndexPath).row].displayOpponent
+                gameDetails = (indexPath as NSIndexPath).row == 0 ? self.gameSettings.nextKickoffTime : nextFixtures[(indexPath as NSIndexPath).row].fullKickoffTime
             }
-        } else if (indexPath.section == 2) {
+        } else if ((indexPath as NSIndexPath).section == 2) {
             // Need to ignore the current game
-            if (nextFixtures.count > indexPath.row + 1){
-                opponent = nextFixtures[indexPath.row + 1].displayOpponent
-                gameDetails = nextFixtures[indexPath.row + 1].fullKickoffTime
+            if (nextFixtures.count > (indexPath as NSIndexPath).row + 1){
+                opponent = nextFixtures[(indexPath as NSIndexPath).row + 1].displayOpponent
+                gameDetails = nextFixtures[(indexPath as NSIndexPath).row + 1].fullKickoffTime
             }
         }
                 
@@ -158,8 +158,8 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
         }
 
         // Set colors
-        cell.selectionStyle = .None
-        cell.accessoryType = .None
+        cell.selectionStyle = .none
+        cell.accessoryType = .none
         cell.backgroundColor = AppColors.TodayBackground
         cell.separatorInset = UIEdgeInsetsMake(0.0, 20.0, 0.0, 0.0)
 
@@ -171,7 +171,7 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
         cell.textLabel?.textColor = AppColors.TodayText
         cell.detailTextLabel?.textColor = AppColors.TodayText
             
-        if (indexPath.section == 0 && opponent.characters.count > 0) {
+        if ((indexPath as NSIndexPath).section == 0 && opponent.characters.count > 0) {
             if (AppColors.isIos10AndAbove) {
                 let teamScore = self.gameSettings.lastGameYeltzScore
                 let opponentScore  = self.gameSettings.lastGameOpponentScore
@@ -194,13 +194,13 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
         return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let url = NSURL(string:"yeltzland://")
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let url = URL(string:"yeltzland://")
         print("Opening app")
-        self.extensionContext?.openURL(url!, completionHandler: nil)
+        self.extensionContext?.open(url!, completionHandler: nil)
     }
     
-    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
         header.contentView.backgroundColor = AppColors.TodayBackground
         header.textLabel!.textColor = AppColors.OtherSectionText
@@ -227,7 +227,7 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
     }
 
     
-    override func tableView(tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
+    override func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
         let footer: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
         footer.contentView.backgroundColor = AppColors.TodayBackground
         footer.textLabel!.textColor = AppColors.TodayText
@@ -245,15 +245,15 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
         }
     }
 
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return self.CellRowHeight
     }
     
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 20.0
     }
     
-    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         if (section == 1 && self.gameSettings.gameScoreForCurrentGame) {
             return 20.0
         }

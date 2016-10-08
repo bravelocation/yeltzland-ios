@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     let azureNotifications = AzureNotifications()
     
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         // Nav bar colors
         UINavigationBar.appearance().barTintColor = AppColors.NavBarColor;
@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Tab bar font
         UITabBarItem.appearance().setTitleTextAttributes([
             NSFontAttributeName: UIFont(name: AppColors.AppFontName, size: AppColors.TabBarTextSize)!
-        ], forState: .Normal)
+        ], for: UIControlState())
         
         // Setup Fabric
         #if DEBUG
@@ -53,13 +53,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GameSettings.instance.forceBackgroundWatchUpdate()
         
         // If came from a notification, always start on the Twitter tab
-        if launchOptions?[UIApplicationLaunchOptionsRemoteNotificationKey] != nil {
+        if launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] != nil {
             GameSettings.instance.lastSelectedTab = 3
-        } else if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsShortcutItemKey] {
-            self.handleShortcut(shortcutItem as! UIApplicationShortcutItem)
+        } else if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsKey.shortcutItem] {
+            let result = self.handleShortcut(shortcutItem as! UIApplicationShortcutItem)
+            print("Opened via shortcut: \(result)")
         }
         
-        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        self.window = UIWindow(frame: UIScreen.main.bounds)
         let initialTabViewController = MainTabBarController()
         self.window?.rootViewController = initialTabViewController
         self.window?.makeKeyAndVisible()
@@ -67,27 +68,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func application(application: UIApplication,
-                     performFetchWithCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+    func application(_ application: UIApplication,
+                     performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         print("In background refresh ...")
-        let now = NSDate()
+        let now = Date()
         
-        let differenceInMinutes = NSCalendar.currentCalendar().components(.Minute, fromDate: now, toDate: GameSettings.instance.nextGameTime, options: []).minute
+        let differenceInMinutes = (Calendar.current as NSCalendar).components(.minute, from: now, to: GameSettings.instance.nextGameTime as Date, options: []).minute
         
-        if (differenceInMinutes < 0) {
+        if (differenceInMinutes! < 0) {
             // After game kicked off, so go get game score
             GameScoreManager.instance.getLatestGameScore()
             FixtureManager.instance.getLatestFixtures()
         
-            completionHandler(UIBackgroundFetchResult.NewData)
+            completionHandler(UIBackgroundFetchResult.newData)
         } else {
             // Otherwise, make sure the watch is updated occasionally
             GameSettings.instance.forceBackgroundWatchUpdate()
-            completionHandler(UIBackgroundFetchResult.NoData)
+            completionHandler(UIBackgroundFetchResult.noData)
         }
     }
     
-    func application(application: UIApplication, performActionForShortcutItem shortcutItem: UIApplicationShortcutItem, completionHandler: (Bool) -> Void) {
+    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
         print("3D Touch when from shortcut action");
         let handledShortCut = self.handleShortcut(shortcutItem)
         
@@ -100,7 +101,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return completionHandler(handledShortCut);
     }
         
-    func application(application: UIApplication, continueUserActivity userActivity: NSUserActivity, restorationHandler: ([AnyObject]?) -> Void) -> Bool {
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
         if let window = self.window {
             window.rootViewController?.restoreUserActivityState(userActivity)
         }
@@ -108,7 +109,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func handleShortcut(shortcutItem: UIApplicationShortcutItem) -> Bool {
+    func handleShortcut(_ shortcutItem: UIApplicationShortcutItem) -> Bool {
         print("Handling shortcut item %@", shortcutItem.type);
         
         if (shortcutItem.type == "com.bravelocation.yeltzland.forum") {
@@ -134,29 +135,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return false
     }
  
-    func application(application: UIApplication,
-                     didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+    func application(_ application: UIApplication,
+                     didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         self.azureNotifications.register(deviceToken)
     }
     
-    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print("Device token for push notifications: FAIL -- ")
-        print(error.description)
+
+        let tokenError = error as NSError
+        print(tokenError.description)
     }
 
-    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
         self.messageReceived(application, userInfo: userInfo)
     }
     
-    func application(application: UIApplication,
-                      didReceiveRemoteNotification userInfo: [NSObject : AnyObject],
-                                                   fetchCompletionHandler handler: (UIBackgroundFetchResult) -> Void) {
+    func application(_ application: UIApplication,
+                      didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+                                                   fetchCompletionHandler handler: @escaping (UIBackgroundFetchResult) -> Void) {
         self.messageReceived(application, userInfo: userInfo)
-        handler(UIBackgroundFetchResult.NoData);
+        handler(UIBackgroundFetchResult.noData);
     }
     
-    func messageReceived(application: UIApplication,
-                         userInfo: [NSObject : AnyObject]) {
+    func messageReceived(_ application: UIApplication,
+                         userInfo: [AnyHashable: Any]) {
         // Print message
         print("Notification received: \(userInfo)")
         
@@ -164,18 +167,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GameScoreManager.instance.getLatestGameScore()
         
         // If app in foreground, show a toast
-        if (application.applicationState == .Active) {
+        if (application.applicationState == .active) {
             if let aps = userInfo["aps"] as? NSDictionary {
                 if let alert = aps["alert"] as? NSDictionary {
                     if let body = alert["body"] as? NSString {
                         
                         // Show and hide a message after delay
                         if (self.window != nil && self.window?.rootViewController != nil) {
-                            if let tabController : UITabBarController? = (self.window?.rootViewController as! UITabBarController) {
-                                if let navigationController : UINavigationController? = tabController!.viewControllers![0] as? UINavigationController {
-                                    MakeToast.Show(navigationController!.view!, message: body as String, delay: 5.0)
-                                }
-                            }
+                            let tabController : UITabBarController? = (self.window?.rootViewController as! UITabBarController)
+                            let navigationController : UINavigationController? = tabController!.viewControllers![0] as? UINavigationController
+                            MakeToast.Show(navigationController!.view!, message: body as String, delay: 5.0)
                         }
                     }
                 }

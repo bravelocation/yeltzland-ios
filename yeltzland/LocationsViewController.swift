@@ -25,11 +25,11 @@ class LocationsViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         // Setup refresh button
         self.mapToggleButton = UIBarButtonItem(
             title: "Toggle",
-            style: .Plain,
+            style: .plain,
             target: self,
             action: #selector(LocationsViewController.mapToggleButtonTouchUp)
         )
-        self.mapToggleButton.FAIcon = FAType.FAMapO
+        self.mapToggleButton.FAIcon = FAType.faMapO
         self.mapToggleButton.tintColor = AppColors.NavBarTintColor
         self.navigationController?.navigationBar.tintColor = AppColors.NavBarTintColor
         self.navigationItem.rightBarButtonItems = [self.mapToggleButton]
@@ -43,11 +43,11 @@ class LocationsViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         self.locationManager.startUpdatingLocation()
 
         // Setup map settings
-        self.mapView.mapType = .Standard
+        self.mapView.mapType = .standard
         self.mapView.frame = view.bounds
         self.mapView.delegate = self
         self.mapView.showsUserLocation = true
-        self.mapView.zoomEnabled = true
+        self.mapView.isZoomEnabled = true
         
         // Setup initial view covering points
         self.mapView.setRegion(LocationManager.instance.mapRegion(), animated: true)
@@ -64,32 +64,32 @@ class LocationsViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     }
     
     func mapToggleButtonTouchUp() {
-        if (self.mapView.mapType == .Standard) {
-            self.mapView.mapType = .Satellite
+        if (self.mapView.mapType == .standard) {
+            self.mapView.mapType = .satellite
         } else {
-            self.mapView.mapType = .Standard
+            self.mapView.mapType = .standard
         }
     }
     
-    override func didRotateFromInterfaceOrientation(fromInterfaceOrientation: UIInterfaceOrientation) {
+    override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
         self.mapView.frame = self.view.bounds
     }
     
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if let annotation = annotation as? LocationAnnotation {
             let identifier = "YLZAnnotation"
             var view: MKAnnotationView
             
-            if let dequeuedView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier) {
+            if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) {
                 dequeuedView.annotation = annotation
                 view = dequeuedView
             } else {
-                let ballImage = UIImage(icon: FAType.FASoccerBallO, size: CGSize(width: 20, height: 20), textColor: AppColors.Evostick, backgroundColor: UIColor.clearColor())
+                let ballImage = UIImage(icon: FAType.faSoccerBallO, size: CGSize(width: 20, height: 20), textColor: AppColors.Evostick, backgroundColor: UIColor.clear)
                 
                 view = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 view.canShowCallout = true
                 view.image = ballImage
-                view.centerOffset = CGPointMake(0, -10.0)
+                view.centerOffset = CGPoint(x: 0, y: -10.0)
             }
             
             return view
@@ -99,7 +99,7 @@ class LocationsViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         }
     }
     
-    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         let selectedLocation = view.annotation!.title
         print("Selected \(selectedLocation)")
     }

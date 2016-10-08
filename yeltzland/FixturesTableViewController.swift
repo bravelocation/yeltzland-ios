@@ -8,6 +8,26 @@
 
 import UIKit
 import Font_Awesome_Swift
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 class FixturesTableViewController: UITableViewController {
     
@@ -24,32 +44,32 @@ class FixturesTableViewController: UITableViewController {
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
         print("Removed notification handler for fixture updates")
     }
     
-    private func setupNotificationWatcher() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FixturesTableViewController.fixturesUpdated), name: FixtureManager.FixturesNotification, object: nil)
+    fileprivate func setupNotificationWatcher() {
+        NotificationCenter.default.addObserver(self, selector: #selector(FixturesTableViewController.fixturesUpdated), name: NSNotification.Name(rawValue: FixtureManager.FixturesNotification), object: nil)
         print("Setup notification handler for fixture updates")
     }
     
-    @objc private func fixturesUpdated(notification: NSNotification) {
+    @objc fileprivate func fixturesUpdated(_ notification: Notification) {
         print("Fixture update message received")
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+        DispatchQueue.main.async(execute: { () -> Void in
             self.tableView.reloadData()
             
-            let currentMonthIndexPath = NSIndexPath(forRow: 0, inSection: self.currentMonthSection())
-            self.tableView.scrollToRowAtIndexPath(currentMonthIndexPath, atScrollPosition: UITableViewScrollPosition.Top, animated: true)
+            let currentMonthIndexPath = IndexPath(row: 0, section: self.currentMonthSection())
+            self.tableView.scrollToRow(at: currentMonthIndexPath, at: UITableViewScrollPosition.top, animated: true)
         })
     }
     
-    private func currentMonthSection() -> Int {
+    fileprivate func currentMonthSection() -> Int {
         var monthIndex = 0
 
-        let now = NSDate()
-        let formatter = NSDateFormatter()
+        let now = Date()
+        let formatter = DateFormatter()
         formatter.dateFormat = "yyyyMM"
-        let currentMonth = formatter.stringFromDate(now)
+        let currentMonth = formatter.string(from: now)
         
         for month in FixtureManager.instance.Months {
             if (month == currentMonth) {
@@ -79,27 +99,27 @@ class FixturesTableViewController: UITableViewController {
         self.view.backgroundColor = AppColors.OtherBackground
         self.tableView.separatorColor = AppColors.OtherSeparator
         
-        self.tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: "FixtureCell")
+        self.tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "FixtureCell")
         
         // Setup refresh button
         self.reloadButton = UIBarButtonItem(
             title: "Reload",
-            style: .Plain,
+            style: .plain,
             target: self,
             action: #selector(FixturesTableViewController.reloadButtonTouchUp)
         )
-        self.reloadButton.FAIcon = FAType.FARotateRight
+        self.reloadButton.FAIcon = FAType.faRotateRight
         self.reloadButton.tintColor = AppColors.NavBarTintColor
         self.navigationController?.navigationBar.tintColor = AppColors.NavBarTintColor
         self.navigationItem.rightBarButtonItems = [self.reloadButton]
     }
 
     // MARK: - Table view data source
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return FixtureManager.instance.Months.count
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
         let months = FixtureManager.instance.Months;
         if (months.count <= section) {
@@ -115,23 +135,23 @@ class FixturesTableViewController: UITableViewController {
         return fixturesForMonth!.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "FixtureCell")
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: "FixtureCell")
 
         // Find the fixture
         var currentFixture:Fixture? = nil
         let months = FixtureManager.instance.Months;
         
-        if (months.count > indexPath.section) {
-            let fixturesForMonth = FixtureManager.instance.FixturesForMonth(months[indexPath.section])
+        if (months.count > (indexPath as NSIndexPath).section) {
+            let fixturesForMonth = FixtureManager.instance.FixturesForMonth(months[(indexPath as NSIndexPath).section])
         
-            if (fixturesForMonth != nil && fixturesForMonth?.count > indexPath.row) {
-                currentFixture = fixturesForMonth![indexPath.row]
+            if (fixturesForMonth != nil && fixturesForMonth?.count > (indexPath as NSIndexPath).row) {
+                currentFixture = fixturesForMonth![(indexPath as NSIndexPath).row]
             }
         }
 
-        cell.selectionStyle = .None
-        cell.accessoryType = .None
+        cell.selectionStyle = .none
+        cell.accessoryType = .none
         
         var resultColor = AppColors.FixtureNone
         
@@ -169,7 +189,7 @@ class FixturesTableViewController: UITableViewController {
         return cell
     }
     
-    override func tableView( tableView : UITableView,  titleForHeaderInSection section: Int)->String
+    override func tableView( _ tableView : UITableView,  titleForHeaderInSection section: Int)->String
     {
         let months = FixtureManager.instance.Months;
         if (months.count <= section) {
@@ -184,22 +204,22 @@ class FixturesTableViewController: UITableViewController {
         return fixturesForMonth![0].fixtureMonth
     }
     
-    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
         header.contentView.backgroundColor = AppColors.OtherSectionBackground
         header.textLabel!.textColor = AppColors.OtherSectionText
         header.textLabel!.font = UIFont(name: AppColors.AppFontName, size:AppColors.OtherSectionTextSize)!
     }
 
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 33.0
     }
     
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 33.0
     }
     
-    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.0
     }
 }

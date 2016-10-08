@@ -16,11 +16,11 @@ class InterfaceController: WKInterfaceController {
     override init() {
         super.init()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(InterfaceController.userSettingsUpdated(_:)), name: BaseSettings.SettingsUpdateNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(InterfaceController.userSettingsUpdated(_:)), name: NSNotification.Name(rawValue: BaseSettings.SettingsUpdateNotification), object: nil)
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
 
     override func willActivate() {
@@ -30,7 +30,7 @@ class InterfaceController: WKInterfaceController {
         self.updateViewData()
     }
     
-    private func updateViewData() {
+    fileprivate func updateViewData() {
         let gameSettings = WatchGameSettings.instance
         
         // How many rows?
@@ -44,7 +44,7 @@ class InterfaceController: WKInterfaceController {
             var gameDetails = ""
             var scoreColor = AppColors.WatchTextColor
             
-            let row:FixtureRowType = self.fixtureTable.rowControllerAtIndex(i) as! FixtureRowType
+            let row:FixtureRowType = self.fixtureTable.rowController(at: i) as! FixtureRowType
             
             if (i == 0) {
                 opponent = gameSettings.displayLastOpponent
@@ -83,11 +83,11 @@ class InterfaceController: WKInterfaceController {
     }
     
     @objc
-    private func userSettingsUpdated(notification: NSNotification) {
+    fileprivate func userSettingsUpdated(_ notification: Notification) {
         print("Received Settings updated notification")
         
         // Update view data on main thread
-        dispatch_async(dispatch_get_main_queue()) {
+        DispatchQueue.main.async {
             self.updateViewData()
         }
     }

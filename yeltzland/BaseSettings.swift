@@ -9,110 +9,110 @@
 import Foundation
 import WatchConnectivity
 
-public class BaseSettings : NSObject {
+open class BaseSettings : NSObject {
     
-    public static let SettingsUpdateNotification:String = "YLZSettingsUpdateNotification"
+    open static let SettingsUpdateNotification:String = "YLZSettingsUpdateNotification"
 
-    var appStandardUserDefaults: NSUserDefaults?
+    var appStandardUserDefaults: UserDefaults?
     var watchSessionInitialised: Bool = false
     
     public init(defaultPreferencesName: String = "DefaultPreferences", suiteName: String = "group.bravelocation.yeltzland") {
         super.init()
         
         // Setup the default preferences
-        let defaultPrefsFile: NSURL? = NSBundle.mainBundle().URLForResource(defaultPreferencesName, withExtension: "plist")
-        let defaultPrefs: NSDictionary? = NSDictionary(contentsOfURL:defaultPrefsFile!)
+        let defaultPrefsFile: URL? = Bundle.main.url(forResource: defaultPreferencesName, withExtension: "plist")
+        let defaultPrefs: NSDictionary? = NSDictionary(contentsOf:defaultPrefsFile!)
         
-        self.appStandardUserDefaults = NSUserDefaults(suiteName: suiteName)!
-        self.appStandardUserDefaults!.registerDefaults(defaultPrefs as! [String: AnyObject]);
+        self.appStandardUserDefaults = UserDefaults(suiteName: suiteName)!
+        self.appStandardUserDefaults!.register(defaults: defaultPrefs as! [String: AnyObject]);
         
         // Migrate old settings if required
         self.migrateSettingsToGroup()
     }
     
-    public var gameTimeTweetsEnabled: Bool {
+    open var gameTimeTweetsEnabled: Bool {
         get { return self.readObjectFromStore("GameTimeTweetsEnabled") as! Bool }
-        set { self.writeObjectToStore(newValue, key: "GameTimeTweetsEnabled") }
+        set { self.writeObjectToStore(newValue as AnyObject, key: "GameTimeTweetsEnabled") }
     }
     
-    public var lastSelectedTab: Int {
+    open var lastSelectedTab: Int {
         get { return self.readObjectFromStore("LastSelectedTab") as! Int }
-        set { self.writeObjectToStore(newValue, key: "LastSelectedTab") }
+        set { self.writeObjectToStore(newValue as AnyObject, key: "LastSelectedTab") }
     }
     
-    public var lastGameTime: NSDate {
-        get { return self.readObjectFromStore("lastGameTime") as! NSDate }
-        set { self.writeObjectToStore(newValue, key: "lastGameTime") }
+    open var lastGameTime: Date {
+        get { return self.readObjectFromStore("lastGameTime") as! Date }
+        set { self.writeObjectToStore(newValue as AnyObject, key: "lastGameTime") }
     }
     
-    public var lastGameTeam: String {
+    open var lastGameTeam: String {
         get { return self.readObjectFromStore("lastGameTeam") as! String }
-        set { self.writeObjectToStore(newValue, key: "lastGameTeam") }
+        set { self.writeObjectToStore(newValue as AnyObject, key: "lastGameTeam") }
     }
     
-    public var lastGameYeltzScore: Int {
+    open var lastGameYeltzScore: Int {
         get { return self.readObjectFromStore("lastGameYeltzScore") as! Int }
-        set { self.writeObjectToStore(newValue, key: "lastGameYeltzScore") }
+        set { self.writeObjectToStore(newValue as AnyObject, key: "lastGameYeltzScore") }
     }
     
-    public var lastGameOpponentScore: Int {
+    open var lastGameOpponentScore: Int {
         get { return self.readObjectFromStore("lastGameOpponentScore") as! Int }
-        set { self.writeObjectToStore(newValue, key: "lastGameOpponentScore") }
+        set { self.writeObjectToStore(newValue as AnyObject, key: "lastGameOpponentScore") }
     }
     
-    public var lastGameHome: Bool {
+    open var lastGameHome: Bool {
         get { return self.readObjectFromStore("lastGameHome") as! Bool }
-        set { self.writeObjectToStore(newValue, key: "lastGameHome") }
+        set { self.writeObjectToStore(newValue as AnyObject, key: "lastGameHome") }
     }
     
-    public var nextGameTime: NSDate {
-        get { return self.readObjectFromStore("nextGameTime") as! NSDate }
-        set { self.writeObjectToStore(newValue, key: "nextGameTime") }
+    open var nextGameTime: Date {
+        get { return self.readObjectFromStore("nextGameTime") as! Date }
+        set { self.writeObjectToStore(newValue as AnyObject, key: "nextGameTime") }
     }
     
-    public var nextGameTeam: String {
+    open var nextGameTeam: String {
         get { return self.readObjectFromStore("nextGameTeam") as! String }
-        set { self.writeObjectToStore(newValue, key: "nextGameTeam") }
+        set { self.writeObjectToStore(newValue as AnyObject, key: "nextGameTeam") }
     }
     
-    public var nextGameHome: Bool {
+    open var nextGameHome: Bool {
         get { return self.readObjectFromStore("nextGameHome") as! Bool }
-        set { self.writeObjectToStore(newValue, key: "nextGameHome") }
+        set { self.writeObjectToStore(newValue as AnyObject, key: "nextGameHome") }
     }
     
-    public var currentGameTime: NSDate {
-        get { return self.readObjectFromStore("currentGameTime") as! NSDate }
-        set { self.writeObjectToStore(newValue, key: "currentGameTime") }
+    open var currentGameTime: Date {
+        get { return self.readObjectFromStore("currentGameTime") as! Date }
+        set { self.writeObjectToStore(newValue as AnyObject, key: "currentGameTime") }
     }
     
-    public var currentGameYeltzScore: Int {
+    open var currentGameYeltzScore: Int {
         get { return self.readObjectFromStore("currentGameYeltzScore") as! Int }
-        set { self.writeObjectToStore(newValue, key: "currentGameYeltzScore") }
+        set { self.writeObjectToStore(newValue as AnyObject, key: "currentGameYeltzScore") }
     }
     
-    public var currentGameOpponentScore: Int {
+    open var currentGameOpponentScore: Int {
         get { return self.readObjectFromStore("currentGameOpponentScore") as! Int }
-        set { self.writeObjectToStore(newValue, key: "currentGameOpponentScore") }
+        set { self.writeObjectToStore(newValue as AnyObject, key: "currentGameOpponentScore") }
     }
     
-    public var migratedToGroupSettings: Bool {
+    open var migratedToGroupSettings: Bool {
         get { return self.readObjectFromStore("migratedToGroupSettings") as! Bool }
-        set { self.writeObjectToStore(newValue, key: "migratedToGroupSettings") }
+        set { self.writeObjectToStore(newValue as AnyObject, key: "migratedToGroupSettings") }
     }
     
-    public var displayLastOpponent: String {
+    open var displayLastOpponent: String {
         get {
-            return self.lastGameHome ? self.lastGameTeam.uppercaseString : self.lastGameTeam
+            return self.lastGameHome ? self.lastGameTeam.uppercased() : self.lastGameTeam
         }
     }
     
-    public var displayNextOpponent: String {
+    open var displayNextOpponent: String {
         get {
-            return self.nextGameHome ? self.nextGameTeam.uppercaseString : self.nextGameTeam
+            return self.nextGameHome ? self.nextGameTeam.uppercased() : self.nextGameTeam
         }
     }
     
-    public var lastScore: String {
+    open var lastScore: String {
         get {
             // If no opponent, then no score
             if (self.lastGameTeam.characters.count == 0) {
@@ -132,14 +132,14 @@ public class BaseSettings : NSObject {
         }
     }
     
-    public var currentScore: String {
+    open var currentScore: String {
         get {
             // If no opponent, then no current score
             if (self.nextGameTeam.characters.count == 0) {
                 return ""
             }
             
-            if self.currentGameState() == GameState.DuringNoScore {
+            if self.currentGameState() == GameState.duringNoScore {
                 return "0-0*"
             }
             
@@ -147,104 +147,104 @@ public class BaseSettings : NSObject {
         }
     }
     
-    public var nextKickoffTime: String {
+    open var nextKickoffTime: String {
         get {
             // If no opponent, then no kickoff time
             if (self.nextGameTeam.characters.count == 0) {
                 return ""
             }
             
-            let formatter = NSDateFormatter()
+            let formatter = DateFormatter()
             let gameState = self.currentGameState()
-            if (gameState == GameState.GameDayBefore || gameState == GameState.During)  {
+            if (gameState == GameState.gameDayBefore || gameState == GameState.during)  {
                 formatter.dateFormat = "HHmm"
             } else {
                 formatter.dateFormat = "EEE dd MMM"
             }
         
-            return formatter.stringFromDate(self.nextGameTime)
+            return formatter.string(from: self.nextGameTime)
         }
     }
     
-    public var gameScoreForCurrentGame: Bool {
+    open var gameScoreForCurrentGame: Bool {
         get {
             // If no opponent, then no current game
             if (self.nextGameTeam.characters.count == 0) {
                 return false
             }
             
-            return self.nextGameTime.compare(self.currentGameTime) == NSComparisonResult.OrderedSame
+            return self.nextGameTime.compare(self.currentGameTime) == ComparisonResult.orderedSame
         }
     }
         
-    func readObjectFromStore(key: String) -> AnyObject?{
+    func readObjectFromStore(_ key: String) -> AnyObject?{
         // Otherwise try the user details
-        let userSettingsValue = self.appStandardUserDefaults!.valueForKey(key)
+        let userSettingsValue = self.appStandardUserDefaults!.value(forKey: key)
         
-        return userSettingsValue
+        return userSettingsValue as AnyObject?
     }
     
-    func writeObjectToStore(value: AnyObject, key: String) {
+    func writeObjectToStore(_ value: AnyObject, key: String) {
         // Write to local user settings
-        self.appStandardUserDefaults!.setObject(value, forKey:key)
+        self.appStandardUserDefaults!.set(value, forKey:key)
         self.appStandardUserDefaults!.synchronize()
     }
     
-    private func migrateSettingsToGroup() {
+    fileprivate func migrateSettingsToGroup() {
         if (self.migratedToGroupSettings) {
             return
         }
         
-        let defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = UserDefaults.standard
         
-        self.lastSelectedTab = defaults.integerForKey("LastSelectedTab")
-        self.gameTimeTweetsEnabled = defaults.boolForKey("GameTimeTweetsEnabled")
+        self.lastSelectedTab = defaults.integer(forKey: "LastSelectedTab")
+        self.gameTimeTweetsEnabled = defaults.bool(forKey: "GameTimeTweetsEnabled")
         self.migratedToGroupSettings = true
         
         print("Migrated settings to group")
     }
     
-    public var truncateLastOpponent: String {
+    open var truncateLastOpponent: String {
         get {
             return self.truncateTeamName(self.displayLastOpponent, max:16)
         }
     }
     
-    public var truncateNextOpponent: String {
+    open var truncateNextOpponent: String {
         get {
             return self.truncateTeamName(self.displayNextOpponent, max:16)
         }
     }
     
-    public var smallOpponent: String {
+    open var smallOpponent: String {
         get {
             switch self.currentGameState() {
-            case .DaysBefore, .GameDayBefore:
+            case .daysBefore, .gameDayBefore:
                 return self.truncateTeamName(self.displayNextOpponent, max: 4)
-            case .During, .DuringNoScore:
+            case .during, .duringNoScore:
                 return self.truncateTeamName(self.displayNextOpponent, max: 4)
-            case .After:
+            case .after:
                 return self.truncateTeamName(self.displayLastOpponent, max: 4)
-            case .None:
+            case .none:
                 return "None"
             }
         }
     }
     
-    public var smallScoreOrDate: String {
+    open var smallScoreOrDate: String {
         get {
             switch self.currentGameState() {
-            case .DaysBefore:
+            case .daysBefore:
                 // If no opponent, then no kickoff time
                 if (self.nextGameTeam.characters.count == 0) {
                     return ""
                 }
                 
-                let now = NSDate()
+                let now = Date()
                 let todayDayNumber = self.dayNumber(now)
                 let nextGameNumber = self.dayNumber(self.nextGameTime)
                 
-                let formatter = NSDateFormatter()
+                let formatter = DateFormatter()
                 
                 if (nextGameNumber - todayDayNumber > 7) {
                     // If next game more than a week off, show the day number
@@ -254,113 +254,113 @@ public class BaseSettings : NSObject {
                     formatter.dateFormat = "E"
                 }
                 
-                return formatter.stringFromDate(self.nextGameTime)
-            case .GameDayBefore:
+                return formatter.string(from: self.nextGameTime)
+            case .gameDayBefore:
                 // If no opponent, then no kickoff time
                 if (self.nextGameTeam.characters.count == 0) {
                     return ""
                 }
                 
-                let formatter = NSDateFormatter()
+                let formatter = DateFormatter()
                 formatter.dateFormat = "HHmm"
                 
-                return formatter.stringFromDate(self.nextGameTime)
-            case .During, .DuringNoScore:
+                return formatter.string(from: self.nextGameTime)
+            case .during, .duringNoScore:
                 return self.currentScore
-            case .After:
+            case .after:
                 return self.lastScore
-            case .None:
+            case .none:
                 return ""
             }
         }
     }
     
-    public var smallScore: String {
+    open var smallScore: String {
         get {
             switch self.currentGameState() {
-            case .DaysBefore, .GameDayBefore:
+            case .daysBefore, .gameDayBefore:
                 return self.lastScore
-            case .During, .DuringNoScore:
+            case .during, .duringNoScore:
                 return self.currentScore
-            case .After:
+            case .after:
                 return self.lastScore
-            case .None:
+            case .none:
                 return ""
             }
         }
     }
     
-    public var longCombinedTeamScoreOrDate: String {
+    open var longCombinedTeamScoreOrDate: String {
         get {
             switch self.currentGameState() {
-            case .DaysBefore, .GameDayBefore:
+            case .daysBefore, .gameDayBefore:
                 return String(format: "%@ %@", self.truncateLastOpponent, self.lastScore)
-            case .During, .DuringNoScore:
+            case .during, .duringNoScore:
                 return String(format: "%@ %@", self.truncateNextOpponent, self.currentScore)
-            case .After:
+            case .after:
                 return String(format: "%@ %@", self.truncateLastOpponent, self.lastScore)
-            case .None:
+            case .none:
                 return ""
             }
         }
     }
     
-    public var fullTitle: String {
+    open var fullTitle: String {
         get {
             switch self.currentGameState() {
-            case .DaysBefore, .GameDayBefore:
+            case .daysBefore, .gameDayBefore:
                 return "Next game:"
-            case .During, .DuringNoScore:
+            case .during, .duringNoScore:
                 return "Current score"
-            case .After:
+            case .after:
                 return "Last game:"
-            case .None:
+            case .none:
                 return ""
             }
         }
     }
     
-    public var fullTeam: String {
+    open var fullTeam: String {
         get {
             switch self.currentGameState() {
-            case .DaysBefore, .GameDayBefore:
+            case .daysBefore, .gameDayBefore:
                 return self.truncateNextOpponent
-            case .During, .DuringNoScore:
+            case .during, .duringNoScore:
                 return self.truncateNextOpponent
-            case .After:
+            case .after:
                 return self.truncateLastOpponent
-            case .None:
+            case .none:
                 return ""
             }
         }
     }
     
-    public var fullScoreOrDate: String {
+    open var fullScoreOrDate: String {
         get {
             switch self.currentGameState() {
-            case .DaysBefore:
+            case .daysBefore:
                 return self.nextKickoffTime
-            case .GameDayBefore:
+            case .gameDayBefore:
                 // If no opponent, then no kickoff time
                 if (self.nextGameTeam.characters.count == 0) {
                     return ""
                 }
                 
-                let formatter = NSDateFormatter()
+                let formatter = DateFormatter()
                 formatter.dateFormat = "HHmm"
-                let formattedTime = formatter.stringFromDate(self.nextGameTime)
+                let formattedTime = formatter.string(from: self.nextGameTime)
                 return String(format: "Today at %@", formattedTime)
-            case .During, .DuringNoScore:
+            case .during, .duringNoScore:
                 return self.currentScore
-            case .After:
+            case .after:
                 return self.lastScore
-            case .None:
+            case .none:
                 return ""
             }
         }
     }
     
-    private func truncateTeamName(original:String, max:Int) -> String {
+    fileprivate func truncateTeamName(_ original:String, max:Int) -> String {
         let originalLength = original.characters.count
         
         // If the original is short enough, we're done
@@ -378,76 +378,76 @@ public class BaseSettings : NSObject {
         }
         
         if (firstSpace < max) {
-            return original[original.startIndex..<original.startIndex.advancedBy(firstSpace)]
+            return original[original.startIndex..<original.characters.index(original.startIndex, offsetBy: firstSpace)]
         }
         
         // If still not found, just truncate it
-        return original[original.startIndex..<original.startIndex.advancedBy(max)].stringByTrimmingCharactersInSet(
-            NSCharacterSet.whitespaceAndNewlineCharacterSet()
+        return original[original.startIndex..<original.characters.index(original.startIndex, offsetBy: max)].trimmingCharacters(
+            in: CharacterSet.whitespacesAndNewlines
         )
     }
 
     
     // MARK:- Game state functions
-    public func currentGameState() -> GameState {
+    open func currentGameState() -> GameState {
         
         // If no next game, return none
         if (self.nextGameTeam.characters.count == 0) {
-            return GameState.None
+            return GameState.none
         }
         
         // If we have a game score for the next match
         if (self.gameScoreForCurrentGame) {
-            return GameState.During
+            return GameState.during
         }
         
-        let now = NSDate()
-        let beforeKickoff = now.compare(self.nextGameTime) == NSComparisonResult.OrderedAscending
+        let now = Date()
+        let beforeKickoff = now.compare(self.nextGameTime) == ComparisonResult.orderedAscending
         let todayDayNumber = self.dayNumber(now)
         let lastGameNumber = self.dayNumber(self.lastGameTime)
         let nextGameNumber = self.dayNumber(self.nextGameTime)
         
         // If next game is today, and we are before kickoff ...
         if (nextGameNumber == todayDayNumber && beforeKickoff) {
-            return GameState.GameDayBefore
+            return GameState.gameDayBefore
         }
         
         // If last game was today or yesterday
         if ((lastGameNumber == todayDayNumber) || (lastGameNumber == todayDayNumber - 1)) {
-            return GameState.After
+            return GameState.after
         }
         
         // If next game is today and after kickoff also during
         if (nextGameNumber == todayDayNumber && beforeKickoff == false) {
-            return GameState.DuringNoScore
+            return GameState.duringNoScore
         }
         
         // Must before next game
-        return GameState.DaysBefore
+        return GameState.daysBefore
     }
     
     public enum GameState {
-        case DaysBefore
-        case GameDayBefore
-        case During
-        case DuringNoScore
-        case After
-        case None
+        case daysBefore
+        case gameDayBefore
+        case during
+        case duringNoScore
+        case after
+        case none
     }
     
     
-    func dayNumber(date:NSDate) -> Int {
+    func dayNumber(_ date:Date) -> Int {
         // Removes the time components from a date
-        let calendar = NSCalendar.currentCalendar()
-        let unitFlags: NSCalendarUnit = [.Day, .Month, .Year]
-        let startOfDayComponents = calendar.components(unitFlags, fromDate: date)
-        let startOfDay = calendar.dateFromComponents(startOfDayComponents)
+        let calendar = Calendar.current
+        let unitFlags: NSCalendar.Unit = [.day, .month, .year]
+        let startOfDayComponents = (calendar as NSCalendar).components(unitFlags, from: date)
+        let startOfDay = calendar.date(from: startOfDayComponents)
         let intervalToStaryOfDay = startOfDay!.timeIntervalSince1970
         let daysDifference = floor(intervalToStaryOfDay) / 86400  // Number of seconds per day = 60 * 60 * 24 = 86400
         return Int(daysDifference)
     }
     
-    public func refreshFixtures() {
+    open func refreshFixtures() {
         print("Updating game fixture settings ...")
         
         var updated = false
@@ -455,20 +455,20 @@ public class BaseSettings : NSObject {
         var lastGameYeltzScore = 0
         var lastGameOpponentScore = 0
         var lastGameHome = false
-        var lastGameTime:NSDate? = nil
+        var lastGameTime:Date? = nil
         
         let gameState = self.currentGameState()
-        let currentlyInGame = (gameState == GameState.During || gameState == GameState.DuringNoScore)
+        let currentlyInGame = (gameState == GameState.during || gameState == GameState.duringNoScore)
         
         if let lastGame = FixtureManager.instance.getLastGame() {
-            lastGameTime = lastGame.fixtureDate
+            lastGameTime = lastGame.fixtureDate as Date
             lastGameTeam = lastGame.opponent
             lastGameYeltzScore = lastGame.teamScore!
             lastGameOpponentScore = lastGame.opponentScore!
             lastGameHome = lastGame.home
         }
         
-        if (lastGameTime != nil && self.lastGameTime.compare(lastGameTime!) != NSComparisonResult.OrderedSame) {
+        if (lastGameTime != nil && self.lastGameTime.compare(lastGameTime!) != ComparisonResult.orderedSame) {
             self.lastGameTime = lastGameTime!
             updated = true
         }
@@ -496,15 +496,15 @@ public class BaseSettings : NSObject {
         
         var nextGameTeam = ""
         var nextGameHome = false
-        var nextGameTime:NSDate? = nil
+        var nextGameTime:Date? = nil
         
         if let nextGame = FixtureManager.instance.getNextGame() {
-            nextGameTime = nextGame.fixtureDate
+            nextGameTime = nextGame.fixtureDate as Date
             nextGameTeam = nextGame.opponent
             nextGameHome = nextGame.home
         }
         
-        if (nextGameTime != nil && self.nextGameTime.compare(nextGameTime!) != NSComparisonResult.OrderedSame) {
+        if (nextGameTime != nil && self.nextGameTime.compare(nextGameTime!) != ComparisonResult.orderedSame) {
             self.nextGameTime = nextGameTime!
             updated = true
         }
@@ -523,16 +523,16 @@ public class BaseSettings : NSObject {
         if (updated) {
             self.pushAllSettingsToWatch(currentlyInGame)
             
-            NSNotificationCenter.defaultCenter().postNotificationName(BaseSettings.SettingsUpdateNotification, object: nil)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: BaseSettings.SettingsUpdateNotification), object: nil)
         } else {
             print("No fixture settings changed")
         }
     }
     
-    public func refreshGameScore() {
+    open func refreshGameScore() {
         print("Updating game score settings ...")
         
-        let currentlyInGame = self.currentGameState() == GameState.During
+        let currentlyInGame = self.currentGameState() == GameState.during
         
         if let currentGameTime = GameScoreManager.instance.MatchDate {
             var updated = false
@@ -540,8 +540,8 @@ public class BaseSettings : NSObject {
             let currentGameYeltzScore = GameScoreManager.instance.YeltzScore
             let currentGameOpponentScore = GameScoreManager.instance.OpponentScore
             
-            if (self.currentGameTime.compare(currentGameTime) != NSComparisonResult.OrderedSame) {
-                self.currentGameTime = currentGameTime
+            if (self.currentGameTime.compare(currentGameTime as Date) != ComparisonResult.orderedSame) {
+                self.currentGameTime = currentGameTime as Date
                 updated = true
             }
             
@@ -558,14 +558,14 @@ public class BaseSettings : NSObject {
             // If any values have been changed, push then to the watch
             if (updated) {
                 self.pushAllSettingsToWatch(currentlyInGame)
-                NSNotificationCenter.defaultCenter().postNotificationName(BaseSettings.SettingsUpdateNotification, object: nil)
+                NotificationCenter.default.post(name: Notification.Name(rawValue: BaseSettings.SettingsUpdateNotification), object: nil)
             } else {
                 print("No game settings changed")
             }
         }
     }
     
-    public func pushAllSettingsToWatch(currentlyInGame:Bool) {
+    open func pushAllSettingsToWatch(_ currentlyInGame:Bool) {
         // Do nothing by default
     }
 }

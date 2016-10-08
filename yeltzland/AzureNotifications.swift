@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class AzureNotifications {
+open class AzureNotifications {
     #if DEBUG
         let hubName = "yeltzlandiospushsandbox"
         let hubListenAccess = "Endpoint=sb://yeltzlandiospushsandbox.servicebus.windows.net/;SharedAccessKeyName=DefaultListenSharedAccessSignature;SharedAccessKey=l+/LW0kWPo/XgZGKj78do/AyAxpEEUhLuORhyBRMgzM="
@@ -17,7 +17,7 @@ public class AzureNotifications {
         let hubListenAccess = "Endpoint=sb://yeltzlandiospush.servicebus.windows.net/;SharedAccessKeyName=DefaultListenSharedAccessSignature;SharedAccessKey=A8Lb23v0p0gI8KO2Vh6mjN6Qqe621Pwu8C8k5S8u7hQ="
     #endif
     
-    var tagNames:Set<NSObject> = []
+    var tagNames:Set<String> = []
 
     var enabled: Bool {
         get {
@@ -42,31 +42,31 @@ public class AzureNotifications {
         #endif
     }
     
-    func setupNotifications(forceSetup: Bool) {
+    func setupNotifications(_ forceSetup: Bool) {
         if (forceSetup || self.enabled) {
-            let application = UIApplication.sharedApplication()
+            let application = UIApplication.shared
 
-            let settings: UIUserNotificationSettings = UIUserNotificationSettings(forTypes: [.Alert, .Sound], categories: nil)
+            let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .sound], categories: nil)
             application.registerUserNotificationSettings(settings)
             application.registerForRemoteNotifications()
         }
     }
     
-    func register(deviceToken: NSData) {
+    func register(_ deviceToken: Data) {
         // Register with Azure Hub
         let hub = SBNotificationHub(connectionString: self.hubListenAccess, notificationHubPath: self.hubName)
         
         // Debug device token:
         var token = deviceToken.description
-        token = token.stringByReplacingOccurrencesOfString("<", withString: "")
-        token = token.stringByReplacingOccurrencesOfString(">", withString: "")
-        token = token.stringByReplacingOccurrencesOfString(" ", withString: "")
+        token = token.replacingOccurrences(of: "<", with: "")
+        token = token.replacingOccurrences(of: ">", with: "")
+        token = token.replacingOccurrences(of: " ", with: "")
         
         print("Device token: \(token)")
         
         if (self.enabled) {
             do {
-                try hub.registerNativeWithDeviceToken(deviceToken, tags: self.tagNames)
+                try hub?.registerNative(withDeviceToken: deviceToken, tags: self.tagNames)
                 print("Registered with hub: \(self.tagNames)")
             }
             catch {
@@ -74,7 +74,7 @@ public class AzureNotifications {
             }
         } else {
             do {
-                try hub.unregisterAllWithDeviceToken(deviceToken)
+                try hub?.unregisterAll(withDeviceToken: deviceToken)
                 print("Unregistered with hub")
             }
             catch {

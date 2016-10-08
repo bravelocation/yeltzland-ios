@@ -9,10 +9,30 @@
 import Foundation
 import UIKit
 import MapKit
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
 
-public class LocationManager {
-    private static let sharedInstance = LocationManager()
-    private var locationList:[Location] = [Location]()
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
+
+open class LocationManager {
+    fileprivate static let sharedInstance = LocationManager()
+    fileprivate var locationList:[Location] = [Location]()
     
     class var instance:LocationManager {
         get {
@@ -20,15 +40,15 @@ public class LocationManager {
         }
     }
     
-    public var Locations: [Location] {
+    open var Locations: [Location] {
         return self.locationList
     }
     
     init() {
-        if let filePath = NSBundle.mainBundle().pathForResource("locations", ofType: "json"), data = NSData(contentsOfFile: filePath) {
+        if let filePath = Bundle.main.path(forResource: "locations", ofType: "json"), let data = try? Data(contentsOf: URL(fileURLWithPath: filePath)) {
             do {
-                let json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)
-                let locations = json["Locations"] as! Array<AnyObject>
+                let json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as! [String:Any]
+                let locations = json["Locations"] as! [AnyObject]
                 
                 self.locationList.removeAll()
                 
@@ -74,7 +94,7 @@ public class LocationManager {
         let topLeft = CLLocation(latitude: smallestLat, longitude: smallestLong)
         let bottomRight = CLLocation(latitude: largestLat, longitude: largestLong)
         let centerPoint = CLLocation(latitude: ((largestLat + smallestLat) / 2.0), longitude: ((largestLong + smallestLong) / 2.0))
-        let distance = topLeft.distanceFromLocation(bottomRight)
+        let distance = topLeft.distance(from: bottomRight)
         
         // Now center map on Halesowen
         return MKCoordinateRegionMakeWithDistance(centerPoint.coordinate, distance, distance)

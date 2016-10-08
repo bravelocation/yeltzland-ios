@@ -23,16 +23,16 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         self.view.backgroundColor = AppColors.OtherBackground
         self.tableView.separatorColor = AppColors.OtherSeparator
         
-        self.tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: "Cell")
-        self.tableView.registerClass(UITableViewCell.classForCoder(), forCellReuseIdentifier: "SettingsCell")
+        self.tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "Cell")
+        self.tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "SettingsCell")
     }
 
     // MARK: - Table view data source
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 5
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (section == 0) {
             return 3
         } else if (section == 1) {
@@ -48,99 +48,99 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         return 0
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: UITableViewCell? = nil
         
-        if (indexPath.section == 3 && indexPath.row == 0) {
-            cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "SettingsCell")
-            cell!.selectionStyle = .None
-            cell!.accessoryType = .None
+        if ((indexPath as NSIndexPath).section == 3 && (indexPath as NSIndexPath).row == 0) {
+            cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "SettingsCell")
+            cell!.selectionStyle = .none
+            cell!.accessoryType = .none
             
-            let switchView = UISwitch(frame: CGRectZero)
+            let switchView = UISwitch(frame: CGRect.zero)
             cell!.accessoryView = switchView
             
-            switchView.on = self.azureNotifications.enabled
-            switchView.addTarget(self, action: #selector(OtherLinksTableViewController.notificationsSwitchChanged), forControlEvents: UIControlEvents.ValueChanged)
+            switchView.isOn = self.azureNotifications.enabled
+            switchView.addTarget(self, action: #selector(OtherLinksTableViewController.notificationsSwitchChanged), for: UIControlEvents.valueChanged)
             
         } else {
-            cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "Cell")
-            cell!.selectionStyle = .Default
-            cell!.accessoryType = .DisclosureIndicator
+            cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "Cell")
+            cell!.selectionStyle = .default
+            cell!.accessoryType = .disclosureIndicator
         }
         
-        if (indexPath.section == 0) {
-            switch (indexPath.row) {
+        if ((indexPath as NSIndexPath).section == 0) {
+            switch ((indexPath as NSIndexPath).row) {
             case 0:
                 cell!.textLabel?.text = "Fixture List"
-                let cellImage = UIImage(icon: FAType.FACalendar, size: CGSize(width: 100, height: 100), textColor: AppColors.Fixtures, backgroundColor: UIColor.clearColor())
+                let cellImage = UIImage(icon: FAType.faCalendar, size: CGSize(width: 100, height: 100), textColor: AppColors.Fixtures, backgroundColor: UIColor.clear)
                 cell!.imageView?.image = cellImage
                 break
             case 1:
                 cell!.textLabel?.text = "Where's the Ground?"
-                let cellImage = UIImage(icon: FAType.FAMapMarker, size: CGSize(width: 100, height: 100), textColor: AppColors.Fixtures, backgroundColor: UIColor.clearColor())
+                let cellImage = UIImage(icon: FAType.faMapMarker, size: CGSize(width: 100, height: 100), textColor: AppColors.Fixtures, backgroundColor: UIColor.clear)
                 cell!.imageView?.image = cellImage
             case 2:
                 cell!.textLabel?.text = "League Table"
-                let cellImage = UIImage(icon: FAType.FATable, size: CGSize(width: 100, height: 100), textColor: AppColors.Fixtures, backgroundColor: UIColor.clearColor())
+                let cellImage = UIImage(icon: FAType.faTable, size: CGSize(width: 100, height: 100), textColor: AppColors.Fixtures, backgroundColor: UIColor.clear)
                 cell!.imageView?.image = cellImage
                 break
             default:
                 break
             }
         }
-        else if (indexPath.section == 1) {
-            switch (indexPath.row) {
+        else if ((indexPath as NSIndexPath).section == 1) {
+            switch ((indexPath as NSIndexPath).row) {
             case 0:
                 cell!.textLabel?.text = "HTFC on Facebook"
-                let cellImage = UIImage(icon: FAType.FAFacebookSquare, size: CGSize(width: 100, height: 100), textColor: AppColors.Facebook, backgroundColor: UIColor.clearColor())
+                let cellImage = UIImage(icon: FAType.faFacebookSquare, size: CGSize(width: 100, height: 100), textColor: AppColors.Facebook, backgroundColor: UIColor.clear)
                 cell!.imageView?.image = cellImage
                 break
             case 1:
                 cell!.textLabel?.text = "NPL site"
-                let cellImage = UIImage(icon: FAType.FASoccerBallO, size: CGSize(width: 100, height: 100), textColor: AppColors.Evostick, backgroundColor: UIColor.clearColor())
+                let cellImage = UIImage(icon: FAType.faSoccerBallO, size: CGSize(width: 100, height: 100), textColor: AppColors.Evostick, backgroundColor: UIColor.clear)
                 cell!.imageView?.image = cellImage
                 break
             case 2:
                 cell!.textLabel?.text = "Fantasy Island"
-                let cellImage = UIImage(icon: FAType.FAPlane, size: CGSize(width: 100, height: 100), textColor: AppColors.Fantasy, backgroundColor: UIColor.clearColor())
+                let cellImage = UIImage(icon: FAType.faPlane, size: CGSize(width: 100, height: 100), textColor: AppColors.Fantasy, backgroundColor: UIColor.clear)
                 cell!.imageView?.image = cellImage
                 break
             case 3:
                 cell!.textLabel?.text = "Stourbridge Town FC"
-                let cellImage = UIImage(icon: FAType.FAThumbsODown, size: CGSize(width: 100, height: 100), textColor: AppColors.Stour, backgroundColor: UIColor.clearColor())
+                let cellImage = UIImage(icon: FAType.faThumbsODown, size: CGSize(width: 100, height: 100), textColor: AppColors.Stour, backgroundColor: UIColor.clear)
                 cell!.imageView?.image = cellImage
                 break
             default:
                 break
             }
-        } else if (indexPath.section == 2) {
-            switch (indexPath.row) {
+        } else if ((indexPath as NSIndexPath).section == 2) {
+            switch ((indexPath as NSIndexPath).row) {
             case 0:
                 cell!.textLabel?.text = "Yeltz Archives"
-                let cellImage = UIImage(icon: FAType.FAArchive, size: CGSize(width: 100, height: 100), textColor: AppColors.Archive, backgroundColor: UIColor.clearColor())
+                let cellImage = UIImage(icon: FAType.faArchive, size: CGSize(width: 100, height: 100), textColor: AppColors.Archive, backgroundColor: UIColor.clear)
                 cell!.imageView?.image = cellImage
                 break
             case 1:
                 cell!.textLabel?.text = "Yeltzland News Archive"
-                let cellImage = UIImage(icon: FAType.FANewspaperO, size: CGSize(width: 100, height: 100), textColor: AppColors.Archive, backgroundColor: UIColor.clearColor())
+                let cellImage = UIImage(icon: FAType.faNewspaperO, size: CGSize(width: 100, height: 100), textColor: AppColors.Archive, backgroundColor: UIColor.clear)
                 cell!.imageView?.image = cellImage
                 break
             default:
                 break
             }
-        } else if (indexPath.section == 3) {
+        } else if ((indexPath as NSIndexPath).section == 3) {
             cell!.textLabel?.text = "Game time tweets"
-            let cellImage = UIImage(icon: FAType.FATwitter, size: CGSize(width: 100, height: 100), textColor: AppColors.TwitterIcon, backgroundColor: UIColor.clearColor())
+            let cellImage = UIImage(icon: FAType.faTwitter, size: CGSize(width: 100, height: 100), textColor: AppColors.TwitterIcon, backgroundColor: UIColor.clear)
 
             cell!.imageView?.image = cellImage
 
             cell!.detailTextLabel?.text = "Enable notifications"
-        } else if (indexPath.section == 4) {
+        } else if ((indexPath as NSIndexPath).section == 4) {
             cell!.textLabel?.text = "More Brave Location Apps"
-            let cellImage = UIImage(icon: FAType.FAMapMarker, size: CGSize(width: 100, height: 100), textColor: AppColors.BraveLocation, backgroundColor: UIColor.clearColor())
+            let cellImage = UIImage(icon: FAType.faMapMarker, size: CGSize(width: 100, height: 100), textColor: AppColors.BraveLocation, backgroundColor: UIColor.clear)
             cell!.imageView?.image = cellImage
             
-            let infoDictionary = NSBundle.mainBundle().infoDictionary!
+            let infoDictionary = Bundle.main.infoDictionary!
             let version = infoDictionary["CFBundleShortVersionString"]
             let build = infoDictionary["CFBundleVersion"]
             
@@ -158,66 +158,66 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         return cell!
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if (indexPath.section == 0) {
-            if (indexPath.row == 0) {
-                let fixtures = FixturesTableViewController(style: .Grouped)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if ((indexPath as NSIndexPath).section == 0) {
+            if ((indexPath as NSIndexPath).row == 0) {
+                let fixtures = FixturesTableViewController(style: .grouped)
                 self.navigationController!.pushViewController(fixtures, animated: true)
                 return;
-            } else if (indexPath.row == 1) {
+            } else if ((indexPath as NSIndexPath).row == 1) {
                 let locations = LocationsViewController()
                 self.navigationController!.pushViewController(locations, animated: true)
                 return;
             }
         }
         
-        var url: NSURL? = nil;
+        var url: URL? = nil;
         
-        if (indexPath.section == 0) {
-            if (indexPath.row == 2) {
-                url = NSURL(string: "http://www.evostikleague.co.uk/match-info/tables")
+        if ((indexPath as NSIndexPath).section == 0) {
+            if ((indexPath as NSIndexPath).row == 2) {
+                url = URL(string: "http://www.evostikleague.co.uk/match-info/tables")
             }
-        } else if (indexPath.section == 1) {
-            switch (indexPath.row) {
+        } else if ((indexPath as NSIndexPath).section == 1) {
+            switch ((indexPath as NSIndexPath).row) {
             case 0:
-                url = NSURL(string: "https://www.facebook.com/halesowentownfc/")
+                url = URL(string: "https://www.facebook.com/halesowentownfc/")
                 break
             case 1:
-                url = NSURL(string: "http://www.evostikleague.co.uk")
+                url = URL(string: "http://www.evostikleague.co.uk")
                 break
             case 2:
-                url = NSURL(string: "http://yeltz.co.uk/fantasyisland")
+                url = URL(string: "http://yeltz.co.uk/fantasyisland")
                 break
             default:
                 break
             }
-        } else if (indexPath.section == 2) {
-            switch (indexPath.row) {
+        } else if ((indexPath as NSIndexPath).section == 2) {
+            switch ((indexPath as NSIndexPath).row) {
             case 0:
-                url = NSURL(string: "http://www.yeltzarchives.com")
+                url = URL(string: "http://www.yeltzarchives.com")
                 break
             case 1:
-                url = NSURL(string: "http://www.yeltzland.net/news.html")
+                url = URL(string: "http://www.yeltzland.net/news.html")
                 break
             default:
                 break
             }
-        } else if (indexPath.section == 4) {
-            url = NSURL(string: "https://bravelocation.com/apps")
+        } else if ((indexPath as NSIndexPath).section == 4) {
+            url = URL(string: "https://bravelocation.com/apps")
         }
         
         if (url != nil) {
-            let svc = SFSafariViewController(URL: url!)
+            let svc = SFSafariViewController(url: url!)
             svc.delegate = self
-            self.presentViewController(svc, animated: true, completion: nil)
-        } else if (indexPath.section == 1 && indexPath.row == 3) {
-            let alert = UIAlertController(title: "Really?", message: "Computer says no", preferredStyle: .Alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-            self.presentViewController(alert, animated: true, completion: nil)
+            self.present(svc, animated: true, completion: nil)
+        } else if ((indexPath as NSIndexPath).section == 1 && (indexPath as NSIndexPath).row == 3) {
+            let alert = UIAlertController(title: "Really?", message: "Computer says no", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
     }
     
-    override func tableView( tableView : UITableView,  titleForHeaderInSection section: Int)->String
+    override func tableView( _ tableView : UITableView,  titleForHeaderInSection section: Int)->String
     {
         switch(section)
         {
@@ -236,7 +236,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         }
     }
     
-    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
         header.contentView.backgroundColor = AppColors.OtherSectionBackground
         header.textLabel!.textColor = AppColors.OtherSectionText
@@ -244,19 +244,19 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
     }
     
     // MARK: - Event handler for switch
-    func notificationsSwitchChanged(sender: AnyObject) {
+    func notificationsSwitchChanged(_ sender: AnyObject) {
         let switchControl = sender as! UISwitch
-        self.azureNotifications.enabled = switchControl.on
+        self.azureNotifications.enabled = switchControl.isOn
     }
     
     // MARK: - SFSafariViewControllerDelegate methods
-    func safariViewControllerDidFinish(controller: SFSafariViewController)
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController)
     {
-        controller.dismissViewControllerAnimated(true, completion: nil)
+        controller.dismiss(animated: true, completion: nil)
     }
     
-    func safariViewController(controller: SFSafariViewController,
-                                activityItemsForURL URL: NSURL,
+    func safariViewController(_ controller: SFSafariViewController,
+                                activityItemsFor URL: URL,
                                                     title: String?) -> [UIActivity] {
         let chromeActivity = ChromeActivity(currentUrl: URL)
         

@@ -16,7 +16,7 @@ class TwitterUserTimelineViewController: TWTRTimelineViewController, TWTRTweetVi
     
     var userScreenName: String!
     var reloadButton: UIBarButtonItem!
-    var timer: NSTimer!
+    var timer: Timer!
     
     let TIMER_INTERVAL = 60.0
     
@@ -24,7 +24,7 @@ class TwitterUserTimelineViewController: TWTRTimelineViewController, TWTRTweetVi
         super.viewDidLoad()
         
         let client = TWTRAPIClient()
-        self.dataSource = TWTRUserTimelineDataSource(screenName: self.userScreenName, APIClient: client)
+        self.dataSource = TWTRUserTimelineDataSource(screenName: self.userScreenName, apiClient: client)
         self.tweetViewDelegate = self
         
         // Setup navigation
@@ -32,11 +32,11 @@ class TwitterUserTimelineViewController: TWTRTimelineViewController, TWTRTweetVi
         
         self.reloadButton = UIBarButtonItem(
             title: "Reload",
-            style: .Plain,
+            style: .plain,
             target: self,
             action: #selector(TwitterUserTimelineViewController.reloadData)
         )
-        self.reloadButton.FAIcon = FAType.FARotateRight
+        self.reloadButton.FAIcon = FAType.faRotateRight
         self.reloadButton.tintColor = AppColors.NavBarTintColor
         
         self.navigationItem.rightBarButtonItems = [self.reloadButton]
@@ -45,14 +45,14 @@ class TwitterUserTimelineViewController: TWTRTimelineViewController, TWTRTweetVi
         self.tableView.separatorColor = AppColors.TwitterSeparator
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.reloadData()
     }
    
-    func tweetView(tweetView: TWTRTweetView, didTapURL url: NSURL) {
-        let svc = SFSafariViewController(URL: url)
-        self.presentViewController(svc, animated: true, completion: nil)
+    func tweetView(_ tweetView: TWTRTweetView, didTap url: URL) {
+        let svc = SFSafariViewController(url: url)
+        self.present(svc, animated: true, completion: nil)
     }
     
     // MARK: - Nav bar actions
@@ -64,12 +64,12 @@ class TwitterUserTimelineViewController: TWTRTimelineViewController, TWTRTweetVi
             self.timer.invalidate()
         }
 
-        self.timer = NSTimer.scheduledTimerWithTimeInterval(self.TIMER_INTERVAL, target: (self as AnyObject), selector: #selector(UITableView.reloadData), userInfo: nil, repeats: false)
+        self.timer = Timer.scheduledTimer(timeInterval: self.TIMER_INTERVAL, target: (self as AnyObject), selector: #selector(UITableView.reloadData), userInfo: nil, repeats: false)
     }
     
     // MARK: - SFSafariViewControllerDelegate methods
-    func safariViewControllerDidFinish(controller: SFSafariViewController)
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController)
     {
-        controller.dismissViewControllerAnimated(true, completion: nil)
+        controller.dismiss(animated: true, completion: nil)
     }
 }

@@ -11,37 +11,37 @@ import Font_Awesome_Swift
 
 class SafariActivity: UIActivity {
     
-    var currentUrl: NSURL?
+    var currentUrl: URL?
     
-    init(currentUrl: NSURL?) {
+    init(currentUrl: URL?) {
         self.currentUrl = currentUrl
         super.init()
     }
     
-    override func activityType()-> String {
-        return NSStringFromClass(self.classForCoder)
+    override var activityType: UIActivityType? {
+        return UIActivityType("com.bravelocation.yeltzland.safari")
     }
     
-    override func activityImage()-> UIImage
+    override var activityImage: UIImage
     {
-        return UIImage(icon: FAType.FASafari, size: CGSize(width: 66, height: 66), textColor: UIColor.blueColor(), backgroundColor: UIColor.clearColor())
+        return UIImage(icon: FAType.faSafari, size: CGSize(width: 66, height: 66), textColor: UIColor.blue, backgroundColor: UIColor.clear)
     }
     
-    override func activityTitle() -> String
+    override var activityTitle : String
     {
         return "Open in Safari";
     }
     
-    override func canPerformWithActivityItems(activityItems: [AnyObject]) -> Bool {
+    override func canPerform(withActivityItems activityItems: [Any]) -> Bool {
         return true
     }
     
-    override func prepareWithActivityItems(activityItems: [AnyObject]) {
+    override func prepare(withActivityItems activityItems: [Any]) {
         // nothing to prepare
     }
     
-    override class func activityCategory() -> UIActivityCategory{
-        return UIActivityCategory.Action
+    override class var activityCategory : UIActivityCategory{
+        return UIActivityCategory.action
     }
     
     func canOpenChrome() -> Bool {
@@ -49,15 +49,15 @@ class SafariActivity: UIActivity {
             return false;
         }
         
-        return UIApplication.sharedApplication().canOpenURL(self.currentUrl!)
+        return UIApplication.shared.canOpenURL(self.currentUrl!)
     }
     
-    override func performActivity() {
+    override func perform() {
         print("Perform activity")
         
         if (self.currentUrl != nil) {
-            if(UIApplication.sharedApplication().canOpenURL(self.currentUrl!)){
-                UIApplication.sharedApplication().openURL(self.currentUrl!)
+            if(UIApplication.shared.canOpenURL(self.currentUrl!)){
+                UIApplication.shared.openURL(self.currentUrl!)
             }
         }
     }

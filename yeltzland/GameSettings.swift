@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 import WatchConnectivity
 
-public class GameSettings : BaseSettings, WCSessionDelegate {
+open class GameSettings : BaseSettings, WCSessionDelegate {
 
-    private static let sharedInstance = GameSettings()
+    fileprivate static let sharedInstance = GameSettings()
     class var instance:GameSettings {
         get {
             return sharedInstance
@@ -25,13 +25,13 @@ public class GameSettings : BaseSettings, WCSessionDelegate {
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
         print("Removed notification handler in game settings")
     }
     
-    private func setupNotificationWatchers() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(GameSettings.refreshFixtures), name: FixtureManager.FixturesNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(GameSettings.refreshGameScore), name: GameScoreManager.GameScoreNotification, object: nil)
+    fileprivate func setupNotificationWatchers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(GameSettings.refreshFixtures), name: NSNotification.Name(rawValue: FixtureManager.FixturesNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(GameSettings.refreshGameScore), name: NSNotification.Name(rawValue: GameScoreManager.GameScoreNotification), object: nil)
         print("Setup notification handlers for fixture or score updates in game settings")
     }
 
@@ -47,9 +47,9 @@ public class GameSettings : BaseSettings, WCSessionDelegate {
         // Set up watch setting if appropriate
         if (WCSession.isSupported()) {
             print("Setting up watch session ...")
-            let session: WCSession = WCSession.defaultSession();
+            let session: WCSession = WCSession.default();
             session.delegate = self
-            session.activateSession()
+            session.activate()
             print("Watch session activated")
         } else {
             print("No watch session set up")
@@ -57,31 +57,31 @@ public class GameSettings : BaseSettings, WCSessionDelegate {
     }
     
     // Update the watch in background
-    public func forceBackgroundWatchUpdate() {
+    open func forceBackgroundWatchUpdate() {
         self.pushAllSettingsToWatch(false)
     }
     
     /// Send initial settings to watch
-    override public func pushAllSettingsToWatch(currentlyInGame:Bool) {
+    override open func pushAllSettingsToWatch(_ currentlyInGame:Bool) {
         self.initialiseWatchSession()
         
         if (WCSession.isSupported()) {
-            let session = WCSession.defaultSession()
+            let session = WCSession.default()
             
             var updatedSettings = Dictionary<String, AnyObject>()
-            updatedSettings["lastGameTime"] = self.lastGameTime
-            updatedSettings["lastGameTeam"] = self.lastGameTeam
-            updatedSettings["lastGameYeltzScore"] = self.lastGameYeltzScore
-            updatedSettings["lastGameOpponentScore"] = self.lastGameOpponentScore
-            updatedSettings["lastGameHome"] = self.lastGameHome
+            updatedSettings["lastGameTime"] = self.lastGameTime as AnyObject?
+            updatedSettings["lastGameTeam"] = self.lastGameTeam as AnyObject?
+            updatedSettings["lastGameYeltzScore"] = self.lastGameYeltzScore as AnyObject?
+            updatedSettings["lastGameOpponentScore"] = self.lastGameOpponentScore as AnyObject?
+            updatedSettings["lastGameHome"] = self.lastGameHome as AnyObject?
             
-            updatedSettings["nextGameTime"] = self.nextGameTime
-            updatedSettings["nextGameTeam"] = self.nextGameTeam
-            updatedSettings["nextGameHome"] = self.nextGameHome
+            updatedSettings["nextGameTime"] = self.nextGameTime as AnyObject?
+            updatedSettings["nextGameTeam"] = self.nextGameTeam as AnyObject?
+            updatedSettings["nextGameHome"] = self.nextGameHome as AnyObject?
             
-            updatedSettings["currentGameTime"] = self.currentGameTime
-            updatedSettings["currentGameYeltzScore"] = self.currentGameYeltzScore
-            updatedSettings["currentGameOpponentScore"] = self.currentGameOpponentScore
+            updatedSettings["currentGameTime"] = self.currentGameTime as AnyObject?
+            updatedSettings["currentGameYeltzScore"] = self.currentGameYeltzScore as AnyObject?
+            updatedSettings["currentGameOpponentScore"] = self.currentGameOpponentScore as AnyObject?
             
             // If we're in a game, push it out straight away, otherwise do it in the background
             // When upgraded to iOS10 target, we can also check for session.remainingComplicationUserInfoTransfers > 0
@@ -97,13 +97,13 @@ public class GameSettings : BaseSettings, WCSessionDelegate {
     
     // MARK:- WCSessionDelegate implementation
     @objc
-    public func session(session: WCSession,
-                         activationDidCompleteWithState activationState: WCSessionActivationState,
-                                                        error: NSError?) {}
+    open func session(_ session: WCSession,
+                         activationDidCompleteWith activationState: WCSessionActivationState,
+                                                        error: Error?) {}
     
     @objc
-    public func sessionDidBecomeInactive(session: WCSession) {}
+    open func sessionDidBecomeInactive(_ session: WCSession) {}
     
     @objc
-    public func sessionDidDeactivate(session: WCSession) {}
+    open func sessionDidDeactivate(_ session: WCSession) {}
 }

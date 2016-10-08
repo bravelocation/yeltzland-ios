@@ -11,9 +11,9 @@ import WatchConnectivity
 import ClockKit
 import WatchKit
 
-public class WatchGameSettings : BaseSettings, WCSessionDelegate {
+open class WatchGameSettings : BaseSettings, WCSessionDelegate {
 
-    private static let sharedInstance = WatchGameSettings()
+    fileprivate static let sharedInstance = WatchGameSettings()
     class var instance:WatchGameSettings {
         get {
             return sharedInstance
@@ -26,13 +26,13 @@ public class WatchGameSettings : BaseSettings, WCSessionDelegate {
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
         print("Removed notification handler in watch game settings")
     }
     
-    private func setupNotificationWatchers() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(WatchGameSettings.refreshFixtures), name: FixtureManager.FixturesNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(WatchGameSettings.refreshGameScore), name: GameScoreManager.GameScoreNotification, object: nil)
+    fileprivate func setupNotificationWatchers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(WatchGameSettings.refreshFixtures), name: NSNotification.Name(rawValue: FixtureManager.FixturesNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(WatchGameSettings.refreshGameScore), name: NSNotification.Name(rawValue: GameScoreManager.GameScoreNotification), object: nil)
         print("Setup notification handlers for fixture or score updates in watch game settings")
     }
 
@@ -48,9 +48,9 @@ public class WatchGameSettings : BaseSettings, WCSessionDelegate {
         // Set up watch setting if appropriate
         if (WCSession.isSupported()) {
             print("Setting up watch session ...")
-            let session: WCSession = WCSession.defaultSession();
+            let session: WCSession = WCSession.default();
             session.delegate = self
-            session.activateSession()
+            session.activate()
             print("Watch session activated")
         } else {
             print("No watch session set up")
@@ -58,37 +58,29 @@ public class WatchGameSettings : BaseSettings, WCSessionDelegate {
     }
 
     // MARK:- WCSessionDelegate implementation - update local settings when transfered from phone
-    @objc
-    public func session(session: WCSession, didReceiveUserInfo userInfo: [String : AnyObject]) {
+    open func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any]) {
         print("New user info transfer data received on watch")
-        self.updateSettings(userInfo)
+        self.updateSettings(userInfo as [String : AnyObject])
     }
     
-    @objc
-    public func session(session: WCSession, didReceiveUpdate receivedApplicationContext: [String : AnyObject]) {
+    @nonobjc open func session(_ session: WCSession, didReceiveUpdate receivedApplicationContext: [String : AnyObject]) {
         print("New context transfer data received on watch")
         self.updateSettings(receivedApplicationContext)
     }
     
-    @objc
-    public func session(session: WCSession,
-                        activationDidCompleteWithState activationState: WCSessionActivationState,
-                        error: NSError?) {}
+    open func session(_ session: WCSession,
+                        activationDidCompleteWith activationState: WCSessionActivationState,
+                        error: Error?) {}
     
-    @objc
-    public func sessionDidBecomeInactive(session: WCSession) {}
     
-    @objc
-    public func sessionDidDeactivate(session: WCSession) {}
-    
-    private func updateSettings(userInfo: [String : AnyObject]) {
+    fileprivate func updateSettings(_ userInfo: [String : AnyObject]) {
         // Update each incoming setting
         for (key, value) in userInfo {
             self.writeObjectToStore(value, key: key)
         }
         
         // Send a notification for the view controllers to refresh
-        NSNotificationCenter.defaultCenter().postNotificationName(BaseSettings.SettingsUpdateNotification, object:nil, userInfo:nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: BaseSettings.SettingsUpdateNotification), object:nil, userInfo:nil)
         print("Sent 'Update Settings' notification")
     }
 }

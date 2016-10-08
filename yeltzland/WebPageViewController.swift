@@ -14,9 +14,9 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
     
     static let UrlNotification:String = "YLZUrlNotification"
     
-    var homePageUrl: NSURL!
+    var homePageUrl: URL!
     
-    var homeUrl: NSURL! {
+    var homeUrl: URL! {
         set {
             self.homePageUrl = newValue;
             self.loadHomePage()
@@ -35,7 +35,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
     
     // reference to WebView control we will instantiate
     let webView = WKWebView()
-    let progressBar = UIProgressView(progressViewStyle: .Bar)
+    let progressBar = UIProgressView(progressViewStyle: .bar)
     var spinner: UIActivityIndicatorView!
 
     // Initializers
@@ -44,24 +44,24 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         self.setupNotificationWatchers()
     }
     
-    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
+    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: Bundle!) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         self.loadHomePage()
         self.setupNotificationWatchers()
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
         print("Removed notification handler for fixture updates in today view")
     }
     
-    private func setupNotificationWatchers() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(WebPageViewController.enterForeground), name: UIApplicationWillEnterForegroundNotification, object: nil)
+    fileprivate func setupNotificationWatchers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(WebPageViewController.enterForeground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
 
     }
     
-    @objc private func enterForeground(notification: NSNotification) {
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+    @objc fileprivate func enterForeground(_ notification: Notification) {
+        DispatchQueue.main.async(execute: { () -> Void in
             self.reloadButtonTouchUp()
         })
     }
@@ -71,20 +71,20 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         
         // Calculate position on screen of elements
         let progressBarHeight = CGFloat(2.0)
-        let topPosition = (self.navigationController?.navigationBar.frame.size.height)! + CGRectGetHeight(UIApplication.sharedApplication().statusBarFrame)
+        let topPosition = (self.navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.height
         
-        let webViewHeight = CGRectGetHeight(view.frame) -
-            (topPosition + progressBarHeight + CGRectGetHeight((self.tabBarController?.tabBar.frame)!));
+        let webViewHeight = view.frame.height -
+            (topPosition + progressBarHeight + (self.tabBarController?.tabBar.frame)!.height);
 
         // Add elements to view
         self.webView.frame = CGRect(x: 0, y: topPosition + progressBarHeight, width: view.frame.width, height: webViewHeight)
-        self.webView.autoresizingMask = [.FlexibleWidth, .FlexibleHeight]
+        self.webView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.webView.navigationDelegate = self
         
         self.progressBar.frame = CGRect(x: 0, y: topPosition, width: view.frame.width, height: progressBarHeight)
         self.progressBar.alpha = 0
         self.progressBar.tintColor = AppColors.ProgressBar
-        self.progressBar.autoresizingMask = .FlexibleWidth
+        self.progressBar.autoresizingMask = .flexibleWidth
         
         self.view.addSubview(self.progressBar)
         self.view.addSubview(self.webView)
@@ -94,43 +94,43 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         self.navigationItem.title = self.pageTitle
         
         self.reloadButton = UIBarButtonItem(
-            barButtonSystemItem:.Refresh,
+            barButtonSystemItem:.refresh,
             target: self,
             action: #selector(WebPageViewController.reloadButtonTouchUp)
         )
         
         self.homeButton = UIBarButtonItem(
             title: "Home",
-            style: .Plain,
+            style: .plain,
             target: self,
             action: #selector(WebPageViewController.loadHomePage)
         )
-        self.homeButton.FAIcon = FAType.FAHome
+        self.homeButton.FAIcon = FAType.faHome
         
         self.backButton = UIBarButtonItem(
             title: "Back",
-            style: .Plain,
+            style: .plain,
             target: self,
             action: #selector(WebPageViewController.backButtonTouchUp)
         )
-        self.backButton.FAIcon = FAType.FAAngleLeft
+        self.backButton.FAIcon = FAType.faAngleLeft
         
         self.forwardButton = UIBarButtonItem(
             title: "Forward",
-            style: .Plain,
+            style: .plain,
             target: self,
             action: #selector(WebPageViewController.forwardButtonTouchUp)
         )
-        self.forwardButton.FAIcon = FAType.FAAngleRight
+        self.forwardButton.FAIcon = FAType.faAngleRight
         
         self.shareButton = UIBarButtonItem(
-            barButtonSystemItem:.Action,
+            barButtonSystemItem:.action,
             target: self,
             action: #selector(WebPageViewController.shareButtonTouchUp)
         )
 
-        self.backButton.enabled = false
-        self.forwardButton.enabled = false
+        self.backButton.isEnabled = false
+        self.forwardButton.isEnabled = false
         
         self.navigationItem.leftBarButtonItems = [self.homeButton, self.backButton, self.forwardButton]
         self.navigationItem.rightBarButtonItems = [self.shareButton, self.reloadButton]
@@ -146,7 +146,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         self.webView.allowsBackForwardNavigationGestures = true
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.reloadButtonTouchUp()
     }
@@ -170,23 +170,23 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         progressBar.setProgress(0, animated: false)
         
         if let requestUrl = self.homeUrl {
-            let req = NSURLRequest(URL: requestUrl)
-            self.webView.loadRequest(req)
+            let req = URLRequest(url: requestUrl)
+            self.webView.load(req)
             print("Loading page: %@", self.homeUrl)
         }
     }
     
-    func loadPage(requestUrl: NSURL) {
+    func loadPage(_ requestUrl: URL) {
         self.webView.stopLoading()
         progressBar.setProgress(0, animated: false)
         
-        let req = NSURLRequest(URL: requestUrl)
-        self.webView.loadRequest(req)
+        let req = URLRequest(url: requestUrl)
+        self.webView.load(req)
         print("Loading page: %@", requestUrl)
     }
     
     func shareButtonTouchUp() {
-        if let requestUrl = self.webView.URL {
+        if let requestUrl = self.webView.url {
             let objectsToShare = [requestUrl]
 
             // Add custom activities as appropriate
@@ -204,7 +204,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
                 activityViewController.popoverPresentationController!.barButtonItem = self.shareButton;
             }
             
-            self.presentViewController(activityViewController, animated: true, completion: nil)
+            self.present(activityViewController, animated: true, completion: nil)
         }
     }
     
@@ -213,7 +213,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
             self.hideSpinner()
         }
         
-        let overlayPosition = CGRectMake(0, self.view.bounds.origin.y, self.view.bounds.size.width, self.view.bounds.size.height)
+        let overlayPosition = CGRect(x: 0, y: self.view.bounds.origin.y, width: self.view.bounds.size.width, height: self.view.bounds.size.height)
         self.spinner = UIActivityIndicatorView(frame:overlayPosition)
         self.spinner.color = AppColors.SpinnerColor
         self.view.addSubview(self.spinner)
@@ -229,75 +229,77 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
     }
     
     // MARK: - WKNavigationDelegate methods
-    func webView(webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: NSError) {
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
         // Show brief error message
-        if (error.code != NSURLErrorCancelled) {
-            print("didFailProvisionalNavigation error occurred: ", error.localizedDescription, ":", error.code)
-            MakeToast.Show(self.view, message: "Couldn't connect to the website right now", delay: 2.0)
-            self.hideSpinner()
+        let navigationError = error as NSError
+        if (navigationError.code != NSURLErrorCancelled) {
+                print("didFailProvisionalNavigation error occurred: ", error.localizedDescription, ":", navigationError.code)
+                MakeToast.Show(self.view, message: "Couldn't connect to the website right now", delay: 2.0)
+                self.hideSpinner()
         }
     }
     
-    func webView(webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation) {
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation) {
         self.showSpinner()
         self.progressBar.setProgress(0, animated: false)
-        UIView.animateWithDuration(0.3, delay: 0, options: .CurveEaseInOut, animations: { self.progressBar.alpha = 1 }, completion: nil)
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        UIView.animate(withDuration: 0.3, delay: 0, options: UIViewAnimationOptions(), animations: { self.progressBar.alpha = 1 }, completion: nil)
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
     }
     
-    func webView(webView: WKWebView, didCommitNavigation navigation: WKNavigation){
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation){
         if (webView.estimatedProgress > 0) {
            self.hideSpinner()
         }
         progressBar.setProgress(Float(webView.estimatedProgress), animated: true)
     }
     
-    func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation) {
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation) {
         // Mark the progress as done
         self.hideSpinner()
 
         progressBar.setProgress(1, animated: true)
-        UIView.animateWithDuration(0.3, delay: 1, options: .CurveEaseInOut, animations: { self.progressBar.alpha = 0 }, completion: nil)
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+        UIView.animate(withDuration: 0.3, delay: 1, options: UIViewAnimationOptions(), animations: { self.progressBar.alpha = 0 }, completion: nil)
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
         
-        self.backButton.enabled = webView.canGoBack
-        self.forwardButton.enabled = webView.canGoForward
+        self.backButton.isEnabled = webView.canGoBack
+        self.forwardButton.isEnabled = webView.canGoForward
         
         // Post notification message that URL has been updated
-        NSNotificationCenter.defaultCenter().postNotificationName(WebPageViewController.UrlNotification, object: nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: WebPageViewController.UrlNotification), object: nil)
 
     }
     
-    func webView(webView: WKWebView, navigation: WKNavigation, withError error: NSError) {
+    @objc(webView:didFailNavigation:withError:) func webView(_ webView: WKWebView, didFail navigation: WKNavigation, withError error: Error) {
         // Mark the progress as done
         self.hideSpinner()
         progressBar.setProgress(1, animated: true)
-        UIView.animateWithDuration(0.3, delay: 1, options: .CurveEaseInOut, animations: { self.progressBar.alpha = 0 }, completion: nil)
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+        UIView.animate(withDuration: 0.3, delay: 1, options: UIViewAnimationOptions(), animations: { self.progressBar.alpha = 0 }, completion: nil)
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
         
         // Show brief error message
-        if (error.code != NSURLErrorCancelled) {
-            print("Navigation error occurred: ", error.localizedDescription)
+        let navigationError = error as NSError
+        if (navigationError.code != NSURLErrorCancelled) {
+            print("Navigation error occurred: ", navigationError.localizedDescription)
             MakeToast.Show(self.view, message: "Couldn't connect to the website right now", delay: 2.0)
             self.hideSpinner()
         }
     }
     
-    func webView(webView: WKWebView, decidePolicyForNavigationAction navigationAction: WKNavigationAction, decisionHandler: (WKNavigationActionPolicy) -> Void) {
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         if (navigationAction.targetFrame == nil) {
-            print("Redirecting link to another frame: \(navigationAction.request.URL!)")
-            webView.loadRequest(navigationAction.request)
+            print("Redirecting link to another frame: \(navigationAction.request.url!)")
+            webView.load(navigationAction.request)
         }
         
-        decisionHandler(WKNavigationActionPolicy.Allow)
+        decisionHandler(WKNavigationActionPolicy.allow)
     }
     
-    func webView(webView: WKWebView, decidePolicyForNavigationResponse navigationResponse: WKNavigationResponse, decisionHandler: (WKNavigationResponsePolicy) -> Void) {
+    func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
         
         // This is supposed to flush the cookies to storage!
-        NSUserDefaults.standardUserDefaults().synchronize()
+        UserDefaults.standard.synchronize()
             
-        decisionHandler(.Allow)
+        decisionHandler(.allow)
     }
 }
 

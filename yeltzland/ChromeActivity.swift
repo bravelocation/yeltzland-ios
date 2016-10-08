@@ -11,37 +11,37 @@ import Font_Awesome_Swift
 
 class ChromeActivity: UIActivity {
     
-    var currentUrl: NSURL?
+    var currentUrl: URL?
 
-    init(currentUrl: NSURL?) {
+    init(currentUrl: URL?) {
         self.currentUrl = currentUrl
         super.init()
     }
     
-    override func activityType()-> String {
-        return NSStringFromClass(self.classForCoder)
+    override var activityType: UIActivityType? {
+        return UIActivityType("com.bravelocation.yeltzland.chrome")
     }
     
-    override func activityImage()-> UIImage
+    override var activityImage: UIImage
     {
-        return UIImage(icon: FAType.FAChrome, size: CGSize(width: 66, height: 66), textColor: UIColor.blueColor(), backgroundColor: UIColor.clearColor())
+        return UIImage(icon: FAType.faChrome, size: CGSize(width: 66, height: 66), textColor: UIColor.blue, backgroundColor: UIColor.clear)
     }
     
-    override func activityTitle() -> String
+    override var activityTitle : String
     {
         return "Open in Chrome";
     }
     
-    override func canPerformWithActivityItems(activityItems: [AnyObject]) -> Bool {
+    override func canPerform(withActivityItems activityItems: [Any]) -> Bool {
         return true
     }
     
-    override func prepareWithActivityItems(activityItems: [AnyObject]) {
+    override func prepare(withActivityItems activityItems: [Any]) {
         // nothing to prepare
     }
     
-    override class func activityCategory() -> UIActivityCategory{
-        return UIActivityCategory.Action
+    override class var activityCategory : UIActivityCategory{
+        return UIActivityCategory.action
     }
     
     func canOpenChrome() -> Bool {
@@ -50,10 +50,10 @@ class ChromeActivity: UIActivity {
             return false;
         }
         
-        return UIApplication.sharedApplication().canOpenURL(chromeUrl)
+        return UIApplication.shared.canOpenURL(chromeUrl!)
     }
     
-    func generateChromeUrl()-> NSURL!
+    func generateChromeUrl()-> URL!
     {
         let incomingScheme = self.currentUrl!.scheme
         var chromeScheme = ""
@@ -65,21 +65,21 @@ class ChromeActivity: UIActivity {
         }
         
         if (chromeScheme != "") {
-            let chromeUrl = self.currentUrl!.absoluteString!.stringByReplacingOccurrencesOfString(self.currentUrl!.scheme! + "://", withString: chromeScheme + "://")
+            let chromeUrl = self.currentUrl!.absoluteString.replacingOccurrences(of: self.currentUrl!.scheme! + "://", with: chromeScheme + "://")
             print("Chrome URL is \(chromeUrl)")
-            return NSURL(string:chromeUrl)!
+            return URL(string:chromeUrl)!
         }
         
         return nil
     }
     
-    override func performActivity() {
+    override func perform() {
         print("Perform activity")
         
         let chromeUrl = self.generateChromeUrl()
         if (chromeUrl != nil) {
-            if(UIApplication.sharedApplication().canOpenURL(chromeUrl)){
-                UIApplication.sharedApplication().openURL(chromeUrl)
+            if(UIApplication.shared.canOpenURL(chromeUrl!)){
+                UIApplication.shared.openURL(chromeUrl!)
             }
         }
     }
