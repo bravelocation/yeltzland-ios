@@ -91,6 +91,9 @@ class AppColors {
     static var WatchFixtureLose = UIColor(red: 255.0/255.0, green: 127.0/255.0, blue: 127.0/255.0, alpha: 1.0)
     static var WatchComplicationColor:UIColor = LightBlueColor
     static var WatchBackgroundColor:UIColor = DarkBlueColor
+    
+    static var SafariControl:UIColor = YeltzBlueColor
+    static var SafariBar:UIColor = LightBlueTransparentColor
 }
 
     

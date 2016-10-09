@@ -28,7 +28,7 @@ class TwitterUserTimelineViewController: TWTRTimelineViewController, TWTRTweetVi
         self.tweetViewDelegate = self
         
         // Setup navigation
-        self.navigationItem.title = "@\(self.userScreenName)"
+        self.navigationItem.title = "@\(self.userScreenName!)"
         
         self.reloadButton = UIBarButtonItem(
             title: "Reload",

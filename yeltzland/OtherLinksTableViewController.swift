@@ -209,6 +209,12 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         if (url != nil) {
             let svc = SFSafariViewController(url: url!)
             svc.delegate = self
+            
+            if #available(iOS 10.0, *) {
+                svc.preferredControlTintColor = AppColors.SafariControl
+                svc.preferredBarTintColor = AppColors.SafariBar
+            }
+            
             self.present(svc, animated: true, completion: nil)
         } else if ((indexPath as NSIndexPath).section == 1 && (indexPath as NSIndexPath).row == 3) {
             let alert = UIAlertController(title: "Really?", message: "Computer says no", preferredStyle: .alert)
