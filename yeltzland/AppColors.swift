@@ -93,7 +93,6 @@ class AppColors {
     static var WatchBackgroundColor:UIColor = DarkBlueColor
     
     static var SafariControl:UIColor = YeltzBlueColor
-    static var SafariBar:UIColor = LightBlueTransparentColor
 }
 
     

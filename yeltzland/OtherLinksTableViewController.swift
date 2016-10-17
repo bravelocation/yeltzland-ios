@@ -212,7 +212,6 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             
             if #available(iOS 10.0, *) {
                 svc.preferredControlTintColor = AppColors.SafariControl
-                svc.preferredBarTintColor = AppColors.SafariBar
             }
             
             self.present(svc, animated: true, completion: nil)
