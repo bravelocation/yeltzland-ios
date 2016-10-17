@@ -38,10 +38,13 @@ open class Fixture {
     init?(fromJson: [String:AnyObject]) {
         // Parse properties from JSON match properties
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"        
         guard let matchDateTime = fromJson["MatchDateTime"] as! String? else { return nil }
-        self.fixtureDate = formatter.date(from: matchDateTime)!
+        let parsedDate = formatter.date(from: matchDateTime)
+        if (parsedDate == nil) {
+            return nil
+        }
+        self.fixtureDate = parsedDate!
         
         guard let opponent = fromJson["Opponent"] as! String? else { return nil }
         self.opponent = opponent
