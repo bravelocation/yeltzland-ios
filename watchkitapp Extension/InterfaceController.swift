@@ -35,7 +35,12 @@ class InterfaceController: WKInterfaceController {
         
         // How many rows?
         let nextFixtures = FixtureManager.instance.GetNextFixtures(6)
-        
+
+        var firstFixtureIsLastOpponent = false
+        if (nextFixtures.count > 0 && gameSettings.lastGameTime == nextFixtures[0].fixtureDate) {
+            firstFixtureIsLastOpponent = true
+        }
+
         let numberOfRows = nextFixtures.count + 1
         
         self.fixtureTable.setNumberOfRows(numberOfRows, withRowType: "FixtureRowType")
@@ -59,7 +64,7 @@ class InterfaceController: WKInterfaceController {
                 }
 
             } else {
-                if (i == 1 && gameSettings.gameScoreForCurrentGame) {
+                if (i == 1 && gameSettings.gameScoreForCurrentGame && firstFixtureIsLastOpponent == false) {
                     opponent = gameSettings.displayNextOpponent
                     gameDetails = gameSettings.currentScore
                 } else if (nextFixtures.count >= i) {

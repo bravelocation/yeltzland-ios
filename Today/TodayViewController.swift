@@ -130,18 +130,28 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
         var opponent: String = ""
         var gameDetails = ""
         
-        if ((indexPath as NSIndexPath).section == 0) {
+        var firstFixtureIsLastOpponent = false
+        if (nextFixtures.count > 0 && self.gameSettings.lastGameTime == nextFixtures[0].fixtureDate) {
+            firstFixtureIsLastOpponent = true
+        }
+        
+        if (indexPath.section == 0) {
             opponent = self.gameSettings.displayLastOpponent
             gameDetails = self.gameSettings.lastScore
         } else if ((indexPath as NSIndexPath).section == 1) {
             if (self.gameSettings.gameScoreForCurrentGame) {
                 opponent = self.gameSettings.displayNextOpponent
                 gameDetails = self.gameSettings.currentScore
-            } else if (nextFixtures.count > (indexPath as NSIndexPath).row){
-                opponent = nextFixtures[(indexPath as NSIndexPath).row].displayOpponent
-                gameDetails = (indexPath as NSIndexPath).row == 0 ? self.gameSettings.nextKickoffTime : nextFixtures[(indexPath as NSIndexPath).row].fullKickoffTime
+            } else if (nextFixtures.count > indexPath.row) {
+                let fixture = nextFixtures[indexPath.row]
+                opponent = fixture.displayOpponent
+                if ((indexPath.row == 0) && (firstFixtureIsLastOpponent == false)) {
+                    gameDetails = self.gameSettings.nextKickoffTime
+                } else {
+                    gameDetails = fixture.fullKickoffTime
+                }
             }
-        } else if ((indexPath as NSIndexPath).section == 2) {
+        } else if (indexPath.section == 2) {
             // Need to ignore the current game
             if (nextFixtures.count > (indexPath as NSIndexPath).row + 1){
                 opponent = nextFixtures[(indexPath as NSIndexPath).row + 1].displayOpponent
