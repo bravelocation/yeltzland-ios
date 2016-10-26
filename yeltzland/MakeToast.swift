@@ -11,34 +11,12 @@ import UIKit
 
 open class MakeToast {
     
-    open static func Show(_ view:UIView, message:String, delay: Double) {
-        // Make label with rounded corners tto show
-        let toastLabel = UILabel(frame: CGRect(x: view.frame.size.width/2 - 150, y: view.frame.size.height-100, width: 300, height: 35))
-        toastLabel.backgroundColor = AppColors.ToastBackgroundColor
-        toastLabel.textColor = AppColors.ToastTextColor
-        toastLabel.textAlignment = NSTextAlignment.center;
-        toastLabel.text = message
-        toastLabel.font = UIFont(name: AppColors.AppFontName, size:AppColors.ToastTextSize)!
+    open static func Show(_ controller:UIViewController, title:String, message:String) {
+        let alert = UIAlertController(title:title, message:message, preferredStyle:.alert)
         
-        toastLabel.adjustsFontSizeToFitWidth = true
-        toastLabel.allowsDefaultTighteningForTruncation = true
-        toastLabel.minimumScaleFactor = 0.8
-        
-        toastLabel.alpha = 1.0
-        toastLabel.layer.cornerRadius = 10;
-        toastLabel.clipsToBounds  =  true
-        
-        // Add the label to the view
-        view.addSubview(toastLabel)
+        let defaultAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
+        alert.addAction(defaultAction)
 
-        // Fade the label out
-        UIView.animate(withDuration: 1.0, delay: delay, options: .curveEaseOut, animations: {
-            toastLabel.alpha = 0.0
-            }, completion: {(value: Bool) in
-                // Remove the label from the view when done
-                toastLabel.removeFromSuperview();
-            }
-        )
+        controller.present(alert, animated: true, completion: nil)
     }
-    
 }

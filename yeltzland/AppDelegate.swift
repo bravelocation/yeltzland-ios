@@ -176,7 +176,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         if (self.window != nil && self.window?.rootViewController != nil) {
                             let tabController : UITabBarController? = (self.window?.rootViewController as! UITabBarController)
                             let navigationController : UINavigationController? = tabController!.viewControllers![0] as? UINavigationController
-                            MakeToast.Show(navigationController!.view!, message: body as String, delay: 5.0)
+                            MakeToast.Show(navigationController!, title: "Alert", message: body as String)
                         }
                     }
                 }

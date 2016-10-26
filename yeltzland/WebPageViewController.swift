@@ -234,7 +234,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         let navigationError = error as NSError
         if (navigationError.code != NSURLErrorCancelled) {
                 print("didFailProvisionalNavigation error occurred: ", error.localizedDescription, ":", navigationError.code)
-                MakeToast.Show(self.view, message: "Couldn't connect to the website right now", delay: 2.0)
+                MakeToast.Show(self, title:"A problem occured", message: "Couldn't connect to the website right now")
                 self.hideSpinner()
         }
     }
@@ -266,7 +266,6 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         
         // Post notification message that URL has been updated
         NotificationCenter.default.post(name: Notification.Name(rawValue: WebPageViewController.UrlNotification), object: nil)
-
     }
     
     @objc(webView:didFailNavigation:withError:) func webView(_ webView: WKWebView, didFail navigation: WKNavigation, withError error: Error) {
@@ -280,7 +279,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         let navigationError = error as NSError
         if (navigationError.code != NSURLErrorCancelled) {
             print("Navigation error occurred: ", navigationError.localizedDescription)
-            MakeToast.Show(self.view, message: "Couldn't connect to the website right now", delay: 2.0)
+            MakeToast.Show(self, title:"A problem occurred", message: "Couldn't connect to the website right now")
             self.hideSpinner()
         }
     }
