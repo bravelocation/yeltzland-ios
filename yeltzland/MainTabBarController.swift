@@ -181,7 +181,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
                 "com.bravelocation.yeltzland.currenttab.currenturl": currentUrl!
             ]
             
-            print("Saving user activity current URL to be \(currentUrl)")
+            print("Saving user activity current URL to be \(currentUrl!)")
         }
     }
 }

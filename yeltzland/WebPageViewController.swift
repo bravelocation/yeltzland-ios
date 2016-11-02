@@ -58,12 +58,18 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
     fileprivate func setupNotificationWatchers() {
         NotificationCenter.default.addObserver(self, selector: #selector(WebPageViewController.enterForeground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
 
+        NotificationCenter.default.addObserver(self, selector: #selector(WebPageViewController.enterBackground), name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
     }
     
     @objc fileprivate func enterForeground(_ notification: Notification) {
         DispatchQueue.main.async(execute: { () -> Void in
             self.reloadButtonTouchUp()
         })
+    }
+
+    @objc fileprivate func enterBackground(_ notification: Notification) {
+        print("Entering background ...")
+        self.dismiss(animated: true, completion: nil)
     }
 
     override func viewDidLoad() {
