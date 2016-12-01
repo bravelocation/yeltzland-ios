@@ -52,7 +52,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         let forumNavigationController = UINavigationController(rootViewController:forumViewController)
         
         let forumIcon = UITabBarItem(title: "Yeltz Forum", image: nil, selectedImage: nil)
-        forumIcon.setFAIcon(FAType.faUsers)
+        forumIcon.setFAIcon(icon: FAType.FAUsers)
         forumNavigationController.tabBarItem = forumIcon
 
         // Official Site
@@ -62,7 +62,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         let officialNavigationController = UINavigationController(rootViewController:officialViewController)
         
         let officialIcon = UITabBarItem(title: "Official Site", image: nil, selectedImage: nil)
-        officialIcon.setFAIcon(FAType.faBlackTie)
+        officialIcon.setFAIcon(icon: FAType.FABlackTie)
         officialNavigationController.tabBarItem = officialIcon
         
         // Yeltz TV
@@ -72,7 +72,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         let tvNavigationController = UINavigationController(rootViewController:tvViewController)
         
         let tvIcon = UITabBarItem(title: "Yeltz TV", image: nil, selectedImage: nil)
-        tvIcon.setFAIcon(FAType.faYoutubePlay)
+        tvIcon.setFAIcon(icon: FAType.FAYoutubePlay)
         tvNavigationController.tabBarItem = tvIcon
         
         // Twitter
@@ -81,7 +81,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         let twitterNavigationController = UINavigationController(rootViewController:twitterViewController)
         
         let twitterIcon = UITabBarItem(title: "Twitter", image: nil, selectedImage: nil)
-        twitterIcon.setFAIcon(FAType.faTwitter)
+        twitterIcon.setFAIcon(icon: FAType.FATwitter)
         twitterNavigationController.tabBarItem = twitterIcon
         
         // Other Links

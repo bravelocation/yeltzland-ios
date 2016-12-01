@@ -42,7 +42,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         } else if (section == 3) {
             return 1
         } else if (section == 4) {
-            return 1
+            return 2
         }
         
         return 0
@@ -72,16 +72,16 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             switch ((indexPath as NSIndexPath).row) {
             case 0:
                 cell!.textLabel?.text = "Fixture List"
-                let cellImage = UIImage(icon: FAType.faCalendar, size: CGSize(width: 100, height: 100), textColor: AppColors.Fixtures, backgroundColor: UIColor.clear)
+                let cellImage = UIImage(icon: FAType.FACalendar, size: CGSize(width: 100, height: 100), textColor: AppColors.Fixtures, backgroundColor: UIColor.clear)
                 cell!.imageView?.image = cellImage
                 break
             case 1:
                 cell!.textLabel?.text = "Where's the Ground?"
-                let cellImage = UIImage(icon: FAType.faMapMarker, size: CGSize(width: 100, height: 100), textColor: AppColors.Fixtures, backgroundColor: UIColor.clear)
+                let cellImage = UIImage(icon: FAType.FAMapMarker, size: CGSize(width: 100, height: 100), textColor: AppColors.Fixtures, backgroundColor: UIColor.clear)
                 cell!.imageView?.image = cellImage
             case 2:
                 cell!.textLabel?.text = "League Table"
-                let cellImage = UIImage(icon: FAType.faTable, size: CGSize(width: 100, height: 100), textColor: AppColors.Fixtures, backgroundColor: UIColor.clear)
+                let cellImage = UIImage(icon: FAType.FATable, size: CGSize(width: 100, height: 100), textColor: AppColors.Fixtures, backgroundColor: UIColor.clear)
                 cell!.imageView?.image = cellImage
                 break
             default:
@@ -92,22 +92,22 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             switch ((indexPath as NSIndexPath).row) {
             case 0:
                 cell!.textLabel?.text = "HTFC on Facebook"
-                let cellImage = UIImage(icon: FAType.faFacebookSquare, size: CGSize(width: 100, height: 100), textColor: AppColors.Facebook, backgroundColor: UIColor.clear)
+                let cellImage = UIImage(icon: FAType.FAFacebookSquare, size: CGSize(width: 100, height: 100), textColor: AppColors.Facebook, backgroundColor: UIColor.clear)
                 cell!.imageView?.image = cellImage
                 break
             case 1:
                 cell!.textLabel?.text = "NPL site"
-                let cellImage = UIImage(icon: FAType.faSoccerBallO, size: CGSize(width: 100, height: 100), textColor: AppColors.Evostick, backgroundColor: UIColor.clear)
+                let cellImage = UIImage(icon: FAType.FASoccerBallO, size: CGSize(width: 100, height: 100), textColor: AppColors.Evostick, backgroundColor: UIColor.clear)
                 cell!.imageView?.image = cellImage
                 break
             case 2:
                 cell!.textLabel?.text = "Fantasy Island"
-                let cellImage = UIImage(icon: FAType.faPlane, size: CGSize(width: 100, height: 100), textColor: AppColors.Fantasy, backgroundColor: UIColor.clear)
+                let cellImage = UIImage(icon: FAType.FAPlane, size: CGSize(width: 100, height: 100), textColor: AppColors.Fantasy, backgroundColor: UIColor.clear)
                 cell!.imageView?.image = cellImage
                 break
             case 3:
                 cell!.textLabel?.text = "Stourbridge Town FC"
-                let cellImage = UIImage(icon: FAType.faThumbsODown, size: CGSize(width: 100, height: 100), textColor: AppColors.Stour, backgroundColor: UIColor.clear)
+                let cellImage = UIImage(icon: FAType.FAThumbsODown, size: CGSize(width: 100, height: 100), textColor: AppColors.Stour, backgroundColor: UIColor.clear)
                 cell!.imageView?.image = cellImage
                 break
             default:
@@ -117,12 +117,12 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             switch ((indexPath as NSIndexPath).row) {
             case 0:
                 cell!.textLabel?.text = "Yeltz Archives"
-                let cellImage = UIImage(icon: FAType.faArchive, size: CGSize(width: 100, height: 100), textColor: AppColors.Archive, backgroundColor: UIColor.clear)
+                let cellImage = UIImage(icon: FAType.FAArchive, size: CGSize(width: 100, height: 100), textColor: AppColors.Archive, backgroundColor: UIColor.clear)
                 cell!.imageView?.image = cellImage
                 break
             case 1:
                 cell!.textLabel?.text = "Yeltzland News Archive"
-                let cellImage = UIImage(icon: FAType.faNewspaperO, size: CGSize(width: 100, height: 100), textColor: AppColors.Archive, backgroundColor: UIColor.clear)
+                let cellImage = UIImage(icon: FAType.FANewspaperO, size: CGSize(width: 100, height: 100), textColor: AppColors.Archive, backgroundColor: UIColor.clear)
                 cell!.imageView?.image = cellImage
                 break
             default:
@@ -130,21 +130,33 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             }
         } else if ((indexPath as NSIndexPath).section == 3) {
             cell!.textLabel?.text = "Game time tweets"
-            let cellImage = UIImage(icon: FAType.faTwitter, size: CGSize(width: 100, height: 100), textColor: AppColors.TwitterIcon, backgroundColor: UIColor.clear)
+            let cellImage = UIImage(icon: FAType.FATwitter, size: CGSize(width: 100, height: 100), textColor: AppColors.TwitterIcon, backgroundColor: UIColor.clear)
 
             cell!.imageView?.image = cellImage
 
             cell!.detailTextLabel?.text = "Enable notifications"
         } else if ((indexPath as NSIndexPath).section == 4) {
-            cell!.textLabel?.text = "More Brave Location Apps"
-            let cellImage = UIImage(icon: FAType.faMapMarker, size: CGSize(width: 100, height: 100), textColor: AppColors.BraveLocation, backgroundColor: UIColor.clear)
-            cell!.imageView?.image = cellImage
-            
-            let infoDictionary = Bundle.main.infoDictionary!
-            let version = infoDictionary["CFBundleShortVersionString"]
-            let build = infoDictionary["CFBundleVersion"]
-            
-            cell!.detailTextLabel?.text = "v\(version!).\(build!)"
+            switch ((indexPath as NSIndexPath).row) {
+            case 0:
+                cell!.textLabel?.text = "Yeltzland on Amazon Echo"
+                let cellImage = UIImage(icon: FAType.FAAmazon, size: CGSize(width: 100, height: 100), textColor: AppColors.Archive, backgroundColor: UIColor.clear)
+                cell!.imageView?.image = cellImage
+                break
+            case 1:
+                cell!.textLabel?.text = "More Brave Location Apps"
+                let cellImage = UIImage(icon: FAType.FAMapMarker, size: CGSize(width: 100, height: 100), textColor: AppColors.BraveLocation, backgroundColor: UIColor.clear)
+                cell!.imageView?.image = cellImage
+                
+                let infoDictionary = Bundle.main.infoDictionary!
+                let version = infoDictionary["CFBundleShortVersionString"]
+                let build = infoDictionary["CFBundleVersion"]
+                
+                cell!.detailTextLabel?.text = "v\(version!).\(build!)"
+                break
+            default:
+                break
+            }
+
         }
 
         // Set fonts
@@ -203,7 +215,16 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
                 break
             }
         } else if ((indexPath as NSIndexPath).section == 4) {
-            url = URL(string: "https://bravelocation.com/apps")
+            switch ((indexPath as NSIndexPath).row) {
+            case 0:
+                url = URL(string: "https://www.amazon.co.uk/Yeltzland-stuff-about-Halesowen-Town/dp/B01MTJOHBY/")
+                break
+            case 1:
+                url = URL(string: "https://bravelocation.com/apps")
+                break
+            default:
+                break
+            }
         }
         
         if (url != nil) {

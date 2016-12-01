@@ -111,7 +111,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
             target: self,
             action: #selector(WebPageViewController.loadHomePage)
         )
-        self.homeButton.FAIcon = FAType.faHome
+        self.homeButton.FAIcon = FAType.FAHome
         
         self.backButton = UIBarButtonItem(
             title: "Back",
@@ -119,7 +119,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
             target: self,
             action: #selector(WebPageViewController.backButtonTouchUp)
         )
-        self.backButton.FAIcon = FAType.faAngleLeft
+        self.backButton.FAIcon = FAType.FAAngleLeft
         
         self.forwardButton = UIBarButtonItem(
             title: "Forward",
@@ -127,7 +127,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
             target: self,
             action: #selector(WebPageViewController.forwardButtonTouchUp)
         )
-        self.forwardButton.FAIcon = FAType.faAngleRight
+        self.forwardButton.FAIcon = FAType.FAAngleRight
         
         self.shareButton = UIBarButtonItem(
             barButtonSystemItem:.action,

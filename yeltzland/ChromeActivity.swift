@@ -24,7 +24,7 @@ class ChromeActivity: UIActivity {
     
     override var activityImage: UIImage
     {
-        return UIImage(icon: FAType.faChrome, size: CGSize(width: 66, height: 66), textColor: UIColor.blue, backgroundColor: UIColor.clear)
+        return UIImage(icon: FAType.FAChrome, size: CGSize(width: 66, height: 66), textColor: UIColor.blue, backgroundColor: UIColor.clear)
     }
     
     override var activityTitle : String

@@ -24,7 +24,7 @@ class SafariActivity: UIActivity {
     
     override var activityImage: UIImage
     {
-        return UIImage(icon: FAType.faSafari, size: CGSize(width: 66, height: 66), textColor: UIColor.blue, backgroundColor: UIColor.clear)
+        return UIImage(icon: FAType.FASafari, size: CGSize(width: 66, height: 66), textColor: UIColor.blue, backgroundColor: UIColor.clear)
     }
     
     override var activityTitle : String

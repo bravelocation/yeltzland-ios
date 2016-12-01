@@ -108,7 +108,7 @@ class FixturesTableViewController: UITableViewController {
             target: self,
             action: #selector(FixturesTableViewController.reloadButtonTouchUp)
         )
-        self.reloadButton.FAIcon = FAType.faRotateRight
+        self.reloadButton.FAIcon = FAType.FARotateRight
         self.reloadButton.tintColor = AppColors.NavBarTintColor
         self.navigationController?.navigationBar.tintColor = AppColors.NavBarTintColor
         self.navigationItem.rightBarButtonItems = [self.reloadButton]

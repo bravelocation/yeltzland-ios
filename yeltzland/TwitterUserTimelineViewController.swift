@@ -36,7 +36,7 @@ class TwitterUserTimelineViewController: TWTRTimelineViewController, TWTRTweetVi
             target: self,
             action: #selector(TwitterUserTimelineViewController.reloadData)
         )
-        self.reloadButton.FAIcon = FAType.faRotateRight
+        self.reloadButton.FAIcon = FAType.FARotateRight
         self.reloadButton.tintColor = AppColors.NavBarTintColor
         
         self.navigationItem.rightBarButtonItems = [self.reloadButton]

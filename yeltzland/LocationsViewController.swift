@@ -29,7 +29,7 @@ class LocationsViewController: UIViewController, MKMapViewDelegate, CLLocationMa
             target: self,
             action: #selector(LocationsViewController.mapToggleButtonTouchUp)
         )
-        self.mapToggleButton.FAIcon = FAType.faMapO
+        self.mapToggleButton.FAIcon = FAType.FAMapO
         self.mapToggleButton.tintColor = AppColors.NavBarTintColor
         self.navigationController?.navigationBar.tintColor = AppColors.NavBarTintColor
         self.navigationItem.rightBarButtonItems = [self.mapToggleButton]
@@ -84,7 +84,7 @@ class LocationsViewController: UIViewController, MKMapViewDelegate, CLLocationMa
                 dequeuedView.annotation = annotation
                 view = dequeuedView
             } else {
-                let ballImage = UIImage(icon: FAType.faSoccerBallO, size: CGSize(width: 20, height: 20), textColor: AppColors.Evostick, backgroundColor: UIColor.clear)
+                let ballImage = UIImage(icon: FAType.FASoccerBallO, size: CGSize(width: 20, height: 20), textColor: AppColors.Evostick, backgroundColor: UIColor.clear)
                 
                 view = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 view.canShowCallout = true
