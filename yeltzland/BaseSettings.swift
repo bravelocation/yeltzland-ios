@@ -40,44 +40,84 @@ open class BaseSettings : NSObject {
         set { self.writeObjectToStore(newValue as AnyObject, key: "LastSelectedTab") }
     }
     
-    open var lastGameTime: Date {
-        get { return self.readObjectFromStore("lastGameTime") as! Date }
-        set { self.writeObjectToStore(newValue as AnyObject, key: "lastGameTime") }
+    open var lastGameTime: Date? {
+        get {
+            if let lastGame = FixtureManager.instance.getLastGame() {
+                return lastGame.fixtureDate
+            }
+            
+            return nil
+        }
     }
     
-    open var lastGameTeam: String {
-        get { return self.readObjectFromStore("lastGameTeam") as! String }
-        set { self.writeObjectToStore(newValue as AnyObject, key: "lastGameTeam") }
+    open var lastGameTeam: String? {
+        get {
+            if let lastGame = FixtureManager.instance.getLastGame() {
+                return lastGame.opponent
+            }
+            
+            return nil
+        }
     }
     
-    open var lastGameYeltzScore: Int {
-        get { return self.readObjectFromStore("lastGameYeltzScore") as! Int }
-        set { self.writeObjectToStore(newValue as AnyObject, key: "lastGameYeltzScore") }
+    open var lastGameYeltzScore: Int? {
+        get {
+            if let lastGame = FixtureManager.instance.getLastGame() {
+                return lastGame.teamScore
+            }
+            
+            return nil
+        }
     }
     
-    open var lastGameOpponentScore: Int {
-        get { return self.readObjectFromStore("lastGameOpponentScore") as! Int }
-        set { self.writeObjectToStore(newValue as AnyObject, key: "lastGameOpponentScore") }
+    open var lastGameOpponentScore: Int? {
+        get {
+            if let lastGame = FixtureManager.instance.getLastGame() {
+                return lastGame.opponentScore
+            }
+            
+            return nil
+        }
     }
     
-    open var lastGameHome: Bool {
-        get { return self.readObjectFromStore("lastGameHome") as! Bool }
-        set { self.writeObjectToStore(newValue as AnyObject, key: "lastGameHome") }
+    open var lastGameHome: Bool? {
+        get {
+            if let lastGame = FixtureManager.instance.getLastGame() {
+                return lastGame.home
+            }
+            
+            return nil
+        }
     }
     
-    open var nextGameTime: Date {
-        get { return self.readObjectFromStore("nextGameTime") as! Date }
-        set { self.writeObjectToStore(newValue as AnyObject, key: "nextGameTime") }
+    open var nextGameTime: Date? {
+        get {
+            if let nextGame = FixtureManager.instance.getNextGame() {
+                return nextGame.fixtureDate
+            }
+            
+            return nil
+        }
     }
     
-    open var nextGameTeam: String {
-        get { return self.readObjectFromStore("nextGameTeam") as! String }
-        set { self.writeObjectToStore(newValue as AnyObject, key: "nextGameTeam") }
+    open var nextGameTeam: String? {
+        get {
+            if let nextGame = FixtureManager.instance.getNextGame() {
+                return nextGame.opponent
+            }
+            
+            return nil
+        }
     }
     
-    open var nextGameHome: Bool {
-        get { return self.readObjectFromStore("nextGameHome") as! Bool }
-        set { self.writeObjectToStore(newValue as AnyObject, key: "nextGameHome") }
+    open var nextGameHome: Bool? {
+        get {
+            if let nextGame = FixtureManager.instance.getNextGame() {
+                return nextGame.home
+            }
+            
+            return nil
+        }
     }
     
     open var currentGameTime: Date {
@@ -102,40 +142,48 @@ open class BaseSettings : NSObject {
     
     open var displayLastOpponent: String {
         get {
-            return self.lastGameHome ? self.lastGameTeam.uppercased() : self.lastGameTeam
+            if (self.lastGameHome != nil && self.lastGameTeam != nil) {
+                return self.lastGameHome! ? self.lastGameTeam!.uppercased() : self.lastGameTeam!
+            }
+            
+            return ""
         }
     }
     
     open var displayNextOpponent: String {
         get {
-            return self.nextGameHome ? self.nextGameTeam.uppercased() : self.nextGameTeam
+            if (self.nextGameHome != nil && self.nextGameTeam != nil) {
+                return self.nextGameHome! ? self.nextGameTeam!.uppercased() : self.nextGameTeam!
+            }
+            
+            return ""
         }
     }
     
     open var lastScore: String {
         get {
             // If no opponent, then no score
-            if (self.lastGameTeam.characters.count == 0) {
+            if (self.lastGameTeam == nil) {
                 return ""
             }
             
             var result = ""
-            if (self.lastGameYeltzScore > self.lastGameOpponentScore) {
+            if (self.lastGameYeltzScore! > self.lastGameOpponentScore!) {
                 result = "W"
-            } else if (self.lastGameYeltzScore < self.lastGameOpponentScore) {
+            } else if (self.lastGameYeltzScore! < self.lastGameOpponentScore!) {
                 result = "L"
             } else {
                 result = "D"
             }
             
-            return String.init(format: "%@ %d-%d", result, self.lastGameYeltzScore, self.lastGameOpponentScore)
+            return String.init(format: "%@ %d-%d", result, self.lastGameYeltzScore!, self.lastGameOpponentScore!)
         }
     }
     
     open var currentScore: String {
         get {
             // If no opponent, then no current score
-            if (self.nextGameTeam.characters.count == 0) {
+            if (self.nextGameTeam == nil) {
                 return ""
             }
             
@@ -149,8 +197,8 @@ open class BaseSettings : NSObject {
     
     open var nextKickoffTime: String {
         get {
-            // If no opponent, then no kickoff time
-            if (self.nextGameTeam.characters.count == 0) {
+            // If no next time, then no kickoff time
+            if (self.nextGameTime == nil) {
                 return ""
             }
             
@@ -162,18 +210,18 @@ open class BaseSettings : NSObject {
                 formatter.dateFormat = "EEE dd MMM"
             }
         
-            return formatter.string(from: self.nextGameTime)
+            return formatter.string(from: self.nextGameTime!)
         }
     }
     
     open var gameScoreForCurrentGame: Bool {
         get {
-            // If no opponent, then no current game
-            if (self.nextGameTeam.characters.count == 0) {
+            // If no next game, then no current game
+            if (self.nextGameTime == nil) {
                 return false
             }
             
-            return self.nextGameTime.compare(self.currentGameTime) == ComparisonResult.orderedSame
+            return self.nextGameTime!.compare(self.currentGameTime) == ComparisonResult.orderedSame
         }
     }
         
@@ -235,14 +283,14 @@ open class BaseSettings : NSObject {
         get {
             switch self.currentGameState() {
             case .daysBefore:
-                // If no opponent, then no kickoff time
-                if (self.nextGameTeam.characters.count == 0) {
+                // If no next game, then no kickoff time
+                if (self.nextGameTime == nil) {
                     return ""
                 }
                 
                 let now = Date()
                 let todayDayNumber = self.dayNumber(now)
-                let nextGameNumber = self.dayNumber(self.nextGameTime)
+                let nextGameNumber = self.dayNumber(self.nextGameTime!)
                 
                 let formatter = DateFormatter()
                 
@@ -254,17 +302,17 @@ open class BaseSettings : NSObject {
                     formatter.dateFormat = "E"
                 }
                 
-                return formatter.string(from: self.nextGameTime)
+                return formatter.string(from: self.nextGameTime!)
             case .gameDayBefore:
-                // If no opponent, then no kickoff time
-                if (self.nextGameTeam.characters.count == 0) {
+                // If no next game, then no kickoff time
+                if (self.nextGameTime == nil) {
                     return ""
                 }
                 
                 let formatter = DateFormatter()
                 formatter.dateFormat = "HHmm"
                 
-                return formatter.string(from: self.nextGameTime)
+                return formatter.string(from: self.nextGameTime!)
             case .during, .duringNoScore:
                 return self.currentScore
             case .after:
@@ -341,14 +389,14 @@ open class BaseSettings : NSObject {
             case .daysBefore:
                 return self.nextKickoffTime
             case .gameDayBefore:
-                // If no opponent, then no kickoff time
-                if (self.nextGameTeam.characters.count == 0) {
+                // If no next game, then no kickoff time
+                if (self.nextGameTime == nil) {
                     return ""
                 }
                 
                 let formatter = DateFormatter()
                 formatter.dateFormat = "HHmm"
-                let formattedTime = formatter.string(from: self.nextGameTime)
+                let formattedTime = formatter.string(from: self.nextGameTime!)
                 return String(format: "Today at %@", formattedTime)
             case .during, .duringNoScore:
                 return self.currentScore
@@ -392,25 +440,32 @@ open class BaseSettings : NSObject {
     open func currentGameState() -> GameState {
         
         // If no next game, return none
-        if (self.nextGameTeam.characters.count == 0) {
+        if (self.nextGameTime == nil) {
             return GameState.none
         }
-        
+
         // If we have a game score for the next match
         if (self.gameScoreForCurrentGame) {
             return GameState.during
         }
         
         let now = Date()
-        let beforeKickoff = now.compare(self.nextGameTime) == ComparisonResult.orderedAscending
+        let beforeKickoff = now.compare(self.nextGameTime!) == ComparisonResult.orderedAscending
         let todayDayNumber = self.dayNumber(now)
-        let lastGameNumber = self.dayNumber(self.lastGameTime)
-        let nextGameNumber = self.dayNumber(self.nextGameTime)
+        let nextGameNumber = self.dayNumber(self.nextGameTime!)
         
         // If next game is today, and we are before kickoff ...
         if (nextGameNumber == todayDayNumber && beforeKickoff) {
             return GameState.gameDayBefore
         }
+        
+        // If no last game time (but is a next, must be before)
+        if (self.lastGameTime == nil) {
+            return GameState.daysBefore
+        }
+
+        let lastGameNumber = self.dayNumber(self.lastGameTime!)
+
         
         // If last game was today or yesterday
         if ((lastGameNumber == todayDayNumber) || (lastGameNumber == todayDayNumber - 1)) {
@@ -468,28 +523,25 @@ open class BaseSettings : NSObject {
             lastGameHome = lastGame.home
         }
         
-        if (lastGameTime != nil && self.lastGameTime.compare(lastGameTime!) != ComparisonResult.orderedSame) {
-            self.lastGameTime = lastGameTime!
+        if ((lastGameTime != nil) && (self.lastGameTime == nil)) {
+            updated = true
+        } else if (lastGameTime != nil && self.lastGameTime!.compare(lastGameTime!) != ComparisonResult.orderedSame) {
             updated = true
         }
         
         if (self.lastGameTeam != lastGameTeam) {
-            self.lastGameTeam = lastGameTeam
             updated = true
         }
         
         if (self.lastGameYeltzScore != lastGameYeltzScore) {
-            self.lastGameYeltzScore = lastGameYeltzScore
             updated = true
         }
         
         if (self.lastGameOpponentScore != lastGameOpponentScore) {
-            self.lastGameOpponentScore = lastGameOpponentScore
             updated = true
         }
         
         if (self.lastGameHome != lastGameHome) {
-            self.lastGameHome = lastGameHome
             updated = true
         }
         
@@ -504,18 +556,17 @@ open class BaseSettings : NSObject {
             nextGameHome = nextGame.home
         }
         
-        if (nextGameTime != nil && self.nextGameTime.compare(nextGameTime!) != ComparisonResult.orderedSame) {
-            self.nextGameTime = nextGameTime!
+        if ((nextGameTime != nil) && (self.nextGameTime == nil)) {
+            updated = true
+        } else if (nextGameTime != nil && self.nextGameTime!.compare(nextGameTime!) != ComparisonResult.orderedSame) {
             updated = true
         }
         
         if (self.nextGameTeam != nextGameTeam) {
-            self.nextGameTeam = nextGameTeam
             updated = true
         }
         
         if (self.nextGameHome != nextGameHome) {
-            self.nextGameHome = nextGameHome
             updated = true
         }
         

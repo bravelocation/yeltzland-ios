@@ -188,12 +188,14 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
                 
                 var resultColor = AppColors.TodayText
                 
-                if (teamScore > opponentScore) {
-                    resultColor = AppColors.FixtureWin
-                } else if (teamScore < opponentScore) {
-                    resultColor = AppColors.FixtureLose
-                } else {
-                    resultColor = AppColors.FixtureDraw
+                if (teamScore != nil && opponentScore != nil) {
+                    if (teamScore! > opponentScore!) {
+                        resultColor = AppColors.FixtureWin
+                    } else if (teamScore! < opponentScore!) {
+                        resultColor = AppColors.FixtureLose
+                    } else {
+                        resultColor = AppColors.FixtureDraw
+                    }
                 }
                 
                 cell.textLabel?.textColor = resultColor

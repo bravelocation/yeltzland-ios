@@ -46,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FixtureManager.instance.getLatestFixtures()
         GameScoreManager.instance.getLatestGameScore()
         
-        // Setup backhground fetch
+        // Setup background fetch
         application.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
         
         // Push settings to watch in the background
@@ -73,19 +73,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("In background refresh ...")
         let now = Date()
         
-        let differenceInMinutes = (Calendar.current as NSCalendar).components(.minute, from: now, to: GameSettings.instance.nextGameTime as Date, options: []).minute
-        
-        if (differenceInMinutes! < 0) {
-            // After game kicked off, so go get game score
-            GameScoreManager.instance.getLatestGameScore()
-            FixtureManager.instance.getLatestFixtures()
-        
-            completionHandler(UIBackgroundFetchResult.newData)
-        } else {
-            // Otherwise, make sure the watch is updated occasionally
-            GameSettings.instance.forceBackgroundWatchUpdate()
-            completionHandler(UIBackgroundFetchResult.noData)
+        if (GameSettings.instance.nextGameTime != nil)
+        {
+            let differenceInMinutes = (Calendar.current as NSCalendar).components(.minute, from: now, to: GameSettings.instance.nextGameTime! as Date, options: []).minute
+            
+            if (differenceInMinutes! < 0) {
+                // After game kicked off, so go get game score
+                GameScoreManager.instance.getLatestGameScore()
+                FixtureManager.instance.getLatestFixtures()
+                
+                completionHandler(UIBackgroundFetchResult.newData)
+                return
+            }
         }
+        
+        // Otherwise, make sure the watch is updated occasionally
+        GameSettings.instance.forceBackgroundWatchUpdate()
+        completionHandler(UIBackgroundFetchResult.noData)
     }
     
     func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {

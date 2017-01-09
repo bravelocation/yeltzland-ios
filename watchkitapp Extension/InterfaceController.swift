@@ -55,12 +55,14 @@ class InterfaceController: WKInterfaceController {
                 opponent = gameSettings.displayLastOpponent
                 gameDetails = gameSettings.lastScore
                 
-                if (gameSettings.lastGameYeltzScore > gameSettings.lastGameOpponentScore) {
-                    scoreColor = AppColors.WatchFixtureWin
-                } else if (gameSettings.lastGameYeltzScore == gameSettings.lastGameOpponentScore) {
-                    scoreColor = AppColors.WatchFixtureDraw
-                } else if (gameSettings.lastGameYeltzScore < gameSettings.lastGameOpponentScore) {
-                    scoreColor = AppColors.WatchFixtureLose
+                if (gameSettings.lastGameYeltzScore != nil && gameSettings.lastGameOpponentScore != nil) {
+                    if (gameSettings.lastGameYeltzScore! > gameSettings.lastGameOpponentScore!) {
+                        scoreColor = AppColors.WatchFixtureWin
+                    } else if (gameSettings.lastGameYeltzScore! == gameSettings.lastGameOpponentScore!) {
+                        scoreColor = AppColors.WatchFixtureDraw
+                    } else if (gameSettings.lastGameYeltzScore! < gameSettings.lastGameOpponentScore!) {
+                        scoreColor = AppColors.WatchFixtureLose
+                    }
                 }
 
             } else {

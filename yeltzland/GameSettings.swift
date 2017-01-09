@@ -69,16 +69,6 @@ open class GameSettings : BaseSettings, WCSessionDelegate {
             let session = WCSession.default()
             
             var updatedSettings = Dictionary<String, AnyObject>()
-            updatedSettings["lastGameTime"] = self.lastGameTime as AnyObject?
-            updatedSettings["lastGameTeam"] = self.lastGameTeam as AnyObject?
-            updatedSettings["lastGameYeltzScore"] = self.lastGameYeltzScore as AnyObject?
-            updatedSettings["lastGameOpponentScore"] = self.lastGameOpponentScore as AnyObject?
-            updatedSettings["lastGameHome"] = self.lastGameHome as AnyObject?
-            
-            updatedSettings["nextGameTime"] = self.nextGameTime as AnyObject?
-            updatedSettings["nextGameTeam"] = self.nextGameTeam as AnyObject?
-            updatedSettings["nextGameHome"] = self.nextGameHome as AnyObject?
-            
             updatedSettings["currentGameTime"] = self.currentGameTime as AnyObject?
             updatedSettings["currentGameYeltzScore"] = self.currentGameYeltzScore as AnyObject?
             updatedSettings["currentGameOpponentScore"] = self.currentGameOpponentScore as AnyObject?

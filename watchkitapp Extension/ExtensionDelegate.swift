@@ -51,7 +51,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         switch (gameState) {
             case .gameDayBefore:
                 // Calculate minutes to start of the game
-                var minutesToGameStart = (globalCalendar as NSCalendar).components([.minute], from: now, to: WatchGameSettings.instance.nextGameTime as Date, options: []).minute ?? 0
+                var minutesToGameStart = (globalCalendar as NSCalendar).components([.minute], from: now, to: WatchGameSettings.instance.nextGameTime! as Date, options: []).minute ?? 0
                 
                 if (minutesToGameStart <= 0) {
                     minutesToGameStart = 60;
