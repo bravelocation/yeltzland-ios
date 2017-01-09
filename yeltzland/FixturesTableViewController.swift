@@ -59,7 +59,11 @@ class FixturesTableViewController: UITableViewController {
             self.tableView.reloadData()
             
             let currentMonthIndexPath = IndexPath(row: 0, section: self.currentMonthSection())
-            self.tableView.scrollToRow(at: currentMonthIndexPath, at: UITableViewScrollPosition.top, animated: true)
+            
+            // Try to handle case where fixtures may have updated
+            if (currentMonthIndexPath.section < FixtureManager.instance.Months.count) {
+                self.tableView.scrollToRow(at: currentMonthIndexPath, at: UITableViewScrollPosition.top, animated: true)
+            }
         })
     }
     
