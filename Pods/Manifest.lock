@@ -2,11 +2,11 @@ PODS:
   - Crashlytics (3.8.3):
     - Fabric (~> 1.6.3)
   - Fabric (1.6.11)
-  - Font-Awesome-Swift (1.5.3)
-  - TwitterCore (2.7.0):
+  - Font-Awesome-Swift (1.6.1)
+  - TwitterCore (2.8.0):
     - Fabric
-  - TwitterKit (2.7.0):
-    - TwitterCore (= 2.7.0)
+  - TwitterKit (2.8.0):
+    - TwitterCore (= 2.8.0)
 
 DEPENDENCIES:
   - Crashlytics
@@ -18,9 +18,9 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Crashlytics: 2b6dbe138a42395577cfa73dfa1aa7248cadf39e
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
-  Font-Awesome-Swift: 6615ee6b875d148f767ea60b5b4ff54e2ea3122e
-  TwitterCore: fbdbeaf6d2d20cf7c7aa4136fe5173c1c85df2e2
-  TwitterKit: 97e729ceea041d174126235bf6ff67dcf37772d4
+  Font-Awesome-Swift: 70ab020f6749d7048bb49807c3e78b702d78afca
+  TwitterCore: e959987be23c767004d29eb7fab8d85d8585a2e5
+  TwitterKit: f7b0a1adcb800f6446ff0ef70164797376522ff3
 
 PODFILE CHECKSUM: 8e482309e56590f80cee138da0be1081e12e0293
 
