@@ -20,19 +20,27 @@ open class FixtureManager {
     }
     
     open var Months: [String] {
-        if (self.fixtureList.keys.count > 0) {
-            return Array(self.fixtureList.keys).sorted()
-        }
+        var result:[String] = []
         
-        return []
+        objc_sync_enter(self.fixtureList)
+        if (self.fixtureList.keys.count > 0) {
+            result = Array(self.fixtureList.keys).sorted()
+        }
+        objc_sync_exit(self.fixtureList)
+        
+        return result
     }
     
     open func FixturesForMonth(_ monthKey: String) -> [Fixture]? {
-        if (self.fixtureList.index(forKey: monthKey) != nil) {
-            return self.fixtureList[monthKey]
-        }
+        var result:[Fixture]? = nil
         
-        return nil
+        objc_sync_enter(self.fixtureList)
+        if (self.fixtureList.index(forKey: monthKey) != nil) {
+            result = self.fixtureList[monthKey]
+        }
+        objc_sync_exit(self.fixtureList)
+        
+        return result
     }
     
     init() {
