@@ -19,14 +19,20 @@ open class FixtureManager {
         }
     }
     
+    func sync(lock: Any, closure:@escaping () -> Void) {
+        objc_sync_enter(lock)
+        closure()
+        objc_sync_exit(lock)
+    }
+    
     open var Months: [String] {
         var result:[String] = []
         
-        objc_sync_enter(self.fixtureList)
-        if (self.fixtureList.keys.count > 0) {
-            result = Array(self.fixtureList.keys).sorted()
+        sync (lock: self.fixtureList) {
+            if (self.fixtureList.keys.count > 0) {
+                result = Array(self.fixtureList.keys).sorted()
+            }
         }
-        objc_sync_exit(self.fixtureList)
         
         return result
     }
@@ -34,11 +40,11 @@ open class FixtureManager {
     open func FixturesForMonth(_ monthKey: String) -> [Fixture]? {
         var result:[Fixture]? = nil
         
-        objc_sync_enter(self.fixtureList)
-        if (self.fixtureList.index(forKey: monthKey) != nil) {
-            result = self.fixtureList[monthKey]
+        sync (lock: self.fixtureList) {
+            if (self.fixtureList.index(forKey: monthKey) != nil) {
+                result = self.fixtureList[monthKey]
+            }
         }
-        objc_sync_exit(self.fixtureList)
         
         return result
     }
@@ -147,16 +153,18 @@ open class FixtureManager {
         var fixtures:[Fixture] = []
         let currentDayNumber = self.dayNumber(Date())
         
-        for month in self.Months {
-            for fixture in self.FixturesForMonth(month)! {
-                let matchDayNumber = self.dayNumber(fixture.fixtureDate as Date)
-                
-                // If no score and match is not before today
-                if (fixture.teamScore == nil && fixture.opponentScore == nil && currentDayNumber <= matchDayNumber) {
-                    fixtures.append(fixture)
+        sync(lock: self.fixtureList) {
+            for month in self.Months {
+                for fixture in self.FixturesForMonth(month)! {
+                    let matchDayNumber = self.dayNumber(fixture.fixtureDate as Date)
                     
-                    if (fixtures.count == numberOfFixtures) {
-                        return fixtures
+                    // If no score and match is not before today
+                    if (fixture.teamScore == nil && fixture.opponentScore == nil && currentDayNumber <= matchDayNumber) {
+                        fixtures.append(fixture)
+                        
+                        if (fixtures.count == numberOfFixtures) {
+                            return
+                        }
                     }
                 }
             }
@@ -213,31 +221,28 @@ open class FixtureManager {
         guard let matches = json["Matches"] as? Array<AnyObject> else { return }
         
         // Open lock on fixtures
-        objc_sync_enter(self.fixtureList)
-        
-        self.fixtureList.removeAll()
-        
-        for currentMatch in matches {
-            if let match = currentMatch as? [String:AnyObject] {
-                if let currentFixture = Fixture(fromJson: match) {
-                    let monthFixtures = self.FixturesForMonth(currentFixture.monthKey)
-                
-                    if monthFixtures != nil {
-                        self.fixtureList[currentFixture.monthKey]?.append(currentFixture)
-                    } else {
-                        self.fixtureList[currentFixture.monthKey] = [currentFixture]
+        sync (lock: self.fixtureList) {
+            self.fixtureList.removeAll()
+            
+            for currentMatch in matches {
+                if let match = currentMatch as? [String:AnyObject] {
+                    if let currentFixture = Fixture(fromJson: match) {
+                        let monthFixtures = self.FixturesForMonth(currentFixture.monthKey)
+                        
+                        if monthFixtures != nil {
+                            self.fixtureList[currentFixture.monthKey]?.append(currentFixture)
+                        } else {
+                            self.fixtureList[currentFixture.monthKey] = [currentFixture]
+                        }
                     }
                 }
             }
+            
+            // Sort the fixtures per month
+            for currentMonth in Array(self.fixtureList.keys) {
+                self.fixtureList[currentMonth] = self.fixtureList[currentMonth]?.sorted(by: { $0.fixtureDate.compare($1.fixtureDate as Date) == .orderedAscending })
+            }
         }
-        
-        // Sort the fixtures per month
-        for currentMonth in Array(self.fixtureList.keys) {
-            self.fixtureList[currentMonth] = self.fixtureList[currentMonth]?.sorted(by: { $0.fixtureDate.compare($1.fixtureDate as Date) == .orderedAscending })
-        }
-        
-        // Release lock on fixtures
-        objc_sync_exit(self.fixtureList)
     }
     
     fileprivate func moveSingleBundleFileToAppDirectory(_ fileName:String, fileType:String) {
