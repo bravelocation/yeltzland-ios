@@ -61,7 +61,7 @@ open class GameSettings : BaseSettings, WCSessionDelegate {
         self.pushAllSettingsToWatch(false)
     }
     
-    /// Send initial settings to watch
+    /// Send settings to watch
     override open func pushAllSettingsToWatch(_ currentlyInGame:Bool) {
         self.initialiseWatchSession()
         

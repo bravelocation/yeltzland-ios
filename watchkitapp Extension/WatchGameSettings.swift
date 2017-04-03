@@ -75,13 +75,36 @@ open class WatchGameSettings : BaseSettings, WCSessionDelegate {
     
     fileprivate func updateSettings(_ userInfo: [String : AnyObject]) {
         // Update each incoming setting
+        var gameSettingsUpdated = false;
+
         for (key, value) in userInfo {
-            self.writeObjectToStore(value, key: key)
+            switch (key) {
+            case "currentGameTime":
+                if (self.currentGameTime != (value as! Date)) {
+                    gameSettingsUpdated = true
+                }
+                break
+            case "currentGameYeltzScore":
+                if (self.currentGameYeltzScore != (value as! Int)) {
+                    gameSettingsUpdated = true
+                }
+                break
+            case "currentGameOpponentScore":
+                if (self.currentGameOpponentScore != (value as! Int)) {
+                    gameSettingsUpdated = true
+                }
+                break
+            default:
+                break
+            }
         }
         
-        // Send a notification for the view controllers to refresh
-        NotificationCenter.default.post(name: Notification.Name(rawValue: BaseSettings.SettingsUpdateNotification), object:nil, userInfo:nil)
-        print("Sent 'Update Settings' notification")
+        // If we don't have the latest values, go and fetch them
+        // If we store them directly, when we open the watch app after a long time we get lots of "updates" at once
+        if (gameSettingsUpdated) {
+            print("Game settings updating on watch after push phone")
+            GameScoreManager.instance.getLatestGameScore()
+        }
     }
 }
 
