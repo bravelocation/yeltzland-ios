@@ -73,17 +73,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("In background refresh ...")
         let now = Date()
         
-        if (GameSettings.instance.nextGameTime != nil)
+        if let nextGameTime = GameSettings.instance.nextGameTime
         {
-            let differenceInMinutes = (Calendar.current as NSCalendar).components(.minute, from: now, to: GameSettings.instance.nextGameTime! as Date, options: []).minute
-            
-            if (differenceInMinutes! < 0) {
-                // After game kicked off, so go get game score
-                GameScoreManager.instance.getLatestGameScore()
-                FixtureManager.instance.getLatestFixtures()
-                
-                completionHandler(UIBackgroundFetchResult.newData)
-                return
+            if let differenceInMinutes = (Calendar.current as NSCalendar).components(.minute, from: now, to: nextGameTime, options: []).minute
+            {
+                if (differenceInMinutes < 0) {
+                    // After game kicked off, so go get game score
+                    GameScoreManager.instance.getLatestGameScore()
+                    FixtureManager.instance.getLatestFixtures()
+                    
+                    completionHandler(UIBackgroundFetchResult.newData)
+                    return
+                }
             }
         }
         
@@ -97,9 +98,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let handledShortCut = self.handleShortcut(shortcutItem)
         
         // Reset selected tab
-        let mainViewController: MainTabBarController? = self.window?.rootViewController as? MainTabBarController
-        if (mainViewController != nil) {
-            mainViewController!.selectedIndex = GameSettings.instance.lastSelectedTab
+        if let mainViewController = self.window?.rootViewController as? MainTabBarController
+        {
+            mainViewController.selectedIndex = GameSettings.instance.lastSelectedTab
         }
         
         return completionHandler(handledShortCut);

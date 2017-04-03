@@ -62,7 +62,7 @@ open class AzureNotifications {
         token = token.replacingOccurrences(of: ">", with: "")
         token = token.replacingOccurrences(of: " ", with: "")
         
-        print("Device token: \(token)")
+        print("Device token:", token)
         
         if (self.enabled) {
             do {
