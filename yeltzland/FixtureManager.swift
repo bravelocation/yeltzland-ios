@@ -28,25 +28,20 @@ open class FixtureManager {
     open var Months: [String] {
         var result:[String] = []
         
-        sync (lock: self.fixtureList) {
-            if (self.fixtureList.keys.count > 0) {
-                result = Array(self.fixtureList.keys).sorted()
-            }
+        if (self.fixtureList.keys.count > 0) {
+            result = Array(self.fixtureList.keys).sorted()
         }
         
         return result
     }
     
     open func FixturesForMonth(_ monthKey: String) -> [Fixture]? {
-        var result:[Fixture]? = nil
         
-        sync (lock: self.fixtureList) {
-            if (self.fixtureList.index(forKey: monthKey) != nil) {
-                result = self.fixtureList[monthKey]
-            }
+        if let monthFixtures = self.fixtureList[monthKey] {
+            return monthFixtures
         }
         
-        return result
+        return nil
     }
     
     init() {
@@ -85,6 +80,7 @@ open class FixtureManager {
         let session = URLSession.shared
         let task = session.dataTask(with: urlRequest, completionHandler: {
             (serverData, response, error) -> Void in
+            print("Fixture data received from server")
             if (error != nil) {
                 print("Error downloading fixtures from server: \(error.debugDescription)")
                 return
@@ -106,15 +102,18 @@ open class FixtureManager {
         }) 
         
         task.resume()
+        print("Fixtures should be coming on background thread")
     }
     
     open func getAwayGames(_ opponent:String) -> [Fixture] {
         var foundGames:[Fixture] = []
         
         for month in self.Months {
-            for fixture in self.FixturesForMonth(month)! {
-                if (fixture.opponent == opponent && fixture.home == false) {
-                    foundGames.append(fixture)
+            if let monthFixtures = self.FixturesForMonth(month) {
+                for fixture in monthFixtures {
+                    if (fixture.opponent == opponent && fixture.home == false) {
+                        foundGames.append(fixture)
+                    }
                 }
             }
         }
@@ -126,11 +125,13 @@ open class FixtureManager {
         var lastCompletedGame:Fixture? = nil
         
         for month in self.Months {
-            for fixture in self.FixturesForMonth(month)! {
-                if (fixture.teamScore != nil && fixture.opponentScore != nil) {
-                    lastCompletedGame = fixture
-                } else {
-                    return lastCompletedGame
+            if let monthFixtures = self.FixturesForMonth(month) {
+                for fixture in monthFixtures {
+                    if (fixture.teamScore != nil && fixture.opponentScore != nil) {
+                        lastCompletedGame = fixture
+                    } else {
+                        return lastCompletedGame
+                    }
                 }
             }
         }
@@ -153,9 +154,9 @@ open class FixtureManager {
         var fixtures:[Fixture] = []
         let currentDayNumber = self.dayNumber(Date())
         
-        sync(lock: self.fixtureList) {
-            for month in self.Months {
-                for fixture in self.FixturesForMonth(month)! {
+        for month in self.Months {
+            if let monthFixtures = self.FixturesForMonth(month) {
+                for fixture in monthFixtures {
                     let matchDayNumber = self.dayNumber(fixture.fixtureDate as Date)
                     
                     // If no score and match is not before today
@@ -163,7 +164,7 @@ open class FixtureManager {
                         fixtures.append(fixture)
                         
                         if (fixtures.count == numberOfFixtures) {
-                            return
+                            return fixtures
                         }
                     }
                 }
