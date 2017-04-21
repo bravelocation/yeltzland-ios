@@ -57,7 +57,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
 
         // Official Site
         let officialViewController = WebPageViewController()
-        officialViewController.homeUrl = URL(string:"http://www.ht-fc.com")
+        officialViewController.homeUrl = URL(string:"https://www.ht-fc.co.uk")
         officialViewController.pageTitle = "Official Site"
         let officialNavigationController = UINavigationController(rootViewController:officialViewController)
         

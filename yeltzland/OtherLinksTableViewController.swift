@@ -116,13 +116,13 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         } else if ((indexPath as NSIndexPath).section == 2) {
             switch ((indexPath as NSIndexPath).row) {
             case 0:
-                cell!.textLabel?.text = "Yeltz Archives"
-                let cellImage = UIImage(icon: FAType.FAArchive, size: CGSize(width: 100, height: 100), textColor: AppColors.Archive, backgroundColor: UIColor.clear)
+                cell!.textLabel?.text = "Follow Your Instinct"
+                let cellImage = UIImage(icon: FAType.FANewspaperO, size: CGSize(width: 100, height: 100), textColor: AppColors.Archive, backgroundColor: UIColor.clear)
                 cell!.imageView?.image = cellImage
                 break
             case 1:
                 cell!.textLabel?.text = "Yeltzland News Archive"
-                let cellImage = UIImage(icon: FAType.FANewspaperO, size: CGSize(width: 100, height: 100), textColor: AppColors.Archive, backgroundColor: UIColor.clear)
+                let cellImage = UIImage(icon: FAType.FAArchive, size: CGSize(width: 100, height: 100), textColor: AppColors.Archive, backgroundColor: UIColor.clear)
                 cell!.imageView?.image = cellImage
                 break
             default:
@@ -206,7 +206,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         } else if ((indexPath as NSIndexPath).section == 2) {
             switch ((indexPath as NSIndexPath).row) {
             case 0:
-                url = URL(string: "http://www.yeltzarchives.com")
+                url = URL(string: "http://www.yeltzland.net/followyourinstinct/")
                 break
             case 1:
                 url = URL(string: "http://www.yeltzland.net/news.html")
