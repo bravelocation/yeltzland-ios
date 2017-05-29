@@ -95,6 +95,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         let otherNavigationController = UINavigationController(rootViewController:otherViewController)
         
         let otherIcon = UITabBarItem(tabBarSystemItem: .more, tag: 4)
+        otherIcon.setTitleTextAttributes([NSFontAttributeName: UIFont(name: AppColors.AppFontName, size: AppColors.TabBarTextSize)!], for: UIControlState())
         otherNavigationController.tabBarItem = otherIcon
 
         // Add controllers
