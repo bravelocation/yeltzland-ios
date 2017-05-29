@@ -41,6 +41,7 @@ class AppColors {
     static var TabBarTextSize = footnoteDescriptor.pointSize - 2.0
     static var TabBarTextColor: UIColor = YeltzBlueColor
     static var TabBarTintColor: UIColor = UIColor.white
+    static var TabBarUnselectedColor: UIColor = UIColor.gray
     
     static var TwitterBackground: UIColor = UIColor.white
     static var TwitterSeparator: UIColor = UIColor.white

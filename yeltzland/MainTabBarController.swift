@@ -52,7 +52,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         let forumNavigationController = UINavigationController(rootViewController:forumViewController)
         
         let forumIcon = UITabBarItem(title: "Yeltz Forum", image: nil, selectedImage: nil)
-        forumIcon.setFAIcon(icon: FAType.FAUsers)
+        forumIcon.setFAIcon(icon: FAType.FAUsers, textColor:AppColors.TabBarUnselectedColor, selectedTextColor: AppColors.TabBarTextColor)
         forumNavigationController.tabBarItem = forumIcon
 
         // Official Site
@@ -62,7 +62,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         let officialNavigationController = UINavigationController(rootViewController:officialViewController)
         
         let officialIcon = UITabBarItem(title: "Official Site", image: nil, selectedImage: nil)
-        officialIcon.setFAIcon(icon: FAType.FABlackTie)
+        officialIcon.setFAIcon(icon: FAType.FABlackTie, textColor:AppColors.TabBarUnselectedColor, selectedTextColor: AppColors.TabBarTextColor)
         officialNavigationController.tabBarItem = officialIcon
         
         // Yeltz TV
@@ -72,7 +72,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         let tvNavigationController = UINavigationController(rootViewController:tvViewController)
         
         let tvIcon = UITabBarItem(title: "Yeltz TV", image: nil, selectedImage: nil)
-        tvIcon.setFAIcon(icon: FAType.FAYoutubePlay)
+        tvIcon.setFAIcon(icon: FAType.FAYoutubePlay, textColor:AppColors.TabBarUnselectedColor, selectedTextColor: AppColors.TabBarTextColor)
         tvNavigationController.tabBarItem = tvIcon
         
         // Twitter
@@ -81,7 +81,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         let twitterNavigationController = UINavigationController(rootViewController:twitterViewController)
         
         let twitterIcon = UITabBarItem(title: "Twitter", image: nil, selectedImage: nil)
-        twitterIcon.setFAIcon(icon: FAType.FATwitter)
+        twitterIcon.setFAIcon(icon: FAType.FATwitter, textColor:AppColors.TabBarUnselectedColor, selectedTextColor: AppColors.TabBarTextColor)
         twitterNavigationController.tabBarItem = twitterIcon
         
         // Other Links
