@@ -27,11 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NSFontAttributeName: UIFont(name: AppColors.AppFontName, size: AppColors.NavBarTextSize)!
         ]
         
-        // Tab bar font
-        UITabBarItem.appearance().setTitleTextAttributes([
-            NSFontAttributeName: UIFont(name: AppColors.AppFontName, size: AppColors.TabBarTextSize)!
-        ], for: UIControlState())
-        
         // Setup Fabric
         #if DEBUG
             Fabric.with([Twitter.self])
