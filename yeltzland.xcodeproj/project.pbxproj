@@ -35,6 +35,7 @@
 		52236AEE1D1803C8004903AB /* FixturesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236AED1D1803C8004903AB /* FixturesTableViewController.swift */; };
 		523C841E1CE47F06006F1865 /* HTFC2016LOGO.png in Resources */ = {isa = PBXBuildFile; fileRef = 523C841D1CE47F06006F1865 /* HTFC2016LOGO.png */; };
 		523C84201CE70806006F1865 /* ChromeActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523C841F1CE70806006F1865 /* ChromeActivity.swift */; };
+		524A01181EEC3A7D00862509 /* NextGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A01171EEC3A7D00862509 /* NextGameController.swift */; };
 		5257E8BD1CDB953400157CED /* yeltzlandUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5257E8BC1CDB953400157CED /* yeltzlandUITests.swift */; };
 		5257E8C51CDB978700157CED /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5257E8C41CDB978700157CED /* SnapshotHelper.swift */; };
 		5259F9041CDA1292009C2AA8 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5259F9031CDA1292009C2AA8 /* MainTabBarController.swift */; };
@@ -173,6 +174,7 @@
 		52236AED1D1803C8004903AB /* FixturesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixturesTableViewController.swift; sourceTree = "<group>"; };
 		523C841D1CE47F06006F1865 /* HTFC2016LOGO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HTFC2016LOGO.png; sourceTree = "<group>"; };
 		523C841F1CE70806006F1865 /* ChromeActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChromeActivity.swift; sourceTree = "<group>"; };
+		524A01171EEC3A7D00862509 /* NextGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextGameController.swift; sourceTree = "<group>"; };
 		5257E8BA1CDB953400157CED /* yeltzlandUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = yeltzlandUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5257E8BC1CDB953400157CED /* yeltzlandUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = yeltzlandUITests.swift; sourceTree = "<group>"; };
 		5257E8BE1CDB953400157CED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -296,6 +298,7 @@
 				52176BD41D4B6D5900B7EFAE /* Info.plist */,
 				52176BC81D4B6D5900B7EFAE /* Supporting Files */,
 				52E711A71D9E52080002446A /* FixtureTableRow.swift */,
+				524A01171EEC3A7D00862509 /* NextGameController.swift */,
 			);
 			path = "watchkitapp Extension";
 			sourceTree = "<group>";
@@ -789,6 +792,7 @@
 				52E711A11D9CF5C90002446A /* FixtureManager.swift in Sources */,
 				52176BCD1D4B6D5900B7EFAE /* ExtensionDelegate.swift in Sources */,
 				52E711A41D9CF5F40002446A /* Fixture.swift in Sources */,
+				524A01181EEC3A7D00862509 /* NextGameController.swift in Sources */,
 				52176BE71D4B7C4B00B7EFAE /* AppColors.swift in Sources */,
 				52176BE01D4B6D7300B7EFAE /* BaseSettings.swift in Sources */,
 				52176BCB1D4B6D5900B7EFAE /* InterfaceController.swift in Sources */,

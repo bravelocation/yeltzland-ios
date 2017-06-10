@@ -22,70 +22,26 @@ class InterfaceController: WKInterfaceController {
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
-
+    
     override func willActivate() {
         super.willActivate()
-        self.setTitle("Yeltzland")
+        self.setTitle("Next games")
         
         self.updateViewData()
     }
     
     fileprivate func updateViewData() {
-        let gameSettings = WatchGameSettings.instance
-        
-        // How many rows?
         let nextFixtures = FixtureManager.instance.GetNextFixtures(6)
-
-        var firstFixtureIsLastOpponent = false
-        if (nextFixtures.count > 0 && gameSettings.lastGameTime == nextFixtures[0].fixtureDate) {
-            firstFixtureIsLastOpponent = true
-        }
-
-        let numberOfRows = nextFixtures.count + 1
         
-        self.fixtureTable.setNumberOfRows(numberOfRows, withRowType: "FixtureRowType")
-        for i in 0...numberOfRows - 1 {
-            var opponent: String = ""
-            var gameDetails = ""
-            var scoreColor = AppColors.WatchTextColor
+        self.fixtureTable.setNumberOfRows(nextFixtures.count, withRowType: "FixtureRowType")
+        for i in 0...nextFixtures.count - 1 {
             
             let row:FixtureRowType = self.fixtureTable.rowController(at: i) as! FixtureRowType
+            row.labelOpponent?.setText(nextFixtures[i].displayOpponent)
+            row.labelScore?.setText(nextFixtures[i].fullKickoffTime)
             
-            if (i == 0) {
-                opponent = gameSettings.displayLastOpponent
-                gameDetails = gameSettings.lastScore
-                
-                if (gameSettings.lastGameYeltzScore != nil && gameSettings.lastGameOpponentScore != nil) {
-                    if (gameSettings.lastGameYeltzScore! > gameSettings.lastGameOpponentScore!) {
-                        scoreColor = AppColors.WatchFixtureWin
-                    } else if (gameSettings.lastGameYeltzScore! == gameSettings.lastGameOpponentScore!) {
-                        scoreColor = AppColors.WatchFixtureDraw
-                    } else if (gameSettings.lastGameYeltzScore! < gameSettings.lastGameOpponentScore!) {
-                        scoreColor = AppColors.WatchFixtureLose
-                    }
-                }
-
-            } else {
-                if (i == 1 && gameSettings.gameScoreForCurrentGame && firstFixtureIsLastOpponent == false) {
-                    opponent = gameSettings.displayNextOpponent
-                    gameDetails = gameSettings.currentScore
-                } else if (nextFixtures.count >= i) {
-                    opponent = nextFixtures[i - 1].displayOpponent
-                    gameDetails = nextFixtures[i - 1].fullKickoffTime
-                }
-            }
-            
-            if (opponent.characters.count > 0) {
-                row.labelOpponent?.setText(opponent)
-                row.labelScore?.setText(gameDetails)
-            } else {
-                row.labelOpponent?.setText("")
-                row.labelScore?.setText("")
-            }
-            
-            // Setup colors
             row.labelOpponent?.setTextColor(AppColors.WatchTextColor)
-            row.labelScore?.setTextColor(scoreColor)
+            row.labelScore?.setTextColor(AppColors.WatchTextColor)
         }
     }
     
@@ -98,5 +54,4 @@ class InterfaceController: WKInterfaceController {
             self.updateViewData()
         }
     }
-   
 }
