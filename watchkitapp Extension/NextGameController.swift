@@ -16,11 +16,11 @@ class NextGameController: WKInterfaceController {
     @IBOutlet var nextGameOpponent: WKInterfaceLabel!
     @IBOutlet var nextGameDate: WKInterfaceLabel!
     @IBOutlet var nextGameFootnote: WKInterfaceLabel!
-        
+    
     override init() {
         super.init()
         
-        //NotificationCenter.default.addObserver(self, selector: #selector(NextGameController.userSettingsUpdated(_:)), name: NSNotification.Name(rawValue: BaseSettings.SettingsUpdateNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(NextGameController.userSettingsUpdated(_:)), name: NSNotification.Name(rawValue: BaseSettings.SettingsUpdateNotification), object: nil)
     }
     
     deinit {
@@ -81,6 +81,16 @@ class NextGameController: WKInterfaceController {
                     
                 }
             }
+        }
+    }
+    
+    @objc
+    fileprivate func userSettingsUpdated(_ notification: Notification) {
+        print("Received Settings updated notification")
+        
+        // Update view data on main thread
+        DispatchQueue.main.async {
+            self.updateViewData()
         }
     }
 }
