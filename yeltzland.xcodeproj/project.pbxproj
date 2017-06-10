@@ -291,14 +291,14 @@
 			children = (
 				52176BE11D4B6E1200B7EFAE /* watchkitapp Extension.entitlements */,
 				52176BCA1D4B6D5900B7EFAE /* InterfaceController.swift */,
+				524A01171EEC3A7D00862509 /* NextGameController.swift */,
+				52E711A71D9E52080002446A /* FixtureTableRow.swift */,
 				52176BCC1D4B6D5900B7EFAE /* ExtensionDelegate.swift */,
 				52176BD01D4B6D5900B7EFAE /* ComplicationController.swift */,
 				52176BE31D4B6EF000B7EFAE /* WatchGameSettings.swift */,
 				52176BD21D4B6D5900B7EFAE /* Assets.xcassets */,
 				52176BD41D4B6D5900B7EFAE /* Info.plist */,
 				52176BC81D4B6D5900B7EFAE /* Supporting Files */,
-				52E711A71D9E52080002446A /* FixtureTableRow.swift */,
-				524A01171EEC3A7D00862509 /* NextGameController.swift */,
 			);
 			path = "watchkitapp Extension";
 			sourceTree = "<group>";

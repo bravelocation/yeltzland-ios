@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="928-1F-cke">
-    <device id="watch38" orientation="portrait">
+    <device id="watch42" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -19,11 +19,14 @@
                         </separator>
                         <label width="1" alignment="center" text="Next Game" textAlignment="center" id="hCa-j1-QZ2">
                             <color key="textColor" red="0.79215686269999996" green="0.86274509799999999" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
                         </label>
                         <label width="1" alignment="center" text="Stourbridge" textAlignment="center" minimumScaleFactor="0.5" id="Wsn-tq-htu">
                             <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
                         </label>
-                        <label width="1" alignment="center" text="July 27th" textAlignment="center" id="xKz-Va-i0A"/>
+                        <label width="1" alignment="center" text="Tue 04 Jul" textAlignment="center" id="xKz-Va-i0A">
+                            <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                        </label>
                         <label alignment="center" verticalAlignment="bottom" text="* best guess from Twitter" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="EX3-Ec-ZrD">
                             <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                         </label>
@@ -53,13 +56,14 @@
                                     <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" spacing="0.0" id="2PX-Tg-cBr">
                                         <items>
                                             <label width="1" alignment="left" text="  " textAlignment="left" minimumScaleFactor="0.80000000000000004" id="AqB-kH-yuq">
+                                                <color key="textColor" red="0.79215686269999996" green="0.86274509799999999" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="font" style="UICTFontTextStyleBody"/>
                                             </label>
                                             <label width="136" height="13" alignment="left" text="  " textAlignment="right" id="byH-JI-B4J">
                                                 <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                                             </label>
                                         </items>
-                                        <color key="backgroundColor" red="0.023529411760000001" green="0.1137254902" blue="0.28627450980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </group>
                                     <connections>
                                         <outlet property="labelOpponent" destination="AqB-kH-yuq" id="928-p9-4QV"/>
@@ -79,5 +83,5 @@
             <point key="canvasLocation" x="218" y="343"/>
         </scene>
     </scenes>
-    <color key="tintColor" red="0.023529411760000001" green="0.2156862745" blue="0.58823529409999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+    <color key="tintColor" red="0.79215686269999996" green="0.86274509799999999" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
