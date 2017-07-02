@@ -60,7 +60,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             entry = CLKComplicationTimelineEntry(date: now, complicationTemplate: template)
         case .extraLarge:
             let template = CLKComplicationTemplateExtraLargeSimpleText()
-            template.textProvider = CLKSimpleTextProvider(text: settings.longCombinedTeamScoreOrDate)
+            template.textProvider = CLKSimpleTextProvider(text: settings.smallScore)
             template.tintColor = AppColors.WatchComplicationColor
             entry = CLKComplicationTimelineEntry(date: now, complicationTemplate: template)
         }
@@ -135,7 +135,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
                 handler(template)
             case .extraLarge:
                 let template = CLKComplicationTemplateExtraLargeSimpleText()
-                template.textProvider = CLKSimpleTextProvider(text: "Stourbridge 10-0")
+                template.textProvider = CLKSimpleTextProvider(text: "2-0")
                 template.tintColor = AppColors.WatchComplicationColor
                 handler(template)
         }

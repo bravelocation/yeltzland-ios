@@ -1,10 +1,12 @@
 {
   "supported complication families" : {
-    "3" : "87F20000-A93B-4EAA-8638-BBD16C4FF9BD.json",
-    "1" : "B59BC77E-BD3B-4DD0-891D-C851F8850BDD.json",
-    "4" : "3BAE85FF-700B-4C58-84A4-661FD3BF872C.json",
-    "2" : "8A2335C0-8CEC-4783-B20C-CC124056BC04.json",
-    "0" : "A0A8110E-FE2F-4E80-BF2E-740E95BD5BBB.json"
+    "7" : "BEA7AAE2-F50B-4338-9F4D-193314091D78.json",
+    "3" : "AFBAEA96-784E-411A-8E93-B3FEC76949BC.json",
+    "4" : "5BBB8466-8CCE-4EC0-8750-DCD4D2369412.json",
+    "0" : "73D20A9D-CED8-4021-B25D-9D7011B682F9.json",
+    "1" : "AE3D235B-D4DA-412A-AEE5-656614BA5F8A.json",
+    "6" : "B8872256-395D-4AB8-9BBF-7FE737BF2C09.json",
+    "2" : "EA9DD26D-5718-4177-995C-DC59EB1C0E32.json"
   },
   "client ID" : "com.bravelocation.yeltzland.watchkitapp.watchkitextension"
 }
