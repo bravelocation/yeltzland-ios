@@ -192,7 +192,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         } else if ((indexPath as NSIndexPath).section == 1) {
             switch ((indexPath as NSIndexPath).row) {
             case 0:
-                url = URL(string: "https://www.facebook.com/halesowentownfc/")
+                url = URL(string: "https://www.facebook.com/HalesowenTown1873")
                 break
             case 1:
                 url = URL(string: "http://www.evostikleague.co.uk")
