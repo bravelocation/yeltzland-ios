@@ -50,7 +50,7 @@ class TodayDataSource: NSObject, UITableViewDataSource {
         // Get next games
         self.nextGames.removeAll()
         for fixture in FixtureManager.instance.GetNextFixtures(6) {
-            let fixtureData = TodayDataItem(opponent: fixture.opponent, scoreOrDate: fixture.fullKickoffTime)
+            let fixtureData = TodayDataItem(opponent: fixture.displayOpponent, scoreOrDate: fixture.fullKickoffTime)
             self.nextGames.append(fixtureData)
         }
         
