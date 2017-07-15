@@ -88,6 +88,24 @@ open class Fixture {
         }
     }
     
+    var displayKickoffTime : String {
+        get {
+            // Is the game today?
+            let now = Date()
+            let currentDayNumber = FixtureManager.instance.dayNumber(now)
+            let fixtureDayNumber = FixtureManager.instance.dayNumber(self.fixtureDate)
+            
+            if (currentDayNumber == fixtureDayNumber) {
+                let formatter = DateFormatter()
+                formatter.dateFormat = "HHmm"
+                
+                return formatter.string(from: self.fixtureDate)
+            } else {
+                return self.kickoffTime
+            }
+        }
+    }
+    
     var fixtureMonth: String {
         get {
             let formatter = DateFormatter()

@@ -25,7 +25,9 @@ class TodayDataSource: NSObject, UITableViewDataSource {
     func loadLatestData() {
         // Get last game details
         let opponent = self.gameSettings.displayLastOpponent
-        
+
+        self.lastGames.removeAll()
+
         if (opponent.characters.count > 0) {
             let teamScore = self.gameSettings.lastGameYeltzScore
             let opponentScore  = self.gameSettings.lastGameOpponentScore
@@ -43,22 +45,33 @@ class TodayDataSource: NSObject, UITableViewDataSource {
             }
 
             self.lastGames.append(TodayDataItem(opponent: self.gameSettings.displayLastOpponent, scoreOrDate: self.gameSettings.lastScore, color:resultColor))
-        } else {
-            self.lastGames.removeAll()
+        }
+        
+        // Get current score if applicable
+        self.currentScores.removeAll()
+        if (self.gameSettings.gameScoreForCurrentGame) {
+            self.currentScores.append(TodayDataItem(opponent: self.gameSettings.displayNextOpponent, scoreOrDate: self.gameSettings.currentScore))
+        }
+        
+        // How many fixtures to get?
+        var fixturesNeeded = 6
+        if (self.currentScores.count > 0) {
+            fixturesNeeded = 4
         }
         
         // Get next games
         self.nextGames.removeAll()
-        for fixture in FixtureManager.instance.GetNextFixtures(6) {
-            let fixtureData = TodayDataItem(opponent: fixture.displayOpponent, scoreOrDate: fixture.fullKickoffTime)
-            self.nextGames.append(fixtureData)
-        }
         
-        // Get current score if applicable
-        if (self.gameSettings.gameScoreForCurrentGame) {
-            self.currentScores.append(TodayDataItem(opponent: self.gameSettings.displayNextOpponent, scoreOrDate: self.gameSettings.currentScore))
-        } else {
-            self.currentScores.removeAll()
+        var i = 0
+        for fixture in FixtureManager.instance.GetNextFixtures(fixturesNeeded) {
+            
+            // Only add first fixture if no current game
+            if (i > 0 || self.currentScores.count == 0) {
+                let fixtureData = TodayDataItem(opponent: fixture.displayOpponent, scoreOrDate: fixture.displayKickoffTime)
+                self.nextGames.append(fixtureData)
+            }
+            
+            i = i + 1
         }
     }
     

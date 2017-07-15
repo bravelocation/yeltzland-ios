@@ -307,7 +307,7 @@ open class FixtureManager {
         return dirPath
     }
     
-    fileprivate func dayNumber(_ date:Date) -> Int {
+    open func dayNumber(_ date:Date) -> Int {
         // Removes the time components from a date
         let calendar = Calendar.current
         let unitFlags: NSCalendar.Unit = [.day, .month, .year]
