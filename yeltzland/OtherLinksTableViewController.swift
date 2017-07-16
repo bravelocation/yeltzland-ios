@@ -38,7 +38,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         } else if (section == 1) {
             return 4
         } else if (section == 2) {
-            return 2
+            return 3
         } else if (section == 3) {
             return 1
         } else if (section == 4) {
@@ -121,6 +121,11 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
                 cell!.imageView?.image = cellImage
                 break
             case 1:
+                cell!.textLabel?.text = "Yeltz Archives"
+                let cellImage = UIImage(icon: FAType.FAArchive, size: CGSize(width: 100, height: 100), textColor: AppColors.Archive, backgroundColor: UIColor.clear)
+                cell!.imageView?.image = cellImage
+                break
+            case 2:
                 cell!.textLabel?.text = "Yeltzland News Archive"
                 let cellImage = UIImage(icon: FAType.FAArchive, size: CGSize(width: 100, height: 100), textColor: AppColors.Archive, backgroundColor: UIColor.clear)
                 cell!.imageView?.image = cellImage
@@ -209,7 +214,10 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
                 url = URL(string: "http://www.yeltzland.net/followyourinstinct/")
                 break
             case 1:
-                url = URL(string: "http://www.yeltzland.net/news.html")
+                url = URL(string: "http://www.yeltzarchives.com")
+                break
+            case 2:
+                    url = URL(string: "http://www.yeltzland.net/news.html")
                 break
             default:
                 break
