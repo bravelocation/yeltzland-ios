@@ -174,7 +174,9 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         
         if let currentController = self.viewControllers![self.selectedIndex] as? UINavigationController {
             if let selectedController = currentController.viewControllers[0] as? WebPageViewController {
-                currentUrl = selectedController.webView.url
+                DispatchQueue.main.async(execute: { () -> Void in
+                    currentUrl = selectedController.webView.url
+                })
             }
         }
         
