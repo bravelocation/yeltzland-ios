@@ -125,7 +125,7 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         let footerText = self.dataSource.footerText(section: section)
         
-        if (footerText.characters.count > 0) {
+        if (footerText.count > 0) {
             return 20.0
         }
         

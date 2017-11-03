@@ -28,7 +28,7 @@ class TodayDataSource: NSObject, UITableViewDataSource {
 
         self.lastGames.removeAll()
 
-        if (opponent.characters.count > 0) {
+        if (opponent.count > 0) {
             let teamScore = self.gameSettings.lastGameYeltzScore
             let opponentScore  = self.gameSettings.lastGameOpponentScore
             
@@ -85,7 +85,7 @@ class TodayDataSource: NSObject, UITableViewDataSource {
         }
         
         if (self.currentScores.count > 0) {
-            if (firstSectionHeader.characters.count == 0) {
+            if (firstSectionHeader.count == 0) {
                 firstSectionHeader = " Current score"
             } else {
                 secondSectionHeader = " Current score"
@@ -93,9 +93,9 @@ class TodayDataSource: NSObject, UITableViewDataSource {
         }
         
         if (self.nextGames.count > 0) {
-            if (firstSectionHeader.characters.count == 0) {
+            if (firstSectionHeader.count == 0) {
                 firstSectionHeader = " Next fixtures"
-            } else if (secondSectionHeader.characters.count == 0){
+            } else if (secondSectionHeader.count == 0){
                 secondSectionHeader = " Next fixtures"
             } else {
                 thirdSectionHeader = " Next fixtures"

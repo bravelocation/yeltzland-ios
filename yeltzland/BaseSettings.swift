@@ -409,7 +409,7 @@ open class BaseSettings : NSObject {
     }
     
     fileprivate func truncateTeamName(_ original:String, max:Int) -> String {
-        let originalLength = original.characters.count
+        let originalLength = original.count
         
         // If the original is short enough, we're done
         if (originalLength <= max) {
@@ -418,7 +418,7 @@ open class BaseSettings : NSObject {
         
         // Find the first space
         var firstSpace = 0
-        for c in original.characters {
+        for c in original {
             if (c == Character(" ")) {
                 break
             }
@@ -426,11 +426,11 @@ open class BaseSettings : NSObject {
         }
         
         if (firstSpace < max) {
-            return original[original.startIndex..<original.characters.index(original.startIndex, offsetBy: firstSpace)]
+            return original[original.startIndex..<original.index(original.startIndex, offsetBy: firstSpace)]
         }
         
         // If still not found, just truncate it
-        return original[original.startIndex..<original.characters.index(original.startIndex, offsetBy: max)].trimmingCharacters(
+        return original[original.startIndex..<original.index(original.startIndex, offsetBy: max)].trimmingCharacters(
             in: CharacterSet.whitespacesAndNewlines
         )
     }
