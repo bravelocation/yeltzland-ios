@@ -11,10 +11,10 @@ import UIKit
 open class AzureNotifications {
     #if DEBUG
         let hubName = "yeltzlandiospushsandbox"
-        let hubListenAccess = "Endpoint=sb://yeltzlandiospushsandbox.servicebus.windows.net/;SharedAccessKeyName=DefaultListenSharedAccessSignature;SharedAccessKey=l+/LW0kWPo/XgZGKj78do/AyAxpEEUhLuORhyBRMgzM="
+        let hubListenAccess = "Endpoint=sb://yeltzlandiossandbox.servicebus.windows.net/;SharedAccessKeyName=DefaultListenSharedAccessSignature;SharedAccessKey=1EOsvSDw+O/7vJK2odK2z9kuIwBuq0MEYV3+rmGSWGQ="
     #else
         let hubName = "yeltzlandiospush"
-        let hubListenAccess = "Endpoint=sb://yeltzlandiospush.servicebus.windows.net/;SharedAccessKeyName=DefaultListenSharedAccessSignature;SharedAccessKey=A8Lb23v0p0gI8KO2Vh6mjN6Qqe621Pwu8C8k5S8u7hQ="
+        let hubListenAccess = "Endpoint=sb://yeltzlandios.servicebus.windows.net/;SharedAccessKeyName=DefaultListenSharedAccessSignature;SharedAccessKey=GNjishCdmYuLIgscuiTXIzQqymosrhyTf5sUV2+HVas="
     #endif
     
     var tagNames:Set<String> = []
