@@ -29,7 +29,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
 
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 5
+        return 6
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -43,6 +43,8 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             return 1
         } else if (section == 4) {
             return 2
+        } else if (section == 5) {
+            return 1
         }
         
         return 0
@@ -148,6 +150,16 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
                 cell!.imageView?.image = cellImage
                 break
             case 1:
+                cell!.textLabel?.text = "Add Fixture List to Calendar"
+                let cellImage = UIImage(icon: FAType.FACalendar, size: CGSize(width: 100, height: 100), textColor: AppColors.Fixtures, backgroundColor: UIColor.clear)
+                cell!.imageView?.image = cellImage
+                break
+            default:
+                break
+            }
+        } else if ((indexPath as NSIndexPath).section == 5) {
+            switch ((indexPath as NSIndexPath).row) {
+            case 0:
                 cell!.textLabel?.text = "More Brave Location Apps"
                 let cellImage = UIImage(icon: FAType.FAMapMarker, size: CGSize(width: 100, height: 100), textColor: AppColors.BraveLocation, backgroundColor: UIColor.clear)
                 cell!.imageView?.image = cellImage
@@ -161,7 +173,6 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             default:
                 break
             }
-
         }
 
         // Set fonts
@@ -228,6 +239,14 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
                 url = URL(string: "https://www.amazon.co.uk/Yeltzland-stuff-about-Halesowen-Town/dp/B01MTJOHBY/")
                 break
             case 1:
+                url = URL(string: "https://yeltzland.net/calendar-instructions")
+                break
+            default:
+                break
+            }
+        } else if ((indexPath as NSIndexPath).section == 5) {
+            switch ((indexPath as NSIndexPath).row) {
+            case 0:
                 url = URL(string: "https://bravelocation.com/apps")
                 break
             default:
@@ -264,6 +283,8 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         case 3:
             return "Options"
         case 4:
+            return "More from Yeltzland"
+        case 5:
             return "About"
         default:
             return ""
