@@ -12,7 +12,7 @@ import Font_Awesome_Swift
 
 class OtherLinksTableViewController: UITableViewController, SFSafariViewControllerDelegate {
 
-    let azureNotifications = AzureNotifications()
+    let firebaseNotifications = FirebaseNotifications()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,7 +61,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             let switchView = UISwitch(frame: CGRect.zero)
             cell!.accessoryView = switchView
             
-            switchView.isOn = self.azureNotifications.enabled
+            switchView.isOn = self.firebaseNotifications.enabled
             switchView.addTarget(self, action: #selector(OtherLinksTableViewController.notificationsSwitchChanged), for: UIControlEvents.valueChanged)
             
         } else {
@@ -301,7 +301,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
     // MARK: - Event handler for switch
     func notificationsSwitchChanged(_ sender: AnyObject) {
         let switchControl = sender as! UISwitch
-        self.azureNotifications.enabled = switchControl.isOn
+        self.firebaseNotifications.enabled = switchControl.isOn
     }
     
     // MARK: - SFSafariViewControllerDelegate methods

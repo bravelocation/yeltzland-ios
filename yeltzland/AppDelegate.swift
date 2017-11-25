@@ -10,12 +10,13 @@ import UIKit
 import Fabric
 import Crashlytics
 import TwitterKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    let azureNotifications = AzureNotifications()
+    let firebaseNotifications = FirebaseNotifications()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -35,7 +36,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #endif
         
         // Setup notifications
-        self.azureNotifications.setupNotifications(false)
+        FirebaseApp.configure()
+        self.firebaseNotifications.setupNotifications(false)
         
         // Update the fixture and game score caches
         FixtureManager.instance.getLatestFixtures()
@@ -137,7 +139,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  
     func application(_ application: UIApplication,
                      didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        self.azureNotifications.register(deviceToken)
+        self.firebaseNotifications.register(deviceToken)
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
@@ -162,6 +164,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                          userInfo: [AnyHashable: Any]) {
         // Print message
         print("Notification received: \(userInfo)")
+        
+        Messaging.messaging().appDidReceiveMessage(userInfo)
         
         // Go and update the game score
         GameScoreManager.instance.getLatestGameScore()

@@ -8,6 +8,8 @@ target 'yeltzland' do
   pod 'Crashlytics'
   pod 'TwitterKit'
   pod 'TwitterCore'
+  pod 'Firebase/Core'
+  pod 'Firebase/Messaging'
 end
 
 post_install do |installer|

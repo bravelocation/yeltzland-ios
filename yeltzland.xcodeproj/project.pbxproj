@@ -55,7 +55,6 @@
 		527DAF251D2D308F0092BB8F /* LocationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527DAF241D2D308F0092BB8F /* LocationAnnotation.swift */; };
 		5284902D1D512EDC00486B1A /* gamescore.json in Resources */ = {isa = PBXBuildFile; fileRef = 52176BAD1D4A1AF600B7EFAE /* gamescore.json */; };
 		528D74551CF1A61500263685 /* WindowsAzureMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 528D74541CF1A61500263685 /* WindowsAzureMessaging.framework */; };
-		528D74581CF2F20200263685 /* AzureNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528D74571CF2F20200263685 /* AzureNotifications.swift */; };
 		528D745A1CF2F4A400263685 /* DefaultPreferences.plist in Resources */ = {isa = PBXBuildFile; fileRef = 528D74591CF2F4A400263685 /* DefaultPreferences.plist */; };
 		528D745C1CF3201400263685 /* whistleshort.wav in Resources */ = {isa = PBXBuildFile; fileRef = 528D745B1CF3201400263685 /* whistleshort.wav */; };
 		529E80FE1EDABC91002DC858 /* TodayDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529E80FD1EDABC91002DC858 /* TodayDataSource.swift */; };
@@ -65,6 +64,8 @@
 		52C4DA891D4CA68A009AFD25 /* american_typewriter_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 52C4DA871D4CA68A009AFD25 /* american_typewriter_regular.ttf */; };
 		52DBCAA01D4A012E00D35F91 /* GameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DBCA9F1D4A012E00D35F91 /* GameSettings.swift */; };
 		52DBCAA11D4A012E00D35F91 /* GameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DBCA9F1D4A012E00D35F91 /* GameSettings.swift */; };
+		52DC9EAD1FC95A6400AE02F6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52DC9EAC1FC95A6400AE02F6 /* GoogleService-Info.plist */; };
+		52DC9EAF1FC95C9E00AE02F6 /* FirebaseNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DC9EAE1FC95C9E00AE02F6 /* FirebaseNotifications.swift */; };
 		52E3DF771CD9FA78009F18BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E3DF761CD9FA78009F18BD /* AppDelegate.swift */; };
 		52E3DF791CD9FA78009F18BD /* WebPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E3DF781CD9FA78009F18BD /* WebPageViewController.swift */; };
 		52E3DF7E1CD9FA78009F18BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52E3DF7D1CD9FA78009F18BD /* Assets.xcassets */; };
@@ -193,7 +194,6 @@
 		527DAF241D2D308F0092BB8F /* LocationAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationAnnotation.swift; sourceTree = "<group>"; };
 		528D74541CF1A61500263685 /* WindowsAzureMessaging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WindowsAzureMessaging.framework; sourceTree = "<group>"; };
 		528D74561CF1A6FF00263685 /* yeltzland-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "yeltzland-Bridging-Header.h"; sourceTree = "<group>"; };
-		528D74571CF2F20200263685 /* AzureNotifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AzureNotifications.swift; sourceTree = "<group>"; };
 		528D74591CF2F4A400263685 /* DefaultPreferences.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultPreferences.plist; sourceTree = "<group>"; };
 		528D745B1CF3201400263685 /* whistleshort.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = whistleshort.wav; sourceTree = "<group>"; };
 		529E80FD1EDABC91002DC858 /* TodayDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayDataSource.swift; sourceTree = "<group>"; };
@@ -201,6 +201,8 @@
 		52A4596D1D89666E00822D8C /* gallery.ckcomplication */ = {isa = PBXFileReference; lastKnownFileType = folder; path = gallery.ckcomplication; sourceTree = "<group>"; };
 		52C4DA871D4CA68A009AFD25 /* american_typewriter_regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = american_typewriter_regular.ttf; sourceTree = "<group>"; };
 		52DBCA9F1D4A012E00D35F91 /* GameSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSettings.swift; sourceTree = "<group>"; };
+		52DC9EAC1FC95A6400AE02F6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		52DC9EAE1FC95C9E00AE02F6 /* FirebaseNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseNotifications.swift; sourceTree = "<group>"; };
 		52E3DF731CD9FA78009F18BD /* yeltzland.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = yeltzland.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52E3DF761CD9FA78009F18BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52E3DF781CD9FA78009F18BD /* WebPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebPageViewController.swift; sourceTree = "<group>"; };
@@ -366,6 +368,7 @@
 				52E3DF821CD9FA78009F18BD /* Info.plist */,
 				52E3DF7D1CD9FA78009F18BD /* Assets.xcassets */,
 				528D74591CF2F4A400263685 /* DefaultPreferences.plist */,
+				52DC9EAC1FC95A6400AE02F6 /* GoogleService-Info.plist */,
 				528D74561CF1A6FF00263685 /* yeltzland-Bridging-Header.h */,
 			);
 			name = Assets;
@@ -407,9 +410,9 @@
 				52C4DA851D4C838A009AFD25 /* ViewControllers */,
 				5211F7261CDA35CF0031496D /* AppColors.swift */,
 				52E3DF761CD9FA78009F18BD /* AppDelegate.swift */,
-				528D74571CF2F20200263685 /* AzureNotifications.swift */,
 				52176BB21D4B62DC00B7EFAE /* BaseSettings.swift */,
 				523C841F1CE70806006F1865 /* ChromeActivity.swift */,
+				52DC9EAE1FC95C9E00AE02F6 /* FirebaseNotifications.swift */,
 				52236AE51D17DFF8004903AB /* Fixture.swift */,
 				52236AE71D17E4D3004903AB /* FixtureManager.swift */,
 				52176BAF1D4A1B3200B7EFAE /* GameScoreManager.swift */,
@@ -673,6 +676,7 @@
 				52176BAE1D4A1AF600B7EFAE /* gamescore.json in Resources */,
 				528D745A1CF2F4A400263685 /* DefaultPreferences.plist in Resources */,
 				523C841E1CE47F06006F1865 /* HTFC2016LOGO.png in Resources */,
+				52DC9EAD1FC95A6400AE02F6 /* GoogleService-Info.plist in Resources */,
 				52A4596E1D89666E00822D8C /* gallery.ckcomplication in Resources */,
 				52E3DF7E1CD9FA78009F18BD /* Assets.xcassets in Resources */,
 			);
@@ -777,10 +781,16 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-yeltzland/Pods-yeltzland-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Font-Awesome-Swift/Font_Awesome_Swift.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Font_Awesome_Swift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -844,11 +854,11 @@
 				52176BB01D4A1B3200B7EFAE /* GameScoreManager.swift in Sources */,
 				523C84201CE70806006F1865 /* ChromeActivity.swift in Sources */,
 				5211F72A1CDA53D70031496D /* TwitterUserTimelineViewController.swift in Sources */,
-				528D74581CF2F20200263685 /* AzureNotifications.swift in Sources */,
 				52236AE61D17DFF8004903AB /* Fixture.swift in Sources */,
 				527DAF1F1D2D082C0092BB8F /* Location.swift in Sources */,
 				527DAF251D2D308F0092BB8F /* LocationAnnotation.swift in Sources */,
 				5211F7271CDA35CF0031496D /* AppColors.swift in Sources */,
+				52DC9EAF1FC95C9E00AE02F6 /* FirebaseNotifications.swift in Sources */,
 				52236AE81D17E4D3004903AB /* FixtureManager.swift in Sources */,
 				52DBCAA01D4A012E00D35F91 /* GameSettings.swift in Sources */,
 				52E3DF771CD9FA78009F18BD /* AppDelegate.swift in Sources */,
