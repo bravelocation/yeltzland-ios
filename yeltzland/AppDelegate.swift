@@ -30,11 +30,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Setup Fabric
         #if DEBUG
-            Fabric.with([Twitter.self])
         #else
-            Fabric.with([Crashlytics.self, Twitter.self])
+            Fabric.with([Crashlytics.self])
         #endif
         
+        // Setup Twitter not via Fabric
+        Twitter.sharedInstance().start(withConsumerKey:"8G26YU7skH5dgbvXx5nwk0G0u", consumerSecret:"kUMwYAiDNR7dGjvSsTnHH20tXcutxEzkwycYJA68Darig6pRYz")
+
         // Setup notifications
         FirebaseApp.configure()
         self.firebaseNotifications.setupNotifications(false)

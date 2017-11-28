@@ -45,17 +45,6 @@
 				<key>KitName</key>
 				<string>Crashlytics</string>
 			</dict>
-			<dict>
-				<key>KitInfo</key>
-				<dict>
-					<key>consumerKey</key>
-					<string>8G26YU7skH5dgbvXx5nwk0G0u</string>
-					<key>consumerSecret</key>
-					<string>kUMwYAiDNR7dGjvSsTnHH20tXcutxEzkwycYJA68Darig6pRYz</string>
-				</dict>
-				<key>KitName</key>
-				<string>Twitter</string>
-			</dict>
 		</array>
 	</dict>
 	<key>FirebaseAppDelegateProxyEnabled</key>
