@@ -29,17 +29,63 @@ class InterfaceController: WKInterfaceController {
     }
     
     fileprivate func updateViewData() {
-        let nextFixtures = FixtureManager.instance.GetNextFixtures(6)
+        // A row per month, plus for each fixture
+        self.fixtureTable.setNumberOfRows(FixtureManager.instance.Months.count + FixtureManager.instance.fixtureCount(), withRowType: "FixtureRowType")
+
+        // Get each month in turn
+        var rowCount = 0
         
-        self.fixtureTable.setNumberOfRows(nextFixtures.count, withRowType: "FixtureRowType")
-        for i in 0...nextFixtures.count - 1 {
+        for month in FixtureManager.instance.Months {
+            let fixturesForMonth = FixtureManager.instance.FixturesForMonth(month)
             
-            let row:FixtureRowType = self.fixtureTable.rowController(at: i) as! FixtureRowType
-            row.labelOpponent?.setText(nextFixtures[i].displayOpponent)
-            row.labelScore?.setText(nextFixtures[i].fullKickoffTime)
+            if (fixturesForMonth == nil || fixturesForMonth!.count == 0) {
+                continue
+            }
             
-            row.labelOpponent?.setTextColor(AppColors.WatchTextColor)
-            row.labelScore?.setTextColor(AppColors.WatchTextColor)
+            // Add the month row using the first game
+            let firstGame = fixturesForMonth![0]
+            
+            let row:FixtureRowType = self.fixtureTable.rowController(at: rowCount) as! FixtureRowType
+            row.labelOpponent?.setText(" ")
+            row.labelScore?.setText(firstGame.fixtureMonth)
+            row.labelScore?.setTextColor(AppColors.WatchMonthColor)
+            
+            rowCount = rowCount + 1
+ 
+            // Then add all the fixtures
+            for i in 0...fixturesForMonth!.count - 1 {
+                let fixture = fixturesForMonth![i]
+                let row:FixtureRowType = self.fixtureTable.rowController(at: rowCount) as! FixtureRowType
+                
+                row.labelOpponent?.setText(fixture.displayOpponent)
+                row.labelOpponent?.setTextColor(AppColors.WatchTextColor)
+                
+                if (fixture.teamScore == nil && fixture.opponentScore == nil) {
+                    row.labelScore?.setText(fixture.kickoffTime)
+                    row.labelScore?.setTextColor(AppColors.WatchTextColor)
+                } else {
+                    let teamScore = fixture.teamScore
+                    let opponentScore  = fixture.opponentScore
+                    
+                    var resultColor = AppColors.WatchTextColor
+                    
+                    if (teamScore != nil && opponentScore != nil) {
+                        if (teamScore! > opponentScore!) {
+                            resultColor = AppColors.WatchFixtureWin
+                        } else if (teamScore! < opponentScore!) {
+                            resultColor = AppColors.WatchFixtureLose
+                        } else {
+                            resultColor = AppColors.WatchFixtureDraw
+                        }
+                    }
+                    
+                    row.labelScore?.setText(fixture.score)
+                    row.labelScore?.setTextColor(resultColor)
+                    row.labelScore?.setHorizontalAlignment(WKInterfaceObjectHorizontalAlignment.right)
+                }
+                
+                rowCount = rowCount + 1
+            }
         }
     }
     

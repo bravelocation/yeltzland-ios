@@ -121,6 +121,19 @@ open class FixtureManager {
         return foundGames
     }
     
+    open func fixtureCount() -> Int {
+        var fixtureCount = 0
+        
+        for month in self.Months {
+            if let monthFixtures = self.FixturesForMonth(month) {
+                fixtureCount = fixtureCount + monthFixtures.count
+            }
+        }
+        
+        return fixtureCount
+
+    }
+    
     open func getLastGame() -> Fixture? {
         var lastCompletedGame:Fixture? = nil
         

@@ -86,12 +86,12 @@ class AppColors {
     static var TodayTextSize = bodyDescriptor.pointSize
     static var TodayFootnoteSize = footnoteDescriptor.pointSize
     
-    static var WatchTextColor:UIColor = LightBlueColor
+    static var WatchMonthColor:UIColor = LightBlueColor
+    static var WatchTextColor:UIColor = UIColor.white
     static var WatchFixtureWin = UIColor(red: 127.0/255.0, green: 255.0/255.0, blue: 127.0/255.0, alpha: 1.0)
-    static var WatchFixtureDraw = UIColor(red: 127.0/255.0, green: 127.0/255.0, blue: 255.0/255.0, alpha: 1.0)
+    static var WatchFixtureDraw = UIColor.white
     static var WatchFixtureLose = UIColor(red: 255.0/255.0, green: 127.0/255.0, blue: 127.0/255.0, alpha: 1.0)
     static var WatchComplicationColor:UIColor = LightBlueColor
-    static var WatchBackgroundColor:UIColor = DarkBlueColor
     
     static var SafariControl:UIColor = YeltzBlueColor
 }
