@@ -34,6 +34,7 @@ class InterfaceController: WKInterfaceController {
 
         // Get each month in turn
         var rowCount = 0
+        var firstFixtureRow = 0
         
         for month in FixtureManager.instance.Months {
             let fixturesForMonth = FixtureManager.instance.FixturesForMonth(month)
@@ -63,6 +64,11 @@ class InterfaceController: WKInterfaceController {
                 if (fixture.teamScore == nil && fixture.opponentScore == nil) {
                     row.labelScore?.setText(fixture.kickoffTime)
                     row.labelScore?.setTextColor(AppColors.WatchTextColor)
+                    
+                    // Mark this fixture
+                    if (firstFixtureRow <= 0) {
+                        firstFixtureRow = rowCount
+                    }
                 } else {
                     let teamScore = fixture.teamScore
                     let opponentScore  = fixture.opponentScore
@@ -87,6 +93,9 @@ class InterfaceController: WKInterfaceController {
                 rowCount = rowCount + 1
             }
         }
+        
+        // Scroll to first fixture
+        self.fixtureTable.scrollToRow(at: firstFixtureRow)
     }
     
     @objc
