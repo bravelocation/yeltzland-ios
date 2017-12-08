@@ -3,7 +3,7 @@ platform :ios, '8.0'
 use_frameworks!
 
 target 'yeltzland' do
-  pod 'Font-Awesome-Swift', '1.6.4'
+  pod 'Font-Awesome-Swift'
   pod 'Fabric'
   pod 'Crashlytics'
   pod 'TwitterKit'
