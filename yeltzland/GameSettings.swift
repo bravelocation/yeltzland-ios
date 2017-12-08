@@ -30,8 +30,8 @@ open class GameSettings : BaseSettings, WCSessionDelegate {
     }
     
     fileprivate func setupNotificationWatchers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(GameSettings.refreshFixtures), name: NSNotification.Name(rawValue: FixtureManager.FixturesNotification), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(GameSettings.refreshGameScore), name: NSNotification.Name(rawValue: GameScoreManager.GameScoreNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(BaseSettings.refreshFixtures), name: NSNotification.Name(rawValue: FixtureManager.FixturesNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(BaseSettings.refreshGameScore), name: NSNotification.Name(rawValue: GameScoreManager.GameScoreNotification), object: nil)
         print("Setup notification handlers for fixture or score updates in game settings")
     }
 
@@ -47,7 +47,7 @@ open class GameSettings : BaseSettings, WCSessionDelegate {
         // Set up watch setting if appropriate
         if (WCSession.isSupported()) {
             print("Setting up watch session ...")
-            let session: WCSession = WCSession.default();
+            let session: WCSession = WCSession.default;
             session.delegate = self
             session.activate()
             print("Watch session activated")
@@ -66,7 +66,7 @@ open class GameSettings : BaseSettings, WCSessionDelegate {
         self.initialiseWatchSession()
         
         if (WCSession.isSupported()) {
-            let session = WCSession.default()
+            let session = WCSession.default
             
             var updatedSettings = Dictionary<String, AnyObject>()
             updatedSettings["currentGameTime"] = self.currentGameTime as AnyObject?

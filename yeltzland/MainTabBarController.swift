@@ -55,7 +55,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         
         let forumIcon = UITabBarItem(title: "Yeltz Forum", image: nil, selectedImage: nil)
         forumIcon.setFAIcon(icon: FAType.FAUsers, textColor:AppColors.TabBarUnselectedColor, selectedTextColor: AppColors.TabBarTextColor)
-        forumIcon.setTitleTextAttributes([NSFontAttributeName: UIFont(name: AppColors.AppFontName, size: AppColors.TabBarTextSize)!], for: UIControlState())
+        forumIcon.setTitleTextAttributes([NSAttributedStringKey.font: UIFont(name: AppColors.AppFontName, size: AppColors.TabBarTextSize)!], for: UIControlState())
         forumNavigationController.tabBarItem = forumIcon
 
         // Official Site
@@ -66,7 +66,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         
         let officialIcon = UITabBarItem(title: "Official Site", image: nil, selectedImage: nil)
         officialIcon.setFAIcon(icon: FAType.FABlackTie, textColor:AppColors.TabBarUnselectedColor, selectedTextColor: AppColors.TabBarTextColor)
-        officialIcon.setTitleTextAttributes([NSFontAttributeName: UIFont(name: AppColors.AppFontName, size: AppColors.TabBarTextSize)!], for: UIControlState())
+        officialIcon.setTitleTextAttributes([NSAttributedStringKey.font: UIFont(name: AppColors.AppFontName, size: AppColors.TabBarTextSize)!], for: UIControlState())
         officialNavigationController.tabBarItem = officialIcon
         
         // Yeltz TV
@@ -77,7 +77,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         
         let tvIcon = UITabBarItem(title: "Yeltz TV", image: nil, selectedImage: nil)
         tvIcon.setFAIcon(icon: FAType.FAYoutubePlay, textColor:AppColors.TabBarUnselectedColor, selectedTextColor: AppColors.TabBarTextColor)
-        tvIcon.setTitleTextAttributes([NSFontAttributeName: UIFont(name: AppColors.AppFontName, size: AppColors.TabBarTextSize)!], for: UIControlState())
+        tvIcon.setTitleTextAttributes([NSAttributedStringKey.font: UIFont(name: AppColors.AppFontName, size: AppColors.TabBarTextSize)!], for: UIControlState())
         tvNavigationController.tabBarItem = tvIcon
         
         // Twitter
@@ -87,7 +87,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         
         let twitterIcon = UITabBarItem(title: "Twitter", image: nil, selectedImage: nil)
         twitterIcon.setFAIcon(icon: FAType.FATwitter, textColor:AppColors.TabBarUnselectedColor, selectedTextColor: AppColors.TabBarTextColor)
-        twitterIcon.setTitleTextAttributes([NSFontAttributeName: UIFont(name: AppColors.AppFontName, size: AppColors.TabBarTextSize)!], for: UIControlState())
+        twitterIcon.setTitleTextAttributes([NSAttributedStringKey.font: UIFont(name: AppColors.AppFontName, size: AppColors.TabBarTextSize)!], for: UIControlState())
         twitterNavigationController.tabBarItem = twitterIcon
         
         // Other Links
@@ -95,7 +95,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         let otherNavigationController = UINavigationController(rootViewController:otherViewController)
         
         let otherIcon = UITabBarItem(tabBarSystemItem: .more, tag: 4)
-        otherIcon.setTitleTextAttributes([NSFontAttributeName: UIFont(name: AppColors.AppFontName, size: AppColors.TabBarTextSize)!], for: UIControlState())
+        otherIcon.setTitleTextAttributes([NSAttributedStringKey.font: UIFont(name: AppColors.AppFontName, size: AppColors.TabBarTextSize)!], for: UIControlState())
         otherNavigationController.tabBarItem = otherIcon
 
         // Add controllers
@@ -128,7 +128,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         return true;
     }
     
-    func setupHandoff() {
+    @objc func setupHandoff() {
         // Set activity for handoff
         let activity = NSUserActivity(activityType: "com.bravelocation.yeltzland.currenttab")
         activity.delegate = self

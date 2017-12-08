@@ -63,7 +63,7 @@ class LocationsViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         self.view.addSubview(mapView)
     }
     
-    func mapToggleButtonTouchUp() {
+    @objc func mapToggleButtonTouchUp() {
         if (self.mapView.mapType == .standard) {
             self.mapView.mapType = .satellite
         } else {

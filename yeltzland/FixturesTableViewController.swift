@@ -87,7 +87,7 @@ class FixturesTableViewController: UITableViewController {
         return 0
     }
     
-    func reloadButtonTouchUp() {
+    @objc func reloadButtonTouchUp() {
         FixtureManager.instance.getLatestFixtures()
     }
 

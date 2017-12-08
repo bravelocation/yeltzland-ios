@@ -299,7 +299,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
     }
     
     // MARK: - Event handler for switch
-    func notificationsSwitchChanged(_ sender: AnyObject) {
+    @objc func notificationsSwitchChanged(_ sender: AnyObject) {
         let switchControl = sender as! UISwitch
         self.firebaseNotifications.enabled = switchControl.isOn
     }

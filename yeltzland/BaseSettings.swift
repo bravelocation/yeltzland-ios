@@ -426,7 +426,7 @@ open class BaseSettings : NSObject {
         }
         
         if (firstSpace < max) {
-            return original[original.startIndex..<original.index(original.startIndex, offsetBy: firstSpace)]
+            return String(original[original.startIndex..<original.index(original.startIndex, offsetBy: firstSpace)])
         }
         
         // If still not found, just truncate it
@@ -502,7 +502,7 @@ open class BaseSettings : NSObject {
         return Int(daysDifference)
     }
     
-    open func refreshFixtures() {
+    @objc open func refreshFixtures() {
         print("Updating game fixture settings ...")
         
         var updated = false
@@ -580,7 +580,7 @@ open class BaseSettings : NSObject {
         }
     }
     
-    open func refreshGameScore() {
+    @objc open func refreshGameScore() {
         print("Updating game score settings ...")
         
         let currentlyInGame = self.currentGameState() == GameState.during

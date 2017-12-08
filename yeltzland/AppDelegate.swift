@@ -24,8 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().barTintColor = AppColors.NavBarColor;
 
         UINavigationBar.appearance().titleTextAttributes = [
-            NSForegroundColorAttributeName: AppColors.NavBarTextColor,
-            NSFontAttributeName: UIFont(name: AppColors.AppFontName, size: AppColors.NavBarTextSize)!
+            NSAttributedStringKey.foregroundColor: AppColors.NavBarTextColor,
+            NSAttributedStringKey.font: UIFont(name: AppColors.AppFontName, size: AppColors.NavBarTextSize)!
         ]
         
         // Setup Fabric

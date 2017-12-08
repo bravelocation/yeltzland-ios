@@ -158,20 +158,20 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
     }
     
     // MARK: - Nav bar actions
-    func reloadButtonTouchUp() {
+    @objc func reloadButtonTouchUp() {
         progressBar.setProgress(0, animated: false)
         self.webView.reloadFromOrigin()
     }
     
-    func backButtonTouchUp() {
+    @objc func backButtonTouchUp() {
         self.webView.goBack()
     }
     
-    func forwardButtonTouchUp() {
+    @objc func forwardButtonTouchUp() {
         self.webView.goForward()
     }
     
-    func loadHomePage() {
+    @objc func loadHomePage() {
         self.webView.stopLoading()
         progressBar.setProgress(0, animated: false)
         
@@ -191,7 +191,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         print("Loading page:", requestUrl)
     }
     
-    func shareButtonTouchUp() {
+    @objc func shareButtonTouchUp() {
         if let requestUrl = self.webView.url {
             let objectsToShare = [requestUrl]
 

@@ -56,7 +56,7 @@ class TwitterUserTimelineViewController: TWTRTimelineViewController, TWTRTweetVi
     }
     
     // MARK: - Nav bar actions
-    func reloadData() {
+    @objc func reloadData() {
         self.refresh()
         
         // Set a timer to refresh the data after interval period

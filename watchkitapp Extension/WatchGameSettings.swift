@@ -48,7 +48,7 @@ open class WatchGameSettings : BaseSettings, WCSessionDelegate {
         // Set up watch setting if appropriate
         if (WCSession.isSupported()) {
             print("Setting up watch session ...")
-            let session: WCSession = WCSession.default();
+            let session: WCSession = WCSession.default;
             session.delegate = self
             session.activate()
             print("Watch session activated")
@@ -107,4 +107,3 @@ open class WatchGameSettings : BaseSettings, WCSessionDelegate {
         }
     }
 }
-

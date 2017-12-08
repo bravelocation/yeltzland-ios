@@ -94,7 +94,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         }
     }
     
-    func settingsUpdated() {
+    @objc func settingsUpdated() {
         // Update complications
         print("Updating complications...")
         let complicationServer = CLKComplicationServer.sharedInstance()
