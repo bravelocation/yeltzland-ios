@@ -30,14 +30,26 @@
                                     <constraint firstAttribute="width" secondItem="BCU-vh-kTj" secondAttribute="height" multiplier="1:1" id="LO0-EI-tzM"/>
                                 </constraints>
                             </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" sectionHeaderHeight="66" sectionFooterHeight="66" translatesAutoresizingMaskIntoConstraints="NO" id="ot5-wR-6aY">
+                                <rect key="frame" x="425" y="92" width="1341" height="864"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="separatorColor" red="0.023529411760000001" green="0.2156862745" blue="0.58823529409999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.023529411764705882" green="0.21568627450980393" blue="0.58823529411764708" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="wu6-TO-1qx" firstAttribute="bottom" secondItem="ot5-wR-6aY" secondAttribute="bottom" constant="64" id="MZ0-EL-YQO"/>
+                            <constraint firstItem="ot5-wR-6aY" firstAttribute="top" secondItem="wu6-TO-1qx" secondAttribute="top" constant="32" id="Nan-ec-r49"/>
+                            <constraint firstItem="ot5-wR-6aY" firstAttribute="leading" secondItem="BCU-vh-kTj" secondAttribute="trailing" constant="64" id="Rc1-IL-DRF"/>
+                            <constraint firstItem="wu6-TO-1qx" firstAttribute="trailing" secondItem="ot5-wR-6aY" secondAttribute="trailing" constant="64" id="b4l-fI-aJB"/>
                             <constraint firstItem="BCU-vh-kTj" firstAttribute="leading" secondItem="wu6-TO-1qx" secondAttribute="leading" constant="32" id="cxI-oe-Vk6"/>
                             <constraint firstItem="BCU-vh-kTj" firstAttribute="top" secondItem="wu6-TO-1qx" secondAttribute="top" constant="32" id="r5z-pJ-WLi"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wu6-TO-1qx"/>
                     </view>
+                    <connections>
+                        <outlet property="fixturesTableView" destination="ot5-wR-6aY" id="fBd-uY-lAa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
