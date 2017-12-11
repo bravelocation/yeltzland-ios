@@ -168,9 +168,15 @@ open class GameScoreManager {
     }
     
     fileprivate func appDirectoryFilePath(_ fileName:String, fileType:String) -> String {
-        let appDirectoryPath = self.applicationDirectory()?.path
-        let filePath = String.init(format: "%@.%@", fileName, fileType)
-        return ((appDirectoryPath)! + filePath)
+        #if os(tvOS)
+            let appDirectoryPath = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)[0]
+            let filePath = String.init(format: "%@.%@", fileName, fileType)
+            return appDirectoryPath + filePath
+        #else
+            let appDirectoryPath = self.applicationDirectory()?.path
+            let filePath = String.init(format: "%@.%@", fileName, fileType)
+            return ((appDirectoryPath)! + filePath)
+        #endif
     }
     
     fileprivate func checkAppDirectoryExists(_ fileName:String, fileType:String) -> Bool {
