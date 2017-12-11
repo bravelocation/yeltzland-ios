@@ -13,6 +13,7 @@ class ViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var fixturesTableView: UITableView!
     
     let dataSource:TVDataSource = TVDataSource()
+    let minutesBetweenUpdates = 5.0
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -44,6 +45,17 @@ class ViewController: UIViewController, UITableViewDelegate {
         self.fixturesTableView.dataSource = self.dataSource
         
         self.view.backgroundColor = AppColors.TVBackground
+        
+        // Setup timer to refresh info
+        _ = Timer.scheduledTimer(timeInterval: minutesBetweenUpdates * 60, target: self, selector: #selector(self.fetchLatestData), userInfo: nil, repeats: true)
+    }
+    
+    @objc func fetchLatestData() {
+        print("Fetching latest data ...")
+
+        // Update the fixture and game score caches
+        FixtureManager.instance.getLatestFixtures()
+        GameScoreManager.instance.getLatestGameScore()
     }
     
     // MARK: - Table view delegate
