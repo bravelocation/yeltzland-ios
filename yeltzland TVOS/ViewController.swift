@@ -13,7 +13,30 @@ class ViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var fixturesTableView: UITableView!
     
     let dataSource:TVDataSource = TVDataSource()
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.setupNotificationWatcher()
+    }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+        print("Removed notification handler for fixture updates")
+    }
+    
+    fileprivate func setupNotificationWatcher() {
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.fixturesUpdated), name: NSNotification.Name(rawValue: FixtureManager.FixturesNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.fixturesUpdated), name: NSNotification.Name(rawValue: GameScoreManager.GameScoreNotification), object: nil)
+        print("Setup notification handler for fixture updates")
+    }
+    
+    @objc fileprivate func fixturesUpdated(_ notification: Notification) {
+        print("Fixture update message received")
+        DispatchQueue.main.async(execute: { () -> Void in
+            self.dataSource.loadLatestData()
+            self.fixturesTableView.reloadData()
+        })
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,8 +44,6 @@ class ViewController: UIViewController, UITableViewDelegate {
         self.fixturesTableView.dataSource = self.dataSource
         
         self.view.backgroundColor = AppColors.TVBackground
-        
-        // TODO: Setup notification handlers
     }
     
     // MARK: - Table view delegate
