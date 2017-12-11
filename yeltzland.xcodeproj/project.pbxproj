@@ -632,6 +632,11 @@
 						CreatedOnToolsVersion = 9.2;
 						DevelopmentTeam = W8B3V597R9;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes.appletvos = {
+								enabled = 1;
+							};
+						};
 					};
 					5257E8B91CDB953400157CED = {
 						CreatedOnToolsVersion = 7.3;
