@@ -97,7 +97,11 @@ open class TVGameSettings {
                 return false
             }
             
-            return self.nextGameTime!.compare(self.currentGameTime) == ComparisonResult.orderedSame
+            if (self.currentGameTime == nil) {
+                return false
+            }
+            
+            return self.nextGameTime!.compare(self.currentGameTime!) == ComparisonResult.orderedSame
         }
     }
     
@@ -141,21 +145,22 @@ open class TVGameSettings {
         }
     }
     
-    open var currentGameTime: Date {
+    open var currentGameTime: Date? {
         get {
-            // TODO:
-            return Date()
+            return GameScoreManager.instance.MatchDate
         }
     }
     
     open var currentGameYeltzScore: Int {
-        // TODO
-        get { return 0 }
+        get {
+            return GameScoreManager.instance.YeltzScore
+        }
     }
     
     open var currentGameOpponentScore: Int {
-        // TODO
-        get { return 0 }
+        get {
+            return GameScoreManager.instance.OpponentScore
+        }
     }
     
     open var currentScore: String {
