@@ -1,8 +1,9 @@
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '8.0'
 use_frameworks!
 
 target 'yeltzland' do
+  platform :ios, '9.3'
+  
   pod 'Font-Awesome-Swift'
   pod 'Fabric'
   pod 'Crashlytics'
