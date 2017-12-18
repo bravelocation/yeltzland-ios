@@ -8,9 +8,9 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate {
+class ViewController: UIViewController, UICollectionViewDelegate {
 
-    @IBOutlet weak var fixturesTableView: UITableView!
+    @IBOutlet weak var fixturesCollectionView: UICollectionView!
     
     let dataSource:TVDataSource = TVDataSource()
     let minutesBetweenUpdates = 5.0
@@ -35,19 +35,33 @@ class ViewController: UIViewController, UITableViewDelegate {
         print("Fixture update message received")
         DispatchQueue.main.async(execute: { () -> Void in
             self.dataSource.loadLatestData()
-            self.fixturesTableView.reloadData()
+            self.fixturesCollectionView.reloadData()
+            //self.moveToNextFixture()
         })
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.fixturesTableView.delegate = self
-        self.fixturesTableView.dataSource = self.dataSource
+        self.fixturesCollectionView.delegate = self
+        self.fixturesCollectionView.dataSource = self.dataSource
+        self.fixturesCollectionView.isScrollEnabled = false
+        
+        let nib = UINib(nibName: "TVFixtureCollectionCell", bundle: nil)
+        self.fixturesCollectionView.register(nib, forCellWithReuseIdentifier: "TVFixtureCollectionCell")
         
         self.view.backgroundColor = AppColors.TVBackground
         
         // Setup timer to refresh info
         _ = Timer.scheduledTimer(timeInterval: minutesBetweenUpdates * 60, target: self, selector: #selector(self.fetchLatestData), userInfo: nil, repeats: true)
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        DispatchQueue.main.async() {
+            //self.setNeedsFocusUpdate()
+            //self.updateFocusIfNeeded()
+            self.moveToNextFixture()
+        }
     }
     
     @objc func fetchLatestData() {
@@ -58,40 +72,39 @@ class ViewController: UIViewController, UITableViewDelegate {
         GameScoreManager.instance.getLatestGameScore()
     }
     
-    // MARK: - Table view delegate
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
-        header.contentView.backgroundColor = AppColors.TVBackground
-        header.textLabel!.textColor = AppColors.TVHeaderText
-        header.textLabel!.font = UIFont.preferredFont(forTextStyle: .headline)
-        header.textLabel?.text = self.dataSource.headerText(section: section)
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 300.0, height: 300.0)
     }
     
-    
-    func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
-        let footer: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
-        footer.contentView.backgroundColor = AppColors.TVBackground
-        footer.textLabel!.textColor = AppColors.TVText
-        footer.textLabel!.font = UIFont.preferredFont(forTextStyle: .headline)
-        footer.textLabel?.text = self.dataSource.footerText(section: section)
+    func collectionView(_ collectionView: UICollectionView, canFocusItemAt indexPath: IndexPath) -> Bool {
+        return true
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 66.0
+    func indexPathForPreferredFocusedView(in collectionView: UICollectionView) -> IndexPath? {
+        return IndexPath(row: self.dataSource.indexOfFirstFixture(), section: 0)
     }
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 66.0
+    func collectionView(_ collectionView: UICollectionView, shouldUpdateFocusIn context: UICollectionViewFocusUpdateContext) -> Bool {
+        return true
     }
     
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        let footerText = self.dataSource.footerText(section: section)
-        
-        if (footerText.count > 0) {
-            return 66.0
+    func collectionView(_ collectionView: UICollectionView,
+                        didUpdateFocusIn context: UICollectionViewFocusUpdateContext,
+                        with coordinator: UIFocusAnimationCoordinator) {
+        if (context.nextFocusedIndexPath != nil && !collectionView.isScrollEnabled) {
+            collectionView.scrollToItem(at: context.nextFocusedIndexPath!, at: UICollectionViewScrollPosition.centeredHorizontally, animated: true)
         }
-        
-        return 0.0
+    }
+    
+    override weak var preferredFocusedView: UIView? {
+        return self.fixturesCollectionView
+    }
+    
+    func moveToNextFixture() {
+        let nextFixturePath = IndexPath(row: self.dataSource.indexOfFirstFixture(), section: 0)
+        self.fixturesCollectionView.scrollToItem(at: nextFixturePath, at: UICollectionViewScrollPosition.centeredHorizontally, animated: true)
     }
 }
 

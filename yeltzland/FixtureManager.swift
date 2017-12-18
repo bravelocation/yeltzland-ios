@@ -187,6 +187,20 @@ open class FixtureManager {
         return fixtures
     }
     
+    open func GetAllMatches() -> [Fixture] {
+        var fixtures:[Fixture] = []
+        
+        for month in self.Months {
+            if let monthFixtures = self.FixturesForMonth(month) {
+                for fixture in monthFixtures {
+                    fixtures.append(fixture)
+                }
+            }
+        }
+        
+        return fixtures
+    }
+    
     open func getCurrentGame() -> Fixture? {
         let nextGame = self.getNextGame()
         

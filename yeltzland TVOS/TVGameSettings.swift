@@ -9,99 +9,17 @@
 import Foundation
 
 open class TVGameSettings {
-    open var displayLastOpponent: String {
-        get {
-            if (self.lastGameHome != nil && self.lastGameTeam != nil) {
-                return self.lastGameHome! ? self.lastGameTeam!.uppercased() : self.lastGameTeam!
-            }
-            
-            return ""
-        }
-    }
     
-    open var lastGameHome: Bool? {
-        get {
-            if let lastGame = FixtureManager.instance.getLastGame() {
-                return lastGame.home
-            }
-            
-            return nil
-        }
-    }
-    
-    open var lastGameTeam: String? {
-        get {
-            if let lastGame = FixtureManager.instance.getLastGame() {
-                return lastGame.opponent
-            }
-            
-            return nil
-        }
-    }
-    
-    open var lastGameYeltzScore: Int? {
-        get {
-            if let lastGame = FixtureManager.instance.getLastGame() {
-                return lastGame.teamScore
-            }
-            
-            return nil
-        }
-    }
-    
-    open var lastGameOpponentScore: Int? {
-        get {
-            if let lastGame = FixtureManager.instance.getLastGame() {
-                return lastGame.opponentScore
-            }
-            
-            return nil
-        }
-    }
-    
-    
-    open var lastScore: String {
-        get {
-            // If no opponent, then no score
-            if (self.lastGameTeam == nil) {
-                return ""
-            }
-            
-            var result = ""
-            if (self.lastGameYeltzScore! > self.lastGameOpponentScore!) {
-                result = "W"
-            } else if (self.lastGameYeltzScore! < self.lastGameOpponentScore!) {
-                result = "L"
-            } else {
-                result = "D"
-            }
-            
-            return String.init(format: "%@ %d-%d", result, self.lastGameYeltzScore!, self.lastGameOpponentScore!)
-        }
-    }
-    
-    open var lastGameTime: Date? {
-        get {
-            if let lastGame = FixtureManager.instance.getLastGame() {
-                return lastGame.fixtureDate
-            }
-            
-            return nil
-        }
-    }
-
     open var gameScoreForCurrentGame: Bool {
         get {
+            if let nextGameTime = self.nextGameTime {
+                if let currentGameTime = self.currentGameTime {
+                    return nextGameTime.compare(currentGameTime) == ComparisonResult.orderedSame
+                }
+            }
+            
             // If no next game, then no current game
-            if (self.nextGameTime == nil) {
-                return false
-            }
-            
-            if (self.currentGameTime == nil) {
-                return false
-            }
-            
-            return self.nextGameTime!.compare(self.currentGameTime!) == ComparisonResult.orderedSame
+            return false
         }
     }
     
@@ -109,36 +27,6 @@ open class TVGameSettings {
         get {
             if let nextGame = FixtureManager.instance.getNextGame() {
                 return nextGame.fixtureDate
-            }
-            
-            return nil
-        }
-    }
-    
-    open var displayNextOpponent: String {
-        get {
-            if (self.nextGameHome != nil && self.nextGameTeam != nil) {
-                return self.nextGameHome! ? self.nextGameTeam!.uppercased() : self.nextGameTeam!
-            }
-            
-            return ""
-        }
-    }
-    
-    open var nextGameHome: Bool? {
-        get {
-            if let nextGame = FixtureManager.instance.getNextGame() {
-                return nextGame.home
-            }
-            
-            return nil
-        }
-    }
-    
-    open var nextGameTeam: String? {
-        get {
-            if let nextGame = FixtureManager.instance.getNextGame() {
-                return nextGame.opponent
             }
             
             return nil
@@ -160,6 +48,26 @@ open class TVGameSettings {
     open var currentGameOpponentScore: Int {
         get {
             return GameScoreManager.instance.OpponentScore
+        }
+    }
+    
+    open var nextGameTeam: String? {
+        get {
+            if let nextGame = FixtureManager.instance.getNextGame() {
+                return nextGame.opponent
+            }
+            
+            return nil
+        }
+    }
+    
+    open var lastGameTime: Date? {
+        get {
+            if let lastGame = FixtureManager.instance.getLastGame() {
+                return lastGame.fixtureDate
+            }
+            
+            return nil
         }
     }
     
@@ -207,7 +115,6 @@ open class TVGameSettings {
         }
         
         let lastGameNumber = self.dayNumber(self.lastGameTime!)
-        
         
         // If last game was today or yesterday
         if ((lastGameNumber == todayDayNumber) || (lastGameNumber == todayDayNumber - 1)) {

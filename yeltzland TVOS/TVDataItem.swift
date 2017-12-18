@@ -11,18 +11,14 @@ import UIKit
 
 class TVDataItem: NSObject {
     var opponent:String = ""
-    var scoreOrDate:String = ""
-    var resultColor:UIColor = AppColors.TVText;
+    var score:String = ""
+    var matchDate:String = ""
+    var inProgress:Bool = false
     
-    init(opponent:String, scoreOrDate:String, color: UIColor) {
+    init(opponent:String, matchDate:String, score:String, inProgress:Bool) {
         self.opponent = opponent
-        self.scoreOrDate = scoreOrDate
-        self.resultColor = color
-    }
-    
-    init(opponent:String, scoreOrDate:String) {
-        self.opponent = opponent
-        self.scoreOrDate = scoreOrDate
-        self.resultColor = AppColors.TVText
+        self.matchDate = matchDate
+        self.score = score
+        self.inProgress = inProgress
     }
 }

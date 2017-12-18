@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.AppleTV.XIB" version="3.0" toolsVersion="13771" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="appleTV" orientation="landscape">
+        <adaptation id="light"/>
+    </device>
+    <dependencies>
+        <deployment identifier="tvOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" id="Rz2-K0-ksD" customClass="TVFixtureCollectionCell" customModule="yeltzland_TVOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Opponent" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VFs-B4-1eg">
+                        <rect key="frame" x="8" y="8" width="284" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="Eai-YQ-UHd"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="19 Dec" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eqv-SC-r9y">
+                        <rect key="frame" x="8" y="74" width="284" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="lY7-9Z-8EV"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0-0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dtq-lb-GD2">
+                        <rect key="frame" x="8" y="140" width="284" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="uns-Di-Rmk"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <color key="backgroundColor" red="0.023529411760000001" green="0.2156862745" blue="0.58823529409999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="eqv-SC-r9y" firstAttribute="top" secondItem="VFs-B4-1eg" secondAttribute="bottom" constant="16" id="11c-C7-rX8"/>
+                <constraint firstAttribute="trailing" secondItem="dtq-lb-GD2" secondAttribute="trailing" constant="8" id="6XP-2g-cia"/>
+                <constraint firstItem="dtq-lb-GD2" firstAttribute="leading" secondItem="Rz2-K0-ksD" secondAttribute="leading" constant="8" id="D3p-Dg-wH2"/>
+                <constraint firstItem="VFs-B4-1eg" firstAttribute="leading" secondItem="Rz2-K0-ksD" secondAttribute="leading" constant="8" id="EaB-tv-IC1"/>
+                <constraint firstAttribute="trailing" secondItem="VFs-B4-1eg" secondAttribute="trailing" constant="8" id="O53-Om-kU5"/>
+                <constraint firstItem="eqv-SC-r9y" firstAttribute="leading" secondItem="Rz2-K0-ksD" secondAttribute="leading" constant="8" id="fRv-KV-mDM"/>
+                <constraint firstItem="dtq-lb-GD2" firstAttribute="top" secondItem="eqv-SC-r9y" secondAttribute="bottom" constant="16" id="fde-eB-AtX"/>
+                <constraint firstItem="VFs-B4-1eg" firstAttribute="top" secondItem="Rz2-K0-ksD" secondAttribute="top" constant="8" id="hqK-UM-AUD"/>
+                <constraint firstAttribute="trailing" secondItem="eqv-SC-r9y" secondAttribute="trailing" constant="8" id="lCK-zg-7mV"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="7PP-Ag-gPX"/>
+            <size key="customSize" width="300" height="300"/>
+            <connections>
+                <outlet property="dateLabel" destination="eqv-SC-r9y" id="gaB-dX-6qh"/>
+                <outlet property="opponentLabel" destination="VFs-B4-1eg" id="0Sg-kL-IGD"/>
+                <outlet property="scoreLabel" destination="dtq-lb-GD2" id="3Tn-R1-U60"/>
+            </connections>
+            <point key="canvasLocation" x="176" y="212"/>
+        </collectionViewCell>
+    </objects>
+</document>
