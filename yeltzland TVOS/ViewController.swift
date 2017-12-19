@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController, UICollectionViewDelegate {
 
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var fixturesCollectionView: UICollectionView!
     @IBOutlet weak var tweetsCollectionView: UICollectionView!
     
@@ -54,7 +55,8 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         super.viewDidLoad()
         
         self.view.backgroundColor = AppColors.TVBackground
-        
+        self.titleLabel.textColor = AppColors.TVTitleText
+
         // Setup fixtures
         self.fixturesCollectionView.delegate = self
         self.fixturesCollectionView.dataSource = self.fixturesDataSource
@@ -93,16 +95,6 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         
         // Update the tweets
         self.tweetsDataSource.loadLatestData()
-    }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if (collectionView == self.fixturesCollectionView) {
-            return CGSize(width: 400.0, height: 300.0)
-        } else {
-            return CGSize(width: 800.0, height: 400.0)
-        }
     }
     
     func collectionView(_ collectionView: UICollectionView, canFocusItemAt indexPath: IndexPath) -> Bool {

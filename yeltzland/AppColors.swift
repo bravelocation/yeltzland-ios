@@ -96,7 +96,7 @@ class AppColors {
     static var SafariControl:UIColor = YeltzBlueColor
     
     static var TVBackground = UIColor.black
-    static var TVText: UIColor = UIColor.white
+    static var TVTitleText: UIColor = LightBlueColor
     
     static var TVFixtureBackground: UIColor = LightBlueColor
     static var TVFixtureText: UIColor = DarkBlueColor

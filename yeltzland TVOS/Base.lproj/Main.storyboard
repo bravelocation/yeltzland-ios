@@ -31,12 +31,12 @@
                                 </constraints>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yhA-Nq-yjr">
-                                <rect key="frame" x="154" y="588" width="1612" height="400"/>
+                                <rect key="frame" x="154" y="576" width="1612" height="400"/>
                                 <color key="backgroundColor" red="0.17254901959999999" green="0.36862745099999999" blue="0.086274509799999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="400" id="fWQ-5E-63t"/>
                                 </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ziJ-Zz-2v4">
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="40" minimumInteritemSpacing="10" id="ziJ-Zz-2v4">
                                     <size key="itemSize" width="800" height="400"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -54,12 +54,12 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="PmK-mR-wq4">
-                                <rect key="frame" x="154" y="244" width="1612" height="300"/>
+                                <rect key="frame" x="154" y="236" width="1612" height="300"/>
                                 <color key="backgroundColor" red="0.69411764710000001" green="0.86666666670000003" blue="0.54901960780000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="5Ab-0h-LLI"/>
                                 </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="NWu-wm-Zop">
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="40" minimumInteritemSpacing="10" id="NWu-wm-Zop">
                                     <size key="itemSize" width="400" height="300"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -70,13 +70,13 @@
                         </subviews>
                         <color key="backgroundColor" red="0.023529411764705882" green="0.21568627450980393" blue="0.58823529411764708" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="yhA-Nq-yjr" secondAttribute="bottom" constant="32" id="HPC-Qp-qYc"/>
                             <constraint firstItem="PmK-mR-wq4" firstAttribute="leading" secondItem="wu6-TO-1qx" secondAttribute="leading" constant="64" id="PK0-5H-gV1"/>
+                            <constraint firstItem="yhA-Nq-yjr" firstAttribute="top" secondItem="PmK-mR-wq4" secondAttribute="bottom" constant="40" id="Q60-Fn-MqF"/>
                             <constraint firstItem="wAe-LC-W5G" firstAttribute="centerY" secondItem="BCU-vh-kTj" secondAttribute="centerY" id="Q6z-h0-8B8"/>
                             <constraint firstItem="yhA-Nq-yjr" firstAttribute="leading" secondItem="PmK-mR-wq4" secondAttribute="leading" id="bfv-5Q-HAN"/>
                             <constraint firstItem="BCU-vh-kTj" firstAttribute="leading" secondItem="wu6-TO-1qx" secondAttribute="leading" constant="64" id="cxI-oe-Vk6"/>
                             <constraint firstItem="wAe-LC-W5G" firstAttribute="leading" secondItem="BCU-vh-kTj" secondAttribute="trailing" constant="32" id="gxt-EV-hbw"/>
-                            <constraint firstItem="PmK-mR-wq4" firstAttribute="top" secondItem="BCU-vh-kTj" secondAttribute="bottom" constant="48" id="hq5-4b-mYB"/>
+                            <constraint firstItem="PmK-mR-wq4" firstAttribute="top" secondItem="BCU-vh-kTj" secondAttribute="bottom" constant="40" id="hq5-4b-mYB"/>
                             <constraint firstItem="yhA-Nq-yjr" firstAttribute="trailing" secondItem="PmK-mR-wq4" secondAttribute="trailing" id="iip-1o-9hk"/>
                             <constraint firstItem="wu6-TO-1qx" firstAttribute="trailing" secondItem="PmK-mR-wq4" secondAttribute="trailing" constant="64" id="jMN-aw-rJB"/>
                             <constraint firstItem="wu6-TO-1qx" firstAttribute="trailing" secondItem="wAe-LC-W5G" secondAttribute="trailing" constant="64" id="lrj-97-Wcz"/>
@@ -86,6 +86,7 @@
                     </view>
                     <connections>
                         <outlet property="fixturesCollectionView" destination="PmK-mR-wq4" id="pB5-ci-LYF"/>
+                        <outlet property="titleLabel" destination="wAe-LC-W5G" id="dcA-Aq-RTE"/>
                         <outlet property="tweetsCollectionView" destination="yhA-Nq-yjr" id="pPr-v2-w7G"/>
                     </connections>
                 </viewController>

@@ -50,11 +50,5 @@ class TVFixtureCollectionCell: UICollectionViewCell {
         }
         
         self.contentView.layer.borderWidth = 1.0
-        self.contentView.layer.cornerRadius = 16.0
-        
-        self.contentView.layer.shadowColor = self.contentView.layer.borderColor
-        self.contentView.layer.shadowRadius = 1.0
-        self.contentView.layer.shadowOpacity = 0.5
-        self.contentView.layer.shadowOffset = CGSize(width: 0, height: 0)
     }
 }
