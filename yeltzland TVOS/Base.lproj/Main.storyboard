@@ -44,19 +44,37 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yhA-Nq-yjr">
+                                <rect key="frame" x="425" y="456" width="1341" height="400"/>
+                                <color key="backgroundColor" red="0.023529411760000001" green="0.2156862745" blue="0.58823529409999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="400" id="fWQ-5E-63t"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ziJ-Zz-2v4">
+                                    <size key="itemSize" width="800" height="400"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" red="0.023529411764705882" green="0.21568627450980393" blue="0.58823529411764708" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="PmK-mR-wq4" firstAttribute="leading" secondItem="BCU-vh-kTj" secondAttribute="trailing" constant="64" id="0ZF-Qj-JnK"/>
-                            <constraint firstItem="PmK-mR-wq4" firstAttribute="top" secondItem="wu6-TO-1qx" secondAttribute="top" constant="32" id="O5r-Tj-FuN"/>
+                            <constraint firstItem="yhA-Nq-yjr" firstAttribute="leading" secondItem="PmK-mR-wq4" secondAttribute="leading" id="bfv-5Q-HAN"/>
                             <constraint firstItem="BCU-vh-kTj" firstAttribute="leading" secondItem="wu6-TO-1qx" secondAttribute="leading" constant="32" id="cxI-oe-Vk6"/>
+                            <constraint firstItem="yhA-Nq-yjr" firstAttribute="trailing" secondItem="PmK-mR-wq4" secondAttribute="trailing" id="iip-1o-9hk"/>
                             <constraint firstItem="wu6-TO-1qx" firstAttribute="trailing" secondItem="PmK-mR-wq4" secondAttribute="trailing" constant="64" id="jMN-aw-rJB"/>
+                            <constraint firstItem="yhA-Nq-yjr" firstAttribute="top" secondItem="PmK-mR-wq4" secondAttribute="bottom" constant="64" id="nZk-Nn-Vas"/>
                             <constraint firstItem="BCU-vh-kTj" firstAttribute="top" secondItem="wu6-TO-1qx" secondAttribute="top" constant="32" id="r5z-pJ-WLi"/>
+                            <constraint firstItem="PmK-mR-wq4" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="32" id="xpf-yH-oN2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wu6-TO-1qx"/>
                     </view>
                     <connections>
                         <outlet property="fixturesCollectionView" destination="PmK-mR-wq4" id="pB5-ci-LYF"/>
+                        <outlet property="tweetsCollectionView" destination="yhA-Nq-yjr" id="pPr-v2-w7G"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

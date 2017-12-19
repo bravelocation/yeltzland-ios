@@ -92,6 +92,8 @@ class AppColors {
     static var WatchFixtureDraw = UIColor.white
     static var WatchFixtureLose = UIColor(red: 255.0/255.0, green: 127.0/255.0, blue: 127.0/255.0, alpha: 1.0)
     static var WatchComplicationColor:UIColor = LightBlueColor
+ 
+    static var SafariControl:UIColor = YeltzBlueColor
     
     static var TVBackground = UIColor.black
     static var TVText: UIColor = UIColor.white
@@ -107,8 +109,10 @@ class AppColors {
     static var TVFixtureWin = UIColor(red: 63.0/255.0, green: 255.0/255.0, blue: 63.0/255.0, alpha: 1.0)
     static var TVFixtureDraw = LightBlueColor
     static var TVFixtureLose = UIColor(red: 255.0/255.0, green: 63.0/255.0, blue: 63.0/255.0, alpha: 1.0)
+    
+    static var TVTwitterBackground: UIColor = DarkBlueColor
+    static var TVTwitterText: UIColor = UIColor.white
 
-    static var SafariControl:UIColor = YeltzBlueColor
 }
 
     

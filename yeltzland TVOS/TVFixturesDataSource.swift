@@ -7,7 +7,6 @@
 //
 
 import Foundation
-
 import UIKit
 
 class TVFixturesDataSource: NSObject, UICollectionViewDataSource {
@@ -95,5 +94,4 @@ class TVFixturesDataSource: NSObject, UICollectionViewDataSource {
         // Just show first cell if all done
         return 0
     }
-
 }
