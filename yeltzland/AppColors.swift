@@ -94,16 +94,19 @@ class AppColors {
     static var WatchComplicationColor:UIColor = LightBlueColor
     
     static var TVBackground = YeltzBlueColor
-    static var TVFixtureBackground: UIColor = YeltzBlueColor
-    static var TVResultBackground: UIColor = DarkBlueColor
-    static var TVMatchShadow: UIColor = LightBlueColor
     static var TVText: UIColor = UIColor.white
-    static var TVMatchText: UIColor = UIColor.white
+    
+    static var TVFixtureBackground: UIColor = LightBlueColor
+    static var TVFixtureText: UIColor = DarkBlueColor
+    static var TVFixtureBorderColor = UIColor.white
+    static var TVResultBackground: UIColor = DarkBlueColor
+    static var TVResultText: UIColor = UIColor.white
+    static var TVResultBorderColor = DarkBlueColor
+    static var TVMatchShadow: UIColor = UIColor.white
 
     static var TVFixtureWin = UIColor(red: 63.0/255.0, green: 255.0/255.0, blue: 63.0/255.0, alpha: 1.0)
     static var TVFixtureDraw = LightBlueColor
     static var TVFixtureLose = UIColor(red: 255.0/255.0, green: 63.0/255.0, blue: 63.0/255.0, alpha: 1.0)
-    static var TVBorderColor = UIColor.white
 
     static var SafariControl:UIColor = YeltzBlueColor
 }

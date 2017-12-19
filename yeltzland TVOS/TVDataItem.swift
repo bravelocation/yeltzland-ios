@@ -14,13 +14,15 @@ class TVDataItem: NSObject {
     var score:String = ""
     var matchDate:String = ""
     var inProgress:Bool = false
-    var scoreColor:UIColor = AppColors.TVMatchText
+    var atHome:Bool = false
+    var scoreColor:UIColor = AppColors.TVResultText
 
-    init(opponent:String, matchDate:String, score:String, inProgress:Bool, scoreColor:UIColor = AppColors.TVMatchText) {
+    init(opponent:String, matchDate:String, score:String, inProgress:Bool, atHome:Bool, scoreColor:UIColor = AppColors.TVResultText) {
         self.opponent = opponent
         self.matchDate = matchDate
         self.score = score
         self.inProgress = inProgress
+        self.atHome = atHome
         self.scoreColor = scoreColor
     }
 }

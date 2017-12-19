@@ -30,14 +30,8 @@
                                     <constraint firstAttribute="width" secondItem="BCU-vh-kTj" secondAttribute="height" multiplier="1:1" id="LO0-EI-tzM"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fixtures and Results" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="roK-qy-esA">
-                                <rect key="frame" x="425" y="92" width="1341" height="79"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="66"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="PmK-mR-wq4">
-                                <rect key="frame" x="425" y="203" width="1341" height="300"/>
+                                <rect key="frame" x="425" y="92" width="1341" height="300"/>
                                 <color key="backgroundColor" red="0.023529411760000001" green="0.2156862745" blue="0.58823529409999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="5Ab-0h-LLI"/>
@@ -54,12 +48,9 @@
                         <color key="backgroundColor" red="0.023529411764705882" green="0.21568627450980393" blue="0.58823529411764708" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="PmK-mR-wq4" firstAttribute="leading" secondItem="BCU-vh-kTj" secondAttribute="trailing" constant="64" id="0ZF-Qj-JnK"/>
-                            <constraint firstItem="PmK-mR-wq4" firstAttribute="top" secondItem="roK-qy-esA" secondAttribute="bottom" constant="32" id="46K-zg-Igj"/>
-                            <constraint firstItem="wu6-TO-1qx" firstAttribute="trailing" secondItem="roK-qy-esA" secondAttribute="trailing" constant="64" id="5mn-sj-EDk"/>
-                            <constraint firstItem="roK-qy-esA" firstAttribute="leading" secondItem="BCU-vh-kTj" secondAttribute="trailing" constant="64" id="XBc-aP-UIA"/>
+                            <constraint firstItem="PmK-mR-wq4" firstAttribute="top" secondItem="wu6-TO-1qx" secondAttribute="top" constant="32" id="O5r-Tj-FuN"/>
                             <constraint firstItem="BCU-vh-kTj" firstAttribute="leading" secondItem="wu6-TO-1qx" secondAttribute="leading" constant="32" id="cxI-oe-Vk6"/>
                             <constraint firstItem="wu6-TO-1qx" firstAttribute="trailing" secondItem="PmK-mR-wq4" secondAttribute="trailing" constant="64" id="jMN-aw-rJB"/>
-                            <constraint firstItem="roK-qy-esA" firstAttribute="top" secondItem="wu6-TO-1qx" secondAttribute="top" constant="32" id="n2o-X3-iN9"/>
                             <constraint firstItem="BCU-vh-kTj" firstAttribute="top" secondItem="wu6-TO-1qx" secondAttribute="top" constant="32" id="r5z-pJ-WLi"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wu6-TO-1qx"/>

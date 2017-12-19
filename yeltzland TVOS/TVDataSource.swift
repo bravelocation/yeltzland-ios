@@ -30,11 +30,19 @@ class TVDataSource: NSObject, UICollectionViewDataSource {
         for fixture in FixtureManager.instance.GetAllMatches() {
             if (currentGameAvailable && fixture.teamScore == nil && fixture.opponentScore == nil && self.gameSettings.currentGameTime == fixture.fixtureDate) {
                 // Is it an in-progress game
-                self.allGames.append(TVDataItem(opponent: fixture.displayOpponent, matchDate: fixture.fullDisplayKickoffTime, score: self.gameSettings.currentScore, inProgress: true))
+                self.allGames.append(TVDataItem(opponent: fixture.displayOpponent,
+                                                matchDate: fixture.fullDisplayKickoffTime,
+                                                score: self.gameSettings.currentScore,
+                                                inProgress: true,
+                                                atHome: fixture.home))
             } else if (fixture.score.count == 0) {
-                self.allGames.append(TVDataItem(opponent: fixture.displayOpponent, matchDate: fixture.fullDisplayKickoffTime, score: fixture.score, inProgress: false))
+                self.allGames.append(TVDataItem(opponent: fixture.displayOpponent,
+                                                matchDate: fixture.fullDisplayKickoffTime,
+                                                score: fixture.score,
+                                                inProgress: false,
+                                                atHome: fixture.home))
             } else {
-                var resultColor:UIColor = AppColors.TVMatchText
+                var resultColor:UIColor = AppColors.TVResultText
                 
                 if (fixture.teamScore! > fixture.opponentScore!) {
                     resultColor = AppColors.TVFixtureWin
@@ -44,7 +52,12 @@ class TVDataSource: NSObject, UICollectionViewDataSource {
                     resultColor = AppColors.TVFixtureDraw
                 }
                 
-                self.allGames.append(TVDataItem(opponent: fixture.displayOpponent, matchDate: fixture.fullDisplayKickoffTime, score: fixture.score, inProgress: false, scoreColor:resultColor))
+                self.allGames.append(TVDataItem(opponent: fixture.displayOpponent,
+                                                matchDate: fixture.fullDisplayKickoffTime,
+                                                score: fixture.score,
+                                                inProgress: false,
+                                                atHome: fixture.home,
+                                                scoreColor:resultColor))
             }
         }
     }

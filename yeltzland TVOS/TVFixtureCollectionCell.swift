@@ -13,31 +13,48 @@ class TVFixtureCollectionCell: UICollectionViewCell {
     @IBOutlet weak var opponentLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
-
+    @IBOutlet weak var homeAwayLabel: UILabel!
+    @IBOutlet weak var calendarImage: UIImageView!
+    
     func loadData(dataItem:TVDataItem) {
         self.opponentLabel.text = dataItem.opponent
         self.scoreLabel.text = dataItem.score
         self.dateLabel.text = dataItem.matchDate
         
+        if (dataItem.atHome) {
+            self.homeAwayLabel.text = "at home to"
+        } else {
+            self.homeAwayLabel.text = "away at"
+        }
+        
         // Setup the colors
         self.layer.backgroundColor = AppColors.TVBackground.cgColor
         
+        self.calendarImage.image = self.calendarImage.image!.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
+        
         if (dataItem.score.count == 0) {
             self.contentView.backgroundColor = AppColors.TVFixtureBackground
+            self.opponentLabel.textColor = AppColors.TVFixtureText
+            self.dateLabel.textColor = AppColors.TVFixtureText
+            self.homeAwayLabel.textColor = AppColors.TVFixtureText
+            self.contentView.layer.borderColor = AppColors.TVFixtureBorderColor.cgColor
+            self.calendarImage.tintColor = AppColors.TVFixtureText
         } else {
             self.contentView.backgroundColor = AppColors.TVResultBackground
+            self.opponentLabel.textColor = AppColors.TVResultText
+            self.dateLabel.textColor = AppColors.TVResultText
+            self.homeAwayLabel.textColor = AppColors.TVResultText
+            self.scoreLabel.textColor = dataItem.scoreColor
+            self.contentView.layer.borderColor = AppColors.TVResultBorderColor.cgColor
+            self.calendarImage.tintColor = AppColors.TVResultText
         }
+        
         self.contentView.layer.borderWidth = 1.0
-        self.contentView.layer.borderColor = AppColors.TVBorderColor.cgColor
         self.contentView.layer.cornerRadius = 16.0
         
-        self.contentView.layer.shadowColor = AppColors.TVMatchShadow.cgColor
-        self.contentView.layer.shadowRadius = 4.0
-        self.contentView.layer.shadowOpacity = 0.9
+        self.contentView.layer.shadowColor = self.contentView.layer.borderColor
+        self.contentView.layer.shadowRadius = 1.0
+        self.contentView.layer.shadowOpacity = 0.5
         self.contentView.layer.shadowOffset = CGSize(width: 0, height: 0)
-
-        self.opponentLabel.textColor = AppColors.TVMatchText
-        self.dateLabel.textColor = AppColors.TVMatchText
-        self.scoreLabel.textColor = dataItem.scoreColor
     }
 }
