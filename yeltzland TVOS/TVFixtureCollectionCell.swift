@@ -16,7 +16,7 @@ class TVFixtureCollectionCell: UICollectionViewCell {
     @IBOutlet weak var homeAwayLabel: UILabel!
     @IBOutlet weak var calendarImage: UIImageView!
     
-    func loadData(dataItem:TVDataItem) {
+    func loadData(dataItem:TVFixtureData) {
         self.opponentLabel.text = dataItem.opponent
         self.scoreLabel.text = dataItem.score
         self.dateLabel.text = dataItem.matchDate

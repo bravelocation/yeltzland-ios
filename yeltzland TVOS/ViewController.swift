@@ -12,7 +12,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 
     @IBOutlet weak var fixturesCollectionView: UICollectionView!
     
-    let dataSource:TVDataSource = TVDataSource()
+    let fixturesDataSource:TVFixturesDataSource = TVFixturesDataSource()
     let minutesBetweenUpdates = 5.0
 
     required init?(coder aDecoder: NSCoder) {
@@ -34,7 +34,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
     @objc fileprivate func fixturesUpdated(_ notification: Notification) {
         print("Fixture update message received")
         DispatchQueue.main.async(execute: { () -> Void in
-            self.dataSource.loadLatestData()
+            self.fixturesDataSource.loadLatestData()
             self.fixturesCollectionView.reloadData()
         })
     }
@@ -43,7 +43,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         super.viewDidLoad()
         
         self.fixturesCollectionView.delegate = self
-        self.fixturesCollectionView.dataSource = self.dataSource
+        self.fixturesCollectionView.dataSource = self.fixturesDataSource
         self.fixturesCollectionView.isScrollEnabled = false
         
         let nib = UINib(nibName: "TVFixtureCollectionCell", bundle: nil)
@@ -81,7 +81,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
     }
     
     func indexPathForPreferredFocusedView(in collectionView: UICollectionView) -> IndexPath? {
-        return IndexPath(row: self.dataSource.indexOfFirstFixture(), section: 0)
+        return IndexPath(row: self.fixturesDataSource.indexOfFirstFixture(), section: 0)
     }
     
     func collectionView(_ collectionView: UICollectionView, shouldUpdateFocusIn context: UICollectionViewFocusUpdateContext) -> Bool {
@@ -101,7 +101,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
     }
     
     func moveToNextFixture() {
-        let nextFixturePath = IndexPath(row: self.dataSource.indexOfFirstFixture(), section: 0)
+        let nextFixturePath = IndexPath(row: self.fixturesDataSource.indexOfFirstFixture(), section: 0)
         self.fixturesCollectionView.scrollToItem(at: nextFixturePath, at: UICollectionViewScrollPosition.centeredHorizontally, animated: true)
     }
 }

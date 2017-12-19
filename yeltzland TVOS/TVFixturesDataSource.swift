@@ -1,5 +1,5 @@
 //
-//  TVDataSource.swift
+//  TVFixturesDataSource.swift
 //  yeltzland TVOS
 //
 //  Created by John Pollard on 11/12/2017.
@@ -10,10 +10,10 @@ import Foundation
 
 import UIKit
 
-class TVDataSource: NSObject, UICollectionViewDataSource {
+class TVFixturesDataSource: NSObject, UICollectionViewDataSource {
     let gameSettings = TVGameSettings()
     
-    private var allGames = Array<TVDataItem>()
+    private var allGames = Array<TVFixtureData>()
     
     override init() {
         super.init();
@@ -30,13 +30,13 @@ class TVDataSource: NSObject, UICollectionViewDataSource {
         for fixture in FixtureManager.instance.GetAllMatches() {
             if (currentGameAvailable && fixture.teamScore == nil && fixture.opponentScore == nil && self.gameSettings.currentGameTime == fixture.fixtureDate) {
                 // Is it an in-progress game
-                self.allGames.append(TVDataItem(opponent: fixture.displayOpponent,
+                self.allGames.append(TVFixtureData(opponent: fixture.displayOpponent,
                                                 matchDate: fixture.fullDisplayKickoffTime,
                                                 score: self.gameSettings.currentScore,
                                                 inProgress: true,
                                                 atHome: fixture.home))
             } else if (fixture.score.count == 0) {
-                self.allGames.append(TVDataItem(opponent: fixture.displayOpponent,
+                self.allGames.append(TVFixtureData(opponent: fixture.displayOpponent,
                                                 matchDate: fixture.fullDisplayKickoffTime,
                                                 score: fixture.score,
                                                 inProgress: false,
@@ -52,7 +52,7 @@ class TVDataSource: NSObject, UICollectionViewDataSource {
                     resultColor = AppColors.TVFixtureDraw
                 }
                 
-                self.allGames.append(TVDataItem(opponent: fixture.displayOpponent,
+                self.allGames.append(TVFixtureData(opponent: fixture.displayOpponent,
                                                 matchDate: fixture.fullDisplayKickoffTime,
                                                 score: fixture.score,
                                                 inProgress: false,

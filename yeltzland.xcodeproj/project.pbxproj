@@ -85,9 +85,9 @@
 		52E711A61D9CFDD90002446A /* gamescore.json in Resources */ = {isa = PBXBuildFile; fileRef = 52176BAD1D4A1AF600B7EFAE /* gamescore.json */; };
 		52E711A81D9E52080002446A /* FixtureTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E711A71D9E52080002446A /* FixtureTableRow.swift */; };
 		52E711AB1D9FB5B70002446A /* MakeToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E711AA1D9FB5B70002446A /* MakeToast.swift */; };
-		52E77DE51FDEBB6C0069FCFB /* TVDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E77DE41FDEBB6C0069FCFB /* TVDataItem.swift */; };
+		52E77DE51FDEBB6C0069FCFB /* TVFixtureData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E77DE41FDEBB6C0069FCFB /* TVFixtureData.swift */; };
 		52E77DE61FDEBB950069FCFB /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211F7261CDA35CF0031496D /* AppColors.swift */; };
-		52E77DE81FDEBBB60069FCFB /* TVDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E77DE71FDEBBB60069FCFB /* TVDataSource.swift */; };
+		52E77DE81FDEBBB60069FCFB /* TVFixturesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E77DE71FDEBBB60069FCFB /* TVFixturesDataSource.swift */; };
 		52E77DEA1FDEBC730069FCFB /* TVGameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E77DE91FDEBC730069FCFB /* TVGameSettings.swift */; };
 		52E77DEB1FDEC0740069FCFB /* matches.json in Resources */ = {isa = PBXBuildFile; fileRef = 52236AEA1D17ECB4004903AB /* matches.json */; };
 		52E77DEC1FDEC0770069FCFB /* gamescore.json in Resources */ = {isa = PBXBuildFile; fileRef = 52176BAD1D4A1AF600B7EFAE /* gamescore.json */; };
@@ -232,8 +232,8 @@
 		52E3DF821CD9FA78009F18BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52E711A71D9E52080002446A /* FixtureTableRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixtureTableRow.swift; sourceTree = "<group>"; };
 		52E711AA1D9FB5B70002446A /* MakeToast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakeToast.swift; sourceTree = "<group>"; };
-		52E77DE41FDEBB6C0069FCFB /* TVDataItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVDataItem.swift; sourceTree = "<group>"; };
-		52E77DE71FDEBBB60069FCFB /* TVDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVDataSource.swift; sourceTree = "<group>"; };
+		52E77DE41FDEBB6C0069FCFB /* TVFixtureData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVFixtureData.swift; sourceTree = "<group>"; };
+		52E77DE71FDEBBB60069FCFB /* TVFixturesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVFixturesDataSource.swift; sourceTree = "<group>"; };
 		52E77DE91FDEBC730069FCFB /* TVGameSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVGameSettings.swift; sourceTree = "<group>"; };
 		6C2886E0C6D579332BF2A5A8 /* Pods-yeltzland.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yeltzland.debug.xcconfig"; path = "Pods/Target Support Files/Pods-yeltzland/Pods-yeltzland.debug.xcconfig"; sourceTree = "<group>"; };
 		9BE281ED4B32969698046889 /* Pods_yeltzland.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_yeltzland.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -362,8 +362,8 @@
 				525719771FDE8AE2005F1D80 /* Main.storyboard */,
 				5257197A1FDE8AE2005F1D80 /* Assets.xcassets */,
 				5257197C1FDE8AE2005F1D80 /* Info.plist */,
-				52E77DE41FDEBB6C0069FCFB /* TVDataItem.swift */,
-				52E77DE71FDEBBB60069FCFB /* TVDataSource.swift */,
+				52E77DE41FDEBB6C0069FCFB /* TVFixtureData.swift */,
+				52E77DE71FDEBBB60069FCFB /* TVFixturesDataSource.swift */,
 				52E77DE91FDEBC730069FCFB /* TVGameSettings.swift */,
 				52D868241FE81B6E0041B578 /* TVFixtureCollectionCell.swift */,
 				52D868251FE81B6E0041B578 /* TVFixtureCollectionCell.xib */,
@@ -931,13 +931,13 @@
 			files = (
 				525719801FDE8BBB005F1D80 /* FixtureManager.swift in Sources */,
 				525719821FDE8BC2005F1D80 /* GameScoreManager.swift in Sources */,
-				52E77DE81FDEBBB60069FCFB /* TVDataSource.swift in Sources */,
+				52E77DE81FDEBBB60069FCFB /* TVFixturesDataSource.swift in Sources */,
 				52D868261FE81B6E0041B578 /* TVFixtureCollectionCell.swift in Sources */,
 				52E77DEA1FDEBC730069FCFB /* TVGameSettings.swift in Sources */,
 				525719761FDE8AE2005F1D80 /* ViewController.swift in Sources */,
 				525719741FDE8AE2005F1D80 /* AppDelegate.swift in Sources */,
 				52E77DE61FDEBB950069FCFB /* AppColors.swift in Sources */,
-				52E77DE51FDEBB6C0069FCFB /* TVDataItem.swift in Sources */,
+				52E77DE51FDEBB6C0069FCFB /* TVFixtureData.swift in Sources */,
 				525719811FDE8BBF005F1D80 /* Fixture.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,5 +1,5 @@
 //
-//  TVDataItem.swift
+//  TVFixtureData.swift
 //  yeltzland TVOS
 //
 //  Created by John Pollard on 11/12/2017.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class TVDataItem: NSObject {
+class TVFixtureData: NSObject {
     var opponent:String = ""
     var score:String = ""
     var matchDate:String = ""
