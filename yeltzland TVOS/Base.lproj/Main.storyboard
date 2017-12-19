@@ -68,7 +68,7 @@
                             <constraint firstItem="wu6-TO-1qx" firstAttribute="trailing" secondItem="PmK-mR-wq4" secondAttribute="trailing" constant="64" id="jMN-aw-rJB"/>
                             <constraint firstItem="yhA-Nq-yjr" firstAttribute="top" secondItem="PmK-mR-wq4" secondAttribute="bottom" constant="64" id="nZk-Nn-Vas"/>
                             <constraint firstItem="BCU-vh-kTj" firstAttribute="top" secondItem="wu6-TO-1qx" secondAttribute="top" constant="32" id="r5z-pJ-WLi"/>
-                            <constraint firstItem="PmK-mR-wq4" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="32" id="xpf-yH-oN2"/>
+                            <constraint firstItem="PmK-mR-wq4" firstAttribute="top" secondItem="wu6-TO-1qx" secondAttribute="top" constant="32" id="xpf-yH-oN2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wu6-TO-1qx"/>
                     </view>
