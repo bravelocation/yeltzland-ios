@@ -15,15 +15,16 @@
  *
  */
 
+/**
+ This header is private to the Twitter Core SDK and not exposed for public SDK consumption
+ */
+
 #import <Foundation/Foundation.h>
 #import "TWTRScribeSerializable.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSUInteger, TWTRScribeFilterDetailsType) {
-    TWTRScribeFilterDetailsTypeDefault = 1,
-    TWTRScribeFilterDetailsTypeCompact = 2
-};
+typedef NS_ENUM(NSUInteger, TWTRScribeFilterDetailsType) { TWTRScribeFilterDetailsTypeDefault = 1, TWTRScribeFilterDetailsTypeCompact = 2 };
 
 @interface TWTRScribeFilterDetails : NSObject <TWTRScribeSerializable>
 

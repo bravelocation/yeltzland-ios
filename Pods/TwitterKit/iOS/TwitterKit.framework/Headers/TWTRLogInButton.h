@@ -16,7 +16,7 @@
  */
 
 #import <TwitterCore/TWTRSession.h>
-#import <TwitterKit/Twitter.h>
+#import <TwitterKit/TWTRTwitter.h>
 #import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
  *  Returns a new log in button which launches Twitter log in when tapped and
  *  calls `completion` when logging in succeeds or fails.
  *
- *  Internally, this button simply calls `-[Twitter logInWithCompletion:]`.
+ *  Internally, this button simply calls `-[TWTRTwitter logInWithCompletion:]`.
  *
  *  @param completion The completion to be called with a `TWTRSession` if successful,
  *         and a `NSError` if logging in failed or was canceled.

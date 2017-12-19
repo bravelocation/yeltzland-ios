@@ -15,6 +15,10 @@
  *
  */
 
+/**
+ This header is private to the Twitter Core SDK and not exposed for public SDK consumption
+ */
+
 FOUNDATION_EXTERN NSString *const TWTRAPIConstantsParamID;
 FOUNDATION_EXTERN NSString *const TWTRAPIConstantsFieldID;
 FOUNDATION_EXTERN NSString *const TWTRAPIConstantsFieldIDString;

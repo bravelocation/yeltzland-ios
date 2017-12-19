@@ -190,7 +190,7 @@
 		523C841D1CE47F06006F1865 /* HTFC2016LOGO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HTFC2016LOGO.png; sourceTree = "<group>"; };
 		523C841F1CE70806006F1865 /* ChromeActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChromeActivity.swift; sourceTree = "<group>"; };
 		524A01171EEC3A7D00862509 /* NextGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextGameController.swift; sourceTree = "<group>"; };
-		525719711FDE8AE1005F1D80 /* yeltzland TVOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "yeltzland TVOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		525719711FDE8AE1005F1D80 /* yeltzlandTVOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = yeltzlandTVOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		525719731FDE8AE2005F1D80 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		525719751FDE8AE2005F1D80 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		525719781FDE8AE2005F1D80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -447,7 +447,7 @@
 				526F54501D214705001EA8D8 /* Today.appex */,
 				52176BB71D4B6D5900B7EFAE /* watchkitapp.app */,
 				52176BC31D4B6D5900B7EFAE /* watchkitapp Extension.appex */,
-				525719711FDE8AE1005F1D80 /* yeltzland TVOS.app */,
+				525719711FDE8AE1005F1D80 /* yeltzlandTVOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -525,9 +525,9 @@
 			productReference = 52176BC31D4B6D5900B7EFAE /* watchkitapp Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
-		525719701FDE8AE1005F1D80 /* yeltzland TVOS */ = {
+		525719701FDE8AE1005F1D80 /* yeltzlandTVOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5257197F1FDE8AE2005F1D80 /* Build configuration list for PBXNativeTarget "yeltzland TVOS" */;
+			buildConfigurationList = 5257197F1FDE8AE2005F1D80 /* Build configuration list for PBXNativeTarget "yeltzlandTVOS" */;
 			buildPhases = (
 				5257196D1FDE8AE1005F1D80 /* Sources */,
 				5257196E1FDE8AE1005F1D80 /* Frameworks */,
@@ -538,9 +538,9 @@
 			);
 			dependencies = (
 			);
-			name = "yeltzland TVOS";
+			name = yeltzlandTVOS;
 			productName = "yeltzland TVOS";
-			productReference = 525719711FDE8AE1005F1D80 /* yeltzland TVOS.app */;
+			productReference = 525719711FDE8AE1005F1D80 /* yeltzlandTVOS.app */;
 			productType = "com.apple.product-type.application";
 		};
 		5257E8B91CDB953400157CED /* yeltzlandUITests */ = {
@@ -696,7 +696,7 @@
 				526F544F1D214705001EA8D8 /* Today */,
 				52176BB61D4B6D5900B7EFAE /* watchkitapp */,
 				52176BC21D4B6D5900B7EFAE /* watchkitapp Extension */,
-				525719701FDE8AE1005F1D80 /* yeltzland TVOS */,
+				525719701FDE8AE1005F1D80 /* yeltzlandTVOS */,
 			);
 		};
 /* End PBXProject section */
@@ -886,6 +886,8 @@
 				"${BUILT_PRODUCTS_DIR}/Font-Awesome-Swift/Font_Awesome_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework",
+				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -893,6 +895,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Font_Awesome_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TwitterKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1421,7 +1425,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5257197F1FDE8AE2005F1D80 /* Build configuration list for PBXNativeTarget "yeltzland TVOS" */ = {
+		5257197F1FDE8AE2005F1D80 /* Build configuration list for PBXNativeTarget "yeltzlandTVOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5257197D1FDE8AE2005F1D80 /* Debug */,

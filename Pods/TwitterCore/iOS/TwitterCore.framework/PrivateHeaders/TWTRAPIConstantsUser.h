@@ -15,6 +15,10 @@
  *
  */
 
+/**
+ This header is private to the Twitter Core SDK and not exposed for public SDK consumption
+ */
+
 FOUNDATION_EXTERN NSString *const TWTRAPIConstantsUserShowURL;
 
 FOUNDATION_EXTERN NSString *const TWTRAPIConstantsVerifyCredentialsURL;

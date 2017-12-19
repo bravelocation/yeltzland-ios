@@ -26,7 +26,7 @@
  */
 typedef void (^TWTRTwitterNetworkCompletion)(NSURLResponse *response, NSData *data, NSError *connectionError);
 
-@interface TwitterNetworking : NSObject
+@interface TWTRNetworking : NSObject
 
 @property (nonatomic, readonly) TWTRAuthConfig *authConfig;
 
@@ -37,7 +37,7 @@ typedef void (^TWTRTwitterNetworkCompletion)(NSURLResponse *response, NSData *da
 - (NSURLRequest *)URLRequestForPOSTMethodWithURLString:(NSString *)URLString parameters:(NSDictionary *)params;
 - (NSURLRequest *)URLRequestForDELETEMethodWithURLString:(NSString *)URLString parameters:(NSDictionary *)params;
 
-- (NSURLRequest *)URLRequestWithMethod:(NSString *)method URL:(NSString *)URLString parameters:(NSDictionary *)parameters;
+- (NSURLRequest *)URLRequestWithMethod:(NSString *)method URLString:(NSString *)URLString parameters:(NSDictionary *)parameters;
 
 - (void)sendAsynchronousRequest:(NSURLRequest *)request completion:(TWTRTwitterNetworkCompletion)completion;
 

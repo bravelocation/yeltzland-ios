@@ -15,6 +15,10 @@
  *
  */
 
+/**
+ This header is private to the Twitter Core SDK and not exposed for public SDK consumption
+ */
+
 #import <TwitterCore/TWTRSession.h>
 
 @interface TWTRSession ()

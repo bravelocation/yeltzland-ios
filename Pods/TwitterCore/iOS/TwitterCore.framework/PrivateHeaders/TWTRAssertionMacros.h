@@ -15,6 +15,10 @@
  *
  */
 
+/**
+ This header is private to the Twitter Core SDK and not exposed for public SDK consumption
+ */
+
 #import <TwitterCore/TWTRConstants.h>
 
 #ifdef __OBJC__

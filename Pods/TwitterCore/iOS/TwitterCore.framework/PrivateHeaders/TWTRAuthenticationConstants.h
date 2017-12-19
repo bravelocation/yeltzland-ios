@@ -15,6 +15,10 @@
  *
  */
 
+/**
+ This header is private to the Twitter Core SDK and not exposed for public SDK consumption
+ */
+
 #import <Foundation/Foundation.h>
 
 #pragma mark Twitter API
@@ -61,8 +65,4 @@ FOUNDATION_EXTERN NSString *const TWTRLoginButtonImageLocation;
 #pragma mark - Errors
 FOUNDATION_EXTERN NSString *const TWTRMissingAccessTokenMsg;
 
-typedef NS_ENUM(NSInteger, TWTRAuthType) {
-    TWTRAuthTypeApp = 1,
-    TWTRAuthTypeGuest = 2,
-    TWTRAuthTypeUser = 3
-};
+typedef NS_ENUM(NSInteger, TWTRAuthType) { TWTRAuthTypeApp = 1, TWTRAuthTypeGuest = 2, TWTRAuthTypeUser = 3 };

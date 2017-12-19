@@ -15,7 +15,11 @@
  *
  */
 
-#import "TwitterNetworking.h"
+/**
+ This header is private to the Twitter Core SDK and not exposed for public SDK consumption
+ */
+
+#import "TWTRNetworking.h"
 
 @class TWTRAuthConfig;
 
@@ -27,10 +31,10 @@
 
  If you have a logged in user, use TwitterUserAPIClient.
  */
-@interface TwitterAppAPIClient : TwitterNetworking
+@interface TWTRAppAPIClient : TWTRNetworking
 
 // The application only access token
-@property (nonatomic, readonly) NSString *accessToken;
+@property (nonatomic, copy, readonly) NSString *accessToken;
 
 /**
  Designated initializer. Returns nil if access token is missing.

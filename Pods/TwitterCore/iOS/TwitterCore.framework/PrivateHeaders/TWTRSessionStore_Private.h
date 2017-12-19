@@ -15,6 +15,10 @@
  *
  */
 
+/**
+ This header is private to the Twitter Core SDK and not exposed for public SDK consumption
+ */
+
 // TODO: this is temporary. clean up after refactoring scribe layer
 #import <TwitterCore/TWTRSessionStore.h>
 #import "TWTRScribeService.h"

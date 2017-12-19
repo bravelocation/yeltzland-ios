@@ -15,6 +15,10 @@
  *
  */
 
+/**
+ This header is private to the Twitter Kit SDK and not exposed for public SDK consumption
+ */
+
 #import <Foundation/Foundation.h>
 
 @interface TWTRDateFormatter : NSObject
