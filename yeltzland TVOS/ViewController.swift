@@ -36,7 +36,6 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         DispatchQueue.main.async(execute: { () -> Void in
             self.dataSource.loadLatestData()
             self.fixturesCollectionView.reloadData()
-            //self.moveToNextFixture()
         })
     }
     
@@ -51,6 +50,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         self.fixturesCollectionView.register(nib, forCellWithReuseIdentifier: "TVFixtureCollectionCell")
         
         self.view.backgroundColor = AppColors.TVBackground
+        self.fixturesCollectionView.backgroundColor = AppColors.TVBackground
         
         // Setup timer to refresh info
         _ = Timer.scheduledTimer(timeInterval: minutesBetweenUpdates * 60, target: self, selector: #selector(self.fetchLatestData), userInfo: nil, repeats: true)
@@ -58,8 +58,6 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 
     override func viewDidAppear(_ animated: Bool) {
         DispatchQueue.main.async() {
-            //self.setNeedsFocusUpdate()
-            //self.updateFocusIfNeeded()
             self.moveToNextFixture()
         }
     }
@@ -75,7 +73,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 300.0, height: 300.0)
+        return CGSize(width: 400.0, height: 300.0)
     }
     
     func collectionView(_ collectionView: UICollectionView, canFocusItemAt indexPath: IndexPath) -> Bool {

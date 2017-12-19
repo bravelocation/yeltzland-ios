@@ -31,9 +31,21 @@ class TVDataSource: NSObject, UICollectionViewDataSource {
             if (currentGameAvailable && fixture.teamScore == nil && fixture.opponentScore == nil && self.gameSettings.currentGameTime == fixture.fixtureDate) {
                 // Is it an in-progress game
                 self.allGames.append(TVDataItem(opponent: fixture.displayOpponent, matchDate: fixture.fullDisplayKickoffTime, score: self.gameSettings.currentScore, inProgress: true))
-            } else {
+            } else if (fixture.score.count == 0) {
                 self.allGames.append(TVDataItem(opponent: fixture.displayOpponent, matchDate: fixture.fullDisplayKickoffTime, score: fixture.score, inProgress: false))
-           }
+            } else {
+                var resultColor:UIColor = AppColors.TVMatchText
+                
+                if (fixture.teamScore! > fixture.opponentScore!) {
+                    resultColor = AppColors.TVFixtureWin
+                } else if (fixture.teamScore! < fixture.opponentScore!) {
+                    resultColor = AppColors.TVFixtureLose
+                } else {
+                    resultColor = AppColors.TVFixtureDraw
+                }
+                
+                self.allGames.append(TVDataItem(opponent: fixture.displayOpponent, matchDate: fixture.fullDisplayKickoffTime, score: fixture.score, inProgress: false, scoreColor:resultColor))
+            }
         }
     }
     
@@ -46,7 +58,7 @@ class TVDataSource: NSObject, UICollectionViewDataSource {
  
         let dataItem = self.allGames[indexPath.row]
         cell.loadData(dataItem: dataItem)
-        
+                
         return cell;
     }
     
