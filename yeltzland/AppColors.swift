@@ -97,13 +97,12 @@ class AppColors {
     
     static var TVBackground = UIColor.black
     static var TVTitleText: UIColor = LightBlueColor
+    static var TVSelectedBorder: UIColor = UIColor.white
     
     static var TVFixtureBackground: UIColor = LightBlueColor
     static var TVFixtureText: UIColor = DarkBlueColor
-    static var TVFixtureBorderColor = UIColor.white
     static var TVResultBackground: UIColor = DarkBlueColor
     static var TVResultText: UIColor = UIColor.white
-    static var TVResultBorderColor = DarkBlueColor
     static var TVMatchShadow: UIColor = UIColor.white
 
     static var TVFixtureWin = UIColor(red: 63.0/255.0, green: 255.0/255.0, blue: 63.0/255.0, alpha: 1.0)

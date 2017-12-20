@@ -37,7 +37,7 @@ class TVFixtureCollectionCell: UICollectionViewCell {
             self.opponentLabel.textColor = AppColors.TVFixtureText
             self.dateLabel.textColor = AppColors.TVFixtureText
             self.homeAwayLabel.textColor = AppColors.TVFixtureText
-            self.contentView.layer.borderColor = AppColors.TVFixtureBorderColor.cgColor
+            //self.contentView.layer.borderColor = AppColors.TVFixtureBorderColor.cgColor
             self.calendarImage.tintColor = AppColors.TVFixtureText
         } else {
             self.contentView.backgroundColor = AppColors.TVResultBackground
@@ -45,10 +45,9 @@ class TVFixtureCollectionCell: UICollectionViewCell {
             self.dateLabel.textColor = AppColors.TVResultText
             self.homeAwayLabel.textColor = AppColors.TVResultText
             self.scoreLabel.textColor = dataItem.scoreColor
-            self.contentView.layer.borderColor = AppColors.TVResultBorderColor.cgColor
             self.calendarImage.tintColor = AppColors.TVResultText
         }
         
-        self.contentView.layer.borderWidth = 1.0
+        //self.contentView.layer.borderWidth = 1.0
     }
 }

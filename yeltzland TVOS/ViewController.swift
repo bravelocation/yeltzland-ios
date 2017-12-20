@@ -119,6 +119,18 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         if (context.nextFocusedIndexPath != nil && !collectionView.isScrollEnabled) {
             collectionView.scrollToItem(at: context.nextFocusedIndexPath!, at: UICollectionViewScrollPosition.centeredHorizontally, animated: true)
         }
+        
+        // Set the border on selected item, and unset on last item
+        if let previousIndexPath = context.previouslyFocusedIndexPath,
+            let cell = collectionView.cellForItem(at: previousIndexPath) {
+            cell.contentView.layer.borderWidth = 0.0
+        }
+        
+        if let indexPath = context.nextFocusedIndexPath,
+            let cell = collectionView.cellForItem(at: indexPath) {
+            cell.contentView.layer.borderWidth = 4.0
+            cell.contentView.layer.borderColor = AppColors.TVSelectedBorder.cgColor
+        }
     }
     
     override weak var preferredFocusedView: UIView? {
