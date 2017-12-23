@@ -32,7 +32,7 @@ class TVFixtureCollectionCell: UICollectionViewCell {
         
         self.calendarImage.image = self.calendarImage.image!.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
         
-        if (dataItem.score.count == 0) {
+        if (dataItem.inProgress || dataItem.score.count == 0) {
             self.contentView.backgroundColor = AppColors.TVFixtureBackground
             self.opponentLabel.textColor = AppColors.TVFixtureText
             self.dateLabel.textColor = AppColors.TVFixtureText
@@ -48,6 +48,6 @@ class TVFixtureCollectionCell: UICollectionViewCell {
             self.calendarImage.tintColor = AppColors.TVResultText
         }
         
-        //self.contentView.layer.borderWidth = 1.0
+        self.contentView.layer.borderWidth = 0.0
     }
 }

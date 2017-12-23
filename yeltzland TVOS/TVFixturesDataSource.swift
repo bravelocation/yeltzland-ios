@@ -21,13 +21,14 @@ class TVFixturesDataSource: NSObject, UICollectionViewDataSource {
     
     // Fetch the latest data
     func loadLatestData() {
-        let currentGameAvailable = self.gameSettings.gameScoreForCurrentGame;
-
+        let currentGameAvailable = self.gameSettings.gameScoreForCurrentGame
+        let nextGame = FixtureManager.instance.getNextGame()
+        
         // Add next matches
         self.allGames.removeAll()
         
         for fixture in FixtureManager.instance.GetAllMatches() {
-            if (currentGameAvailable && fixture.teamScore == nil && fixture.opponentScore == nil && self.gameSettings.currentGameTime == fixture.fixtureDate) {
+            if (currentGameAvailable && nextGame != nil && fixture === nextGame!) {
                 // Is it an in-progress game
                 self.allGames.append(TVFixtureData(opponent: fixture.displayOpponent,
                                                 matchDate: fixture.fullDisplayKickoffTime,
