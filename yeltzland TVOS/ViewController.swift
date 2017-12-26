@@ -139,7 +139,10 @@ class ViewController: UIViewController, UICollectionViewDelegate {
     
     func moveToNextFixture() {
         let nextFixturePath = IndexPath(row: self.fixturesDataSource.indexOfFirstFixture(), section: 0)
-        self.fixturesCollectionView.scrollToItem(at: nextFixturePath, at: UICollectionViewScrollPosition.centeredHorizontally, animated: true)
+        
+        if (nextFixturePath.row > 0) {
+            self.fixturesCollectionView.scrollToItem(at: nextFixturePath, at: UICollectionViewScrollPosition.centeredHorizontally, animated: true)
+        }
     }
 }
 
