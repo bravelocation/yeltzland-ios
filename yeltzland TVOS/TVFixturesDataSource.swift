@@ -37,7 +37,7 @@ class TVFixturesDataSource: NSObject, UICollectionViewDataSource {
                                                 atHome: fixture.home))
             } else if (fixture.score.count == 0) {
                 self.allGames.append(TVFixtureData(opponent: fixture.displayOpponent,
-                                                matchDate: fixture.fullDisplayKickoffTime,
+                                                matchDate: fixture.tvFixtureDisplayKickoffTime,
                                                 score: fixture.score,
                                                 inProgress: false,
                                                 atHome: fixture.home))

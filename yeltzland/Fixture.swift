@@ -123,6 +123,16 @@ open class Fixture {
             }
         }
     }
+    
+    var tvFixtureDisplayKickoffTime : String {
+        get {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "HHmm"
+                
+            return String.init(format: "%@ at %@", self.fullKickoffTime, formatter.string(from: self.fixtureDate))
+        }
+    }
+    
     var fixtureMonth: String {
         get {
             let formatter = DateFormatter()
