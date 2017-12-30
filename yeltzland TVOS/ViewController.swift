@@ -14,6 +14,8 @@ class ViewController: UIViewController, UICollectionViewDelegate {
     @IBOutlet weak var fixturesCollectionView: UICollectionView!
     @IBOutlet weak var tweetsCollectionView: UICollectionView!
     
+    var dataTimer: Timer? = nil
+    
     let fixturesDataSource:TVFixturesDataSource = TVFixturesDataSource()
     let tweetsDataSource:TwitterDataSource = TwitterDataSource()
 
@@ -75,9 +77,8 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         self.tweetsCollectionView.register(UINib(nibName: "TVTwitterCollectionCell", bundle: nil),
                                            forCellWithReuseIdentifier: "TVTwitterCollectionCell")
 
-        
         // Setup timer to refresh info
-        _ = Timer.scheduledTimer(timeInterval: minutesBetweenUpdates * 60, target: self, selector: #selector(self.fetchLatestData), userInfo: nil, repeats: true)
+        self.dataTimer = Timer.scheduledTimer(timeInterval: minutesBetweenUpdates * 60, target: self, selector: #selector(self.fetchLatestData), userInfo: nil, repeats: true)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -87,7 +88,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
     }
     
     @objc func fetchLatestData() {
-        print("Fetching latest data ...")
+        print("*** Fetching latest data ...")
 
         // Update the fixture and game score caches
         FixtureManager.instance.getLatestFixtures()
