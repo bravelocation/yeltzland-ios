@@ -128,11 +128,29 @@ open class Fixture {
         get {
             let formatter = DateFormatter()
             formatter.dateFormat = "HHmm"
-                
+            
             return String.init(format: "%@ at %@", self.fullKickoffTime, formatter.string(from: self.fixtureDate))
         }
     }
     
+    var tvResultDisplayKickoffTime : String {
+        get {
+            // Is the game today?
+            let now = Date()
+            let currentDayNumber = FixtureManager.instance.dayNumber(now)
+            let fixtureDayNumber = FixtureManager.instance.dayNumber(self.fixtureDate)
+            
+            if (currentDayNumber == fixtureDayNumber) {
+                let formatter = DateFormatter()
+                formatter.dateFormat = "HHmm"
+                
+                return String.init(format: "Today at %@", formatter.string(from: self.fixtureDate))
+            } else {
+                return self.fullKickoffTime
+            }
+        }
+    }
+
     var fixtureMonth: String {
         get {
             let formatter = DateFormatter()

@@ -31,7 +31,7 @@ class TVFixturesDataSource: NSObject, UICollectionViewDataSource {
             if (currentGameAvailable && nextGame != nil && fixture === nextGame!) {
                 // Is it an in-progress game
                 self.allGames.append(TVFixtureData(opponent: fixture.displayOpponent,
-                                                matchDate: fixture.fullDisplayKickoffTime,
+                                                matchDate: fixture.tvResultDisplayKickoffTime,
                                                 score: self.gameSettings.currentScore,
                                                 inProgress: true,
                                                 atHome: fixture.home))
@@ -53,7 +53,7 @@ class TVFixturesDataSource: NSObject, UICollectionViewDataSource {
                 }
                 
                 self.allGames.append(TVFixtureData(opponent: fixture.displayOpponent,
-                                                matchDate: fixture.fullDisplayKickoffTime,
+                                                matchDate: fixture.tvResultDisplayKickoffTime,
                                                 score: fixture.score,
                                                 inProgress: false,
                                                 atHome: fixture.home,
