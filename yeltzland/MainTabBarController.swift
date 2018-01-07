@@ -49,7 +49,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         
         // Forum
         let forumViewController = WebPageViewController()
-        forumViewController.homeUrl = URL(string:"http://www.yeltz.co.uk/0/")
+        forumViewController.homeUrl = URL(string:"https://www.yeltz.co.uk")
         forumViewController.pageTitle = "Yeltz Forum"
         let forumNavigationController = UINavigationController(rootViewController:forumViewController)
         

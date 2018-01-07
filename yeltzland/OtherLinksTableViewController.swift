@@ -214,7 +214,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
                 url = URL(string: "http://www.evostikleague.co.uk")
                 break
             case 2:
-                url = URL(string: "http://yeltz.co.uk/fantasyisland")
+                url = URL(string: "https://fantasyisland.yeltz.co.uk")
                 break
             default:
                 break
