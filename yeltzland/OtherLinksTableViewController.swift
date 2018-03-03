@@ -216,6 +216,9 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             case 2:
                 url = URL(string: "https://fantasyisland.yeltz.co.uk")
                 break
+            case 3:
+                url = URL(string: "https://www.youtube.com/watch?v=dQw4w9WgXcQ")
+                break
             default:
                 break
             }
@@ -263,10 +266,6 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             }
             
             self.present(svc, animated: true, completion: nil)
-        } else if ((indexPath as NSIndexPath).section == 1 && (indexPath as NSIndexPath).row == 3) {
-            let alert = UIAlertController(title: "Really?", message: "Computer says no", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
         }
     }
     
