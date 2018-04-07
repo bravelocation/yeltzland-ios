@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.4</string>
+	<string>2.5</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -67,6 +67,8 @@
 	<string>We want to show where you are on the map</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>We want to show where you are on the map</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>The app would like to save photos to your library</string>
 	<key>NSUserActivityTypes</key>
 	<array>
 		<string>com.bravelocation.yeltzland.currenttab</string>
@@ -131,7 +133,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>The app would like to save photos to your library</string>
 </dict>
 </plist>
