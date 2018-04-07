@@ -87,6 +87,9 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         self.webView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.webView.navigationDelegate = self
         
+        // Make sure web view uses default data store
+        self.webView.configuration.websiteDataStore = WKWebsiteDataStore.default()
+        
         self.progressBar.frame = CGRect(x: 0, y: topPosition, width: view.frame.width, height: progressBarHeight)
         self.progressBar.alpha = 0
         self.progressBar.tintColor = AppColors.ProgressBar
