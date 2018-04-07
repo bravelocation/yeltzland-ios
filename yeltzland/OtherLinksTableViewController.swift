@@ -44,7 +44,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         } else if (section == 4) {
             return 2
         } else if (section == 5) {
-            return 1
+            return 2
         }
         
         return 0
@@ -160,9 +160,12 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         } else if ((indexPath as NSIndexPath).section == 5) {
             switch ((indexPath as NSIndexPath).row) {
             case 0:
+                cell!.textLabel?.text = "Privacy Policy"
+                cell!.imageView?.image = nil
+                break
+            case 1:
                 cell!.textLabel?.text = "More Brave Location Apps"
-                let cellImage = UIImage(icon: FAType.FAMapMarker, size: CGSize(width: 100, height: 100), textColor: AppColors.BraveLocation, backgroundColor: UIColor.clear)
-                cell!.imageView?.image = cellImage
+                cell!.imageView?.image = nil
                 
                 let infoDictionary = Bundle.main.infoDictionary!
                 let version = infoDictionary["CFBundleShortVersionString"]
@@ -231,7 +234,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
                 url = URL(string: "http://www.yeltzarchives.com")
                 break
             case 2:
-                    url = URL(string: "http://www.yeltzland.net/news.html")
+                url = URL(string: "http://www.yeltzland.net/news.html")
                 break
             default:
                 break
@@ -250,6 +253,9 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         } else if ((indexPath as NSIndexPath).section == 5) {
             switch ((indexPath as NSIndexPath).row) {
             case 0:
+                url = URL(string: "https://bravelocation.com/privacy/yeltzland")
+                break
+            case 1:
                 url = URL(string: "https://bravelocation.com/apps")
                 break
             default:
