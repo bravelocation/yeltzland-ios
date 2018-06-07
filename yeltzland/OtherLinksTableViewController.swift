@@ -42,7 +42,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         } else if (section == 3) {
             return 1
         } else if (section == 4) {
-            return 2
+            return 3
         } else if (section == 5) {
             return 2
         }
@@ -150,9 +150,14 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
                 cell!.imageView?.image = cellImage
                 break
             case 1:
-                cell!.textLabel?.text = "Add Fixture List to Calendar"
-                let cellImage = UIImage(icon: FAType.FACalendar, size: CGSize(width: 100, height: 100), textColor: AppColors.Fixtures, backgroundColor: UIColor.clear)
+                cell!.textLabel?.text = "Yeltzland on Google Assistant"
+                let cellImage = UIImage(icon: FAType.FAGoogle, size: CGSize(width: 100, height: 100), textColor: AppColors.Fixtures, backgroundColor: UIColor.clear)
                 cell!.imageView?.image = cellImage
+                break
+            case 2:
+                    cell!.textLabel?.text = "Add Fixture List to Calendar"
+                    let cellImage = UIImage(icon: FAType.FACalendar, size: CGSize(width: 100, height: 100), textColor: AppColors.Fixtures, backgroundColor: UIColor.clear)
+                    cell!.imageView?.image = cellImage
                 break
             default:
                 break
@@ -245,6 +250,9 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
                 url = URL(string: "https://www.amazon.co.uk/Yeltzland-stuff-about-Halesowen-Town/dp/B01MTJOHBY/")
                 break
             case 1:
+                url = URL(string: "https://assistant.google.com/services/a/uid/000000a862d84885?hl=en-GB")
+                break
+            case 2:
                 url = URL(string: "https://yeltzland.net/calendar-instructions")
                 break
             default:
