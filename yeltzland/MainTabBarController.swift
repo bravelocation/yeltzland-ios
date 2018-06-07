@@ -132,11 +132,36 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         // Set activity for handoff
         let activity = NSUserActivity(activityType: "com.bravelocation.yeltzland.currenttab")
         activity.delegate = self
-        activity.isEligibleForHandoff = true
-        activity.needsSave = true
         
+        // Eligible for handoff and search
+        activity.isEligibleForHandoff = true
+        activity.isEligibleForSearch = true
+        
+        // Set the title
+        self.setActivitySearchTitle(activity)
+        activity.needsSave = true
+
         self.userActivity = activity;
         self.userActivity?.becomeCurrent()
+    }
+    
+    func setActivitySearchTitle(_ activity: NSUserActivity) {
+        let currentIndex = GameSettings.instance.lastSelectedTab
+        
+        switch currentIndex {
+        case 0:
+            activity.title = "Read Yeltz Forum"
+            break
+        case 1:
+            activity.title = "Read HTFC Offical Site"
+            break
+        case 2:
+            activity.title = "Read HTFC Twitter Feed"
+            break
+        default:
+            activity.title = "Open Yeltzland"
+            break
+        }
     }
     
     override func restoreUserActivityState(_ activity: NSUserActivity) {
