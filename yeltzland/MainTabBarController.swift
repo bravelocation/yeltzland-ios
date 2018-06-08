@@ -12,6 +12,7 @@ import Font_Awesome_Swift
 class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUserActivityDelegate {
     
     let defaults = UserDefaults.standard
+    let otherTabIndex = 4
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
@@ -94,7 +95,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         let otherViewController = OtherLinksTableViewController()
         let otherNavigationController = UINavigationController(rootViewController:otherViewController)
         
-        let otherIcon = UITabBarItem(tabBarSystemItem: .more, tag: 4)
+        let otherIcon = UITabBarItem(tabBarSystemItem: .more, tag: self.otherTabIndex)
         otherIcon.setTitleTextAttributes([NSAttributedStringKey.font: UIFont(name: AppColors.AppFontName, size: AppColors.TabBarTextSize)!], for: UIControlState())
         otherNavigationController.tabBarItem = otherIcon
 
@@ -133,9 +134,8 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         let activity = NSUserActivity(activityType: "com.bravelocation.yeltzland.currenttab")
         activity.delegate = self
         
-        // Eligible for handoff and search
+        // Eligible for handoff
         activity.isEligibleForHandoff = true
-        activity.isEligibleForSearch = true
         
         // Set the title
         self.setActivitySearchTitle(activity)
@@ -182,6 +182,17 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
                             }
                         }
                     }
+                }
+            }
+        } else if (activity.activityType == "com.bravelocation.yeltzland.fixtures") {
+            print("Detected fixture list activity ...")
+            // Set selected tab as More tab
+            self.selectedIndex = self.otherTabIndex
+            GameSettings.instance.lastSelectedTab = self.otherTabIndex
+            
+            if let currentController = self.viewControllers![self.selectedIndex] as? UINavigationController {
+                if let selectedController = currentController.viewControllers[0] as? OtherLinksTableViewController {
+                    selectedController.openFixtures()
                 }
             }
         }

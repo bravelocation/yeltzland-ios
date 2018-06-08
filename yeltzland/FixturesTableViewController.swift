@@ -116,6 +116,8 @@ class FixturesTableViewController: UITableViewController {
         self.reloadButton.tintColor = AppColors.NavBarTintColor
         self.navigationController?.navigationBar.tintColor = AppColors.NavBarTintColor
         self.navigationItem.rightBarButtonItems = [self.reloadButton]
+        
+        self.setupHandoff()
     }
 
     // MARK: - Table view data source
@@ -225,5 +227,21 @@ class FixturesTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.0
+    }
+    
+    // - MARK Handoff
+    @objc func setupHandoff() {
+        // Set activity for handoff
+        let activity = NSUserActivity(activityType: "com.bravelocation.yeltzland.fixtures")
+        
+        // Eligible for handoff
+        activity.isEligibleForHandoff = true
+        
+        // Set the title
+        self.title = "Halesowen Town Fixture List"
+        activity.needsSave = true
+        
+        self.userActivity = activity;
+        self.userActivity?.becomeCurrent()
     }
 }

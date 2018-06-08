@@ -72,6 +72,7 @@
 	<key>NSUserActivityTypes</key>
 	<array>
 		<string>com.bravelocation.yeltzland.currenttab</string>
+		<string>com.bravelocation.yeltzland.fixtures</string>
 	</array>
 	<key>UIApplicationShortcutItems</key>
 	<array>

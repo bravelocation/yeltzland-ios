@@ -311,6 +311,14 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         header.textLabel!.font = UIFont(name: AppColors.AppFontName, size:AppColors.OtherSectionTextSize)!
     }
     
+    public func openFixtures() {
+        print("Opening Fixtures ...")
+        
+        let indexPath = IndexPath(row: 0, section: 0);
+        self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableViewScrollPosition.top)
+        self.tableView(self.tableView, didSelectRowAt: indexPath)
+    }
+    
     // MARK: - Event handler for switch
     @objc func notificationsSwitchChanged(_ sender: AnyObject) {
         let switchControl = sender as! UISwitch
