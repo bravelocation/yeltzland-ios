@@ -60,6 +60,7 @@ class AppColors {
     static var FixtureScoreOrDateTextSize = footnoteDescriptor.pointSize
     
     static var Fixtures: UIColor = YeltzBlueColor
+    static var ClubShop: UIColor = YeltzBlueColor
     static var Evostick: UIColor = EvostickRedColor
     static var Fantasy: UIColor = YeltzBlueColor
     static var Stour: UIColor = StourbridgeRedColor

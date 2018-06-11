@@ -36,7 +36,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         if (section == 0) {
             return 4
         } else if (section == 1) {
-            return 4
+            return 5
         } else if (section == 2) {
             return 3
         } else if (section == 3) {
@@ -115,6 +115,11 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             case 3:
                 cell!.textLabel?.text = "Stourbridge Town FC"
                 let cellImage = UIImage(icon: FAType.FAThumbsODown, size: CGSize(width: 100, height: 100), textColor: AppColors.Stour, backgroundColor: UIColor.clear)
+                cell!.imageView?.image = cellImage
+                break
+            case 4:
+                cell!.textLabel?.text = "Club Shop"
+                let cellImage = UIImage(icon: FAType.FAShoppingCart, size: CGSize(width: 100, height: 100), textColor: AppColors.ClubShop, backgroundColor: UIColor.clear)
                 cell!.imageView?.image = cellImage
                 break
             default:
@@ -235,6 +240,9 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
                 break
             case 3:
                 url = URL(string: "https://www.youtube.com/watch?v=dQw4w9WgXcQ")
+                break
+            case 4:
+                url = URL(string: "https://htfc.ace-online.co.uk/catalogue")
                 break
             default:
                 break
