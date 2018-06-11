@@ -73,6 +73,7 @@
 	<array>
 		<string>com.bravelocation.yeltzland.currenttab</string>
 		<string>com.bravelocation.yeltzland.fixtures</string>
+		<string>com.bravelocation.yeltzland.latestscore</string>
 	</array>
 	<key>UIApplicationShortcutItems</key>
 	<array>

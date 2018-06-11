@@ -238,7 +238,7 @@ class FixturesTableViewController: UITableViewController {
         activity.isEligibleForHandoff = true
         
         // Set the title
-        self.title = "Halesowen Town Fixture List"
+        self.title = "Yeltz Fixture List"
         activity.needsSave = true
         
         self.userActivity = activity;

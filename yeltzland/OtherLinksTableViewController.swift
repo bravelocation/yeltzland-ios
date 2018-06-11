@@ -34,7 +34,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if (section == 0) {
-            return 3
+            return 4
         } else if (section == 1) {
             return 4
         } else if (section == 2) {
@@ -78,10 +78,15 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
                 cell!.imageView?.image = cellImage
                 break
             case 1:
+                cell!.textLabel?.text = "Latest Score"
+                let cellImage = UIImage(icon: FAType.FAClockO, size: CGSize(width: 100, height: 100), textColor: AppColors.Fixtures, backgroundColor: UIColor.clear)
+                cell!.imageView?.image = cellImage
+                break
+            case 2:
                 cell!.textLabel?.text = "Where's the Ground?"
                 let cellImage = UIImage(icon: FAType.FAMapMarker, size: CGSize(width: 100, height: 100), textColor: AppColors.Fixtures, backgroundColor: UIColor.clear)
                 cell!.imageView?.image = cellImage
-            case 2:
+            case 3:
                 cell!.textLabel?.text = "League Table"
                 let cellImage = UIImage(icon: FAType.FATable, size: CGSize(width: 100, height: 100), textColor: AppColors.Fixtures, backgroundColor: UIColor.clear)
                 cell!.imageView?.image = cellImage
@@ -201,6 +206,10 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
                 self.navigationController!.pushViewController(fixtures, animated: true)
                 return;
             } else if ((indexPath as NSIndexPath).row == 1) {
+                let latestScore = LatestScoreViewController()
+                self.navigationController!.pushViewController(latestScore, animated: true)
+                return;
+            } else if ((indexPath as NSIndexPath).row == 2) {
                 let locations = LocationsViewController()
                 self.navigationController!.pushViewController(locations, animated: true)
                 return;
@@ -319,6 +328,14 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         self.tableView(self.tableView, didSelectRowAt: indexPath)
     }
     
+    public func openLatestScore() {
+        print("Opening Latest Score ...")
+        
+        let indexPath = IndexPath(row: 1, section: 0);
+        self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableViewScrollPosition.top)
+        self.tableView(self.tableView, didSelectRowAt: indexPath)
+    }
+
     // MARK: - Event handler for switch
     @objc func notificationsSwitchChanged(_ sender: AnyObject) {
         let switchControl = sender as! UISwitch

@@ -153,7 +153,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
             activity.title = "Read Yeltz Forum"
             break
         case 1:
-            activity.title = "Read HTFC Offical Site"
+            activity.title = "Read HTFC Official Site"
             break
         case 2:
             activity.title = "Read HTFC Twitter Feed"
@@ -193,6 +193,17 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
             if let currentController = self.viewControllers![self.selectedIndex] as? UINavigationController {
                 if let selectedController = currentController.viewControllers[0] as? OtherLinksTableViewController {
                     selectedController.openFixtures()
+                }
+            }
+        } else if (activity.activityType == "com.bravelocation.yeltzland.latestscore") {
+            print("Detected Latest score activity ...")
+            // Set selected tab as More tab
+            self.selectedIndex = self.otherTabIndex
+            GameSettings.instance.lastSelectedTab = self.otherTabIndex
+            
+            if let currentController = self.viewControllers![self.selectedIndex] as? UINavigationController {
+                if let selectedController = currentController.viewControllers[0] as? OtherLinksTableViewController {
+                    selectedController.openLatestScore()
                 }
             }
         }

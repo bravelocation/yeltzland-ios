@@ -33,6 +33,8 @@
 		52236AE81D17E4D3004903AB /* FixtureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236AE71D17E4D3004903AB /* FixtureManager.swift */; };
 		52236AEB1D17ECB4004903AB /* matches.json in Resources */ = {isa = PBXBuildFile; fileRef = 52236AEA1D17ECB4004903AB /* matches.json */; };
 		52236AEE1D1803C8004903AB /* FixturesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236AED1D1803C8004903AB /* FixturesTableViewController.swift */; };
+		5236ECDB20CE99B80067AFFA /* LatestScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5236ECD920CE99B80067AFFA /* LatestScoreViewController.swift */; };
+		5236ECDC20CE99B80067AFFA /* LatestScoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5236ECDA20CE99B80067AFFA /* LatestScoreViewController.xib */; };
 		523C841E1CE47F06006F1865 /* HTFC2016LOGO.png in Resources */ = {isa = PBXBuildFile; fileRef = 523C841D1CE47F06006F1865 /* HTFC2016LOGO.png */; };
 		523C84201CE70806006F1865 /* ChromeActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523C841F1CE70806006F1865 /* ChromeActivity.swift */; };
 		524A01181EEC3A7D00862509 /* NextGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A01171EEC3A7D00862509 /* NextGameController.swift */; };
@@ -191,6 +193,8 @@
 		52236AE71D17E4D3004903AB /* FixtureManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixtureManager.swift; sourceTree = "<group>"; };
 		52236AEA1D17ECB4004903AB /* matches.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = matches.json; sourceTree = "<group>"; };
 		52236AED1D1803C8004903AB /* FixturesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixturesTableViewController.swift; sourceTree = "<group>"; };
+		5236ECD920CE99B80067AFFA /* LatestScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestScoreViewController.swift; sourceTree = "<group>"; };
+		5236ECDA20CE99B80067AFFA /* LatestScoreViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LatestScoreViewController.xib; sourceTree = "<group>"; };
 		523C841D1CE47F06006F1865 /* HTFC2016LOGO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HTFC2016LOGO.png; sourceTree = "<group>"; };
 		523C841F1CE70806006F1865 /* ChromeActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChromeActivity.swift; sourceTree = "<group>"; };
 		524A01171EEC3A7D00862509 /* NextGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextGameController.swift; sourceTree = "<group>"; };
@@ -415,6 +419,8 @@
 				5211F72C1CDB1EE50031496D /* OtherLinksTableViewController.swift */,
 				5211F7291CDA53D70031496D /* TwitterUserTimelineViewController.swift */,
 				52E3DF781CD9FA78009F18BD /* WebPageViewController.swift */,
+				5236ECD920CE99B80067AFFA /* LatestScoreViewController.swift */,
+				5236ECDA20CE99B80067AFFA /* LatestScoreViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -778,6 +784,7 @@
 				52176BAE1D4A1AF600B7EFAE /* gamescore.json in Resources */,
 				528D745A1CF2F4A400263685 /* DefaultPreferences.plist in Resources */,
 				523C841E1CE47F06006F1865 /* HTFC2016LOGO.png in Resources */,
+				5236ECDC20CE99B80067AFFA /* LatestScoreViewController.xib in Resources */,
 				52DC9EB71FC9C30E00AE02F6 /* GoogleService-Info.plist in Resources */,
 				52A4596E1D89666E00822D8C /* gallery.ckcomplication in Resources */,
 				52E3DF7E1CD9FA78009F18BD /* Assets.xcassets in Resources */,
@@ -1007,6 +1014,7 @@
 				527DAF231D2D0F550092BB8F /* LocationsViewController.swift in Sources */,
 				5259F9041CDA1292009C2AA8 /* MainTabBarController.swift in Sources */,
 				527DAF1B1D2BA9BA0092BB8F /* SafariActivity.swift in Sources */,
+				5236ECDB20CE99B80067AFFA /* LatestScoreViewController.swift in Sources */,
 				52236AEE1D1803C8004903AB /* FixturesTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
