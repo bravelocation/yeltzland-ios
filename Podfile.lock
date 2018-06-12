@@ -36,6 +36,9 @@ PODS:
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
   - Protobuf (3.6.0)
+  - SDWebImage (4.4.1):
+    - SDWebImage/Core (= 4.4.1)
+  - SDWebImage/Core (4.4.1)
   - TwitterCore (3.1.0)
   - TwitterKit (3.3.0):
     - TwitterCore (>= 3.1.0)
@@ -46,6 +49,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Messaging
   - Font-Awesome-Swift
+  - SDWebImage
   - TwitterCore
   - TwitterKit
 
@@ -62,6 +66,7 @@ SPEC REPOS:
     - GoogleToolboxForMac
     - nanopb
     - Protobuf
+    - SDWebImage
     - TwitterCore
     - TwitterKit
 
@@ -77,9 +82,10 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Protobuf: 0fc0ad8bec688b2a3017a139953e01374fedbd5f
+  SDWebImage: 47e9b5b925cbce75946c23f0c42dd19464189af4
   TwitterCore: 644d59e75abccb26cf0a9050d2c4dea0e5412241
   TwitterKit: a2e60ddcedbf54091eac6f27685ca7a87681e1d7
 
-PODFILE CHECKSUM: a455d3c9df3542f131ce9ecd9b06d77f4a794502
+PODFILE CHECKSUM: 6268eb6d71e5560b46e57e5d678fb8bf67fbf6e8
 
 COCOAPODS: 1.5.3

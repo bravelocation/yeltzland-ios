@@ -14,7 +14,8 @@ class LatestScoreViewController: UIViewController {
     @IBOutlet weak var homeOrAwayLabel: UILabel!
     @IBOutlet weak var opponentLabel: UILabel!
     @IBOutlet weak var latestScoreLabel: UILabel!
-
+    @IBOutlet weak var opponentLogoImageView: UIImageView!
+    
     var reloadButton: UIBarButtonItem!
     let gameSettings = GameSettings.instance
     
@@ -126,6 +127,7 @@ class LatestScoreViewController: UIViewController {
         self.homeOrAwayLabel.text = homeOrAway
         self.latestScoreLabel.text = score
         self.latestScoreLabel.textColor = resultColor
+        TeamImageManager.instance.loadTeamImage(teamName: opponentName, view: self.opponentLogoImageView)
     }
     
     // - MARK Handoff
@@ -143,5 +145,4 @@ class LatestScoreViewController: UIViewController {
         self.userActivity = activity;
         self.userActivity?.becomeCurrent()
     }
-
 }

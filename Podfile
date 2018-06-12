@@ -11,4 +11,5 @@ target 'yeltzland' do
   pod 'TwitterCore'
   pod 'Firebase/Core'
   pod 'Firebase/Messaging'
+  pod 'SDWebImage'
 end
