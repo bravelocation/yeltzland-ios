@@ -20,8 +20,9 @@ open class TeamImageManager {
     
     open func loadTeamImage(teamName:String, view:UIImageView) {
         let imageUrl = String(format: "https://bravelocation.com/teamlogos/%@.png", self.makeTeamFileName(teamName))
+        print("Loading team image: \(imageUrl)")
         
-        view.sd_setImage(with: URL(string:imageUrl), completed: nil)
+        view.sd_setImage(with: URL(string:imageUrl), placeholderImage:UIImage(imageLiteralResourceName: "blank_team"), completed: nil)
     }
     
     func makeTeamFileName(_ teamName:String) -> String {

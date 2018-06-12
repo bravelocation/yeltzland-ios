@@ -192,6 +192,10 @@ class FixturesTableViewController: UITableViewController {
             cell.detailTextLabel?.text = currentFixture!.score
         }
         
+        if (currentFixture != nil) {
+            TeamImageManager.instance.loadTeamImage(teamName: currentFixture!.displayOpponent, view: cell.imageView!)
+        }
+        
         return cell
     }
     
