@@ -13,7 +13,15 @@
             <objects>
                 <controller id="928-1F-cke" customClass="NextGameController" customModule="watchkitapp_Extension">
                     <items>
-                        <imageView width="32" height="32" alignment="center" image="logo" id="lhx-zf-vFc"/>
+                        <group width="1" alignment="left" id="JgP-Pu-eu3">
+                            <items>
+                                <imageView width="32" height="32" alignment="center" image="Logo" id="lhx-zf-vFc"/>
+                                <label width="20" alignment="center" verticalAlignment="center" text="v" textAlignment="center" id="PDs-HS-G7D">
+                                    <accessibilityTraits key="accessibilityTraits" staticText="YES" notEnabled="YES"/>
+                                </label>
+                                <imageView width="32" height="32" alignment="center" image="Logo" id="lHu-C2-Luj"/>
+                            </items>
+                        </group>
                         <separator alignment="left" id="Z3a-wV-x5E">
                             <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         </separator>
@@ -32,11 +40,12 @@
                         </label>
                     </items>
                     <connections>
+                        <outlet property="awayTeamLogoImage" destination="lHu-C2-Luj" id="NkZ-ua-sty"/>
+                        <outlet property="homeTeamLogoImage" destination="lhx-zf-vFc" id="Z1x-pb-a0h"/>
                         <outlet property="nextGameDate" destination="xKz-Va-i0A" id="M4M-7z-cjK"/>
                         <outlet property="nextGameFootnote" destination="EX3-Ec-ZrD" id="nvx-KO-B9n"/>
                         <outlet property="nextGameOpponent" destination="Wsn-tq-htu" id="PVa-3P-W3a"/>
                         <outlet property="nextGameTitle" destination="hCa-j1-QZ2" id="oCb-VC-7mV"/>
-                        <outlet property="teamLogoImage" destination="lhx-zf-vFc" id="k7A-4i-alr"/>
                         <segue destination="AgC-eL-Hgc" kind="relationship" relationship="nextPage" id="fb7-8v-kZg"/>
                     </connections>
                 </controller>
