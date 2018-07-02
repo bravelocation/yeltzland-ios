@@ -143,22 +143,10 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "${BUILT_PRODUCTS_DIR}/Font-Awesome-Swift/Font_Awesome_Swift.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage-iOS/SDWebImage.framework"
-  install_framework "${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework"
-  install_framework "${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage-watchOS/SDWebImage.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "${BUILT_PRODUCTS_DIR}/Font-Awesome-Swift/Font_Awesome_Swift.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage-iOS/SDWebImage.framework"
-  install_framework "${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework"
-  install_framework "${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage-watchOS/SDWebImage.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

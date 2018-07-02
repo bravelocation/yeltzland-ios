@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18051CD5C9DE74BAADED13B1 /* Pods_watchkitapp_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3CD79B24EF0B6634FC3AFFA /* Pods_watchkitapp_Extension.framework */; };
 		481F530A2194ABBB0E4F3078 /* Pods_yeltzland.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BE281ED4B32969698046889 /* Pods_yeltzland.framework */; };
 		5211F7271CDA35CF0031496D /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211F7261CDA35CF0031496D /* AppColors.swift */; };
 		5211F72A1CDA53D70031496D /* TwitterUserTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211F7291CDA53D70031496D /* TwitterUserTimelineViewController.swift */; };
@@ -33,6 +34,7 @@
 		52236AE81D17E4D3004903AB /* FixtureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236AE71D17E4D3004903AB /* FixtureManager.swift */; };
 		52236AEB1D17ECB4004903AB /* matches.json in Resources */ = {isa = PBXBuildFile; fileRef = 52236AEA1D17ECB4004903AB /* matches.json */; };
 		52236AEE1D1803C8004903AB /* FixturesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236AED1D1803C8004903AB /* FixturesTableViewController.swift */; };
+		522EA44220EA236A00B90146 /* TeamImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522EA44120EA236A00B90146 /* TeamImageManager.swift */; };
 		5236ECDB20CE99B80067AFFA /* LatestScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5236ECD920CE99B80067AFFA /* LatestScoreViewController.swift */; };
 		5236ECDC20CE99B80067AFFA /* LatestScoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5236ECDA20CE99B80067AFFA /* LatestScoreViewController.xib */; };
 		523C841E1CE47F06006F1865 /* HTFC2016LOGO.png in Resources */ = {isa = PBXBuildFile; fileRef = 523C841D1CE47F06006F1865 /* HTFC2016LOGO.png */; };
@@ -168,6 +170,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		155491D6605F3938844C5384 /* Pods-watchkitapp Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watchkitapp Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-watchkitapp Extension/Pods-watchkitapp Extension.release.xcconfig"; sourceTree = "<group>"; };
+		1E20728270110C4CDC065E13 /* Pods-watchkitapp Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watchkitapp Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-watchkitapp Extension/Pods-watchkitapp Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		5211F7261CDA35CF0031496D /* AppColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
 		5211F7291CDA53D70031496D /* TwitterUserTimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterUserTimelineViewController.swift; sourceTree = "<group>"; };
 		5211F72C1CDB1EE50031496D /* OtherLinksTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherLinksTableViewController.swift; sourceTree = "<group>"; };
@@ -194,6 +198,7 @@
 		52236AE71D17E4D3004903AB /* FixtureManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixtureManager.swift; sourceTree = "<group>"; };
 		52236AEA1D17ECB4004903AB /* matches.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = matches.json; sourceTree = "<group>"; };
 		52236AED1D1803C8004903AB /* FixturesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixturesTableViewController.swift; sourceTree = "<group>"; };
+		522EA44120EA236A00B90146 /* TeamImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamImageManager.swift; sourceTree = "<group>"; };
 		5236ECD920CE99B80067AFFA /* LatestScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestScoreViewController.swift; sourceTree = "<group>"; };
 		5236ECDA20CE99B80067AFFA /* LatestScoreViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LatestScoreViewController.xib; sourceTree = "<group>"; };
 		523C841D1CE47F06006F1865 /* HTFC2016LOGO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HTFC2016LOGO.png; sourceTree = "<group>"; };
@@ -252,6 +257,7 @@
 		6C2886E0C6D579332BF2A5A8 /* Pods-yeltzland.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yeltzland.debug.xcconfig"; path = "Pods/Target Support Files/Pods-yeltzland/Pods-yeltzland.debug.xcconfig"; sourceTree = "<group>"; };
 		9BE281ED4B32969698046889 /* Pods_yeltzland.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_yeltzland.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C11AF69119A85B889C5CADB2 /* Pods-yeltzland.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yeltzland.release.xcconfig"; path = "Pods/Target Support Files/Pods-yeltzland/Pods-yeltzland.release.xcconfig"; sourceTree = "<group>"; };
+		C3CD79B24EF0B6634FC3AFFA /* Pods_watchkitapp_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_watchkitapp_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA6F5775F3F24493B838AC89 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -260,6 +266,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18051CD5C9DE74BAADED13B1 /* Pods_watchkitapp_Extension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +315,8 @@
 			children = (
 				6C2886E0C6D579332BF2A5A8 /* Pods-yeltzland.debug.xcconfig */,
 				C11AF69119A85B889C5CADB2 /* Pods-yeltzland.release.xcconfig */,
+				1E20728270110C4CDC065E13 /* Pods-watchkitapp Extension.debug.xcconfig */,
+				155491D6605F3938844C5384 /* Pods-watchkitapp Extension.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -341,6 +350,7 @@
 				52E711A71D9E52080002446A /* FixtureTableRow.swift */,
 				52176BCC1D4B6D5900B7EFAE /* ExtensionDelegate.swift */,
 				52176BD01D4B6D5900B7EFAE /* ComplicationController.swift */,
+				522EA44120EA236A00B90146 /* TeamImageManager.swift */,
 				52176BE31D4B6EF000B7EFAE /* WatchGameSettings.swift */,
 				52176BD21D4B6D5900B7EFAE /* Assets.xcassets */,
 				52176BD41D4B6D5900B7EFAE /* Info.plist */,
@@ -502,6 +512,7 @@
 				FA6F5775F3F24493B838AC89 /* Pods.framework */,
 				9BE281ED4B32969698046889 /* Pods_yeltzland.framework */,
 				526F54511D214705001EA8D8 /* NotificationCenter.framework */,
+				C3CD79B24EF0B6634FC3AFFA /* Pods_watchkitapp_Extension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -532,10 +543,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 52176BD81D4B6D5900B7EFAE /* Build configuration list for PBXNativeTarget "watchkitapp Extension" */;
 			buildPhases = (
+				5908C5375DCFB079EFAC4244 /* [CP] Check Pods Manifest.lock */,
 				52176BBF1D4B6D5900B7EFAE /* Sources */,
 				52176BC01D4B6D5900B7EFAE /* Frameworks */,
 				52176BC11D4B6D5900B7EFAE /* Resources */,
 				52176BE61D4B759C00B7EFAE /* ShellScript */,
+				EF4CE35BE5AFA83BF82A085C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -862,6 +875,24 @@
 			shellPath = /bin/sh;
 			shellScript = "git=`sh /etc/profile; which git`\nappBuild=`$git rev-list --all |wc -l`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\necho \"Updated ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"";
 		};
+		5908C5375DCFB079EFAC4244 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-watchkitapp Extension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		63BB4CBBF5413A6045855209 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -910,7 +941,7 @@
 				"${BUILT_PRODUCTS_DIR}/Font-Awesome-Swift/Font_Awesome_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage-iOS/SDWebImage.framework",
 				"${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework",
 				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -930,6 +961,24 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-yeltzland/Pods-yeltzland-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		EF4CE35BE5AFA83BF82A085C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-watchkitapp Extension/Pods-watchkitapp Extension-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage-watchOS/SDWebImage.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-watchkitapp Extension/Pods-watchkitapp Extension-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -947,6 +996,7 @@
 				524A01181EEC3A7D00862509 /* NextGameController.swift in Sources */,
 				52176BE71D4B7C4B00B7EFAE /* AppColors.swift in Sources */,
 				52176BE01D4B6D7300B7EFAE /* BaseSettings.swift in Sources */,
+				522EA44220EA236A00B90146 /* TeamImageManager.swift in Sources */,
 				52176BCB1D4B6D5900B7EFAE /* InterfaceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1088,6 +1138,7 @@
 /* Begin XCBuildConfiguration section */
 		52176BD91D4B6D5900B7EFAE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1E20728270110C4CDC065E13 /* Pods-watchkitapp Extension.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ENTITLEMENTS = "watchkitapp Extension/watchkitapp Extension.entitlements";
@@ -1107,6 +1158,7 @@
 		};
 		52176BDA1D4B6D5900B7EFAE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 155491D6605F3938844C5384 /* Pods-watchkitapp Extension.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ENTITLEMENTS = "watchkitapp Extension/watchkitapp Extension.entitlements";

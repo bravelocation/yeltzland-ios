@@ -8,7 +8,7 @@
 
 import WatchKit
 import Foundation
-
+import SDWebImage
 
 class NextGameController: WKInterfaceController {
 
@@ -16,6 +16,7 @@ class NextGameController: WKInterfaceController {
     @IBOutlet var nextGameOpponent: WKInterfaceLabel!
     @IBOutlet var nextGameDate: WKInterfaceLabel!
     @IBOutlet var nextGameFootnote: WKInterfaceLabel!
+    @IBOutlet var teamLogoImage: WKInterfaceImage!
     
     override init() {
         super.init()
@@ -41,6 +42,8 @@ class NextGameController: WKInterfaceController {
             self.nextGameOpponent?.setText(gameSettings.displayNextOpponent)
             self.nextGameDate?.setText(gameSettings.currentScore)
             self.nextGameFootnote?.setText("*best guess from Twitter")
+            
+            TeamImageManager.instance.loadTeamImage(teamName: gameSettings.displayNextOpponent, view: self.teamLogoImage)
         } else {
             // Was the last game today?
             let todayNumber = gameSettings.dayNumber(Date())
@@ -63,6 +66,7 @@ class NextGameController: WKInterfaceController {
                 self.nextGameOpponent?.setText(gameSettings.displayLastOpponent)
                 self.nextGameDate?.setText(gameSettings.lastScore)
                 self.nextGameFootnote?.setText("")
+                TeamImageManager.instance.loadTeamImage(teamName: gameSettings.displayLastOpponent, view: self.teamLogoImage)
             } else {
                 // Show next fixture if there is one
                 let nextFixtures = FixtureManager.instance.GetNextFixtures(1)
@@ -73,12 +77,12 @@ class NextGameController: WKInterfaceController {
                     self.nextGameOpponent?.setText(fixture.displayOpponent)
                     self.nextGameDate?.setText(fixture.fullKickoffTime)
                     self.nextGameFootnote?.setText("")
+                    TeamImageManager.instance.loadTeamImage(teamName: fixture.displayOpponent, view: self.teamLogoImage)
                 } else {
                     self.nextGameTitle?.setText("No more games")
                     self.nextGameOpponent?.setText("")
                     self.nextGameDate?.setText("")
                     self.nextGameFootnote?.setText("")
-                    
                 }
             }
         }

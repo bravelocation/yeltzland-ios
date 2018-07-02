@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="13529" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="928-1F-cke">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14113" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="928-1F-cke">
     <device id="watch42" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="13507"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14033"/>
     </dependencies>
     <scenes>
         <!--Next Game Controller-->
@@ -13,7 +13,7 @@
             <objects>
                 <controller id="928-1F-cke" customClass="NextGameController" customModule="watchkitapp_Extension">
                     <items>
-                        <imageView alignment="center" image="logo" contentMode="center" id="lhx-zf-vFc"/>
+                        <imageView width="32" height="32" alignment="center" image="logo" id="lhx-zf-vFc"/>
                         <separator alignment="left" id="Z3a-wV-x5E">
                             <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         </separator>
@@ -36,6 +36,7 @@
                         <outlet property="nextGameFootnote" destination="EX3-Ec-ZrD" id="nvx-KO-B9n"/>
                         <outlet property="nextGameOpponent" destination="Wsn-tq-htu" id="PVa-3P-W3a"/>
                         <outlet property="nextGameTitle" destination="hCa-j1-QZ2" id="oCb-VC-7mV"/>
+                        <outlet property="teamLogoImage" destination="lhx-zf-vFc" id="k7A-4i-alr"/>
                         <segue destination="AgC-eL-Hgc" kind="relationship" relationship="nextPage" id="fb7-8v-kZg"/>
                     </connections>
                 </controller>
