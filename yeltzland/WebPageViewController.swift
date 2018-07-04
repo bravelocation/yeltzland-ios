@@ -181,7 +181,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         if let requestUrl = self.homeUrl {
             let req = URLRequest(url: requestUrl)
             self.webView.load(req)
-            print("Loading home page:", self.homeUrl)
+            print("Loading home page:", requestUrl)
         }
     }
     
@@ -191,6 +191,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         
         let req = URLRequest(url: requestUrl)
         self.webView.load(req)
+
         print("Loading page:", requestUrl)
     }
     
@@ -303,9 +304,9 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
     }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
-        
-        // This is supposed to flush the cookies to storage!
-        UserDefaults.standard.synchronize()
+        // WORKAROUND: Force the creation of the datastore by calling a method on it.
+        // See https://forums.developer.apple.com/thread/99674
+        self.webView.configuration.websiteDataStore.fetchDataRecords(ofTypes: [WKWebsiteDataTypeCookies]) { (records) in }
             
         decisionHandler(.allow)
     }
