@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		18051CD5C9DE74BAADED13B1 /* Pods_watchkitapp_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3CD79B24EF0B6634FC3AFFA /* Pods_watchkitapp_Extension.framework */; };
 		481F530A2194ABBB0E4F3078 /* Pods_yeltzland.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BE281ED4B32969698046889 /* Pods_yeltzland.framework */; };
 		5211F7271CDA35CF0031496D /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211F7261CDA35CF0031496D /* AppColors.swift */; };
 		5211F72A1CDA53D70031496D /* TwitterUserTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211F7291CDA53D70031496D /* TwitterUserTimelineViewController.swift */; };
@@ -100,6 +99,8 @@
 		52E77DEA1FDEBC730069FCFB /* TVGameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E77DE91FDEBC730069FCFB /* TVGameSettings.swift */; };
 		52E77DEB1FDEC0740069FCFB /* matches.json in Resources */ = {isa = PBXBuildFile; fileRef = 52236AEA1D17ECB4004903AB /* matches.json */; };
 		52E77DEC1FDEC0770069FCFB /* gamescore.json in Resources */ = {isa = PBXBuildFile; fileRef = 52176BAD1D4A1AF600B7EFAE /* gamescore.json */; };
+		52F5CA9F20ED1F45000143A1 /* TeamImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A347720CFB98D00E8475C /* TeamImageManager.swift */; };
+		DB860C2661D34E99E75814F6 /* Pods_yeltzlandTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59A5577BD1AF23F460D4B20 /* Pods_yeltzlandTVOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,8 +171,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		155491D6605F3938844C5384 /* Pods-watchkitapp Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watchkitapp Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-watchkitapp Extension/Pods-watchkitapp Extension.release.xcconfig"; sourceTree = "<group>"; };
-		1E20728270110C4CDC065E13 /* Pods-watchkitapp Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watchkitapp Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-watchkitapp Extension/Pods-watchkitapp Extension.debug.xcconfig"; sourceTree = "<group>"; };
+		31D85CE3D6629F7148E43670 /* Pods-yeltzlandTVOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yeltzlandTVOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-yeltzlandTVOS/Pods-yeltzlandTVOS.release.xcconfig"; sourceTree = "<group>"; };
 		5211F7261CDA35CF0031496D /* AppColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
 		5211F7291CDA53D70031496D /* TwitterUserTimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterUserTimelineViewController.swift; sourceTree = "<group>"; };
 		5211F72C1CDB1EE50031496D /* OtherLinksTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherLinksTableViewController.swift; sourceTree = "<group>"; };
@@ -258,6 +258,8 @@
 		9BE281ED4B32969698046889 /* Pods_yeltzland.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_yeltzland.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C11AF69119A85B889C5CADB2 /* Pods-yeltzland.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yeltzland.release.xcconfig"; path = "Pods/Target Support Files/Pods-yeltzland/Pods-yeltzland.release.xcconfig"; sourceTree = "<group>"; };
 		C3CD79B24EF0B6634FC3AFFA /* Pods_watchkitapp_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_watchkitapp_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C59A5577BD1AF23F460D4B20 /* Pods_yeltzlandTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_yeltzlandTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F148785E694134A862B5222B /* Pods-yeltzlandTVOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yeltzlandTVOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-yeltzlandTVOS/Pods-yeltzlandTVOS.debug.xcconfig"; sourceTree = "<group>"; };
 		FA6F5775F3F24493B838AC89 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -266,7 +268,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18051CD5C9DE74BAADED13B1 /* Pods_watchkitapp_Extension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,6 +275,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB860C2661D34E99E75814F6 /* Pods_yeltzlandTVOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,8 +317,8 @@
 			children = (
 				6C2886E0C6D579332BF2A5A8 /* Pods-yeltzland.debug.xcconfig */,
 				C11AF69119A85B889C5CADB2 /* Pods-yeltzland.release.xcconfig */,
-				1E20728270110C4CDC065E13 /* Pods-watchkitapp Extension.debug.xcconfig */,
-				155491D6605F3938844C5384 /* Pods-watchkitapp Extension.release.xcconfig */,
+				F148785E694134A862B5222B /* Pods-yeltzlandTVOS.debug.xcconfig */,
+				31D85CE3D6629F7148E43670 /* Pods-yeltzlandTVOS.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -513,6 +515,7 @@
 				9BE281ED4B32969698046889 /* Pods_yeltzland.framework */,
 				526F54511D214705001EA8D8 /* NotificationCenter.framework */,
 				C3CD79B24EF0B6634FC3AFFA /* Pods_watchkitapp_Extension.framework */,
+				C59A5577BD1AF23F460D4B20 /* Pods_yeltzlandTVOS.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -543,12 +546,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 52176BD81D4B6D5900B7EFAE /* Build configuration list for PBXNativeTarget "watchkitapp Extension" */;
 			buildPhases = (
-				5908C5375DCFB079EFAC4244 /* [CP] Check Pods Manifest.lock */,
 				52176BBF1D4B6D5900B7EFAE /* Sources */,
 				52176BC01D4B6D5900B7EFAE /* Frameworks */,
 				52176BC11D4B6D5900B7EFAE /* Resources */,
 				52176BE61D4B759C00B7EFAE /* ShellScript */,
-				EF4CE35BE5AFA83BF82A085C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -563,10 +564,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5257197F1FDE8AE2005F1D80 /* Build configuration list for PBXNativeTarget "yeltzlandTVOS" */;
 			buildPhases = (
+				EC464B1DCE93452ED32ED3F5 /* [CP] Check Pods Manifest.lock */,
 				5257196D1FDE8AE1005F1D80 /* Sources */,
 				5257196E1FDE8AE1005F1D80 /* Frameworks */,
 				5257196F1FDE8AE1005F1D80 /* Resources */,
 				52E77DDD1FDE9B6C0069FCFB /* ShellScript */,
+				2AB6316EB861EDDE981F4DE3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -810,6 +813,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		2AB6316EB861EDDE981F4DE3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-yeltzlandTVOS/Pods-yeltzlandTVOS-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage-tvOS/SDWebImage.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-yeltzlandTVOS/Pods-yeltzlandTVOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		5211F7281CDA51EC0031496D /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -874,24 +895,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "git=`sh /etc/profile; which git`\nappBuild=`$git rev-list --all |wc -l`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\necho \"Updated ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"";
-		};
-		5908C5375DCFB079EFAC4244 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-watchkitapp Extension-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
 		};
 		63BB4CBBF5413A6045855209 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -961,22 +964,22 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-yeltzland/Pods-yeltzland-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		EF4CE35BE5AFA83BF82A085C /* [CP] Embed Pods Frameworks */ = {
+		EC464B1DCE93452ED32ED3F5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-watchkitapp Extension/Pods-watchkitapp Extension-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage-watchOS/SDWebImage.framework",
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"$(DERIVED_FILE_DIR)/Pods-yeltzlandTVOS-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-watchkitapp Extension/Pods-watchkitapp Extension-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1013,6 +1016,7 @@
 				52D8682F1FE933C20041B578 /* VerticallyAlignedLabel.swift in Sources */,
 				52D868261FE81B6E0041B578 /* TVFixtureCollectionCell.swift in Sources */,
 				52E77DEA1FDEBC730069FCFB /* TVGameSettings.swift in Sources */,
+				52F5CA9F20ED1F45000143A1 /* TeamImageManager.swift in Sources */,
 				525719761FDE8AE2005F1D80 /* ViewController.swift in Sources */,
 				525719741FDE8AE2005F1D80 /* AppDelegate.swift in Sources */,
 				52E77DE61FDEBB950069FCFB /* AppColors.swift in Sources */,
@@ -1138,7 +1142,6 @@
 /* Begin XCBuildConfiguration section */
 		52176BD91D4B6D5900B7EFAE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1E20728270110C4CDC065E13 /* Pods-watchkitapp Extension.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ENTITLEMENTS = "watchkitapp Extension/watchkitapp Extension.entitlements";
@@ -1158,7 +1161,6 @@
 		};
 		52176BDA1D4B6D5900B7EFAE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 155491D6605F3938844C5384 /* Pods-watchkitapp Extension.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_ENTITLEMENTS = "watchkitapp Extension/watchkitapp Extension.entitlements";
@@ -1218,6 +1220,7 @@
 		};
 		5257197D1FDE8AE2005F1D80 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F148785E694134A862B5222B /* Pods-yeltzlandTVOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -1243,6 +1246,7 @@
 		};
 		5257197E1FDE8AE2005F1D80 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 31D85CE3D6629F7148E43670 /* Pods-yeltzlandTVOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
