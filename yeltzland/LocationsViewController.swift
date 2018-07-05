@@ -89,7 +89,7 @@ class LocationsViewController: UIViewController, MKMapViewDelegate, CLLocationMa
                 view = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 view.canShowCallout = true
                 view.image = ballImage
-                view.centerOffset = CGPoint(x: 0, y: -10.0)
+                view.centerOffset = CGPoint(x: 0.0, y: -10.0)
             }
             
             return view
