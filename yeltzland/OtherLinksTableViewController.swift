@@ -103,7 +103,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
                 cell!.imageView?.image = cellImage
                 break
             case 1:
-                cell!.textLabel?.text = "NPL site"
+                cell!.textLabel?.text = "Southern League site"
                 let cellImage = UIImage(icon: FAType.FASoccerBallO, size: CGSize(width: 100, height: 100), textColor: AppColors.Evostick, backgroundColor: UIColor.clear)
                 cell!.imageView?.image = cellImage
                 break
@@ -224,8 +224,8 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         var url: URL? = nil;
         
         if ((indexPath as NSIndexPath).section == 0) {
-            if ((indexPath as NSIndexPath).row == 2) {
-                url = URL(string: "http://www.evostikleague.co.uk/match-info/tables")
+            if ((indexPath as NSIndexPath).row == 3) {
+                url = URL(string: "http://www.evostikleaguesouthern.co.uk/match-info/tables")
             }
         } else if ((indexPath as NSIndexPath).section == 1) {
             switch ((indexPath as NSIndexPath).row) {
@@ -233,7 +233,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
                 url = URL(string: "https://www.facebook.com/HalesowenTown1873")
                 break
             case 1:
-                url = URL(string: "http://www.evostikleague.co.uk")
+                url = URL(string: "http://www.evostikleaguesouthern.co.uk")
                 break
             case 2:
                 url = URL(string: "https://fantasyisland.yeltz.co.uk")
