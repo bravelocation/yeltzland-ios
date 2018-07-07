@@ -33,7 +33,6 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
     var reloadButton: UIBarButtonItem!
     var shareButton: UIBarButtonItem!
     
-    // reference to WebView control we will instantiate
     let webView = WKWebView()
     let progressBar = UIProgressView(progressViewStyle: .bar)
     var spinner: UIActivityIndicatorView!
@@ -179,6 +178,8 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         progressBar.setProgress(0, animated: false)
         
         if let requestUrl = self.homeUrl {
+            self.forceLoadCookies()
+
             let req = URLRequest(url: requestUrl)
             self.webView.load(req)
             print("Loading home page:", requestUrl)
@@ -186,6 +187,8 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
     }
     
     func loadPage(_ requestUrl: URL) {
+        self.forceLoadCookies()
+
         self.webView.stopLoading()
         progressBar.setProgress(0, animated: false)
         
@@ -295,6 +298,8 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
     }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        self.forceLoadCookies()
+        
         if (navigationAction.targetFrame == nil) {
             print("Redirecting link to another frame: \(navigationAction.request.url!)")
             webView.load(navigationAction.request)
@@ -304,11 +309,13 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
     }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
+        decisionHandler(.allow)
+    }
+    
+    func forceLoadCookies() {
         // WORKAROUND: Force the creation of the datastore by calling a method on it.
         // See https://forums.developer.apple.com/thread/99674
         self.webView.configuration.websiteDataStore.fetchDataRecords(ofTypes: [WKWebsiteDataTypeCookies]) { (records) in }
-            
-        decisionHandler(.allow)
     }
 }
 
