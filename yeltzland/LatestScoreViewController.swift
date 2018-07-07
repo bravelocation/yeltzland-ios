@@ -95,7 +95,7 @@ class LatestScoreViewController: UIViewController {
         // If currently in a game
         if (self.gameSettings.gameScoreForCurrentGame) {
             opponentName = self.gameSettings.nextGameTeam!
-            score = self.gameSettings.currentScore
+            score = " \(self.gameSettings.currentScore)"  // Add a space prefix
         } else if (opponent != nil) {
             // Get the latest result
             let teamScore = self.gameSettings.lastGameYeltzScore
