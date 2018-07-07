@@ -94,7 +94,7 @@ class LatestScoreViewController: UIViewController {
         
         // If currently in a game
         if (self.gameSettings.gameScoreForCurrentGame) {
-            opponentName = self.gameSettings.lastGameTeam!
+            opponentName = self.gameSettings.nextGameTeam!
             score = self.gameSettings.currentScore
         } else if (opponent != nil) {
             // Get the latest result
