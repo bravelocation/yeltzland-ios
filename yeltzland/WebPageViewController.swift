@@ -178,8 +178,6 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         progressBar.setProgress(0, animated: false)
         
         if let requestUrl = self.homeUrl {
-            self.forceLoadCookies()
-
             let req = URLRequest(url: requestUrl)
             self.webView.load(req)
             print("Loading home page:", requestUrl)
@@ -187,8 +185,6 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
     }
     
     func loadPage(_ requestUrl: URL) {
-        self.forceLoadCookies()
-
         self.webView.stopLoading()
         progressBar.setProgress(0, animated: false)
         
@@ -298,8 +294,6 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
     }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        self.forceLoadCookies()
-        
         if (navigationAction.targetFrame == nil) {
             print("Redirecting link to another frame: \(navigationAction.request.url!)")
             webView.load(navigationAction.request)
@@ -309,13 +303,23 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
     }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
+        guard
+            let response = navigationResponse.response as? HTTPURLResponse,
+            let url = navigationResponse.response.url
+            else {
+                decisionHandler(.cancel)
+                return
+        }
+        
+        if let headerFields = response.allHeaderFields as? [String: String] {
+            let cookies = HTTPCookie.cookies(withResponseHeaderFields: headerFields, for: url)
+            cookies.forEach { (cookie) in
+                print("***** Setting cookie \(cookie.name)")
+                HTTPCookieStorage.shared.setCookie(cookie)
+            }
+        }
+        
         decisionHandler(.allow)
-    }
-    
-    func forceLoadCookies() {
-        // WORKAROUND: Force the creation of the datastore by calling a method on it.
-        // See https://forums.developer.apple.com/thread/99674
-        self.webView.configuration.websiteDataStore.fetchDataRecords(ofTypes: [WKWebsiteDataTypeCookies]) { (records) in }
     }
 }
 
