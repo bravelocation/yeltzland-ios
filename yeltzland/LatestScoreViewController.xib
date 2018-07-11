@@ -13,6 +13,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LatestScoreViewController" customModule="yeltzland" customModuleProvider="target">
             <connections>
+                <outlet property="bestGuessLabel" destination="ndi-jf-59t" id="BET-kH-DzK"/>
                 <outlet property="homeOrAwayLabel" destination="n5h-vw-Jns" id="5Co-oG-wiq"/>
                 <outlet property="latestScoreLabel" destination="Sb9-k2-kyp" id="Qsd-n0-7WI"/>
                 <outlet property="opponentLabel" destination="gcW-5K-5b0" id="K8I-uV-Gmk"/>

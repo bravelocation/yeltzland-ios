@@ -169,8 +169,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Messaging.messaging().appDidReceiveMessage(userInfo)
         
-        // Go and update the game score
+        // Go and update the game score and fixtures
         GameScoreManager.instance.getLatestGameScore()
+        FixtureManager.instance.getLatestFixtures()
         
         // If app in foreground, show a toast
         if (application.applicationState == .active) {

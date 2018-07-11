@@ -15,6 +15,7 @@ class LatestScoreViewController: UIViewController {
     @IBOutlet weak var opponentLabel: UILabel!
     @IBOutlet weak var latestScoreLabel: UILabel!
     @IBOutlet weak var opponentLogoImageView: UIImageView!
+    @IBOutlet weak var bestGuessLabel: UILabel!
     
     var reloadButton: UIBarButtonItem!
     let gameSettings = GameSettings.instance
@@ -36,11 +37,12 @@ class LatestScoreViewController: UIViewController {
     
     fileprivate func setupNotificationWatcher() {
         NotificationCenter.default.addObserver(self, selector: #selector(LatestScoreViewController.gameScoreUpdated), name: NSNotification.Name(rawValue: GameScoreManager.GameScoreNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(LatestScoreViewController.gameScoreUpdated), name: NSNotification.Name(rawValue: FixtureManager.FixturesNotification), object: nil)
         print("Setup notification handler for game score updates")
     }
     
     @objc fileprivate func gameScoreUpdated(_ notification: Notification) {
-        print("Game score message received")
+        print("Game score or fixture message received")
         DispatchQueue.main.async(execute: { () -> Void in
             self.updateUI();
         })
@@ -128,6 +130,8 @@ class LatestScoreViewController: UIViewController {
         self.latestScoreLabel.text = score
         self.latestScoreLabel.textColor = resultColor
         TeamImageManager.instance.loadTeamImage(teamName: opponentName, view: self.opponentLogoImageView)
+        
+        self.bestGuessLabel.isHidden = (self.gameSettings.gameScoreForCurrentGame == false)
     }
     
     // - MARK Handoff
