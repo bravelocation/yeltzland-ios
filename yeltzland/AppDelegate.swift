@@ -59,6 +59,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("Opened via shortcut: \(result)")
         }
         
+        // Set status bar style
+        UIApplication.shared.statusBarStyle = .lightContent
+        
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let initialTabViewController = MainTabBarController()
         self.window?.rootViewController = initialTabViewController
