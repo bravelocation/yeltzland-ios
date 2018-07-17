@@ -259,6 +259,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         if (webView.estimatedProgress > 0) {
            self.hideSpinner()
         }
+        
         progressBar.setProgress(Float(webView.estimatedProgress), animated: true)
     }
     
@@ -300,26 +301,6 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         }
         
         decisionHandler(WKNavigationActionPolicy.allow)
-    }
-    
-    func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
-        guard
-            let response = navigationResponse.response as? HTTPURLResponse,
-            let url = navigationResponse.response.url
-            else {
-                decisionHandler(.cancel)
-                return
-        }
-        
-        if let headerFields = response.allHeaderFields as? [String: String] {
-            let cookies = HTTPCookie.cookies(withResponseHeaderFields: headerFields, for: url)
-            cookies.forEach { (cookie) in
-                print("***** Setting cookie \(cookie.name)")
-                HTTPCookieStorage.shared.setCookie(cookie)
-            }
-        }
-        
-        decisionHandler(.allow)
     }
 }
 
