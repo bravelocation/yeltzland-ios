@@ -33,7 +33,6 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
     var reloadButton: UIBarButtonItem!
     var shareButton: UIBarButtonItem!
     
-    // reference to WebView control we will instantiate
     let webView = WKWebView()
     let progressBar = UIProgressView(progressViewStyle: .bar)
     var spinner: UIActivityIndicatorView!
@@ -181,7 +180,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         if let requestUrl = self.homeUrl {
             let req = URLRequest(url: requestUrl)
             self.webView.load(req)
-            print("Loading home page:", self.homeUrl)
+            print("Loading home page:", requestUrl)
         }
     }
     
@@ -191,6 +190,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         
         let req = URLRequest(url: requestUrl)
         self.webView.load(req)
+
         print("Loading page:", requestUrl)
     }
     
@@ -259,6 +259,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         if (webView.estimatedProgress > 0) {
            self.hideSpinner()
         }
+        
         progressBar.setProgress(Float(webView.estimatedProgress), animated: true)
     }
     
@@ -300,14 +301,6 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         }
         
         decisionHandler(WKNavigationActionPolicy.allow)
-    }
-    
-    func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
-        
-        // This is supposed to flush the cookies to storage!
-        UserDefaults.standard.synchronize()
-            
-        decisionHandler(.allow)
     }
 }
 

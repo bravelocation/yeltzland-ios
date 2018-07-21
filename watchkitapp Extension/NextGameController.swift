@@ -8,7 +8,7 @@
 
 import WatchKit
 import Foundation
-
+import SDWebImage
 
 class NextGameController: WKInterfaceController {
 
@@ -16,7 +16,9 @@ class NextGameController: WKInterfaceController {
     @IBOutlet var nextGameOpponent: WKInterfaceLabel!
     @IBOutlet var nextGameDate: WKInterfaceLabel!
     @IBOutlet var nextGameFootnote: WKInterfaceLabel!
-    
+    @IBOutlet var homeTeamLogoImage: WKInterfaceImage!
+    @IBOutlet var awayTeamLogoImage: WKInterfaceImage!
+
     override init() {
         super.init()
         
@@ -36,11 +38,24 @@ class NextGameController: WKInterfaceController {
     fileprivate func updateViewData() {
         let gameSettings = WatchGameSettings.instance
         
+        var homeTeamName = ""
+        var awayTeamName = ""
+        
         if (gameSettings.gameScoreForCurrentGame) {
             self.nextGameTitle?.setText("Latest Score")
             self.nextGameOpponent?.setText(gameSettings.displayNextOpponent)
             self.nextGameDate?.setText(gameSettings.currentScore)
             self.nextGameFootnote?.setText("*best guess from Twitter")
+            
+            if let home = gameSettings.nextGameHome {
+                if home {
+                    homeTeamName = "Halesowen Town"
+                    awayTeamName = gameSettings.displayNextOpponent
+                } else {
+                    homeTeamName = gameSettings.displayNextOpponent
+                    awayTeamName = "Halesowen Town"
+                }
+            }
         } else {
             // Was the last game today?
             let todayNumber = gameSettings.dayNumber(Date())
@@ -63,6 +78,16 @@ class NextGameController: WKInterfaceController {
                 self.nextGameOpponent?.setText(gameSettings.displayLastOpponent)
                 self.nextGameDate?.setText(gameSettings.lastScore)
                 self.nextGameFootnote?.setText("")
+                
+                if let home = gameSettings.lastGameHome {
+                    if home {
+                        homeTeamName = "Halesowen Town"
+                        awayTeamName = gameSettings.displayLastOpponent
+                    } else {
+                        homeTeamName = gameSettings.displayLastOpponent
+                        awayTeamName = "Halesowen Town"
+                    }
+                }
             } else {
                 // Show next fixture if there is one
                 let nextFixtures = FixtureManager.instance.GetNextFixtures(1)
@@ -73,14 +98,28 @@ class NextGameController: WKInterfaceController {
                     self.nextGameOpponent?.setText(fixture.displayOpponent)
                     self.nextGameDate?.setText(fixture.fullKickoffTime)
                     self.nextGameFootnote?.setText("")
+                    
+                    if fixture.home {
+                        homeTeamName = "Halesowen Town"
+                        awayTeamName = fixture.displayOpponent
+                    } else {
+                        homeTeamName = fixture.displayOpponent
+                        awayTeamName = "Halesowen Town"
+                    }
                 } else {
                     self.nextGameTitle?.setText("No more games")
                     self.nextGameOpponent?.setText("")
                     self.nextGameDate?.setText("")
                     self.nextGameFootnote?.setText("")
-                    
                 }
             }
+        }
+        
+        if (homeTeamName.count > 0) {
+            TeamImageManager.instance.loadTeamImage(teamName: homeTeamName, view: self.homeTeamLogoImage)
+        }
+        if (awayTeamName.count > 0) {
+            TeamImageManager.instance.loadTeamImage(teamName: awayTeamName, view: self.awayTeamLogoImage)
         }
     }
     

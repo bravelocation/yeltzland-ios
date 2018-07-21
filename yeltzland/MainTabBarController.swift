@@ -12,6 +12,7 @@ import Font_Awesome_Swift
 class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUserActivityDelegate {
     
     let defaults = UserDefaults.standard
+    let otherTabIndex = 4
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
@@ -94,7 +95,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         let otherViewController = OtherLinksTableViewController()
         let otherNavigationController = UINavigationController(rootViewController:otherViewController)
         
-        let otherIcon = UITabBarItem(tabBarSystemItem: .more, tag: 4)
+        let otherIcon = UITabBarItem(tabBarSystemItem: .more, tag: self.otherTabIndex)
         otherIcon.setTitleTextAttributes([NSAttributedStringKey.font: UIFont(name: AppColors.AppFontName, size: AppColors.TabBarTextSize)!], for: UIControlState())
         otherNavigationController.tabBarItem = otherIcon
 
@@ -132,11 +133,35 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         // Set activity for handoff
         let activity = NSUserActivity(activityType: "com.bravelocation.yeltzland.currenttab")
         activity.delegate = self
-        activity.isEligibleForHandoff = true
-        activity.needsSave = true
         
+        // Eligible for handoff
+        activity.isEligibleForHandoff = true
+        
+        // Set the title
+        self.setActivitySearchTitle(activity)
+        activity.needsSave = true
+
         self.userActivity = activity;
         self.userActivity?.becomeCurrent()
+    }
+    
+    func setActivitySearchTitle(_ activity: NSUserActivity) {
+        let currentIndex = GameSettings.instance.lastSelectedTab
+        
+        switch currentIndex {
+        case 0:
+            activity.title = "Read Yeltz Forum"
+            break
+        case 1:
+            activity.title = "Read HTFC Official Site"
+            break
+        case 2:
+            activity.title = "Read HTFC Twitter Feed"
+            break
+        default:
+            activity.title = "Open Yeltzland"
+            break
+        }
     }
     
     override func restoreUserActivityState(_ activity: NSUserActivity) {
@@ -157,6 +182,28 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
                             }
                         }
                     }
+                }
+            }
+        } else if (activity.activityType == "com.bravelocation.yeltzland.fixtures") {
+            print("Detected fixture list activity ...")
+            // Set selected tab as More tab
+            self.selectedIndex = self.otherTabIndex
+            GameSettings.instance.lastSelectedTab = self.otherTabIndex
+            
+            if let currentController = self.viewControllers![self.selectedIndex] as? UINavigationController {
+                if let selectedController = currentController.viewControllers[0] as? OtherLinksTableViewController {
+                    selectedController.openFixtures()
+                }
+            }
+        } else if (activity.activityType == "com.bravelocation.yeltzland.latestscore") {
+            print("Detected Latest score activity ...")
+            // Set selected tab as More tab
+            self.selectedIndex = self.otherTabIndex
+            GameSettings.instance.lastSelectedTab = self.otherTabIndex
+            
+            if let currentController = self.viewControllers![self.selectedIndex] as? UINavigationController {
+                if let selectedController = currentController.viewControllers[0] as? OtherLinksTableViewController {
+                    selectedController.openLatestScore()
                 }
             }
         }

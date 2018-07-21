@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.5</string>
+	<string>3.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -72,6 +72,8 @@
 	<key>NSUserActivityTypes</key>
 	<array>
 		<string>com.bravelocation.yeltzland.currenttab</string>
+		<string>com.bravelocation.yeltzland.fixtures</string>
+		<string>com.bravelocation.yeltzland.latestscore</string>
 	</array>
 	<key>UIApplicationShortcutItems</key>
 	<array>
@@ -133,5 +135,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>

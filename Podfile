@@ -1,4 +1,4 @@
-source 'https://github.com/CocoaPods/Specs.git'
+source 'https://github.com/cocoapods/specs.git'
 use_frameworks!
 
 target 'yeltzland' do
@@ -11,4 +11,17 @@ target 'yeltzland' do
   pod 'TwitterCore'
   pod 'Firebase/Core'
   pod 'Firebase/Messaging'
+  pod 'SDWebImage'
+end
+
+target 'watchkitapp Extension' do
+  platform :watchos, '4.0'
+
+  pod 'SDWebImage'
+end
+
+target 'yeltzlandTVOS' do
+  platform :tvos, '11.2'
+  
+  pod 'SDWebImage'
 end

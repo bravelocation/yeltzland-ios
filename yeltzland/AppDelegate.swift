@@ -59,6 +59,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("Opened via shortcut: \(result)")
         }
         
+        // Set status bar style
+        UIApplication.shared.statusBarStyle = .lightContent
+        
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let initialTabViewController = MainTabBarController()
         self.window?.rootViewController = initialTabViewController
@@ -169,8 +172,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Messaging.messaging().appDidReceiveMessage(userInfo)
         
-        // Go and update the game score
+        // Go and update the game score and fixtures
         GameScoreManager.instance.getLatestGameScore()
+        FixtureManager.instance.getLatestFixtures()
         
         // If app in foreground, show a toast
         if (application.applicationState == .active) {
