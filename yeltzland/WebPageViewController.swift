@@ -40,35 +40,11 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
     // Initializers
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
-        self.setupNotificationWatchers()
     }
     
     override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: Bundle!) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         self.loadHomePage()
-        self.setupNotificationWatchers()
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-        print("Removed notification handler for fixture updates in today view")
-    }
-    
-    fileprivate func setupNotificationWatchers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(WebPageViewController.enterForeground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
-
-        NotificationCenter.default.addObserver(self, selector: #selector(WebPageViewController.enterBackground), name: NSNotification.Name.UIApplicationDidEnterBackground, object: nil)
-    }
-    
-    @objc fileprivate func enterForeground(_ notification: Notification) {
-        DispatchQueue.main.async(execute: { () -> Void in
-            self.reloadButtonTouchUp()
-        })
-    }
-
-    @objc fileprivate func enterBackground(_ notification: Notification) {
-        print("Entering background ...")
-        self.dismiss(animated: true, completion: nil)
     }
 
     override func viewDidLoad() {
@@ -239,13 +215,15 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
     
     // MARK: - WKNavigationDelegate methods
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+        self.hideSpinner()
+        
         // Show brief error message
         let navigationError = error as NSError
         if (navigationError.code != NSURLErrorCancelled) {
                 print("didFailProvisionalNavigation error occurred: ", error.localizedDescription, ":", navigationError.code)
                 MakeToast.Show(self, title:"A problem occured", message: "Couldn't connect to the website right now")
-                self.hideSpinner()
         }
+
     }
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation) {
@@ -290,17 +268,28 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         if (navigationError.code != NSURLErrorCancelled) {
             print("Navigation error occurred: ", navigationError.localizedDescription)
             MakeToast.Show(self, title:"A problem occurred", message: "Couldn't connect to the website right now")
-            self.hideSpinner()
         }
     }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        var externalUrl:URL? = nil
+        
+        // Open new frame redirects in Safari
         if (navigationAction.targetFrame == nil) {
             print("Redirecting link to another frame: \(navigationAction.request.url!)")
-            webView.load(navigationAction.request)
+            externalUrl = navigationAction.request.url!
         }
         
-        decisionHandler(WKNavigationActionPolicy.allow)
+        // Do we have a non-standard URL?
+        if let safariUrl = externalUrl {
+            if(UIApplication.shared.canOpenURL(safariUrl)){
+                UIApplication.shared.openURL(safariUrl)
+            }
+            
+            decisionHandler(WKNavigationActionPolicy.cancel)
+        } else {
+            decisionHandler(WKNavigationActionPolicy.allow)
+        }
     }
 }
 
