@@ -1,4 +1,4 @@
-source 'https://github.com/cocoapods/specs.git'
+source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 
 target 'yeltzland' do
