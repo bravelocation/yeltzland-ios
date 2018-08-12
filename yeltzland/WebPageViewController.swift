@@ -116,8 +116,10 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         self.backButton.isEnabled = false
         self.forwardButton.isEnabled = false
         
-        self.navigationItem.leftBarButtonItems = [self.homeButton, self.backButton, self.forwardButton]
-        self.navigationItem.rightBarButtonItems = [self.shareButton, self.reloadButton]
+        let spacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        
+        self.navigationItem.leftBarButtonItems = [self.homeButton, self.backButton, self.forwardButton, spacer]
+        self.navigationItem.rightBarButtonItems = [self.shareButton, self.reloadButton, spacer]
         
         // Setup colors
         self.backButton.tintColor = AppColors.NavBarTintColor
