@@ -130,11 +130,6 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         self.webView.allowsBackForwardNavigationGestures = true
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.reloadButtonTouchUp()
-    }
-    
     // MARK: - Nav bar actions
     @objc func reloadButtonTouchUp() {
         progressBar.setProgress(0, animated: false)
