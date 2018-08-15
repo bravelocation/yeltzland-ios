@@ -29,12 +29,6 @@ class TwitterDataSource: NSObject, UICollectionViewDataSource {
     func loadLatestData() {
         // Load from Twitter API
         self.authenticateRequest(self.userTimelineURL)
-        
-        //allTweets.append("ICYMI: tonight from 6.45pm we have a fans forum in the Grove, would be great to see as many of you there as possible")
-        //allTweets.append("BREAKING | We can now officialy confirm that unfortunately today's fixture at home to @halesowentownfc has been postponed due to a frozen pitch. We apologise for any inconvenience this has caused.")
-        //allTweets.append("Exodus at the Yeltz #EverywhereWeGo #UpTheYeltz https://www.ht-fc.co.uk/player-news")
-        
-
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -68,8 +62,14 @@ class TwitterDataSource: NSObject, UICollectionViewDataSource {
         let grantType =  "grant_type=client_credentials"
         
         request.httpBody = grantType.data(using: String.Encoding.utf8, allowLossyConversion: true)
+
+        // Don't cache any responses
+        let config = URLSessionConfiguration.default
+        config.requestCachePolicy = .reloadIgnoringLocalAndRemoteCacheData
+        config.urlCache = nil
+        let session = URLSession.init(configuration: config)
         
-        URLSession.shared.dataTask(with: request) { data, response, error in
+        session.dataTask(with: request) { data, response, error in
             
             guard let authData = data else {
                 print(error?.localizedDescription ?? "Error fetching authentication data")
@@ -108,8 +108,14 @@ class TwitterDataSource: NSObject, UICollectionViewDataSource {
             
             let token = "Bearer " + bearerToken
             request.addValue(token, forHTTPHeaderField: "Authorization")
+
+            // Don't cache any responses
+            let config = URLSessionConfiguration.default
+            config.requestCachePolicy = .reloadIgnoringLocalAndRemoteCacheData
+            config.urlCache = nil
+            let session = URLSession.init(configuration: config)
             
-            URLSession.shared.dataTask(with: request) { data, response, error in
+            session.dataTask(with: request) { data, response, error in
                 if let validData = data , error == nil {
                     do {
                         if let results = try JSONSerialization.jsonObject(with: validData, options: JSONSerialization.ReadingOptions.allowFragments) as? Array<Any> {
