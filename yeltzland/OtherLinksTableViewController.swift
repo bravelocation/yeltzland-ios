@@ -225,7 +225,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         
         if ((indexPath as NSIndexPath).section == 0) {
             if ((indexPath as NSIndexPath).row == 3) {
-                url = URL(string: "http://www.evostikleaguesouthern.co.uk/LeagueTable")
+                url = URL(string: "https://www.evostikleaguesouthern.co.uk/LeagueTable")
             }
         } else if ((indexPath as NSIndexPath).section == 1) {
             switch ((indexPath as NSIndexPath).row) {
@@ -233,7 +233,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
                 url = URL(string: "https://www.facebook.com/HalesowenTown1873")
                 break
             case 1:
-                url = URL(string: "http://www.evostikleaguesouthern.co.uk")
+                url = URL(string: "https://www.evostikleaguesouthern.co.uk")
                 break
             case 2:
                 url = URL(string: "https://fantasyisland.yeltz.co.uk")
@@ -250,13 +250,13 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         } else if ((indexPath as NSIndexPath).section == 2) {
             switch ((indexPath as NSIndexPath).row) {
             case 0:
-                url = URL(string: "http://www.yeltzland.net/followyourinstinct/")
+                url = URL(string: "https://www.yeltzland.net/followyourinstinct/")
                 break
             case 1:
                 url = URL(string: "http://www.yeltzarchives.com")
                 break
             case 2:
-                url = URL(string: "http://www.yeltzland.net/news.html")
+                url = URL(string: "https://www.yeltzland.net/news.html")
                 break
             default:
                 break
