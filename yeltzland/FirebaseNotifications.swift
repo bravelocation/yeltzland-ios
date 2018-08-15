@@ -54,7 +54,7 @@ open class FirebaseNotifications : NSObject, MessagingDelegate {
         // Register with Firebase Hub
         Messaging.messaging().apnsToken = deviceToken
         
-        let fullTopic = "/topics/" + self.topicName!
+        let fullTopic = self.topicName!
         
         if (self.enabled) {
             Messaging.messaging().subscribe(toTopic: fullTopic)
@@ -66,7 +66,7 @@ open class FirebaseNotifications : NSObject, MessagingDelegate {
     }
     
     // MARK: - MessagingDelegate    
-    public func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
+    public func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
         print("Firebase registration token: \(fcmToken)")
     }
 }
