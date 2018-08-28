@@ -67,12 +67,7 @@ open class GameScoreManager {
         
         let dataUrl = URL(string: "https://bravelocation.com/automation/feeds/gamescore.json")!
         let urlRequest = URLRequest(url: dataUrl, cachePolicy: NSURLRequest.CachePolicy.reloadIgnoringLocalCacheData, timeoutInterval: 60.0)
-
-        // Don't cache any responses
-        let config = URLSessionConfiguration.default
-        config.requestCachePolicy = .reloadIgnoringLocalAndRemoteCacheData
-        config.urlCache = nil
-        let session = URLSession.init(configuration: config)
+        let session = URLSession.shared
         
         let task = session.dataTask(with: urlRequest, completionHandler: {
             (serverData, response, error) -> Void in

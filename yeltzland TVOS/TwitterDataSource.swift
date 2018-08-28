@@ -62,12 +62,7 @@ class TwitterDataSource: NSObject, UICollectionViewDataSource {
         let grantType =  "grant_type=client_credentials"
         
         request.httpBody = grantType.data(using: String.Encoding.utf8, allowLossyConversion: true)
-
-        // Don't cache any responses
-        let config = URLSessionConfiguration.default
-        config.requestCachePolicy = .reloadIgnoringLocalAndRemoteCacheData
-        config.urlCache = nil
-        let session = URLSession.init(configuration: config)
+        let session = URLSession.shared
         
         session.dataTask(with: request) { data, response, error in
             
