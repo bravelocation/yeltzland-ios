@@ -80,10 +80,9 @@ class AppColors {
     static var FixtureLose = UIColor(red: 63.0/255.0, green: 0.0/255.0, blue: 0.0/255.0, alpha: 1.0)
     static var FixtureNone = UIColor.black
     
-    static var TodayBackground = ios10AndAbove ? LightBlueColor : UIColor.clear
-    static var TodaySeparator = UIColor.red
-    static var TodaySectionText = ios10AndAbove ? YeltzBlueColor : LightBlueColor
-    static var TodayText = ios10AndAbove ? UIColor.black : UIColor.white
+    static var TodayBackground = UIColor.clear
+    static var TodayHeaderText = UIColor.black
+    static var TodayText = UIColor.black
     static var TodayTextSize = bodyDescriptor.pointSize
     static var TodayFootnoteSize = footnoteDescriptor.pointSize
     
