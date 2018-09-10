@@ -1,6 +1,0 @@
-framework module Pods_yeltzland {
-  umbrella header "Pods-yeltzland-umbrella.h"
-
-  export *
-  module * { export * }
-}
