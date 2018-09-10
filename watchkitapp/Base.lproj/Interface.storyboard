@@ -16,7 +16,7 @@
                         <group width="1" alignment="left" id="JgP-Pu-eu3">
                             <items>
                                 <imageView width="32" height="32" alignment="center" image="Logo" id="lhx-zf-vFc"/>
-                                <label width="20" alignment="center" verticalAlignment="center" text="v" textAlignment="center" id="PDs-HS-G7D">
+                                <label width="20" alignment="center" verticalAlignment="center" text=" " textAlignment="center" id="PDs-HS-G7D">
                                     <accessibilityTraits key="accessibilityTraits" staticText="YES" notEnabled="YES"/>
                                 </label>
                                 <imageView width="32" height="32" alignment="center" image="Logo" id="lHu-C2-Luj"/>
