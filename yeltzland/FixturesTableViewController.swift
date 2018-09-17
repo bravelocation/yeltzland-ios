@@ -56,6 +56,7 @@ class FixturesTableViewController: UITableViewController {
     @objc fileprivate func fixturesUpdated(_ notification: Notification) {
         print("Fixture update message received")
         DispatchQueue.main.async(execute: { () -> Void in
+            self.refreshControl?.endRefreshing()
             self.tableView.reloadData()
             
             let currentMonthIndexPath = IndexPath(row: 0, section: self.currentMonthSection())
@@ -117,7 +118,18 @@ class FixturesTableViewController: UITableViewController {
         self.navigationController?.navigationBar.tintColor = AppColors.NavBarTintColor
         self.navigationItem.rightBarButtonItems = [self.reloadButton]
         
+        if #available(iOS 10.0, *) {
+            self.tableView.refreshControl = self.refreshControl
+        } else {
+            self.tableView.addSubview(self.refreshControl!)
+        }
+        
+        self.refreshControl?.addTarget(self, action: #selector(FixturesTableViewController.refreshSearchData), for: .valueChanged)
         self.setupHandoff()
+    }
+    
+    @objc private func refreshSearchData(_ sender: Any) {
+        FixtureManager.instance.getLatestFixtures()
     }
 
     // MARK: - Table view data source
