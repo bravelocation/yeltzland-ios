@@ -32,6 +32,7 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 class FixturesTableViewController: UITableViewController {
     
     var reloadButton: UIBarButtonItem!
+    private let cellIdentifier:String = "FixtureTableViewCell"
     
     override init(style: UITableViewStyle) {
         super.init(style: style)
@@ -104,7 +105,7 @@ class FixturesTableViewController: UITableViewController {
         self.view.backgroundColor = AppColors.OtherBackground
         self.tableView.separatorColor = AppColors.OtherSeparator
         
-        self.tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "FixtureCell")
+        self.tableView.register(UINib(nibName: self.cellIdentifier, bundle: nil), forCellReuseIdentifier: self.cellIdentifier)
         
         // Setup refresh button
         self.reloadButton = UIBarButtonItem(
@@ -154,7 +155,8 @@ class FixturesTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: "FixtureCell")
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath) as! FixtureTableViewCell
 
         // Find the fixture
         var currentFixture:Fixture? = nil
@@ -168,44 +170,8 @@ class FixturesTableViewController: UITableViewController {
             }
         }
 
-        cell.selectionStyle = .none
-        cell.accessoryType = .none
-        
-        var resultColor = AppColors.FixtureNone
-        
-        if (currentFixture == nil) {
-            resultColor = AppColors.FixtureNone
-        } else if (currentFixture!.teamScore == nil || currentFixture!.opponentScore == nil) {
-            resultColor = AppColors.FixtureNone
-        } else if (currentFixture!.teamScore > currentFixture!.opponentScore) {
-            resultColor = AppColors.FixtureWin
-        } else if (currentFixture!.teamScore < currentFixture!.opponentScore) {
-            resultColor = AppColors.FixtureLose
-        } else {
-            resultColor = AppColors.FixtureDraw
-        }
-        
-        // Set main label
-        cell.textLabel?.font = UIFont(name: AppColors.AppFontName, size:AppColors.FixtureTeamSize)!
-        cell.textLabel?.textColor = resultColor
-        cell.textLabel?.adjustsFontSizeToFitWidth = true
-        cell.textLabel?.text = (currentFixture == nil ? "" : currentFixture!.displayOpponent)
-        
-        // Set detail text
-        cell.detailTextLabel?.textColor = resultColor
-        cell.detailTextLabel?.adjustsFontSizeToFitWidth = true
-        cell.detailTextLabel?.font = UIFont(name: AppColors.AppFontName, size: AppColors.FixtureScoreOrDateTextSize)!
-        
-        if (currentFixture == nil) {
-            cell.detailTextLabel?.text = ""
-        } else if (currentFixture!.teamScore == nil || currentFixture!.opponentScore == nil) {
-            cell.detailTextLabel?.text = currentFixture!.kickoffTime
-        } else {
-            cell.detailTextLabel?.text = currentFixture!.score
-        }
-        
-        if (currentFixture != nil) {
-            TeamImageManager.instance.loadTeamImage(teamName: currentFixture!.displayOpponent, view: cell.imageView!)
+        if let fixture = currentFixture {
+            cell.assignFixture(fixture)
         }
         
         return cell

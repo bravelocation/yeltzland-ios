@@ -38,6 +38,8 @@
 		5236ECDC20CE99B80067AFFA /* LatestScoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5236ECDA20CE99B80067AFFA /* LatestScoreViewController.xib */; };
 		523C841E1CE47F06006F1865 /* HTFC2016LOGO.png in Resources */ = {isa = PBXBuildFile; fileRef = 523C841D1CE47F06006F1865 /* HTFC2016LOGO.png */; };
 		523C84201CE70806006F1865 /* ChromeActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523C841F1CE70806006F1865 /* ChromeActivity.swift */; };
+		523CE54D214F9A54002F29EF /* FixtureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523CE54B214F9A54002F29EF /* FixtureTableViewCell.swift */; };
+		523CE54E214F9A54002F29EF /* FixtureTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 523CE54C214F9A54002F29EF /* FixtureTableViewCell.xib */; };
 		524A01181EEC3A7D00862509 /* NextGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A01171EEC3A7D00862509 /* NextGameController.swift */; };
 		525719741FDE8AE2005F1D80 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525719731FDE8AE2005F1D80 /* AppDelegate.swift */; };
 		525719761FDE8AE2005F1D80 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525719751FDE8AE2005F1D80 /* ViewController.swift */; };
@@ -205,6 +207,8 @@
 		5236ECDA20CE99B80067AFFA /* LatestScoreViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LatestScoreViewController.xib; sourceTree = "<group>"; };
 		523C841D1CE47F06006F1865 /* HTFC2016LOGO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HTFC2016LOGO.png; sourceTree = "<group>"; };
 		523C841F1CE70806006F1865 /* ChromeActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChromeActivity.swift; sourceTree = "<group>"; };
+		523CE54B214F9A54002F29EF /* FixtureTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureTableViewCell.swift; sourceTree = "<group>"; };
+		523CE54C214F9A54002F29EF /* FixtureTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FixtureTableViewCell.xib; sourceTree = "<group>"; };
 		524A01171EEC3A7D00862509 /* NextGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextGameController.swift; sourceTree = "<group>"; };
 		525719711FDE8AE1005F1D80 /* yeltzlandTVOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = yeltzlandTVOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		525719731FDE8AE2005F1D80 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -386,6 +390,15 @@
 			name = data;
 			sourceTree = "<group>";
 		};
+		523CE548214F9A15002F29EF /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				523CE54B214F9A54002F29EF /* FixtureTableViewCell.swift */,
+				523CE54C214F9A54002F29EF /* FixtureTableViewCell.xib */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		525719721FDE8AE2005F1D80 /* yeltzland TVOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -433,6 +446,7 @@
 		52C4DA851D4C838A009AFD25 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				523CE548214F9A15002F29EF /* Cells */,
 				52236AED1D1803C8004903AB /* FixturesTableViewController.swift */,
 				527DAF221D2D0F550092BB8F /* LocationsViewController.swift */,
 				5259F9031CDA1292009C2AA8 /* MainTabBarController.swift */,
@@ -811,6 +825,7 @@
 				52176BAE1D4A1AF600B7EFAE /* gamescore.json in Resources */,
 				528D745A1CF2F4A400263685 /* DefaultPreferences.plist in Resources */,
 				523C841E1CE47F06006F1865 /* HTFC2016LOGO.png in Resources */,
+				523CE54E214F9A54002F29EF /* FixtureTableViewCell.xib in Resources */,
 				5236ECDC20CE99B80067AFFA /* LatestScoreViewController.xib in Resources */,
 				52DC9EB71FC9C30E00AE02F6 /* GoogleService-Info.plist in Resources */,
 				52A4596E1D89666E00822D8C /* gallery.ckcomplication in Resources */,
@@ -1096,6 +1111,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				523CE54D214F9A54002F29EF /* FixtureTableViewCell.swift in Sources */,
 				528A347820CFB98D00E8475C /* TeamImageManager.swift in Sources */,
 				5211F72D1CDB1EE50031496D /* OtherLinksTableViewController.swift in Sources */,
 				52176BB31D4B62DC00B7EFAE /* BaseSettings.swift in Sources */,
