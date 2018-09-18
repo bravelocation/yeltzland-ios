@@ -8,6 +8,8 @@
 
 import UIKit
 import Font_Awesome_Swift
+import Intents
+
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   switch (lhs, rhs) {
   case let (l?, r?):
@@ -221,7 +223,8 @@ class FixturesTableViewController: UITableViewController {
         activity.isEligibleForSearch = true
         
         if #available(iOS 12.0, *) {
-            activity.isEligibleForPrediction = true
+            activity.isEligibleForPrediction = true            
+            activity.suggestedInvocationPhrase = "Fixture List"
         }
                 
         // Set the title

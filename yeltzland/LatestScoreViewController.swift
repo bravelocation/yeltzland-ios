@@ -8,6 +8,7 @@
 
 import UIKit
 import Font_Awesome_Swift
+import Intents
 
 class LatestScoreViewController: UIViewController {
     
@@ -145,6 +146,7 @@ class LatestScoreViewController: UIViewController {
         
         if #available(iOS 12.0, *) {
             activity.isEligibleForPrediction = true
+            activity.suggestedInvocationPhrase = "Latest Yeltz Score"
         }
         
         // Set the title

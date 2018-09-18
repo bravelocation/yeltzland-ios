@@ -8,6 +8,7 @@
 
 import UIKit
 import Font_Awesome_Swift
+import Intents
 
 class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUserActivityDelegate {
     
@@ -137,13 +138,15 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         // Eligible for handoff
         activity.isEligibleForHandoff = true
         activity.isEligibleForSearch = true
+
+        // Set the title
+        self.setActivitySearchTitle(activity)
         
         if #available(iOS 12.0, *) {
             activity.isEligibleForPrediction = true
+            activity.suggestedInvocationPhrase = activity.title
         }
         
-        // Set the title
-        self.setActivitySearchTitle(activity)
         activity.needsSave = true
 
         self.userActivity = activity;

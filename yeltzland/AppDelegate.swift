@@ -11,6 +11,7 @@ import Fabric
 import Crashlytics
 import TwitterKit
 import Firebase
+import Intents
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
