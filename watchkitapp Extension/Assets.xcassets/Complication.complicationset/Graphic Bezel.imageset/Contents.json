@@ -2,6 +2,26 @@
   "images" : [
     {
       "idiom" : "watch",
+      "filename" : "htfc_logo_84-1.png",
+      "screen-width" : "<=145",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "watch",
+      "filename" : "htfc_logo_84.png",
+      "screen-width" : ">161",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "watch",
+      "filename" : "htfc_logo_84-2.png",
+      "screen-width" : ">145",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "watch",
+      "filename" : "htfc_logo_94.png",
+      "screen-width" : ">183",
       "scale" : "2x"
     }
   ],
