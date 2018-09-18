@@ -26,6 +26,15 @@ public class TeamImageManager {
     }
     
     func makeTeamFileName(_ teamName:String) -> String {
-        return teamName.replacingOccurrences(of: " ", with: "_").lowercased()
+        let teamFileName = teamName.replacingOccurrences(of: " ", with: "_").lowercased()
+        
+        // Do we have a bracket in the name
+        let bracketPos = teamFileName.index(of: "(")
+        if bracketPos == nil {
+            return teamFileName
+        } else {
+            let beforeBracket = teamFileName.split(separator: "(", maxSplits: 1, omittingEmptySubsequences: true)[0]
+            return beforeBracket.trimmingCharacters(in: CharacterSet(charactersIn: " _"))
+        }
     }
 }
