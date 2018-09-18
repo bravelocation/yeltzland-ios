@@ -141,6 +141,11 @@ class LatestScoreViewController: UIViewController {
         
         // Eligible for handoff
         activity.isEligibleForHandoff = true
+        activity.isEligibleForSearch = true
+        
+        if #available(iOS 12.0, *) {
+            activity.isEligibleForPrediction = true
+        }
         
         // Set the title
         self.title = "Latest Yeltz Score"

@@ -218,7 +218,12 @@ class FixturesTableViewController: UITableViewController {
         
         // Eligible for handoff
         activity.isEligibleForHandoff = true
+        activity.isEligibleForSearch = true
         
+        if #available(iOS 12.0, *) {
+            activity.isEligibleForPrediction = true
+        }
+                
         // Set the title
         self.title = "Yeltz Fixture List"
         activity.needsSave = true
