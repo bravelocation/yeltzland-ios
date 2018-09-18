@@ -10,7 +10,7 @@ import Foundation
 import WatchKit
 import SDWebImage
 
-open class TeamImageManager {
+public class TeamImageManager {
     fileprivate static let sharedInstance = TeamImageManager()
     class var instance:TeamImageManager {
         get {
@@ -18,7 +18,7 @@ open class TeamImageManager {
         }
     }
     
-    open func loadTeamImage(teamName:String, view:WKInterfaceImage) {
+    public func loadTeamImage(teamName:String, view:WKInterfaceImage) {
         let imageUrl = String(format: "https://bravelocation.com/teamlogos/%@.png", self.makeTeamFileName(teamName))
         print("Loading team image: \(imageUrl)")
         

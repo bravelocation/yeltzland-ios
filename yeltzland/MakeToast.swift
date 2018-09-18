@@ -9,9 +9,9 @@
 import Foundation
 import UIKit
 
-open class MakeToast {
+public class MakeToast {
     
-    open static func Show(_ controller:UIViewController, title:String, message:String) {
+    public static func Show(_ controller:UIViewController, title:String, message:String) {
         let alert = UIAlertController(title:title, message:message, preferredStyle:.alert)
         
         let defaultAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)

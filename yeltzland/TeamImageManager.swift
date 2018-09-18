@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import SDWebImage
 
-open class TeamImageManager {
+public class TeamImageManager {
     fileprivate static let sharedInstance = TeamImageManager()
     class var instance:TeamImageManager {
         get {
@@ -18,15 +18,15 @@ open class TeamImageManager {
         }
     }
     
-    open func loadTeamImage(teamName:String, view:UIImageView) {
+    public func loadTeamImage(teamName:String, view:UIImageView) {
         self.loadTeamImage(teamName: teamName, view: view, placeholder: "blank_team")
     }
     
-    open func loadTeamImage(teamName:String, view:UIImageView, placeholder:String) {
+    public func loadTeamImage(teamName:String, view:UIImageView, placeholder:String) {
         view.sd_setImage(with: self.teamImageUrl(teamName: teamName), placeholderImage:UIImage(imageLiteralResourceName: placeholder), completed: nil)
     }
     
-    open func teamImageUrl(teamName:String) -> URL? {
+    public func teamImageUrl(teamName:String) -> URL? {
         let imageUrl = String(format: "https://bravelocation.com/teamlogos/%@.png", self.makeTeamFileName(teamName))
         print("Loading team image: \(imageUrl)")
         

@@ -30,7 +30,7 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 }
 
 
-open class LocationManager {
+public class LocationManager {
     fileprivate static let sharedInstance = LocationManager()
     fileprivate var locationList:[Location] = [Location]()
     
@@ -40,7 +40,7 @@ open class LocationManager {
         }
     }
     
-    open var Locations: [Location] {
+    public var Locations: [Location] {
         return self.locationList
     }
     

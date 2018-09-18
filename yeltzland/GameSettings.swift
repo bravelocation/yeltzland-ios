@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import WatchConnectivity
 
-open class GameSettings : BaseSettings, WCSessionDelegate {
+public class GameSettings : BaseSettings, WCSessionDelegate {
 
     fileprivate static let sharedInstance = GameSettings()
     class var instance:GameSettings {
@@ -57,12 +57,12 @@ open class GameSettings : BaseSettings, WCSessionDelegate {
     }
     
     // Update the watch in background
-    open func forceBackgroundWatchUpdate() {
+    public func forceBackgroundWatchUpdate() {
         self.pushAllSettingsToWatch(false)
     }
     
     /// Send settings to watch
-    override open func pushAllSettingsToWatch(_ currentlyInGame:Bool) {
+    override public func pushAllSettingsToWatch(_ currentlyInGame:Bool) {
         self.initialiseWatchSession()
         
         if (WCSession.isSupported()) {
@@ -87,13 +87,13 @@ open class GameSettings : BaseSettings, WCSessionDelegate {
     
     // MARK:- WCSessionDelegate implementation
     @objc
-    open func session(_ session: WCSession,
+    public func session(_ session: WCSession,
                          activationDidCompleteWith activationState: WCSessionActivationState,
                                                         error: Error?) {}
     
     @objc
-    open func sessionDidBecomeInactive(_ session: WCSession) {}
+    public func sessionDidBecomeInactive(_ session: WCSession) {}
     
     @objc
-    open func sessionDidDeactivate(_ session: WCSession) {}
+    public func sessionDidDeactivate(_ session: WCSession) {}
 }

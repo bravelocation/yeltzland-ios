@@ -63,6 +63,9 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             template.textProvider = CLKSimpleTextProvider(text: settings.smallScore)
             template.tintColor = AppColors.WatchComplicationColor
             entry = CLKComplicationTimelineEntry(date: now, complicationTemplate: template)
+        default:
+            // TODO: Support new complication types
+            break
         }
         
         handler(entry)
@@ -138,6 +141,10 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
                 template.textProvider = CLKSimpleTextProvider(text: "2-0")
                 template.tintColor = AppColors.WatchComplicationColor
                 handler(template)
+            default:
+                // TODO: Support new complication types
+                handler(nil)
+                break
         }
     }
 }

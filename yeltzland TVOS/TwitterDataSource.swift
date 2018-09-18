@@ -11,7 +11,7 @@ import UIKit
 
 class TwitterDataSource: NSObject, UICollectionViewDataSource {
     
-    open static let TweetsNotification:String = "YLZTweetsNotification"
+    public static let TweetsNotification:String = "YLZTweetsNotification"
 
     private let gameSettings = TVGameSettings()
     private let twitterConsumerKey = "8G26YU7skH5dgbvXx5nwk0G0u"

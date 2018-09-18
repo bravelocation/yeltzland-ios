@@ -28,7 +28,7 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 }
 
 
-open class Fixture {
+public class Fixture {
     var fixtureDate: Date
     var opponent: String
     var home: Bool

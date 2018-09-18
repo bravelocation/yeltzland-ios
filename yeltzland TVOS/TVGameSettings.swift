@@ -8,9 +8,9 @@
 
 import Foundation
 
-open class TVGameSettings {
+public class TVGameSettings {
     
-    open var gameScoreForCurrentGame: Bool {
+    public var gameScoreForCurrentGame: Bool {
         get {
             if let nextGameTime = self.nextGameTime {
                 if let currentGameTime = self.currentGameTime {
@@ -23,7 +23,7 @@ open class TVGameSettings {
         }
     }
     
-    open var nextGameTime: Date? {
+    public var nextGameTime: Date? {
         get {
             if let nextGame = FixtureManager.instance.getNextGame() {
                 return nextGame.fixtureDate
@@ -33,25 +33,25 @@ open class TVGameSettings {
         }
     }
     
-    open var currentGameTime: Date? {
+    public var currentGameTime: Date? {
         get {
             return GameScoreManager.instance.MatchDate
         }
     }
     
-    open var currentGameYeltzScore: Int {
+    public var currentGameYeltzScore: Int {
         get {
             return GameScoreManager.instance.YeltzScore
         }
     }
     
-    open var currentGameOpponentScore: Int {
+    public var currentGameOpponentScore: Int {
         get {
             return GameScoreManager.instance.OpponentScore
         }
     }
     
-    open var nextGameTeam: String? {
+    public var nextGameTeam: String? {
         get {
             if let nextGame = FixtureManager.instance.getNextGame() {
                 return nextGame.opponent
@@ -61,7 +61,7 @@ open class TVGameSettings {
         }
     }
     
-    open var lastGameTime: Date? {
+    public var lastGameTime: Date? {
         get {
             if let lastGame = FixtureManager.instance.getLastGame() {
                 return lastGame.fixtureDate
@@ -71,7 +71,7 @@ open class TVGameSettings {
         }
     }
     
-    open var currentScore: String {
+    public var currentScore: String {
         get {
             // If no opponent, then no current score
             if (self.nextGameTeam == nil) {
@@ -87,7 +87,7 @@ open class TVGameSettings {
     }
     
     // MARK:- Game state functions
-    open func currentGameState() -> GameState {
+    public func currentGameState() -> GameState {
         
         // If no next game, return none
         if (self.nextGameTime == nil) {

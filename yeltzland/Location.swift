@@ -8,7 +8,7 @@
 
 import Foundation
 
-open class Location {
+public class Location {
     var team: String
     var latitude: Double?
     var longitude: Double?

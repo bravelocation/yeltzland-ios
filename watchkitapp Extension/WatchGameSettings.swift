@@ -11,7 +11,7 @@ import WatchConnectivity
 import ClockKit
 import WatchKit
 
-open class WatchGameSettings : BaseSettings, WCSessionDelegate {
+public class WatchGameSettings : BaseSettings, WCSessionDelegate {
 
     fileprivate static let sharedInstance = WatchGameSettings()
     class var instance:WatchGameSettings {
@@ -58,17 +58,17 @@ open class WatchGameSettings : BaseSettings, WCSessionDelegate {
     }
 
     // MARK:- WCSessionDelegate implementation - update local settings when transfered from phone
-    open func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any]) {
+    public func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any]) {
         print("New user info transfer data received on watch")
         self.updateSettings(userInfo as [String : AnyObject])
     }
     
-    @nonobjc open func session(_ session: WCSession, didReceiveUpdate receivedApplicationContext: [String : AnyObject]) {
+    @nonobjc public func session(_ session: WCSession, didReceiveUpdate receivedApplicationContext: [String : AnyObject]) {
         print("New context transfer data received on watch")
         self.updateSettings(receivedApplicationContext)
     }
     
-    open func session(_ session: WCSession,
+    public func session(_ session: WCSession,
                         activationDidCompleteWith activationState: WCSessionActivationState,
                         error: Error?) {}
     

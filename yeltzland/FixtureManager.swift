@@ -8,8 +8,8 @@
 
 import Foundation
 
-open class FixtureManager {
-    open static let FixturesNotification:String = "YLZFixtureNotification"
+public class FixtureManager {
+    public static let FixturesNotification:String = "YLZFixtureNotification"
     fileprivate var fixtureList:[String:[Fixture]] = [String:[Fixture]]()
     
     fileprivate static let sharedInstance = FixtureManager()
@@ -25,7 +25,7 @@ open class FixtureManager {
         objc_sync_exit(lock)
     }
     
-    open var Months: [String] {
+    public var Months: [String] {
         var result:[String] = []
         
         if (self.fixtureList.keys.count > 0) {
@@ -35,7 +35,7 @@ open class FixtureManager {
         return result
     }
     
-    open func FixturesForMonth(_ monthKey: String) -> [Fixture]? {
+    public func FixturesForMonth(_ monthKey: String) -> [Fixture]? {
         
         if let monthFixtures = self.fixtureList[monthKey] {
             return monthFixtures
@@ -72,7 +72,7 @@ open class FixtureManager {
         }
     }
     
-    open func getLatestFixtures() {
+    public func getLatestFixtures() {
         print("Preparing to fetch fixtures ...")
         
         let dataUrl = URL(string: "https://bravelocation.com/automation/feeds/matches.json")!
@@ -107,7 +107,7 @@ open class FixtureManager {
         print("Fixtures should be coming on background thread")
     }
     
-    open func getAwayGames(_ opponent:String) -> [Fixture] {
+    public func getAwayGames(_ opponent:String) -> [Fixture] {
         var foundGames:[Fixture] = []
         
         for month in self.Months {
@@ -123,7 +123,7 @@ open class FixtureManager {
         return foundGames
     }
     
-    open func fixtureCount() -> Int {
+    public func fixtureCount() -> Int {
         var fixtureCount = 0
         
         for month in self.Months {
@@ -136,7 +136,7 @@ open class FixtureManager {
 
     }
     
-    open func getLastGame() -> Fixture? {
+    public func getLastGame() -> Fixture? {
         var lastCompletedGame:Fixture? = nil
         
         for month in self.Months {
@@ -155,7 +155,7 @@ open class FixtureManager {
     }
     
     
-    open func getNextGame() -> Fixture? {
+    public func getNextGame() -> Fixture? {
         let fixtures = self.GetNextFixtures(1)
         
         if (fixtures.count > 0) {
@@ -165,7 +165,7 @@ open class FixtureManager {
         return nil;
     }
     
-    open func GetNextFixtures(_ numberOfFixtures:Int) -> [Fixture] {
+    public func GetNextFixtures(_ numberOfFixtures:Int) -> [Fixture] {
         var fixtures:[Fixture] = []
         let currentDayNumber = self.dayNumber(Date())
         
@@ -189,7 +189,7 @@ open class FixtureManager {
         return fixtures
     }
     
-    open func GetAllMatches() -> [Fixture] {
+    public func GetAllMatches() -> [Fixture] {
         var fixtures:[Fixture] = []
         
         for month in self.Months {
@@ -203,7 +203,7 @@ open class FixtureManager {
         return fixtures
     }
     
-    open func getCurrentGame() -> Fixture? {
+    public func getCurrentGame() -> Fixture? {
         let nextGame = self.getNextGame()
         
         if (nextGame != nil) {
@@ -219,7 +219,7 @@ open class FixtureManager {
         return nil
     }
     
-    open func loadFixtureData(_ data: Data?) {
+    public func loadFixtureData(_ data: Data?) {
         do {
             let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions()) as? [String : AnyObject]
             
@@ -342,7 +342,7 @@ open class FixtureManager {
         return dirPath
     }
     
-    open func dayNumber(_ date:Date) -> Int {
+    public func dayNumber(_ date:Date) -> Int {
         // Removes the time components from a date
         let calendar = Calendar.current
         let unitFlags: NSCalendar.Unit = [.day, .month, .year]

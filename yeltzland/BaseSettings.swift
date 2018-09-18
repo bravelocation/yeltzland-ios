@@ -9,9 +9,9 @@
 import Foundation
 import WatchConnectivity
 
-open class BaseSettings : NSObject {
+public class BaseSettings : NSObject {
     
-    open static let SettingsUpdateNotification:String = "YLZSettingsUpdateNotification"
+    public static let SettingsUpdateNotification:String = "YLZSettingsUpdateNotification"
 
     var appStandardUserDefaults: UserDefaults?
     var watchSessionInitialised: Bool = false
@@ -30,17 +30,17 @@ open class BaseSettings : NSObject {
         self.migrateSettingsToGroup()
     }
     
-    open var gameTimeTweetsEnabled: Bool {
+    public var gameTimeTweetsEnabled: Bool {
         get { return self.readObjectFromStore("GameTimeTweetsEnabled") as! Bool }
         set { self.writeObjectToStore(newValue as AnyObject, key: "GameTimeTweetsEnabled") }
     }
     
-    open var lastSelectedTab: Int {
+    public var lastSelectedTab: Int {
         get { return self.readObjectFromStore("LastSelectedTab") as! Int }
         set { self.writeObjectToStore(newValue as AnyObject, key: "LastSelectedTab") }
     }
     
-    open var lastGameTime: Date? {
+    public var lastGameTime: Date? {
         get {
             if let lastGame = FixtureManager.instance.getLastGame() {
                 return lastGame.fixtureDate
@@ -50,7 +50,7 @@ open class BaseSettings : NSObject {
         }
     }
     
-    open var lastGameTeam: String? {
+    public var lastGameTeam: String? {
         get {
             if let lastGame = FixtureManager.instance.getLastGame() {
                 return lastGame.opponent
@@ -60,7 +60,7 @@ open class BaseSettings : NSObject {
         }
     }
     
-    open var lastGameYeltzScore: Int? {
+    public var lastGameYeltzScore: Int? {
         get {
             if let lastGame = FixtureManager.instance.getLastGame() {
                 return lastGame.teamScore
@@ -70,7 +70,7 @@ open class BaseSettings : NSObject {
         }
     }
     
-    open var lastGameOpponentScore: Int? {
+    public var lastGameOpponentScore: Int? {
         get {
             if let lastGame = FixtureManager.instance.getLastGame() {
                 return lastGame.opponentScore
@@ -80,7 +80,7 @@ open class BaseSettings : NSObject {
         }
     }
     
-    open var lastGameHome: Bool? {
+    public var lastGameHome: Bool? {
         get {
             if let lastGame = FixtureManager.instance.getLastGame() {
                 return lastGame.home
@@ -90,7 +90,7 @@ open class BaseSettings : NSObject {
         }
     }
     
-    open var nextGameTime: Date? {
+    public var nextGameTime: Date? {
         get {
             if let nextGame = FixtureManager.instance.getNextGame() {
                 return nextGame.fixtureDate
@@ -100,7 +100,7 @@ open class BaseSettings : NSObject {
         }
     }
     
-    open var nextGameTeam: String? {
+    public var nextGameTeam: String? {
         get {
             if let nextGame = FixtureManager.instance.getNextGame() {
                 return nextGame.opponent
@@ -110,7 +110,7 @@ open class BaseSettings : NSObject {
         }
     }
     
-    open var nextGameHome: Bool? {
+    public var nextGameHome: Bool? {
         get {
             if let nextGame = FixtureManager.instance.getNextGame() {
                 return nextGame.home
@@ -120,27 +120,27 @@ open class BaseSettings : NSObject {
         }
     }
     
-    open var currentGameTime: Date {
+    public var currentGameTime: Date {
         get { return self.readObjectFromStore("currentGameTime") as! Date }
         set { self.writeObjectToStore(newValue as AnyObject, key: "currentGameTime") }
     }
     
-    open var currentGameYeltzScore: Int {
+    public var currentGameYeltzScore: Int {
         get { return self.readObjectFromStore("currentGameYeltzScore") as! Int }
         set { self.writeObjectToStore(newValue as AnyObject, key: "currentGameYeltzScore") }
     }
     
-    open var currentGameOpponentScore: Int {
+    public var currentGameOpponentScore: Int {
         get { return self.readObjectFromStore("currentGameOpponentScore") as! Int }
         set { self.writeObjectToStore(newValue as AnyObject, key: "currentGameOpponentScore") }
     }
     
-    open var migratedToGroupSettings: Bool {
+    public var migratedToGroupSettings: Bool {
         get { return self.readObjectFromStore("migratedToGroupSettings") as! Bool }
         set { self.writeObjectToStore(newValue as AnyObject, key: "migratedToGroupSettings") }
     }
     
-    open var displayLastOpponent: String {
+    public var displayLastOpponent: String {
         get {
             if (self.lastGameHome != nil && self.lastGameTeam != nil) {
                 return self.lastGameHome! ? self.lastGameTeam!.uppercased() : self.lastGameTeam!
@@ -150,7 +150,7 @@ open class BaseSettings : NSObject {
         }
     }
     
-    open var displayNextOpponent: String {
+    public var displayNextOpponent: String {
         get {
             if (self.nextGameHome != nil && self.nextGameTeam != nil) {
                 return self.nextGameHome! ? self.nextGameTeam!.uppercased() : self.nextGameTeam!
@@ -160,7 +160,7 @@ open class BaseSettings : NSObject {
         }
     }
     
-    open var lastScore: String {
+    public var lastScore: String {
         get {
             // If no opponent, then no score
             if (self.lastGameTeam == nil) {
@@ -180,7 +180,7 @@ open class BaseSettings : NSObject {
         }
     }
     
-    open var currentScore: String {
+    public var currentScore: String {
         get {
             // If no opponent, then no current score
             if (self.nextGameTeam == nil) {
@@ -195,7 +195,7 @@ open class BaseSettings : NSObject {
         }
     }
     
-    open var nextKickoffTime: String {
+    public var nextKickoffTime: String {
         get {
             // If no next time, then no kickoff time
             if (self.nextGameTime == nil) {
@@ -214,7 +214,7 @@ open class BaseSettings : NSObject {
         }
     }
     
-    open var gameScoreForCurrentGame: Bool {
+    public var gameScoreForCurrentGame: Bool {
         get {
             // If no next game, then no current game
             if (self.nextGameTime == nil) {
@@ -252,19 +252,19 @@ open class BaseSettings : NSObject {
         print("Migrated settings to group")
     }
     
-    open var truncateLastOpponent: String {
+    public var truncateLastOpponent: String {
         get {
             return self.truncateTeamName(self.displayLastOpponent, max:16)
         }
     }
     
-    open var truncateNextOpponent: String {
+    public var truncateNextOpponent: String {
         get {
             return self.truncateTeamName(self.displayNextOpponent, max:16)
         }
     }
     
-    open var smallOpponent: String {
+    public var smallOpponent: String {
         get {
             switch self.currentGameState() {
             case .daysBefore, .gameDayBefore:
@@ -279,7 +279,7 @@ open class BaseSettings : NSObject {
         }
     }
     
-    open var smallScoreOrDate: String {
+    public var smallScoreOrDate: String {
         get {
             switch self.currentGameState() {
             case .daysBefore:
@@ -323,7 +323,7 @@ open class BaseSettings : NSObject {
         }
     }
     
-    open var smallScore: String {
+    public var smallScore: String {
         get {
             switch self.currentGameState() {
             case .daysBefore, .gameDayBefore:
@@ -338,7 +338,7 @@ open class BaseSettings : NSObject {
         }
     }
     
-    open var longCombinedTeamScoreOrDate: String {
+    public var longCombinedTeamScoreOrDate: String {
         get {
             switch self.currentGameState() {
             case .daysBefore, .gameDayBefore:
@@ -353,7 +353,7 @@ open class BaseSettings : NSObject {
         }
     }
     
-    open var fullTitle: String {
+    public var fullTitle: String {
         get {
             switch self.currentGameState() {
             case .daysBefore, .gameDayBefore:
@@ -368,7 +368,7 @@ open class BaseSettings : NSObject {
         }
     }
     
-    open var fullTeam: String {
+    public var fullTeam: String {
         get {
             switch self.currentGameState() {
             case .daysBefore, .gameDayBefore:
@@ -383,7 +383,7 @@ open class BaseSettings : NSObject {
         }
     }
     
-    open var fullScoreOrDate: String {
+    public var fullScoreOrDate: String {
         get {
             switch self.currentGameState() {
             case .daysBefore:
@@ -437,7 +437,7 @@ open class BaseSettings : NSObject {
 
     
     // MARK:- Game state functions
-    open func currentGameState() -> GameState {
+    public func currentGameState() -> GameState {
         
         // If no next game, return none
         if (self.nextGameTime == nil) {
@@ -502,7 +502,7 @@ open class BaseSettings : NSObject {
         return Int(daysDifference)
     }
     
-    @objc open func refreshFixtures() {
+    @objc public func refreshFixtures() {
         print("Updating game fixture settings ...")
         
         var updated = false
@@ -580,7 +580,7 @@ open class BaseSettings : NSObject {
         }
     }
     
-    @objc open func refreshGameScore() {
+    @objc public func refreshGameScore() {
         print("Updating game score settings ...")
         
         let currentlyInGame = self.currentGameState() == GameState.during
@@ -616,7 +616,7 @@ open class BaseSettings : NSObject {
         }
     }
     
-    open func pushAllSettingsToWatch(_ currentlyInGame:Bool) {
+    public func pushAllSettingsToWatch(_ currentlyInGame:Bool) {
         // Do nothing by default
     }
 }

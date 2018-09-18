@@ -8,8 +8,8 @@
 
 import Foundation
 
-open class GameScoreManager {
-    open static let GameScoreNotification:String = "YLZGameScoreNotification"
+public class GameScoreManager {
+    public static let GameScoreNotification:String = "YLZGameScoreNotification"
     
     fileprivate var matchDate:Date? = nil
     fileprivate var yeltzScore:Int = 0
@@ -22,15 +22,15 @@ open class GameScoreManager {
         }
     }
     
-    open var MatchDate: Date? {
+    public var MatchDate: Date? {
         return self.matchDate
     }
     
-    open var YeltzScore: Int {
+    public var YeltzScore: Int {
         return self.yeltzScore
     }
     
-    open var OpponentScore: Int {
+    public var OpponentScore: Int {
         return self.opponentScore
     }
     
@@ -62,7 +62,7 @@ open class GameScoreManager {
         }
     }
     
-    open func getLatestGameScore() {
+    public func getLatestGameScore() {
         print("Preparing to fetch game score ...")
         
         let dataUrl = URL(string: "https://bravelocation.com/automation/feeds/gamescore.json")!
@@ -94,7 +94,7 @@ open class GameScoreManager {
         task.resume()
     }
     
-    open func loadGameScoreData(_ data:Data?) {
+    public func loadGameScoreData(_ data:Data?) {
         do {
             let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions()) as? [String : AnyObject]
             
