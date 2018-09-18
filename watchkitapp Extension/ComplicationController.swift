@@ -121,28 +121,6 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         handler(nil)
     }
     
-    // MARK: - Update Scheduling
-    func getNextRequestedUpdateDate(handler: @escaping (Date?) -> Void) {
-        // Call the handler with the date when you would next like to be given the opportunity to update your complication content
-        
-        // Update every 6 hours by default - the app will push in updates if they occur
-        var minutesToNextUpdate = 360.0
-        
-        let gameState = WatchGameSettings.instance.currentGameState()
-        if (gameState == BaseSettings.GameState.during || gameState == BaseSettings.GameState.duringNoScore) {
-            // During match, update every 15 minutes
-            minutesToNextUpdate = 15.0
-        } else if (gameState == BaseSettings.GameState.gameDayBefore || gameState == BaseSettings.GameState.after) {
-            // On rest of game day (or day after), update every hour
-            minutesToNextUpdate = 60.0
-        }
-        
-        let requestTime = Date().addingTimeInterval(minutesToNextUpdate * 60.0)
-        handler(requestTime)
-        
-        print("Requested for complications to be updated in %3.0f minutes", minutesToNextUpdate)
-    }
-    
     // MARK: - Placeholder Templates
     func getLocalizableSampleTemplate(for complication: CLKComplication,
                                       withHandler handler: @escaping (CLKComplicationTemplate?) -> Void) {
