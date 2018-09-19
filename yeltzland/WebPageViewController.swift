@@ -134,7 +134,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
     
     // MARK: - Nav bar actions
     @objc func reloadButtonTouchUp() {
-        progressBar.setProgress(0, animated: false)
+        self.progressBar.setProgress(0, animated: false)
         self.webView.reloadFromOrigin()
     }
     
@@ -190,7 +190,8 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         }
     }
     
-    func showSpinner() {
+    // MARK: - Spinner methods
+    private func showSpinner() {
         if (self.spinner != nil) {
             self.hideSpinner()
         }
@@ -202,7 +203,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         self.spinner.startAnimating()
     }
     
-    func hideSpinner() {
+    private func hideSpinner() {
         if (self.spinner != nil) {
             self.spinner.stopAnimating()
             self.spinner.removeFromSuperview()
@@ -212,81 +213,92 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
     
     // MARK: - WKNavigationDelegate methods
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
-        self.hideSpinner()
-        
-        // Show brief error message
-        let navigationError = error as NSError
-        if (navigationError.code != NSURLErrorCancelled) {
+        DispatchQueue.main.async(execute: { () -> Void in
+            self.hideSpinner()
+            
+            // Show brief error message
+            let navigationError = error as NSError
+            if (navigationError.code != NSURLErrorCancelled) {
                 print("didFailProvisionalNavigation error occurred: ", error.localizedDescription, ":", navigationError.code)
                 MakeToast.Show(self, title:"A problem occured", message: "Couldn't connect to the website right now")
-        }
-
+            }
+        })
     }
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation) {
-        self.showSpinner()
-        self.progressBar.setProgress(0, animated: false)
-        UIView.animate(withDuration: 0.3, delay: 0, options: UIViewAnimationOptions(), animations: { self.progressBar.alpha = 1 }, completion: nil)
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        DispatchQueue.main.async(execute: { () -> Void in
+            self.showSpinner()
+            self.progressBar.setProgress(0, animated: false)
+            UIView.animate(withDuration: 0.3, delay: 0, options: UIViewAnimationOptions(), animations: { self.progressBar.alpha = 1 }, completion: nil)
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        })
     }
     
     func webView(_ webView: WKWebView, didCommit navigation: WKNavigation){
-        if (webView.estimatedProgress > 0) {
-           self.hideSpinner()
-        }
-        
-        progressBar.setProgress(Float(webView.estimatedProgress), animated: true)
+        DispatchQueue.main.async(execute: { () -> Void in
+            if (webView.estimatedProgress > 0) {
+               self.hideSpinner()
+            }
+            
+            self.progressBar.setProgress(Float(webView.estimatedProgress), animated: true)
+        })
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation) {
         // Mark the progress as done
-        self.hideSpinner()
+        DispatchQueue.main.async(execute: { () -> Void in
+            self.hideSpinner()
 
-        progressBar.setProgress(1, animated: true)
-        UIView.animate(withDuration: 0.3, delay: 1, options: UIViewAnimationOptions(), animations: { self.progressBar.alpha = 0 }, completion: nil)
-        UIApplication.shared.isNetworkActivityIndicatorVisible = false
-        
-        self.backButton.isEnabled = webView.canGoBack
-        self.forwardButton.isEnabled = webView.canGoForward
-        
-        // Post notification message that URL has been updated
-        NotificationCenter.default.post(name: Notification.Name(rawValue: WebPageViewController.UrlNotification), object: nil)
+            self.progressBar.setProgress(1, animated: true)
+            UIView.animate(withDuration: 0.3, delay: 1, options: UIViewAnimationOptions(), animations: { self.progressBar.alpha = 0 }, completion: nil)
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            
+            self.backButton.isEnabled = webView.canGoBack
+            self.forwardButton.isEnabled = webView.canGoForward
+            
+            // Post notification message that URL has been updated
+            NotificationCenter.default.post(name: Notification.Name(rawValue: WebPageViewController.UrlNotification), object: nil)
+        })
     }
     
     @objc(webView:didFailNavigation:withError:) func webView(_ webView: WKWebView, didFail navigation: WKNavigation, withError error: Error) {
         // Mark the progress as done
-        self.hideSpinner()
-        progressBar.setProgress(1, animated: true)
-        UIView.animate(withDuration: 0.3, delay: 1, options: UIViewAnimationOptions(), animations: { self.progressBar.alpha = 0 }, completion: nil)
-        UIApplication.shared.isNetworkActivityIndicatorVisible = false
-        
-        // Show brief error message
-        let navigationError = error as NSError
-        if (navigationError.code != NSURLErrorCancelled) {
-            print("Navigation error occurred: ", navigationError.localizedDescription)
-            MakeToast.Show(self, title:"A problem occurred", message: "Couldn't connect to the website right now")
-        }
+        DispatchQueue.main.async(execute: { () -> Void in
+            self.hideSpinner()
+            self.progressBar.setProgress(1, animated: true)
+            UIView.animate(withDuration: 0.3, delay: 1, options: UIViewAnimationOptions(), animations: { self.progressBar.alpha = 0 }, completion: nil)
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            
+            // Show brief error message
+            let navigationError = error as NSError
+            if (navigationError.code != NSURLErrorCancelled) {
+                print("Navigation error occurred: ", navigationError.localizedDescription)
+                MakeToast.Show(self, title:"A problem occurred", message: "Couldn't connect to the website right now")
+            }
+        })
     }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        var externalUrl:URL? = nil
-        
-        // Open new frame redirects in Safari
-        if (navigationAction.targetFrame == nil) {
-            print("Redirecting link to another frame: \(navigationAction.request.url!)")
-            externalUrl = navigationAction.request.url!
-        }
-        
-        // Do we have a non-standard URL?
-        if let safariUrl = externalUrl {
-            if(UIApplication.shared.canOpenURL(safariUrl)){
-                UIApplication.shared.openURL(safariUrl)
+        DispatchQueue.main.async(execute: { () -> Void in
+            var externalUrl:URL? = nil
+            
+            // Open new frame redirects in Safari
+            if (navigationAction.targetFrame == nil) {
+                print("Redirecting link to another frame: \(navigationAction.request.url!)")
+                externalUrl = navigationAction.request.url!
             }
             
-            decisionHandler(WKNavigationActionPolicy.cancel)
-        } else {
-            decisionHandler(WKNavigationActionPolicy.allow)
-        }
+            // Do we have a non-standard URL?
+            if let safariUrl = externalUrl {
+                if(UIApplication.shared.canOpenURL(safariUrl)){
+                    UIApplication.shared.openURL(safariUrl)
+                }
+                
+                decisionHandler(WKNavigationActionPolicy.cancel)
+            } else {
+                decisionHandler(WKNavigationActionPolicy.allow)
+            }
+        })
     }
 }
 
