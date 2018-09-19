@@ -140,12 +140,9 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         activity.isEligibleForSearch = true
 
         // Set the title
-        self.setActivitySearchTitle(activity)
+        self.setActivitySearchTitleAndPhrase(activity)
         
-        if #available(iOS 12.0, *) {
-            activity.isEligibleForPrediction = true
-            activity.suggestedInvocationPhrase = activity.title
-        }
+
         
         activity.needsSave = true
 
@@ -153,22 +150,34 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         self.userActivity?.becomeCurrent()
     }
     
-    func setActivitySearchTitle(_ activity: NSUserActivity) {
+    private func setActivitySearchTitleAndPhrase(_ activity: NSUserActivity) {
         let currentIndex = GameSettings.instance.lastSelectedTab
+        
+        var activityTitle = "Open Yeltzland"
+        var activityInvocationPhrase = "Open Yeltzland"
         
         switch currentIndex {
         case 0:
-            activity.title = "Read Yeltz Forum"
+            activityTitle = "Read Yeltz Forum"
+            activityInvocationPhrase = "Read the forum"
             break
         case 1:
-            activity.title = "Read HTFC Official Site"
+            activityTitle = "Read HTFC Official Site"
+            activityInvocationPhrase = "Read the club website"
             break
         case 2:
-            activity.title = "Read HTFC Twitter Feed"
+            activityTitle = "Read HTFC Twitter Feed"
+            activityInvocationPhrase = "Read the club twitter"
             break
         default:
-            activity.title = "Open Yeltzland"
             break
+        }
+        
+        activity.title = activityTitle
+        if #available(iOS 12.0, *) {
+            activity.suggestedInvocationPhrase = activityInvocationPhrase
+            activity.isEligibleForPrediction = true
+            activity.persistentIdentifier = NSUserActivityPersistentIdentifier(activityTitle)
         }
     }
     

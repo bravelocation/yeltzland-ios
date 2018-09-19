@@ -221,14 +221,15 @@ class FixturesTableViewController: UITableViewController {
         // Eligible for handoff
         activity.isEligibleForHandoff = true
         activity.isEligibleForSearch = true
+        activity.title = "Yeltz Fixture List"
         
         if #available(iOS 12.0, *) {
             activity.isEligibleForPrediction = true            
             activity.suggestedInvocationPhrase = "Fixture List"
+            activity.persistentIdentifier = NSUserActivityPersistentIdentifier("Yeltz Fixture List")
         }
                 
         // Set the title
-        self.title = "Yeltz Fixture List"
         activity.needsSave = true
         
         self.userActivity = activity;
