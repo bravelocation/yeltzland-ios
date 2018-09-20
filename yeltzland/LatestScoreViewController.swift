@@ -135,7 +135,7 @@ class LatestScoreViewController: UIViewController {
         self.bestGuessLabel.isHidden = (self.gameSettings.gameScoreForCurrentGame == false)
     }
     
-    // - MARK Handoff
+    // MARK:- Handoff
     @objc func setupHandoff() {
         // Set activity for handoff
         let activity = NSUserActivity(activityType: "com.bravelocation.yeltzland.latestscore")
@@ -148,7 +148,7 @@ class LatestScoreViewController: UIViewController {
         if #available(iOS 12.0, *) {
             activity.isEligibleForPrediction = true
             activity.suggestedInvocationPhrase = "Latest Yeltz Score"
-            activity.persistentIdentifier = NSUserActivityPersistentIdentifier("Latest Yeltz Score")
+            activity.persistentIdentifier = String(format: "%@.com.bravelocation.yeltzland.latestscore", Bundle.main.bundleIdentifier!)
         }
         
         // Set the title

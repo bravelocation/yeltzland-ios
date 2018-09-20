@@ -177,7 +177,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         if #available(iOS 12.0, *) {
             activity.suggestedInvocationPhrase = activityInvocationPhrase
             activity.isEligibleForPrediction = true
-            activity.persistentIdentifier = NSUserActivityPersistentIdentifier(activityTitle)
+            activity.persistentIdentifier = String(format: "%@.com.bravelocation.yeltzland.currenttab.%d", Bundle.main.bundleIdentifier!, currentIndex)
         }
     }
     
