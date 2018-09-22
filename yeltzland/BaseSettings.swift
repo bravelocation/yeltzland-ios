@@ -485,8 +485,12 @@ public class BaseSettings : NSObject {
         let nextGameNumber = self.dayNumber(self.nextGameTime!)
         
         // If next game is today, and we are before kickoff ...
-        if (nextGameNumber == todayDayNumber && beforeKickoff) {
-            return GameState.gameDayBefore
+        if (nextGameNumber == todayDayNumber) {
+            if beforeKickoff {
+                return GameState.gameDayBefore
+            } else {
+                return GameState.duringNoScore
+            }
         }
         
         // If no last game time (but is a next, must be before)
@@ -500,11 +504,6 @@ public class BaseSettings : NSObject {
         // If last game was today or yesterday
         if ((lastGameNumber == todayDayNumber) || (lastGameNumber == todayDayNumber - 1)) {
             return GameState.after
-        }
-        
-        // If next game is today and after kickoff also during
-        if (nextGameNumber == todayDayNumber && beforeKickoff == false) {
-            return GameState.duringNoScore
         }
         
         // Must before next game

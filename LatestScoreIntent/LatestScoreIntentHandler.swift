@@ -41,6 +41,22 @@ class LatestScoreIntentHandler: NSObject, LatestScoreIntentHandling {
             }
             
             gameState = "latest score is"
+        } else if (gameSettings.currentGameState() == .duringNoScore) {
+            if let nextGameHome = self.gameSettings.nextGameHome {
+                if nextGameHome {
+                    homeTeamName = "Yeltz"
+                    awayTeamName = self.gameSettings.nextGameTeam!
+                    homeTeamScore = 0
+                    awayTeamScore = 0
+                } else {
+                    homeTeamName = self.gameSettings.nextGameTeam!
+                    awayTeamName = "Yeltz"
+                    homeTeamScore = 0
+                    awayTeamScore = 0
+                }
+            }
+            
+            gameState = "latest score is"
         } else if (opponent != nil) {
             // Get the latest result
             if let lastGameHome = self.gameSettings.lastGameHome {

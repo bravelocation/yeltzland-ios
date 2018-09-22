@@ -93,6 +93,7 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
         var homeOrAway = "vs"
         var resultColor = AppColors.FixtureNone
         var score = "TBD"
+        var bestGuess = self.gameSettings.gameScoreForCurrentGame
         
         let opponent = self.gameSettings.lastGameTeam
         
@@ -106,6 +107,10 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
         if (self.gameSettings.gameScoreForCurrentGame) {
             opponentName = self.gameSettings.nextGameTeam!
             score = " \(self.gameSettings.currentScore)"  // Add a space prefix
+        } else if (self.gameSettings.currentGameState() == .duringNoScore) {
+            opponentName = self.gameSettings.nextGameTeam!
+            score = " 0-0*"  // Add a space prefix
+            bestGuess = true
         } else if (opponent != nil) {
             // Get the latest result
             let teamScore = self.gameSettings.lastGameYeltzScore
@@ -139,7 +144,7 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
         self.latestScoreLabel.textColor = resultColor
         TeamImageManager.instance.loadTeamImage(teamName: opponentName, view: self.opponentLogoImageView)
         
-        self.bestGuessLabel.isHidden = (self.gameSettings.gameScoreForCurrentGame == false)
+        self.bestGuessLabel.isHidden = (bestGuess == false)
     }
     
     // MARK:- Handoff

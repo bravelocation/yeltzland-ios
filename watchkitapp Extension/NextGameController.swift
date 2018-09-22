@@ -56,6 +56,21 @@ class NextGameController: WKInterfaceController {
                     awayTeamName = "Halesowen Town"
                 }
             }
+        } else if (gameSettings.currentGameState() == .duringNoScore) {
+            self.nextGameTitle?.setText("Latest Score")
+            self.nextGameOpponent?.setText(gameSettings.displayNextOpponent)
+            self.nextGameDate?.setText("0-0*")
+            self.nextGameFootnote?.setText("*best guess from Twitter")
+            
+            if let home = gameSettings.nextGameHome {
+                if home {
+                    homeTeamName = "Halesowen Town"
+                    awayTeamName = gameSettings.displayNextOpponent
+                } else {
+                    homeTeamName = gameSettings.displayNextOpponent
+                    awayTeamName = "Halesowen Town"
+                }
+            }
         } else {
             // Was the last game today?
             let todayNumber = gameSettings.dayNumber(Date())
