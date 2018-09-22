@@ -21,9 +21,15 @@ target 'watchkitapp Extension' do
 end
 
 target 'yeltzlandTVOS' do
-  platform :tvos, '11.2'
-  
-  pod 'SDWebImage'
+    platform :tvos, '11.2'
+    
+    pod 'SDWebImage'
+end
+
+target 'LatestScoreIntentUI' do
+    platform :ios, '12.0'
+    
+    pod 'SDWebImage'
 end
 
 

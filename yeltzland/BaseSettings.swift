@@ -195,6 +195,36 @@ public class BaseSettings : NSObject {
         }
     }
     
+    public var currentYeltzScore: Int {
+        get {
+            // If no opponent, then no current score
+            if (self.nextGameTeam == nil) {
+                return 0
+            }
+            
+            if self.currentGameState() == GameState.duringNoScore {
+                return 0
+            }
+            
+            return self.currentGameYeltzScore //, self.currentGameOpponentScore)
+        }
+    }
+    
+    public var currentOpponentScore: Int {
+        get {
+            // If no opponent, then no current score
+            if (self.nextGameTeam == nil) {
+                return 0
+            }
+            
+            if self.currentGameState() == GameState.duringNoScore {
+                return 0
+            }
+            
+            return self.currentGameOpponentScore
+        }
+    }
+
     public var nextKickoffTime: String {
         get {
             // If no next time, then no kickoff time

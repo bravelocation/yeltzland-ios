@@ -71,6 +71,7 @@
 	<string>The app would like to save photos to your library</string>
 	<key>NSUserActivityTypes</key>
 	<array>
+		<string>LatestScoreIntent</string>
 		<string>com.bravelocation.yeltzland.currenttab</string>
 		<string>com.bravelocation.yeltzland.fixtures</string>
 		<string>com.bravelocation.yeltzland.latestscore</string>

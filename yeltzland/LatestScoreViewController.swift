@@ -9,9 +9,11 @@
 import UIKit
 import Font_Awesome_Swift
 import Intents
+import IntentsUI
 
-class LatestScoreViewController: UIViewController {
+class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewControllerDelegate {
     
+    // MARK:- Properties
     @IBOutlet weak var homeOrAwayLabel: UILabel!
     @IBOutlet weak var opponentLabel: UILabel!
     @IBOutlet weak var latestScoreLabel: UILabel!
@@ -21,6 +23,7 @@ class LatestScoreViewController: UIViewController {
     var reloadButton: UIBarButtonItem!
     let gameSettings = GameSettings.instance
     
+    // MARK:- Initialisation
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.setupNotificationWatcher()
@@ -49,6 +52,7 @@ class LatestScoreViewController: UIViewController {
         })
     }
     
+    // MARK:- View event handlers
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -75,13 +79,16 @@ class LatestScoreViewController: UIViewController {
         self.updateUI()
         
         self.setupHandoff()
+        self.addSiriButton()
     }
     
+    // MARK:- Event handlers
     @objc func reloadButtonTouchUp() {
         GameScoreManager.instance.getLatestGameScore()
     }
     
-    func updateUI() {
+    // MARK:- Helper functions
+    private func updateUI() {
         var opponentName = ""
         var homeOrAway = "vs"
         var resultColor = AppColors.FixtureNone
@@ -156,5 +163,46 @@ class LatestScoreViewController: UIViewController {
         
         self.userActivity = activity;
         self.userActivity?.becomeCurrent()
+    }
+    
+    // MARK :_ Siri Intents
+    func addSiriButton() {
+        if #available(iOS 12.0, *) {
+            let button = INUIAddVoiceShortcutButton(style: .whiteOutline)
+            button.translatesAutoresizingMaskIntoConstraints = false
+            self.view.addSubview(button)
+            button.addTarget(self, action: #selector(addToSiri(_:)), for: .touchUpInside)
+
+            self.view.centerXAnchor.constraint(equalTo: button.centerXAnchor).isActive = true
+            self.latestScoreLabel.bottomAnchor.constraint(equalTo: button.topAnchor, constant: -32.0).isActive = true
+        }
+    }
+    
+    @objc
+    func addToSiri(_ sender: Any) {
+        if #available(iOS 12.0, *) {
+            let intent = LatestScoreIntent()
+            intent.suggestedInvocationPhrase = "What's the latest score"
+            
+            if let shortcut = INShortcut(intent: intent) {
+                let viewController = INUIAddVoiceShortcutViewController(shortcut: shortcut)
+                viewController.modalPresentationStyle = .formSheet
+                viewController.delegate = self
+                self.present(viewController, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    // MARK:- INUIAddVoiceShortcutViewControllerDelegate
+    @available(iOS 12.0, *)
+    func addVoiceShortcutViewController(_ controller: INUIAddVoiceShortcutViewController, didFinishWith voiceShortcut: INVoiceShortcut?, error: Error?) {
+        print("Added shortcut")
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
+    @available(iOS 12.0, *)
+    func addVoiceShortcutViewControllerDidCancel(_ controller: INUIAddVoiceShortcutViewController) {
+        print("Cancelled shortcut")
+        controller.dismiss(animated: true, completion: nil)
     }
 }

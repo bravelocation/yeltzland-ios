@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C68893C24A5E50F4FA331FE /* Pods_LatestScoreIntentUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1EB3CDB05AFB690D5D25630 /* Pods_LatestScoreIntentUI.framework */; };
 		481F530A2194ABBB0E4F3078 /* Pods_yeltzland.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BE281ED4B32969698046889 /* Pods_yeltzland.framework */; };
 		5211F7271CDA35CF0031496D /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211F7261CDA35CF0031496D /* AppColors.swift */; };
 		5211F72A1CDA53D70031496D /* TwitterUserTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211F7291CDA53D70031496D /* TwitterUserTimelineViewController.swift */; };
@@ -69,6 +70,10 @@
 		528A347820CFB98D00E8475C /* TeamImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A347720CFB98D00E8475C /* TeamImageManager.swift */; };
 		528D745A1CF2F4A400263685 /* DefaultPreferences.plist in Resources */ = {isa = PBXBuildFile; fileRef = 528D74591CF2F4A400263685 /* DefaultPreferences.plist */; };
 		528D745C1CF3201400263685 /* whistleshort.wav in Resources */ = {isa = PBXBuildFile; fileRef = 528D745B1CF3201400263685 /* whistleshort.wav */; };
+		5297C9E42156538800AB5D0F /* matches.json in Resources */ = {isa = PBXBuildFile; fileRef = 52236AEA1D17ECB4004903AB /* matches.json */; };
+		5297C9E52156538800AB5D0F /* matches.json in Resources */ = {isa = PBXBuildFile; fileRef = 52236AEA1D17ECB4004903AB /* matches.json */; };
+		5297C9E62156538B00AB5D0F /* gamescore.json in Resources */ = {isa = PBXBuildFile; fileRef = 52176BAD1D4A1AF600B7EFAE /* gamescore.json */; };
+		5297C9E72156538B00AB5D0F /* gamescore.json in Resources */ = {isa = PBXBuildFile; fileRef = 52176BAD1D4A1AF600B7EFAE /* gamescore.json */; };
 		529E80FE1EDABC91002DC858 /* TodayDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529E80FD1EDABC91002DC858 /* TodayDataSource.swift */; };
 		529E81001EDAC05C002DC858 /* TodayDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529E80FF1EDAC05C002DC858 /* TodayDataItem.swift */; };
 		52A4596E1D89666E00822D8C /* gallery.ckcomplication in Resources */ = {isa = PBXBuildFile; fileRef = 52A4596D1D89666E00822D8C /* gallery.ckcomplication */; };
@@ -101,6 +106,28 @@
 		52E77DEA1FDEBC730069FCFB /* TVGameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E77DE91FDEBC730069FCFB /* TVGameSettings.swift */; };
 		52E77DEB1FDEC0740069FCFB /* matches.json in Resources */ = {isa = PBXBuildFile; fileRef = 52236AEA1D17ECB4004903AB /* matches.json */; };
 		52E77DEC1FDEC0770069FCFB /* gamescore.json in Resources */ = {isa = PBXBuildFile; fileRef = 52176BAD1D4A1AF600B7EFAE /* gamescore.json */; };
+		52EACD9A215643FB008B8DE5 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EACD99215643FB008B8DE5 /* IntentHandler.swift */; };
+		52EACDA2215643FC008B8DE5 /* IntentsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52EACDA1215643FC008B8DE5 /* IntentsUI.framework */; };
+		52EACDA5215643FC008B8DE5 /* IntentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EACDA4215643FC008B8DE5 /* IntentViewController.swift */; };
+		52EACDA8215643FC008B8DE5 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52EACDA6215643FC008B8DE5 /* MainInterface.storyboard */; };
+		52EACDAC215643FC008B8DE5 /* LatestScoreIntentUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 52EACDA0215643FC008B8DE5 /* LatestScoreIntentUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		52EACDAF215643FC008B8DE5 /* LatestScoreIntent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 52EACD97215643FB008B8DE5 /* LatestScoreIntent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		52EACDB721564462008B8DE5 /* Intent.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 52EACDB621564462008B8DE5 /* Intent.intentdefinition */; };
+		52EACDB821564466008B8DE5 /* Intent.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 52EACDB621564462008B8DE5 /* Intent.intentdefinition */; };
+		52EACDB921564467008B8DE5 /* Intent.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 52EACDB621564462008B8DE5 /* Intent.intentdefinition */; };
+		52EACDBB21564586008B8DE5 /* LatestScoreIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EACDBA21564586008B8DE5 /* LatestScoreIntentHandler.swift */; };
+		52EACDBC215646B1008B8DE5 /* DefaultPreferences.plist in Resources */ = {isa = PBXBuildFile; fileRef = 528D74591CF2F4A400263685 /* DefaultPreferences.plist */; };
+		52EACDBD215646B1008B8DE5 /* DefaultPreferences.plist in Resources */ = {isa = PBXBuildFile; fileRef = 528D74591CF2F4A400263685 /* DefaultPreferences.plist */; };
+		52EACDBE215646C7008B8DE5 /* FixtureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236AE71D17E4D3004903AB /* FixtureManager.swift */; };
+		52EACDBF215646C8008B8DE5 /* FixtureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236AE71D17E4D3004903AB /* FixtureManager.swift */; };
+		52EACDC0215646CD008B8DE5 /* Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236AE51D17DFF8004903AB /* Fixture.swift */; };
+		52EACDC1215646CE008B8DE5 /* Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236AE51D17DFF8004903AB /* Fixture.swift */; };
+		52EACDC2215646D0008B8DE5 /* GameScoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52176BAF1D4A1B3200B7EFAE /* GameScoreManager.swift */; };
+		52EACDC3215646D0008B8DE5 /* GameScoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52176BAF1D4A1B3200B7EFAE /* GameScoreManager.swift */; };
+		52EACDC4215646D3008B8DE5 /* GameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DBCA9F1D4A012E00D35F91 /* GameSettings.swift */; };
+		52EACDC5215646D3008B8DE5 /* GameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DBCA9F1D4A012E00D35F91 /* GameSettings.swift */; };
+		52EACDC6215646DA008B8DE5 /* BaseSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52176BB21D4B62DC00B7EFAE /* BaseSettings.swift */; };
+		52EACDC7215646DA008B8DE5 /* BaseSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52176BB21D4B62DC00B7EFAE /* BaseSettings.swift */; };
 		52F5CA9F20ED1F45000143A1 /* TeamImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A347720CFB98D00E8475C /* TeamImageManager.swift */; };
 		DB860C2661D34E99E75814F6 /* Pods_yeltzlandTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59A5577BD1AF23F460D4B20 /* Pods_yeltzlandTVOS.framework */; };
 		F2C923D6766D78C589FBFD9A /* Pods_watchkitapp_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3CD79B24EF0B6634FC3AFFA /* Pods_watchkitapp_Extension.framework */; };
@@ -135,6 +162,20 @@
 			remoteGlobalIDString = 526F544F1D214705001EA8D8;
 			remoteInfo = Today;
 		};
+		52EACDAA215643FC008B8DE5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52E3DF6B1CD9FA78009F18BD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 52EACD9F215643FC008B8DE5;
+			remoteInfo = LatestScoreIntentUI;
+		};
+		52EACDAD215643FC008B8DE5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52E3DF6B1CD9FA78009F18BD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 52EACD96215643FB008B8DE5;
+			remoteInfo = LatestScoreIntent;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -166,6 +207,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				52EACDAF215643FC008B8DE5 /* LatestScoreIntent.appex in Embed App Extensions */,
+				52EACDAC215643FC008B8DE5 /* LatestScoreIntentUI.appex in Embed App Extensions */,
 				526F545C1D214705001EA8D8 /* Today.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
@@ -236,6 +279,8 @@
 		528D74561CF1A6FF00263685 /* yeltzland-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "yeltzland-Bridging-Header.h"; sourceTree = "<group>"; };
 		528D74591CF2F4A400263685 /* DefaultPreferences.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultPreferences.plist; sourceTree = "<group>"; };
 		528D745B1CF3201400263685 /* whistleshort.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = whistleshort.wav; sourceTree = "<group>"; };
+		5297C9E2215652A600AB5D0F /* LatestScoreIntentUI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LatestScoreIntentUI.entitlements; sourceTree = "<group>"; };
+		5297C9E3215652AB00AB5D0F /* LatestScoreIntent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LatestScoreIntent.entitlements; sourceTree = "<group>"; };
 		529E80FD1EDABC91002DC858 /* TodayDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayDataSource.swift; sourceTree = "<group>"; };
 		529E80FF1EDAC05C002DC858 /* TodayDataItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayDataItem.swift; sourceTree = "<group>"; };
 		52A4596D1D89666E00822D8C /* gallery.ckcomplication */ = {isa = PBXFileReference; lastKnownFileType = folder; path = gallery.ckcomplication; sourceTree = "<group>"; };
@@ -260,9 +305,22 @@
 		52E77DE41FDEBB6C0069FCFB /* TVFixtureData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVFixtureData.swift; sourceTree = "<group>"; };
 		52E77DE71FDEBBB60069FCFB /* TVFixturesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVFixturesDataSource.swift; sourceTree = "<group>"; };
 		52E77DE91FDEBC730069FCFB /* TVGameSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVGameSettings.swift; sourceTree = "<group>"; };
+		52EACD97215643FB008B8DE5 /* LatestScoreIntent.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LatestScoreIntent.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		52EACD99215643FB008B8DE5 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
+		52EACD9B215643FB008B8DE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		52EACDA0215643FC008B8DE5 /* LatestScoreIntentUI.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LatestScoreIntentUI.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		52EACDA1215643FC008B8DE5 /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
+		52EACDA4215643FC008B8DE5 /* IntentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentViewController.swift; sourceTree = "<group>"; };
+		52EACDA7215643FC008B8DE5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		52EACDA9215643FC008B8DE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		52EACDB621564462008B8DE5 /* Intent.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Intent.intentdefinition; sourceTree = "<group>"; };
+		52EACDBA21564586008B8DE5 /* LatestScoreIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestScoreIntentHandler.swift; sourceTree = "<group>"; };
 		6C2886E0C6D579332BF2A5A8 /* Pods-yeltzland.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yeltzland.debug.xcconfig"; path = "Pods/Target Support Files/Pods-yeltzland/Pods-yeltzland.debug.xcconfig"; sourceTree = "<group>"; };
 		8541FCDE5A3B1A03D43E3DBD /* Pods-watchkitapp Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watchkitapp Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-watchkitapp Extension/Pods-watchkitapp Extension.release.xcconfig"; sourceTree = "<group>"; };
+		9128B5CB12B26C168A4A8C92 /* Pods-LatestScoreIntentUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LatestScoreIntentUI.release.xcconfig"; path = "Pods/Target Support Files/Pods-LatestScoreIntentUI/Pods-LatestScoreIntentUI.release.xcconfig"; sourceTree = "<group>"; };
+		968931E5B9D7A021DCFF9052 /* Pods-LatestScoreIntentUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LatestScoreIntentUI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LatestScoreIntentUI/Pods-LatestScoreIntentUI.debug.xcconfig"; sourceTree = "<group>"; };
 		9BE281ED4B32969698046889 /* Pods_yeltzland.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_yeltzland.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1EB3CDB05AFB690D5D25630 /* Pods_LatestScoreIntentUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LatestScoreIntentUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C11AF69119A85B889C5CADB2 /* Pods-yeltzland.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yeltzland.release.xcconfig"; path = "Pods/Target Support Files/Pods-yeltzland/Pods-yeltzland.release.xcconfig"; sourceTree = "<group>"; };
 		C3CD79B24EF0B6634FC3AFFA /* Pods_watchkitapp_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_watchkitapp_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C59A5577BD1AF23F460D4B20 /* Pods_yeltzlandTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_yeltzlandTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -310,6 +368,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		52EACD94215643FB008B8DE5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52EACD9D215643FC008B8DE5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52EACDA2215643FC008B8DE5 /* IntentsUI.framework in Frameworks */,
+				1C68893C24A5E50F4FA331FE /* Pods_LatestScoreIntentUI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		56DA7360999AEA43B62992D3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -329,6 +403,8 @@
 				31D85CE3D6629F7148E43670 /* Pods-yeltzlandTVOS.release.xcconfig */,
 				2552AC500EB5468A6630D33E /* Pods-watchkitapp Extension.debug.xcconfig */,
 				8541FCDE5A3B1A03D43E3DBD /* Pods-watchkitapp Extension.release.xcconfig */,
+				968931E5B9D7A021DCFF9052 /* Pods-LatestScoreIntentUI.debug.xcconfig */,
+				9128B5CB12B26C168A4A8C92 /* Pods-LatestScoreIntentUI.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -462,13 +538,14 @@
 		52C4DA861D4C83C6009AFD25 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				52DC9EB61FC9C30E00AE02F6 /* GoogleService-Info.plist */,
-				52E3DF7F1CD9FA78009F18BD /* LaunchScreen.storyboard */,
-				52176BAA1D4A0D9A00B7EFAE /* yeltzland.entitlements */,
-				52E3DF821CD9FA78009F18BD /* Info.plist */,
 				52E3DF7D1CD9FA78009F18BD /* Assets.xcassets */,
 				528D74591CF2F4A400263685 /* DefaultPreferences.plist */,
+				52DC9EB61FC9C30E00AE02F6 /* GoogleService-Info.plist */,
+				52E3DF7F1CD9FA78009F18BD /* LaunchScreen.storyboard */,
+				52E3DF821CD9FA78009F18BD /* Info.plist */,
 				528D74561CF1A6FF00263685 /* yeltzland-Bridging-Header.h */,
+				52176BAA1D4A0D9A00B7EFAE /* yeltzland.entitlements */,
+				52EACDB621564462008B8DE5 /* Intent.intentdefinition */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -485,6 +562,8 @@
 				52176BB81D4B6D5900B7EFAE /* watchkitapp */,
 				52176BC71D4B6D5900B7EFAE /* watchkitapp Extension */,
 				525719721FDE8AE2005F1D80 /* yeltzland TVOS */,
+				52EACD98215643FB008B8DE5 /* LatestScoreIntent */,
+				52EACDA3215643FC008B8DE5 /* LatestScoreIntentUI */,
 				52E3DF741CD9FA78009F18BD /* Products */,
 				D15072796B891DCF46FC1DA6 /* Frameworks */,
 				094D27B64A778A50E38BC04C /* Pods */,
@@ -500,6 +579,8 @@
 				52176BB71D4B6D5900B7EFAE /* watchkitapp.app */,
 				52176BC31D4B6D5900B7EFAE /* watchkitapp Extension.appex */,
 				525719711FDE8AE1005F1D80 /* yeltzlandTVOS.app */,
+				52EACD97215643FB008B8DE5 /* LatestScoreIntent.appex */,
+				52EACDA0215643FC008B8DE5 /* LatestScoreIntentUI.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -528,6 +609,28 @@
 			path = yeltzland;
 			sourceTree = "<group>";
 		};
+		52EACD98215643FB008B8DE5 /* LatestScoreIntent */ = {
+			isa = PBXGroup;
+			children = (
+				5297C9E3215652AB00AB5D0F /* LatestScoreIntent.entitlements */,
+				52EACD99215643FB008B8DE5 /* IntentHandler.swift */,
+				52EACD9B215643FB008B8DE5 /* Info.plist */,
+				52EACDBA21564586008B8DE5 /* LatestScoreIntentHandler.swift */,
+			);
+			path = LatestScoreIntent;
+			sourceTree = "<group>";
+		};
+		52EACDA3215643FC008B8DE5 /* LatestScoreIntentUI */ = {
+			isa = PBXGroup;
+			children = (
+				5297C9E2215652A600AB5D0F /* LatestScoreIntentUI.entitlements */,
+				52EACDA4215643FC008B8DE5 /* IntentViewController.swift */,
+				52EACDA6215643FC008B8DE5 /* MainInterface.storyboard */,
+				52EACDA9215643FC008B8DE5 /* Info.plist */,
+			);
+			path = LatestScoreIntentUI;
+			sourceTree = "<group>";
+		};
 		D15072796B891DCF46FC1DA6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -536,6 +639,8 @@
 				526F54511D214705001EA8D8 /* NotificationCenter.framework */,
 				C3CD79B24EF0B6634FC3AFFA /* Pods_watchkitapp_Extension.framework */,
 				C59A5577BD1AF23F460D4B20 /* Pods_yeltzlandTVOS.framework */,
+				52EACDA1215643FC008B8DE5 /* IntentsUI.framework */,
+				B1EB3CDB05AFB690D5D25630 /* Pods_LatestScoreIntentUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -657,11 +762,48 @@
 			dependencies = (
 				526F545B1D214705001EA8D8 /* PBXTargetDependency */,
 				52176BD61D4B6D5900B7EFAE /* PBXTargetDependency */,
+				52EACDAB215643FC008B8DE5 /* PBXTargetDependency */,
+				52EACDAE215643FC008B8DE5 /* PBXTargetDependency */,
 			);
 			name = yeltzland;
 			productName = yeltzland;
 			productReference = 52E3DF731CD9FA78009F18BD /* yeltzland.app */;
 			productType = "com.apple.product-type.application";
+		};
+		52EACD96215643FB008B8DE5 /* LatestScoreIntent */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 52EACDB3215643FC008B8DE5 /* Build configuration list for PBXNativeTarget "LatestScoreIntent" */;
+			buildPhases = (
+				52EACD93215643FB008B8DE5 /* Sources */,
+				52EACD94215643FB008B8DE5 /* Frameworks */,
+				52EACD95215643FB008B8DE5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LatestScoreIntent;
+			productName = LatestScoreIntent;
+			productReference = 52EACD97215643FB008B8DE5 /* LatestScoreIntent.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		52EACD9F215643FC008B8DE5 /* LatestScoreIntentUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 52EACDB0215643FC008B8DE5 /* Build configuration list for PBXNativeTarget "LatestScoreIntentUI" */;
+			buildPhases = (
+				64C71702BF7CA464CE809474 /* [CP] Check Pods Manifest.lock */,
+				52EACD9C215643FC008B8DE5 /* Sources */,
+				52EACD9D215643FC008B8DE5 /* Frameworks */,
+				52EACD9E215643FC008B8DE5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LatestScoreIntentUI;
+			productName = LatestScoreIntentUI;
+			productReference = 52EACDA0215643FC008B8DE5 /* LatestScoreIntentUI.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -669,7 +811,7 @@
 		52E3DF6B1CD9FA78009F18BD /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0920;
+				LastSwiftUpdateCheck = 1000;
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "John Pollard";
 				TargetAttributes = {
@@ -733,6 +875,29 @@
 							com.apple.Push = {
 								enabled = 1;
 							};
+							com.apple.Siri = {
+								enabled = 1;
+							};
+						};
+					};
+					52EACD96215643FB008B8DE5 = {
+						CreatedOnToolsVersion = 10.0;
+						DevelopmentTeam = W8B3V597R9;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
+					52EACD9F215643FC008B8DE5 = {
+						CreatedOnToolsVersion = 10.0;
+						DevelopmentTeam = W8B3V597R9;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
 						};
 					};
 				};
@@ -756,6 +921,8 @@
 				52176BB61D4B6D5900B7EFAE /* watchkitapp */,
 				52176BC21D4B6D5900B7EFAE /* watchkitapp Extension */,
 				525719701FDE8AE1005F1D80 /* yeltzlandTVOS */,
+				52EACD96215643FB008B8DE5 /* LatestScoreIntent */,
+				52EACD9F215643FC008B8DE5 /* LatestScoreIntentUI */,
 			);
 		};
 /* End PBXProject section */
@@ -833,6 +1000,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		52EACD95215643FB008B8DE5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52EACDBC215646B1008B8DE5 /* DefaultPreferences.plist in Resources */,
+				5297C9E42156538800AB5D0F /* matches.json in Resources */,
+				5297C9E62156538B00AB5D0F /* gamescore.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52EACD9E215643FC008B8DE5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5297C9E72156538B00AB5D0F /* gamescore.json in Resources */,
+				52EACDA8215643FC008B8DE5 /* MainInterface.storyboard in Resources */,
+				5297C9E52156538800AB5D0F /* matches.json in Resources */,
+				52EACDBD215646B1008B8DE5 /* DefaultPreferences.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -861,7 +1049,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-yeltzlandTVOS/Pods-yeltzlandTVOS-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage-tvOS/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage-tvOS11.2/SDWebImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -955,6 +1143,24 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-yeltzland/Pods-yeltzland-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		64C71702BF7CA464CE809474 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LatestScoreIntentUI-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		71ADE6DF9E407B473C7C01FD /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -983,10 +1189,11 @@
 				"${BUILT_PRODUCTS_DIR}/Font-Awesome-Swift/Font_Awesome_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage-iOS/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage-iOS9.3/SDWebImage.framework",
 				"${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework",
 				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage-iOS12.0/SDWebImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1028,7 +1235,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-watchkitapp Extension/Pods-watchkitapp Extension-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage-watchOS/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage-watchOS4.0/SDWebImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1133,7 +1340,37 @@
 				5259F9041CDA1292009C2AA8 /* MainTabBarController.swift in Sources */,
 				527DAF1B1D2BA9BA0092BB8F /* SafariActivity.swift in Sources */,
 				5236ECDB20CE99B80067AFFA /* LatestScoreViewController.swift in Sources */,
+				52EACDB721564462008B8DE5 /* Intent.intentdefinition in Sources */,
 				52236AEE1D1803C8004903AB /* FixturesTableViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52EACD93215643FB008B8DE5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52EACDB821564466008B8DE5 /* Intent.intentdefinition in Sources */,
+				52EACDC6215646DA008B8DE5 /* BaseSettings.swift in Sources */,
+				52EACDBE215646C7008B8DE5 /* FixtureManager.swift in Sources */,
+				52EACDC2215646D0008B8DE5 /* GameScoreManager.swift in Sources */,
+				52EACDC0215646CD008B8DE5 /* Fixture.swift in Sources */,
+				52EACD9A215643FB008B8DE5 /* IntentHandler.swift in Sources */,
+				52EACDBB21564586008B8DE5 /* LatestScoreIntentHandler.swift in Sources */,
+				52EACDC4215646D3008B8DE5 /* GameSettings.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52EACD9C215643FC008B8DE5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52EACDBF215646C8008B8DE5 /* FixtureManager.swift in Sources */,
+				52EACDC3215646D0008B8DE5 /* GameScoreManager.swift in Sources */,
+				52EACDC5215646D3008B8DE5 /* GameSettings.swift in Sources */,
+				52EACDB921564467008B8DE5 /* Intent.intentdefinition in Sources */,
+				52EACDC7215646DA008B8DE5 /* BaseSettings.swift in Sources */,
+				52EACDA5215643FC008B8DE5 /* IntentViewController.swift in Sources */,
+				52EACDC1215646CE008B8DE5 /* Fixture.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1159,6 +1396,16 @@
 			isa = PBXTargetDependency;
 			target = 526F544F1D214705001EA8D8 /* Today */;
 			targetProxy = 526F545A1D214705001EA8D8 /* PBXContainerItemProxy */;
+		};
+		52EACDAB215643FC008B8DE5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 52EACD9F215643FC008B8DE5 /* LatestScoreIntentUI */;
+			targetProxy = 52EACDAA215643FC008B8DE5 /* PBXContainerItemProxy */;
+		};
+		52EACDAE215643FC008B8DE5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 52EACD96215643FB008B8DE5 /* LatestScoreIntent */;
+			targetProxy = 52EACDAD215643FC008B8DE5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1193,6 +1440,14 @@
 				52E3DF801CD9FA78009F18BD /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		52EACDA6215643FC008B8DE5 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				52EACDA7215643FC008B8DE5 /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1561,6 +1816,116 @@
 			};
 			name = Release;
 		};
+		52EACDB1215643FC008B8DE5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 968931E5B9D7A021DCFF9052 /* Pods-LatestScoreIntentUI.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = LatestScoreIntentUI/LatestScoreIntentUI.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W8B3V597R9;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = LatestScoreIntentUI/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bravelocation.yeltzland.LatestScoreIntentUI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		52EACDB2215643FC008B8DE5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9128B5CB12B26C168A4A8C92 /* Pods-LatestScoreIntentUI.release.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = LatestScoreIntentUI/LatestScoreIntentUI.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W8B3V597R9;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = LatestScoreIntentUI/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bravelocation.yeltzland.LatestScoreIntentUI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		52EACDB4215643FC008B8DE5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = LatestScoreIntent/LatestScoreIntent.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W8B3V597R9;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = LatestScoreIntent/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bravelocation.yeltzland.LatestScoreIntent;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		52EACDB5215643FC008B8DE5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = LatestScoreIntent/LatestScoreIntent.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W8B3V597R9;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = LatestScoreIntent/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bravelocation.yeltzland.LatestScoreIntent;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1623,6 +1988,24 @@
 			buildConfigurations = (
 				52E3DF861CD9FA79009F18BD /* Debug */,
 				52E3DF871CD9FA79009F18BD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		52EACDB0215643FC008B8DE5 /* Build configuration list for PBXNativeTarget "LatestScoreIntentUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52EACDB1215643FC008B8DE5 /* Debug */,
+				52EACDB2215643FC008B8DE5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		52EACDB3215643FC008B8DE5 /* Build configuration list for PBXNativeTarget "LatestScoreIntent" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52EACDB4215643FC008B8DE5 /* Debug */,
+				52EACDB5215643FC008B8DE5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
