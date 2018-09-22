@@ -18,7 +18,7 @@ class LatestScoreIntentHandler: NSObject, LatestScoreIntentHandling {
     func handle(intent: LatestScoreIntent, completion: @escaping (LatestScoreIntentResponse) -> Void) {
         var homeTeamName = ""
         var awayTeamName = ""
-        var gameState = "Latest score is"
+        var gameState = ""
         var homeTeamScore = 0
         var awayTeamScore = 0
 
@@ -69,7 +69,5 @@ class LatestScoreIntentHandler: NSObject, LatestScoreIntentHandling {
                                                      awayTeam: awayTeamName,
                                                      awayScore: NSNumber(value: awayTeamScore)))
     }
-    
-
 }
 

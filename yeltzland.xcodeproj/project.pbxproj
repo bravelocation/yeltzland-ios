@@ -74,6 +74,9 @@
 		5297C9E52156538800AB5D0F /* matches.json in Resources */ = {isa = PBXBuildFile; fileRef = 52236AEA1D17ECB4004903AB /* matches.json */; };
 		5297C9E62156538B00AB5D0F /* gamescore.json in Resources */ = {isa = PBXBuildFile; fileRef = 52176BAD1D4A1AF600B7EFAE /* gamescore.json */; };
 		5297C9E72156538B00AB5D0F /* gamescore.json in Resources */ = {isa = PBXBuildFile; fileRef = 52176BAD1D4A1AF600B7EFAE /* gamescore.json */; };
+		5297C9E82156544C00AB5D0F /* TeamImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A347720CFB98D00E8475C /* TeamImageManager.swift */; };
+		5297C9E921565A7600AB5D0F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52E3DF7D1CD9FA78009F18BD /* Assets.xcassets */; };
+		5297C9EA21565AFD00AB5D0F /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211F7261CDA35CF0031496D /* AppColors.swift */; };
 		529E80FE1EDABC91002DC858 /* TodayDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529E80FD1EDABC91002DC858 /* TodayDataSource.swift */; };
 		529E81001EDAC05C002DC858 /* TodayDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529E80FF1EDAC05C002DC858 /* TodayDataItem.swift */; };
 		52A4596E1D89666E00822D8C /* gallery.ckcomplication in Resources */ = {isa = PBXBuildFile; fileRef = 52A4596D1D89666E00822D8C /* gallery.ckcomplication */; };
@@ -1018,6 +1021,7 @@
 				52EACDA8215643FC008B8DE5 /* MainInterface.storyboard in Resources */,
 				5297C9E52156538800AB5D0F /* matches.json in Resources */,
 				52EACDBD215646B1008B8DE5 /* DefaultPreferences.plist in Resources */,
+				5297C9E921565A7600AB5D0F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1364,12 +1368,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5297C9EA21565AFD00AB5D0F /* AppColors.swift in Sources */,
 				52EACDBF215646C8008B8DE5 /* FixtureManager.swift in Sources */,
 				52EACDC3215646D0008B8DE5 /* GameScoreManager.swift in Sources */,
 				52EACDC5215646D3008B8DE5 /* GameSettings.swift in Sources */,
 				52EACDB921564467008B8DE5 /* Intent.intentdefinition in Sources */,
 				52EACDC7215646DA008B8DE5 /* BaseSettings.swift in Sources */,
 				52EACDA5215643FC008B8DE5 /* IntentViewController.swift in Sources */,
+				5297C9E82156544C00AB5D0F /* TeamImageManager.swift in Sources */,
 				52EACDC1215646CE008B8DE5 /* Fixture.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
