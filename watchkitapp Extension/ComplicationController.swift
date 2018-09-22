@@ -87,8 +87,20 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             break
         case .graphicCircular:
             if #available(watchOS 5,*) {
-                let template = CLKComplicationTemplateGraphicCircularImage()
-                template.imageProvider = CLKFullColorImageProvider(fullColorImage: UIImage(named: "Complication/Graphic Circular")!)
+                let template = CLKComplicationTemplateGraphicCircularOpenGaugeSimpleText()
+                template.bottomTextProvider = CLKSimpleTextProvider(text: settings.smallScoreOrDate)
+                
+                // Set H or A in center
+                var homeOrAway = ""
+                if let nextGameAtHome = settings.nextGameHome {
+                    homeOrAway = nextGameAtHome ? "H" : "A"
+                }
+
+                template.centerTextProvider = CLKSimpleTextProvider(text: homeOrAway)
+                
+                let gauge = CLKSimpleGaugeProvider(style: .fill, gaugeColor: AppColors.WatchRingColor, fillFraction: 1.0)
+                template.gaugeProvider = gauge
+                
                 template.tintColor = AppColors.WatchComplicationColor
                 entry = CLKComplicationTimelineEntry(date: now, complicationTemplate: template)
             }
@@ -184,9 +196,13 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             break
         case .graphicCircular:
             if #available(watchOS 5,*) {
-                let template = CLKComplicationTemplateGraphicCircularImage()
-                template.imageProvider = CLKFullColorImageProvider(fullColorImage: UIImage(named: "Complication/Graphic Circular")!)
+                let template = CLKComplicationTemplateGraphicCircularOpenGaugeSimpleText()
+                template.bottomTextProvider = CLKSimpleTextProvider(text: "2-0")
+                template.centerTextProvider = CLKSimpleTextProvider(text: "H")
+                let gauge = CLKSimpleGaugeProvider(style: .fill, gaugeColor: AppColors.WatchRingColor, fillFraction: 1.0)
+                template.gaugeProvider = gauge
                 template.tintColor = AppColors.WatchComplicationColor
+
                 handler(template)
             }
             break
@@ -202,7 +218,6 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             }
             break
         default:
-            // TODO: Support new complication types
             handler(nil)
             break
         }

@@ -141,9 +141,6 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
 
         // Set the title
         self.setActivitySearchTitleAndPhrase(activity)
-        
-
-        
         activity.needsSave = true
 
         self.userActivity = activity;
