@@ -12,6 +12,10 @@ class LatestScoreIntentHandler: NSObject, LatestScoreIntentHandling {
     let gameSettings = GameSettings.instance
     
     func confirm(intent: LatestScoreIntent, completion: @escaping (LatestScoreIntentResponse) -> Void) {
+        // Update the fixture and game score caches
+        GameScoreManager.instance.getLatestGameScore()
+        FixtureManager.instance.getLatestFixtures()
+
         completion(LatestScoreIntentResponse(code: .ready, userActivity: nil))
     }
     
