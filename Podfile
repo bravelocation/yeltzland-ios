@@ -27,7 +27,7 @@ target 'yeltzlandTVOS' do
 end
 
 target 'LatestScoreIntentUI' do
-    platform :ios, '12.0'
+    platform :ios, '9.3'
     
     pod 'SDWebImage'
 end
