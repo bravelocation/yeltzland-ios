@@ -1,0 +1,18 @@
+{
+  "tintColor" : {
+    "green" : 0.86274510622024536,
+    "red" : 0.7921568751335144,
+    "alpha" : 1,
+    "blue" : 0.92156863212585449
+  },
+  "class" : "CLKComplicationTemplateGraphicCornerStackText",
+  "outerTextProvider" : {
+    "class" : "CLKSimpleTextProvider",
+    "text" : "STOU"
+  },
+  "version" : 30000,
+  "innerTextProvider" : {
+    "class" : "CLKSimpleTextProvider",
+    "text" : "2-0"
+  }
+}

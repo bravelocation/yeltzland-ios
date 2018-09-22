@@ -1,0 +1,22 @@
+{
+  "tintColor" : {
+    "green" : 0.86274510622024536,
+    "red" : 0.7921568751335144,
+    "alpha" : 1,
+    "blue" : 0.92156863212585449
+  },
+  "class" : "CLKComplicationTemplateModularLargeStandardBody",
+  "body2TextProvider" : {
+    "class" : "CLKSimpleTextProvider",
+    "text" : "Tue 26 Dec"
+  },
+  "body1TextProvider" : {
+    "class" : "CLKSimpleTextProvider",
+    "text" : "Stourbridge"
+  },
+  "version" : 30000,
+  "headerTextProvider" : {
+    "class" : "CLKSimpleTextProvider",
+    "text" : "Next game:"
+  }
+}

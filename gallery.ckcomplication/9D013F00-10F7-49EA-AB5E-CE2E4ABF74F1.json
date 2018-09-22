@@ -1,0 +1,14 @@
+{
+  "tintColor" : {
+    "green" : 0.86274510622024536,
+    "red" : 0.7921568751335144,
+    "alpha" : 1,
+    "blue" : 0.92156863212585449
+  },
+  "class" : "CLKComplicationTemplateGraphicBezelCircularText",
+  "textProvider" : {
+    "class" : "CLKSimpleTextProvider",
+    "text" : "Stourbridge 10-0"
+  },
+  "version" : 30000
+}
