@@ -114,6 +114,7 @@ class AppColors {
     static var TVTwitterText: UIColor = UIColor.white
 
     static var SiriIntentText: UIColor = UIColor.black
+    static var SiriIntentTextSize = bodyDescriptor.pointSize
 }
 
     

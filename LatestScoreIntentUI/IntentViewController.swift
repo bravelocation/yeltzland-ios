@@ -38,6 +38,12 @@ class IntentViewController: UIViewController, INUIHostedViewControlling {
         self.awayTeamNameLabel.textColor = AppColors.SiriIntentText
         self.homeTeamScoreLabel.textColor = AppColors.SiriIntentText
         self.awayTeamScoreLabel.textColor = AppColors.SiriIntentText
+        
+        self.gameStateLabel.font = UIFont(name: AppColors.AppFontName, size:AppColors.SiriIntentTextSize)!
+        self.homeTeamNameLabel.font = UIFont(name: AppColors.AppFontName, size:AppColors.SiriIntentTextSize)!
+        self.awayTeamNameLabel.font = UIFont(name: AppColors.AppFontName, size:AppColors.SiriIntentTextSize)!
+        self.homeTeamScoreLabel.font = UIFont(name: AppColors.AppFontName, size:AppColors.SiriIntentTextSize)!
+        self.awayTeamScoreLabel.font = UIFont(name: AppColors.AppFontName, size:AppColors.SiriIntentTextSize)!
     }
         
     // MARK: - INUIHostedViewControlling
@@ -59,9 +65,9 @@ class IntentViewController: UIViewController, INUIHostedViewControlling {
         if let fixture = self.gameSettings.getLatestFixtureFromSettings() {
             // If currently in a game
             if fixture.inProgress {
-                gameState = "The latest score is"
+                gameState = "The latest score is ..."
             }  else {
-                gameState = "The final score was"
+                gameState = "The final score was ..."
             }
             
             if fixture.home {
@@ -96,6 +102,6 @@ class IntentViewController: UIViewController, INUIHostedViewControlling {
     }
     
     var desiredSize: CGSize {
-        return CGSize(width: self.extensionContext?.hostedViewMaximumAllowedSize.width ?? 320.00, height: 160.0)
+        return CGSize(width: self.extensionContext?.hostedViewMaximumAllowedSize.width ?? 320.00, height: 120.0)
     }
 }
