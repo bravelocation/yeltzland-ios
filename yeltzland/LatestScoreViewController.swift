@@ -21,7 +21,6 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
     @IBOutlet weak var bestGuessLabel: UILabel!
     
     var reloadButton: UIBarButtonItem!
-    let gameSettings = GameSettings.instance
     
     // MARK:- Initialisation
     required init?(coder aDecoder: NSCoder) {
@@ -89,34 +88,29 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
     
     // MARK:- Helper functions
     private func updateUI() {
-        var opponentName = ""
-        var homeOrAway = "vs"
-        var resultColor = AppColors.FixtureNone
-        var score = "TBD"
-        var bestGuess = self.gameSettings.gameScoreForCurrentGame
+        var latestFixture:Fixture? = FixtureManager.instance.getLastGame()
         
-        let opponent = self.gameSettings.lastGameTeam
-        
-        if let homeGame = self.gameSettings.lastGameHome {
-            if (homeGame == false) {
-                homeOrAway = "at"
+        if let currentFixture = GameScoreManager.instance.CurrentFixture {
+            if currentFixture.inProgress {
+                latestFixture = currentFixture
             }
         }
         
-        // If currently in a game
-        if (self.gameSettings.gameScoreForCurrentGame) {
-            opponentName = self.gameSettings.nextGameTeam!
-            score = " \(self.gameSettings.currentScore)"  // Add a space prefix
-        } else if (self.gameSettings.currentGameState() == .duringNoScore) {
-            opponentName = self.gameSettings.nextGameTeam!
-            score = " 0-0*"  // Add a space prefix
-            bestGuess = true
-        } else if (opponent != nil) {
-            // Get the latest result
-            let teamScore = self.gameSettings.lastGameYeltzScore
-            let opponentScore  = self.gameSettings.lastGameOpponentScore
-                
+        var homeOrAway = "vs"
+        var resultColor = AppColors.FixtureNone
+        var score = "TBD"
+        
+        if let fixture = latestFixture {
+            if (fixture.home == false) {
+                homeOrAway = "at"
+            }
+            
+            let teamScore = fixture.teamScore
+            let opponentScore = fixture.opponentScore
+            
             if (teamScore != nil && opponentScore != nil) {
+                score = String(format: "%d-%d%@", teamScore!, opponentScore!, fixture.inProgress ? "*" : "")
+                
                 if (teamScore! > opponentScore!) {
                     resultColor = AppColors.FixtureWin
                 } else if (teamScore! < opponentScore!) {
@@ -125,26 +119,15 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
                     resultColor = AppColors.FixtureDraw
                 }
             }
+ 
+            self.opponentLabel.text = fixture.opponent
+            self.homeOrAwayLabel.text = homeOrAway
+            self.latestScoreLabel.text = score
+            self.latestScoreLabel.textColor = resultColor
+            TeamImageManager.instance.loadTeamImage(teamName: fixture.opponent, view: self.opponentLogoImageView)
             
-            opponentName = self.gameSettings.lastGameTeam!
-            score = self.gameSettings.lastScore
-        } else {
-            // No scores, so use next game rather than show nothing
-            opponentName = self.gameSettings.nextGameTeam!
-            if let homeGame = self.gameSettings.nextGameHome {
-                if (homeGame == false) {
-                    homeOrAway = "at"
-                }
-            }
+            self.bestGuessLabel.isHidden = (fixture.inProgress == false)
         }
-        
-        self.opponentLabel.text = opponentName
-        self.homeOrAwayLabel.text = homeOrAway
-        self.latestScoreLabel.text = score
-        self.latestScoreLabel.textColor = resultColor
-        TeamImageManager.instance.loadTeamImage(teamName: opponentName, view: self.opponentLogoImageView)
-        
-        self.bestGuessLabel.isHidden = (bestGuess == false)
     }
     
     // MARK:- Handoff

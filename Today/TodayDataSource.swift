@@ -10,8 +10,6 @@ import UIKit
 
 class TodayDataSource: NSObject, UITableViewDataSource {
 
-    let gameSettings = GameSettings.instance
-
     private var lastGames = Array<TodayDataItem>()
     private var nextGames = Array<TodayDataItem>()
     private var currentScores = Array<TodayDataItem>()
@@ -24,33 +22,23 @@ class TodayDataSource: NSObject, UITableViewDataSource {
     // Fetch the latest data
     func loadLatestData() {
         // Get last game details
-        let opponent = self.gameSettings.displayLastOpponent
+        self.currentScores.removeAll()
 
+        if let currentFixture = GameScoreManager.instance.CurrentFixture {
+            if currentFixture.inProgress {
+                self.currentScores.append(TodayDataItem(opponent: currentFixture.displayOpponent,
+                                                    scoreOrDate: currentFixture.inProgressScore,
+                                                    color:self.getFixtureDisplayColor(currentFixture)))
+            }
+        }
+ 
         self.lastGames.removeAll()
 
-        if (opponent.count > 0) {
-            let teamScore = self.gameSettings.lastGameYeltzScore
-            let opponentScore  = self.gameSettings.lastGameOpponentScore
-            
-            var resultColor = AppColors.TodayText
-            
-            if (teamScore != nil && opponentScore != nil) {
-                if (teamScore! > opponentScore!) {
-                    resultColor = AppColors.FixtureWin
-                } else if (teamScore! < opponentScore!) {
-                    resultColor = AppColors.FixtureLose
-                } else {
-                    resultColor = AppColors.FixtureDraw
-                }
-            }
-
-            self.lastGames.append(TodayDataItem(opponent: self.gameSettings.displayLastOpponent, scoreOrDate: self.gameSettings.lastScore, color:resultColor))
-        }
-        
-        // Get current score if applicable
-        self.currentScores.removeAll()
-        if (self.gameSettings.gameScoreForCurrentGame) {
-            self.currentScores.append(TodayDataItem(opponent: self.gameSettings.displayNextOpponent, scoreOrDate: self.gameSettings.currentScore))
+        let lastResult = FixtureManager.instance.getLastGame()
+        if let fixture = lastResult {
+            self.lastGames.append(TodayDataItem(opponent: fixture.displayOpponent,
+                                                scoreOrDate: fixture.score,
+                                                color:self.getFixtureDisplayColor(fixture)))
         }
         
         // How many fixtures to get?
@@ -158,6 +146,25 @@ class TodayDataSource: NSObject, UITableViewDataSource {
         } else {
             return thirdSection
         }
+    }
+    
+    private func getFixtureDisplayColor(_ fixture:Fixture) -> UIColor {
+        let teamScore = fixture.teamScore
+        let opponentScore  = fixture.opponentScore
+        
+        var resultColor = AppColors.TodayText
+        
+        if (teamScore != nil && opponentScore != nil) {
+            if (teamScore! > opponentScore!) {
+                resultColor = AppColors.FixtureWin
+            } else if (teamScore! < opponentScore!) {
+                resultColor = AppColors.FixtureLose
+            } else {
+                resultColor = AppColors.FixtureDraw
+            }
+        }
+        
+        return resultColor
     }
     
     // MARK: - Table view data source

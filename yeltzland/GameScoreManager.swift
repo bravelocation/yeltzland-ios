@@ -11,9 +11,7 @@ import Foundation
 public class GameScoreManager {
     public static let GameScoreNotification:String = "YLZGameScoreNotification"
     
-    fileprivate var matchDate:Date? = nil
-    fileprivate var yeltzScore:Int = 0
-    fileprivate var opponentScore:Int = 0
+    fileprivate var currentFixture:Fixture?
     
     fileprivate static let sharedInstance = GameScoreManager()
     class var instance:GameScoreManager {
@@ -22,16 +20,8 @@ public class GameScoreManager {
         }
     }
     
-    public var MatchDate: Date? {
-        return self.matchDate
-    }
-    
-    public var YeltzScore: Int {
-        return self.yeltzScore
-    }
-    
-    public var OpponentScore: Int {
-        return self.opponentScore
+    public var CurrentFixture: Fixture? {
+        return self.currentFixture
     }
     
     init() {
@@ -106,7 +96,7 @@ public class GameScoreManager {
             self.parseGameScoreJson(json!)
             
             // Fetch went OK, so write to local file for next startup
-            if (self.MatchDate != nil) {
+            if (self.currentFixture != nil) {
                 print("Saving server game score to cache")
                 
                 try data?.write(to: URL(fileURLWithPath: self.appDirectoryFilePath("gamescore", fileType: "json")), options: .atomic)
@@ -124,22 +114,51 @@ public class GameScoreManager {
     
     fileprivate func parseGameScoreJson(_ json:[String:AnyObject]) {
         // Clear settings
-        self.matchDate = nil
-        self.yeltzScore = 0
-        self.opponentScore = 0
+        var parsedFixture:Fixture? = nil
+        var yeltzScore:Int = 0
+        var opponentScore:Int = 0
         
         if let currentMatch = json["match"] {
             if let fixture = Fixture(fromJson: currentMatch as! [String : AnyObject]) {
-                self.matchDate = fixture.fixtureDate as Date
+                parsedFixture = fixture
             }
         }
 
         if let parsedYeltzScore = json["yeltzScore"] as? String {
-            self.yeltzScore = Int(parsedYeltzScore)!
+            yeltzScore = Int(parsedYeltzScore)!
         }
         
         if let parsedOpponentScore = json["opponentScore"] as? String {
-            self.opponentScore = Int(parsedOpponentScore)!
+            opponentScore = Int(parsedOpponentScore)!
+        }
+        
+        if let fixture = parsedFixture {
+            // Is the game in progress?
+            
+            if let nextFixture = FixtureManager.instance.getNextGame() {
+                if (FixtureManager.instance.dayNumber(nextFixture.fixtureDate) == FixtureManager.instance.dayNumber(fixture.fixtureDate)) {
+                    // If current score is on same day as next fixture, then we are in progress
+                    self.currentFixture = Fixture(date: fixture.fixtureDate,
+                                                  opponent: fixture.opponent,
+                                                  home: fixture.home,
+                                                  teamScore: yeltzScore,
+                                                  opponentScore: opponentScore,
+                                                  inProgress: true)
+                } else {
+                    // If after kickoff, we are in progress with no score yet
+                    let now = Date()
+                    let afterKickoff = now.compare(nextFixture.fixtureDate) == ComparisonResult.orderedDescending
+                    
+                    if (afterKickoff) {
+                        self.currentFixture = Fixture(date: nextFixture.fixtureDate,
+                                                      opponent: nextFixture.opponent,
+                                                      home: nextFixture.home,
+                                                      teamScore: 0,
+                                                      opponentScore: 0,
+                                                      inProgress: true)
+                    }
+                }
+            }
         }
     }
     

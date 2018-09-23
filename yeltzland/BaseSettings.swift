@@ -612,13 +612,15 @@ public class BaseSettings : NSObject {
     @objc public func refreshGameScore() {
         print("Updating game score settings ...")
         
+        // TODO: Implement this better
+        /*
         let currentlyInGame = self.currentGameState() == GameState.during
         
-        if let currentGameTime = GameScoreManager.instance.MatchDate {
+        if let currentGame = GameScoreManager.instance.CurrentFixture {
             var updated = false
             
-            let currentGameYeltzScore = GameScoreManager.instance.YeltzScore
-            let currentGameOpponentScore = GameScoreManager.instance.OpponentScore
+            let currentGameYeltzScore = currentGame.teamScore
+            let currentGameOpponentScore = currentGame.opponentScore
             
             if (self.currentGameTime.compare(currentGameTime as Date) != ComparisonResult.orderedSame) {
                 self.currentGameTime = currentGameTime as Date
@@ -643,6 +645,7 @@ public class BaseSettings : NSObject {
                 print("No game settings changed")
             }
         }
+    */
     }
     
     public func pushAllSettingsToWatch(_ currentlyInGame:Bool) {

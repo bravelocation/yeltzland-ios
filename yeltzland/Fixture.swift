@@ -34,6 +34,7 @@ public class Fixture {
     var home: Bool
     var teamScore: Int?
     var opponentScore: Int?
+    var inProgress:Bool = false
     
     init?(fromJson: [String:AnyObject]) {
         // Parse properties from JSON match properties
@@ -62,12 +63,13 @@ public class Fixture {
         }
     }
     
-    init(date: Date, opponent:String, home:Bool, teamScore: Int?, opponentScore: Int?) {
+    init(date: Date, opponent:String, home:Bool, teamScore: Int?, opponentScore: Int?, inProgress:Bool) {
         self.fixtureDate = date
         self.opponent = opponent
         self.home = home
         self.teamScore = teamScore
         self.opponentScore = opponentScore
+        self.inProgress = inProgress
     }
     
     var kickoffTime: String {
@@ -191,6 +193,16 @@ public class Fixture {
             }
             
             return String.init(format: "%@ %d-%d", result, self.teamScore!, self.opponentScore!)
+        }
+    }
+    
+    var inProgressScore: String {
+        get {
+            if ((self.teamScore == nil) || (self.opponentScore == nil)) {
+                return ""
+            }
+            
+            return String.init(format: "%d-%d%@", self.teamScore!, self.opponentScore!, self.inProgress ? "*" : "")
         }
     }
 }
