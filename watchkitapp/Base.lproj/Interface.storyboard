@@ -79,19 +79,32 @@
                                 <tableRow identifier="FixtureRowType" selectable="NO" id="iCM-SX-B06" customClass="FixtureRowType" customModule="watchkitapp_Extension">
                                     <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" spacing="0.0" id="2PX-Tg-cBr">
                                         <items>
-                                            <label width="1" alignment="left" text="Stourbridge" textAlignment="left" minimumScaleFactor="0.80000000000000004" id="AqB-kH-yuq">
+                                            <imageView width="32" height="32" alignment="center" id="ZOu-Il-kFe"/>
+                                            <label width="1" alignment="left" text="Sat 29 Sep at 1500" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="AqB-kH-yuq">
                                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="font" style="UICTFontTextStyleBody"/>
                                             </label>
-                                            <label width="136" height="13" alignment="left" text="W 2-0" textAlignment="right" id="byH-JI-B4J">
-                                                <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
+                                            <label width="1" alignment="left" text="at home to" textAlignment="center" id="m6C-1M-rpJ">
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </label>
+                                            <label width="1" alignment="left" text="Stourbridge" textAlignment="center" id="P4d-0F-Sj2">
+                                                <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                                            </label>
+                                            <label width="1" alignment="left" text="W 2-0" textAlignment="center" id="byH-JI-B4J">
+                                                <fontDescription key="font" style="UICTFontTextStyleBody"/>
+                                            </label>
+                                            <separator alignment="left" id="LcS-GK-ZGG">
+                                                <color key="color" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </separator>
                                         </items>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </group>
                                     <connections>
-                                        <outlet property="labelOpponent" destination="AqB-kH-yuq" id="928-p9-4QV"/>
+                                        <outlet property="labelDateTime" destination="AqB-kH-yuq" id="JH7-vD-kGc"/>
+                                        <outlet property="labelOpponent" destination="P4d-0F-Sj2" id="cdd-3M-f2C"/>
                                         <outlet property="labelScore" destination="byH-JI-B4J" id="egs-wR-w3O"/>
+                                        <outlet property="labelhomeAway" destination="m6C-1M-rpJ" id="zip-Fb-r2y"/>
+                                        <outlet property="teamImage" destination="ZOu-Il-kFe" id="4uM-Jq-u2U"/>
                                     </connections>
                                 </tableRow>
                             </items>

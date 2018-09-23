@@ -47,38 +47,22 @@ class InterfaceController: WKInterfaceController {
             if (fixturesForMonth == nil || fixturesForMonth!.count == 0) {
                 continue
             }
-            
-            // Add the month row using the first game
-            let firstGame = fixturesForMonth![0]
-            
-            let row:FixtureRowType = self.fixtureTable.rowController(at: rowCount) as! FixtureRowType
-            row.labelOpponent?.setText(" ")
-            row.labelScore?.setText(firstGame.fixtureMonth)
-            row.labelScore?.setTextColor(AppColors.WatchMonthColor)
-            
-            rowCount = rowCount + 1
- 
+             
             // Then add all the fixtures
             for i in 0...fixturesForMonth!.count - 1 {
                 let fixture = fixturesForMonth![i]
                 let row:FixtureRowType = self.fixtureTable.rowController(at: rowCount) as! FixtureRowType
                 
-                row.labelOpponent?.setText(fixture.displayOpponent)
-                row.labelOpponent?.setTextColor(AppColors.WatchTextColor)
-                
+                var resultColor = AppColors.WatchTextColor
+
                 if (fixture.teamScore == nil && fixture.opponentScore == nil) {
-                    row.labelScore?.setText(fixture.kickoffTime)
-                    row.labelScore?.setTextColor(AppColors.WatchTextColor)
-                    
-                    // Mark this fixture
+                     // Mark this fixture
                     if (firstFixtureRow <= 0) {
                         firstFixtureRow = rowCount
                     }
                 } else {
                     let teamScore = fixture.teamScore
                     let opponentScore  = fixture.opponentScore
-                    
-                    var resultColor = AppColors.WatchTextColor
                     
                     if (teamScore != nil && opponentScore != nil) {
                         if (teamScore! > opponentScore!) {
@@ -89,12 +73,10 @@ class InterfaceController: WKInterfaceController {
                             resultColor = AppColors.WatchFixtureDraw
                         }
                     }
-                    
-                    row.labelScore?.setText(fixture.score)
-                    row.labelScore?.setTextColor(resultColor)
-                    row.labelScore?.setHorizontalAlignment(WKInterfaceObjectHorizontalAlignment.right)
                 }
                 
+                row.loadFixture(fixture, resultColor: resultColor)
+
                 rowCount = rowCount + 1
             }
         }
