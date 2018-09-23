@@ -27,6 +27,16 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   }
 }
 
+public enum FixtureState {
+    case manyDaysBefore
+    case daysBefore
+    case gameDayBefore
+    case during
+    case after
+    case dayAfter
+    case manyDaysAfter
+}
+
 
 public class Fixture {
     var fixtureDate: Date
@@ -177,6 +187,12 @@ public class Fixture {
         }
     }
     
+    public var smallOpponent: String {
+        get {
+            return self.truncateTeamName(self.opponent, max: 4)
+        }
+    }
+    
     var score: String {
         get {
             if ((self.teamScore == nil) || (self.opponentScore == nil)) {
@@ -196,6 +212,16 @@ public class Fixture {
         }
     }
     
+    var smallScore: String {
+        get {
+            if ((self.teamScore == nil) || (self.opponentScore == nil)) {
+                return ""
+            }
+            
+            return String.init(format: "%d-%d", self.teamScore!, self.opponentScore!)
+        }
+    }
+
     var inProgressScore: String {
         get {
             if ((self.teamScore == nil) || (self.opponentScore == nil)) {
@@ -204,5 +230,128 @@ public class Fixture {
             
             return String.init(format: "%d-%d%@", self.teamScore!, self.opponentScore!, self.inProgress ? "*" : "")
         }
+    }
+    
+    public var smallScoreOrDate: String {
+        get {
+            switch self.state {
+            case .manyDaysBefore:
+                let formatter = DateFormatter()
+                formatter.dateFormat = "d"
+                return formatter.string(from: self.fixtureDate)
+            case .daysBefore:
+                let formatter = DateFormatter()
+                formatter.dateFormat = "E"
+                return formatter.string(from: self.fixtureDate)
+            case .gameDayBefore:
+                let formatter = DateFormatter()
+                formatter.dateFormat = "HHmm"
+                return formatter.string(from: self.fixtureDate)
+            case .during:
+                return self.inProgressScore
+            case .after, .dayAfter, .manyDaysAfter:
+                return self.score
+            }
+        }
+    }
+    
+    public var fullScoreOrDate: String {
+        get {
+            switch self.state {
+            case .manyDaysBefore, .daysBefore:
+                let formatter = DateFormatter()
+                formatter.dateFormat = "EEE dd MMM"
+                return formatter.string(from: self.fixtureDate)
+            case .gameDayBefore:
+                let formatter = DateFormatter()
+                formatter.dateFormat = "HHmm"
+                return formatter.string(from: self.fixtureDate)
+            case .during:
+                return self.inProgressScore
+            case .after, .dayAfter, .manyDaysAfter:
+                return self.score
+            }
+        }
+    }
+    
+    public var truncateOpponent: String {
+        get {
+            return self.truncateTeamName(self.opponent, max:16)
+        }
+    }
+    
+    public var fullTitle: String {
+        get {
+            switch self.state {
+            case .manyDaysBefore, .daysBefore, .gameDayBefore:
+                return "Next game:"
+            case .during:
+                return "Current score"
+            case .after, .dayAfter, .manyDaysAfter:
+                return "Last game:"
+            }
+        }
+    }
+    
+    var state: FixtureState {
+        get {
+            // If in progress
+            if (self.inProgress) {
+                return FixtureState.during
+            }
+            
+            let now = Date()
+            let beforeKickoff = now.compare(self.fixtureDate) == ComparisonResult.orderedAscending
+            let todayDayNumber = FixtureManager.instance.dayNumber(now)
+            let fixtureDayNumber = FixtureManager.instance.dayNumber(self.fixtureDate)
+            
+            // If next game is today, and we are before kickoff ...
+            if (todayDayNumber == fixtureDayNumber) {
+                if beforeKickoff {
+                    return FixtureState.gameDayBefore
+                }
+            }
+         
+            // If before day today
+            if (fixtureDayNumber > todayDayNumber + 7) {
+                return FixtureState.manyDaysBefore
+            } else if (fixtureDayNumber >  todayDayNumber) {
+                return FixtureState.daysBefore
+            }
+
+            // If today or yesterday
+            if ((fixtureDayNumber == todayDayNumber - 1) || (fixtureDayNumber == todayDayNumber)) {
+                return FixtureState.dayAfter
+            } else {
+                return FixtureState.manyDaysAfter
+            }
+        }
+    }
+    
+    private func truncateTeamName(_ original:String, max:Int) -> String {
+        let originalLength = original.count
+        
+        // If the original is short enough, we're done
+        if (originalLength <= max) {
+            return original
+        }
+        
+        // Find the first space
+        var firstSpace = 0
+        for c in original {
+            if (c == Character(" ")) {
+                break
+            }
+            firstSpace = firstSpace + 1
+        }
+        
+        if (firstSpace < max) {
+            return String(original[original.startIndex..<original.index(original.startIndex, offsetBy: firstSpace)])
+        }
+        
+        // If still not found, just truncate it
+        return original[original.startIndex..<original.index(original.startIndex, offsetBy: max)].trimmingCharacters(
+            in: CharacterSet.whitespacesAndNewlines
+        )
     }
 }

@@ -36,97 +36,61 @@ class NextGameController: WKInterfaceController {
     }
     
     fileprivate func updateViewData() {
-        let gameSettings = WatchGameSettings.instance
-        
+
+        var latestFixture:Fixture? = FixtureManager.instance.getLastGame()
         var homeTeamName = ""
         var awayTeamName = ""
         
-        if (gameSettings.gameScoreForCurrentGame) {
-            self.nextGameTitle?.setText("Latest Score")
-            self.nextGameOpponent?.setText(gameSettings.displayNextOpponent)
-            self.nextGameDate?.setText(gameSettings.currentScore)
-            self.nextGameFootnote?.setText("*best guess from Twitter")
-            
-            if let home = gameSettings.nextGameHome {
-                if home {
-                    homeTeamName = "Halesowen Town"
-                    awayTeamName = gameSettings.displayNextOpponent
-                } else {
-                    homeTeamName = gameSettings.displayNextOpponent
-                    awayTeamName = "Halesowen Town"
-                }
+        if let currentFixture = GameScoreManager.instance.CurrentFixture {
+            if currentFixture.inProgress {
+                latestFixture = currentFixture
             }
-        } else if (gameSettings.currentGameState() == .duringNoScore) {
-            self.nextGameTitle?.setText("Latest Score")
-            self.nextGameOpponent?.setText(gameSettings.displayNextOpponent)
-            self.nextGameDate?.setText("0-0*")
-            self.nextGameFootnote?.setText("*best guess from Twitter")
+        }
+        
+        if let fixture = latestFixture {
+            self.nextGameOpponent?.setText(fixture.opponent)
             
-            if let home = gameSettings.nextGameHome {
-                if home {
-                    homeTeamName = "Halesowen Town"
-                    awayTeamName = gameSettings.displayNextOpponent
-                } else {
-                    homeTeamName = gameSettings.displayNextOpponent
-                    awayTeamName = "Halesowen Town"
-                }
+            if fixture.home {
+                homeTeamName = "Halesowen Town"
+                awayTeamName = fixture.opponent
+            } else {
+                homeTeamName = fixture.opponent
+                awayTeamName = "Halesowen Town"
+            }
+
+            if (fixture.inProgress) {
+                self.nextGameTitle?.setText("Latest Score")
+                self.nextGameDate?.setText(fixture.inProgressScore)
+                self.nextGameFootnote?.setText("*best guess from Twitter")
+            } else {
+                self.nextGameTitle?.setText("Final Score")
+                self.nextGameDate?.setText(fixture.score)
+                self.nextGameFootnote?.setText("")
+
             }
         } else {
-            // Was the last game today?
-            let todayNumber = gameSettings.dayNumber(Date())
-            if (gameSettings.lastGameTime != nil && gameSettings.dayNumber(gameSettings.lastGameTime!) == todayNumber) {
-                // Calculate score color
-                var scoreColor = AppColors.WatchTextColor
-                if (gameSettings.lastGameYeltzScore != nil && gameSettings.lastGameOpponentScore != nil) {
-                    if (gameSettings.lastGameYeltzScore! > gameSettings.lastGameOpponentScore!) {
-                        scoreColor = AppColors.WatchFixtureWin
-                    } else if (gameSettings.lastGameYeltzScore! == gameSettings.lastGameOpponentScore!) {
-                        scoreColor = AppColors.WatchFixtureDraw
-                    } else if (gameSettings.lastGameYeltzScore! < gameSettings.lastGameOpponentScore!) {
-                        scoreColor = AppColors.WatchFixtureLose
-                    }
-                }
+            // Show next fixture if there is one
+            let nextFixtures = FixtureManager.instance.GetNextFixtures(1)
+            if (nextFixtures.count > 0) {
+                let fixture = nextFixtures[0];
                 
-                self.nextGameDate?.setTextColor(scoreColor)
-                
-                self.nextGameTitle?.setText("Result")
-                self.nextGameOpponent?.setText(gameSettings.displayLastOpponent)
-                self.nextGameDate?.setText(gameSettings.lastScore)
+                self.nextGameTitle?.setText("Next Game")
+                self.nextGameOpponent?.setText(fixture.displayOpponent)
+                self.nextGameDate?.setText(fixture.fullKickoffTime)
                 self.nextGameFootnote?.setText("")
                 
-                if let home = gameSettings.lastGameHome {
-                    if home {
-                        homeTeamName = "Halesowen Town"
-                        awayTeamName = gameSettings.displayLastOpponent
-                    } else {
-                        homeTeamName = gameSettings.displayLastOpponent
-                        awayTeamName = "Halesowen Town"
-                    }
+                if fixture.home {
+                    homeTeamName = "Halesowen Town"
+                    awayTeamName = fixture.displayOpponent
+                } else {
+                    homeTeamName = fixture.displayOpponent
+                    awayTeamName = "Halesowen Town"
                 }
             } else {
-                // Show next fixture if there is one
-                let nextFixtures = FixtureManager.instance.GetNextFixtures(1)
-                if (nextFixtures.count > 0) {
-                    let fixture = nextFixtures[0];
-                    
-                    self.nextGameTitle?.setText("Next Game")
-                    self.nextGameOpponent?.setText(fixture.displayOpponent)
-                    self.nextGameDate?.setText(fixture.fullKickoffTime)
-                    self.nextGameFootnote?.setText("")
-                    
-                    if fixture.home {
-                        homeTeamName = "Halesowen Town"
-                        awayTeamName = fixture.displayOpponent
-                    } else {
-                        homeTeamName = fixture.displayOpponent
-                        awayTeamName = "Halesowen Town"
-                    }
-                } else {
-                    self.nextGameTitle?.setText("No more games")
-                    self.nextGameOpponent?.setText("")
-                    self.nextGameDate?.setText("")
-                    self.nextGameFootnote?.setText("")
-                }
+                self.nextGameTitle?.setText("No more games")
+                self.nextGameOpponent?.setText("")
+                self.nextGameDate?.setText("")
+                self.nextGameFootnote?.setText("")
             }
         }
         

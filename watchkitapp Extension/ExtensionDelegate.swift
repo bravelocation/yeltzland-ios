@@ -47,25 +47,40 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         // Setup a background refresh based on game state
         var backgroundRefreshMinutes = 6 * 60;
         
-        let gameState = WatchGameSettings.instance.currentGameState()
-        switch (gameState) {
+        // Find the next fixture to use
+        var latestFixture:Fixture? = FixtureManager.instance.getLastGame()
+        
+        if let currentFixture = GameScoreManager.instance.CurrentFixture {
+            if currentFixture.inProgress {
+                latestFixture = currentFixture
+            }
+        }
+        
+        // If the next fixture is missing or too far away, get next game
+        if latestFixture == nil || latestFixture!.state == .manyDaysAfter {
+            latestFixture = FixtureManager.instance.getNextGame()
+        }
+        
+        if let fixture = latestFixture {
+            switch (fixture.state) {
             case .gameDayBefore:
                 // Calculate minutes to start of the game
-                var minutesToGameStart = (globalCalendar as NSCalendar).components([.minute], from: now, to: WatchGameSettings.instance.nextGameTime! as Date, options: []).minute ?? 0
+                var minutesToGameStart = (globalCalendar as NSCalendar).components([.minute], from: now, to: fixture.fixtureDate as Date, options: []).minute ?? 0
                 
                 if (minutesToGameStart <= 0) {
                     minutesToGameStart = 60;
                 }
-
+                
                 backgroundRefreshMinutes = minutesToGameStart;
-            case .during, .duringNoScore:
+            case .during:
                 backgroundRefreshMinutes = 15;          // Every 15 mins during the game
             case .after:
                 backgroundRefreshMinutes = 60;          // Every hour after the game
             default:
                 backgroundRefreshMinutes = 6 * 60;      // Otherwise, every 6 hours
+            }
         }
-        
+
         let nextRefreshTime = (globalCalendar as NSCalendar).date(byAdding: .minute, value: backgroundRefreshMinutes, to: now, options: [])
         
         WKExtension.shared().scheduleBackgroundRefresh(withPreferredDate: nextRefreshTime!, userInfo: nil, scheduledCompletion: self.backgroundRefreshRunning)
