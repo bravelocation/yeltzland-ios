@@ -169,8 +169,7 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
     @objc
     func addToSiri(_ sender: Any) {
         if #available(iOS 12.0, *) {
-            let intent = LatestScoreIntent()
-            intent.suggestedInvocationPhrase = "What's the latest score"
+            let intent = ShortcutManager.instance.latestScoreIntent()
             
             if let shortcut = INShortcut(intent: intent) {
                 let viewController = INUIAddVoiceShortcutViewController(shortcut: shortcut)

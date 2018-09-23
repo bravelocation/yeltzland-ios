@@ -52,6 +52,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Push settings to watch in the background
         GameSettings.instance.forceBackgroundWatchUpdate()
         
+        // Donate all the shortcuts
+        if #available(iOS 12.0, *) {
+            ShortcutManager.instance.donateAllShortcuts()
+        }
+        
         // If came from a notification, always start on the Twitter tab
         if launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] != nil {
             GameSettings.instance.lastSelectedTab = 3
