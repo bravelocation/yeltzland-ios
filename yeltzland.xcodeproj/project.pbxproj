@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		481F530A2194ABBB0E4F3078 /* Pods_yeltzland.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BE281ED4B32969698046889 /* Pods_yeltzland.framework */; };
+		520C09A02157A73100CCC2D8 /* DefaultPreferences.plist in Resources */ = {isa = PBXBuildFile; fileRef = 528D74591CF2F4A400263685 /* DefaultPreferences.plist */; };
 		5211F7271CDA35CF0031496D /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211F7261CDA35CF0031496D /* AppColors.swift */; };
 		5211F72A1CDA53D70031496D /* TwitterUserTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211F7291CDA53D70031496D /* TwitterUserTimelineViewController.swift */; };
 		5211F72D1CDB1EE50031496D /* OtherLinksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211F72C1CDB1EE50031496D /* OtherLinksTableViewController.swift */; };
@@ -958,6 +959,7 @@
 			files = (
 				52D868271FE81B6E0041B578 /* TVFixtureCollectionCell.xib in Resources */,
 				52E77DEC1FDEC0770069FCFB /* gamescore.json in Resources */,
+				520C09A02157A73100CCC2D8 /* DefaultPreferences.plist in Resources */,
 				5257197B1FDE8AE2005F1D80 /* Assets.xcassets in Resources */,
 				52D8682D1FE92A440041B578 /* TVTwitterCollectionCell.xib in Resources */,
 				52E77DEB1FDEC0740069FCFB /* matches.json in Resources */,

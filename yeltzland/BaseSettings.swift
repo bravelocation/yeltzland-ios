@@ -13,9 +13,11 @@ public class BaseSettings : NSObject {
     
     public static let SettingsUpdateNotification:String = "YLZSettingsUpdateNotification"
 
+    // MARK:- Properties
     var appStandardUserDefaults: UserDefaults?
     var watchSessionInitialised: Bool = false
     
+    // MARK:- Initialisation
     public init(defaultPreferencesName: String = "DefaultPreferences", suiteName: String = "group.bravelocation.yeltzland") {
         super.init()
         
@@ -30,6 +32,7 @@ public class BaseSettings : NSObject {
         self.migrateSettingsToGroup()
     }
     
+    // MARK:- App settings
     public var gameTimeTweetsEnabled: Bool {
         get { return self.readObjectFromStore("GameTimeTweetsEnabled") as! Bool }
         set { self.writeObjectToStore(newValue as AnyObject, key: "GameTimeTweetsEnabled") }
@@ -45,36 +48,100 @@ public class BaseSettings : NSObject {
         set { self.writeObjectToStore(newValue as AnyObject, key: "migratedToGroupSettings") }
     }
     
-    
-    public var currentGameTime: Date {
+    // MARK:- Current game settings
+    var currentGameTime: Date {
         get { return self.readObjectFromStore("currentGameTime") as! Date }
         set { self.writeObjectToStore(newValue as AnyObject, key: "currentGameTime") }
     }
     
-    public var currentGameYeltzScore: Int {
+    var currentGameYeltzScore: Int {
         get { return self.readObjectFromStore("currentGameYeltzScore") as! Int }
         set { self.writeObjectToStore(newValue as AnyObject, key: "currentGameYeltzScore") }
     }
     
-    public var currentGameOpponentScore: Int {
+    var currentGameOpponentScore: Int {
         get { return self.readObjectFromStore("currentGameOpponentScore") as! Int }
         set { self.writeObjectToStore(newValue as AnyObject, key: "currentGameOpponentScore") }
     }
+    
+    var currentGameOpponentName: String {
+        get { return self.readObjectFromStore("currentGameOpponentName") as! String }
+        set { self.writeObjectToStore(newValue as AnyObject, key: "currentGameOpponentName") }
+    }
+    
+    var currentGameHome: Bool {
+        get { return self.readObjectFromStore("currentGameHome") as! Bool }
+        set { self.writeObjectToStore(newValue as AnyObject, key: "currentGameHome") }
+    }
+    
+    var currentGameInProgress: Bool {
+        get { return self.readObjectFromStore("currentGameInProgress") as! Bool }
+        set { self.writeObjectToStore(newValue as AnyObject, key: "currentGameInProgress") }
+    }
 
+    // MARK:- Latest score functions
+    @objc public func updateLatestScoreSettings() {
+        print("Updating game score settings ...")
         
-    func readObjectFromStore(_ key: String) -> AnyObject?{
+        var updatedSettings = GameScoreManager.instance.CurrentFixture
+        
+        if updatedSettings == nil {
+            updatedSettings = FixtureManager.instance.getLastGame()
+        }
+        
+        if let currentSettings = self.getLatestFixtureFromSettings(), let newSettings = updatedSettings {
+            // Check if anything has changed
+            if (currentSettings.opponent == newSettings.opponent &&
+            currentSettings.fixtureDate == newSettings.fixtureDate &&
+            currentSettings.opponentScore == newSettings.opponentScore &&
+            currentSettings.teamScore == newSettings.teamScore &&
+            currentSettings.home == newSettings.home &&
+                currentSettings.inProgress == newSettings.inProgress) {
+                return
+            }
+
+            // Otherwise, update the settings, and push to watch?
+            self.currentGameTime = newSettings.fixtureDate
+            self.currentGameOpponentName = newSettings.opponent
+            self.currentGameYeltzScore = newSettings.teamScore ?? 0
+            self.currentGameOpponentScore = newSettings.opponentScore ?? 0
+            self.currentGameHome = newSettings.home
+            self.currentGameInProgress = newSettings.inProgress
+            
+            self.pushAllSettingsToWatch(newSettings.inProgress)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: BaseSettings.SettingsUpdateNotification), object: nil)
+        }
+    }
+    
+    public func getLatestFixtureFromSettings() -> Fixture? {
+        return Fixture(date: self.currentGameTime,
+                       opponent: self.currentGameOpponentName,
+                       home: self.currentGameHome,
+                       teamScore: self.currentGameYeltzScore,
+                       opponentScore: self.currentGameOpponentScore,
+                       inProgress: self.currentGameInProgress)
+    }
+    
+    
+    public func pushAllSettingsToWatch(_ currentlyInGame:Bool) {
+        // Do nothing by default
+    }
+
+    // MARK:- Read/write helpers
+    private func readObjectFromStore(_ key: String) -> AnyObject?{
         // Otherwise try the user details
         let userSettingsValue = self.appStandardUserDefaults!.value(forKey: key)
         
         return userSettingsValue as AnyObject?
     }
     
-    func writeObjectToStore(_ value: AnyObject, key: String) {
+    private func writeObjectToStore(_ value: AnyObject, key: String) {
         // Write to local user settings
         self.appStandardUserDefaults!.set(value, forKey:key)
         self.appStandardUserDefaults!.synchronize()
     }
     
+    // MARK:- Helper functions
     fileprivate func migrateSettingsToGroup() {
         if (self.migratedToGroupSettings) {
             return
@@ -115,61 +182,5 @@ public class BaseSettings : NSObject {
         return original[original.startIndex..<original.index(original.startIndex, offsetBy: max)].trimmingCharacters(
             in: CharacterSet.whitespacesAndNewlines
         )
-    }
-    
-    @objc public func updateLatestScoreSettings() {
-        print("Updating game score settings ...")
-        
-        /* TODO: Implement this better
-        let currentlyInGame = self.currentGameState() == GameState.during
-        
-        if let currentGame = GameScoreManager.instance.CurrentFixture {
-            var updated = false
-            
-            let currentGameYeltzScore = currentGame.teamScore
-            let currentGameOpponentScore = currentGame.opponentScore
-            
-            if (self.currentGameTime.compare(currentGameTime as Date) != ComparisonResult.orderedSame) {
-                self.currentGameTime = currentGameTime as Date
-                updated = true
-            }
-            
-            if (self.currentGameYeltzScore != currentGameYeltzScore) {
-                self.currentGameYeltzScore = currentGameYeltzScore
-                updated = true
-            }
-            
-            if (self.currentGameOpponentScore != currentGameOpponentScore) {
-                self.currentGameOpponentScore = currentGameOpponentScore
-                updated = true
-            }
-            
-            // If any values have been changed, push then to the watch
-            if (updated) {
-                self.pushAllSettingsToWatch(currentlyInGame)
-                NotificationCenter.default.post(name: Notification.Name(rawValue: BaseSettings.SettingsUpdateNotification), object: nil)
-            } else {
-                print("No game settings changed")
-            }
-        }
-         */
-    }
-    
-    public func getLatestFixtureFromSettings() -> Fixture? {
-        // TODO: Get this from settings
-        var latestFixture:Fixture? = FixtureManager.instance.getLastGame()
-        
-        if let currentFixture = GameScoreManager.instance.CurrentFixture {
-            if currentFixture.inProgress {
-                latestFixture = currentFixture
-            }
-        }
-        
-        return latestFixture
-    }
-
-    
-    public func pushAllSettingsToWatch(_ currentlyInGame:Bool) {
-        // Do nothing by default
     }
 }

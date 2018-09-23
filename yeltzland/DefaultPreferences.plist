@@ -6,28 +6,18 @@
 	<false/>
 	<key>LastSelectedTab</key>
 	<integer>0</integer>
-	<key>lastGameTime</key>
-	<date>2016-08-06T14:00:00Z</date>
-	<key>lastGameTeam</key>
-	<string>Gresley FC</string>
-	<key>lastGameYeltzScore</key>
-	<integer>2</integer>
-	<key>lastGameHome</key>
-	<true/>
-	<key>lastGameOpponentScore</key>
-	<integer>4</integer>
-	<key>nextGameTime</key>
-	<date>2016-08-13T14:00:00Z</date>
-	<key>nextGameTeam</key>
-	<string>Buxton</string>
-	<key>nextGameHome</key>
-	<true/>
 	<key>currentGameTime</key>
 	<date>2015-07-28T20:13:56Z</date>
 	<key>currentGameYeltzScore</key>
 	<integer>0</integer>
 	<key>currentGameOpponentScore</key>
 	<integer>0</integer>
+	<key>currentGameOpponentName</key>
+	<string> </string>
+	<key>currentGameHome</key>
+	<false/>
+	<key>currentGameInProgress</key>
+	<false/>
 	<key>migratedToGroupSettings</key>
 	<false/>
 </dict>
