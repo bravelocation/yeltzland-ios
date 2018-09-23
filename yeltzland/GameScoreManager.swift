@@ -28,28 +28,7 @@ public class GameScoreManager {
         // Setup local data
         self.moveSingleBundleFileToAppDirectory("gamescore", fileType: "json")
         
-        let data:Data? = try? Data.init(contentsOf: URL(fileURLWithPath: self.appDirectoryFilePath("gamescore", fileType: "json")))
-        
-        if (data == nil) {
-            print("Couldn't load game score from cache")
-            return
-        }
-        
-        do {
-            print("Loading game score from cache ...")
-            let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions()) as? [String : AnyObject]
-            
-            if (json == nil) {
-                print("Couldn't parse game score from cache")
-                return
-            }
-            
-            self.parseGameScoreJson(json!)
-            print("Loaded game score from cache")
-        } catch {
-            print("Error loading game score from cache ...")
-            print(error)
-        }
+        self.loadDataFromCache()
     }
     
     public func getLatestGameScore() {
@@ -84,7 +63,11 @@ public class GameScoreManager {
         task.resume()
     }
     
-    public func loadGameScoreData(_ data:Data?) {
+    public func reloadData() {
+        self.loadDataFromCache()
+    }
+    
+    fileprivate func loadGameScoreData(_ data:Data?) {
         do {
             let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions()) as? [String : AnyObject]
             
@@ -184,6 +167,31 @@ public class GameScoreManager {
         }
         catch {
             return
+        }
+    }
+    
+    fileprivate func loadDataFromCache() {
+        let data:Data? = try? Data.init(contentsOf: URL(fileURLWithPath: self.appDirectoryFilePath("gamescore", fileType: "json")))
+        
+        if (data == nil) {
+            print("Couldn't load game score from cache")
+            return
+        }
+        
+        do {
+            print("Loading game score from cache ...")
+            let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions()) as? [String : AnyObject]
+            
+            if (json == nil) {
+                print("Couldn't parse game score from cache")
+                return
+            }
+            
+            self.parseGameScoreJson(json!)
+            print("Loaded game score from cache")
+        } catch {
+            print("Error loading game score from cache ...")
+            print(error)
         }
     }
     
