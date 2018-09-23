@@ -29,6 +29,11 @@ class NextGameController: WKInterfaceController {
         NotificationCenter.default.removeObserver(self)
     }
     
+    @IBAction func refreshTap() {
+        FixtureManager.instance.getLatestFixtures()
+        GameScoreManager.instance.getLatestGameScore()
+    }
+    
     override func willActivate() {
         super.willActivate()
         

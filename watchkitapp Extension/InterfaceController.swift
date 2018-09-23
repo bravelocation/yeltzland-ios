@@ -28,6 +28,11 @@ class InterfaceController: WKInterfaceController {
         self.updateViewData()
     }
     
+    
+    @IBAction func refpreshTouchUp() {
+        FixtureManager.instance.getLatestFixtures()
+    }
+    
     fileprivate func updateViewData() {
         // A row per month, plus for each fixture
         self.fixtureTable.setNumberOfRows(FixtureManager.instance.Months.count + FixtureManager.instance.fixtureCount(), withRowType: "FixtureRowType")

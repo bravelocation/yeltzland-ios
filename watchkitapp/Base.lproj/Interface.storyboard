@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14113" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="928-1F-cke">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14313.18" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="928-1F-cke">
     <device id="watch42" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14033"/>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14238.10"/>
     </dependencies>
     <scenes>
         <!--Next Game Controller-->
@@ -39,6 +40,15 @@
                             <fontDescription key="font" style="UICTFontTextStyleFootnote"/>
                         </label>
                     </items>
+                    <menu key="menu" id="CEj-tc-C36">
+                        <items>
+                            <menuItem title="Refresh" icon="resume" id="hIX-L6-gke">
+                                <connections>
+                                    <action selector="refreshTap" destination="928-1F-cke" id="Rkg-Tl-lGZ"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
                     <connections>
                         <outlet property="awayTeamLogoImage" destination="lHu-C2-Luj" id="NkZ-ua-sty"/>
                         <outlet property="homeTeamLogoImage" destination="lhx-zf-vFc" id="Z1x-pb-a0h"/>
@@ -88,6 +98,15 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </table>
                     </items>
+                    <menu key="menu" id="ZXW-Fa-qV5">
+                        <items>
+                            <menuItem title="Refresh" icon="resume" id="Jqw-Xq-TMy">
+                                <connections>
+                                    <action selector="refpreshTouchUp" destination="AgC-eL-Hgc" id="08j-Ht-XU4"/>
+                                </connections>
+                            </menuItem>
+                        </items>
+                    </menu>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="fixtureTable" destination="aGY-fu-J3s" id="XCc-Um-9T2"/>
