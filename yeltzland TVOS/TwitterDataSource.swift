@@ -13,7 +13,6 @@ class TwitterDataSource: NSObject, UICollectionViewDataSource {
     
     public static let TweetsNotification:String = "YLZTweetsNotification"
 
-    private let gameSettings = TVGameSettings()
     private let twitterConsumerKey = "8G26YU7skH5dgbvXx5nwk0G0u"
     private let twitterConsumerSecret = "kUMwYAiDNR7dGjvSsTnHH20tXcutxEzkwycYJA68Darig6pRYz"
     private let twitterAuthURL = "https://api.twitter.com/oauth2/token"

@@ -10,8 +10,6 @@ import Foundation
 import UIKit
 
 class TVFixturesDataSource: NSObject, UICollectionViewDataSource {
-    let gameSettings = TVGameSettings()
-    
     private var allGames = Array<TVFixtureData>()
     
     override init() {
@@ -21,18 +19,25 @@ class TVFixturesDataSource: NSObject, UICollectionViewDataSource {
     
     // Fetch the latest data
     func loadLatestData() {
-        let currentGameAvailable = self.gameSettings.gameScoreForCurrentGame
+        var inProgressFixture:Fixture?
+        
+        if let currentFixture = GameScoreManager.instance.CurrentFixture {
+            if currentFixture.inProgress {
+                inProgressFixture = currentFixture
+            }
+        }
+        
         let nextGame = FixtureManager.instance.getNextGame()
         
         // Add next matches
         self.allGames.removeAll()
         
         for fixture in FixtureManager.instance.GetAllMatches() {
-            if (currentGameAvailable && nextGame != nil && fixture === nextGame!) {
+            if (inProgressFixture != nil && nextGame != nil && fixture === nextGame!) {
                 // Is it an in-progress game
                 self.allGames.append(TVFixtureData(opponent: fixture.displayOpponent,
                                                 matchDate: fixture.tvResultDisplayKickoffTime,
-                                                score: self.gameSettings.currentScore,
+                                                score: inProgressFixture!.inProgressScore,
                                                 inProgress: true,
                                                 atHome: fixture.home))
             } else if (fixture.score.count == 0) {
