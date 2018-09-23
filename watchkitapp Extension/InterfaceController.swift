@@ -29,7 +29,7 @@ class InterfaceController: WKInterfaceController {
     }
     
     
-    @IBAction func refpreshTouchUp() {
+    @IBAction func refreshTouchUp() {
         FixtureManager.instance.getLatestFixtures()
     }
     

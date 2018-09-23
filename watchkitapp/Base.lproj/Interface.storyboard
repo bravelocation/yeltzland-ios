@@ -115,7 +115,7 @@
                         <items>
                             <menuItem title="Refresh" icon="resume" id="Jqw-Xq-TMy">
                                 <connections>
-                                    <action selector="refpreshTouchUp" destination="AgC-eL-Hgc" id="08j-Ht-XU4"/>
+                                    <action selector="refreshTouchUp" destination="AgC-eL-Hgc" id="aKX-tN-NLW"/>
                                 </connections>
                             </menuItem>
                         </items>
