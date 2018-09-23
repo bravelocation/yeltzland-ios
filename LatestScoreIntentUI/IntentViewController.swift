@@ -56,58 +56,25 @@ class IntentViewController: UIViewController, INUIHostedViewControlling {
         var homeTeamScore = 0
         var awayTeamScore = 0
         
-        let opponent = self.gameSettings.lastGameTeam
-        
-        // If currently in a game
-        if (self.gameSettings.gameScoreForCurrentGame) {
-            if let nextGameHome = self.gameSettings.nextGameHome {
-                if nextGameHome {
-                    homeTeamName = "Yeltz"
-                    awayTeamName = self.gameSettings.nextGameTeam!
-                    homeTeamScore = self.gameSettings.currentYeltzScore
-                    awayTeamScore = self.gameSettings.currentOpponentScore
-                } else {
-                    homeTeamName = self.gameSettings.nextGameTeam!
-                    awayTeamName = "Yeltz"
-                    homeTeamScore = self.gameSettings.currentOpponentScore
-                    awayTeamScore = self.gameSettings.currentYeltzScore
-                }
+        if let fixture = self.gameSettings.getLatestFixtureFromSettings() {
+            // If currently in a game
+            if fixture.inProgress {
+                gameState = "The latest score is"
+            }  else {
+                gameState = "The final score was"
             }
             
-            gameState = "The latest score is:"
-        } else if (gameSettings.currentGameState() == .duringNoScore) {
-            if let nextGameHome = self.gameSettings.nextGameHome {
-                if nextGameHome {
-                    homeTeamName = "Yeltz"
-                    awayTeamName = self.gameSettings.nextGameTeam!
-                    homeTeamScore = 0
-                    awayTeamScore = 0
-                } else {
-                    homeTeamName = self.gameSettings.nextGameTeam!
-                    awayTeamName = "Yeltz"
-                    homeTeamScore = 0
-                    awayTeamScore = 0
-                }
+            if fixture.home {
+                homeTeamName = "Yeltz"
+                awayTeamName = fixture.opponent
+                homeTeamScore = fixture.teamScore!
+                awayTeamScore = fixture.opponentScore!
+            } else {
+                homeTeamName = fixture.opponent
+                awayTeamName = "Yeltz"
+                homeTeamScore = fixture.opponentScore!
+                awayTeamScore = fixture.teamScore!
             }
-            
-            gameState = "The latest score is:"
-        } else if (opponent != nil) {
-            // Get the latest result
-            if let lastGameHome = self.gameSettings.lastGameHome {
-                if lastGameHome {
-                    homeTeamName = "Yeltz"
-                    awayTeamName = self.gameSettings.lastGameTeam!
-                    homeTeamScore = self.gameSettings.lastGameYeltzScore!
-                    awayTeamScore = self.gameSettings.lastGameOpponentScore!
-                } else {
-                    homeTeamName = self.gameSettings.lastGameTeam!
-                    awayTeamName = "Yeltz"
-                    homeTeamScore = self.gameSettings.lastGameOpponentScore!
-                    awayTeamScore = self.gameSettings.lastGameYeltzScore!
-                }
-            }
-            
-            gameState = "The final score was:"
         } else {
             completion(false, Set(), .zero)
             return
