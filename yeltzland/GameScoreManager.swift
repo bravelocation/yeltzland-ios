@@ -12,7 +12,8 @@ public class GameScoreManager {
     public static let GameScoreNotification:String = "YLZGameScoreNotification"
     
     fileprivate var currentFixture:Fixture?
-    
+    fileprivate var parseSuccess:Bool = false
+
     fileprivate static let sharedInstance = GameScoreManager()
     class var instance:GameScoreManager {
         get {
@@ -79,7 +80,7 @@ public class GameScoreManager {
             self.parseGameScoreJson(json!)
             
             // Fetch went OK, so write to local file for next startup
-            if (self.currentFixture != nil) {
+            if (self.parseSuccess) {
                 print("Saving server game score to cache")
                 
                 try data?.write(to: URL(fileURLWithPath: self.appDirectoryFilePath("gamescore", fileType: "json")), options: .atomic)
@@ -142,6 +143,10 @@ public class GameScoreManager {
                     }
                 }
             }
+            
+            self.parseSuccess = true
+        } else {
+            self.parseSuccess = false
         }
     }
     
