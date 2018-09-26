@@ -38,6 +38,9 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
             FixtureManager.instance.getLatestFixtures()
             GameScoreManager.instance.getLatestGameScore()
         }
+        
+        // Always force a complication update if you open the app
+        self.settingsUpdated()
     }
  
     func setupBackgroundRefresh() {       
@@ -103,6 +106,9 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                 
                 // Setup next background refresh
                 self.setupBackgroundRefresh()
+                
+                // Always force a complication update on a background refresh
+                self.settingsUpdated()
             }
             
             task.setTaskCompleted()
