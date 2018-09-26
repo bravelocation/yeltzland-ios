@@ -36,6 +36,8 @@
 		52236AEB1D17ECB4004903AB /* matches.json in Resources */ = {isa = PBXBuildFile; fileRef = 52236AEA1D17ECB4004903AB /* matches.json */; };
 		52236AEE1D1803C8004903AB /* FixturesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236AED1D1803C8004903AB /* FixturesTableViewController.swift */; };
 		522EA44220EA236A00B90146 /* TeamImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522EA44120EA236A00B90146 /* TeamImageManager.swift */; };
+		5231F4FF215B6C56003FAC68 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5231F4FE215B6C56003FAC68 /* SettingsManager.swift */; };
+		5231F501215B6C92003FAC68 /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5231F500215B6C92003FAC68 /* Settings.plist */; };
 		5236ECDB20CE99B80067AFFA /* LatestScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5236ECD920CE99B80067AFFA /* LatestScoreViewController.swift */; };
 		5236ECDC20CE99B80067AFFA /* LatestScoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5236ECDA20CE99B80067AFFA /* LatestScoreViewController.xib */; };
 		523C841E1CE47F06006F1865 /* HTFC2016LOGO.png in Resources */ = {isa = PBXBuildFile; fileRef = 523C841D1CE47F06006F1865 /* HTFC2016LOGO.png */; };
@@ -252,6 +254,8 @@
 		52236AEA1D17ECB4004903AB /* matches.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = matches.json; sourceTree = "<group>"; };
 		52236AED1D1803C8004903AB /* FixturesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixturesTableViewController.swift; sourceTree = "<group>"; };
 		522EA44120EA236A00B90146 /* TeamImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamImageManager.swift; sourceTree = "<group>"; };
+		5231F4FE215B6C56003FAC68 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
+		5231F500215B6C92003FAC68 /* Settings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Settings.plist; sourceTree = "<group>"; };
 		5236ECD920CE99B80067AFFA /* LatestScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestScoreViewController.swift; sourceTree = "<group>"; };
 		5236ECDA20CE99B80067AFFA /* LatestScoreViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LatestScoreViewController.xib; sourceTree = "<group>"; };
 		523C841D1CE47F06006F1865 /* HTFC2016LOGO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HTFC2016LOGO.png; sourceTree = "<group>"; };
@@ -549,6 +553,7 @@
 				528D74561CF1A6FF00263685 /* yeltzland-Bridging-Header.h */,
 				52176BAA1D4A0D9A00B7EFAE /* yeltzland.entitlements */,
 				52EACDB621564462008B8DE5 /* Intent.intentdefinition */,
+				5231F500215B6C92003FAC68 /* Settings.plist */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -605,10 +610,11 @@
 				527DAF1E1D2D082C0092BB8F /* Location.swift */,
 				527DAF201D2D096B0092BB8F /* LocationManager.swift */,
 				527DAF241D2D308F0092BB8F /* LocationAnnotation.swift */,
-				527DAF1A1D2BA9BA0092BB8F /* SafariActivity.swift */,
 				52E711AA1D9FB5B70002446A /* MakeToast.swift */,
-				528A347720CFB98D00E8475C /* TeamImageManager.swift */,
+				527DAF1A1D2BA9BA0092BB8F /* SafariActivity.swift */,
+				5231F4FE215B6C56003FAC68 /* SettingsManager.swift */,
 				520C09A12157C46100CCC2D8 /* ShortcutManager.swift */,
+				528A347720CFB98D00E8475C /* TeamImageManager.swift */,
 			);
 			path = yeltzland;
 			sourceTree = "<group>";
@@ -1004,6 +1010,7 @@
 				52DC9EB71FC9C30E00AE02F6 /* GoogleService-Info.plist in Resources */,
 				52A4596E1D89666E00822D8C /* gallery.ckcomplication in Resources */,
 				52E3DF7E1CD9FA78009F18BD /* Assets.xcassets in Resources */,
+				5231F501215B6C92003FAC68 /* Settings.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1356,6 +1363,7 @@
 				527DAF1F1D2D082C0092BB8F /* Location.swift in Sources */,
 				527DAF251D2D308F0092BB8F /* LocationAnnotation.swift in Sources */,
 				5211F7271CDA35CF0031496D /* AppColors.swift in Sources */,
+				5231F4FF215B6C56003FAC68 /* SettingsManager.swift in Sources */,
 				52DC9EAF1FC95C9E00AE02F6 /* FirebaseNotifications.swift in Sources */,
 				52236AE81D17E4D3004903AB /* FixtureManager.swift in Sources */,
 				52DBCAA01D4A012E00D35F91 /* GameSettings.swift in Sources */,

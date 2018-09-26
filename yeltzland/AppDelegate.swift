@@ -36,7 +36,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #endif
         
         // Setup Twitter not via Fabric
-        TWTRTwitter.sharedInstance().start(withConsumerKey:"8G26YU7skH5dgbvXx5nwk0G0u", consumerSecret:"kUMwYAiDNR7dGjvSsTnHH20tXcutxEzkwycYJA68Darig6pRYz")
+        let twitterConsumerKey = SettingsManager.instance.getSetting("TwitterConsumerKey") as! String
+        let twitterConsumerSecret = SettingsManager.instance.getSetting("TwitterConsumerSecret") as! String
+
+        TWTRTwitter.sharedInstance().start(withConsumerKey:twitterConsumerKey, consumerSecret:twitterConsumerSecret)
 
         // Setup notifications
         FirebaseApp.configure()
