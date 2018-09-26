@@ -64,3 +64,5 @@ screenshots/README.txt
 screenshots/screenshots.html
 
 .DS_Store
+yeltzland/GoogleService-Info.plist
+yeltzland/Settings.plist
