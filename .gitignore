@@ -64,5 +64,8 @@ screenshots/README.txt
 screenshots/screenshots.html
 
 .DS_Store
+._*
+
+# Confidential settings files
 yeltzland/GoogleService-Info.plist
 yeltzland/Settings.plist
