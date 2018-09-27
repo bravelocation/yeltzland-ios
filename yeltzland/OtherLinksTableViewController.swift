@@ -138,7 +138,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
                 cell!.imageView?.image = cellImage
                 break
             case 2:
-                cell!.textLabel?.text = "Yeltzland News Archive"
+                cell!.textLabel?.text = "News Archive (1997-2006)"
                 let cellImage = UIImage(icon: FAType.FAArchive, size: CGSize(width: 100, height: 100), textColor: AppColors.Archive, backgroundColor: UIColor.clear)
                 cell!.imageView?.image = cellImage
                 break
