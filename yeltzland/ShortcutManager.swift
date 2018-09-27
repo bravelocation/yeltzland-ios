@@ -28,7 +28,7 @@ public class ShortcutManager {
     
     @available(iOS 12.0, *)
     public func donateAllShortcuts() {
-        let intentResponse = INIntentResponse()
+        let intentResponse = LatestScoreIntentResponse()
         let intent = self.latestScoreIntent()
         
         let interaction = INInteraction(intent: intent, response: intentResponse)

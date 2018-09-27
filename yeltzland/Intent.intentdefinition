@@ -17,8 +17,8 @@
 		<dict>
 			<key>INIntentCategory</key>
 			<string>information</string>
-			<key>INIntentDefaultImageName</key>
-			<string>Logo</string>
+			<key>INIntentDescription</key>
+			<string>The latest Halesowen Town score</string>
 			<key>INIntentDescriptionID</key>
 			<string>M0t0z2</string>
 			<key>INIntentLastParameterTag</key>
@@ -32,7 +32,7 @@
 					<key>INIntentParameterCombinationIsPrimary</key>
 					<true/>
 					<key>INIntentParameterCombinationSubtitle</key>
-					<string></string>
+					<string>The latest Halesowen Town score</string>
 					<key>INIntentParameterCombinationSubtitleID</key>
 					<string>vUAxMJ</string>
 					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
