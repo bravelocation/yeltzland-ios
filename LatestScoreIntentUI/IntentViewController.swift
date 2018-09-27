@@ -72,11 +72,11 @@ class IntentViewController: UIViewController, INUIHostedViewControlling {
             
             if fixture.home {
                 homeTeamName = "Yeltz"
-                awayTeamName = fixture.opponent
+                awayTeamName = fixture.opponentNoCup
                 homeTeamScore = fixture.teamScore!
                 awayTeamScore = fixture.opponentScore!
             } else {
-                homeTeamName = fixture.opponent
+                homeTeamName = fixture.opponentNoCup
                 awayTeamName = "Yeltz"
                 homeTeamScore = fixture.opponentScore!
                 awayTeamScore = fixture.teamScore!

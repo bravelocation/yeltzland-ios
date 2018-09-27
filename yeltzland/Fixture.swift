@@ -193,6 +193,18 @@ public class Fixture {
         }
     }
     
+    
+    public var opponentNoCup: String {
+        // Do we have a bracket in the name
+        let bracketPos = self.opponent.index(of: "(")
+        if bracketPos == nil {
+            return self.opponent
+        } else {
+            let beforeBracket = self.opponent.split(separator: "(", maxSplits: 1, omittingEmptySubsequences: true)[0]
+            return beforeBracket.trimmingCharacters(in: CharacterSet(charactersIn: " "))
+        }
+    }
+    
     var score: String {
         get {
             if ((self.teamScore == nil) || (self.opponentScore == nil)) {

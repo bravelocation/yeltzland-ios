@@ -23,8 +23,8 @@ class LatestScoreIntentHandler: NSObject, LatestScoreIntentHandling {
         var homeTeamName = ""
         var awayTeamName = ""
         var gameState = ""
-        var homeTeamScore = 0
-        var awayTeamScore = 0
+        var homeTeamScore:Int = 0
+        var awayTeamScore:Int = 0
         
         if let fixture = self.gameSettings.getLatestFixtureFromSettings() {
             // If currently in a game
@@ -36,11 +36,11 @@ class LatestScoreIntentHandler: NSObject, LatestScoreIntentHandling {
             
             if fixture.home {
                 homeTeamName = "Yeltz"
-                awayTeamName = fixture.opponent
+                awayTeamName = fixture.opponentNoCup
                 homeTeamScore = fixture.teamScore!
                 awayTeamScore = fixture.opponentScore!
             } else {
-                homeTeamName = fixture.opponent
+                homeTeamName = fixture.opponentNoCup
                 awayTeamName = "Yeltz"
                 homeTeamScore = fixture.opponentScore!
                 awayTeamScore = fixture.teamScore!
@@ -53,9 +53,10 @@ class LatestScoreIntentHandler: NSObject, LatestScoreIntentHandling {
 
         completion(LatestScoreIntentResponse.success(gameState: gameState,
                                                      homeTeam: homeTeamName,
-                                                     homeScore: NSNumber(value: homeTeamScore),
+                                                     homeScore: String(homeTeamScore),
                                                      awayTeam: awayTeamName,
-                                                     awayScore: NSNumber(value: awayTeamScore)))
+                                                     awayScore: String(awayTeamScore)))
+
     }
 }
 

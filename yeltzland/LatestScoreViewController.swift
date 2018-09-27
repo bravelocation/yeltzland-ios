@@ -120,7 +120,7 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
                 }
             }
  
-            self.opponentLabel.text = fixture.opponent
+            self.opponentLabel.text = fixture.opponentNoCup
             self.homeOrAwayLabel.text = homeOrAway
             self.latestScoreLabel.text = score
             self.latestScoreLabel.textColor = resultColor
