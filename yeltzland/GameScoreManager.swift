@@ -36,7 +36,7 @@ public class GameScoreManager {
         print("Preparing to fetch game score ...")
         
         let dataUrl = URL(string: "https://bravelocation.com/automation/feeds/gamescore.json")!
-        let urlRequest = URLRequest(url: dataUrl, cachePolicy: NSURLRequest.CachePolicy.reloadIgnoringLocalCacheData, timeoutInterval: 60.0)
+        let urlRequest = URLRequest(url: dataUrl, cachePolicy: NSURLRequest.CachePolicy.useProtocolCachePolicy, timeoutInterval: 60.0)
         let session = URLSession.shared
         
         let task = session.dataTask(with: urlRequest, completionHandler: {
@@ -129,18 +129,22 @@ public class GameScoreManager {
                                                   opponentScore: opponentScore,
                                                   inProgress: true)
                 } else {
-                    // If after kickoff, we are in progress with no score yet
                     let now = Date()
                     let afterKickoff = now.compare(nextFixture.fixtureDate) == ComparisonResult.orderedDescending
                     
                     if (afterKickoff) {
+                        // If after kickoff, we are in progress with no score yet
                         self.currentFixture = Fixture(date: nextFixture.fixtureDate,
                                                       opponent: nextFixture.opponent,
                                                       home: nextFixture.home,
                                                       teamScore: 0,
                                                       opponentScore: 0,
                                                       inProgress: true)
+                    } else if let lastResult = FixtureManager.instance.getLastGame() {
+                        // Otherwise "latest score" must be last result
+                        self.currentFixture = lastResult
                     }
+                    
                 }
             }
             

@@ -262,7 +262,7 @@ public class Fixture {
             case .during:
                 return self.inProgressScore
             case .after, .dayAfter, .manyDaysAfter:
-                return self.score
+                return self.smallScore
             }
         }
     }

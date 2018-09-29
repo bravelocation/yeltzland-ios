@@ -76,7 +76,7 @@ public class FixtureManager {
         print("Preparing to fetch fixtures ...")
         
         let dataUrl = URL(string: "https://bravelocation.com/automation/feeds/matches.json")!
-        let urlRequest = URLRequest(url: dataUrl, cachePolicy: NSURLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 60.0)
+        let urlRequest = URLRequest(url: dataUrl, cachePolicy: NSURLRequest.CachePolicy.useProtocolCachePolicy, timeoutInterval: 60.0)
  
         let session = URLSession.shared
 
