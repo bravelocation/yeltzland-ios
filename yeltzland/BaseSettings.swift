@@ -90,17 +90,6 @@ public class BaseSettings : NSObject {
         }
         
         if let currentSettings = self.getLatestFixtureFromSettings(), let newSettings = updatedSettings {
-            // Check if anything has changed
-            if (currentSettings.opponent == newSettings.opponent &&
-            currentSettings.fixtureDate == newSettings.fixtureDate &&
-            currentSettings.opponentScore == newSettings.opponentScore &&
-            currentSettings.teamScore == newSettings.teamScore &&
-            currentSettings.home == newSettings.home &&
-                currentSettings.inProgress == newSettings.inProgress) {
-                return
-            }
-
-            // Otherwise, update the settings, and push to watch?
             self.currentGameTime = newSettings.fixtureDate
             self.currentGameOpponentName = newSettings.opponent
             self.currentGameYeltzScore = newSettings.teamScore ?? 0
@@ -108,7 +97,7 @@ public class BaseSettings : NSObject {
             self.currentGameHome = newSettings.home
             self.currentGameInProgress = newSettings.inProgress
             
-            self.pushAllSettingsToWatch(newSettings.inProgress)
+            self.pushAllSettingsToWatch(currentSettings.inProgress || newSettings.inProgress)
             NotificationCenter.default.post(name: Notification.Name(rawValue: BaseSettings.SettingsUpdateNotification), object: nil)
         }
     }
