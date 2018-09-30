@@ -101,16 +101,8 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
                 break
             case .graphicCircular:
                 if #available(watchOS 5,*) {
-                    let template = CLKComplicationTemplateGraphicCircularOpenGaugeSimpleText()
-                    template.bottomTextProvider = CLKSimpleTextProvider(text: fixture.smallScoreOrDate)
-                    
-                    // Set H or A in center
-                    let homeOrAway =  fixture.home ? "H" : "A"
-                    template.centerTextProvider = CLKSimpleTextProvider(text: homeOrAway)
-                    
-                    let gauge = CLKSimpleGaugeProvider(style: .fill, gaugeColor: AppColors.WatchRingColor, fillFraction: 1.0)
-                    template.gaugeProvider = gauge
-                    
+                    let template = CLKComplicationTemplateGraphicCircularImage()
+                    template.imageProvider = CLKFullColorImageProvider(fullColorImage: UIImage(named: "Complication/Graphic Circular")!)
                     template.tintColor = AppColors.WatchComplicationColor
                     entry = CLKComplicationTimelineEntry(date: now, complicationTemplate: template)
                 }
