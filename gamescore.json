@@ -1,13 +1,1 @@
-{
-    "match": {
-        "MatchId": "23",
-        "MatchDateTime": "2017-11-25 15:00:00",
-        "Opponent": "Matlock Town",
-        "Home": "0",
-        "TeamScore": null,
-        "OpponentScore": null,
-        "errorMessage": ""
-    },
-    "yeltzScore": "0",
-    "opponentScore": "2"
-}
+{"match":{"MatchId":"59","MatchDateTime":"2018-10-06 15:00:00","Opponent":"Rushall Olympic","Home":"1","TeamScore":null,"OpponentScore":null,"errorMessage":""},"yeltzScore":"2","opponentScore":"0"}
