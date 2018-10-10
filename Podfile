@@ -41,4 +41,12 @@ post_install do |installer|
             config.build_settings['SWIFT_OPTIMIZATION_LEVEL'] = '-Onone'
         end
     end
+    
+    installer.pods_project.targets.each do |target|
+        target.build_configurations.each do |config|
+            config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '9.3'
+            config.build_settings['WATCHOS_DEPLOYMENT_TARGET'] = '4.0'
+            config.build_settings['TVOS_DEPLOYMENT_TARGET'] = '11.2'
+        end
+    end
 end
