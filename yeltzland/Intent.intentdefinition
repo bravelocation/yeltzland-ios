@@ -61,7 +61,7 @@
 					</dict>
 					<dict>
 						<key>INIntentResponseCodeFormatString</key>
-						<string>The ${gameState}  ${homeTeam} ${homeScore} ${awayTeam} ${awayScore}</string>
+						<string>The ${gameState} ${homeTeam} ${homeScore} ${awayTeam} ${awayScore}</string>
 						<key>INIntentResponseCodeFormatStringID</key>
 						<string>594Jwl</string>
 						<key>INIntentResponseCodeName</key>
