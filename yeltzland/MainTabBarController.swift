@@ -163,6 +163,10 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
             activityInvocationPhrase = "Read the club website"
             break
         case 2:
+            activityTitle = "Watch Yeltz TV"
+            activityInvocationPhrase = "Watch Yeltz TV"
+            break
+        case 3:
             activityTitle = "Read HTFC Twitter Feed"
             activityInvocationPhrase = "Read the club twitter"
             break
@@ -224,10 +228,10 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
     }
     
     func userActivityWillSave(_ userActivity: NSUserActivity) {
-        print("Saving user activity current tab to be \(self.selectedIndex)")
+        print("Saving user activity \(String(describing: userActivity.title)) index to be \(GameSettings.instance.lastSelectedTab)")
 
         userActivity.userInfo = [
-            "com.bravelocation.yeltzland.currenttab.key": NSNumber(value: self.selectedIndex as Int),
+            "com.bravelocation.yeltzland.currenttab.key": NSNumber(value: GameSettings.instance.lastSelectedTab as Int),
         ]
         
         // Add current URL if a web view
@@ -241,13 +245,9 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
             }
         }
         
-        if (currentUrl == nil) {
+        if (currentUrl != nil) {
             userActivity.userInfo = [
-                "com.bravelocation.yeltzland.currenttab.key": NSNumber(value: self.selectedIndex as Int)
-            ]
-        } else {
-            userActivity.userInfo = [
-                "com.bravelocation.yeltzland.currenttab.key": NSNumber(value: self.selectedIndex as Int),
+                "com.bravelocation.yeltzland.currenttab.key": NSNumber(value: GameSettings.instance.lastSelectedTab as Int),
                 "com.bravelocation.yeltzland.currenttab.currenturl": currentUrl!
             ]
             
