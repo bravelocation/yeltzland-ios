@@ -35,6 +35,7 @@ class FixturesTableViewController: UITableViewController {
     
     var reloadButton: UIBarButtonItem!
     private let cellIdentifier:String = "FixtureTableViewCell"
+    private let fixturesRefreshControl = UIRefreshControl()
     
     override init(style: UITableViewStyle) {
         super.init(style: style)
@@ -59,7 +60,7 @@ class FixturesTableViewController: UITableViewController {
     @objc fileprivate func fixturesUpdated(_ notification: Notification) {
         print("Fixture update message received")
         DispatchQueue.main.async(execute: { () -> Void in
-            self.refreshControl?.endRefreshing()
+            self.fixturesRefreshControl.endRefreshing()
             self.tableView.reloadData()
             
             let currentMonthIndexPath = IndexPath(row: 0, section: self.currentMonthSection())
@@ -122,12 +123,12 @@ class FixturesTableViewController: UITableViewController {
         self.navigationItem.rightBarButtonItems = [self.reloadButton]
         
         if #available(iOS 10.0, *) {
-            self.tableView.refreshControl = self.refreshControl
+            self.tableView.refreshControl = self.fixturesRefreshControl
         } else {
-            self.tableView.addSubview(self.refreshControl!)
+            self.tableView.addSubview(self.fixturesRefreshControl)
         }
         
-        self.refreshControl?.addTarget(self, action: #selector(FixturesTableViewController.refreshSearchData), for: .valueChanged)
+        self.fixturesRefreshControl.addTarget(self, action: #selector(FixturesTableViewController.refreshSearchData), for: .valueChanged)
         self.setupHandoff()
     }
     
