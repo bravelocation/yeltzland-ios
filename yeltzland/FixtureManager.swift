@@ -10,19 +10,13 @@ import Foundation
 
 public class FixtureManager {
     public static let FixturesNotification:String = "YLZFixtureNotification"
-    fileprivate var fixtureList:[String:[Fixture]] = [String:[Fixture]]()
+    fileprivate var fixtureList:[String: [Fixture]] = [:]
     
     fileprivate static let sharedInstance = FixtureManager()
     class var instance:FixtureManager {
         get {
             return sharedInstance
         }
-    }
-    
-    func sync(lock: Any, closure:@escaping () -> Void) {
-        objc_sync_enter(lock)
-        closure()
-        objc_sync_exit(lock)
     }
     
     public var Months: [String] {
@@ -254,29 +248,28 @@ public class FixtureManager {
     fileprivate func parseMatchesJson(_ json:[String:AnyObject]) {
         guard let matches = json["Matches"] as? Array<AnyObject> else { return }
         
-        // Open lock on fixtures
-        sync (lock: self.fixtureList) {
-            self.fixtureList.removeAll()
-            
-            for currentMatch in matches {
-                if let match = currentMatch as? [String:AnyObject] {
-                    if let currentFixture = Fixture(fromJson: match) {
-                        let monthFixtures = self.FixturesForMonth(currentFixture.monthKey)
-                        
-                        if monthFixtures != nil {
-                            self.fixtureList[currentFixture.monthKey]?.append(currentFixture)
-                        } else {
-                            self.fixtureList[currentFixture.monthKey] = [currentFixture]
-                        }
+        var latestFixtures:[String: [Fixture]] = [:]
+        
+        // Add each fixture into the correct month
+        for currentMatch in matches {
+            if let match = currentMatch as? [String:AnyObject] {
+                if let currentFixture = Fixture(fromJson: match) {
+                    if let _ = latestFixtures[currentFixture.monthKey] {
+                        latestFixtures[currentFixture.monthKey]?.append(currentFixture)
+                    } else {
+                        latestFixtures[currentFixture.monthKey] = [currentFixture]
                     }
                 }
             }
-            
-            // Sort the fixtures per month
-            for currentMonth in Array(self.fixtureList.keys) {
-                self.fixtureList[currentMonth] = self.fixtureList[currentMonth]?.sorted(by: { $0.fixtureDate.compare($1.fixtureDate as Date) == .orderedAscending })
-            }
         }
+        
+        // Sort the fixtures per month
+        for currentMonth in Array(latestFixtures.keys) {
+            latestFixtures[currentMonth] = latestFixtures[currentMonth]?.sorted(by: { $0.fixtureDate.compare($1.fixtureDate as Date) == .orderedAscending })
+        }
+        
+        // Finally, switch the fixture list with the new fixtures
+        self.fixtureList = latestFixtures
     }
     
     fileprivate func moveSingleBundleFileToAppDirectory(_ fileName:String, fileType:String) {
