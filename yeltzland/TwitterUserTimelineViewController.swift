@@ -55,6 +55,13 @@ class TwitterUserTimelineViewController: TWTRTimelineViewController, TWTRTweetVi
         self.present(svc, animated: true, completion: nil)
     }
     
+    // MARK: - Keyboard options
+    override var keyCommands: [UIKeyCommand]? {
+        return [
+            UIKeyCommand(input: "r", modifierFlags: .command, action: #selector(TwitterUserTimelineViewController.reloadData), discoverabilityTitle: "Reload"),
+        ]
+    }
+
     // MARK: - Nav bar actions
     @objc func reloadData() {
         self.refresh()

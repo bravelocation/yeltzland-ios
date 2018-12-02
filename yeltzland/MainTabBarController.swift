@@ -46,6 +46,25 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         self.tabBar.tintColor = AppColors.TabBarTextColor
     }
     
+    // MARK: - Keyboard options
+    override var keyCommands: [UIKeyCommand]? {
+        return [
+            UIKeyCommand(input: "1", modifierFlags: .command, action: #selector(MainTabBarController.keyboardSelectTab), discoverabilityTitle: "Yeltz Forum"),
+            UIKeyCommand(input: "2", modifierFlags: .command, action: #selector(MainTabBarController.keyboardSelectTab), discoverabilityTitle: "Official Site"),
+            UIKeyCommand(input: "3", modifierFlags: .command, action: #selector(MainTabBarController.keyboardSelectTab), discoverabilityTitle: "Yeltz TV"),
+            UIKeyCommand(input: "4", modifierFlags: .command, action: #selector(MainTabBarController.keyboardSelectTab), discoverabilityTitle: "Twitter"),
+            UIKeyCommand(input: "5", modifierFlags: .command, action: #selector(MainTabBarController.keyboardSelectTab), discoverabilityTitle: "More"),
+        ]
+    }
+
+    @objc func keyboardSelectTab(sender: UIKeyCommand) {
+        if let selectedTab = sender.input {
+            if let inputValue = Int(selectedTab) {
+                self.selectedIndex = inputValue - 1
+            }
+        }
+    }
+    
     func addChildViewControllers() {
         // N.B. Must set font after setFAIcon as that messes up the text fonts
         

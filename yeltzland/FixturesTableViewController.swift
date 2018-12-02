@@ -136,6 +136,13 @@ class FixturesTableViewController: UITableViewController {
         FixtureManager.instance.getLatestFixtures()
     }
 
+    // MARK: - Keyboard options
+    override var keyCommands: [UIKeyCommand]? {
+        return [
+            UIKeyCommand(input: "r", modifierFlags: .command, action: #selector(FixturesTableViewController.reloadButtonTouchUp), discoverabilityTitle: "Reload")
+        ]
+    }
+
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         return FixtureManager.instance.Months.count

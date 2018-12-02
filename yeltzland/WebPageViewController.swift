@@ -132,6 +132,16 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         self.webView.allowsBackForwardNavigationGestures = true
     }
     
+    // MARK: - Keyboard options
+    override var keyCommands: [UIKeyCommand]? {
+        return [
+            UIKeyCommand(input: UIKeyInputRightArrow, modifierFlags: .command, action: #selector(WebPageViewController.forwardButtonTouchUp), discoverabilityTitle: "Forward"),
+            UIKeyCommand(input: UIKeyInputLeftArrow, modifierFlags: .command, action: #selector(WebPageViewController.backButtonTouchUp), discoverabilityTitle: "Back"),
+            UIKeyCommand(input: "r", modifierFlags: .command, action: #selector(WebPageViewController.reloadButtonTouchUp), discoverabilityTitle: "Reload3"),
+            UIKeyCommand(input: "h", modifierFlags: [.command, .shift], action: #selector(WebPageViewController.loadHomePage), discoverabilityTitle: "Home"),
+        ]
+    }
+    
     // MARK: - Nav bar actions
     @objc func reloadButtonTouchUp() {
         self.progressBar.setProgress(0, animated: false)

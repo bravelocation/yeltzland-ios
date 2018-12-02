@@ -665,7 +665,7 @@
 				52176BB51D4B6D5900B7EFAE /* Resources */,
 				52176BDB1D4B6D5900B7EFAE /* Embed App Extensions */,
 				56DA7360999AEA43B62992D3 /* Frameworks */,
-				5242D8401E40A05900BF6FEE /* ShellScript */,
+				5242D8401E40A05900BF6FEE /* Set Build Number from Git */,
 			);
 			buildRules = (
 			);
@@ -685,7 +685,7 @@
 				52176BBF1D4B6D5900B7EFAE /* Sources */,
 				52176BC01D4B6D5900B7EFAE /* Frameworks */,
 				52176BC11D4B6D5900B7EFAE /* Resources */,
-				52176BE61D4B759C00B7EFAE /* ShellScript */,
+				52176BE61D4B759C00B7EFAE /* Set Build Number from Git */,
 				FD04AB642FF1063F0F11607E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -705,7 +705,7 @@
 				5257196D1FDE8AE1005F1D80 /* Sources */,
 				5257196E1FDE8AE1005F1D80 /* Frameworks */,
 				5257196F1FDE8AE1005F1D80 /* Resources */,
-				52E77DDD1FDE9B6C0069FCFB /* ShellScript */,
+				52E77DDD1FDE9B6C0069FCFB /* Set Build Number from Git */,
 				2AB6316EB861EDDE981F4DE3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -742,7 +742,7 @@
 				526F544C1D214705001EA8D8 /* Sources */,
 				526F544D1D214705001EA8D8 /* Frameworks */,
 				526F544E1D214705001EA8D8 /* Resources */,
-				526F54611D214723001EA8D8 /* ShellScript */,
+				526F54611D214723001EA8D8 /* Set Build Number from Git */,
 			);
 			buildRules = (
 			);
@@ -761,11 +761,12 @@
 				52E3DF6F1CD9FA78009F18BD /* Sources */,
 				52E3DF701CD9FA78009F18BD /* Frameworks */,
 				52E3DF711CD9FA78009F18BD /* Resources */,
-				5211F7281CDA51EC0031496D /* ShellScript */,
+				5211F7281CDA51EC0031496D /* Set Build Number from Git */,
 				A105CF8EDA0A39E089673162 /* [CP] Embed Pods Frameworks */,
 				63BB4CBBF5413A6045855209 /* [CP] Copy Pods Resources */,
 				526F54601D214705001EA8D8 /* Embed App Extensions */,
 				52176BDF1D4B6D5900B7EFAE /* Embed Watch Content */,
+				528BF92821B3ECF100E15FCD /* Setup Fabric */,
 			);
 			buildRules = (
 			);
@@ -787,7 +788,7 @@
 				52EACD93215643FB008B8DE5 /* Sources */,
 				52EACD94215643FB008B8DE5 /* Frameworks */,
 				52EACD95215643FB008B8DE5 /* Resources */,
-				5297C9EB2156630A00AB5D0F /* ShellScript */,
+				5297C9EB2156630A00AB5D0F /* Set Build Number from Git */,
 			);
 			buildRules = (
 			);
@@ -806,7 +807,7 @@
 				52EACD9C215643FC008B8DE5 /* Sources */,
 				52EACD9D215643FC008B8DE5 /* Frameworks */,
 				52EACD9E215643FC008B8DE5 /* Resources */,
-				5297C9ED2156632700AB5D0F /* ShellScript */,
+				5297C9ED2156632700AB5D0F /* Set Build Number from Git */,
 			);
 			buildRules = (
 			);
@@ -1075,83 +1076,108 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-yeltzlandTVOS/Pods-yeltzlandTVOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5211F7281CDA51EC0031496D /* ShellScript */ = {
+		5211F7281CDA51EC0031496D /* Set Build Number from Git */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "git=`sh /etc/profile; which git`\nappBuild=`$git rev-list --all |wc -l`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\necho \"Updated ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n\n\"${PODS_ROOT}/Fabric/run\" de20d03a9cd3af9832860083836d12964a8b11f5 0a8628bec808495065a9f124e4fd6d79b5f2e0e69b63845d0544c96c777ae566\n";
-		};
-		52176BE61D4B759C00B7EFAE /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "git=`sh /etc/profile; which git`\nappBuild=`$git rev-list --all |wc -l`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\necho \"Updated ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"";
-		};
-		5242D8401E40A05900BF6FEE /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "git=`sh /etc/profile; which git`\nappBuild=`$git rev-list --all |wc -l`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\necho \"Updated ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"";
-		};
-		526F54611D214723001EA8D8 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
+			name = "Set Build Number from Git";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "git=`sh /etc/profile; which git`\nappBuild=`$git rev-list --all |wc -l`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\necho \"Updated ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n";
 		};
-		5297C9EB2156630A00AB5D0F /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "git=`sh /etc/profile; which git`\nappBuild=`$git rev-list --all |wc -l`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\necho \"Updated ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n";
-		};
-		5297C9ED2156632700AB5D0F /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "git=`sh /etc/profile; which git`\nappBuild=`$git rev-list --all |wc -l`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\necho \"Updated ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n";
-		};
-		52E77DDD1FDE9B6C0069FCFB /* ShellScript */ = {
+		52176BE61D4B759C00B7EFAE /* Set Build Number from Git */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Set Build Number from Git";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "git=`sh /etc/profile; which git`\nappBuild=`$git rev-list --all |wc -l`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\necho \"Updated ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n";
+		};
+		5242D8401E40A05900BF6FEE /* Set Build Number from Git */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Set Build Number from Git";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "git=`sh /etc/profile; which git`\nappBuild=`$git rev-list --all |wc -l`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\necho \"Updated ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n";
+		};
+		526F54611D214723001EA8D8 /* Set Build Number from Git */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Set Build Number from Git";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "git=`sh /etc/profile; which git`\nappBuild=`$git rev-list --all |wc -l`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\necho \"Updated ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n";
+		};
+		528BF92821B3ECF100E15FCD /* Setup Fabric */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Setup Fabric";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" de20d03a9cd3af9832860083836d12964a8b11f5 0a8628bec808495065a9f124e4fd6d79b5f2e0e69b63845d0544c96c777ae566\n\n";
+		};
+		5297C9EB2156630A00AB5D0F /* Set Build Number from Git */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "Set Build Number from Git";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "git=`sh /etc/profile; which git`\nappBuild=`$git rev-list --all |wc -l`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\necho \"Updated ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n";
+		};
+		5297C9ED2156632700AB5D0F /* Set Build Number from Git */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "Set Build Number from Git";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "git=`sh /etc/profile; which git`\nappBuild=`$git rev-list --all |wc -l`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\necho \"Updated ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n";
+		};
+		52E77DDD1FDE9B6C0069FCFB /* Set Build Number from Git */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Set Build Number from Git";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;

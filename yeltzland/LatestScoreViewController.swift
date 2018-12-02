@@ -81,6 +81,13 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
         self.addSiriButton()
     }
     
+    // MARK: - Keyboard options
+    override var keyCommands: [UIKeyCommand]? {
+        return [
+            UIKeyCommand(input: "r", modifierFlags: .command, action: #selector(LatestScoreViewController.reloadButtonTouchUp), discoverabilityTitle: "Reload")
+        ]
+    }
+    
     // MARK:- Event handlers
     @objc func reloadButtonTouchUp() {
         GameScoreManager.instance.getLatestGameScore()
