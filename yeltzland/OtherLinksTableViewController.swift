@@ -225,7 +225,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         
         if ((indexPath as NSIndexPath).section == 0) {
             if ((indexPath as NSIndexPath).row == 3) {
-                url = URL(string: "https://www.evostikleaguesouthern.co.uk/LeagueTable")
+                url = URL(string: "https://www.evostikleaguesouthern.co.uk/league-table/Evo-stik%20League%20South%20Premier%20Division%20Central/")
             }
         } else if ((indexPath as NSIndexPath).section == 1) {
             switch ((indexPath as NSIndexPath).row) {
