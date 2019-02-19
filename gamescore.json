@@ -1,1 +1,13 @@
-{"match":{"MatchId":"97","MatchDateTime":"2018-10-27 15:00:00","Opponent":"Grantham Town (FAT 1Q)","Home":"0","TeamScore":null,"OpponentScore":null,"errorMessage":""},"yeltzScore":"4","opponentScore":"0"}
+{
+    "match": {
+        "MatchId": "81",
+        "MatchDateTime": "2019-02-16 15:00:00",
+        "Opponent": "Stratford Town",
+        "Home": "0",
+        "TeamScore": null,
+        "OpponentScore": null,
+        "errorMessage": ""
+    },
+    "yeltzScore": "1",
+    "opponentScore": "2"
+}

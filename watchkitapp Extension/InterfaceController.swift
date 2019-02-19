@@ -35,7 +35,7 @@ class InterfaceController: WKInterfaceController {
     
     fileprivate func updateViewData() {
         // A row per month, plus for each fixture
-        self.fixtureTable.setNumberOfRows(FixtureManager.instance.Months.count + FixtureManager.instance.fixtureCount(), withRowType: "FixtureRowType")
+        self.fixtureTable.setNumberOfRows(FixtureManager.instance.fixtureCount(), withRowType: "FixtureRowType")
 
         // Get each month in turn
         var rowCount = 0
