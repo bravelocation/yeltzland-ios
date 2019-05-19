@@ -130,6 +130,26 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         
         // Swipe gestures automatically supported
         self.webView.allowsBackForwardNavigationGestures = true
+        
+        // Add pull to refresh
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshWebView(_:)), for: UIControl.Event.valueChanged)
+        self.webView.scrollView.addSubview(refreshControl)
+        self.webView.scrollView.bounces = true
+    }
+    
+    // MARK: - Pull to refresh
+    @objc
+    func refreshWebView(_ sender: UIRefreshControl) {
+        // Give haptic feedback
+        if #available(iOS 10.0, *) {
+            let impactFeedbackgenerator = UIImpactFeedbackGenerator(style: .medium)
+            impactFeedbackgenerator.prepare()
+            impactFeedbackgenerator.impactOccurred()
+        }
+        
+        self.reloadButtonTouchUp()
+        sender.endRefreshing()
     }
     
     // MARK: - Keyboard options
@@ -137,7 +157,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         return [
             UIKeyCommand(input: UIKeyInputRightArrow, modifierFlags: .command, action: #selector(WebPageViewController.forwardButtonTouchUp), discoverabilityTitle: "Forward"),
             UIKeyCommand(input: UIKeyInputLeftArrow, modifierFlags: .command, action: #selector(WebPageViewController.backButtonTouchUp), discoverabilityTitle: "Back"),
-            UIKeyCommand(input: "r", modifierFlags: .command, action: #selector(WebPageViewController.reloadButtonTouchUp), discoverabilityTitle: "Reload3"),
+            UIKeyCommand(input: "r", modifierFlags: .command, action: #selector(WebPageViewController.reloadButtonTouchUp), discoverabilityTitle: "Reload"),
             UIKeyCommand(input: "h", modifierFlags: [.command, .shift], action: #selector(WebPageViewController.loadHomePage), discoverabilityTitle: "Home"),
         ]
     }
