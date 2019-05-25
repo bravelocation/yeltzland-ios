@@ -1,13 +1,1 @@
-{
-    "match": {
-        "MatchId": "81",
-        "MatchDateTime": "2019-02-16 15:00:00",
-        "Opponent": "Stratford Town",
-        "Home": "0",
-        "TeamScore": null,
-        "OpponentScore": null,
-        "errorMessage": ""
-    },
-    "yeltzScore": "1",
-    "opponentScore": "2"
-}
+{"match":{"MatchId":"92","MatchDateTime":"2019-04-27 15:00:00","Opponent":"St Neots Town","Home":"0","TeamScore":null,"OpponentScore":null,"errorMessage":""},"yeltzScore":"1","opponentScore":"1"}

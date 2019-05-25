@@ -103,6 +103,12 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
             }
         }
         
+        if latestFixture == nil {
+            if let nextFixture = FixtureManager.instance.getNextGame() {
+                latestFixture = nextFixture
+            }
+        }
+        
         var homeOrAway = "vs"
         var resultColor = AppColors.FixtureNone
         var score = "TBD"
