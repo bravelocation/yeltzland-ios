@@ -13,6 +13,7 @@
 		5211F7271CDA35CF0031496D /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211F7261CDA35CF0031496D /* AppColors.swift */; };
 		5211F72A1CDA53D70031496D /* TwitterUserTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211F7291CDA53D70031496D /* TwitterUserTimelineViewController.swift */; };
 		5211F72D1CDB1EE50031496D /* OtherLinksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211F72C1CDB1EE50031496D /* OtherLinksTableViewController.swift */; };
+		5216E1CC22BD1D5E005D7617 /* Fabric.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5216E1CB22BD1D5E005D7617 /* Fabric.plist */; };
 		52176BAC1D4A14C700B7EFAE /* DefaultPreferences.plist in Resources */ = {isa = PBXBuildFile; fileRef = 528D74591CF2F4A400263685 /* DefaultPreferences.plist */; };
 		52176BAE1D4A1AF600B7EFAE /* gamescore.json in Resources */ = {isa = PBXBuildFile; fileRef = 52176BAD1D4A1AF600B7EFAE /* gamescore.json */; };
 		52176BB01D4A1B3200B7EFAE /* GameScoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52176BAF1D4A1B3200B7EFAE /* GameScoreManager.swift */; };
@@ -230,6 +231,7 @@
 		5211F7261CDA35CF0031496D /* AppColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
 		5211F7291CDA53D70031496D /* TwitterUserTimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterUserTimelineViewController.swift; sourceTree = "<group>"; };
 		5211F72C1CDB1EE50031496D /* OtherLinksTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherLinksTableViewController.swift; sourceTree = "<group>"; };
+		5216E1CB22BD1D5E005D7617 /* Fabric.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Fabric.plist; sourceTree = "<group>"; };
 		52176BAA1D4A0D9A00B7EFAE /* yeltzland.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = yeltzland.entitlements; sourceTree = "<group>"; };
 		52176BAB1D4A0DB700B7EFAE /* Today.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Today.entitlements; sourceTree = "<group>"; };
 		52176BAD1D4A1AF600B7EFAE /* gamescore.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = gamescore.json; sourceTree = "<group>"; };
@@ -547,6 +549,7 @@
 			children = (
 				52E3DF7D1CD9FA78009F18BD /* Assets.xcassets */,
 				528D74591CF2F4A400263685 /* DefaultPreferences.plist */,
+				5216E1CB22BD1D5E005D7617 /* Fabric.plist */,
 				52DC9EB61FC9C30E00AE02F6 /* GoogleService-Info.plist */,
 				52E3DF7F1CD9FA78009F18BD /* LaunchScreen.storyboard */,
 				52E3DF821CD9FA78009F18BD /* Info.plist */,
@@ -766,6 +769,7 @@
 				63BB4CBBF5413A6045855209 /* [CP] Copy Pods Resources */,
 				526F54601D214705001EA8D8 /* Embed App Extensions */,
 				52176BDF1D4B6D5900B7EFAE /* Embed Watch Content */,
+				5216E1CD22BD1DDC005D7617 /* Merge Fabric pList settings into Info.plist */,
 				528BF92821B3ECF100E15FCD /* Setup Fabric */,
 			);
 			buildRules = (
@@ -1014,6 +1018,7 @@
 				52A4596E1D89666E00822D8C /* gallery.ckcomplication in Resources */,
 				52E3DF7E1CD9FA78009F18BD /* Assets.xcassets in Resources */,
 				5231F501215B6C92003FAC68 /* Settings.plist in Resources */,
+				5216E1CC22BD1D5E005D7617 /* Fabric.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1091,6 +1096,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "git=`sh /etc/profile; which git`\nappBuild=`$git rev-list --all |wc -l`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\necho \"Updated ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n";
+		};
+		5216E1CD22BD1DDC005D7617 /* Merge Fabric pList settings into Info.plist */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/yeltzland/Fabric.plist",
+			);
+			name = "Merge Fabric pList settings into Info.plist";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a # Merge the Fabric settings from the Settings.plist\nPATH_TO_SETTINGS_FILE=$SCRIPT_INPUT_FILE_0\n\necho \"$(SRCROOT)/yeltzland/Fabric.plist\"\n\n# Merge the Fabric settings in the main Info.plist\n/usr/libexec/PlistBuddy -c \"Merge '$PATH_TO_SETTINGS_FILE' ':Fabric'\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n\necho \"Updated Fabric settings into ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n";
 		};
 		52176BE61D4B759C00B7EFAE /* Set Build Number from Git */ = {
 			isa = PBXShellScriptBuildPhase;
