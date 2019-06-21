@@ -19,3 +19,4 @@ If you want to build this app yourself, you'll need to provide some API settings
 
 - Settings.plist that contains your Twitter API consumer key and secret
 - GoogleService-Info.plist that contains your Firebase details
+- Fabric.plist that contains your Fabric configuration
