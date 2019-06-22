@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Fabric
-import Crashlytics
 import TwitterKit
 import Firebase
 import Intents
@@ -28,12 +26,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NSAttributedStringKey.foregroundColor: AppColors.NavBarTextColor,
             NSAttributedStringKey.font: UIFont(name: AppColors.AppFontName, size: AppColors.NavBarTextSize)!
         ]
-        
-        // Setup Fabric
-        #if DEBUG
-        #else
-            Fabric.with([Crashlytics.self])
-        #endif
         
         // Setup Twitter not via Fabric
         let twitterConsumerKey = SettingsManager.instance.getSetting("TwitterConsumerKey") as! String
