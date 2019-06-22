@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import Font_Awesome_Swift
+import SDWebImage
 
 class LocationsViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
@@ -90,6 +91,9 @@ class LocationsViewController: UIViewController, MKMapViewDelegate, CLLocationMa
                 view.canShowCallout = true
                 view.image = ballImage
                 view.centerOffset = CGPoint(x: 0.0, y: -10.0)
+                
+                view.leftCalloutAccessoryView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+                TeamImageManager.instance.loadTeamImage(teamName: annotation.title!, view: view.leftCalloutAccessoryView as! UIImageView)
             }
             
             return view
