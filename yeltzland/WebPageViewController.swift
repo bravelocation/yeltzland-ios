@@ -12,13 +12,13 @@ import Font_Awesome_Swift
 
 class WebPageViewController: UIViewController, WKNavigationDelegate {
     
-    static let UrlNotification:String = "YLZUrlNotification"
+    static let UrlNotification: String = "YLZUrlNotification"
     
     var homePageUrl: URL!
     
     var homeUrl: URL! {
         set {
-            self.homePageUrl = newValue;
+            self.homePageUrl = newValue
             self.loadHomePage()
         }
         get {
@@ -55,7 +55,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         let topPosition = (self.navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.height
         
         let webViewHeight = view.frame.height -
-            (topPosition + progressBarHeight + (self.tabBarController?.tabBar.frame)!.height);
+            (topPosition + progressBarHeight + (self.tabBarController?.tabBar.frame)!.height)
 
         // Add elements to view
         self.webView.frame = CGRect(x: 0, y: topPosition + progressBarHeight, width: view.frame.width, height: webViewHeight)
@@ -78,7 +78,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         self.navigationItem.title = self.pageTitle
         
         self.reloadButton = UIBarButtonItem(
-            barButtonSystemItem:.refresh,
+            barButtonSystemItem: .refresh,
             target: self,
             action: #selector(WebPageViewController.reloadButtonTouchUp)
         )
@@ -108,7 +108,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         self.forwardButton.FAIcon = FAType.FAAngleRight
         
         self.shareButton = UIBarButtonItem(
-            barButtonSystemItem:.action,
+            barButtonSystemItem: .action,
             target: self,
             action: #selector(WebPageViewController.shareButtonTouchUp)
         )
@@ -158,7 +158,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
             UIKeyCommand(input: UIKeyInputRightArrow, modifierFlags: .command, action: #selector(WebPageViewController.forwardButtonTouchUp), discoverabilityTitle: "Forward"),
             UIKeyCommand(input: UIKeyInputLeftArrow, modifierFlags: .command, action: #selector(WebPageViewController.backButtonTouchUp), discoverabilityTitle: "Back"),
             UIKeyCommand(input: "r", modifierFlags: .command, action: #selector(WebPageViewController.reloadButtonTouchUp), discoverabilityTitle: "Reload"),
-            UIKeyCommand(input: "h", modifierFlags: [.command, .shift], action: #selector(WebPageViewController.loadHomePage), discoverabilityTitle: "Home"),
+            UIKeyCommand(input: "h", modifierFlags: [.command, .shift], action: #selector(WebPageViewController.loadHomePage), discoverabilityTitle: "Home")
         ]
     }
     
@@ -205,15 +205,15 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
             let safariActivity = SafariActivity(currentUrl: requestUrl)
             let chromeActivity = ChromeActivity(currentUrl: requestUrl)
             
-            var customActivities:[UIActivity] = [safariActivity]
+            var customActivities: [UIActivity] = [safariActivity]
             if (chromeActivity.canOpenChrome()) {
-                customActivities.append(chromeActivity);
+                customActivities.append(chromeActivity)
             }
             
             let activityViewController = UIActivityViewController(activityItems: objectsToShare, applicationActivities: customActivities)
             
             if (activityViewController.popoverPresentationController != nil) {
-                activityViewController.popoverPresentationController!.barButtonItem = self.shareButton;
+                activityViewController.popoverPresentationController!.barButtonItem = self.shareButton
             }
             
             self.present(activityViewController, animated: true, completion: nil)
@@ -227,7 +227,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         }
         
         let overlayPosition = CGRect(x: 0, y: self.view.bounds.origin.y, width: self.view.bounds.size.width, height: self.view.bounds.size.height)
-        self.spinner = UIActivityIndicatorView(frame:overlayPosition)
+        self.spinner = UIActivityIndicatorView(frame: overlayPosition)
         self.spinner.color = AppColors.SpinnerColor
         self.view.addSubview(self.spinner)
         self.spinner.startAnimating()
@@ -237,7 +237,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         if (self.spinner != nil) {
             self.spinner.stopAnimating()
             self.spinner.removeFromSuperview()
-            self.spinner = nil;
+            self.spinner = nil
         }
     }
     

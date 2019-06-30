@@ -7,7 +7,8 @@
 //
 
 import Foundation
-fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+
+private func < <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
   switch (lhs, rhs) {
   case let (l?, r?):
     return l < r
@@ -18,7 +19,7 @@ fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   }
 }
 
-fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+private func > <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
   switch (lhs, rhs) {
   case let (l?, r?):
     return l > r
@@ -37,16 +38,15 @@ public enum FixtureState {
     case manyDaysAfter
 }
 
-
 public class Fixture {
     var fixtureDate: Date
     var opponent: String
     var home: Bool
     var teamScore: Int?
     var opponentScore: Int?
-    var inProgress:Bool = false
+    var inProgress = false
     
-    init?(fromJson: [String:AnyObject]) {
+    init?(fromJson: [String: AnyObject]) {
         // Parse properties from JSON match properties
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"        
@@ -73,7 +73,7 @@ public class Fixture {
         }
     }
     
-    init(date: Date, opponent:String, home:Bool, teamScore: Int?, opponentScore: Int?, inProgress:Bool) {
+    init(date: Date, opponent: String, home: Bool, teamScore: Int?, opponentScore: Int?, inProgress: Bool) {
         self.fixtureDate = date
         self.opponent = opponent
         self.home = home
@@ -100,7 +100,7 @@ public class Fixture {
         }
     }
     
-    var displayKickoffTime : String {
+    var displayKickoffTime: String {
         get {
             // Is the game today?
             let now = Date()
@@ -118,7 +118,7 @@ public class Fixture {
         }
     }
 
-    var fullDisplayKickoffTime : String {
+    var fullDisplayKickoffTime: String {
         get {
             // Is the game today?
             let now = Date()
@@ -136,7 +136,7 @@ public class Fixture {
         }
     }
     
-    var tvFixtureDisplayKickoffTime : String {
+    var tvFixtureDisplayKickoffTime: String {
         get {
             let formatter = DateFormatter()
             formatter.dateFormat = "HHmm"
@@ -145,7 +145,7 @@ public class Fixture {
         }
     }
     
-    var tvResultDisplayKickoffTime : String {
+    var tvResultDisplayKickoffTime: String {
         get {
             // Is the game today?
             let now = Date()
@@ -192,7 +192,6 @@ public class Fixture {
             return self.truncateTeamName(self.opponent, max: 4)
         }
     }
-    
     
     public var opponentNoCup: String {
         // Do we have a bracket in the name
@@ -288,7 +287,7 @@ public class Fixture {
     
     public var truncateOpponent: String {
         get {
-            return self.truncateTeamName(self.opponent, max:16)
+            return self.truncateTeamName(self.opponent, max: 16)
         }
     }
     

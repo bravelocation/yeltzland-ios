@@ -22,14 +22,12 @@ class ChromeActivity: UIActivity {
         return UIActivityType("com.bravelocation.yeltzland.chrome")
     }
     
-    override var activityImage: UIImage
-    {
+    override var activityImage: UIImage {
         return UIImage(icon: FAType.FAChrome, size: CGSize(width: 66, height: 66), textColor: UIColor.blue, backgroundColor: UIColor.clear)
     }
     
-    override var activityTitle : String
-    {
-        return "Open in Chrome";
+    override var activityTitle: String {
+        return "Open in Chrome"
     }
     
     override func canPerform(withActivityItems activityItems: [Any]) -> Bool {
@@ -40,21 +38,20 @@ class ChromeActivity: UIActivity {
         // nothing to prepare
     }
     
-    override class var activityCategory : UIActivityCategory{
+    override class var activityCategory: UIActivityCategory {
         return UIActivityCategory.action
     }
     
     func canOpenChrome() -> Bool {
         let chromeUrl = self.generateChromeUrl()
         if (chromeUrl == nil) {
-            return false;
+            return false
         }
         
         return UIApplication.shared.canOpenURL(chromeUrl!)
     }
     
-    func generateChromeUrl()-> URL!
-    {
+    func generateChromeUrl() -> URL! {
         let incomingScheme = self.currentUrl!.scheme
         var chromeScheme = ""
         
@@ -67,7 +64,7 @@ class ChromeActivity: UIActivity {
         if (chromeScheme != "") {
             let chromeUrl = self.currentUrl!.absoluteString.replacingOccurrences(of: self.currentUrl!.scheme! + "://", with: chromeScheme + "://")
             print("Chrome URL is \(chromeUrl)")
-            return URL(string:chromeUrl)!
+            return URL(string: chromeUrl)!
         }
         
         return nil
@@ -77,8 +74,8 @@ class ChromeActivity: UIActivity {
         print("Perform activity")
         
         let chromeUrl = self.generateChromeUrl()
-        if (chromeUrl != nil) {
-            if(UIApplication.shared.canOpenURL(chromeUrl!)){
+        if chromeUrl != nil {
+            if UIApplication.shared.canOpenURL(chromeUrl!) {
                 UIApplication.shared.openURL(chromeUrl!)
             }
         }

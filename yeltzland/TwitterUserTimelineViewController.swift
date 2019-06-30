@@ -58,7 +58,7 @@ class TwitterUserTimelineViewController: TWTRTimelineViewController, TWTRTweetVi
     // MARK: - Keyboard options
     override var keyCommands: [UIKeyCommand]? {
         return [
-            UIKeyCommand(input: "r", modifierFlags: .command, action: #selector(TwitterUserTimelineViewController.reloadData), discoverabilityTitle: "Reload"),
+            UIKeyCommand(input: "r", modifierFlags: .command, action: #selector(TwitterUserTimelineViewController.reloadData), discoverabilityTitle: "Reload")
         ]
     }
 
@@ -75,8 +75,7 @@ class TwitterUserTimelineViewController: TWTRTimelineViewController, TWTRTweetVi
     }
     
     // MARK: - SFSafariViewControllerDelegate methods
-    func safariViewControllerDidFinish(_ controller: SFSafariViewController)
-    {
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
         controller.dismiss(animated: true, completion: nil)
     }
 }

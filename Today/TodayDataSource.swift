@@ -15,7 +15,7 @@ class TodayDataSource: NSObject, UITableViewDataSource {
     private var currentScores = Array<TodayDataItem>()
     
     override init() {
-        super.init();
+        super.init()
         self.loadLatestData()
     }
     
@@ -27,8 +27,8 @@ class TodayDataSource: NSObject, UITableViewDataSource {
         if let currentFixture = GameScoreManager.instance.getCurrentFixture {
             if currentFixture.inProgress {
                 self.currentScores.append(TodayDataItem(opponent: currentFixture.displayOpponent,
-                                                    scoreOrDate: currentFixture.inProgressScore,
-                                                    color:self.getFixtureDisplayColor(currentFixture)))
+                                                        scoreOrDate: currentFixture.inProgressScore,
+                                                        color: self.getFixtureDisplayColor(currentFixture)))
             }
         }
  
@@ -38,7 +38,7 @@ class TodayDataSource: NSObject, UITableViewDataSource {
         if let fixture = lastResult {
             self.lastGames.append(TodayDataItem(opponent: fixture.displayOpponent,
                                                 scoreOrDate: fixture.score,
-                                                color:self.getFixtureDisplayColor(fixture)))
+                                                color: self.getFixtureDisplayColor(fixture)))
         }
         
         // How many fixtures to get?
@@ -83,7 +83,7 @@ class TodayDataSource: NSObject, UITableViewDataSource {
         if (self.nextGames.count > 0) {
             if (firstSectionHeader.count == 0) {
                 firstSectionHeader = " Next fixtures"
-            } else if (secondSectionHeader.count == 0){
+            } else if (secondSectionHeader.count == 0) {
                 secondSectionHeader = " Next fixtures"
             } else {
                 thirdSectionHeader = " Next fixtures"
@@ -99,7 +99,7 @@ class TodayDataSource: NSObject, UITableViewDataSource {
         }
     }
     
-    func footerText(section:Int) -> String {
+    func footerText(section: Int) -> String {
         // Only show footer for current score
         if (self.currentScores.count > 0) {
             if ((self.lastGames.count > 0) && section == 1) {
@@ -112,10 +112,10 @@ class TodayDataSource: NSObject, UITableViewDataSource {
         return ""
     }
     
-    private func dataItemsForSection(section:Int) -> Array<TodayDataItem>? {
-        var firstSection:Array<TodayDataItem>? = nil
-        var secondSection:Array<TodayDataItem>? = nil
-        var thirdSection:Array<TodayDataItem>? = nil
+    private func dataItemsForSection(section: Int) -> Array<TodayDataItem>? {
+        var firstSection: Array<TodayDataItem>? = nil
+        var secondSection: Array<TodayDataItem>? = nil
+        var thirdSection: Array<TodayDataItem>? = nil
         
         if (self.lastGames.count > 0) {
             firstSection = self.lastGames
@@ -132,7 +132,7 @@ class TodayDataSource: NSObject, UITableViewDataSource {
         if (self.nextGames.count > 0) {
             if (firstSection == nil) {
                 firstSection = self.nextGames
-            } else if (secondSection == nil){
+            } else if (secondSection == nil) {
                 secondSection = self.nextGames
             } else {
                 thirdSection = self.nextGames
@@ -148,7 +148,7 @@ class TodayDataSource: NSObject, UITableViewDataSource {
         }
     }
     
-    private func getFixtureDisplayColor(_ fixture:Fixture) -> UIColor {
+    private func getFixtureDisplayColor(_ fixture: Fixture) -> UIColor {
         let teamScore = fixture.teamScore
         let opponentScore  = fixture.opponentScore
         
@@ -169,7 +169,7 @@ class TodayDataSource: NSObject, UITableViewDataSource {
     
     // MARK: - Table view data source
     func tableView(_ tableView: UITableView,
-                   cellForRowAt indexPath: IndexPath) -> UITableViewCell{
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: "FixtureTodayCell")
         
         // Figure out data to show
@@ -195,7 +195,7 @@ class TodayDataSource: NSObject, UITableViewDataSource {
         cell.backgroundColor = AppColors.TodayBackground
         cell.separatorInset = UIEdgeInsetsMake(0.0, 20.0, 0.0, 0.0)
         
-        cell.textLabel?.font = UIFont(name: AppColors.AppFontName, size:AppColors.TodayTextSize)!
+        cell.textLabel?.font = UIFont(name: AppColors.AppFontName, size: AppColors.TodayTextSize)!
         cell.textLabel?.adjustsFontSizeToFitWidth = true
         cell.detailTextLabel?.font = UIFont(name: AppColors.AppFontName, size: AppColors.TodayFootnoteSize)!
         cell.detailTextLabel?.adjustsFontSizeToFitWidth = true

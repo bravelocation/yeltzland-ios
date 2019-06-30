@@ -11,7 +11,7 @@ import UIKit
 
 class TwitterDataSource: NSObject, UICollectionViewDataSource {
     
-    public static let TweetsNotification:String = "YLZTweetsNotification"
+    public static let TweetsNotification: String = "YLZTweetsNotification"
 
     private let twitterConsumerKey = "8G26YU7skH5dgbvXx5nwk0G0u"
     private let twitterConsumerSecret = "kUMwYAiDNR7dGjvSsTnHH20tXcutxEzkwycYJA68Darig6pRYz"
@@ -20,7 +20,7 @@ class TwitterDataSource: NSObject, UICollectionViewDataSource {
     private var allTweets = Array<String>()
     
     override init() {
-        super.init();
+        super.init()
         self.loadLatestData()
     }
     
@@ -36,13 +36,13 @@ class TwitterDataSource: NSObject, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell:TVTwitterCollectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "TVTwitterCollectionCell",
+        let cell: TVTwitterCollectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "TVTwitterCollectionCell",
                                                                               for: indexPath) as! TVTwitterCollectionCell
         
         let tweet = self.allTweets[indexPath.row]
         cell.loadData(tweet: tweet)
         
-        return cell;
+        return cell
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -52,7 +52,7 @@ class TwitterDataSource: NSObject, UICollectionViewDataSource {
     // MARK: App only Auth tasks for Twitter
     // extracted from https://github.com/rshankras/SwiftDemo
     
-    func getBearerToken(_ completion: @escaping (_ bearerToken: String) ->Void) {
+    func getBearerToken(_ completion: @escaping (_ bearerToken: String) -> Void) {
         var request = URLRequest(url: URL(string: self.twitterAuthURL)!)
         
         request.httpMethod = "POST"
@@ -63,7 +63,7 @@ class TwitterDataSource: NSObject, UICollectionViewDataSource {
         request.httpBody = grantType.data(using: String.Encoding.utf8, allowLossyConversion: true)
         let session = URLSession.shared
         
-        session.dataTask(with: request) { data, response, error in
+        session.dataTask(with: request) { data, _, error in
             
             guard let authData = data else {
                 print(error?.localizedDescription ?? "Error fetching authentication data")
@@ -93,7 +93,7 @@ class TwitterDataSource: NSObject, UICollectionViewDataSource {
         return base64EncodeKeyAndSecret!
     }
     
-    func authenticateRequest(_ url:String) {        
+    func authenticateRequest(_ url: String) {
         // if using twitter, use this method. Add more auth methods if necessary, later
         self.getBearerToken { bearerToken in
             
@@ -109,8 +109,8 @@ class TwitterDataSource: NSObject, UICollectionViewDataSource {
             config.urlCache = nil
             let session = URLSession.init(configuration: config)
             
-            session.dataTask(with: request) { data, response, error in
-                if let validData = data , error == nil {
+            session.dataTask(with: request) { data, _, error in
+                if let validData = data, error == nil {
                     do {
                         if let results = try JSONSerialization.jsonObject(with: validData, options: JSONSerialization.ReadingOptions.allowFragments) as? Array<Any> {
                             self.processUserTweets(results)

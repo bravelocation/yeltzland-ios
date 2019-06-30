@@ -9,30 +9,30 @@
 import Foundation
 import WatchConnectivity
 
-public class BaseSettings : NSObject {
+public class BaseSettings: NSObject {
     
-    public static let SettingsUpdateNotification:String = "YLZSettingsUpdateNotification"
+    public static let SettingsUpdateNotification: String = "YLZSettingsUpdateNotification"
 
-    // MARK:- Properties
+    // MARK: - Properties
     var appStandardUserDefaults: UserDefaults?
     var watchSessionInitialised: Bool = false
     
-    // MARK:- Initialisation
+    // MARK: - Initialisation
     public init(defaultPreferencesName: String = "DefaultPreferences", suiteName: String = "group.bravelocation.yeltzland") {
         super.init()
         
         // Setup the default preferences
         let defaultPrefsFile: URL? = Bundle.main.url(forResource: defaultPreferencesName, withExtension: "plist")
-        let defaultPrefs: NSDictionary? = NSDictionary(contentsOf:defaultPrefsFile!)
+        let defaultPrefs: NSDictionary? = NSDictionary(contentsOf: defaultPrefsFile!)
         
         self.appStandardUserDefaults = UserDefaults(suiteName: suiteName)!
-        self.appStandardUserDefaults!.register(defaults: defaultPrefs as! [String: AnyObject]);
+        self.appStandardUserDefaults!.register(defaults: defaultPrefs as! [String: AnyObject])
         
         // Migrate old settings if required
         self.migrateSettingsToGroup()
     }
     
-    // MARK:- App settings
+    // MARK: - App settings
     public var gameTimeTweetsEnabled: Bool {
         get { return self.readObjectFromStore("GameTimeTweetsEnabled") as! Bool }
         set { self.writeObjectToStore(newValue as AnyObject, key: "GameTimeTweetsEnabled") }
@@ -48,7 +48,7 @@ public class BaseSettings : NSObject {
         set { self.writeObjectToStore(newValue as AnyObject, key: "migratedToGroupSettings") }
     }
     
-    // MARK:- Current game settings
+    // MARK: - Current game settings
     var currentGameTime: Date {
         get { return self.readObjectFromStore("currentGameTime") as! Date }
         set { self.writeObjectToStore(newValue as AnyObject, key: "currentGameTime") }
@@ -79,7 +79,7 @@ public class BaseSettings : NSObject {
         set { self.writeObjectToStore(newValue as AnyObject, key: "currentGameInProgress") }
     }
 
-    // MARK:- Latest score functions
+    // MARK: - Latest score functions
     @objc public func updateLatestScoreSettings() {
         print("Updating game score settings ...")
         
@@ -111,13 +111,12 @@ public class BaseSettings : NSObject {
                        inProgress: self.currentGameInProgress)
     }
     
-    
-    public func pushAllSettingsToWatch(_ currentlyInGame:Bool) {
+    public func pushAllSettingsToWatch(_ currentlyInGame: Bool) {
         // Do nothing by default
     }
 
-    // MARK:- Read/write helpers
-    private func readObjectFromStore(_ key: String) -> AnyObject?{
+    // MARK: - Read/write helpers
+    private func readObjectFromStore(_ key: String) -> AnyObject? {
         // Otherwise try the user details
         let userSettingsValue = self.appStandardUserDefaults!.value(forKey: key)
         
@@ -126,11 +125,11 @@ public class BaseSettings : NSObject {
     
     private func writeObjectToStore(_ value: AnyObject, key: String) {
         // Write to local user settings
-        self.appStandardUserDefaults!.set(value, forKey:key)
+        self.appStandardUserDefaults!.set(value, forKey: key)
         self.appStandardUserDefaults!.synchronize()
     }
     
-    // MARK:- Helper functions
+    // MARK: - Helper functions
     fileprivate func migrateSettingsToGroup() {
         if (self.migratedToGroupSettings) {
             return

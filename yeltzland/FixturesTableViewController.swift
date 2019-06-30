@@ -10,7 +10,7 @@ import UIKit
 import Font_Awesome_Swift
 import Intents
 
-fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+private func < <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
   switch (lhs, rhs) {
   case let (l?, r?):
     return l < r
@@ -21,7 +21,7 @@ fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   }
 }
 
-fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+private func > <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
   switch (lhs, rhs) {
   case let (l?, r?):
     return l > r
@@ -30,11 +30,10 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   }
 }
 
-
 class FixturesTableViewController: UITableViewController {
     
     var reloadButton: UIBarButtonItem!
-    private let cellIdentifier:String = "FixtureTableViewCell"
+    private let cellIdentifier: String = "FixtureTableViewCell"
     private let fixturesRefreshControl = UIRefreshControl()
     
     override init(style: UITableViewStyle) {
@@ -150,7 +149,7 @@ class FixturesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        let months = FixtureManager.instance.months;
+        let months = FixtureManager.instance.months
         if (months.count <= section) {
             return 0
         }
@@ -169,8 +168,8 @@ class FixturesTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: self.cellIdentifier, for: indexPath) as! FixtureTableViewCell
 
         // Find the fixture
-        var currentFixture:Fixture? = nil
-        let months = FixtureManager.instance.months;
+        var currentFixture: Fixture? = nil
+        let months = FixtureManager.instance.months
         
         if (months.count > (indexPath as NSIndexPath).section) {
             let fixturesForMonth = FixtureManager.instance.fixturesForMonth(months[(indexPath as NSIndexPath).section])
@@ -187,9 +186,8 @@ class FixturesTableViewController: UITableViewController {
         return cell
     }
     
-    override func tableView( _ tableView : UITableView,  titleForHeaderInSection section: Int)->String
-    {
-        let months = FixtureManager.instance.months;
+    override func tableView( _ tableView: UITableView, titleForHeaderInSection section: Int) -> String {
+        let months = FixtureManager.instance.months
         if (months.count <= section) {
             return ""
         }
@@ -206,7 +204,7 @@ class FixturesTableViewController: UITableViewController {
         let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
         header.contentView.backgroundColor = AppColors.OtherSectionBackground
         header.textLabel!.textColor = AppColors.OtherSectionText
-        header.textLabel!.font = UIFont(name: AppColors.AppFontName, size:AppColors.OtherSectionTextSize)!
+        header.textLabel!.font = UIFont(name: AppColors.AppFontName, size: AppColors.OtherSectionTextSize)!
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -240,7 +238,7 @@ class FixturesTableViewController: UITableViewController {
         // Set the title
         activity.needsSave = true
         
-        self.userActivity = activity;
+        self.userActivity = activity
         self.userActivity?.becomeCurrent()
     }
 }

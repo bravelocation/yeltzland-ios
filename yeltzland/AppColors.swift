@@ -23,7 +23,7 @@ let headlineDescriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle:
 let bodyDescriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: UIFont.TextStyle.body)
 let footnoteDescriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: UIFont.TextStyle.footnote)
 
-let ios10AndAbove:Bool = ProcessInfo.processInfo.isOperatingSystemAtLeast(OperatingSystemVersion(majorVersion: 10, minorVersion: 0, patchVersion: 0))
+let ios10AndAbove: Bool = ProcessInfo.processInfo.isOperatingSystemAtLeast(OperatingSystemVersion(majorVersion: 10, minorVersion: 0, patchVersion: 0))
 
 class AppColors {
     static var AppFontName = "AmericanTypewriter"
@@ -86,15 +86,15 @@ class AppColors {
     static var TodayTextSize = bodyDescriptor.pointSize
     static var TodayFootnoteSize = footnoteDescriptor.pointSize
     
-    static var WatchMonthColor:UIColor = lightBlueColor
-    static var WatchTextColor:UIColor = UIColor.white
+    static var WatchMonthColor: UIColor = lightBlueColor
+    static var WatchTextColor: UIColor = UIColor.white
     static var WatchFixtureWin = UIColor(red: 127.0/255.0, green: 255.0/255.0, blue: 127.0/255.0, alpha: 1.0)
     static var WatchFixtureDraw = UIColor.white
     static var WatchFixtureLose = UIColor(red: 255.0/255.0, green: 127.0/255.0, blue: 127.0/255.0, alpha: 1.0)
-    static var WatchComplicationColor:UIColor = lightBlueColor
-    static var WatchRingColor:UIColor = yeltzBlueColor
+    static var WatchComplicationColor: UIColor = lightBlueColor
+    static var WatchRingColor: UIColor = yeltzBlueColor
 
-    static var SafariControl:UIColor = yeltzBlueColor
+    static var SafariControl: UIColor = yeltzBlueColor
     
     static var TVBackground = UIColor.black
     static var TVTitleText: UIColor = lightBlueColor
@@ -116,5 +116,3 @@ class AppColors {
     static var SiriIntentText: UIColor = UIColor.black
     static var SiriIntentTextSize = bodyDescriptor.pointSize
 }
-
-    

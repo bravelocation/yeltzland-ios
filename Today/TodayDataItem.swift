@@ -9,17 +9,17 @@
 import UIKit
 
 class TodayDataItem: NSObject {
-    var opponent:String = ""
-    var scoreOrDate:String = ""
-    var resultColor:UIColor = AppColors.TodayText;
+    var opponent: String = ""
+    var scoreOrDate: String = ""
+    var resultColor: UIColor = AppColors.TodayText
     
-    init(opponent:String, scoreOrDate:String, color: UIColor) {
+    init(opponent: String, scoreOrDate: String, color: UIColor) {
         self.opponent = opponent
         self.scoreOrDate = scoreOrDate
         self.resultColor = color
     }
     
-    init(opponent:String, scoreOrDate:String) {
+    init(opponent: String, scoreOrDate: String) {
         self.opponent = opponent
         self.scoreOrDate = scoreOrDate
         self.resultColor = AppColors.TodayText

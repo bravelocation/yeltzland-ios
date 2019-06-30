@@ -97,8 +97,7 @@ class LocationsViewController: UIViewController, MKMapViewDelegate, CLLocationMa
             }
             
             return view
-        }
-        else {
+        } else {
             return nil
         }
     }

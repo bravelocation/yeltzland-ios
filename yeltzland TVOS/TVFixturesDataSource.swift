@@ -13,13 +13,13 @@ class TVFixturesDataSource: NSObject, UICollectionViewDataSource {
     private var allGames = Array<TVFixtureData>()
     
     override init() {
-        super.init();
+        super.init()
         self.loadLatestData()
     }
     
     // Fetch the latest data
     func loadLatestData() {
-        var inProgressFixture:Fixture?
+        var inProgressFixture: Fixture?
         
         if let currentFixture = GameScoreManager.instance.CurrentFixture {
             if currentFixture.inProgress {
@@ -47,7 +47,7 @@ class TVFixturesDataSource: NSObject, UICollectionViewDataSource {
                                                 inProgress: false,
                                                 atHome: fixture.home))
             } else {
-                var resultColor:UIColor = AppColors.TVResultText
+                var resultColor: UIColor = AppColors.TVResultText
                 
                 if (fixture.teamScore! > fixture.opponentScore!) {
                     resultColor = AppColors.TVFixtureWin
@@ -62,7 +62,7 @@ class TVFixturesDataSource: NSObject, UICollectionViewDataSource {
                                                 score: fixture.score,
                                                 inProgress: false,
                                                 atHome: fixture.home,
-                                                scoreColor:resultColor))
+                                                scoreColor: resultColor))
             }
         }
     }
@@ -71,13 +71,13 @@ class TVFixturesDataSource: NSObject, UICollectionViewDataSource {
         return self.allGames.count    }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell:TVFixtureCollectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "TVFixtureCollectionCell",
+        let cell: TVFixtureCollectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "TVFixtureCollectionCell",
                                                                               for: indexPath) as! TVFixtureCollectionCell
  
         let dataItem = self.allGames[indexPath.row]
         cell.loadData(dataItem: dataItem)
                 
-        return cell;
+        return cell
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

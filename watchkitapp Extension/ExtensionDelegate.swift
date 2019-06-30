@@ -48,10 +48,10 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         let now = Date()
 
         // Setup a background refresh based on game state
-        var backgroundRefreshMinutes = 6 * 60;
+        var backgroundRefreshMinutes = 6 * 60
         
         // Find the next fixture to use
-        var latestFixture:Fixture? = FixtureManager.instance.getLastGame()
+        var latestFixture: Fixture? = FixtureManager.instance.getLastGame()
         
         if let currentFixture = GameScoreManager.instance.getCurrentFixture {
             if currentFixture.inProgress {
@@ -71,10 +71,10 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                 var minutesToGameStart = (globalCalendar as NSCalendar).components([.minute], from: now, to: fixture.fixtureDate as Date, options: []).minute ?? 0
                 
                 if (minutesToGameStart <= 0) {
-                    minutesToGameStart = 60;
+                    minutesToGameStart = 60
                 }
                 
-                backgroundRefreshMinutes = minutesToGameStart;
+                backgroundRefreshMinutes = minutesToGameStart
             case .during:
                 backgroundRefreshMinutes = 15;          // Every 15 mins during the game
             case .after:

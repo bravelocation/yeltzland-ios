@@ -16,7 +16,7 @@ import IntentsUI
 // "Send a message using <myApp>"
 
 class IntentViewController: UIViewController, INUIHostedViewControlling {
-    // Mark:- Properties
+    // MARK: - Properties
     
     @IBOutlet weak var gameStateLabel: UILabel!
     @IBOutlet weak var homeTeamImage: UIImageView!
@@ -39,11 +39,11 @@ class IntentViewController: UIViewController, INUIHostedViewControlling {
         self.homeTeamScoreLabel.textColor = AppColors.SiriIntentText
         self.awayTeamScoreLabel.textColor = AppColors.SiriIntentText
         
-        self.gameStateLabel.font = UIFont(name: AppColors.AppFontName, size:AppColors.SiriIntentTextSize)!
-        self.homeTeamNameLabel.font = UIFont(name: AppColors.AppFontName, size:AppColors.SiriIntentTextSize)!
-        self.awayTeamNameLabel.font = UIFont(name: AppColors.AppFontName, size:AppColors.SiriIntentTextSize)!
-        self.homeTeamScoreLabel.font = UIFont(name: AppColors.AppFontName, size:AppColors.SiriIntentTextSize)!
-        self.awayTeamScoreLabel.font = UIFont(name: AppColors.AppFontName, size:AppColors.SiriIntentTextSize)!
+        self.gameStateLabel.font = UIFont(name: AppColors.AppFontName, size: AppColors.SiriIntentTextSize)!
+        self.homeTeamNameLabel.font = UIFont(name: AppColors.AppFontName, size: AppColors.SiriIntentTextSize)!
+        self.awayTeamNameLabel.font = UIFont(name: AppColors.AppFontName, size: AppColors.SiriIntentTextSize)!
+        self.homeTeamScoreLabel.font = UIFont(name: AppColors.AppFontName, size: AppColors.SiriIntentTextSize)!
+        self.awayTeamScoreLabel.font = UIFont(name: AppColors.AppFontName, size: AppColors.SiriIntentTextSize)!
     }
         
     // MARK: - INUIHostedViewControlling
@@ -66,7 +66,7 @@ class IntentViewController: UIViewController, INUIHostedViewControlling {
             // If currently in a game
             if fixture.inProgress {
                 gameState = "The latest score is ..."
-            }  else {
+            } else {
                 gameState = "The final score was ..."
             }
             

@@ -11,10 +11,10 @@ import WatchConnectivity
 import ClockKit
 import WatchKit
 
-public class WatchGameSettings : BaseSettings, WCSessionDelegate {
+public class WatchGameSettings: BaseSettings, WCSessionDelegate {
 
     fileprivate static let sharedInstance = WatchGameSettings()
-    class var instance:WatchGameSettings {
+    class var instance: WatchGameSettings {
         get {
             return sharedInstance
         }
@@ -48,7 +48,7 @@ public class WatchGameSettings : BaseSettings, WCSessionDelegate {
         // Set up watch setting if appropriate
         if (WCSession.isSupported()) {
             print("Setting up watch session ...")
-            let session: WCSession = WCSession.default;
+            let session: WCSession = WCSession.default
             session.delegate = self
             session.activate()
             print("Watch session activated")
@@ -57,13 +57,13 @@ public class WatchGameSettings : BaseSettings, WCSessionDelegate {
         }
     }
 
-    // MARK:- WCSessionDelegate implementation - update local settings when transfered from phone
-    public func session(_ session: WCSession, didReceiveUserInfo userInfo: [String : Any]) {
+    // MARK: - WCSessionDelegate implementation - update local settings when transfered from phone
+    public func session(_ session: WCSession, didReceiveUserInfo userInfo: [String: Any]) {
         print("New user info transfer data received on watch")
-        self.updateSettings(userInfo as [String : AnyObject])
+        self.updateSettings(userInfo as [String: AnyObject])
     }
     
-    @nonobjc public func session(_ session: WCSession, didReceiveUpdate receivedApplicationContext: [String : AnyObject]) {
+    @nonobjc public func session(_ session: WCSession, didReceiveUpdate receivedApplicationContext: [String: AnyObject]) {
         print("New context transfer data received on watch")
         self.updateSettings(receivedApplicationContext)
     }
@@ -72,10 +72,9 @@ public class WatchGameSettings : BaseSettings, WCSessionDelegate {
                         activationDidCompleteWith activationState: WCSessionActivationState,
                         error: Error?) {}
     
-    
-    fileprivate func updateSettings(_ userInfo: [String : AnyObject]) {
+    private func updateSettings(_ userInfo: [String: AnyObject]) {
         // Update each incoming setting
-        var gameSettingsUpdated = false;
+        var gameSettingsUpdated = false
 
         for (key, value) in userInfo {
             switch (key) {
@@ -83,17 +82,14 @@ public class WatchGameSettings : BaseSettings, WCSessionDelegate {
                 if (self.currentGameTime != (value as! Date)) {
                     gameSettingsUpdated = true
                 }
-                break
             case "currentGameYeltzScore":
                 if (self.currentGameYeltzScore != (value as! Int)) {
                     gameSettingsUpdated = true
                 }
-                break
             case "currentGameOpponentScore":
                 if (self.currentGameOpponentScore != (value as! Int)) {
                     gameSettingsUpdated = true
                 }
-                break
             default:
                 break
             }

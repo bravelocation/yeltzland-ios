@@ -22,13 +22,14 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     }
     
     // MARK: - Timeline Population
+    //swiftlint:disable:next cyclomatic_complexity
     func getCurrentTimelineEntry(for complication: CLKComplication, withHandler handler: (@escaping (CLKComplicationTimelineEntry?) -> Void)) {
         
         let now = Date()
-        var entry : CLKComplicationTimelineEntry?
+        var entry: CLKComplicationTimelineEntry?
         
         // Find the next fixture to use
-        var latestFixture:Fixture? = FixtureManager.instance.getLastGame()
+        var latestFixture: Fixture? = FixtureManager.instance.getLastGame()
         
         if let currentFixture = GameScoreManager.instance.getCurrentFixture {
             if currentFixture.inProgress {
@@ -78,7 +79,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
                 template.tintColor = AppColors.WatchComplicationColor
                 entry = CLKComplicationTimelineEntry(date: now, complicationTemplate: template)
             case .graphicBezel:
-                if #available(watchOS 5,*) {
+                if #available(watchOS 5, *) {
                     let template = CLKComplicationTemplateGraphicBezelCircularText()
                     template.textProvider = CLKSimpleTextProvider(text: String(format: "%@ %@", fixture.truncateOpponent, fixture.smallScore))
                     
@@ -89,26 +90,23 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
                     
                     entry = CLKComplicationTimelineEntry(date: now, complicationTemplate: template)
                 }
-                break
             case .graphicCorner:
-                if #available(watchOS 5,*) {
+                if #available(watchOS 5, *) {
                     let template = CLKComplicationTemplateGraphicCornerStackText()
                     template.outerTextProvider = CLKSimpleTextProvider(text: fixture.smallOpponent)
                     template.innerTextProvider = CLKSimpleTextProvider(text: fixture.smallScoreOrDate)
                     template.tintColor = AppColors.WatchComplicationColor
                     entry = CLKComplicationTimelineEntry(date: now, complicationTemplate: template)
                 }
-                break
             case .graphicCircular:
-                if #available(watchOS 5,*) {
+                if #available(watchOS 5, *) {
                     let template = CLKComplicationTemplateGraphicCircularImage()
                     template.imageProvider = CLKFullColorImageProvider(fullColorImage: UIImage(named: "Complication/Graphic Circular")!)
                     template.tintColor = AppColors.WatchComplicationColor
                     entry = CLKComplicationTimelineEntry(date: now, complicationTemplate: template)
                 }
-                break
             case .graphicRectangular:
-                if #available(watchOS 5,*) {
+                if #available(watchOS 5, *) {
                     let template = CLKComplicationTemplateGraphicRectangularStandardBody()
                     template.headerTextProvider = CLKSimpleTextProvider(text: fixture.fullTitle)
                     template.body1TextProvider = CLKSimpleTextProvider(text: fixture.truncateOpponent)
@@ -117,13 +115,10 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
                     
                     entry = CLKComplicationTimelineEntry(date: now, complicationTemplate: template)
                 }
-                break
             default:
                 break
             }
         }
-        
-
         
         handler(entry)
     }
@@ -139,6 +134,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     }
     
     // MARK: - Placeholder Templates
+    //swiftlint:disable:next cyclomatic_complexity
     func getLocalizableSampleTemplate(for complication: CLKComplication,
                                       withHandler handler: @escaping (CLKComplicationTemplate?) -> Void) {
         // This method will be called once per supported complication, and the results will be cached
@@ -178,7 +174,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             template.tintColor = AppColors.WatchComplicationColor
             handler(template)
         case .graphicBezel:
-            if #available(watchOS 5,*) {
+            if #available(watchOS 5, *) {
                 let template = CLKComplicationTemplateGraphicBezelCircularText()
                 template.textProvider = CLKSimpleTextProvider(text: "Stourbridge 10-0")
                 
@@ -189,27 +185,24 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
                 
                 handler(template)
             }
-            break
         case .graphicCorner:
-            if #available(watchOS 5,*) {
+            if #available(watchOS 5, *) {
                 let template = CLKComplicationTemplateGraphicCornerStackText()
                 template.outerTextProvider = CLKSimpleTextProvider(text: "STOU")
                 template.innerTextProvider = CLKSimpleTextProvider(text: "2-0")
                 template.tintColor = AppColors.WatchComplicationColor
                 handler(template)
             }
-            break
         case .graphicCircular:
-            if #available(watchOS 5,*) {
+            if #available(watchOS 5, *) {
                 let template = CLKComplicationTemplateGraphicCircularImage()
                 template.imageProvider = CLKFullColorImageProvider(fullColorImage: UIImage(named: "Complication/Graphic Circular")!)
                 template.tintColor = AppColors.WatchComplicationColor
 
                 handler(template)
             }
-            break
         case .graphicRectangular:
-            if #available(watchOS 5,*) {
+            if #available(watchOS 5, *) {
                 let template = CLKComplicationTemplateGraphicRectangularStandardBody()
                 template.headerTextProvider = CLKSimpleTextProvider(text: "Next game:")
                 template.body1TextProvider = CLKSimpleTextProvider(text: "Stourbridge")
@@ -218,10 +211,8 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
                 
                 handler(template)
             }
-            break
         default:
             handler(nil)
-            break
         }
     }
 }

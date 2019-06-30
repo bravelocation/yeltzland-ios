@@ -13,7 +13,7 @@ public class Location {
     var latitude: Double?
     var longitude: Double?
     
-    init(fromJson: [String:AnyObject]) {
+    init(fromJson: [String: AnyObject]) {
         // Parse properties from JSON location properties
         self.team = fromJson["Team"] as! String
         

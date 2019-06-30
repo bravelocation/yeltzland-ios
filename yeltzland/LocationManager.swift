@@ -9,7 +9,8 @@
 import Foundation
 import UIKit
 import MapKit
-fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+
+private func < <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
   switch (lhs, rhs) {
   case let (l?, r?):
     return l < r
@@ -20,7 +21,7 @@ fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   }
 }
 
-fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+private func > <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
   switch (lhs, rhs) {
   case let (l?, r?):
     return l > r
@@ -33,7 +34,7 @@ public class LocationManager {
     fileprivate static let sharedInstance = LocationManager()
     fileprivate var locationList: [Location] = [Location]()
     
-    class var instance:LocationManager {
+    class var instance: LocationManager {
         get {
             return sharedInstance
         }
@@ -46,13 +47,13 @@ public class LocationManager {
     init() {
         if let filePath = Bundle.main.path(forResource: "locations", ofType: "json"), let data = try? Data(contentsOf: URL(fileURLWithPath: filePath)) {
             do {
-                let json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as! [String:Any]
+                let json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as! [String: Any]
                 let locations = json["Locations"] as! [AnyObject]
                 
                 self.locationList.removeAll()
                 
                 for currentLocation in locations {
-                    if let location = currentLocation as? [String:AnyObject] {
+                    if let location = currentLocation as? [String: AnyObject] {
                         let currentParsedLocation = Location(fromJson: location)
                         
                         if (currentParsedLocation.latitude != 0.0 && currentParsedLocation.longitude != 0.0) {

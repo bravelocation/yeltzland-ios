@@ -9,18 +9,18 @@
 import Foundation
 
 public class FixtureManager {
-    public static let FixturesNotification:String = "YLZFixtureNotification"
-    fileprivate var fixtureList:[String: [Fixture]] = [:]
+    public static let FixturesNotification: String = "YLZFixtureNotification"
+    private var fixtureList: [String: [Fixture]] = [:]
     
-    fileprivate static let sharedInstance = FixtureManager()
-    class var instance:FixtureManager {
+    private static let sharedInstance = FixtureManager()
+    class var instance: FixtureManager {
         get {
             return sharedInstance
         }
     }
     
     public var months: [String] {
-        var result:[String] = []
+        var result: [String] = []
         
         if (self.fixtureList.keys.count > 0) {
             result = Array(self.fixtureList.keys).sorted()
@@ -42,7 +42,7 @@ public class FixtureManager {
         // Setup local data
         self.moveSingleBundleFileToAppDirectory("matches", fileType: "json")
         
-        let data:Data? = try? Data.init(contentsOf: URL(fileURLWithPath: self.appDirectoryFilePath("matches", fileType: "json")))
+        let data: Data? = try? Data.init(contentsOf: URL(fileURLWithPath: self.appDirectoryFilePath("matches", fileType: "json")))
         
         if (data == nil) {
             print("Couldn't load fixtures from cache")
@@ -51,7 +51,7 @@ public class FixtureManager {
         
         do {
             print("Loading fixtures from cache ...")
-            let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions()) as? [String : AnyObject]
+            let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions()) as? [String: AnyObject]
             
             if (json == nil) {
                 print("Couldn't parse fixtures from cache")
@@ -95,7 +95,7 @@ public class FixtureManager {
                     return
                 }
                 
-                self.loadFixtureData(serverData);
+                self.loadFixtureData(serverData)
             } else {
                 print("Error response from server: \(statusCode)")
             }
@@ -105,7 +105,7 @@ public class FixtureManager {
         print("Fixtures should be coming on background thread")
     }
     
-    public func getAwayGames(_ opponent:String) -> [Fixture] {
+    public func getAwayGames(_ opponent: String) -> [Fixture] {
         var foundGames: [Fixture] = []
         
         for month in self.months {
@@ -149,9 +149,8 @@ public class FixtureManager {
             }
         }
         
-        return lastCompletedGame;
+        return lastCompletedGame
     }
-    
     
     public func getNextGame() -> Fixture? {
         let fixtures = self.getNextFixtures(1)
@@ -160,11 +159,11 @@ public class FixtureManager {
             return fixtures[0]
         }
         
-        return nil;
+        return nil
     }
     
-    public func getNextFixtures(_ numberOfFixtures:Int) -> [Fixture] {
-        var fixtures:[Fixture] = []
+    public func getNextFixtures(_ numberOfFixtures: Int) -> [Fixture] {
+        var fixtures: [Fixture] = []
         let currentDayNumber = self.dayNumber(Date())
         
         for month in self.months {
@@ -188,7 +187,7 @@ public class FixtureManager {
     }
     
     public func getAllMatches() -> [Fixture] {
-        var fixtures:[Fixture] = []
+        var fixtures: [Fixture] = []
         
         for month in self.months {
             if let monthFixtures = self.fixturesForMonth(month) {
@@ -219,7 +218,7 @@ public class FixtureManager {
     
     public func loadFixtureData(_ data: Data?) {
         do {
-            let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions()) as? [String : AnyObject]
+            let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions()) as? [String: AnyObject]
             
             if (json == nil) {
                 print("Couldn't parse fixtures from server")
@@ -245,16 +244,16 @@ public class FixtureManager {
         }
     }
     
-    fileprivate func parseMatchesJson(_ json:[String:AnyObject]) {
+    fileprivate func parseMatchesJson(_ json: [String: AnyObject]) {
         guard let matches = json["Matches"] as? Array<AnyObject> else { return }
         
-        var latestFixtures:[String: [Fixture]] = [:]
+        var latestFixtures: [String: [Fixture]] = [:]
         
         // Add each fixture into the correct month
         for currentMatch in matches {
-            if let match = currentMatch as? [String:AnyObject] {
+            if let match = currentMatch as? [String: AnyObject] {
                 if let currentFixture = Fixture(fromJson: match) {
-                    if let _ = latestFixtures[currentFixture.monthKey] {
+                    if latestFixtures[currentFixture.monthKey] != nil {
                         latestFixtures[currentFixture.monthKey]?.append(currentFixture)
                     } else {
                         latestFixtures[currentFixture.monthKey] = [currentFixture]
@@ -272,9 +271,8 @@ public class FixtureManager {
         self.fixtureList = latestFixtures
     }
     
-    fileprivate func moveSingleBundleFileToAppDirectory(_ fileName:String, fileType:String) {
-        if (self.checkAppDirectoryExists(fileName, fileType:fileType))
-        {
+    private func moveSingleBundleFileToAppDirectory(_ fileName: String, fileType: String) {
+        if (self.checkAppDirectoryExists(fileName, fileType: fileType)) {
             // If file already exists, return
             print("Fixtures file exists, don't copy from bundle")
             return
@@ -292,14 +290,13 @@ public class FixtureManager {
         do {
             try fileManager.copyItem(atPath: bundlePath, toPath: self.appDirectoryFilePath(fileName, fileType: fileType))
             print("Copied Fixtures from bundle to cache")
-        }
-        catch {
+        } catch {
             print("Problem copying fixtures file from bundle to cache")
             return
         }
     }
     
-    fileprivate func appDirectoryFilePath(_ fileName:String, fileType:String) -> String {
+    fileprivate func appDirectoryFilePath(_ fileName: String, fileType: String) -> String {
         #if os(tvOS)
             let appDirectoryPath = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)[0]
             let filePath = String.init(format: "/%@.%@", fileName, fileType)
@@ -311,10 +308,10 @@ public class FixtureManager {
         #endif
     }
     
-    fileprivate func checkAppDirectoryExists(_ fileName:String, fileType:String) -> Bool {
+    fileprivate func checkAppDirectoryExists(_ fileName: String, fileType: String) -> Bool {
         let fileManager = FileManager.default
         
-        return fileManager.fileExists(atPath: self.appDirectoryFilePath(fileName, fileType:fileType))
+        return fileManager.fileExists(atPath: self.appDirectoryFilePath(fileName, fileType: fileType))
     }
     
     fileprivate func applicationDirectory() -> URL? {
@@ -330,8 +327,7 @@ public class FixtureManager {
             
             do {
                 try fileManager.createDirectory(at: dirPath!, withIntermediateDirectories: true, attributes: nil)
-            }
-            catch {
+            } catch {
                 return nil
             }
         }
@@ -339,7 +335,7 @@ public class FixtureManager {
         return dirPath
     }
     
-    public func dayNumber(_ date:Date) -> Int {
+    public func dayNumber(_ date: Date) -> Int {
         // Removes the time components from a date
         let calendar = Calendar.current
         let unitFlags: NSCalendar.Unit = [.day, .month, .year]

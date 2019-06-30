@@ -77,12 +77,10 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
                 cell!.textLabel?.text = "Fixture List"
                 let cellImage = UIImage(icon: FAType.FACalendar, size: CGSize(width: 100, height: 100), textColor: AppColors.Fixtures, backgroundColor: UIColor.clear)
                 cell!.imageView?.image = cellImage
-                break
             case 1:
                 cell!.textLabel?.text = "Latest Score"
                 let cellImage = UIImage(icon: FAType.FAClockO, size: CGSize(width: 100, height: 100), textColor: AppColors.Fixtures, backgroundColor: UIColor.clear)
                 cell!.imageView?.image = cellImage
-                break
             case 2:
                 cell!.textLabel?.text = "Where's the Ground?"
                 let cellImage = UIImage(icon: FAType.FAMapMarker, size: CGSize(width: 100, height: 100), textColor: AppColors.Fixtures, backgroundColor: UIColor.clear)
@@ -91,38 +89,31 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
                 cell!.textLabel?.text = "League Table"
                 let cellImage = UIImage(icon: FAType.FATable, size: CGSize(width: 100, height: 100), textColor: AppColors.Fixtures, backgroundColor: UIColor.clear)
                 cell!.imageView?.image = cellImage
-                break
             default:
                 break
             }
-        }
-        else if ((indexPath as NSIndexPath).section == 1) {
+        } else if ((indexPath as NSIndexPath).section == 1) {
             switch ((indexPath as NSIndexPath).row) {
             case 0:
                 cell!.textLabel?.text = "HTFC on Facebook"
                 let cellImage = UIImage(icon: FAType.FAFacebookSquare, size: CGSize(width: 100, height: 100), textColor: AppColors.Facebook, backgroundColor: UIColor.clear)
                 cell!.imageView?.image = cellImage
-                break
             case 1:
                 cell!.textLabel?.text = "Southern League site"
                 let cellImage = UIImage(icon: FAType.FASoccerBallO, size: CGSize(width: 100, height: 100), textColor: AppColors.Evostick, backgroundColor: UIColor.clear)
                 cell!.imageView?.image = cellImage
-                break
             case 2:
                 cell!.textLabel?.text = "Fantasy Island"
                 let cellImage = UIImage(icon: FAType.FAPlane, size: CGSize(width: 100, height: 100), textColor: AppColors.Fantasy, backgroundColor: UIColor.clear)
                 cell!.imageView?.image = cellImage
-                break
             case 3:
                 cell!.textLabel?.text = "Stourbridge Town FC"
                 let cellImage = UIImage(icon: FAType.FAThumbsODown, size: CGSize(width: 100, height: 100), textColor: AppColors.Stour, backgroundColor: UIColor.clear)
                 cell!.imageView?.image = cellImage
-                break
             case 4:
                 cell!.textLabel?.text = "Club Shop"
                 let cellImage = UIImage(icon: FAType.FAShoppingCart, size: CGSize(width: 100, height: 100), textColor: AppColors.ClubShop, backgroundColor: UIColor.clear)
                 cell!.imageView?.image = cellImage
-                break
             default:
                 break
             }
@@ -132,17 +123,14 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
                 cell!.textLabel?.text = "Follow Your Instinct"
                 let cellImage = UIImage(icon: FAType.FANewspaperO, size: CGSize(width: 100, height: 100), textColor: AppColors.Archive, backgroundColor: UIColor.clear)
                 cell!.imageView?.image = cellImage
-                break
             case 1:
                 cell!.textLabel?.text = "Yeltz Archives"
                 let cellImage = UIImage(icon: FAType.FAArchive, size: CGSize(width: 100, height: 100), textColor: AppColors.Archive, backgroundColor: UIColor.clear)
                 cell!.imageView?.image = cellImage
-                break
             case 2:
                 cell!.textLabel?.text = "News Archive (1997-2006)"
                 let cellImage = UIImage(icon: FAType.FAArchive, size: CGSize(width: 100, height: 100), textColor: AppColors.Archive, backgroundColor: UIColor.clear)
                 cell!.imageView?.image = cellImage
-                break
             default:
                 break
             }
@@ -159,17 +147,14 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
                 cell!.textLabel?.text = "Yeltzland on Amazon Echo"
                 let cellImage = UIImage(icon: FAType.FAAmazon, size: CGSize(width: 100, height: 100), textColor: AppColors.Archive, backgroundColor: UIColor.clear)
                 cell!.imageView?.image = cellImage
-                break
             case 1:
                 cell!.textLabel?.text = "Yeltzland on Google Assistant"
                 let cellImage = UIImage(icon: FAType.FAGoogle, size: CGSize(width: 100, height: 100), textColor: AppColors.Fixtures, backgroundColor: UIColor.clear)
                 cell!.imageView?.image = cellImage
-                break
             case 2:
                     cell!.textLabel?.text = "Add Fixture List to Calendar"
                     let cellImage = UIImage(icon: FAType.FACalendar, size: CGSize(width: 100, height: 100), textColor: AppColors.Fixtures, backgroundColor: UIColor.clear)
                     cell!.imageView?.image = cellImage
-                break
             default:
                 break
             }
@@ -178,7 +163,6 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             case 0:
                 cell!.textLabel?.text = "Privacy Policy"
                 cell!.imageView?.image = nil
-                break
             case 1:
                 cell!.textLabel?.text = "More Brave Location Apps"
                 cell!.imageView?.image = nil
@@ -188,14 +172,13 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
                 let build = infoDictionary["CFBundleVersion"]
                 
                 cell!.detailTextLabel?.text = "v\(version!).\(build!)"
-                break
             default:
                 break
             }
         }
 
         // Set fonts
-        cell!.textLabel?.font = UIFont(name: AppColors.AppFontName, size:AppColors.OtherTextSize)!
+        cell!.textLabel?.font = UIFont(name: AppColors.AppFontName, size: AppColors.OtherTextSize)!
         cell!.textLabel?.adjustsFontSizeToFitWidth = true
         cell!.detailTextLabel?.font = UIFont(name: AppColors.AppFontName, size: AppColors.OtherDetailTextSize)!
         
@@ -211,19 +194,19 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             if ((indexPath as NSIndexPath).row == 0) {
                 let fixtures = FixturesTableViewController(style: .grouped)
                 self.navigationController!.pushViewController(fixtures, animated: true)
-                return;
+                return
             } else if ((indexPath as NSIndexPath).row == 1) {
                 let latestScore = LatestScoreViewController()
                 self.navigationController!.pushViewController(latestScore, animated: true)
-                return;
+                return
             } else if ((indexPath as NSIndexPath).row == 2) {
                 let locations = LocationsViewController()
                 self.navigationController!.pushViewController(locations, animated: true)
-                return;
+                return
             }
         }
         
-        var url: URL? = nil;
+        var url: URL? = nil
         
         if ((indexPath as NSIndexPath).section == 0) {
             if ((indexPath as NSIndexPath).row == 3) {
@@ -233,19 +216,14 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             switch ((indexPath as NSIndexPath).row) {
             case 0:
                 url = URL(string: "https://www.facebook.com/HalesowenTown1873")
-                break
             case 1:
                 url = URL(string: "https://www.evostikleaguesouthern.co.uk")
-                break
             case 2:
                 url = URL(string: "https://fantasyisland.yeltz.co.uk")
-                break
             case 3:
                 url = URL(string: "https://www.youtube.com/watch?v=dQw4w9WgXcQ")
-                break
             case 4:
                 url = URL(string: "https://www.yeltzclubshop.co.uk")
-                break
             default:
                 break
             }
@@ -253,13 +231,10 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             switch ((indexPath as NSIndexPath).row) {
             case 0:
                 url = URL(string: "https://www.yeltzland.net/followyourinstinct/")
-                break
             case 1:
                 url = URL(string: "http://www.yeltzarchives.com")
-                break
             case 2:
                 url = URL(string: "https://www.yeltzland.net/news.html")
-                break
             default:
                 break
             }
@@ -267,13 +242,10 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             switch ((indexPath as NSIndexPath).row) {
             case 0:
                 url = URL(string: "https://www.amazon.co.uk/Yeltzland-stuff-about-Halesowen-Town/dp/B01MTJOHBY/")
-                break
             case 1:
                 url = URL(string: "https://assistant.google.com/services/a/uid/000000a862d84885?hl=en-GB")
-                break
             case 2:
                 url = URL(string: "https://yeltzland.net/calendar-instructions")
-                break
             default:
                 break
             }
@@ -281,10 +253,8 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             switch ((indexPath as NSIndexPath).row) {
             case 0:
                 url = URL(string: "https://bravelocation.com/privacy/yeltzland")
-                break
             case 1:
                 url = URL(string: "https://bravelocation.com/apps")
-                break
             default:
                 break
             }
@@ -302,10 +272,8 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         }
     }
     
-    override func tableView( _ tableView : UITableView,  titleForHeaderInSection section: Int)->String
-    {
-        switch(section)
-        {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String {
+        switch(section) {
         case 0:
             return "Statistics"
         case 1:
@@ -327,13 +295,13 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
         header.contentView.backgroundColor = AppColors.OtherSectionBackground
         header.textLabel!.textColor = AppColors.OtherSectionText
-        header.textLabel!.font = UIFont(name: AppColors.AppFontName, size:AppColors.OtherSectionTextSize)!
+        header.textLabel!.font = UIFont(name: AppColors.AppFontName, size: AppColors.OtherSectionTextSize)!
     }
     
     public func openFixtures() {
         print("Opening Fixtures ...")
         
-        let indexPath = IndexPath(row: 0, section: 0);
+        let indexPath = IndexPath(row: 0, section: 0)
         self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableViewScrollPosition.top)
         self.tableView(self.tableView, didSelectRowAt: indexPath)
     }
@@ -341,7 +309,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
     public func openLatestScore() {
         print("Opening Latest Score ...")
         
-        let indexPath = IndexPath(row: 1, section: 0);
+        let indexPath = IndexPath(row: 1, section: 0)
         self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableViewScrollPosition.top)
         self.tableView(self.tableView, didSelectRowAt: indexPath)
     }
@@ -353,20 +321,19 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
     }
     
     // MARK: - SFSafariViewControllerDelegate methods
-    func safariViewControllerDidFinish(_ controller: SFSafariViewController)
-    {
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
         controller.dismiss(animated: true, completion: nil)
     }
     
     func safariViewController(_ controller: SFSafariViewController,
-                                activityItemsFor URL: URL,
-                                                    title: String?) -> [UIActivity] {
+                              activityItemsFor URL: URL,
+                              title: String?) -> [UIActivity] {
         let chromeActivity = ChromeActivity(currentUrl: URL)
         
         if (chromeActivity.canOpenChrome()) {
-            return [chromeActivity];
+            return [chromeActivity]
         }
         
-        return [];
+        return []
     }
 }

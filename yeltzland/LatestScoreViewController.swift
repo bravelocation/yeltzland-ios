@@ -13,7 +13,7 @@ import IntentsUI
 
 class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewControllerDelegate {
     
-    // MARK:- Properties
+    // MARK: - Properties
     @IBOutlet weak var homeOrAwayLabel: UILabel!
     @IBOutlet weak var opponentLabel: UILabel!
     @IBOutlet weak var latestScoreLabel: UILabel!
@@ -22,7 +22,7 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
     
     var reloadButton: UIBarButtonItem!
     
-    // MARK:- Initialisation
+    // MARK: - Initialisation
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.setupNotificationWatcher()
@@ -47,11 +47,11 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
     @objc fileprivate func gameScoreUpdated(_ notification: Notification) {
         print("Game score or fixture message received")
         DispatchQueue.main.async(execute: { () -> Void in
-            self.updateUI();
+            self.updateUI()
         })
     }
     
-    // MARK:- View event handlers
+    // MARK: - View event handlers
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -88,14 +88,14 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
         ]
     }
     
-    // MARK:- Event handlers
+    // MARK: - Event handlers
     @objc func reloadButtonTouchUp() {
         GameScoreManager.instance.getLatestGameScore()
     }
     
-    // MARK:- Helper functions
+    // MARK: - Helper functions
     private func updateUI() {
-        var latestFixture:Fixture? = FixtureManager.instance.getLastGame()
+        var latestFixture: Fixture? = FixtureManager.instance.getLastGame()
         
         if let currentFixture = GameScoreManager.instance.getCurrentFixture {
             if currentFixture.inProgress {
@@ -143,7 +143,7 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
         }
     }
     
-    // MARK:- Handoff
+    // MARK: - Handoff
     @objc func setupHandoff() {
         // Set activity for handoff
         let activity = NSUserActivity(activityType: "com.bravelocation.yeltzland.latestscore")
@@ -162,11 +162,11 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
         // Set the title
         activity.needsSave = true
         
-        self.userActivity = activity;
+        self.userActivity = activity
         self.userActivity?.becomeCurrent()
     }
     
-    // MARK :_ Siri Intents
+    // MARK: - Siri Intents
     func addSiriButton() {
         if #available(iOS 12.0, *) {
             let button = INUIAddVoiceShortcutButton(style: .whiteOutline)
@@ -193,7 +193,7 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
         }
     }
     
-    // MARK:- INUIAddVoiceShortcutViewControllerDelegate
+    // MARK: - INUIAddVoiceShortcutViewControllerDelegate
     @available(iOS 12.0, *)
     func addVoiceShortcutViewController(_ controller: INUIAddVoiceShortcutViewController, didFinishWith voiceShortcut: INVoiceShortcut?, error: Error?) {
         print("Added shortcut")

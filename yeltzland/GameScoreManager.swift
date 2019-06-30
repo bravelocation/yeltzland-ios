@@ -9,10 +9,10 @@
 import Foundation
 
 public class GameScoreManager {
-    public static let GameScoreNotification:String = "YLZGameScoreNotification"
+    public static let GameScoreNotification: String = "YLZGameScoreNotification"
     
-    fileprivate var currentFixture:Fixture?
-    fileprivate var parseSuccess:Bool = false
+    fileprivate var currentFixture: Fixture?
+    fileprivate var parseSuccess: Bool = false
 
     fileprivate static let sharedInstance = GameScoreManager()
     class var instance: GameScoreManager {
@@ -60,7 +60,7 @@ public class GameScoreManager {
                     return
                 }
                 
-                self.loadGameScoreData(serverData);
+                self.loadGameScoreData(serverData)
             } else {
                 print("Error response from server: \(statusCode)")
             }
@@ -73,9 +73,9 @@ public class GameScoreManager {
         self.loadDataFromCache()
     }
     
-    fileprivate func loadGameScoreData(_ data:Data?) {
+    fileprivate func loadGameScoreData(_ data: Data?) {
         do {
-            let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions()) as? [String : AnyObject]
+            let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions()) as? [String: AnyObject]
             
             if (json == nil) {
                 print("Couldn't parse game score from server")
@@ -101,14 +101,14 @@ public class GameScoreManager {
         }
     }
     
-    fileprivate func parseGameScoreJson(_ json:[String:AnyObject]) {
+    private func parseGameScoreJson(_ json: [String: AnyObject]) {
         // Clear settings
-        var parsedFixture:Fixture? = nil
-        var yeltzScore:Int = 0
-        var opponentScore:Int = 0
+        var parsedFixture: Fixture? = nil
+        var yeltzScore: Int = 0
+        var opponentScore: Int = 0
         
         if let currentMatch = json["match"] {
-            if let fixture = Fixture(fromJson: currentMatch as! [String : AnyObject]) {
+            if let fixture = Fixture(fromJson: currentMatch as! [String: AnyObject]) {
                 parsedFixture = fixture
             }
         }
@@ -159,9 +159,8 @@ public class GameScoreManager {
         }
     }
     
-    fileprivate func moveSingleBundleFileToAppDirectory(_ fileName:String, fileType:String) {
-        if (self.checkAppDirectoryExists(fileName, fileType:fileType))
-        {
+    fileprivate func moveSingleBundleFileToAppDirectory(_ fileName: String, fileType: String) {
+        if (self.checkAppDirectoryExists(fileName, fileType: fileType)) {
             // If file already exists, return
             print("GameScore file exists, don't copy from bundle")
             return
@@ -178,14 +177,13 @@ public class GameScoreManager {
         // Finally, copy the bundle file
         do {
             try fileManager.copyItem(atPath: bundlePath, toPath: self.appDirectoryFilePath(fileName, fileType: fileType))
-        }
-        catch {
+        } catch {
             return
         }
     }
     
     fileprivate func loadDataFromCache() {
-        let data:Data? = try? Data.init(contentsOf: URL(fileURLWithPath: self.appDirectoryFilePath("gamescore", fileType: "json")))
+        let data: Data? = try? Data.init(contentsOf: URL(fileURLWithPath: self.appDirectoryFilePath("gamescore", fileType: "json")))
         
         if (data == nil) {
             print("Couldn't load game score from cache")
@@ -194,7 +192,7 @@ public class GameScoreManager {
         
         do {
             print("Loading game score from cache ...")
-            let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions()) as? [String : AnyObject]
+            let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions()) as? [String: AnyObject]
             
             if (json == nil) {
                 print("Couldn't parse game score from cache")
@@ -209,7 +207,7 @@ public class GameScoreManager {
         }
     }
     
-    fileprivate func appDirectoryFilePath(_ fileName:String, fileType:String) -> String {
+    private func appDirectoryFilePath(_ fileName: String, fileType: String) -> String {
         #if os(tvOS)
             let appDirectoryPath = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)[0]
             let filePath = String.init(format: "/%@.%@", fileName, fileType)
@@ -221,10 +219,10 @@ public class GameScoreManager {
         #endif
     }
     
-    fileprivate func checkAppDirectoryExists(_ fileName:String, fileType:String) -> Bool {
+    fileprivate func checkAppDirectoryExists(_ fileName: String, fileType: String) -> Bool {
         let fileManager = FileManager.default
         
-        return fileManager.fileExists(atPath: self.appDirectoryFilePath(fileName, fileType:fileType))
+        return fileManager.fileExists(atPath: self.appDirectoryFilePath(fileName, fileType: fileType))
     }
     
     fileprivate func applicationDirectory() -> URL? {
@@ -240,8 +238,7 @@ public class GameScoreManager {
             
             do {
                 try fileManager.createDirectory(at: dirPath!, withIntermediateDirectories: true, attributes: nil)
-            }
-            catch {
+            } catch {
                 return nil
             }
         }

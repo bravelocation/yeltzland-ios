@@ -14,7 +14,7 @@ class FixtureTableViewCell: UITableViewCell {
     @IBOutlet weak var teamNameLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
     
-    public func assignFixture(_ fixture:Fixture) {
+    public func assignFixture(_ fixture: Fixture) {
         self.selectionStyle = .none
         self.accessoryType = .none
         
@@ -31,7 +31,7 @@ class FixtureTableViewCell: UITableViewCell {
         }
         
         // Set main label
-        self.teamNameLabel.font = UIFont(name: AppColors.AppFontName, size:AppColors.FixtureTeamSize)!
+        self.teamNameLabel.font = UIFont(name: AppColors.AppFontName, size: AppColors.FixtureTeamSize)!
         self.teamNameLabel.textColor = resultColor
         self.teamNameLabel.adjustsFontSizeToFitWidth = true
         self.teamNameLabel.text = fixture.displayOpponent

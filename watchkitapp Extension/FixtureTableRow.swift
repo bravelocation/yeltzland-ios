@@ -16,7 +16,7 @@ class FixtureRowType: NSObject {
     @IBOutlet var labelScore: WKInterfaceLabel!
     @IBOutlet var teamImage: WKInterfaceImage!
     
-    public func loadFixture(_ fixture:Fixture, resultColor:UIColor) {
+    public func loadFixture(_ fixture: Fixture, resultColor: UIColor) {
         
         self.labelDateTime?.setText(fixture.tvResultDisplayKickoffTime)
         self.labelOpponent?.setText(fixture.displayOpponent)

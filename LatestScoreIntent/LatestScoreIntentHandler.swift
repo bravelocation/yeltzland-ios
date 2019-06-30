@@ -23,14 +23,14 @@ class LatestScoreIntentHandler: NSObject, LatestScoreIntentHandling {
         var homeTeamName = ""
         var awayTeamName = ""
         var gameState = ""
-        var homeTeamScore:Int = 0
-        var awayTeamScore:Int = 0
+        var homeTeamScore: Int = 0
+        var awayTeamScore: Int = 0
         
         if let fixture = self.gameSettings.getLatestFixtureFromSettings() {
             // If currently in a game
             if fixture.inProgress {
                 gameState = "latest score is"
-            }  else {
+            } else {
                 gameState = "final score was"
             }
             
@@ -59,4 +59,3 @@ class LatestScoreIntentHandler: NSObject, LatestScoreIntentHandling {
 
     }
 }
-

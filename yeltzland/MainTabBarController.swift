@@ -23,7 +23,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
     init() {
         super.init(nibName: nil, bundle: nil)
         self.addChildViewControllers()
-        self.selectedIndex = GameSettings.instance.lastSelectedTab;
+        self.selectedIndex = GameSettings.instance.lastSelectedTab
         self.setupNotificationWatcher()
     }
 
@@ -53,7 +53,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
             UIKeyCommand(input: "2", modifierFlags: .command, action: #selector(MainTabBarController.keyboardSelectTab), discoverabilityTitle: "Official Site"),
             UIKeyCommand(input: "3", modifierFlags: .command, action: #selector(MainTabBarController.keyboardSelectTab), discoverabilityTitle: "Yeltz TV"),
             UIKeyCommand(input: "4", modifierFlags: .command, action: #selector(MainTabBarController.keyboardSelectTab), discoverabilityTitle: "Twitter"),
-            UIKeyCommand(input: "5", modifierFlags: .command, action: #selector(MainTabBarController.keyboardSelectTab), discoverabilityTitle: "More"),
+            UIKeyCommand(input: "5", modifierFlags: .command, action: #selector(MainTabBarController.keyboardSelectTab), discoverabilityTitle: "More")
         ]
     }
 
@@ -70,50 +70,50 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         
         // Forum
         let forumViewController = WebPageViewController()
-        forumViewController.homeUrl = URL(string:"https://www.yeltz.co.uk")
+        forumViewController.homeUrl = URL(string: "https://www.yeltz.co.uk")
         forumViewController.pageTitle = "Yeltz Forum"
-        let forumNavigationController = UINavigationController(rootViewController:forumViewController)
+        let forumNavigationController = UINavigationController(rootViewController: forumViewController)
         
         let forumIcon = UITabBarItem(title: "Yeltz Forum", image: nil, selectedImage: nil)
-        forumIcon.setFAIcon(icon: FAType.FAUsers, textColor:AppColors.TabBarUnselectedColor, selectedTextColor: AppColors.TabBarTextColor)
+        forumIcon.setFAIcon(icon: FAType.FAUsers, textColor: AppColors.TabBarUnselectedColor, selectedTextColor: AppColors.TabBarTextColor)
         forumIcon.setTitleTextAttributes([NSAttributedStringKey.font: UIFont(name: AppColors.AppFontName, size: AppColors.TabBarTextSize)!], for: UIControlState())
         forumNavigationController.tabBarItem = forumIcon
 
         // Official Site
         let officialViewController = WebPageViewController()
-        officialViewController.homeUrl = URL(string:"https://www.ht-fc.co.uk")
+        officialViewController.homeUrl = URL(string: "https://www.ht-fc.co.uk")
         officialViewController.pageTitle = "Official Site"
-        let officialNavigationController = UINavigationController(rootViewController:officialViewController)
+        let officialNavigationController = UINavigationController(rootViewController: officialViewController)
         
         let officialIcon = UITabBarItem(title: "Official Site", image: nil, selectedImage: nil)
-        officialIcon.setFAIcon(icon: FAType.FABlackTie, textColor:AppColors.TabBarUnselectedColor, selectedTextColor: AppColors.TabBarTextColor)
+        officialIcon.setFAIcon(icon: FAType.FABlackTie, textColor: AppColors.TabBarUnselectedColor, selectedTextColor: AppColors.TabBarTextColor)
         officialIcon.setTitleTextAttributes([NSAttributedStringKey.font: UIFont(name: AppColors.AppFontName, size: AppColors.TabBarTextSize)!], for: UIControlState())
         officialNavigationController.tabBarItem = officialIcon
         
         // Yeltz TV
         let tvViewController = WebPageViewController()
-        tvViewController.homeUrl = URL(string:"https://www.youtube.com/user/HalesowenTownFC")
+        tvViewController.homeUrl = URL(string: "https://www.youtube.com/user/HalesowenTownFC")
         tvViewController.pageTitle = "Yeltz TV"
-        let tvNavigationController = UINavigationController(rootViewController:tvViewController)
+        let tvNavigationController = UINavigationController(rootViewController: tvViewController)
         
         let tvIcon = UITabBarItem(title: "Yeltz TV", image: nil, selectedImage: nil)
-        tvIcon.setFAIcon(icon: FAType.FAYoutubePlay, textColor:AppColors.TabBarUnselectedColor, selectedTextColor: AppColors.TabBarTextColor)
+        tvIcon.setFAIcon(icon: FAType.FAYoutubePlay, textColor: AppColors.TabBarUnselectedColor, selectedTextColor: AppColors.TabBarTextColor)
         tvIcon.setTitleTextAttributes([NSAttributedStringKey.font: UIFont(name: AppColors.AppFontName, size: AppColors.TabBarTextSize)!], for: UIControlState())
         tvNavigationController.tabBarItem = tvIcon
         
         // Twitter
         let twitterViewController = TwitterUserTimelineViewController()
         twitterViewController.userScreenName = "halesowentownfc"
-        let twitterNavigationController = UINavigationController(rootViewController:twitterViewController)
+        let twitterNavigationController = UINavigationController(rootViewController: twitterViewController)
         
         let twitterIcon = UITabBarItem(title: "Twitter", image: nil, selectedImage: nil)
-        twitterIcon.setFAIcon(icon: FAType.FATwitter, textColor:AppColors.TabBarUnselectedColor, selectedTextColor: AppColors.TabBarTextColor)
+        twitterIcon.setFAIcon(icon: FAType.FATwitter, textColor: AppColors.TabBarUnselectedColor, selectedTextColor: AppColors.TabBarTextColor)
         twitterIcon.setTitleTextAttributes([NSAttributedStringKey.font: UIFont(name: AppColors.AppFontName, size: AppColors.TabBarTextSize)!], for: UIControlState())
         twitterNavigationController.tabBarItem = twitterIcon
         
         // Other Links
         let otherViewController = OtherLinksTableViewController()
-        let otherNavigationController = UINavigationController(rootViewController:otherViewController)
+        let otherNavigationController = UINavigationController(rootViewController: otherViewController)
         
         let otherIcon = UITabBarItem(tabBarSystemItem: .more, tag: self.otherTabIndex)
         otherIcon.setTitleTextAttributes([NSAttributedStringKey.font: UIFont(name: AppColors.AppFontName, size: AppColors.TabBarTextSize)!], for: UIControlState())
@@ -162,7 +162,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         self.setActivitySearchTitleAndPhrase(activity)
         activity.needsSave = true
 
-        self.userActivity = activity;
+        self.userActivity = activity
         self.userActivity?.becomeCurrent()
     }
     
@@ -176,19 +176,15 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         case 0:
             activityTitle = "Read Yeltz Forum"
             activityInvocationPhrase = "Read the forum"
-            break
         case 1:
             activityTitle = "Read HTFC Official Site"
             activityInvocationPhrase = "Read the club website"
-            break
         case 2:
             activityTitle = "Watch Yeltz TV"
             activityInvocationPhrase = "Watch Yeltz TV"
-            break
         case 3:
             activityTitle = "Read HTFC Twitter Feed"
             activityInvocationPhrase = "Read the club twitter"
-            break
         default:
             break
         }
@@ -201,6 +197,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         }
     }
     
+    //swiftlint:disable:next cyclomatic_complexity
     override func restoreUserActivityState(_ activity: NSUserActivity) {
         print("Restoring user activity in tab controller ...")
         
@@ -250,11 +247,11 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         print("Saving user activity \(String(describing: userActivity.title)) index to be \(GameSettings.instance.lastSelectedTab)")
 
         userActivity.userInfo = [
-            "com.bravelocation.yeltzland.currenttab.key": NSNumber(value: GameSettings.instance.lastSelectedTab as Int),
+            "com.bravelocation.yeltzland.currenttab.key": NSNumber(value: GameSettings.instance.lastSelectedTab as Int)
         ]
         
         // Add current URL if a web view
-        var currentUrl:URL? = nil
+        var currentUrl: URL? = nil
         
         if let currentController = self.viewControllers![self.selectedIndex] as? UINavigationController {
             if let selectedController = currentController.viewControllers[0] as? WebPageViewController {

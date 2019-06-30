@@ -28,7 +28,6 @@ class InterfaceController: WKInterfaceController {
         self.updateViewData()
     }
     
-    
     @IBAction func refreshTouchUp() {
         FixtureManager.instance.getLatestFixtures()
     }
@@ -51,7 +50,7 @@ class InterfaceController: WKInterfaceController {
             // Then add all the fixtures
             for i in 0...fixturesForMonth!.count - 1 {
                 let fixture = fixturesForMonth![i]
-                let row:FixtureRowType = self.fixtureTable.rowController(at: rowCount) as! FixtureRowType
+                let row: FixtureRowType = self.fixtureTable.rowController(at: rowCount) as! FixtureRowType
                 
                 var resultColor = AppColors.WatchTextColor
 

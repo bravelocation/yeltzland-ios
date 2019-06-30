@@ -12,7 +12,7 @@ class TVTwitterCollectionCell: UICollectionViewCell {
     
     @IBOutlet weak var tweetLabel: VerticallyAlignedLabel!
     
-    func loadData(tweet:String) {
+    func loadData(tweet: String) {
         self.tweetLabel.text = tweet
         
         // Setup the colors

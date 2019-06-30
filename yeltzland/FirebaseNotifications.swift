@@ -10,8 +10,8 @@ import UIKit
 import Firebase
 import FirebaseMessaging
 
-public class FirebaseNotifications : NSObject, MessagingDelegate {
-    var topicName:String? = nil
+public class FirebaseNotifications: NSObject, MessagingDelegate {
+    var topicName: String? = nil
     
     var enabled: Bool {
         get {

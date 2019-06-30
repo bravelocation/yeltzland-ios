@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         // Nav bar colors
-        UINavigationBar.appearance().barTintColor = AppColors.NavBarColor;
+        UINavigationBar.appearance().barTintColor = AppColors.NavBarColor
 
         UINavigationBar.appearance().titleTextAttributes = [
             NSAttributedStringKey.foregroundColor: AppColors.NavBarTextColor,
@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let twitterConsumerKey = SettingsManager.instance.getSetting("TwitterConsumerKey") as! String
         let twitterConsumerSecret = SettingsManager.instance.getSetting("TwitterConsumerSecret") as! String
 
-        TWTRTwitter.sharedInstance().start(withConsumerKey:twitterConsumerKey, consumerSecret:twitterConsumerSecret)
+        TWTRTwitter.sharedInstance().start(withConsumerKey: twitterConsumerKey, consumerSecret: twitterConsumerSecret)
 
         // Setup notifications
         FirebaseApp.configure()
@@ -73,10 +73,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("In background refresh ...")
         let now = Date()
         
-        if let nextGame = FixtureManager.instance.getNextGame()
-        {
-            if let differenceInMinutes = (Calendar.current as NSCalendar).components(.minute, from: now, to: nextGame.fixtureDate, options: []).minute
-            {
+        if let nextGame = FixtureManager.instance.getNextGame() {
+            if let differenceInMinutes = (Calendar.current as NSCalendar).components(.minute, from: now, to: nextGame.fixtureDate, options: []).minute {
                 if (differenceInMinutes < 0) {
                     // After game kicked off, so go get game score
                     GameScoreManager.instance.getLatestGameScore()
@@ -94,16 +92,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
-        print("3D Touch when from shortcut action");
+        print("3D Touch when from shortcut action")
         let handledShortCut = self.handleShortcut(shortcutItem)
         
         // Reset selected tab
-        if let mainViewController = self.window?.rootViewController as? MainTabBarController
-        {
+        if let mainViewController = self.window?.rootViewController as? MainTabBarController {
             mainViewController.selectedIndex = GameSettings.instance.lastSelectedTab
         }
         
-        return completionHandler(handledShortCut);
+        return completionHandler(handledShortCut)
     }
         
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
@@ -115,7 +112,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func handleShortcut(_ shortcutItem: UIApplicationShortcutItem) -> Bool {
-        print("Handling shortcut item %@", shortcutItem.type);
+        print("Handling shortcut item %@", shortcutItem.type)
         
         if (shortcutItem.type == "com.bravelocation.yeltzland.forum") {
             GameSettings.instance.lastSelectedTab = 0
@@ -157,10 +154,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication,
-                      didReceiveRemoteNotification userInfo: [AnyHashable: Any],
-                                                   fetchCompletionHandler handler: @escaping (UIBackgroundFetchResult) -> Void) {
+                     didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+                     fetchCompletionHandler handler: @escaping (UIBackgroundFetchResult) -> Void) {
         self.messageReceived(application, userInfo: userInfo)
-        handler(UIBackgroundFetchResult.noData);
+        handler(UIBackgroundFetchResult.noData)
     }
     
     func messageReceived(_ application: UIApplication,

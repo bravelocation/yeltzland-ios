@@ -49,7 +49,7 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
         FixtureManager.instance.getLatestFixtures()
         GameScoreManager.instance.getLatestGameScore()
         
-        var rowCount:CGFloat = 5.0
+        var rowCount: CGFloat = 5.0
         if (self.inExpandedMode) {
             rowCount = 9.0
         }
@@ -63,8 +63,7 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
         if (activeDisplayMode == NCWidgetDisplayMode.compact) {
             self.preferredContentSize = maxSize
             self.inExpandedMode = false
-        }
-        else {
+        } else {
             self.preferredContentSize = CGSize(width: maxSize.width, height: self.cellRowHeight * 9)
             self.inExpandedMode = true
         }
@@ -92,7 +91,7 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
 
     // MARK: - Table view delegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let url = URL(string:"yeltzland://")
+        let url = URL(string: "yeltzland://")
         print("Opening app")
         self.extensionContext?.open(url!, completionHandler: nil)
     }
@@ -102,7 +101,7 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
             headerView.backgroundView?.backgroundColor = AppColors.TodayBackground
             
             headerView.textLabel!.textColor = AppColors.TodayHeaderText
-            headerView.textLabel!.font = UIFont(name: AppColors.AppFontName, size:AppColors.TodayTextSize)!
+            headerView.textLabel!.font = UIFont(name: AppColors.AppFontName, size: AppColors.TodayTextSize)!
             headerView.textLabel?.text = self.dataSource.headerText(section: section)
         }
     }
@@ -112,7 +111,7 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
             footerView.backgroundView?.backgroundColor = AppColors.TodayBackground
             
             footerView.textLabel!.textColor = AppColors.TodayText
-            footerView.textLabel!.font = UIFont(name: AppColors.AppFontName, size:AppColors.TodayFootnoteSize)!
+            footerView.textLabel!.font = UIFont(name: AppColors.AppFontName, size: AppColors.TodayFootnoteSize)!
             footerView.textLabel?.text = self.dataSource.footerText(section: section)
         }
     }

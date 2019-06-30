@@ -22,14 +22,12 @@ class SafariActivity: UIActivity {
         return UIActivityType("com.bravelocation.yeltzland.safari")
     }
     
-    override var activityImage: UIImage
-    {
+    override var activityImage: UIImage {
         return UIImage(icon: FAType.FASafari, size: CGSize(width: 66, height: 66), textColor: UIColor.blue, backgroundColor: UIColor.clear)
     }
     
-    override var activityTitle : String
-    {
-        return "Open in Safari";
+    override var activityTitle: String {
+        return "Open in Safari"
     }
     
     override func canPerform(withActivityItems activityItems: [Any]) -> Bool {
@@ -40,13 +38,13 @@ class SafariActivity: UIActivity {
         // nothing to prepare
     }
     
-    override class var activityCategory : UIActivityCategory{
+    override class var activityCategory: UIActivityCategory {
         return UIActivityCategory.action
     }
     
     func canOpenChrome() -> Bool {
-        if (self.currentUrl == nil) {
-            return false;
+        if self.currentUrl == nil {
+            return false
         }
         
         return UIApplication.shared.canOpenURL(self.currentUrl!)
@@ -55,8 +53,8 @@ class SafariActivity: UIActivity {
     override func perform() {
         print("Perform activity")
         
-        if (self.currentUrl != nil) {
-            if(UIApplication.shared.canOpenURL(self.currentUrl!)){
+        if self.currentUrl != nil {
+            if UIApplication.shared.canOpenURL(self.currentUrl!) {
                 UIApplication.shared.openURL(self.currentUrl!)
             }
         }

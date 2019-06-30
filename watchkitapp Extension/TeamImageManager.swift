@@ -12,20 +12,20 @@ import SDWebImage
 
 public class TeamImageManager {
     fileprivate static let sharedInstance = TeamImageManager()
-    class var instance:TeamImageManager {
+    class var instance: TeamImageManager {
         get {
             return sharedInstance
         }
     }
     
-    public func loadTeamImage(teamName:String, view:WKInterfaceImage) {
+    public func loadTeamImage(teamName: String, view: WKInterfaceImage) {
         let imageUrl = String(format: "https://bravelocation.com/teamlogos/%@.png", self.makeTeamFileName(teamName))
         print("Loading team image: \(imageUrl)")
         
-        view.sd_setImage(with: URL(string:imageUrl), placeholderImage:UIImage(imageLiteralResourceName: "blank_team"), completed: nil)
+        view.sd_setImage(with: URL(string: imageUrl), placeholderImage: UIImage(imageLiteralResourceName: "blank_team"), completed: nil)
     }
     
-    func makeTeamFileName(_ teamName:String) -> String {
+    func makeTeamFileName(_ teamName: String) -> String {
         let teamFileName = teamName.replacingOccurrences(of: " ", with: "_").lowercased()
         
         // Do we have a bracket in the name

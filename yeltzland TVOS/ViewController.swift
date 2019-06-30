@@ -16,8 +16,8 @@ class ViewController: UIViewController, UICollectionViewDelegate {
     
     var dataTimer: Timer? = nil
     
-    let fixturesDataSource:TVFixturesDataSource = TVFixturesDataSource()
-    let tweetsDataSource:TwitterDataSource = TwitterDataSource()
+    let fixturesDataSource: TVFixturesDataSource = TVFixturesDataSource()
+    let tweetsDataSource: TwitterDataSource = TwitterDataSource()
 
     let minutesBetweenUpdates = 5.0
 
@@ -146,4 +146,3 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         }
     }
 }
-
