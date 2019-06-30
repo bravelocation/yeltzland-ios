@@ -140,13 +140,13 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
                 selectedIndex = currentIndex
                 break
             }
-            currentIndex = currentIndex + 1
+            currentIndex += 1
         }
         
         GameSettings.instance.lastSelectedTab = selectedIndex
         self.setupHandoff()
 
-        return true;
+        return true
     }
     
     @objc func setupHandoff() {

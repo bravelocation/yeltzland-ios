@@ -1,5 +1,6 @@
 source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
+inhibit_all_warnings!
 
 target 'yeltzland' do
   platform :ios, '9.3'
@@ -10,6 +11,8 @@ target 'yeltzland' do
   pod 'Firebase/Core'
   pod 'Firebase/Messaging'
   pod 'SDWebImage'
+  
+  pod 'SwiftLint'
 end
 
 target 'watchkitapp Extension' do

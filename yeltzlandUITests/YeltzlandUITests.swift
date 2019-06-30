@@ -8,7 +8,7 @@
 
 import XCTest
 
-class yeltzlandUITests: XCTestCase {
+class YeltzlandUITests: XCTestCase {
         
     override func setUp() {
         super.setUp()

@@ -67,6 +67,7 @@ PODS:
   - SDWebImage (5.0.6):
     - SDWebImage/Core (= 5.0.6)
   - SDWebImage/Core (5.0.6)
+  - SwiftLint (0.33.0)
   - TwitterCore (3.2.0)
   - TwitterKit (3.4.2):
     - TwitterCore (>= 3.2.0)
@@ -76,6 +77,7 @@ DEPENDENCIES:
   - Firebase/Messaging
   - Font-Awesome-Swift
   - SDWebImage
+  - SwiftLint
   - TwitterCore
   - TwitterKit
 
@@ -93,6 +95,7 @@ SPEC REPOS:
     - nanopb
     - Protobuf
     - SDWebImage
+    - SwiftLint
     - TwitterCore
     - TwitterKit
 
@@ -109,9 +112,10 @@ SPEC CHECKSUMS:
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Protobuf: 3f617b9a6e73605565086864c9bc26b2bf2dd5a3
   SDWebImage: 920f1a2ff1ca8296ad34f6e0510a1ef1d70ac965
+  SwiftLint: fed9c66336e41fc74dc48a73678380718f0c8b0e
   TwitterCore: 8cbc9ad34d91c63a0035ea05bfbfc0d7ca72a28c
   TwitterKit: 5e4f41d70b9abdb41df5467f52d7aa2c0fd26ebb
 
-PODFILE CHECKSUM: 8af3538a8df434754b1f46cbd0632bbd81a91ddf
+PODFILE CHECKSUM: 9793304966fb3ac32954af12145e48a07958e6ac
 
 COCOAPODS: 1.6.1

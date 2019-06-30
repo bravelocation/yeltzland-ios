@@ -29,10 +29,9 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   }
 }
 
-
 public class LocationManager {
     fileprivate static let sharedInstance = LocationManager()
-    fileprivate var locationList:[Location] = [Location]()
+    fileprivate var locationList: [Location] = [Location]()
     
     class var instance:LocationManager {
         get {
@@ -40,7 +39,7 @@ public class LocationManager {
         }
     }
     
-    public var Locations: [Location] {
+    public var locations: [Location] {
         return self.locationList
     }
     
@@ -75,7 +74,7 @@ public class LocationManager {
         var smallestLong = 190.0
         var largestLong = -190.0
         
-        for location in self.Locations {
+        for location in self.locations {
             if (location.latitude < smallestLat) {
                 smallestLat = location.latitude!
             }

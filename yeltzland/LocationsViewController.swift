@@ -54,7 +54,7 @@ class LocationsViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         self.mapView.setRegion(LocationManager.instance.mapRegion(), animated: true)
                 
         // Add locations on map
-        for location in LocationManager.instance.Locations {
+        for location in LocationManager.instance.locations {
             let cooordinate = CLLocationCoordinate2DMake(location.latitude!, location.longitude!)
             let annotation = LocationAnnotation(coordinate: cooordinate, team: location.team)
             self.mapView.addAnnotation(annotation)

@@ -19,7 +19,7 @@ public class FixtureManager {
         }
     }
     
-    public var Months: [String] {
+    public var months: [String] {
         var result:[String] = []
         
         if (self.fixtureList.keys.count > 0) {
@@ -29,7 +29,7 @@ public class FixtureManager {
         return result
     }
     
-    public func FixturesForMonth(_ monthKey: String) -> [Fixture]? {
+    public func fixturesForMonth(_ monthKey: String) -> [Fixture]? {
         
         if let monthFixtures = self.fixtureList[monthKey] {
             return monthFixtures
@@ -106,10 +106,10 @@ public class FixtureManager {
     }
     
     public func getAwayGames(_ opponent:String) -> [Fixture] {
-        var foundGames:[Fixture] = []
+        var foundGames: [Fixture] = []
         
-        for month in self.Months {
-            if let monthFixtures = self.FixturesForMonth(month) {
+        for month in self.months {
+            if let monthFixtures = self.fixturesForMonth(month) {
                 for fixture in monthFixtures {
                     if (fixture.opponent == opponent && fixture.home == false) {
                         foundGames.append(fixture)
@@ -124,9 +124,9 @@ public class FixtureManager {
     public func fixtureCount() -> Int {
         var fixtureCount = 0
         
-        for month in self.Months {
-            if let monthFixtures = self.FixturesForMonth(month) {
-                fixtureCount = fixtureCount + monthFixtures.count
+        for month in self.months {
+            if let monthFixtures = self.fixturesForMonth(month) {
+                fixtureCount += monthFixtures.count
             }
         }
         
@@ -135,10 +135,10 @@ public class FixtureManager {
     }
     
     public func getLastGame() -> Fixture? {
-        var lastCompletedGame:Fixture? = nil
+        var lastCompletedGame: Fixture? = nil
         
-        for month in self.Months {
-            if let monthFixtures = self.FixturesForMonth(month) {
+        for month in self.months {
+            if let monthFixtures = self.fixturesForMonth(month) {
                 for fixture in monthFixtures {
                     if (fixture.teamScore != nil && fixture.opponentScore != nil) {
                         lastCompletedGame = fixture
@@ -154,7 +154,7 @@ public class FixtureManager {
     
     
     public func getNextGame() -> Fixture? {
-        let fixtures = self.GetNextFixtures(1)
+        let fixtures = self.getNextFixtures(1)
         
         if (fixtures.count > 0) {
             return fixtures[0]
@@ -163,12 +163,12 @@ public class FixtureManager {
         return nil;
     }
     
-    public func GetNextFixtures(_ numberOfFixtures:Int) -> [Fixture] {
+    public func getNextFixtures(_ numberOfFixtures:Int) -> [Fixture] {
         var fixtures:[Fixture] = []
         let currentDayNumber = self.dayNumber(Date())
         
-        for month in self.Months {
-            if let monthFixtures = self.FixturesForMonth(month) {
+        for month in self.months {
+            if let monthFixtures = self.fixturesForMonth(month) {
                 for fixture in monthFixtures {
                     let matchDayNumber = self.dayNumber(fixture.fixtureDate as Date)
                     
@@ -187,11 +187,11 @@ public class FixtureManager {
         return fixtures
     }
     
-    public func GetAllMatches() -> [Fixture] {
+    public func getAllMatches() -> [Fixture] {
         var fixtures:[Fixture] = []
         
-        for month in self.Months {
-            if let monthFixtures = self.FixturesForMonth(month) {
+        for month in self.months {
+            if let monthFixtures = self.fixturesForMonth(month) {
                 for fixture in monthFixtures {
                     fixtures.append(fixture)
                 }
@@ -229,7 +229,7 @@ public class FixtureManager {
             self.parseMatchesJson(json!)
             
             // Fetch went OK, so write to local file for next startup
-            if (self.Months.count > 0) {
+            if (self.months.count > 0) {
                 print("Saving server fixtures to cache")
                 
                 try data?.write(to: URL(fileURLWithPath: self.appDirectoryFilePath("matches", fileType: "json")), options: .atomic)

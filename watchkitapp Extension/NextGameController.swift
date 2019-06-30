@@ -46,7 +46,7 @@ class NextGameController: WKInterfaceController {
         var homeTeamName = ""
         var awayTeamName = ""
         
-        if let currentFixture = GameScoreManager.instance.CurrentFixture {
+        if let currentFixture = GameScoreManager.instance.getCurrentFixture {
             if currentFixture.inProgress {
                 latestFixture = currentFixture
             }
@@ -75,7 +75,7 @@ class NextGameController: WKInterfaceController {
             }
         } else {
             // Show next fixture if there is one
-            let nextFixtures = FixtureManager.instance.GetNextFixtures(1)
+            let nextFixtures = FixtureManager.instance.getNextFixtures(1)
             if (nextFixtures.count > 0) {
                 let fixture = nextFixtures[0];
                 

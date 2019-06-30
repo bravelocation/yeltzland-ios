@@ -18,7 +18,7 @@ class TwitterUserTimelineViewController: TWTRTimelineViewController, TWTRTweetVi
     var reloadButton: UIBarButtonItem!
     var timer: Timer!
     
-    let TIMER_INTERVAL = 60.0
+    let timerInterval = 60.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,7 +71,7 @@ class TwitterUserTimelineViewController: TWTRTimelineViewController, TWTRTweetVi
             self.timer.invalidate()
         }
 
-        self.timer = Timer.scheduledTimer(timeInterval: self.TIMER_INTERVAL, target: (self as AnyObject), selector: #selector(UITableView.reloadData), userInfo: nil, repeats: false)
+        self.timer = Timer.scheduledTimer(timeInterval: self.timerInterval, target: (self as AnyObject), selector: #selector(UITableView.reloadData), userInfo: nil, repeats: false)
     }
     
     // MARK: - SFSafariViewControllerDelegate methods

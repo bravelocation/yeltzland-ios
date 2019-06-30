@@ -52,7 +52,7 @@
 		525719801FDE8BBB005F1D80 /* FixtureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236AE71D17E4D3004903AB /* FixtureManager.swift */; };
 		525719811FDE8BBF005F1D80 /* Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236AE51D17DFF8004903AB /* Fixture.swift */; };
 		525719821FDE8BC2005F1D80 /* GameScoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52176BAF1D4A1B3200B7EFAE /* GameScoreManager.swift */; };
-		5257E8BD1CDB953400157CED /* yeltzlandUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5257E8BC1CDB953400157CED /* yeltzlandUITests.swift */; };
+		5257E8BD1CDB953400157CED /* YeltzlandUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5257E8BC1CDB953400157CED /* YeltzlandUITests.swift */; };
 		5257E8C51CDB978700157CED /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5257E8C41CDB978700157CED /* SnapshotHelper.swift */; };
 		5259F9041CDA1292009C2AA8 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5259F9031CDA1292009C2AA8 /* MainTabBarController.swift */; };
 		526F54521D214705001EA8D8 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 526F54511D214705001EA8D8 /* NotificationCenter.framework */; };
@@ -270,7 +270,7 @@
 		5257197A1FDE8AE2005F1D80 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5257197C1FDE8AE2005F1D80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5257E8BA1CDB953400157CED /* yeltzlandUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = yeltzlandUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5257E8BC1CDB953400157CED /* yeltzlandUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = yeltzlandUITests.swift; sourceTree = "<group>"; };
+		5257E8BC1CDB953400157CED /* YeltzlandUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YeltzlandUITests.swift; sourceTree = "<group>"; };
 		5257E8BE1CDB953400157CED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5257E8C41CDB978700157CED /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		5259F9031CDA1292009C2AA8 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -506,7 +506,7 @@
 		5257E8BB1CDB953400157CED /* yeltzlandUITests */ = {
 			isa = PBXGroup;
 			children = (
-				5257E8BC1CDB953400157CED /* yeltzlandUITests.swift */,
+				5257E8BC1CDB953400157CED /* YeltzlandUITests.swift */,
 				5257E8C41CDB978700157CED /* SnapshotHelper.swift */,
 				5257E8BE1CDB953400157CED /* Info.plist */,
 			);
@@ -762,10 +762,11 @@
 				52E3DF701CD9FA78009F18BD /* Frameworks */,
 				52E3DF711CD9FA78009F18BD /* Resources */,
 				5211F7281CDA51EC0031496D /* Set Build Number from Git */,
+				521B9C4122C8E89E00185CF4 /* Swift Lint */,
 				A105CF8EDA0A39E089673162 /* [CP] Embed Pods Frameworks */,
 				63BB4CBBF5413A6045855209 /* [CP] Copy Pods Resources */,
-				526F54601D214705001EA8D8 /* Embed App Extensions */,
 				52176BDF1D4B6D5900B7EFAE /* Embed Watch Content */,
+				526F54601D214705001EA8D8 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
@@ -1105,6 +1106,24 @@
 			shellPath = /bin/sh;
 			shellScript = "git=`sh /etc/profile; which git`\nappBuild=`$git rev-list --all |wc -l`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\necho \"Updated ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n";
 		};
+		521B9C4122C8E89E00185CF4 /* Swift Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Swift Lint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\" --path . --config ./swiftlint.yml\n";
+		};
 		5242D8401E40A05900BF6FEE /* Set Build Number from Git */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1333,7 +1352,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5257E8BD1CDB953400157CED /* yeltzlandUITests.swift in Sources */,
+				5257E8BD1CDB953400157CED /* YeltzlandUITests.swift in Sources */,
 				5257E8C51CDB978700157CED /* SnapshotHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

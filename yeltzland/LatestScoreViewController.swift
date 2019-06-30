@@ -97,7 +97,7 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
     private func updateUI() {
         var latestFixture:Fixture? = FixtureManager.instance.getLastGame()
         
-        if let currentFixture = GameScoreManager.instance.CurrentFixture {
+        if let currentFixture = GameScoreManager.instance.getCurrentFixture {
             if currentFixture.inProgress {
                 latestFixture = currentFixture
             }

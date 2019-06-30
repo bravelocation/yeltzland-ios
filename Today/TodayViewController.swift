@@ -11,8 +11,8 @@ import NotificationCenter
 
 class TodayViewController: UITableViewController, NCWidgetProviding {
     
-    let CellRowHeight:CGFloat = 22.0
-    var inExpandedMode:Bool = false
+    let cellRowHeight: CGFloat = 22.0
+    var inExpandedMode: Bool = false
     let dataSource = TodayDataSource()
     
     override init(style: UITableViewStyle) {
@@ -54,7 +54,7 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
             rowCount = 9.0
         }
         
-        self.preferredContentSize = CGSize(width: 0.0, height: self.CellRowHeight * rowCount)
+        self.preferredContentSize = CGSize(width: 0.0, height: self.cellRowHeight * rowCount)
         completionHandler(NCUpdateResult.newData)
     }
     
@@ -65,7 +65,7 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
             self.inExpandedMode = false
         }
         else {
-            self.preferredContentSize = CGSize(width: maxSize.width, height: self.CellRowHeight * 9)
+            self.preferredContentSize = CGSize(width: maxSize.width, height: self.cellRowHeight * 9)
             self.inExpandedMode = true
         }
         
@@ -118,18 +118,18 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return self.CellRowHeight
+        return self.cellRowHeight
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return self.CellRowHeight
+        return self.cellRowHeight
     }
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         let footerText = self.dataSource.footerText(section: section)
         
         if (footerText.count > 0) {
-            return self.CellRowHeight
+            return self.cellRowHeight
         }
         
         return 0.0

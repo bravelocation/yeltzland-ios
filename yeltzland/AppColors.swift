@@ -9,15 +9,15 @@
 import Foundation
 import UIKit
 
-let YeltzBlueColor = UIColor(red: 6.0/255.0, green: 55.0/255.0, blue: 150.0/255.0, alpha: 1.0)
-let LightBlueColor = UIColor(red: 202.0/255.0, green: 220.0/255.0, blue: 235.0/255.0, alpha: 1.0)
-let LightBlueTransparentColor = UIColor(red: 202.0/255.0, green: 220.0/255.0, blue: 235.0/255.0, alpha: 0.8)
-let DarkBlueColor = UIColor(red: 6.0/255.0, green: 29.0/255.0, blue: 73.0/255.0, alpha: 1.0)
-let FacebookBlueColor = UIColor(red: 71.0/255.0, green: 96.0/255.0, blue: 159.0/255.0, alpha: 1.0)
-let StourbridgeRedColor = UIColor(red: 158.0/255.0, green: 0.0/255.0, blue: 26.0/255.0, alpha: 1.0)
-let EvostickRedColor = UIColor(red: 252.0/255.0, green: 0.0/255.0, blue: 6.0/255.0, alpha: 1.0)
-let BraveLocationRedColor = UIColor(red: 170.0/255.0, green: 60.0/255.0, blue: 79.0/255.0, alpha: 1.0)
-let TwitterColor = UIColor(red: 66.0/255.0, green: 148.0/255.0, blue: 254.0/255.0, alpha: 1.0)
+let yeltzBlueColor = UIColor(red: 6.0/255.0, green: 55.0/255.0, blue: 150.0/255.0, alpha: 1.0)
+let lightBlueColor = UIColor(red: 202.0/255.0, green: 220.0/255.0, blue: 235.0/255.0, alpha: 1.0)
+let lightBlueTransparentColor = UIColor(red: 202.0/255.0, green: 220.0/255.0, blue: 235.0/255.0, alpha: 0.8)
+let darkBlueColor = UIColor(red: 6.0/255.0, green: 29.0/255.0, blue: 73.0/255.0, alpha: 1.0)
+let facebookBlueColor = UIColor(red: 71.0/255.0, green: 96.0/255.0, blue: 159.0/255.0, alpha: 1.0)
+let stourbridgeRedColor = UIColor(red: 158.0/255.0, green: 0.0/255.0, blue: 26.0/255.0, alpha: 1.0)
+let evostickRedColor = UIColor(red: 252.0/255.0, green: 0.0/255.0, blue: 6.0/255.0, alpha: 1.0)
+let braveLocationRedColor = UIColor(red: 170.0/255.0, green: 60.0/255.0, blue: 79.0/255.0, alpha: 1.0)
+let twitterColor = UIColor(red: 66.0/255.0, green: 148.0/255.0, blue: 254.0/255.0, alpha: 1.0)
 
 let headlineDescriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: UIFont.TextStyle.headline)
 let bodyDescriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: UIFont.TextStyle.body)
@@ -30,16 +30,16 @@ class AppColors {
     static var isIos10AndAbove = ios10AndAbove
     
     static var NavBarTextSize = headlineDescriptor.pointSize
-    static var NavBarColor: UIColor = YeltzBlueColor
+    static var NavBarColor: UIColor = yeltzBlueColor
     static var NavBarTextColor: UIColor = UIColor.white
     static var NavBarTintColor: UIColor = UIColor.white
     
-    static var ProgressBar: UIColor = YeltzBlueColor
+    static var ProgressBar: UIColor = yeltzBlueColor
     static var WebBackground: UIColor = UIColor.white
-    static var WebErrorBackground: UIColor = YeltzBlueColor
+    static var WebErrorBackground: UIColor = yeltzBlueColor
 
     static var TabBarTextSize = footnoteDescriptor.pointSize - 2.0
-    static var TabBarTextColor: UIColor = YeltzBlueColor
+    static var TabBarTextColor: UIColor = yeltzBlueColor
     static var TabBarTintColor: UIColor = UIColor.white
     static var TabBarUnselectedColor: UIColor = UIColor.gray
     
@@ -47,8 +47,8 @@ class AppColors {
     static var TwitterSeparator: UIColor = UIColor.white
     
     static var OtherBackground: UIColor = UIColor.white
-    static var OtherSectionBackground: UIColor = LightBlueColor
-    static var OtherSectionText: UIColor = YeltzBlueColor
+    static var OtherSectionBackground: UIColor = lightBlueColor
+    static var OtherSectionText: UIColor = yeltzBlueColor
     static var OtherSeparator: UIColor = UIColor.white
     static var OtherSectionTextSize = bodyDescriptor.pointSize
     static var OtherTextSize = bodyDescriptor.pointSize
@@ -59,19 +59,19 @@ class AppColors {
     static var FixtureTeamSize = bodyDescriptor.pointSize
     static var FixtureScoreOrDateTextSize = footnoteDescriptor.pointSize
     
-    static var Fixtures: UIColor = YeltzBlueColor
-    static var ClubShop: UIColor = YeltzBlueColor
-    static var Evostick: UIColor = EvostickRedColor
-    static var Fantasy: UIColor = YeltzBlueColor
-    static var Stour: UIColor = StourbridgeRedColor
-    static var BraveLocation: UIColor = BraveLocationRedColor
-    static var Facebook: UIColor = FacebookBlueColor
-    static var Archive: UIColor = YeltzBlueColor
-    static var TwitterIcon: UIColor = TwitterColor
+    static var Fixtures: UIColor = yeltzBlueColor
+    static var ClubShop: UIColor = yeltzBlueColor
+    static var Evostick: UIColor = evostickRedColor
+    static var Fantasy: UIColor = yeltzBlueColor
+    static var Stour: UIColor = stourbridgeRedColor
+    static var BraveLocation: UIColor = braveLocationRedColor
+    static var Facebook: UIColor = facebookBlueColor
+    static var Archive: UIColor = yeltzBlueColor
+    static var TwitterIcon: UIColor = twitterColor
     
-    static var SpinnerColor = YeltzBlueColor
+    static var SpinnerColor = yeltzBlueColor
     
-    static var ToastBackgroundColor = YeltzBlueColor
+    static var ToastBackgroundColor = yeltzBlueColor
     static var ToastTextColor = UIColor.white
     static var ToastTextSize = headlineDescriptor.pointSize
     
@@ -86,31 +86,31 @@ class AppColors {
     static var TodayTextSize = bodyDescriptor.pointSize
     static var TodayFootnoteSize = footnoteDescriptor.pointSize
     
-    static var WatchMonthColor:UIColor = LightBlueColor
+    static var WatchMonthColor:UIColor = lightBlueColor
     static var WatchTextColor:UIColor = UIColor.white
     static var WatchFixtureWin = UIColor(red: 127.0/255.0, green: 255.0/255.0, blue: 127.0/255.0, alpha: 1.0)
     static var WatchFixtureDraw = UIColor.white
     static var WatchFixtureLose = UIColor(red: 255.0/255.0, green: 127.0/255.0, blue: 127.0/255.0, alpha: 1.0)
-    static var WatchComplicationColor:UIColor = LightBlueColor
-    static var WatchRingColor:UIColor = YeltzBlueColor
+    static var WatchComplicationColor:UIColor = lightBlueColor
+    static var WatchRingColor:UIColor = yeltzBlueColor
 
-    static var SafariControl:UIColor = YeltzBlueColor
+    static var SafariControl:UIColor = yeltzBlueColor
     
     static var TVBackground = UIColor.black
-    static var TVTitleText: UIColor = LightBlueColor
+    static var TVTitleText: UIColor = lightBlueColor
     static var TVSelectedBorder: UIColor = UIColor.white
     
-    static var TVFixtureBackground: UIColor = YeltzBlueColor
+    static var TVFixtureBackground: UIColor = yeltzBlueColor
     static var TVFixtureText: UIColor = UIColor.white
-    static var TVResultBackground: UIColor = DarkBlueColor
+    static var TVResultBackground: UIColor = darkBlueColor
     static var TVResultText: UIColor = UIColor.white
     static var TVMatchShadow: UIColor = UIColor.white
 
     static var TVFixtureWin = UIColor(red: 63.0/255.0, green: 255.0/255.0, blue: 63.0/255.0, alpha: 1.0)
-    static var TVFixtureDraw = LightBlueColor
+    static var TVFixtureDraw = lightBlueColor
     static var TVFixtureLose = UIColor(red: 255.0/255.0, green: 63.0/255.0, blue: 63.0/255.0, alpha: 1.0)
     
-    static var TVTwitterBackground: UIColor = DarkBlueColor
+    static var TVTwitterBackground: UIColor = darkBlueColor
     static var TVTwitterText: UIColor = UIColor.white
 
     static var SiriIntentText: UIColor = UIColor.black

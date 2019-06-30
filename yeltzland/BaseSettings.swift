@@ -83,7 +83,7 @@ public class BaseSettings : NSObject {
     @objc public func updateLatestScoreSettings() {
         print("Updating game score settings ...")
         
-        var updatedSettings = GameScoreManager.instance.CurrentFixture
+        var updatedSettings = GameScoreManager.instance.getCurrentFixture
         
         if updatedSettings == nil {
             updatedSettings = FixtureManager.instance.getLastGame()
@@ -145,8 +145,7 @@ public class BaseSettings : NSObject {
         print("Migrated settings to group")
     }
     
-    
-    fileprivate func truncateTeamName(_ original:String, max:Int) -> String {
+    fileprivate func truncateTeamName(_ original: String, max: Int) -> String {
         let originalLength = original.count
         
         // If the original is short enough, we're done
@@ -160,7 +159,7 @@ public class BaseSettings : NSObject {
             if (c == Character(" ")) {
                 break
             }
-            firstSpace = firstSpace + 1
+            firstSpace += 1
         }
         
         if (firstSpace < max) {

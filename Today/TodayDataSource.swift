@@ -24,7 +24,7 @@ class TodayDataSource: NSObject, UITableViewDataSource {
         // Get last game details
         self.currentScores.removeAll()
 
-        if let currentFixture = GameScoreManager.instance.CurrentFixture {
+        if let currentFixture = GameScoreManager.instance.getCurrentFixture {
             if currentFixture.inProgress {
                 self.currentScores.append(TodayDataItem(opponent: currentFixture.displayOpponent,
                                                     scoreOrDate: currentFixture.inProgressScore,
@@ -51,7 +51,7 @@ class TodayDataSource: NSObject, UITableViewDataSource {
         self.nextGames.removeAll()
         
         var i = 0
-        for fixture in FixtureManager.instance.GetNextFixtures(fixturesNeeded) {
+        for fixture in FixtureManager.instance.getNextFixtures(fixturesNeeded) {
             
             // Only add first fixture if no current game
             if (i > 0 || self.currentScores.count == 0) {
@@ -59,11 +59,11 @@ class TodayDataSource: NSObject, UITableViewDataSource {
                 self.nextGames.append(fixtureData)
             }
             
-            i = i + 1
+            i += 1
         }
     }
     
-    func headerText(section:Int) -> String {
+    func headerText(section: Int) -> String {
         var firstSectionHeader = ""
         var secondSectionHeader = ""
         var thirdSectionHeader = ""
@@ -210,15 +210,15 @@ class TodayDataSource: NSObject, UITableViewDataSource {
         var sectionCount = 0
         
         if (self.lastGames.count > 0) {
-           sectionCount = sectionCount + 1
+           sectionCount += 1
         }
 
         if (self.nextGames.count > 0) {
-            sectionCount = sectionCount + 1
+            sectionCount += 1
         }
         
         if (self.currentScores.count > 0) {
-            sectionCount = sectionCount + 1
+            sectionCount += 1
         }
         
         return sectionCount

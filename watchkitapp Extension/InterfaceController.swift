@@ -41,8 +41,8 @@ class InterfaceController: WKInterfaceController {
         var rowCount = 0
         var firstFixtureRow = 0
         
-        for month in FixtureManager.instance.Months {
-            let fixturesForMonth = FixtureManager.instance.FixturesForMonth(month)
+        for month in FixtureManager.instance.months {
+            let fixturesForMonth = FixtureManager.instance.fixturesForMonth(month)
             
             if (fixturesForMonth == nil || fixturesForMonth!.count == 0) {
                 continue
@@ -77,7 +77,7 @@ class InterfaceController: WKInterfaceController {
                 
                 row.loadFixture(fixture, resultColor: resultColor)
 
-                rowCount = rowCount + 1
+                rowCount += 1
             }
         }
         

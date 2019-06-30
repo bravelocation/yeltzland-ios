@@ -250,7 +250,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
             let navigationError = error as NSError
             if (navigationError.code != NSURLErrorCancelled) {
                 print("didFailProvisionalNavigation error occurred: ", error.localizedDescription, ":", navigationError.code)
-                MakeToast.Show(self, title:"A problem occured", message: "Couldn't connect to the website right now")
+                MakeToast.show(self, title: "A problem occured", message: "Couldn't connect to the website right now")
             }
         })
     }
@@ -264,7 +264,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         })
     }
     
-    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation){
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation) {
         DispatchQueue.main.async(execute: { () -> Void in
             if (webView.estimatedProgress > 0) {
                self.hideSpinner()
@@ -303,14 +303,14 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
             let navigationError = error as NSError
             if (navigationError.code != NSURLErrorCancelled) {
                 print("Navigation error occurred: ", navigationError.localizedDescription)
-                MakeToast.Show(self, title:"A problem occurred", message: "Couldn't connect to the website right now")
+                MakeToast.show(self, title: "A problem occurred", message: "Couldn't connect to the website right now")
             }
         })
     }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         DispatchQueue.main.async(execute: { () -> Void in
-            var externalUrl:URL? = nil
+            var externalUrl: URL? = nil
             
             // Open new frame redirects in Safari
             if (navigationAction.targetFrame == nil) {
@@ -320,7 +320,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
             
             // Do we have a non-standard URL?
             if let safariUrl = externalUrl {
-                if(UIApplication.shared.canOpenURL(safariUrl)){
+                if(UIApplication.shared.canOpenURL(safariUrl)) {
                     UIApplication.shared.openURL(safariUrl)
                 }
                 
@@ -331,4 +331,3 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         })
     }
 }
-

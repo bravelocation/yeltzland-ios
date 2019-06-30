@@ -94,7 +94,7 @@ class TVFixturesDataSource: NSObject, UICollectionViewDataSource {
                 return i
             }
             
-            i = i + 1
+            i += 1
         }
         
         // Just show first cell if all done

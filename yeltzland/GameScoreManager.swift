@@ -15,13 +15,13 @@ public class GameScoreManager {
     fileprivate var parseSuccess:Bool = false
 
     fileprivate static let sharedInstance = GameScoreManager()
-    class var instance:GameScoreManager {
+    class var instance: GameScoreManager {
         get {
             return sharedInstance
         }
     }
     
-    public var CurrentFixture: Fixture? {
+    public var getCurrentFixture: Fixture? {
         return self.currentFixture
     }
     

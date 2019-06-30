@@ -23,13 +23,13 @@ class LocationAnnotation : NSObject, MKAnnotation {
 
         for awayGame in FixtureManager.instance.getAwayGames(team) {
             if (description != "") {
-                description = description + ", "
+                description += ", "
             }
             
             if (awayGame.teamScore == nil || awayGame.opponentScore == nil) {
-                description = description + awayGame.fullKickoffTime
+                description += awayGame.fullKickoffTime
             } else {
-                description = description + awayGame.score
+                description += awayGame.score
             }
         }
         

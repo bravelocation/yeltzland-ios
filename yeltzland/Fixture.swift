@@ -340,7 +340,7 @@ public class Fixture {
         }
     }
     
-    private func truncateTeamName(_ original:String, max:Int) -> String {
+    private func truncateTeamName(_ original: String, max: Int) -> String {
         let originalLength = original.count
         
         // If the original is short enough, we're done
@@ -354,7 +354,7 @@ public class Fixture {
             if (c == Character(" ")) {
                 break
             }
-            firstSpace = firstSpace + 1
+            firstSpace += 1
         }
         
         if (firstSpace < max) {
