@@ -15,7 +15,7 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
     var inExpandedMode: Bool = false
     let dataSource = TodayDataSource()
     
-    override init(style: UITableViewStyle) {
+    override init(style: UITableView.Style) {
         super.init(style: style)
         self.setupNotificationWatchers()
     }
@@ -41,7 +41,7 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
     }
     
     func widgetMarginInsets(forProposedMarginInsets defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
-        return UIEdgeInsetsMake(0, 0, 0, 0)
+        return UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
     }
     
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {

@@ -17,14 +17,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     let firebaseNotifications = FirebaseNotifications()
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // Nav bar colors
         UINavigationBar.appearance().barTintColor = AppColors.NavBarColor
 
         UINavigationBar.appearance().titleTextAttributes = [
-            NSAttributedStringKey.foregroundColor: AppColors.NavBarTextColor,
-            NSAttributedStringKey.font: UIFont(name: AppColors.AppFontName, size: AppColors.NavBarTextSize)!
+            NSAttributedString.Key.foregroundColor: AppColors.NavBarTextColor,
+            NSAttributedString.Key.font: UIFont(name: AppColors.AppFontName, size: AppColors.NavBarTextSize)!
         ]
         
         // Setup Twitter not via Fabric
@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GameScoreManager.instance.getLatestGameScore()
         
         // Setup background fetch
-        application.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
+        application.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
         
         // Push settings to watch in the background
         GameSettings.instance.forceBackgroundWatchUpdate()
@@ -53,9 +53,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         // If came from a notification, always start on the Twitter tab
-        if launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] != nil {
+        if launchOptions?[UIApplication.LaunchOptionsKey.remoteNotification] != nil {
             GameSettings.instance.lastSelectedTab = 3
-        } else if let shortcutItem = launchOptions?[UIApplicationLaunchOptionsKey.shortcutItem] {
+        } else if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] {
             let result = self.handleShortcut(shortcutItem as! UIApplicationShortcutItem)
             print("Opened via shortcut: \(result)")
         }
@@ -103,7 +103,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return completionHandler(handledShortCut)
     }
         
-    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         if let window = self.window {
             window.rootViewController?.restoreUserActivityState(userActivity)
         }

@@ -170,7 +170,7 @@ class TodayDataSource: NSObject, UITableViewDataSource {
     // MARK: - Table view data source
     func tableView(_ tableView: UITableView,
                    cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: UITableViewCellStyle.value1, reuseIdentifier: "FixtureTodayCell")
+        let cell = UITableViewCell(style: UITableViewCell.CellStyle.value1, reuseIdentifier: "FixtureTodayCell")
         
         // Figure out data to show
         var opponent: String = ""
@@ -193,7 +193,7 @@ class TodayDataSource: NSObject, UITableViewDataSource {
         cell.selectionStyle = .none
         cell.accessoryType = .none
         cell.backgroundColor = AppColors.TodayBackground
-        cell.separatorInset = UIEdgeInsetsMake(0.0, 20.0, 0.0, 0.0)
+        cell.separatorInset = UIEdgeInsets.init(top: 0.0, left: 20.0, bottom: 0.0, right: 0.0)
         
         cell.textLabel?.font = UIFont(name: AppColors.AppFontName, size: AppColors.TodayTextSize)!
         cell.textLabel?.adjustsFontSizeToFitWidth = true

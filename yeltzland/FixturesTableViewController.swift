@@ -36,7 +36,7 @@ class FixturesTableViewController: UITableViewController {
     private let cellIdentifier: String = "FixtureTableViewCell"
     private let fixturesRefreshControl = UIRefreshControl()
     
-    override init(style: UITableViewStyle) {
+    override init(style: UITableView.Style) {
         super.init(style: style)
         self.setupNotificationWatcher()
     }
@@ -66,7 +66,7 @@ class FixturesTableViewController: UITableViewController {
             
             // Try to handle case where fixtures may have updated
             if (currentMonthIndexPath.section < FixtureManager.instance.months.count) {
-                self.tableView.scrollToRow(at: currentMonthIndexPath, at: UITableViewScrollPosition.top, animated: true)
+                self.tableView.scrollToRow(at: currentMonthIndexPath, at: UITableView.ScrollPosition.top, animated: true)
             }
         })
     }

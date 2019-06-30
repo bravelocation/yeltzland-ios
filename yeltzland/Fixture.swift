@@ -195,7 +195,7 @@ public class Fixture {
     
     public var opponentNoCup: String {
         // Do we have a bracket in the name
-        let bracketPos = self.opponent.index(of: "(")
+        let bracketPos = self.opponent.firstIndex(of: "(")
         if bracketPos == nil {
             return self.opponent
         } else {

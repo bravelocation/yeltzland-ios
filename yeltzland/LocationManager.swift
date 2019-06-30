@@ -97,6 +97,6 @@ public class LocationManager {
         let distance = topLeft.distance(from: bottomRight)
         
         // Now center map on Halesowen
-        return MKCoordinateRegionMakeWithDistance(centerPoint.coordinate, distance, distance)
+        return MKCoordinateRegion.init(center: centerPoint.coordinate, latitudinalMeters: distance, longitudinalMeters: distance)
     }
 }

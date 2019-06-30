@@ -155,8 +155,8 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
     // MARK: - Keyboard options
     override var keyCommands: [UIKeyCommand]? {
         return [
-            UIKeyCommand(input: UIKeyInputRightArrow, modifierFlags: .command, action: #selector(WebPageViewController.forwardButtonTouchUp), discoverabilityTitle: "Forward"),
-            UIKeyCommand(input: UIKeyInputLeftArrow, modifierFlags: .command, action: #selector(WebPageViewController.backButtonTouchUp), discoverabilityTitle: "Back"),
+            UIKeyCommand(input: UIKeyCommand.inputRightArrow, modifierFlags: .command, action: #selector(WebPageViewController.forwardButtonTouchUp), discoverabilityTitle: "Forward"),
+            UIKeyCommand(input: UIKeyCommand.inputLeftArrow, modifierFlags: .command, action: #selector(WebPageViewController.backButtonTouchUp), discoverabilityTitle: "Back"),
             UIKeyCommand(input: "r", modifierFlags: .command, action: #selector(WebPageViewController.reloadButtonTouchUp), discoverabilityTitle: "Reload"),
             UIKeyCommand(input: "h", modifierFlags: [.command, .shift], action: #selector(WebPageViewController.loadHomePage), discoverabilityTitle: "Home")
         ]
@@ -259,7 +259,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         DispatchQueue.main.async(execute: { () -> Void in
             self.showSpinner()
             self.progressBar.setProgress(0, animated: false)
-            UIView.animate(withDuration: 0.3, delay: 0, options: UIViewAnimationOptions(), animations: { self.progressBar.alpha = 1 }, completion: nil)
+            UIView.animate(withDuration: 0.3, delay: 0, options: UIView.AnimationOptions(), animations: { self.progressBar.alpha = 1 }, completion: nil)
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
         })
     }
@@ -280,7 +280,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
             self.hideSpinner()
 
             self.progressBar.setProgress(1, animated: true)
-            UIView.animate(withDuration: 0.3, delay: 1, options: UIViewAnimationOptions(), animations: { self.progressBar.alpha = 0 }, completion: nil)
+            UIView.animate(withDuration: 0.3, delay: 1, options: UIView.AnimationOptions(), animations: { self.progressBar.alpha = 0 }, completion: nil)
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
             
             self.backButton.isEnabled = webView.canGoBack
@@ -296,7 +296,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         DispatchQueue.main.async(execute: { () -> Void in
             self.hideSpinner()
             self.progressBar.setProgress(1, animated: true)
-            UIView.animate(withDuration: 0.3, delay: 1, options: UIViewAnimationOptions(), animations: { self.progressBar.alpha = 0 }, completion: nil)
+            UIView.animate(withDuration: 0.3, delay: 1, options: UIView.AnimationOptions(), animations: { self.progressBar.alpha = 0 }, completion: nil)
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
             
             // Show brief error message

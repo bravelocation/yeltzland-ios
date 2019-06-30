@@ -18,8 +18,8 @@ class ChromeActivity: UIActivity {
         super.init()
     }
     
-    override var activityType: UIActivityType? {
-        return UIActivityType("com.bravelocation.yeltzland.chrome")
+    override var activityType: UIActivity.ActivityType? {
+        return UIActivity.ActivityType("com.bravelocation.yeltzland.chrome")
     }
     
     override var activityImage: UIImage {
@@ -38,8 +38,8 @@ class ChromeActivity: UIActivity {
         // nothing to prepare
     }
     
-    override class var activityCategory: UIActivityCategory {
-        return UIActivityCategory.action
+    override class var activityCategory: UIActivity.Category {
+        return UIActivity.Category.action
     }
     
     func canOpenChrome() -> Bool {

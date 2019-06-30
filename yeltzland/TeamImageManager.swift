@@ -37,7 +37,7 @@ public class TeamImageManager {
         let teamFileName = teamName.replacingOccurrences(of: " ", with: "_").lowercased()
         
         // Do we have a bracket in the name
-        let bracketPos = teamFileName.index(of: "(")
+        let bracketPos = teamFileName.firstIndex(of: "(")
         if bracketPos == nil {
             return teamFileName
         } else {

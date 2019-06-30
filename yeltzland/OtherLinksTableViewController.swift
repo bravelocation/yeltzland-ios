@@ -55,7 +55,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         var cell: UITableViewCell? = nil
         
         if ((indexPath as NSIndexPath).section == 3 && (indexPath as NSIndexPath).row == 0) {
-            cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "SettingsCell")
+            cell = UITableViewCell(style: UITableViewCell.CellStyle.subtitle, reuseIdentifier: "SettingsCell")
             cell!.selectionStyle = .none
             cell!.accessoryType = .none
             
@@ -63,10 +63,10 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             cell!.accessoryView = switchView
             
             switchView.isOn = self.firebaseNotifications.enabled
-            switchView.addTarget(self, action: #selector(OtherLinksTableViewController.notificationsSwitchChanged), for: UIControlEvents.valueChanged)
+            switchView.addTarget(self, action: #selector(OtherLinksTableViewController.notificationsSwitchChanged), for: UIControl.Event.valueChanged)
             
         } else {
-            cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "Cell")
+            cell = UITableViewCell(style: UITableViewCell.CellStyle.subtitle, reuseIdentifier: "Cell")
             cell!.selectionStyle = .default
             cell!.accessoryType = .disclosureIndicator
         }
@@ -302,7 +302,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         print("Opening Fixtures ...")
         
         let indexPath = IndexPath(row: 0, section: 0)
-        self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableViewScrollPosition.top)
+        self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableView.ScrollPosition.top)
         self.tableView(self.tableView, didSelectRowAt: indexPath)
     }
     
@@ -310,7 +310,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         print("Opening Latest Score ...")
         
         let indexPath = IndexPath(row: 1, section: 0)
-        self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableViewScrollPosition.top)
+        self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableView.ScrollPosition.top)
         self.tableView(self.tableView, didSelectRowAt: indexPath)
     }
 

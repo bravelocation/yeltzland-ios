@@ -14,7 +14,7 @@ public class MakeToast {
     public static func show(_ controller: UIViewController, title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        let defaultAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
+        let defaultAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
         alert.addAction(defaultAction)
 
         controller.present(alert, animated: true, completion: nil)
