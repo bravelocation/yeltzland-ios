@@ -33,7 +33,6 @@ PODS:
     - GoogleUtilities/Reachability (~> 6.2)
     - GoogleUtilities/UserDefaults (~> 6.2)
     - Protobuf (~> 3.1)
-  - Font-Awesome-Swift (1.7.2)
   - GoogleAppMeasurement (6.0.2):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
@@ -75,7 +74,6 @@ PODS:
 DEPENDENCIES:
   - Firebase/Core
   - Firebase/Messaging
-  - Font-Awesome-Swift
   - SDWebImage
   - SwiftLint
   - TwitterCore
@@ -89,7 +87,6 @@ SPEC REPOS:
     - FirebaseCore
     - FirebaseInstanceID
     - FirebaseMessaging
-    - Font-Awesome-Swift
     - GoogleAppMeasurement
     - GoogleUtilities
     - nanopb
@@ -106,7 +103,6 @@ SPEC CHECKSUMS:
   FirebaseCore: 68f8a7f50cdae542715d4e86afa37c4067217dcb
   FirebaseInstanceID: f20243a1d828e0e9a3798b995174dedc16f1b32a
   FirebaseMessaging: 0ac5310133e6ada4cdd44d42e92038855214a5e9
-  Font-Awesome-Swift: 83ab9db365379ee6025167cec67bdc5d3226a811
   GoogleAppMeasurement: a35a645835bae31b6bdc0576396bc23908f12a22
   GoogleUtilities: 996e0db07153674fd1b54b220fda3a3dc3547cba
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
@@ -116,6 +112,6 @@ SPEC CHECKSUMS:
   TwitterCore: 8cbc9ad34d91c63a0035ea05bfbfc0d7ca72a28c
   TwitterKit: 5e4f41d70b9abdb41df5467f52d7aa2c0fd26ebb
 
-PODFILE CHECKSUM: 9793304966fb3ac32954af12145e48a07958e6ac
+PODFILE CHECKSUM: 0ff1ddb0116786d0b5a27edb4073f63b8ddba758
 
 COCOAPODS: 1.6.1

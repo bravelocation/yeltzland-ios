@@ -5,7 +5,6 @@ inhibit_all_warnings!
 target 'yeltzland' do
   platform :ios, '9.3'
   
-  pod 'Font-Awesome-Swift'
   pod 'TwitterKit'
   pod 'TwitterCore'
   pod 'Firebase/Core'

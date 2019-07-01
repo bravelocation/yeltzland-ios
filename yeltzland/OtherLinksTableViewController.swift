@@ -8,7 +8,6 @@
 
 import UIKit
 import SafariServices
-import Font_Awesome_Swift
 
 class OtherLinksTableViewController: UITableViewController, SFSafariViewControllerDelegate {
 
@@ -75,19 +74,19 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             switch ((indexPath as NSIndexPath).row) {
             case 0:
                 cell!.textLabel?.text = "Fixture List"
-                let cellImage = UIImage(icon: FAType.FACalendar, size: CGSize(width: 100, height: 100), textColor: AppColors.Fixtures, backgroundColor: UIColor.clear)
+                let cellImage = UIImage(named: "fixtures")?.sd_tintedImage(with: AppColors.Fixtures)
                 cell!.imageView?.image = cellImage
             case 1:
                 cell!.textLabel?.text = "Latest Score"
-                let cellImage = UIImage(icon: FAType.FAClockO, size: CGSize(width: 100, height: 100), textColor: AppColors.Fixtures, backgroundColor: UIColor.clear)
+                let cellImage = UIImage(named: "latest-score")?.sd_tintedImage(with: AppColors.Fixtures)
                 cell!.imageView?.image = cellImage
             case 2:
                 cell!.textLabel?.text = "Where's the Ground?"
-                let cellImage = UIImage(icon: FAType.FAMapMarker, size: CGSize(width: 100, height: 100), textColor: AppColors.Fixtures, backgroundColor: UIColor.clear)
+                let cellImage = UIImage(named: "where-ground")?.sd_tintedImage(with: AppColors.Evostick)
                 cell!.imageView?.image = cellImage
             case 3:
                 cell!.textLabel?.text = "League Table"
-                let cellImage = UIImage(icon: FAType.FATable, size: CGSize(width: 100, height: 100), textColor: AppColors.Fixtures, backgroundColor: UIColor.clear)
+                let cellImage = UIImage(named: "table")?.sd_tintedImage(with: AppColors.Fixtures)
                 cell!.imageView?.image = cellImage
             default:
                 break
@@ -96,23 +95,23 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             switch ((indexPath as NSIndexPath).row) {
             case 0:
                 cell!.textLabel?.text = "HTFC on Facebook"
-                let cellImage = UIImage(icon: FAType.FAFacebookSquare, size: CGSize(width: 100, height: 100), textColor: AppColors.Facebook, backgroundColor: UIColor.clear)
+                let cellImage = UIImage(named: "facebook")?.sd_tintedImage(with: AppColors.Facebook)
                 cell!.imageView?.image = cellImage
             case 1:
                 cell!.textLabel?.text = "Southern League site"
-                let cellImage = UIImage(icon: FAType.FASoccerBallO, size: CGSize(width: 100, height: 100), textColor: AppColors.Evostick, backgroundColor: UIColor.clear)
+                let cellImage = UIImage(named: "southern-league")?.sd_tintedImage(with: AppColors.Evostick)
                 cell!.imageView?.image = cellImage
             case 2:
                 cell!.textLabel?.text = "Fantasy Island"
-                let cellImage = UIImage(icon: FAType.FAPlane, size: CGSize(width: 100, height: 100), textColor: AppColors.Fantasy, backgroundColor: UIColor.clear)
+                let cellImage = UIImage(named: "fantasy-island")?.sd_tintedImage(with: AppColors.Fantasy)
                 cell!.imageView?.image = cellImage
             case 3:
                 cell!.textLabel?.text = "Stourbridge Town FC"
-                let cellImage = UIImage(icon: FAType.FAThumbsODown, size: CGSize(width: 100, height: 100), textColor: AppColors.Stour, backgroundColor: UIColor.clear)
+                let cellImage = UIImage(named: "stourbridge")?.sd_tintedImage(with: AppColors.Stour)
                 cell!.imageView?.image = cellImage
             case 4:
                 cell!.textLabel?.text = "Club Shop"
-                let cellImage = UIImage(icon: FAType.FAShoppingCart, size: CGSize(width: 100, height: 100), textColor: AppColors.ClubShop, backgroundColor: UIColor.clear)
+                let cellImage = UIImage(named: "club-shop")?.sd_tintedImage(with: AppColors.ClubShop)
                 cell!.imageView?.image = cellImage
             default:
                 break
@@ -121,23 +120,22 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             switch ((indexPath as NSIndexPath).row) {
             case 0:
                 cell!.textLabel?.text = "Follow Your Instinct"
-                let cellImage = UIImage(icon: FAType.FANewspaperO, size: CGSize(width: 100, height: 100), textColor: AppColors.Archive, backgroundColor: UIColor.clear)
+                let cellImage = UIImage(named: "fyi")?.sd_tintedImage(with: AppColors.Archive)
                 cell!.imageView?.image = cellImage
             case 1:
                 cell!.textLabel?.text = "Yeltz Archives"
-                let cellImage = UIImage(icon: FAType.FAArchive, size: CGSize(width: 100, height: 100), textColor: AppColors.Archive, backgroundColor: UIColor.clear)
+                let cellImage = UIImage(named: "yeltz-archive")?.sd_tintedImage(with: AppColors.Archive)
                 cell!.imageView?.image = cellImage
             case 2:
                 cell!.textLabel?.text = "News Archive (1997-2006)"
-                let cellImage = UIImage(icon: FAType.FAArchive, size: CGSize(width: 100, height: 100), textColor: AppColors.Archive, backgroundColor: UIColor.clear)
+                let cellImage = UIImage(named: "news-archive")?.sd_tintedImage(with: AppColors.Archive)
                 cell!.imageView?.image = cellImage
             default:
                 break
             }
         } else if ((indexPath as NSIndexPath).section == 3) {
             cell!.textLabel?.text = "Game time tweets"
-            let cellImage = UIImage(icon: FAType.FATwitter, size: CGSize(width: 100, height: 100), textColor: AppColors.TwitterIcon, backgroundColor: UIColor.clear)
-
+            let cellImage = UIImage(named: "game-time")?.sd_tintedImage(with: AppColors.TwitterIcon)
             cell!.imageView?.image = cellImage
 
             cell!.detailTextLabel?.text = "Enable notifications"
@@ -145,15 +143,15 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             switch ((indexPath as NSIndexPath).row) {
             case 0:
                 cell!.textLabel?.text = "Yeltzland on Amazon Echo"
-                let cellImage = UIImage(icon: FAType.FAAmazon, size: CGSize(width: 100, height: 100), textColor: AppColors.Archive, backgroundColor: UIColor.clear)
+                let cellImage = UIImage(named: "amazon")?.sd_tintedImage(with: AppColors.Archive)
                 cell!.imageView?.image = cellImage
             case 1:
                 cell!.textLabel?.text = "Yeltzland on Google Assistant"
-                let cellImage = UIImage(icon: FAType.FAGoogle, size: CGSize(width: 100, height: 100), textColor: AppColors.Fixtures, backgroundColor: UIColor.clear)
+                let cellImage = UIImage(named: "google")?.sd_tintedImage(with: AppColors.Archive)
                 cell!.imageView?.image = cellImage
             case 2:
                     cell!.textLabel?.text = "Add Fixture List to Calendar"
-                    let cellImage = UIImage(icon: FAType.FACalendar, size: CGSize(width: 100, height: 100), textColor: AppColors.Fixtures, backgroundColor: UIColor.clear)
+                    let cellImage = UIImage(named: "fixtures")?.sd_tintedImage(with: AppColors.Fixtures)
                     cell!.imageView?.image = cellImage
             default:
                 break
