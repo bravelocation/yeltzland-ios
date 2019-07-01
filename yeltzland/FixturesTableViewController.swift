@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Font_Awesome_Swift
 import Intents
 
 private func < <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
@@ -111,12 +110,10 @@ class FixturesTableViewController: UITableViewController {
         
         // Setup refresh button
         self.reloadButton = UIBarButtonItem(
-            title: "Reload",
-            style: .plain,
+            barButtonSystemItem: .refresh,
             target: self,
             action: #selector(FixturesTableViewController.reloadButtonTouchUp)
         )
-        self.reloadButton.FAIcon = FAType.FARotateRight
         self.reloadButton.tintColor = AppColors.NavBarTintColor
         self.navigationController?.navigationBar.tintColor = AppColors.NavBarTintColor
         self.navigationItem.rightBarButtonItems = [self.reloadButton]

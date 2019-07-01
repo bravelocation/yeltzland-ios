@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 import TwitterKit
 import SafariServices
-import Font_Awesome_Swift
 
 class TwitterUserTimelineViewController: TWTRTimelineViewController, TWTRTweetViewDelegate, SFSafariViewControllerDelegate {
     
@@ -29,14 +28,13 @@ class TwitterUserTimelineViewController: TWTRTimelineViewController, TWTRTweetVi
         
         // Setup navigation
         self.navigationItem.title = "@\(self.userScreenName!)"
-        
+
         self.reloadButton = UIBarButtonItem(
-            title: "Reload",
-            style: .plain,
+            barButtonSystemItem: .refresh,
             target: self,
             action: #selector(TwitterUserTimelineViewController.reloadData)
         )
-        self.reloadButton.FAIcon = FAType.FARotateRight
+        
         self.reloadButton.tintColor = AppColors.NavBarTintColor
         
         self.navigationItem.rightBarButtonItems = [self.reloadButton]
