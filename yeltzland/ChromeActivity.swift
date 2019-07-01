@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Font_Awesome_Swift
 
 class ChromeActivity: UIActivity {
     
@@ -23,7 +22,7 @@ class ChromeActivity: UIActivity {
     }
     
     override var activityImage: UIImage {
-        return UIImage(icon: FAType.FAChrome, size: CGSize(width: 66, height: 66), textColor: UIColor.blue, backgroundColor: UIColor.clear)
+        return UIImage(named: "chrome")!
     }
     
     override var activityTitle: String {
