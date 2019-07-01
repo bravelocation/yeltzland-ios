@@ -8,7 +8,6 @@
 
 import UIKit
 import WebKit
-import Font_Awesome_Swift
 
 class WebPageViewController: UIViewController, WKNavigationDelegate {
     
@@ -89,7 +88,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
             target: self,
             action: #selector(WebPageViewController.loadHomePage)
         )
-        self.homeButton.FAIcon = FAType.FAHome
+        self.homeButton.image = UIImage(named: "home")
         
         self.backButton = UIBarButtonItem(
             title: "Back",
@@ -97,7 +96,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
             target: self,
             action: #selector(WebPageViewController.backButtonTouchUp)
         )
-        self.backButton.FAIcon = FAType.FAAngleLeft
+        self.backButton.image = UIImage(named: "chevron-left")
         
         self.forwardButton = UIBarButtonItem(
             title: "Forward",
@@ -105,7 +104,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
             target: self,
             action: #selector(WebPageViewController.forwardButtonTouchUp)
         )
-        self.forwardButton.FAIcon = FAType.FAAngleRight
+        self.forwardButton.image = UIImage(named: "chevron-right")
         
         self.shareButton = UIBarButtonItem(
             barButtonSystemItem: .action,
