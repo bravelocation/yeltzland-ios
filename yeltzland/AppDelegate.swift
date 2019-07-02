@@ -34,7 +34,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         TWTRTwitter.sharedInstance().start(withConsumerKey: twitterConsumerKey, consumerSecret: twitterConsumerSecret)
 
         // Setup notifications
+        UNUserNotificationCenter.current().delegate = self
         FirebaseApp.configure()
+        self.firebaseNotifications.setupMessagingDelegate()
         self.firebaseNotifications.setupNotifications(false)
         
         // Update the fixture and game score caches
@@ -148,31 +150,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tokenError = error as NSError
         print(tokenError.description)
     }
+}
 
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
-        self.messageReceived(application, userInfo: userInfo)
-    }
-    
-    func application(_ application: UIApplication,
-                     didReceiveRemoteNotification userInfo: [AnyHashable: Any],
-                     fetchCompletionHandler handler: @escaping (UIBackgroundFetchResult) -> Void) {
-        self.messageReceived(application, userInfo: userInfo)
-        handler(UIBackgroundFetchResult.noData)
-    }
-    
-    func messageReceived(_ application: UIApplication,
-                         userInfo: [AnyHashable: Any]) {
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+        let userInfo = response.notification.request.content.userInfo
+
         // Print message
         print("Notification received: \(userInfo)")
         
-        Messaging.messaging().appDidReceiveMessage(userInfo)
+        Messaging.messaging().appDidReceiveMessage(response.notification.request.content.userInfo)
         
         // Go and update the game score and fixtures
         GameScoreManager.instance.getLatestGameScore()
         FixtureManager.instance.getLatestFixtures()
-        
+
         // If app in foreground, show a toast
-        if (application.applicationState == .active) {
+        if (UIApplication.shared.applicationState == .active) {
             if let aps = userInfo["aps"] as? NSDictionary {
                 if let alert = aps["alert"] as? NSDictionary {
                     if let body = alert["body"] as? NSString {
@@ -187,5 +182,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
         }
+        
+        completionHandler()
     }
 }
