@@ -15,7 +15,7 @@ import Intents
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    let firebaseNotifications = FirebaseNotifications()
+    var firebaseNotifications: FirebaseNotifications?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -36,8 +36,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Setup notifications
         UNUserNotificationCenter.current().delegate = self
         FirebaseApp.configure()
-        self.firebaseNotifications.setupMessagingDelegate()
-        self.firebaseNotifications.setupNotifications(false)
+        
+        // Must be done after FirebaseApp.configure() according to https://github.com/firebase/firebase-ios-sdk/issues/2240
+        self.firebaseNotifications = FirebaseNotifications()
+        self.firebaseNotifications?.setupNotifications(false)
         
         // Update the fixture and game score caches
         FixtureManager.instance.getLatestFixtures()
@@ -141,7 +143,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
  
     func application(_ application: UIApplication,
                      didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        self.firebaseNotifications.register(deviceToken)
+        self.firebaseNotifications?.register(deviceToken)
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {

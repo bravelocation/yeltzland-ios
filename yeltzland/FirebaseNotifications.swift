@@ -36,10 +36,7 @@ public class FirebaseNotifications: NSObject, MessagingDelegate {
         #if DEBUG
             self.topicName = "testtag"
         #endif
-    }
-    
-    // Must be done after FirebaseApp.configure() according to https://github.com/firebase/firebase-ios-sdk/issues/2240
-    func setupMessagingDelegate() {
+
         Messaging.messaging().delegate = self
     }
     
