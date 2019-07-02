@@ -18,14 +18,18 @@ public class FirebaseNotifications: NSObject, MessagingDelegate {
             return GameSettings.instance.gameTimeTweetsEnabled
         }
         set(newValue) {
-            // If changed, set the value and re-register
-            let currentValue = self.enabled
-            
-            if (newValue != currentValue) {
+            // If changed, set the value
+            if (newValue != self.enabled) {
                 GameSettings.instance.gameTimeTweetsEnabled = newValue
-                
+            }
+            
+            // If setting to true, setup notifications
+            if newValue {
                 self.setupNotifications(true)
             }
+            
+            // Setup subscriptions
+            self.subscribe(newValue)
         }
     }
     
@@ -57,13 +61,9 @@ public class FirebaseNotifications: NSObject, MessagingDelegate {
         Messaging.messaging().apnsToken = deviceToken
     }
     
-    // MARK: - MessagingDelegate    
-    public func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
-        print("Firebase registration token: \(fcmToken)")
-        
+    func subscribe(_ subscribe: Bool) {
         if let fullTopic = self.topicName {
-
-            if self.enabled {
+            if subscribe {
                 Messaging.messaging().subscribe(toTopic: fullTopic)
                 print("Registered with Firebase: \(fullTopic)")
             } else {
@@ -71,5 +71,12 @@ public class FirebaseNotifications: NSObject, MessagingDelegate {
                 print("Unregistered with firebase \(fullTopic)")
             }
         }
+    }
+    
+    // MARK: - MessagingDelegate    
+    public func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        print("Firebase registration token: \(fcmToken)")
+        
+        self.subscribe(self.enabled)
     }
 }
