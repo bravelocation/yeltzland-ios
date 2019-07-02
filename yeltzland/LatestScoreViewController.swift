@@ -60,7 +60,7 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
         // Setup navigation
         self.navigationItem.title = "Latest Score"
         
-        self.view.backgroundColor = AppColors.OtherBackground
+        self.view.backgroundColor = UIColor.white
         
         // Setup refresh button
         self.reloadButton = UIBarButtonItem(
@@ -69,8 +69,8 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
             action: #selector(LatestScoreViewController.reloadButtonTouchUp)
         )
         
-        self.reloadButton.tintColor = AppColors.NavBarTintColor
-        self.navigationController?.navigationBar.tintColor = AppColors.NavBarTintColor
+        self.reloadButton.tintColor = UIColor.white
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationItem.rightBarButtonItems = [self.reloadButton]
         
         self.updateUI()
@@ -108,7 +108,7 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
         }
         
         var homeOrAway = "vs"
-        var resultColor = AppColors.FixtureNone
+        var resultColor = UIColor.black
         var score = "TBD"
         
         if let fixture = latestFixture {
@@ -123,11 +123,11 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
                 score = String(format: "%d-%d%@", teamScore!, opponentScore!, fixture.inProgress ? "*" : "")
                 
                 if (teamScore! > opponentScore!) {
-                    resultColor = AppColors.FixtureWin
+                    resultColor = UIColor(named: "fixture-win")!
                 } else if (teamScore! < opponentScore!) {
-                    resultColor = AppColors.FixtureLose
+                    resultColor = UIColor(named: "fixture-lose")!
                 } else {
-                    resultColor = AppColors.FixtureDraw
+                    resultColor = UIColor(named: "fixture-draw")!
                 }
             }
  

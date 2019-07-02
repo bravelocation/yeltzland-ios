@@ -19,8 +19,8 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         // Setup navigation
         self.navigationItem.title = "More"
         
-        self.view.backgroundColor = AppColors.OtherBackground
-        self.tableView.separatorColor = AppColors.OtherSeparator
+        self.view.backgroundColor = UIColor.white
+        self.tableView.separatorColor = UIColor.white
         
         self.tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "Cell")
         self.tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "SettingsCell")
@@ -74,19 +74,19 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             switch ((indexPath as NSIndexPath).row) {
             case 0:
                 cell!.textLabel?.text = "Fixture List"
-                let cellImage = UIImage(named: "fixtures")?.sd_tintedImage(with: AppColors.Fixtures)
+                let cellImage = UIImage(named: "fixtures")?.sd_tintedImage(with: UIColor(named: "yeltz-blue")!)
                 cell!.imageView?.image = cellImage
             case 1:
                 cell!.textLabel?.text = "Latest Score"
-                let cellImage = UIImage(named: "latest-score")?.sd_tintedImage(with: AppColors.Fixtures)
+                let cellImage = UIImage(named: "latest-score")?.sd_tintedImage(with: UIColor(named: "yeltz-blue")!)
                 cell!.imageView?.image = cellImage
             case 2:
                 cell!.textLabel?.text = "Where's the Ground?"
-                let cellImage = UIImage(named: "where-ground")?.sd_tintedImage(with: AppColors.Evostick)
+                let cellImage = UIImage(named: "where-ground")?.sd_tintedImage(with: UIColor.red)
                 cell!.imageView?.image = cellImage
             case 3:
                 cell!.textLabel?.text = "League Table"
-                let cellImage = UIImage(named: "table")?.sd_tintedImage(with: AppColors.Fixtures)
+                let cellImage = UIImage(named: "table")?.sd_tintedImage(with: UIColor(named: "yeltz-blue")!)
                 cell!.imageView?.image = cellImage
             default:
                 break
@@ -95,23 +95,23 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             switch ((indexPath as NSIndexPath).row) {
             case 0:
                 cell!.textLabel?.text = "HTFC on Facebook"
-                let cellImage = UIImage(named: "facebook")?.sd_tintedImage(with: AppColors.Facebook)
+                let cellImage = UIImage(named: "facebook")?.sd_tintedImage(with: UIColor(named: "facebook-color")!)
                 cell!.imageView?.image = cellImage
             case 1:
                 cell!.textLabel?.text = "Southern League site"
-                let cellImage = UIImage(named: "southern-league")?.sd_tintedImage(with: AppColors.Evostick)
+                let cellImage = UIImage(named: "southern-league")?.sd_tintedImage(with: UIColor(named: "evostick")!)
                 cell!.imageView?.image = cellImage
             case 2:
                 cell!.textLabel?.text = "Fantasy Island"
-                let cellImage = UIImage(named: "fantasy-island")?.sd_tintedImage(with: AppColors.Fantasy)
+                let cellImage = UIImage(named: "fantasy-island")?.sd_tintedImage(with: UIColor(named: "yeltz-blue")!)
                 cell!.imageView?.image = cellImage
             case 3:
                 cell!.textLabel?.text = "Stourbridge Town FC"
-                let cellImage = UIImage(named: "stourbridge")?.sd_tintedImage(with: AppColors.Stour)
+                let cellImage = UIImage(named: "stourbridge")?.sd_tintedImage(with: UIColor(named: "stourbridge-color")!)
                 cell!.imageView?.image = cellImage
             case 4:
                 cell!.textLabel?.text = "Club Shop"
-                let cellImage = UIImage(named: "club-shop")?.sd_tintedImage(with: AppColors.ClubShop)
+                let cellImage = UIImage(named: "club-shop")?.sd_tintedImage(with: UIColor(named: "yeltz-blue")!)
                 cell!.imageView?.image = cellImage
             default:
                 break
@@ -120,22 +120,22 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             switch ((indexPath as NSIndexPath).row) {
             case 0:
                 cell!.textLabel?.text = "Follow Your Instinct"
-                let cellImage = UIImage(named: "fyi")?.sd_tintedImage(with: AppColors.Archive)
+                let cellImage = UIImage(named: "fyi")?.sd_tintedImage(with: UIColor(named: "yeltz-blue")!)
                 cell!.imageView?.image = cellImage
             case 1:
                 cell!.textLabel?.text = "Yeltz Archives"
-                let cellImage = UIImage(named: "yeltz-archive")?.sd_tintedImage(with: AppColors.Archive)
+                let cellImage = UIImage(named: "yeltz-archive")?.sd_tintedImage(with: UIColor(named: "yeltz-blue")!)
                 cell!.imageView?.image = cellImage
             case 2:
                 cell!.textLabel?.text = "News Archive (1997-2006)"
-                let cellImage = UIImage(named: "news-archive")?.sd_tintedImage(with: AppColors.Archive)
+                let cellImage = UIImage(named: "news-archive")?.sd_tintedImage(with: UIColor(named: "yeltz-blue")!)
                 cell!.imageView?.image = cellImage
             default:
                 break
             }
         } else if ((indexPath as NSIndexPath).section == 3) {
             cell!.textLabel?.text = "Game time tweets"
-            let cellImage = UIImage(named: "game-time")?.sd_tintedImage(with: AppColors.TwitterIcon)
+            let cellImage = UIImage(named: "game-time")?.sd_tintedImage(with: UIColor(named: "twitter-color")!)
             cell!.imageView?.image = cellImage
 
             cell!.detailTextLabel?.text = "Enable notifications"
@@ -143,15 +143,15 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             switch ((indexPath as NSIndexPath).row) {
             case 0:
                 cell!.textLabel?.text = "Yeltzland on Amazon Echo"
-                let cellImage = UIImage(named: "amazon")?.sd_tintedImage(with: AppColors.Archive)
+                let cellImage = UIImage(named: "amazon")?.sd_tintedImage(with: UIColor(named: "yeltz-blue")!)
                 cell!.imageView?.image = cellImage
             case 1:
                 cell!.textLabel?.text = "Yeltzland on Google Assistant"
-                let cellImage = UIImage(named: "google")?.sd_tintedImage(with: AppColors.Archive)
+                let cellImage = UIImage(named: "google")?.sd_tintedImage(with: UIColor(named: "yeltz-blue")!)
                 cell!.imageView?.image = cellImage
             case 2:
                     cell!.textLabel?.text = "Add Fixture List to Calendar"
-                    let cellImage = UIImage(named: "fixtures")?.sd_tintedImage(with: AppColors.Fixtures)
+                    let cellImage = UIImage(named: "fixtures")?.sd_tintedImage(with: UIColor(named: "yeltz-blue")!)
                     cell!.imageView?.image = cellImage
             default:
                 break
@@ -176,12 +176,12 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         }
 
         // Set fonts
-        cell!.textLabel?.font = UIFont(name: AppColors.AppFontName, size: AppColors.OtherTextSize)!
+        cell!.textLabel?.font = UIFont(name: AppFonts.AppFontName, size: AppFonts.OtherTextSize)!
         cell!.textLabel?.adjustsFontSizeToFitWidth = true
-        cell!.detailTextLabel?.font = UIFont(name: AppColors.AppFontName, size: AppColors.OtherDetailTextSize)!
+        cell!.detailTextLabel?.font = UIFont(name: AppFonts.AppFontName, size: AppFonts.OtherDetailTextSize)!
         
-        cell!.textLabel?.textColor = AppColors.OtherTextColor
-        cell!.detailTextLabel?.textColor = AppColors.OtherDetailColor
+        cell!.textLabel?.textColor = UIColor.black
+        cell!.detailTextLabel?.textColor = UIColor.gray
         
         return cell!
     }
@@ -263,7 +263,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             svc.delegate = self
             
             if #available(iOS 10.0, *) {
-                svc.preferredControlTintColor = AppColors.SafariControl
+                svc.preferredControlTintColor = UIColor(named: "yeltz-blue")
             }
             
             self.present(svc, animated: true, completion: nil)
@@ -291,9 +291,9 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
-        header.contentView.backgroundColor = AppColors.OtherSectionBackground
-        header.textLabel!.textColor = AppColors.OtherSectionText
-        header.textLabel!.font = UIFont(name: AppColors.AppFontName, size: AppColors.OtherSectionTextSize)!
+        header.contentView.backgroundColor = UIColor(named: "light-blue")
+        header.textLabel!.textColor = UIColor(named: "yeltz-blue")
+        header.textLabel!.font = UIFont(name: AppFonts.AppFontName, size: AppFonts.OtherSectionTextSize)!
     }
     
     public func openFixtures() {

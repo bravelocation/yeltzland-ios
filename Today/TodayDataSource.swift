@@ -152,15 +152,15 @@ class TodayDataSource: NSObject, UITableViewDataSource {
         let teamScore = fixture.teamScore
         let opponentScore  = fixture.opponentScore
         
-        var resultColor = AppColors.TodayText
+        var resultColor = UIColor.black
         
         if (teamScore != nil && opponentScore != nil) {
             if (teamScore! > opponentScore!) {
-                resultColor = AppColors.FixtureWin
+                resultColor = UIColor(named: "fixture-win")!
             } else if (teamScore! < opponentScore!) {
-                resultColor = AppColors.FixtureLose
+                resultColor = UIColor(named: "fixture-lose")!
             } else {
-                resultColor = AppColors.FixtureDraw
+                resultColor = UIColor(named: "fixture-draw")!
             }
         }
         
@@ -175,7 +175,7 @@ class TodayDataSource: NSObject, UITableViewDataSource {
         // Figure out data to show
         var opponent: String = ""
         var gameDetails = ""
-        var resultColor = AppColors.TodayText
+        var resultColor = UIColor.black
         
         if let dataItems = self.dataItemsForSection(section: indexPath.section) {
             if (dataItems.count >= indexPath.row) {
@@ -192,12 +192,12 @@ class TodayDataSource: NSObject, UITableViewDataSource {
         // Set colors
         cell.selectionStyle = .none
         cell.accessoryType = .none
-        cell.backgroundColor = AppColors.TodayBackground
+        cell.backgroundColor = UIColor.clear
         cell.separatorInset = UIEdgeInsets.init(top: 0.0, left: 20.0, bottom: 0.0, right: 0.0)
         
-        cell.textLabel?.font = UIFont(name: AppColors.AppFontName, size: AppColors.TodayTextSize)!
+        cell.textLabel?.font = UIFont(name: AppFonts.AppFontName, size: AppFonts.TodayTextSize)!
         cell.textLabel?.adjustsFontSizeToFitWidth = true
-        cell.detailTextLabel?.font = UIFont(name: AppColors.AppFontName, size: AppColors.TodayFootnoteSize)!
+        cell.detailTextLabel?.font = UIFont(name: AppFonts.AppFontName, size: AppFonts.TodayFootnoteSize)!
         cell.detailTextLabel?.adjustsFontSizeToFitWidth = true
         
         cell.textLabel?.textColor = resultColor

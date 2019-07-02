@@ -30,8 +30,8 @@ class LocationsViewController: UIViewController, MKMapViewDelegate, CLLocationMa
             action: #selector(LocationsViewController.mapToggleButtonTouchUp)
         )
         self.mapToggleButton.image = UIImage(named: "map")
-        self.mapToggleButton.tintColor = AppColors.NavBarTintColor
-        self.navigationController?.navigationBar.tintColor = AppColors.NavBarTintColor
+        self.mapToggleButton.tintColor = UIColor.white
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationItem.rightBarButtonItems = [self.mapToggleButton]
         
         self.navigationItem.title = "Where's The Ground?"
@@ -84,7 +84,7 @@ class LocationsViewController: UIViewController, MKMapViewDelegate, CLLocationMa
                 dequeuedView.annotation = annotation
                 view = dequeuedView
             } else {
-                let ballImage = UIImage(named: "map-marker")!.sd_tintedImage(with: AppColors.Evostick)
+                let ballImage = UIImage(named: "map-marker")!.sd_tintedImage(with: UIColor.red)
                 
                 view = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 view.canShowCallout = true

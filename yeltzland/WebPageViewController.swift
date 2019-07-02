@@ -66,12 +66,12 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         
         self.progressBar.frame = CGRect(x: 0, y: topPosition, width: view.frame.width, height: progressBarHeight)
         self.progressBar.alpha = 0
-        self.progressBar.tintColor = AppColors.ProgressBar
+        self.progressBar.tintColor = UIColor(named: "yeltz-blue")
         self.progressBar.autoresizingMask = .flexibleWidth
         
         self.view.addSubview(self.progressBar)
         self.view.addSubview(self.webView)
-        self.view.backgroundColor = AppColors.WebBackground
+        self.view.backgroundColor = UIColor.white
         
         // Setup navigation
         self.navigationItem.title = self.pageTitle
@@ -121,11 +121,11 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         self.navigationItem.rightBarButtonItems = [self.shareButton, self.reloadButton, spacer]
         
         // Setup colors
-        self.backButton.tintColor = AppColors.NavBarTintColor
-        self.forwardButton.tintColor = AppColors.NavBarTintColor
-        self.reloadButton.tintColor = AppColors.NavBarTintColor
-        self.homeButton.tintColor = AppColors.NavBarTintColor
-        self.shareButton.tintColor = AppColors.NavBarTintColor
+        self.backButton.tintColor = UIColor.white
+        self.forwardButton.tintColor = UIColor.white
+        self.reloadButton.tintColor = UIColor.white
+        self.homeButton.tintColor = UIColor.white
+        self.shareButton.tintColor = UIColor.white
         
         // Swipe gestures automatically supported
         self.webView.allowsBackForwardNavigationGestures = true
@@ -227,7 +227,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         
         let overlayPosition = CGRect(x: 0, y: self.view.bounds.origin.y, width: self.view.bounds.size.width, height: self.view.bounds.size.height)
         self.spinner = UIActivityIndicatorView(frame: overlayPosition)
-        self.spinner.color = AppColors.SpinnerColor
+        self.spinner.color = UIColor(named: "yeltz-blue")
         self.view.addSubview(self.spinner)
         self.spinner.startAnimating()
     }

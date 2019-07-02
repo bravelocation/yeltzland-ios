@@ -10,7 +10,7 @@
 		481F530A2194ABBB0E4F3078 /* Pods_yeltzland.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BE281ED4B32969698046889 /* Pods_yeltzland.framework */; };
 		520C09A02157A73100CCC2D8 /* DefaultPreferences.plist in Resources */ = {isa = PBXBuildFile; fileRef = 528D74591CF2F4A400263685 /* DefaultPreferences.plist */; };
 		520C09A22157C46100CCC2D8 /* ShortcutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C09A12157C46100CCC2D8 /* ShortcutManager.swift */; };
-		5211F7271CDA35CF0031496D /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211F7261CDA35CF0031496D /* AppColors.swift */; };
+		5211F7271CDA35CF0031496D /* AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211F7261CDA35CF0031496D /* AppFonts.swift */; };
 		5211F72A1CDA53D70031496D /* TwitterUserTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211F7291CDA53D70031496D /* TwitterUserTimelineViewController.swift */; };
 		5211F72D1CDB1EE50031496D /* OtherLinksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211F72C1CDB1EE50031496D /* OtherLinksTableViewController.swift */; };
 		52176BAC1D4A14C700B7EFAE /* DefaultPreferences.plist in Resources */ = {isa = PBXBuildFile; fileRef = 528D74591CF2F4A400263685 /* DefaultPreferences.plist */; };
@@ -30,7 +30,14 @@
 		52176BE01D4B6D7300B7EFAE /* BaseSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52176BB21D4B62DC00B7EFAE /* BaseSettings.swift */; };
 		52176BE41D4B6EF000B7EFAE /* WatchGameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52176BE31D4B6EF000B7EFAE /* WatchGameSettings.swift */; };
 		52176BE51D4B73BA00B7EFAE /* DefaultPreferences.plist in Resources */ = {isa = PBXBuildFile; fileRef = 528D74591CF2F4A400263685 /* DefaultPreferences.plist */; };
-		52176BE71D4B7C4B00B7EFAE /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211F7261CDA35CF0031496D /* AppColors.swift */; };
+		52176BE71D4B7C4B00B7EFAE /* AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211F7261CDA35CF0031496D /* AppFonts.swift */; };
+		521B94A722CBB621009DFF76 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 521B94A622CBB621009DFF76 /* Colors.xcassets */; };
+		521B94A822CBB621009DFF76 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 521B94A622CBB621009DFF76 /* Colors.xcassets */; };
+		521B94A922CBB621009DFF76 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 521B94A622CBB621009DFF76 /* Colors.xcassets */; };
+		521B94AA22CBB621009DFF76 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 521B94A622CBB621009DFF76 /* Colors.xcassets */; };
+		521B94AB22CBB621009DFF76 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 521B94A622CBB621009DFF76 /* Colors.xcassets */; };
+		521B94AC22CBB621009DFF76 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 521B94A622CBB621009DFF76 /* Colors.xcassets */; };
+		521B94AD22CBB621009DFF76 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 521B94A622CBB621009DFF76 /* Colors.xcassets */; };
 		52236AE61D17DFF8004903AB /* Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236AE51D17DFF8004903AB /* Fixture.swift */; };
 		52236AE81D17E4D3004903AB /* FixtureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236AE71D17E4D3004903AB /* FixtureManager.swift */; };
 		52236AEB1D17ECB4004903AB /* matches.json in Resources */ = {isa = PBXBuildFile; fileRef = 52236AEA1D17ECB4004903AB /* matches.json */; };
@@ -62,7 +69,7 @@
 		526F54631D214982001EA8D8 /* Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236AE51D17DFF8004903AB /* Fixture.swift */; };
 		526F54641D214982001EA8D8 /* FixtureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236AE71D17E4D3004903AB /* FixtureManager.swift */; };
 		526F54651D214C3B001EA8D8 /* matches.json in Resources */ = {isa = PBXBuildFile; fileRef = 52236AEA1D17ECB4004903AB /* matches.json */; };
-		526F54661D215A29001EA8D8 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211F7261CDA35CF0031496D /* AppColors.swift */; };
+		526F54661D215A29001EA8D8 /* AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211F7261CDA35CF0031496D /* AppFonts.swift */; };
 		527DAF1B1D2BA9BA0092BB8F /* SafariActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527DAF1A1D2BA9BA0092BB8F /* SafariActivity.swift */; };
 		527DAF1D1D2D08030092BB8F /* locations.json in Resources */ = {isa = PBXBuildFile; fileRef = 527DAF1C1D2D08030092BB8F /* locations.json */; };
 		527DAF1F1D2D082C0092BB8F /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527DAF1E1D2D082C0092BB8F /* Location.swift */; };
@@ -79,7 +86,7 @@
 		5297C9E72156538B00AB5D0F /* gamescore.json in Resources */ = {isa = PBXBuildFile; fileRef = 52176BAD1D4A1AF600B7EFAE /* gamescore.json */; };
 		5297C9E82156544C00AB5D0F /* TeamImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A347720CFB98D00E8475C /* TeamImageManager.swift */; };
 		5297C9E921565A7600AB5D0F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52E3DF7D1CD9FA78009F18BD /* Assets.xcassets */; };
-		5297C9EA21565AFD00AB5D0F /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211F7261CDA35CF0031496D /* AppColors.swift */; };
+		5297C9EA21565AFD00AB5D0F /* AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211F7261CDA35CF0031496D /* AppFonts.swift */; };
 		529E80FE1EDABC91002DC858 /* TodayDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529E80FD1EDABC91002DC858 /* TodayDataSource.swift */; };
 		529E81001EDAC05C002DC858 /* TodayDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529E80FF1EDAC05C002DC858 /* TodayDataItem.swift */; };
 		52A4596E1D89666E00822D8C /* gallery.ckcomplication in Resources */ = {isa = PBXBuildFile; fileRef = 52A4596D1D89666E00822D8C /* gallery.ckcomplication */; };
@@ -107,7 +114,7 @@
 		52E711A81D9E52080002446A /* FixtureTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E711A71D9E52080002446A /* FixtureTableRow.swift */; };
 		52E711AB1D9FB5B70002446A /* MakeToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E711AA1D9FB5B70002446A /* MakeToast.swift */; };
 		52E77DE51FDEBB6C0069FCFB /* TVFixtureData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E77DE41FDEBB6C0069FCFB /* TVFixtureData.swift */; };
-		52E77DE61FDEBB950069FCFB /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211F7261CDA35CF0031496D /* AppColors.swift */; };
+		52E77DE61FDEBB950069FCFB /* AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211F7261CDA35CF0031496D /* AppFonts.swift */; };
 		52E77DE81FDEBBB60069FCFB /* TVFixturesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E77DE71FDEBBB60069FCFB /* TVFixturesDataSource.swift */; };
 		52E77DEB1FDEC0740069FCFB /* matches.json in Resources */ = {isa = PBXBuildFile; fileRef = 52236AEA1D17ECB4004903AB /* matches.json */; };
 		52E77DEC1FDEC0770069FCFB /* gamescore.json in Resources */ = {isa = PBXBuildFile; fileRef = 52176BAD1D4A1AF600B7EFAE /* gamescore.json */; };
@@ -227,7 +234,7 @@
 		2C4284847AD21978846F1AA7 /* Pods-LatestScoreIntentUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LatestScoreIntentUI.release.xcconfig"; path = "Pods/Target Support Files/Pods-LatestScoreIntentUI/Pods-LatestScoreIntentUI.release.xcconfig"; sourceTree = "<group>"; };
 		31D85CE3D6629F7148E43670 /* Pods-yeltzlandTVOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yeltzlandTVOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-yeltzlandTVOS/Pods-yeltzlandTVOS.release.xcconfig"; sourceTree = "<group>"; };
 		520C09A12157C46100CCC2D8 /* ShortcutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutManager.swift; sourceTree = "<group>"; };
-		5211F7261CDA35CF0031496D /* AppColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
+		5211F7261CDA35CF0031496D /* AppFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppFonts.swift; sourceTree = "<group>"; };
 		5211F7291CDA53D70031496D /* TwitterUserTimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterUserTimelineViewController.swift; sourceTree = "<group>"; };
 		5211F72C1CDB1EE50031496D /* OtherLinksTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherLinksTableViewController.swift; sourceTree = "<group>"; };
 		52176BAA1D4A0D9A00B7EFAE /* yeltzland.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = yeltzland.entitlements; sourceTree = "<group>"; };
@@ -249,6 +256,7 @@
 		52176BE11D4B6E1200B7EFAE /* watchkitapp Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "watchkitapp Extension.entitlements"; sourceTree = "<group>"; };
 		52176BE21D4B6E2500B7EFAE /* watchkitapp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = watchkitapp.entitlements; sourceTree = "<group>"; };
 		52176BE31D4B6EF000B7EFAE /* WatchGameSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchGameSettings.swift; sourceTree = "<group>"; };
+		521B94A622CBB621009DFF76 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		52236AE51D17DFF8004903AB /* Fixture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fixture.swift; sourceTree = "<group>"; };
 		52236AE71D17E4D3004903AB /* FixtureManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixtureManager.swift; sourceTree = "<group>"; };
 		52236AEA1D17ECB4004903AB /* matches.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = matches.json; sourceTree = "<group>"; };
@@ -546,6 +554,7 @@
 			isa = PBXGroup;
 			children = (
 				52E3DF7D1CD9FA78009F18BD /* Assets.xcassets */,
+				521B94A622CBB621009DFF76 /* Colors.xcassets */,
 				528D74591CF2F4A400263685 /* DefaultPreferences.plist */,
 				52DC9EB61FC9C30E00AE02F6 /* GoogleService-Info.plist */,
 				52E3DF7F1CD9FA78009F18BD /* LaunchScreen.storyboard */,
@@ -598,7 +607,7 @@
 			children = (
 				52C4DA861D4C83C6009AFD25 /* Assets */,
 				52C4DA851D4C838A009AFD25 /* ViewControllers */,
-				5211F7261CDA35CF0031496D /* AppColors.swift */,
+				5211F7261CDA35CF0031496D /* AppFonts.swift */,
 				52E3DF761CD9FA78009F18BD /* AppDelegate.swift */,
 				52176BB21D4B62DC00B7EFAE /* BaseSettings.swift */,
 				523C841F1CE70806006F1865 /* ChromeActivity.swift */,
@@ -950,6 +959,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52C4DA881D4CA68A009AFD25 /* american_typewriter_regular.ttf in Resources */,
+				521B94A922CBB621009DFF76 /* Colors.xcassets in Resources */,
 				52176BBD1D4B6D5900B7EFAE /* Assets.xcassets in Resources */,
 				52176BBB1D4B6D5900B7EFAE /* Interface.storyboard in Resources */,
 			);
@@ -962,6 +972,7 @@
 				52C4DA891D4CA68A009AFD25 /* american_typewriter_regular.ttf in Resources */,
 				52E711A51D9CFDD50002446A /* matches.json in Resources */,
 				52176BD31D4B6D5900B7EFAE /* Assets.xcassets in Resources */,
+				521B94AA22CBB621009DFF76 /* Colors.xcassets in Resources */,
 				52176BE51D4B73BA00B7EFAE /* DefaultPreferences.plist in Resources */,
 				52E711A61D9CFDD90002446A /* gamescore.json in Resources */,
 			);
@@ -976,6 +987,7 @@
 				520C09A02157A73100CCC2D8 /* DefaultPreferences.plist in Resources */,
 				5257197B1FDE8AE2005F1D80 /* Assets.xcassets in Resources */,
 				52D8682D1FE92A440041B578 /* TVTwitterCollectionCell.xib in Resources */,
+				521B94AB22CBB621009DFF76 /* Colors.xcassets in Resources */,
 				52E77DEB1FDEC0740069FCFB /* matches.json in Resources */,
 				525719791FDE8AE2005F1D80 /* Main.storyboard in Resources */,
 			);
@@ -992,6 +1004,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				521B94A822CBB621009DFF76 /* Colors.xcassets in Resources */,
 				5284902D1D512EDC00486B1A /* gamescore.json in Resources */,
 				52176BAC1D4A14C700B7EFAE /* DefaultPreferences.plist in Resources */,
 				526F54651D214C3B001EA8D8 /* matches.json in Resources */,
@@ -1016,6 +1029,7 @@
 				52A4596E1D89666E00822D8C /* gallery.ckcomplication in Resources */,
 				52E3DF7E1CD9FA78009F18BD /* Assets.xcassets in Resources */,
 				5231F501215B6C92003FAC68 /* Settings.plist in Resources */,
+				521B94A722CBB621009DFF76 /* Colors.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1024,6 +1038,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52EACDBC215646B1008B8DE5 /* DefaultPreferences.plist in Resources */,
+				521B94AC22CBB621009DFF76 /* Colors.xcassets in Resources */,
 				5297C9E42156538800AB5D0F /* matches.json in Resources */,
 				5297C9E62156538B00AB5D0F /* gamescore.json in Resources */,
 			);
@@ -1036,6 +1051,7 @@
 				5297C9E72156538B00AB5D0F /* gamescore.json in Resources */,
 				52EACDA8215643FC008B8DE5 /* MainInterface.storyboard in Resources */,
 				5297C9E52156538800AB5D0F /* matches.json in Resources */,
+				521B94AD22CBB621009DFF76 /* Colors.xcassets in Resources */,
 				52EACDBD215646B1008B8DE5 /* DefaultPreferences.plist in Resources */,
 				5297C9E921565A7600AB5D0F /* Assets.xcassets in Resources */,
 			);
@@ -1321,7 +1337,7 @@
 				52176BCD1D4B6D5900B7EFAE /* ExtensionDelegate.swift in Sources */,
 				52E711A41D9CF5F40002446A /* Fixture.swift in Sources */,
 				524A01181EEC3A7D00862509 /* NextGameController.swift in Sources */,
-				52176BE71D4B7C4B00B7EFAE /* AppColors.swift in Sources */,
+				52176BE71D4B7C4B00B7EFAE /* AppFonts.swift in Sources */,
 				52176BE01D4B6D7300B7EFAE /* BaseSettings.swift in Sources */,
 				522EA44220EA236A00B90146 /* TeamImageManager.swift in Sources */,
 				52176BCB1D4B6D5900B7EFAE /* InterfaceController.swift in Sources */,
@@ -1342,7 +1358,7 @@
 				52F5CA9F20ED1F45000143A1 /* TeamImageManager.swift in Sources */,
 				525719761FDE8AE2005F1D80 /* ViewController.swift in Sources */,
 				525719741FDE8AE2005F1D80 /* AppDelegate.swift in Sources */,
-				52E77DE61FDEBB950069FCFB /* AppColors.swift in Sources */,
+				52E77DE61FDEBB950069FCFB /* AppFonts.swift in Sources */,
 				52E77DE51FDEBB6C0069FCFB /* TVFixtureData.swift in Sources */,
 				525719811FDE8BBF005F1D80 /* Fixture.swift in Sources */,
 			);
@@ -1362,7 +1378,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52176BB11D4A200400B7EFAE /* GameScoreManager.swift in Sources */,
-				526F54661D215A29001EA8D8 /* AppColors.swift in Sources */,
+				526F54661D215A29001EA8D8 /* AppFonts.swift in Sources */,
 				526F54631D214982001EA8D8 /* Fixture.swift in Sources */,
 				52DBCAA11D4A012E00D35F91 /* GameSettings.swift in Sources */,
 				529E81001EDAC05C002DC858 /* TodayDataItem.swift in Sources */,
@@ -1390,7 +1406,7 @@
 				52236AE61D17DFF8004903AB /* Fixture.swift in Sources */,
 				527DAF1F1D2D082C0092BB8F /* Location.swift in Sources */,
 				527DAF251D2D308F0092BB8F /* LocationAnnotation.swift in Sources */,
-				5211F7271CDA35CF0031496D /* AppColors.swift in Sources */,
+				5211F7271CDA35CF0031496D /* AppFonts.swift in Sources */,
 				5231F4FF215B6C56003FAC68 /* SettingsManager.swift in Sources */,
 				52DC9EAF1FC95C9E00AE02F6 /* FirebaseNotifications.swift in Sources */,
 				52236AE81D17E4D3004903AB /* FixtureManager.swift in Sources */,
@@ -1425,7 +1441,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5297C9EA21565AFD00AB5D0F /* AppColors.swift in Sources */,
+				5297C9EA21565AFD00AB5D0F /* AppFonts.swift in Sources */,
 				52EACDBF215646C8008B8DE5 /* FixtureManager.swift in Sources */,
 				52EACDC3215646D0008B8DE5 /* GameScoreManager.swift in Sources */,
 				52EACDC5215646D3008B8DE5 /* GameSettings.swift in Sources */,

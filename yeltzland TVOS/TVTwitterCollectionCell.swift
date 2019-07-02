@@ -16,7 +16,7 @@ class TVTwitterCollectionCell: UICollectionViewCell {
         self.tweetLabel.text = tweet
         
         // Setup the colors
-        self.layer.backgroundColor = AppColors.TVTwitterBackground.cgColor
-        self.tweetLabel.textColor = AppColors.TVTwitterText
+        self.layer.backgroundColor = UIColor(named: "dark-blue")?.cgColor
+        self.tweetLabel.textColor = UIColor.white
     }
 }

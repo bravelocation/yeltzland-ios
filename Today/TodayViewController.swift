@@ -36,8 +36,8 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
         self.tableView.dataSource = self.dataSource
         self.tableView.delegate = self
         
-        self.view.backgroundColor = AppColors.TodayBackground
-        self.tableView.backgroundColor = AppColors.TodayBackground
+        self.view.backgroundColor = UIColor.clear
+        self.tableView.backgroundColor = UIColor.clear
     }
     
     func widgetMarginInsets(forProposedMarginInsets defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
@@ -98,20 +98,20 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if let headerView = view as? UITableViewHeaderFooterView {
-            headerView.backgroundView?.backgroundColor = AppColors.TodayBackground
+            headerView.backgroundView?.backgroundColor = UIColor.clear
             
-            headerView.textLabel!.textColor = AppColors.TodayHeaderText
-            headerView.textLabel!.font = UIFont(name: AppColors.AppFontName, size: AppColors.TodayTextSize)!
+            headerView.textLabel!.textColor = UIColor.black
+            headerView.textLabel!.font = UIFont(name: AppFonts.AppFontName, size: AppFonts.TodayTextSize)!
             headerView.textLabel?.text = self.dataSource.headerText(section: section)
         }
     }
     
     override func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
         if let footerView = view as? UITableViewHeaderFooterView {
-            footerView.backgroundView?.backgroundColor = AppColors.TodayBackground
+            footerView.backgroundView?.backgroundColor = UIColor.clear
             
-            footerView.textLabel!.textColor = AppColors.TodayText
-            footerView.textLabel!.font = UIFont(name: AppColors.AppFontName, size: AppColors.TodayFootnoteSize)!
+            footerView.textLabel!.textColor = UIColor.black
+            footerView.textLabel!.font = UIFont(name: AppFonts.AppFontName, size: AppFonts.TodayFootnoteSize)!
             footerView.textLabel?.text = self.dataSource.footerText(section: section)
         }
     }

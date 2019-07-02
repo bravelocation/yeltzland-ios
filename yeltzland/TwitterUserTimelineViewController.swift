@@ -35,12 +35,12 @@ class TwitterUserTimelineViewController: TWTRTimelineViewController, TWTRTweetVi
             action: #selector(TwitterUserTimelineViewController.reloadData)
         )
         
-        self.reloadButton.tintColor = AppColors.NavBarTintColor
+        self.reloadButton.tintColor = UIColor.white
         
         self.navigationItem.rightBarButtonItems = [self.reloadButton]
         
-        self.view.backgroundColor = AppColors.TwitterBackground
-        self.tableView.separatorColor = AppColors.TwitterSeparator
+        self.view.backgroundColor = UIColor.white
+        self.tableView.separatorColor = UIColor.white
     }
     
     override func viewWillAppear(_ animated: Bool) {

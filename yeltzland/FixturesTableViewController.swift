@@ -103,8 +103,8 @@ class FixturesTableViewController: UITableViewController {
         // Setup navigation
         self.navigationItem.title = "Fixtures"
         
-        self.view.backgroundColor = AppColors.OtherBackground
-        self.tableView.separatorColor = AppColors.OtherSeparator
+        self.view.backgroundColor = UIColor.white
+        self.tableView.separatorColor = UIColor.white
         
         self.tableView.register(UINib(nibName: self.cellIdentifier, bundle: nil), forCellReuseIdentifier: self.cellIdentifier)
         
@@ -114,8 +114,8 @@ class FixturesTableViewController: UITableViewController {
             target: self,
             action: #selector(FixturesTableViewController.reloadButtonTouchUp)
         )
-        self.reloadButton.tintColor = AppColors.NavBarTintColor
-        self.navigationController?.navigationBar.tintColor = AppColors.NavBarTintColor
+        self.reloadButton.tintColor = UIColor.white
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationItem.rightBarButtonItems = [self.reloadButton]
         
         if #available(iOS 10.0, *) {
@@ -199,9 +199,9 @@ class FixturesTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
-        header.contentView.backgroundColor = AppColors.OtherSectionBackground
-        header.textLabel!.textColor = AppColors.OtherSectionText
-        header.textLabel!.font = UIFont(name: AppColors.AppFontName, size: AppColors.OtherSectionTextSize)!
+        header.contentView.backgroundColor = UIColor(named: "light-blue")
+        header.textLabel!.textColor = UIColor(named: "yeltz-blue")
+        header.textLabel!.font = UIFont(name: AppFonts.AppFontName, size: AppFonts.OtherSectionTextSize)!
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

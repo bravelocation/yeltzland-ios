@@ -56,14 +56,14 @@ class ViewController: UIViewController, UICollectionViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = AppColors.TVBackground
-        self.titleLabel.textColor = AppColors.TVTitleText
+        self.view.backgroundColor = UIColor.black
+        self.titleLabel.textColor = UIColor(named: "light-blue")
 
         // Setup fixtures
         self.fixturesCollectionView.delegate = self
         self.fixturesCollectionView.dataSource = self.fixturesDataSource
         self.fixturesCollectionView.isScrollEnabled = false
-        self.fixturesCollectionView.backgroundColor = AppColors.TVBackground
+        self.fixturesCollectionView.backgroundColor = UIColor.black
 
         self.fixturesCollectionView.register(UINib(nibName: "TVFixtureCollectionCell", bundle: nil),
                                              forCellWithReuseIdentifier: "TVFixtureCollectionCell")
@@ -72,7 +72,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         self.tweetsCollectionView.delegate = self
         self.tweetsCollectionView.dataSource = self.tweetsDataSource
         self.tweetsCollectionView.isScrollEnabled = false
-        self.tweetsCollectionView.backgroundColor = AppColors.TVBackground
+        self.tweetsCollectionView.backgroundColor = UIColor.black
         
         self.tweetsCollectionView.register(UINib(nibName: "TVTwitterCollectionCell", bundle: nil),
                                            forCellWithReuseIdentifier: "TVTwitterCollectionCell")
@@ -130,7 +130,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         if let indexPath = context.nextFocusedIndexPath,
             let cell = collectionView.cellForItem(at: indexPath) {
             cell.contentView.layer.borderWidth = 4.0
-            cell.contentView.layer.borderColor = AppColors.TVSelectedBorder.cgColor
+            cell.contentView.layer.borderColor = UIColor.white.cgColor
         }
     }
     

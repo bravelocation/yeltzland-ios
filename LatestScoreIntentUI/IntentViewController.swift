@@ -33,17 +33,17 @@ class IntentViewController: UIViewController, INUIHostedViewControlling {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor.clear
-        self.gameStateLabel.textColor = AppColors.SiriIntentText
-        self.homeTeamNameLabel.textColor = AppColors.SiriIntentText
-        self.awayTeamNameLabel.textColor = AppColors.SiriIntentText
-        self.homeTeamScoreLabel.textColor = AppColors.SiriIntentText
-        self.awayTeamScoreLabel.textColor = AppColors.SiriIntentText
+        self.gameStateLabel.textColor = UIColor.black
+        self.homeTeamNameLabel.textColor = UIColor.black
+        self.awayTeamNameLabel.textColor = UIColor.black
+        self.homeTeamScoreLabel.textColor = UIColor.black
+        self.awayTeamScoreLabel.textColor = UIColor.black
         
-        self.gameStateLabel.font = UIFont(name: AppColors.AppFontName, size: AppColors.SiriIntentTextSize)!
-        self.homeTeamNameLabel.font = UIFont(name: AppColors.AppFontName, size: AppColors.SiriIntentTextSize)!
-        self.awayTeamNameLabel.font = UIFont(name: AppColors.AppFontName, size: AppColors.SiriIntentTextSize)!
-        self.homeTeamScoreLabel.font = UIFont(name: AppColors.AppFontName, size: AppColors.SiriIntentTextSize)!
-        self.awayTeamScoreLabel.font = UIFont(name: AppColors.AppFontName, size: AppColors.SiriIntentTextSize)!
+        self.gameStateLabel.font = UIFont(name: AppFonts.AppFontName, size: AppFonts.SiriIntentTextSize)!
+        self.homeTeamNameLabel.font = UIFont(name: AppFonts.AppFontName, size: AppFonts.SiriIntentTextSize)!
+        self.awayTeamNameLabel.font = UIFont(name: AppFonts.AppFontName, size: AppFonts.SiriIntentTextSize)!
+        self.homeTeamScoreLabel.font = UIFont(name: AppFonts.AppFontName, size: AppFonts.SiriIntentTextSize)!
+        self.awayTeamScoreLabel.font = UIFont(name: AppFonts.AppFontName, size: AppFonts.SiriIntentTextSize)!
     }
         
     // MARK: - INUIHostedViewControlling

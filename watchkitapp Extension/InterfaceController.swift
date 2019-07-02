@@ -52,7 +52,7 @@ class InterfaceController: WKInterfaceController {
                 let fixture = fixturesForMonth![i]
                 let row: FixtureRowType = self.fixtureTable.rowController(at: rowCount) as! FixtureRowType
                 
-                var resultColor = AppColors.WatchTextColor
+                var resultColor = UIColor.white
 
                 if (fixture.teamScore == nil && fixture.opponentScore == nil) {
                      // Mark this fixture
@@ -65,11 +65,11 @@ class InterfaceController: WKInterfaceController {
                     
                     if (teamScore != nil && opponentScore != nil) {
                         if (teamScore! > opponentScore!) {
-                            resultColor = AppColors.WatchFixtureWin
+                            resultColor = UIColor(named: "watch-fixture-win")!
                         } else if (teamScore! < opponentScore!) {
-                            resultColor = AppColors.WatchFixtureLose
+                            resultColor = UIColor(named: "watch-fixture-lose")!
                         } else {
-                            resultColor = AppColors.WatchFixtureDraw
+                            resultColor = UIColor.white
                         }
                     }
                 }

@@ -21,7 +21,7 @@ class TVFixturesDataSource: NSObject, UICollectionViewDataSource {
     func loadLatestData() {
         var inProgressFixture: Fixture?
         
-        if let currentFixture = GameScoreManager.instance.CurrentFixture {
+        if let currentFixture = GameScoreManager.instance.getCurrentFixture {
             if currentFixture.inProgress {
                 inProgressFixture = currentFixture
             }
@@ -32,7 +32,7 @@ class TVFixturesDataSource: NSObject, UICollectionViewDataSource {
         // Add next matches
         self.allGames.removeAll()
         
-        for fixture in FixtureManager.instance.GetAllMatches() {
+        for fixture in FixtureManager.instance.getAllMatches() {
             if (inProgressFixture != nil && nextGame != nil && fixture === nextGame!) {
                 // Is it an in-progress game
                 self.allGames.append(TVFixtureData(opponent: fixture.displayOpponent,
@@ -47,14 +47,14 @@ class TVFixturesDataSource: NSObject, UICollectionViewDataSource {
                                                 inProgress: false,
                                                 atHome: fixture.home))
             } else {
-                var resultColor: UIColor = AppColors.TVResultText
+                var resultColor: UIColor = UIColor.white
                 
                 if (fixture.teamScore! > fixture.opponentScore!) {
-                    resultColor = AppColors.TVFixtureWin
+                    resultColor = UIColor(named: "tv-fixture-win")!
                 } else if (fixture.teamScore! < fixture.opponentScore!) {
-                    resultColor = AppColors.TVFixtureLose
+                    resultColor = UIColor(named: "tv-fixture-lose")!
                 } else {
-                    resultColor = AppColors.TVFixtureDraw
+                    resultColor = UIColor(named: "light-blue")!
                 }
                 
                 self.allGames.append(TVFixtureData(opponent: fixture.displayOpponent,
