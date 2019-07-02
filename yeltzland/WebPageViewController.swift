@@ -320,7 +320,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
             // Do we have a non-standard URL?
             if let safariUrl = externalUrl {
                 if(UIApplication.shared.canOpenURL(safariUrl)) {
-                    UIApplication.shared.openURL(safariUrl)
+                    UIApplication.shared.open(safariUrl, options: [:], completionHandler: nil)
                 }
                 
                 decisionHandler(WKNavigationActionPolicy.cancel)

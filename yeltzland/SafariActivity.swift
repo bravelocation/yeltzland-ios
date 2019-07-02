@@ -52,9 +52,9 @@ class SafariActivity: UIActivity {
     override func perform() {
         print("Perform activity")
         
-        if self.currentUrl != nil {
-            if UIApplication.shared.canOpenURL(self.currentUrl!) {
-                UIApplication.shared.openURL(self.currentUrl!)
+        if let currentUrl = self.currentUrl {
+            if UIApplication.shared.canOpenURL(currentUrl) {
+                UIApplication.shared.open(currentUrl, options: [:], completionHandler: nil)
             }
         }
     }

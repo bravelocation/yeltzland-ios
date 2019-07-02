@@ -72,10 +72,9 @@ class ChromeActivity: UIActivity {
     override func perform() {
         print("Perform activity")
         
-        let chromeUrl = self.generateChromeUrl()
-        if chromeUrl != nil {
-            if UIApplication.shared.canOpenURL(chromeUrl!) {
-                UIApplication.shared.openURL(chromeUrl!)
+        if let chromeUrl = self.generateChromeUrl() {
+            if UIApplication.shared.canOpenURL(chromeUrl) {
+                UIApplication.shared.open(chromeUrl, options: [:], completionHandler: nil)
             }
         }
     }
