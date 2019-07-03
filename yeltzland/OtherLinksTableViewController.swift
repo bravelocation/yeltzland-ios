@@ -12,6 +12,7 @@ import SafariServices
 class OtherLinksTableViewController: UITableViewController, SFSafariViewControllerDelegate {
 
     let firebaseNotifications = FirebaseNotifications()
+    let leagueTableUrl = URL(string: "https://www.evostikleaguesouthern.co.uk/league-table/Evo-stik%20League%20South%20Division%20One%20Central/2019/2020/P/")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -208,7 +209,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         
         if ((indexPath as NSIndexPath).section == 0) {
             if ((indexPath as NSIndexPath).row == 3) {
-                url = URL(string: "https://www.evostikleaguesouthern.co.uk/league-table/Evo-stik%20League%20South%20Division%20One%20Central/2019/2020/P/")
+                url = self.leagueTableUrl
             }
         } else if ((indexPath as NSIndexPath).section == 1) {
             switch ((indexPath as NSIndexPath).row) {
@@ -333,5 +334,41 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         }
         
         return []
+    }
+}
+
+// MARK: - Keyboard options
+extension OtherLinksTableViewController {
+    
+    override var keyCommands: [UIKeyCommand]? {
+        return [
+            UIKeyCommand(input: "F", modifierFlags: .command, action: #selector(MainTabBarController.keyboardSelectTab), discoverabilityTitle: "Fixture List"),
+            UIKeyCommand(input: "L", modifierFlags: .command, action: #selector(MainTabBarController.keyboardSelectTab), discoverabilityTitle: "Latest Score"),
+            UIKeyCommand(input: "G", modifierFlags: .command, action: #selector(MainTabBarController.keyboardSelectTab), discoverabilityTitle: "Where's the Ground"),
+            UIKeyCommand(input: "T", modifierFlags: .command, action: #selector(MainTabBarController.keyboardSelectTab), discoverabilityTitle: "League Table")
+        ]
+    }
+    
+    @objc func keyboardSelectTab(sender: UIKeyCommand) {
+        if let input = sender.input {
+            switch input {
+            case "F":
+                let fixtures = FixturesTableViewController(style: .grouped)
+                self.navigationController!.pushViewController(fixtures, animated: true)
+            case "L":
+                let latestScore = LatestScoreViewController()
+                self.navigationController!.pushViewController(latestScore, animated: true)
+            case "G":
+                let locations = LocationsViewController()
+                self.navigationController!.pushViewController(locations, animated: true)
+            case "T":
+                let svc = SFSafariViewController(url: self.leagueTableUrl!)
+                svc.delegate = self
+                svc.preferredControlTintColor = UIColor(named: "yeltz-blue")
+                self.present(svc, animated: true, completion: nil)
+            default:
+                break
+            }
+        }
     }
 }
