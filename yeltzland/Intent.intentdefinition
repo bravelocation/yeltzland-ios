@@ -7,11 +7,11 @@
 	<key>INIntentDefinitionModelVersion</key>
 	<string>1.0</string>
 	<key>INIntentDefinitionSystemVersion</key>
-	<string>17G65</string>
+	<string>18F132</string>
 	<key>INIntentDefinitionToolsBuildVersion</key>
-	<string>10A255</string>
+	<string>10E1001</string>
 	<key>INIntentDefinitionToolsVersion</key>
-	<string>10.0</string>
+	<string>10.2.1</string>
 	<key>INIntents</key>
 	<array>
 		<dict>
@@ -71,7 +71,7 @@
 					</dict>
 					<dict>
 						<key>INIntentResponseCodeFormatString</key>
-						<string>We have no fixture data right now</string>
+						<string>We have no latest score data right now</string>
 						<key>INIntentResponseCodeFormatStringID</key>
 						<string>PLubdf</string>
 						<key>INIntentResponseCodeName</key>

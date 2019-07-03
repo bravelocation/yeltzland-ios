@@ -46,16 +46,16 @@ class LatestScoreIntentHandler: NSObject, LatestScoreIntentHandling {
                 awayTeamScore = fixture.teamScore!
             }
 
-        } else {
-            completion(LatestScoreIntentResponse(code: LatestScoreIntentResponseCode.failureNoGames, userActivity: nil))
-            return
         }
-
-        completion(LatestScoreIntentResponse.success(gameState: gameState,
-                                                     homeTeam: homeTeamName,
-                                                     homeScore: String(homeTeamScore),
-                                                     awayTeam: awayTeamName,
-                                                     awayScore: String(awayTeamScore)))
-
+        
+        if homeTeamName.trimmingCharacters(in: .whitespacesAndNewlines).count == 0 || awayTeamName.trimmingCharacters(in: .whitespacesAndNewlines).count == 0 {
+            completion(LatestScoreIntentResponse(code: LatestScoreIntentResponseCode.failureNoGames, userActivity: nil))
+        } else {
+            completion(LatestScoreIntentResponse.success(gameState: gameState,
+                                                         homeTeam: homeTeamName,
+                                                         homeScore: String(homeTeamScore),
+                                                         awayTeam: awayTeamName,
+                                                         awayScore: String(awayTeamScore)))
+        }
     }
 }
