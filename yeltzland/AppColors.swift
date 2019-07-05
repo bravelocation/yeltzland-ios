@@ -16,7 +16,7 @@ enum AppColors {
         if #available(iOS 13, *) {
             return .label
         }
-        return UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        return UIColor.black
     }
     
     static var secondaryLabel: UIColor {
