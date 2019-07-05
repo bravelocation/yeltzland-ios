@@ -60,6 +60,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             cell!.accessoryType = .none
             
             let switchView = UISwitch(frame: CGRect.zero)
+            switchView.onTintColor = UIColor(named: "blue-tint")
             cell!.accessoryView = switchView
             
             switchView.isOn = self.firebaseNotifications.enabled
@@ -75,11 +76,11 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             switch ((indexPath as NSIndexPath).row) {
             case 0:
                 cell!.textLabel?.text = "Fixture List"
-                let cellImage = UIImage(named: "fixtures")?.sd_tintedImage(with: UIColor(named: "yeltz-blue")!)
+                let cellImage = UIImage(named: "fixtures")?.sd_tintedImage(with: UIColor(named: "blue-tint")!)
                 cell!.imageView?.image = cellImage
             case 1:
                 cell!.textLabel?.text = "Latest Score"
-                let cellImage = UIImage(named: "latest-score")?.sd_tintedImage(with: UIColor(named: "yeltz-blue")!)
+                let cellImage = UIImage(named: "latest-score")?.sd_tintedImage(with: UIColor(named: "blue-tint")!)
                 cell!.imageView?.image = cellImage
             case 2:
                 cell!.textLabel?.text = "Where's the Ground?"
@@ -87,7 +88,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
                 cell!.imageView?.image = cellImage
             case 3:
                 cell!.textLabel?.text = "League Table"
-                let cellImage = UIImage(named: "table")?.sd_tintedImage(with: UIColor(named: "yeltz-blue")!)
+                let cellImage = UIImage(named: "table")?.sd_tintedImage(with: UIColor(named: "blue-tint")!)
                 cell!.imageView?.image = cellImage
             default:
                 break
@@ -104,7 +105,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
                 cell!.imageView?.image = cellImage
             case 2:
                 cell!.textLabel?.text = "Fantasy Island"
-                let cellImage = UIImage(named: "fantasy-island")?.sd_tintedImage(with: UIColor(named: "yeltz-blue")!)
+                let cellImage = UIImage(named: "fantasy-island")?.sd_tintedImage(with: UIColor(named: "blue-tint")!)
                 cell!.imageView?.image = cellImage
             case 3:
                 cell!.textLabel?.text = "Stourbridge Town FC"
@@ -112,7 +113,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
                 cell!.imageView?.image = cellImage
             case 4:
                 cell!.textLabel?.text = "Club Shop"
-                let cellImage = UIImage(named: "club-shop")?.sd_tintedImage(with: UIColor(named: "yeltz-blue")!)
+                let cellImage = UIImage(named: "club-shop")?.sd_tintedImage(with: UIColor(named: "blue-tint")!)
                 cell!.imageView?.image = cellImage
             default:
                 break
@@ -121,15 +122,15 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             switch ((indexPath as NSIndexPath).row) {
             case 0:
                 cell!.textLabel?.text = "Follow Your Instinct"
-                let cellImage = UIImage(named: "fyi")?.sd_tintedImage(with: UIColor(named: "yeltz-blue")!)
+                let cellImage = UIImage(named: "fyi")?.sd_tintedImage(with: UIColor(named: "blue-tint")!)
                 cell!.imageView?.image = cellImage
             case 1:
                 cell!.textLabel?.text = "Yeltz Archives"
-                let cellImage = UIImage(named: "yeltz-archive")?.sd_tintedImage(with: UIColor(named: "yeltz-blue")!)
+                let cellImage = UIImage(named: "yeltz-archive")?.sd_tintedImage(with: UIColor(named: "blue-tint")!)
                 cell!.imageView?.image = cellImage
             case 2:
                 cell!.textLabel?.text = "News Archive (1997-2006)"
-                let cellImage = UIImage(named: "news-archive")?.sd_tintedImage(with: UIColor(named: "yeltz-blue")!)
+                let cellImage = UIImage(named: "news-archive")?.sd_tintedImage(with: UIColor(named: "blue-tint")!)
                 cell!.imageView?.image = cellImage
             default:
                 break
@@ -144,15 +145,15 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             switch ((indexPath as NSIndexPath).row) {
             case 0:
                 cell!.textLabel?.text = "Yeltzland on Amazon Echo"
-                let cellImage = UIImage(named: "amazon")?.sd_tintedImage(with: UIColor(named: "yeltz-blue")!)
+                let cellImage = UIImage(named: "amazon")?.sd_tintedImage(with: UIColor(named: "blue-tint")!)
                 cell!.imageView?.image = cellImage
             case 1:
                 cell!.textLabel?.text = "Yeltzland on Google Assistant"
-                let cellImage = UIImage(named: "google")?.sd_tintedImage(with: UIColor(named: "yeltz-blue")!)
+                let cellImage = UIImage(named: "google")?.sd_tintedImage(with: UIColor(named: "blue-tint")!)
                 cell!.imageView?.image = cellImage
             case 2:
                     cell!.textLabel?.text = "Add Fixture List to Calendar"
-                    let cellImage = UIImage(named: "fixtures")?.sd_tintedImage(with: UIColor(named: "yeltz-blue")!)
+                    let cellImage = UIImage(named: "fixtures")?.sd_tintedImage(with: UIColor(named: "blue-tint")!)
                     cell!.imageView?.image = cellImage
             default:
                 break

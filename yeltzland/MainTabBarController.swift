@@ -42,7 +42,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         
         // Colors
         self.tabBar.barTintColor = AppColors.systemBackground
-        self.tabBar.tintColor = UIColor(named: "yeltz-blue")
+        self.tabBar.tintColor = UIColor(named: "blue-tint")
     }
     
     // MARK: - Keyboard options
