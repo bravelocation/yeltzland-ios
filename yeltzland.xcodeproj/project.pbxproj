@@ -90,6 +90,7 @@
 		529E80FE1EDABC91002DC858 /* TodayDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529E80FD1EDABC91002DC858 /* TodayDataSource.swift */; };
 		529E81001EDAC05C002DC858 /* TodayDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529E80FF1EDAC05C002DC858 /* TodayDataItem.swift */; };
 		52A4596E1D89666E00822D8C /* gallery.ckcomplication in Resources */ = {isa = PBXBuildFile; fileRef = 52A4596D1D89666E00822D8C /* gallery.ckcomplication */; };
+		52B4475522CF316000E745EB /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B4475422CF316000E745EB /* AppColors.swift */; };
 		52C4DA881D4CA68A009AFD25 /* american_typewriter_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 52C4DA871D4CA68A009AFD25 /* american_typewriter_regular.ttf */; };
 		52C4DA891D4CA68A009AFD25 /* american_typewriter_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 52C4DA871D4CA68A009AFD25 /* american_typewriter_regular.ttf */; };
 		52D868261FE81B6E0041B578 /* TVFixtureCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D868241FE81B6E0041B578 /* TVFixtureCollectionCell.swift */; };
@@ -302,6 +303,7 @@
 		529E80FD1EDABC91002DC858 /* TodayDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayDataSource.swift; sourceTree = "<group>"; };
 		529E80FF1EDAC05C002DC858 /* TodayDataItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayDataItem.swift; sourceTree = "<group>"; };
 		52A4596D1D89666E00822D8C /* gallery.ckcomplication */ = {isa = PBXFileReference; lastKnownFileType = folder; path = gallery.ckcomplication; sourceTree = "<group>"; };
+		52B4475422CF316000E745EB /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
 		52C4DA871D4CA68A009AFD25 /* american_typewriter_regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = american_typewriter_regular.ttf; sourceTree = "<group>"; };
 		52D868241FE81B6E0041B578 /* TVFixtureCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVFixtureCollectionCell.swift; sourceTree = "<group>"; };
 		52D868251FE81B6E0041B578 /* TVFixtureCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TVFixtureCollectionCell.xib; sourceTree = "<group>"; };
@@ -607,6 +609,7 @@
 			children = (
 				52C4DA861D4C83C6009AFD25 /* Assets */,
 				52C4DA851D4C838A009AFD25 /* ViewControllers */,
+				52B4475422CF316000E745EB /* AppColors.swift */,
 				5211F7261CDA35CF0031496D /* AppFonts.swift */,
 				52E3DF761CD9FA78009F18BD /* AppDelegate.swift */,
 				52176BB21D4B62DC00B7EFAE /* BaseSettings.swift */,
@@ -1401,6 +1404,7 @@
 				52176BB01D4A1B3200B7EFAE /* GameScoreManager.swift in Sources */,
 				523C84201CE70806006F1865 /* ChromeActivity.swift in Sources */,
 				5211F72A1CDA53D70031496D /* TwitterUserTimelineViewController.swift in Sources */,
+				52B4475522CF316000E745EB /* AppColors.swift in Sources */,
 				520C09A22157C46100CCC2D8 /* ShortcutManager.swift in Sources */,
 				52236AE61D17DFF8004903AB /* Fixture.swift in Sources */,
 				527DAF1F1D2D082C0092BB8F /* Location.swift in Sources */,

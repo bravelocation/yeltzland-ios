@@ -20,8 +20,8 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         // Setup navigation
         self.navigationItem.title = "More"
         
-        self.view.backgroundColor = UIColor.white
-        self.tableView.separatorColor = UIColor.white
+        self.view.backgroundColor = AppColors.systemBackground
+        self.tableView.separatorColor = AppColors.systemBackground
         
         self.tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "Cell")
         self.tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "SettingsCell")
@@ -83,7 +83,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
                 cell!.imageView?.image = cellImage
             case 2:
                 cell!.textLabel?.text = "Where's the Ground?"
-                let cellImage = UIImage(named: "where-ground")?.sd_tintedImage(with: UIColor.red)
+                let cellImage = UIImage(named: "where-ground")?.sd_tintedImage(with: AppColors.red)
                 cell!.imageView?.image = cellImage
             case 3:
                 cell!.textLabel?.text = "League Table"
@@ -181,8 +181,8 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         cell!.textLabel?.adjustsFontSizeToFitWidth = true
         cell!.detailTextLabel?.font = UIFont(name: AppFonts.AppFontName, size: AppFonts.OtherDetailTextSize)!
         
-        cell!.textLabel?.textColor = UIColor.black
-        cell!.detailTextLabel?.textColor = UIColor.gray
+        cell!.textLabel?.textColor = AppColors.label
+        cell!.detailTextLabel?.textColor = AppColors.secondaryLabel
         
         return cell!
     }
@@ -292,8 +292,6 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
-        header.contentView.backgroundColor = UIColor(named: "light-blue")
-        header.textLabel!.textColor = UIColor(named: "yeltz-blue")
         header.textLabel!.font = UIFont(name: AppFonts.AppFontName, size: AppFonts.OtherSectionTextSize)!
     }
     

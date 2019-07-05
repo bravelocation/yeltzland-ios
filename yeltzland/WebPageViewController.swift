@@ -71,7 +71,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         
         self.view.addSubview(self.progressBar)
         self.view.addSubview(self.webView)
-        self.view.backgroundColor = UIColor.white
+        self.view.backgroundColor = AppColors.systemBackground
         
         // Setup navigation
         self.navigationItem.title = self.pageTitle

@@ -18,10 +18,10 @@ class FixtureTableViewCell: UITableViewCell {
         self.selectionStyle = .none
         self.accessoryType = .none
         
-        var resultColor = UIColor.black
+        var resultColor = AppColors.label
         
         if (fixture.teamScore == nil || fixture.opponentScore == nil) {
-            resultColor = UIColor.black
+            resultColor = AppColors.label
         } else if (fixture.teamScore! > fixture.opponentScore!) {
             resultColor = UIColor(named: "fixture-win")!
         } else if (fixture.teamScore! < fixture.opponentScore!) {

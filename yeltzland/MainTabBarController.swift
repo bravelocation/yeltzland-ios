@@ -41,7 +41,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         delegate = self
         
         // Colors
-        self.tabBar.barTintColor = UIColor.white
+        self.tabBar.barTintColor = AppColors.systemBackground
         self.tabBar.tintColor = UIColor(named: "yeltz-blue")
     }
     
@@ -107,7 +107,13 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         twitterNavigationController.tabBarItem = twitterIcon
         
         // Other Links
-        let otherViewController = OtherLinksTableViewController()
+        var tableStyle: UITableView.Style = .grouped
+        
+        if #available(iOS 13.0, *) {
+            tableStyle = .insetGrouped
+        }
+        
+        let otherViewController = OtherLinksTableViewController(style: tableStyle)
         let otherNavigationController = UINavigationController(rootViewController: otherViewController)
         
         let otherIcon = UITabBarItem(tabBarSystemItem: .more, tag: self.otherTabIndex)
@@ -246,23 +252,26 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         ]
         
         // Add current URL if a web view
-        var currentUrl: URL? = nil
         
-        if let currentController = self.viewControllers![self.selectedIndex] as? UINavigationController {
-            if let selectedController = currentController.viewControllers[0] as? WebPageViewController {
-                DispatchQueue.main.async(execute: { () -> Void in
-                    currentUrl = selectedController.webView.url
-                })
+        DispatchQueue.main.async {
+            var currentUrl: URL? = nil
+
+            if let currentController = self.viewControllers![self.selectedIndex] as? UINavigationController {
+                if let selectedController = currentController.viewControllers[0] as? WebPageViewController {
+                    DispatchQueue.main.async(execute: { () -> Void in
+                        currentUrl = selectedController.webView.url
+                    })
+                }
             }
-        }
-        
-        if (currentUrl != nil) {
-            userActivity.userInfo = [
-                "com.bravelocation.yeltzland.currenttab.key": NSNumber(value: GameSettings.instance.lastSelectedTab as Int),
-                "com.bravelocation.yeltzland.currenttab.currenturl": currentUrl!
-            ]
             
-            print("Saving user activity current URL to be \(currentUrl!)")
+            if (currentUrl != nil) {
+                userActivity.userInfo = [
+                    "com.bravelocation.yeltzland.currenttab.key": NSNumber(value: GameSettings.instance.lastSelectedTab as Int),
+                    "com.bravelocation.yeltzland.currenttab.currenturl": currentUrl!
+                ]
+                
+                print("Saving user activity current URL to be \(currentUrl!)")
+            }
         }
     }
 }

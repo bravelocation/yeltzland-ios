@@ -103,8 +103,8 @@ class FixturesTableViewController: UITableViewController {
         // Setup navigation
         self.navigationItem.title = "Fixtures"
         
-        self.view.backgroundColor = UIColor.white
-        self.tableView.separatorColor = UIColor.white
+        self.view.backgroundColor = AppColors.systemBackground
+        self.tableView.separatorColor = AppColors.systemBackground
         
         self.tableView.register(UINib(nibName: self.cellIdentifier, bundle: nil), forCellReuseIdentifier: self.cellIdentifier)
         

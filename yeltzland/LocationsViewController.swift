@@ -84,7 +84,7 @@ class LocationsViewController: UIViewController, MKMapViewDelegate, CLLocationMa
                 dequeuedView.annotation = annotation
                 view = dequeuedView
             } else {
-                let ballImage = UIImage(named: "map-marker")!.sd_tintedImage(with: UIColor.red)
+                let ballImage = UIImage(named: "map-marker")!.sd_tintedImage(with: AppColors.red)
                 
                 view = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 view.canShowCallout = true

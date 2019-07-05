@@ -60,7 +60,7 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
         // Setup navigation
         self.navigationItem.title = "Latest Score"
         
-        self.view.backgroundColor = UIColor.white
+        self.view.backgroundColor = AppColors.systemBackground
         
         // Setup refresh button
         self.reloadButton = UIBarButtonItem(
@@ -108,7 +108,7 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
         }
         
         var homeOrAway = "vs"
-        var resultColor = UIColor.black
+        var resultColor = AppColors.label
         var score = "TBD"
         
         if let fixture = latestFixture {
@@ -167,7 +167,13 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
     // MARK: - Siri Intents
     func addSiriButton() {
         if #available(iOS 12.0, *) {
-            let button = INUIAddVoiceShortcutButton(style: .whiteOutline)
+            var buttonStyle: INUIAddVoiceShortcutButtonStyle = .whiteOutline
+            
+            if #available(iOS 13.0, *) {
+                buttonStyle = .automaticOutline
+            }
+            
+            let button = INUIAddVoiceShortcutButton(style: buttonStyle)
             button.translatesAutoresizingMaskIntoConstraints = false
             self.view.addSubview(button)
             button.addTarget(self, action: #selector(addToSiri(_:)), for: .touchUpInside)
