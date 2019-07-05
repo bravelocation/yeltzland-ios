@@ -141,11 +141,9 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
     @objc
     func refreshWebView(_ sender: UIRefreshControl) {
         // Give haptic feedback
-        if #available(iOS 10.0, *) {
-            let impactFeedbackgenerator = UIImpactFeedbackGenerator(style: .medium)
-            impactFeedbackgenerator.prepare()
-            impactFeedbackgenerator.impactOccurred()
-        }
+        let impactFeedbackgenerator = UIImpactFeedbackGenerator(style: .medium)
+        impactFeedbackgenerator.prepare()
+        impactFeedbackgenerator.impactOccurred()
         
         self.reloadButtonTouchUp()
         sender.endRefreshing()

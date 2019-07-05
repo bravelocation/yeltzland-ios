@@ -263,10 +263,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         if (url != nil) {
             let svc = SFSafariViewController(url: url!)
             svc.delegate = self
-            
-            if #available(iOS 10.0, *) {
-                svc.preferredControlTintColor = UIColor(named: "yeltz-blue")
-            }
+            svc.preferredControlTintColor = UIColor(named: "safari-view-tint")
             
             self.present(svc, animated: true, completion: nil)
         }
@@ -363,7 +360,7 @@ extension OtherLinksTableViewController {
             case "T":
                 let svc = SFSafariViewController(url: self.leagueTableUrl!)
                 svc.delegate = self
-                svc.preferredControlTintColor = UIColor(named: "yeltz-blue")
+                svc.preferredControlTintColor = UIColor(named: "safari-view-tint")
                 self.present(svc, animated: true, completion: nil)
             default:
                 break

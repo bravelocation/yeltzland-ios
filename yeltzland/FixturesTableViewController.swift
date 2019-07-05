@@ -118,11 +118,7 @@ class FixturesTableViewController: UITableViewController {
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationItem.rightBarButtonItems = [self.reloadButton]
         
-        if #available(iOS 10.0, *) {
-            self.tableView.refreshControl = self.fixturesRefreshControl
-        } else {
-            self.tableView.addSubview(self.fixturesRefreshControl)
-        }
+        self.tableView.refreshControl = self.fixturesRefreshControl
         
         self.fixturesRefreshControl.addTarget(self, action: #selector(FixturesTableViewController.refreshSearchData), for: .valueChanged)
         self.setupHandoff()
@@ -199,8 +195,6 @@ class FixturesTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
-        header.contentView.backgroundColor = UIColor(named: "light-blue")
-        header.textLabel!.textColor = UIColor(named: "yeltz-blue")
         header.textLabel!.font = UIFont(name: AppFonts.AppFontName, size: AppFonts.OtherSectionTextSize)!
     }
 

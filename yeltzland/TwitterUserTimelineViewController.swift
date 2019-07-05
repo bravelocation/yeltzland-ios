@@ -50,6 +50,9 @@ class TwitterUserTimelineViewController: TWTRTimelineViewController, TWTRTweetVi
    
     func tweetView(_ tweetView: TWTRTweetView, didTap url: URL) {
         let svc = SFSafariViewController(url: url)
+        svc.delegate = self
+        svc.preferredControlTintColor = UIColor(named: "safari-view-tint")
+
         self.present(svc, animated: true, completion: nil)
     }
     
