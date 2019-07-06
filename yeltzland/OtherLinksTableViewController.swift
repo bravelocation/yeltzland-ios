@@ -84,7 +84,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
                 cell!.imageView?.image = cellImage
             case 2:
                 cell!.textLabel?.text = "Where's the Ground?"
-                let cellImage = UIImage(named: "where-ground")?.sd_tintedImage(with: AppColors.red)
+                let cellImage = UIImage(named: "map")?.sd_tintedImage(with: UIColor(named: "blue-tint")!)
                 cell!.imageView?.image = cellImage
             case 3:
                 cell!.textLabel?.text = "League Table"
@@ -97,11 +97,11 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             switch ((indexPath as NSIndexPath).row) {
             case 0:
                 cell!.textLabel?.text = "HTFC on Facebook"
-                let cellImage = UIImage(named: "facebook")?.sd_tintedImage(with: UIColor(named: "facebook-color")!)
+                let cellImage = UIImage(named: "facebook")?.sd_tintedImage(with: UIColor(named: "blue-tint")!)
                 cell!.imageView?.image = cellImage
             case 1:
                 cell!.textLabel?.text = "Southern League site"
-                let cellImage = UIImage(named: "southern-league")?.sd_tintedImage(with: UIColor(named: "evostick")!)
+                let cellImage = UIImage(named: "southern-league")?.sd_tintedImage(with: UIColor(named: "blue-tint")!)
                 cell!.imageView?.image = cellImage
             case 2:
                 cell!.textLabel?.text = "Fantasy Island"
@@ -109,7 +109,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
                 cell!.imageView?.image = cellImage
             case 3:
                 cell!.textLabel?.text = "Stourbridge Town FC"
-                let cellImage = UIImage(named: "stourbridge")?.sd_tintedImage(with: UIColor(named: "stourbridge-color")!)
+                let cellImage = UIImage(named: "stourbridge")?.sd_tintedImage(with: UIColor(named: "blue-tint")!)
                 cell!.imageView?.image = cellImage
             case 4:
                 cell!.textLabel?.text = "Club Shop"
@@ -137,7 +137,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             }
         } else if ((indexPath as NSIndexPath).section == 3) {
             cell!.textLabel?.text = "Game time tweets"
-            let cellImage = UIImage(named: "game-time")?.sd_tintedImage(with: UIColor(named: "twitter-color")!)
+            let cellImage = UIImage(named: "game-time")?.sd_tintedImage(with: UIColor(named: "blue-tint")!)
             cell!.imageView?.image = cellImage
 
             cell!.detailTextLabel?.text = "Enable notifications"

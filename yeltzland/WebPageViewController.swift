@@ -88,7 +88,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
             target: self,
             action: #selector(WebPageViewController.loadHomePage)
         )
-        self.homeButton.image = UIImage(named: "home")
+        self.homeButton.image = AppImages.home
         
         self.backButton = UIBarButtonItem(
             title: "Back",
@@ -96,7 +96,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
             target: self,
             action: #selector(WebPageViewController.backButtonTouchUp)
         )
-        self.backButton.image = UIImage(named: "chevron-left")
+        self.backButton.image = AppImages.chevronLeft
         
         self.forwardButton = UIBarButtonItem(
             title: "Forward",
@@ -104,7 +104,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
             target: self,
             action: #selector(WebPageViewController.forwardButtonTouchUp)
         )
-        self.forwardButton.image = UIImage(named: "chevron-right")
+        self.forwardButton.image = AppImages.chevronRight
         
         self.shareButton = UIBarButtonItem(
             barButtonSystemItem: .action,

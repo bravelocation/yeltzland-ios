@@ -22,7 +22,7 @@ class SafariActivity: UIActivity {
     }
     
     override var activityImage: UIImage {
-        return UIImage(named: "safari")!
+        return AppImages.safari!
     }
     
     override var activityTitle: String {

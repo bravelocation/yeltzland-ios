@@ -42,6 +42,7 @@
 		52236AE81D17E4D3004903AB /* FixtureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236AE71D17E4D3004903AB /* FixtureManager.swift */; };
 		52236AEB1D17ECB4004903AB /* matches.json in Resources */ = {isa = PBXBuildFile; fileRef = 52236AEA1D17ECB4004903AB /* matches.json */; };
 		52236AEE1D1803C8004903AB /* FixturesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236AED1D1803C8004903AB /* FixturesTableViewController.swift */; };
+		522716C422D0D438008FD210 /* AppImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522716C322D0D438008FD210 /* AppImages.swift */; };
 		522EA44220EA236A00B90146 /* TeamImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522EA44120EA236A00B90146 /* TeamImageManager.swift */; };
 		5231F4FF215B6C56003FAC68 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5231F4FE215B6C56003FAC68 /* SettingsManager.swift */; };
 		5231F501215B6C92003FAC68 /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5231F500215B6C92003FAC68 /* Settings.plist */; };
@@ -262,6 +263,7 @@
 		52236AE71D17E4D3004903AB /* FixtureManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixtureManager.swift; sourceTree = "<group>"; };
 		52236AEA1D17ECB4004903AB /* matches.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = matches.json; sourceTree = "<group>"; };
 		52236AED1D1803C8004903AB /* FixturesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixturesTableViewController.swift; sourceTree = "<group>"; };
+		522716C322D0D438008FD210 /* AppImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppImages.swift; sourceTree = "<group>"; };
 		522EA44120EA236A00B90146 /* TeamImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamImageManager.swift; sourceTree = "<group>"; };
 		5231F4FE215B6C56003FAC68 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		5231F500215B6C92003FAC68 /* Settings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Settings.plist; sourceTree = "<group>"; };
@@ -611,6 +613,7 @@
 				52C4DA851D4C838A009AFD25 /* ViewControllers */,
 				52B4475422CF316000E745EB /* AppColors.swift */,
 				5211F7261CDA35CF0031496D /* AppFonts.swift */,
+				522716C322D0D438008FD210 /* AppImages.swift */,
 				52E3DF761CD9FA78009F18BD /* AppDelegate.swift */,
 				52176BB21D4B62DC00B7EFAE /* BaseSettings.swift */,
 				523C841F1CE70806006F1865 /* ChromeActivity.swift */,
@@ -1404,6 +1407,7 @@
 				52176BB01D4A1B3200B7EFAE /* GameScoreManager.swift in Sources */,
 				523C84201CE70806006F1865 /* ChromeActivity.swift in Sources */,
 				5211F72A1CDA53D70031496D /* TwitterUserTimelineViewController.swift in Sources */,
+				522716C422D0D438008FD210 /* AppImages.swift in Sources */,
 				52B4475522CF316000E745EB /* AppColors.swift in Sources */,
 				520C09A22157C46100CCC2D8 /* ShortcutManager.swift in Sources */,
 				52236AE61D17DFF8004903AB /* Fixture.swift in Sources */,

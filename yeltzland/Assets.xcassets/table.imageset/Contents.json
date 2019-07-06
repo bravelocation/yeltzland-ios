@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "grid30.png",
+      "filename" : "table30.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "grid60.png",
+      "filename" : "table60.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "grid90.png",
+      "filename" : "table90.png",
       "scale" : "3x"
     }
   ],

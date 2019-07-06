@@ -29,7 +29,7 @@ class LocationsViewController: UIViewController, MKMapViewDelegate, CLLocationMa
             target: self,
             action: #selector(LocationsViewController.mapToggleButtonTouchUp)
         )
-        self.mapToggleButton.image = UIImage(named: "map")
+        self.mapToggleButton.image = AppImages.map
         self.mapToggleButton.tintColor = UIColor.white
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationItem.rightBarButtonItems = [self.mapToggleButton]
@@ -84,7 +84,7 @@ class LocationsViewController: UIViewController, MKMapViewDelegate, CLLocationMa
                 dequeuedView.annotation = annotation
                 view = dequeuedView
             } else {
-                let ballImage = UIImage(named: "map-marker")!.sd_tintedImage(with: AppColors.red)
+                let ballImage = AppImages.mapMarker!.sd_tintedImage(with: AppColors.red)
                 
                 view = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 view.canShowCallout = true
