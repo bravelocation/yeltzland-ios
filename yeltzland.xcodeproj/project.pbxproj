@@ -1087,7 +1087,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-yeltzlandTVOS/Pods-yeltzlandTVOS-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage-tvOS11.2/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage-tvOS/SDWebImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1269,7 +1269,7 @@
 				"${PODS_ROOT}/Target Support Files/Pods-yeltzland/Pods-yeltzland-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage-iOS11.0/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage-iOS/SDWebImage.framework",
 				"${PODS_ROOT}/TwitterCore/iOS/TwitterCore.framework",
 				"${PODS_ROOT}/TwitterKit/iOS/TwitterKit.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -1313,7 +1313,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-watchkitapp Extension/Pods-watchkitapp Extension-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage-watchOS4.0/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage-watchOS/SDWebImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
