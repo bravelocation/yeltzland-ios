@@ -109,7 +109,7 @@ public class FixtureManager: CachedJSONData {
         return nil
     }
     
-    public func getAwayGames(_ opponent: String) -> [Fixture] {
+    public func awayGames(_ opponent: String) -> [Fixture] {
         var foundGames: [Fixture] = []
         
         for month in self.months {
@@ -125,7 +125,7 @@ public class FixtureManager: CachedJSONData {
         return foundGames
     }
     
-    public func fixtureCount() -> Int {
+    public var fixtureCount: Int {
         var fixtureCount = 0
         
         for month in self.months {
@@ -138,7 +138,7 @@ public class FixtureManager: CachedJSONData {
 
     }
     
-    public func getLastGame() -> Fixture? {
+    public var lastGame: Fixture? {
         var lastCompletedGame: Fixture? = nil
         
         for month in self.months {
@@ -156,8 +156,8 @@ public class FixtureManager: CachedJSONData {
         return lastCompletedGame
     }
     
-    public func getNextGame() -> Fixture? {
-        let fixtures = self.getNextFixtures(1)
+    public var nextGame: Fixture? {
+        let fixtures = self.nextFixtures(1)
         
         if (fixtures.count > 0) {
             return fixtures[0]
@@ -166,7 +166,7 @@ public class FixtureManager: CachedJSONData {
         return nil
     }
     
-    public func getNextFixtures(_ numberOfFixtures: Int) -> [Fixture] {
+    public func nextFixtures(_ numberOfFixtures: Int) -> [Fixture] {
         var fixtures: [Fixture] = []
         let currentDayNumber = self.dayNumber(Date())
         
@@ -190,7 +190,7 @@ public class FixtureManager: CachedJSONData {
         return fixtures
     }
     
-    public func getAllMatches() -> [Fixture] {
+    public var allMatches: [Fixture] {
         var fixtures: [Fixture] = []
         
         for month in self.months {
@@ -204,8 +204,8 @@ public class FixtureManager: CachedJSONData {
         return fixtures
     }
     
-    public func getCurrentGame() -> Fixture? {
-        let nextGame = self.getNextGame()
+    public var currentGame: Fixture? {
+        let nextGame = self.nextGame
         
         if (nextGame != nil) {
             // If within 120 minutes of kickoff date, the game is current

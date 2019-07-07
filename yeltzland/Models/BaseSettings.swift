@@ -83,10 +83,10 @@ public class BaseSettings: NSObject {
     @objc public func updateLatestScoreSettings() {
         print("Updating game score settings ...")
         
-        var updatedSettings = GameScoreManager.shared.getCurrentFixture
+        var updatedSettings = GameScoreManager.shared.currentFixture
         
         if updatedSettings == nil {
-            updatedSettings = FixtureManager.shared.getLastGame()
+            updatedSettings = FixtureManager.shared.lastGame
         }
         
         if let currentSettings = self.getLatestFixtureFromSettings(), let newSettings = updatedSettings {

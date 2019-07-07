@@ -51,9 +51,9 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         var backgroundRefreshMinutes = 6 * 60
         
         // Find the next fixture to use
-        var latestFixture: Fixture? = FixtureManager.shared.getLastGame()
+        var latestFixture: Fixture? = FixtureManager.shared.lastGame
         
-        if let currentFixture = GameScoreManager.shared.getCurrentFixture {
+        if let currentFixture = GameScoreManager.shared.currentFixture {
             if currentFixture.inProgress {
                 latestFixture = currentFixture
             }
@@ -61,7 +61,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         
         // If the next fixture is missing or too far away, get next game
         if latestFixture == nil || latestFixture!.state == .manyDaysAfter {
-            latestFixture = FixtureManager.shared.getNextGame()
+            latestFixture = FixtureManager.shared.nextGame
         }
         
         if let fixture = latestFixture {

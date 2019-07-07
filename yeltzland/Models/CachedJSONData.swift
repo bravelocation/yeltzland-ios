@@ -8,6 +8,9 @@
 
 import Foundation
 
+// MARK: - Errors
+
+/// Errors for downloading, loading or parsing JSON
 enum JSONDataError: Error {
     case incorrectFileName
     case missingBundleFile
@@ -17,18 +20,24 @@ enum JSONDataError: Error {
     case downloadError
 }
 
+// MARK: - CachedJSONData protocol
+/// Protocol for files representing cached JSON
 protocol CachedJSONData {
+    
+    // MARK: - Properties
     var fileName: String { get }
     var remoteURL: URL { get }
     var notificationName: String { get }
     var fileCoordinator: NSFileCoordinator { get }
 
+    // MARK: - Functions
     init(fileName: String, remoteURL: URL, notificationName: String)
     func fetchLatestData(completion: ((Result<Bool, JSONDataError>) -> Void)?)
-    
     func parseJson(_ json: [String: AnyObject]) -> Result<Bool, JSONDataError>
     func isValidJson(_ json: [String: AnyObject]) -> Bool
 }
+
+// MARK: - CachedJSONData extension
 
 extension CachedJSONData {
     

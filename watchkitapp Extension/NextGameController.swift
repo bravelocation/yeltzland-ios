@@ -42,11 +42,11 @@ class NextGameController: WKInterfaceController {
     
     fileprivate func updateViewData() {
 
-        var latestFixture: Fixture? = FixtureManager.shared.getLastGame()
+        var latestFixture: Fixture? = FixtureManager.shared.lastGame
         var homeTeamName = ""
         var awayTeamName = ""
         
-        if let currentFixture = GameScoreManager.shared.getCurrentFixture {
+        if let currentFixture = GameScoreManager.shared.currentFixture {
             if currentFixture.inProgress {
                 latestFixture = currentFixture
             }
@@ -75,7 +75,7 @@ class NextGameController: WKInterfaceController {
             }
         } else {
             // Show next fixture if there is one
-            let nextFixtures = FixtureManager.shared.getNextFixtures(1)
+            let nextFixtures = FixtureManager.shared.nextFixtures(1)
             if (nextFixtures.count > 0) {
                 let fixture = nextFixtures[0]
                 

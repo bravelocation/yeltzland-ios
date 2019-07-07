@@ -14,8 +14,6 @@ public class GameScoreManager: CachedJSONData {
     var notificationName: String
     var fileCoordinator: NSFileCoordinator
     
-    fileprivate var currentFixture: Fixture?
-
     fileprivate static let sharedInstance = GameScoreManager(fileName: "gamescore.json",
                                                              remoteURL: URL(string: "https://bravelocation.com/automation/feeds/gamescore.json")!,
                                                              notificationName: "YLZGameScoreNotification")
@@ -74,7 +72,7 @@ public class GameScoreManager: CachedJSONData {
         if let fixture = parsedFixture {
             // Is the game in progress?
             
-            if let nextFixture = FixtureManager.shared.getNextGame() {
+            if let nextFixture = FixtureManager.shared.nextGame {
                 if (FixtureManager.shared.dayNumber(nextFixture.fixtureDate) == FixtureManager.shared.dayNumber(fixture.fixtureDate)) {
                     // If current score is on same day as next fixture, then we are in progress
                     self.currentFixture = Fixture(date: fixture.fixtureDate,
@@ -95,7 +93,7 @@ public class GameScoreManager: CachedJSONData {
                                                       teamScore: 0,
                                                       opponentScore: 0,
                                                       inProgress: true)
-                    } else if let lastResult = FixtureManager.shared.getLastGame() {
+                    } else if let lastResult = FixtureManager.shared.lastGame {
                         // Otherwise "latest score" must be last result
                         self.currentFixture = lastResult
                     }
@@ -115,7 +113,5 @@ public class GameScoreManager: CachedJSONData {
     
     // MARK: - Data properties
 
-    public var getCurrentFixture: Fixture? {
-        return self.currentFixture
-    }
+    public var currentFixture: Fixture?
 }

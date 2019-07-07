@@ -81,16 +81,16 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
     }
 
     private func updateUI() {
-        var latestFixture: Fixture? = FixtureManager.shared.getLastGame()
+        var latestFixture: Fixture? = FixtureManager.shared.lastGame
         
-        if let currentFixture = GameScoreManager.shared.getCurrentFixture {
+        if let currentFixture = GameScoreManager.shared.currentFixture {
             if currentFixture.inProgress {
                 latestFixture = currentFixture
             }
         }
         
         if latestFixture == nil {
-            if let nextFixture = FixtureManager.shared.getNextGame() {
+            if let nextFixture = FixtureManager.shared.nextGame {
                 latestFixture = nextFixture
             }
         }
