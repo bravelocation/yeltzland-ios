@@ -91,8 +91,8 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         print("*** Fetching latest data ...")
 
         // Update the fixture and game score caches
-        FixtureManager.instance.getLatestFixtures()
-        GameScoreManager.instance.getLatestGameScore()
+        FixtureManager.shared.getLatestFixtures()
+        GameScoreManager.shared.getLatestGameScore()
         
         // Update the tweets
         self.tweetsDataSource.loadLatestData()

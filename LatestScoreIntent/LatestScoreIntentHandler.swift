@@ -9,12 +9,12 @@
 import Foundation
 
 class LatestScoreIntentHandler: NSObject, LatestScoreIntentHandling {
-    let gameSettings = GameSettings.instance
+    let gameSettings = GameSettings.shared
     
     func confirm(intent: LatestScoreIntent, completion: @escaping (LatestScoreIntentResponse) -> Void) {
         // Update the fixture and game score caches
-        GameScoreManager.instance.getLatestGameScore()
-        FixtureManager.instance.getLatestFixtures()
+        GameScoreManager.shared.getLatestGameScore()
+        FixtureManager.shared.getLatestFixtures()
 
         completion(LatestScoreIntentResponse(code: .ready, userActivity: nil))
     }

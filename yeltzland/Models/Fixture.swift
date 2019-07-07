@@ -104,8 +104,8 @@ public class Fixture {
         get {
             // Is the game today?
             let now = Date()
-            let currentDayNumber = FixtureManager.instance.dayNumber(now)
-            let fixtureDayNumber = FixtureManager.instance.dayNumber(self.fixtureDate)
+            let currentDayNumber = FixtureManager.shared.dayNumber(now)
+            let fixtureDayNumber = FixtureManager.shared.dayNumber(self.fixtureDate)
             
             if (currentDayNumber == fixtureDayNumber) {
                 let formatter = DateFormatter()
@@ -122,8 +122,8 @@ public class Fixture {
         get {
             // Is the game today?
             let now = Date()
-            let currentDayNumber = FixtureManager.instance.dayNumber(now)
-            let fixtureDayNumber = FixtureManager.instance.dayNumber(self.fixtureDate)
+            let currentDayNumber = FixtureManager.shared.dayNumber(now)
+            let fixtureDayNumber = FixtureManager.shared.dayNumber(self.fixtureDate)
             
             if (currentDayNumber == fixtureDayNumber) {
                 let formatter = DateFormatter()
@@ -149,8 +149,8 @@ public class Fixture {
         get {
             // Is the game today?
             let now = Date()
-            let currentDayNumber = FixtureManager.instance.dayNumber(now)
-            let fixtureDayNumber = FixtureManager.instance.dayNumber(self.fixtureDate)
+            let currentDayNumber = FixtureManager.shared.dayNumber(now)
+            let fixtureDayNumber = FixtureManager.shared.dayNumber(self.fixtureDate)
             
             if (currentDayNumber == fixtureDayNumber) {
                 let formatter = DateFormatter()
@@ -313,8 +313,8 @@ public class Fixture {
             
             let now = Date()
             let beforeKickoff = now.compare(self.fixtureDate) == ComparisonResult.orderedAscending
-            let todayDayNumber = FixtureManager.instance.dayNumber(now)
-            let fixtureDayNumber = FixtureManager.instance.dayNumber(self.fixtureDate)
+            let todayDayNumber = FixtureManager.shared.dayNumber(now)
+            let fixtureDayNumber = FixtureManager.shared.dayNumber(self.fixtureDate)
             
             // If next game is today, and we are before kickoff ...
             if (todayDayNumber == fixtureDayNumber) {

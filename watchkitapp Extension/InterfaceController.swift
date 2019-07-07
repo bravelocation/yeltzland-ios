@@ -29,19 +29,19 @@ class InterfaceController: WKInterfaceController {
     }
     
     @IBAction func refreshTouchUp() {
-        FixtureManager.instance.getLatestFixtures()
+        FixtureManager.shared.getLatestFixtures()
     }
     
     fileprivate func updateViewData() {
         // A row per month, plus for each fixture
-        self.fixtureTable.setNumberOfRows(FixtureManager.instance.fixtureCount(), withRowType: "FixtureRowType")
+        self.fixtureTable.setNumberOfRows(FixtureManager.shared.fixtureCount(), withRowType: "FixtureRowType")
 
         // Get each month in turn
         var rowCount = 0
         var firstFixtureRow = 0
         
-        for month in FixtureManager.instance.months {
-            let fixturesForMonth = FixtureManager.instance.fixturesForMonth(month)
+        for month in FixtureManager.shared.months {
+            let fixturesForMonth = FixtureManager.shared.fixturesForMonth(month)
             
             if (fixturesForMonth == nil || fixturesForMonth!.count == 0) {
                 continue

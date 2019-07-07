@@ -47,7 +47,7 @@ class FixtureTableViewCell: UITableViewCell {
             self.scoreLabel.text = fixture.score
         }
         
-        TeamImageManager.instance.loadTeamImage(teamName: fixture.displayOpponent, view: self.logoImage)
+        TeamImageManager.shared.loadTeamImage(teamName: fixture.displayOpponent, view: self.logoImage)
     }
     
     override func awakeFromNib() {

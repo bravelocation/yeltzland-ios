@@ -88,21 +88,21 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
     
     // MARK: - Event handlers
     @objc func reloadButtonTouchUp() {
-        GameScoreManager.instance.getLatestGameScore()
+        GameScoreManager.shared.getLatestGameScore()
     }
     
     // MARK: - Helper functions
     private func updateUI() {
-        var latestFixture: Fixture? = FixtureManager.instance.getLastGame()
+        var latestFixture: Fixture? = FixtureManager.shared.getLastGame()
         
-        if let currentFixture = GameScoreManager.instance.getCurrentFixture {
+        if let currentFixture = GameScoreManager.shared.getCurrentFixture {
             if currentFixture.inProgress {
                 latestFixture = currentFixture
             }
         }
         
         if latestFixture == nil {
-            if let nextFixture = FixtureManager.instance.getNextGame() {
+            if let nextFixture = FixtureManager.shared.getNextGame() {
                 latestFixture = nextFixture
             }
         }
@@ -135,7 +135,7 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
             self.homeOrAwayLabel.text = homeOrAway
             self.latestScoreLabel.text = score
             self.latestScoreLabel.textColor = resultColor
-            TeamImageManager.instance.loadTeamImage(teamName: fixture.opponent, view: self.opponentLogoImageView)
+            TeamImageManager.shared.loadTeamImage(teamName: fixture.opponent, view: self.opponentLogoImageView)
             
             self.bestGuessLabel.isHidden = (fixture.inProgress == false)
         }
@@ -186,7 +186,7 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
     @objc
     func addToSiri(_ sender: Any) {
         if #available(iOS 12.0, *) {
-            let intent = ShortcutManager.instance.latestScoreIntent()
+            let intent = ShortcutManager.shared.latestScoreIntent()
             
             if let shortcut = INShortcut(intent: intent) {
                 let viewController = INUIAddVoiceShortcutViewController(shortcut: shortcut)

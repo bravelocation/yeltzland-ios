@@ -15,12 +15,12 @@ public class FirebaseNotifications: NSObject, MessagingDelegate {
     
     var enabled: Bool {
         get {
-            return GameSettings.instance.gameTimeTweetsEnabled
+            return GameSettings.shared.gameTimeTweetsEnabled
         }
         set(newValue) {
             // If changed, set the value
             if (newValue != self.enabled) {
-                GameSettings.instance.gameTimeTweetsEnabled = newValue
+                GameSettings.shared.gameTimeTweetsEnabled = newValue
             }
             
             // If setting to true, setup notifications

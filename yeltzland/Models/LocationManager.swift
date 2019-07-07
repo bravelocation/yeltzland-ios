@@ -34,7 +34,7 @@ public class LocationManager {
     fileprivate static let sharedInstance = LocationManager()
     fileprivate var locationList: [Location] = [Location]()
     
-    class var instance: LocationManager {
+    class var shared: LocationManager {
         get {
             return sharedInstance
         }

@@ -22,7 +22,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
     init() {
         super.init(nibName: nil, bundle: nil)
         self.addChildViewControllers()
-        self.selectedIndex = GameSettings.instance.lastSelectedTab
+        self.selectedIndex = GameSettings.shared.lastSelectedTab
         self.setupNotificationWatcher()
     }
 
@@ -144,7 +144,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
             currentIndex += 1
         }
         
-        GameSettings.instance.lastSelectedTab = selectedIndex
+        GameSettings.shared.lastSelectedTab = selectedIndex
         self.setupHandoff()
 
         return true
@@ -168,7 +168,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
     }
     
     private func setActivitySearchTitleAndPhrase(_ activity: NSUserActivity) {
-        let currentIndex = GameSettings.instance.lastSelectedTab
+        let currentIndex = GameSettings.shared.lastSelectedTab
         
         var activityTitle = "Open Yeltzland"
         var activityInvocationPhrase = "Open Yeltzland"
@@ -206,7 +206,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
             if let info = activity.userInfo {
                 if let tab = info["com.bravelocation.yeltzland.currenttab.key"] {
                     self.selectedIndex = tab as! Int
-                    GameSettings.instance.lastSelectedTab = tab as! Int
+                    GameSettings.shared.lastSelectedTab = tab as! Int
                     print("Set tab to \(tab) due to userActivity call")
                     
                     if let currentController = self.viewControllers![self.selectedIndex] as? UINavigationController {
@@ -223,7 +223,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
             print("Detected fixture list activity ...")
             // Set selected tab as More tab
             self.selectedIndex = self.otherTabIndex
-            GameSettings.instance.lastSelectedTab = self.otherTabIndex
+            GameSettings.shared.lastSelectedTab = self.otherTabIndex
             
             if let currentController = self.viewControllers![self.selectedIndex] as? UINavigationController {
                 if let selectedController = currentController.viewControllers[0] as? OtherLinksTableViewController {
@@ -234,7 +234,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
             print("Detected Latest score activity ...")
             // Set selected tab as More tab
             self.selectedIndex = self.otherTabIndex
-            GameSettings.instance.lastSelectedTab = self.otherTabIndex
+            GameSettings.shared.lastSelectedTab = self.otherTabIndex
             
             if let currentController = self.viewControllers![self.selectedIndex] as? UINavigationController {
                 if let selectedController = currentController.viewControllers[0] as? OtherLinksTableViewController {
@@ -245,10 +245,10 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
     }
     
     func userActivityWillSave(_ userActivity: NSUserActivity) {
-        print("Saving user activity \(String(describing: userActivity.title)) index to be \(GameSettings.instance.lastSelectedTab)")
+        print("Saving user activity \(String(describing: userActivity.title)) index to be \(GameSettings.shared.lastSelectedTab)")
 
         userActivity.userInfo = [
-            "com.bravelocation.yeltzland.currenttab.key": NSNumber(value: GameSettings.instance.lastSelectedTab as Int)
+            "com.bravelocation.yeltzland.currenttab.key": NSNumber(value: GameSettings.shared.lastSelectedTab as Int)
         ]
         
         // Add current URL if a web view
@@ -266,7 +266,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
             
             if (currentUrl != nil) {
                 userActivity.userInfo = [
-                    "com.bravelocation.yeltzland.currenttab.key": NSNumber(value: GameSettings.instance.lastSelectedTab as Int),
+                    "com.bravelocation.yeltzland.currenttab.key": NSNumber(value: GameSettings.shared.lastSelectedTab as Int),
                     "com.bravelocation.yeltzland.currenttab.currenturl": currentUrl!
                 ]
                 

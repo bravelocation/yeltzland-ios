@@ -10,7 +10,7 @@ import Foundation
 
 public class SettingsManager {
     fileprivate static let sharedInstance = SettingsManager()
-    class var instance: SettingsManager {
+    class var shared: SettingsManager {
         get {
             return sharedInstance
         }

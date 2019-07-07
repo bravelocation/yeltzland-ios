@@ -26,7 +26,7 @@ class IntentViewController: UIViewController, INUIHostedViewControlling {
     @IBOutlet weak var homeTeamScoreLabel: UILabel!
     @IBOutlet weak var awayTeamScoreLabel: UILabel!
     
-    let gameSettings = GameSettings.instance
+    let gameSettings = GameSettings.shared
     
     // Mark :- View event handlers
     override func viewDidLoad() {
@@ -95,8 +95,8 @@ class IntentViewController: UIViewController, INUIHostedViewControlling {
         let homeTeamForImage = homeTeamName == "Yeltz" ? "Halesowen Town" : homeTeamName
         let awayTeamForImage = awayTeamName == "Yeltz" ? "Halesowen Town" : awayTeamName
 
-        TeamImageManager.instance.loadTeamImage(teamName: homeTeamForImage, view: self.homeTeamImage)
-        TeamImageManager.instance.loadTeamImage(teamName: awayTeamForImage, view: self.awayTeamImage)
+        TeamImageManager.shared.loadTeamImage(teamName: homeTeamForImage, view: self.homeTeamImage)
+        TeamImageManager.shared.loadTeamImage(teamName: awayTeamForImage, view: self.awayTeamImage)
 
         completion(true, parameters, self.desiredSize)
     }

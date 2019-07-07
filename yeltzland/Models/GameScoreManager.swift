@@ -15,7 +15,7 @@ public class GameScoreManager {
     fileprivate var parseSuccess: Bool = false
 
     fileprivate static let sharedInstance = GameScoreManager()
-    class var instance: GameScoreManager {
+    class var shared: GameScoreManager {
         get {
             return sharedInstance
         }
@@ -124,8 +124,8 @@ public class GameScoreManager {
         if let fixture = parsedFixture {
             // Is the game in progress?
             
-            if let nextFixture = FixtureManager.instance.getNextGame() {
-                if (FixtureManager.instance.dayNumber(nextFixture.fixtureDate) == FixtureManager.instance.dayNumber(fixture.fixtureDate)) {
+            if let nextFixture = FixtureManager.shared.getNextGame() {
+                if (FixtureManager.shared.dayNumber(nextFixture.fixtureDate) == FixtureManager.shared.dayNumber(fixture.fixtureDate)) {
                     // If current score is on same day as next fixture, then we are in progress
                     self.currentFixture = Fixture(date: fixture.fixtureDate,
                                                   opponent: fixture.opponent,
@@ -145,7 +145,7 @@ public class GameScoreManager {
                                                       teamScore: 0,
                                                       opponentScore: 0,
                                                       inProgress: true)
-                    } else if let lastResult = FixtureManager.instance.getLastGame() {
+                    } else if let lastResult = FixtureManager.shared.getLastGame() {
                         // Otherwise "latest score" must be last result
                         self.currentFixture = lastResult
                     }

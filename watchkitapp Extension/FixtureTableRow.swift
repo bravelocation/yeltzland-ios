@@ -28,7 +28,7 @@ class FixtureRowType: NSObject {
             self.labelScore?.setText(fixture.score)
         }
         
-        TeamImageManager.instance.loadTeamImage(teamName: fixture.opponent, view: self.teamImage)
+        TeamImageManager.shared.loadTeamImage(teamName: fixture.opponent, view: self.teamImage)
 
         self.labelScore?.setTextColor(resultColor)
     }

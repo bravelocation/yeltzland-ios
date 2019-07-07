@@ -64,7 +64,7 @@ class FixturesTableViewController: UITableViewController {
             let currentMonthIndexPath = IndexPath(row: 0, section: self.currentMonthSection())
             
             // Try to handle case where fixtures may have updated
-            if (currentMonthIndexPath.section < FixtureManager.instance.months.count) {
+            if (currentMonthIndexPath.section < FixtureManager.shared.months.count) {
                 self.tableView.scrollToRow(at: currentMonthIndexPath, at: UITableView.ScrollPosition.top, animated: true)
             }
         })
@@ -78,7 +78,7 @@ class FixturesTableViewController: UITableViewController {
         formatter.dateFormat = "yyyyMM"
         let currentMonth = formatter.string(from: now)
         
-        for month in FixtureManager.instance.months {
+        for month in FixtureManager.shared.months {
             if (month == currentMonth) {
                 return monthIndex
             }
@@ -91,7 +91,7 @@ class FixturesTableViewController: UITableViewController {
     }
     
     @objc func reloadButtonTouchUp() {
-        FixtureManager.instance.getLatestFixtures()
+        FixtureManager.shared.getLatestFixtures()
     }
 
     override func viewDidLoad() {
@@ -125,7 +125,7 @@ class FixturesTableViewController: UITableViewController {
     }
     
     @objc private func refreshSearchData(_ sender: Any) {
-        FixtureManager.instance.getLatestFixtures()
+        FixtureManager.shared.getLatestFixtures()
     }
 
     // MARK: - Keyboard options
@@ -137,17 +137,17 @@ class FixturesTableViewController: UITableViewController {
 
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return FixtureManager.instance.months.count
+        return FixtureManager.shared.months.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        let months = FixtureManager.instance.months
+        let months = FixtureManager.shared.months
         if (months.count <= section) {
             return 0
         }
         
-        let fixturesForMonth = FixtureManager.instance.fixturesForMonth(months[section])
+        let fixturesForMonth = FixtureManager.shared.fixturesForMonth(months[section])
         
         if (fixturesForMonth == nil || fixturesForMonth?.count == 0) {
             return 0
@@ -162,10 +162,10 @@ class FixturesTableViewController: UITableViewController {
 
         // Find the fixture
         var currentFixture: Fixture? = nil
-        let months = FixtureManager.instance.months
+        let months = FixtureManager.shared.months
         
         if (months.count > (indexPath as NSIndexPath).section) {
-            let fixturesForMonth = FixtureManager.instance.fixturesForMonth(months[(indexPath as NSIndexPath).section])
+            let fixturesForMonth = FixtureManager.shared.fixturesForMonth(months[(indexPath as NSIndexPath).section])
         
             if (fixturesForMonth != nil && fixturesForMonth?.count > (indexPath as NSIndexPath).row) {
                 currentFixture = fixturesForMonth![(indexPath as NSIndexPath).row]
@@ -180,12 +180,12 @@ class FixturesTableViewController: UITableViewController {
     }
     
     override func tableView( _ tableView: UITableView, titleForHeaderInSection section: Int) -> String {
-        let months = FixtureManager.instance.months
+        let months = FixtureManager.shared.months
         if (months.count <= section) {
             return ""
         }
         
-        let fixturesForMonth = FixtureManager.instance.fixturesForMonth(months[section])
+        let fixturesForMonth = FixtureManager.shared.fixturesForMonth(months[section])
         if (fixturesForMonth == nil || fixturesForMonth?.count == 0) {
             return ""
         }

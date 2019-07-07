@@ -46,8 +46,8 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
     
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
         // Fetch latest fixtures
-        FixtureManager.instance.getLatestFixtures()
-        GameScoreManager.instance.getLatestGameScore()
+        FixtureManager.shared.getLatestFixtures()
+        GameScoreManager.shared.getLatestGameScore()
         
         var rowCount: CGFloat = 5.0
         if (self.inExpandedMode) {

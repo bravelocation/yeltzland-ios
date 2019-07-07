@@ -13,7 +13,7 @@ public class FixtureManager {
     private var fixtureList: [String: [Fixture]] = [:]
     
     private static let sharedInstance = FixtureManager()
-    class var instance: FixtureManager {
+    class var shared: FixtureManager {
         get {
             return sharedInstance
         }

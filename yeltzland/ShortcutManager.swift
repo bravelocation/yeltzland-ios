@@ -12,7 +12,7 @@ import Intents
 public class ShortcutManager {
     
     fileprivate static let sharedInstance = ShortcutManager()
-    class var instance: ShortcutManager {
+    class var shared: ShortcutManager {
         get {
             return sharedInstance
         }

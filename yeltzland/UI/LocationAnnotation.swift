@@ -21,7 +21,7 @@ class LocationAnnotation: NSObject, MKAnnotation {
         // Find away games
         var description = ""
 
-        for awayGame in FixtureManager.instance.getAwayGames(team) {
+        for awayGame in FixtureManager.shared.getAwayGames(team) {
             if (description != "") {
                 description += ", "
             }

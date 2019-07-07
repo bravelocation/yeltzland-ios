@@ -30,8 +30,8 @@ class NextGameController: WKInterfaceController {
     }
     
     @IBAction func refreshTap() {
-        FixtureManager.instance.getLatestFixtures()
-        GameScoreManager.instance.getLatestGameScore()
+        FixtureManager.shared.getLatestFixtures()
+        GameScoreManager.shared.getLatestGameScore()
     }
     
     override func willActivate() {
@@ -42,11 +42,11 @@ class NextGameController: WKInterfaceController {
     
     fileprivate func updateViewData() {
 
-        var latestFixture: Fixture? = FixtureManager.instance.getLastGame()
+        var latestFixture: Fixture? = FixtureManager.shared.getLastGame()
         var homeTeamName = ""
         var awayTeamName = ""
         
-        if let currentFixture = GameScoreManager.instance.getCurrentFixture {
+        if let currentFixture = GameScoreManager.shared.getCurrentFixture {
             if currentFixture.inProgress {
                 latestFixture = currentFixture
             }
@@ -75,7 +75,7 @@ class NextGameController: WKInterfaceController {
             }
         } else {
             // Show next fixture if there is one
-            let nextFixtures = FixtureManager.instance.getNextFixtures(1)
+            let nextFixtures = FixtureManager.shared.getNextFixtures(1)
             if (nextFixtures.count > 0) {
                 let fixture = nextFixtures[0]
                 
@@ -100,10 +100,10 @@ class NextGameController: WKInterfaceController {
         }
         
         if (homeTeamName.count > 0) {
-            TeamImageManager.instance.loadTeamImage(teamName: homeTeamName, view: self.homeTeamLogoImage)
+            TeamImageManager.shared.loadTeamImage(teamName: homeTeamName, view: self.homeTeamLogoImage)
         }
         if (awayTeamName.count > 0) {
-            TeamImageManager.instance.loadTeamImage(teamName: awayTeamName, view: self.awayTeamLogoImage)
+            TeamImageManager.shared.loadTeamImage(teamName: awayTeamName, view: self.awayTeamLogoImage)
         }
     }
     

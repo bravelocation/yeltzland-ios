@@ -28,8 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ]
         
         // Setup Twitter not via Fabric
-        let twitterConsumerKey = SettingsManager.instance.getSetting("TwitterConsumerKey") as! String
-        let twitterConsumerSecret = SettingsManager.instance.getSetting("TwitterConsumerSecret") as! String
+        let twitterConsumerKey = SettingsManager.shared.getSetting("TwitterConsumerKey") as! String
+        let twitterConsumerSecret = SettingsManager.shared.getSetting("TwitterConsumerSecret") as! String
 
         TWTRTwitter.sharedInstance().start(withConsumerKey: twitterConsumerKey, consumerSecret: twitterConsumerSecret)
 
@@ -42,23 +42,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.firebaseNotifications?.setupNotifications(false)
         
         // Update the fixture and game score caches
-        FixtureManager.instance.getLatestFixtures()
-        GameScoreManager.instance.getLatestGameScore()
+        FixtureManager.shared.getLatestFixtures()
+        GameScoreManager.shared.getLatestGameScore()
         
         // Setup background fetch
         application.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
         
         // Push settings to watch in the background
-        GameSettings.instance.forceBackgroundWatchUpdate()
+        GameSettings.shared.forceBackgroundWatchUpdate()
         
         // Donate all the shortcuts
         if #available(iOS 12.0, *) {
-            ShortcutManager.instance.donateAllShortcuts()
+            ShortcutManager.shared.donateAllShortcuts()
         }
         
         // If came from a notification, always start on the Twitter tab
         if launchOptions?[UIApplication.LaunchOptionsKey.remoteNotification] != nil {
-            GameSettings.instance.lastSelectedTab = 3
+            GameSettings.shared.lastSelectedTab = 3
         } else if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] {
             let result = self.handleShortcut(shortcutItem as! UIApplicationShortcutItem)
             print("Opened via shortcut: \(result)")
@@ -77,12 +77,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("In background refresh ...")
         let now = Date()
         
-        if let nextGame = FixtureManager.instance.getNextGame() {
+        if let nextGame = FixtureManager.shared.getNextGame() {
             if let differenceInMinutes = (Calendar.current as NSCalendar).components(.minute, from: now, to: nextGame.fixtureDate, options: []).minute {
                 if (differenceInMinutes < 0) {
                     // After game kicked off, so go get game score
-                    GameScoreManager.instance.getLatestGameScore()
-                    FixtureManager.instance.getLatestFixtures()
+                    GameScoreManager.shared.getLatestGameScore()
+                    FixtureManager.shared.getLatestFixtures()
                     
                     completionHandler(UIBackgroundFetchResult.newData)
                     return
@@ -91,7 +91,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         // Otherwise, make sure the watch is updated occasionally
-        GameSettings.instance.forceBackgroundWatchUpdate()
+        GameSettings.shared.forceBackgroundWatchUpdate()
         completionHandler(UIBackgroundFetchResult.noData)
     }
     
@@ -101,7 +101,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Reset selected tab
         if let mainViewController = self.window?.rootViewController as? MainTabBarController {
-            mainViewController.selectedIndex = GameSettings.instance.lastSelectedTab
+            mainViewController.selectedIndex = GameSettings.shared.lastSelectedTab
         }
         
         return completionHandler(handledShortCut)
@@ -119,22 +119,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("Handling shortcut item %@", shortcutItem.type)
         
         if (shortcutItem.type == "com.bravelocation.yeltzland.forum") {
-            GameSettings.instance.lastSelectedTab = 0
+            GameSettings.shared.lastSelectedTab = 0
             return true
         }
         
         if (shortcutItem.type == "com.bravelocation.yeltzland.official") {
-            GameSettings.instance.lastSelectedTab = 1
+            GameSettings.shared.lastSelectedTab = 1
             return true
         }
         
         if (shortcutItem.type == "com.bravelocation.yeltzland.yeltztv") {
-            GameSettings.instance.lastSelectedTab = 2
+            GameSettings.shared.lastSelectedTab = 2
             return true
         }
         
         if (shortcutItem.type == "com.bravelocation.yeltzland.twitter") {
-            GameSettings.instance.lastSelectedTab = 3
+            GameSettings.shared.lastSelectedTab = 3
             return true
         }
         
@@ -165,8 +165,8 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         Messaging.messaging().appDidReceiveMessage(response.notification.request.content.userInfo)
         
         // Go and update the game score and fixtures
-        GameScoreManager.instance.getLatestGameScore()
-        FixtureManager.instance.getLatestFixtures()
+        GameScoreManager.shared.getLatestGameScore()
+        FixtureManager.shared.getLatestFixtures()
 
         // If app in foreground, show a toast
         if (UIApplication.shared.applicationState == .active) {

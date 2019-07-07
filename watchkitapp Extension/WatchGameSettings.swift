@@ -14,7 +14,7 @@ import WatchKit
 public class WatchGameSettings: BaseSettings, WCSessionDelegate {
 
     fileprivate static let sharedInstance = WatchGameSettings()
-    class var instance: WatchGameSettings {
+    class var shared: WatchGameSettings {
         get {
             return sharedInstance
         }
@@ -99,7 +99,7 @@ public class WatchGameSettings: BaseSettings, WCSessionDelegate {
         // If we store them directly, when we open the watch app after a long time we get lots of "updates" at once
         if (gameSettingsUpdated) {
             print("Game settings updating on watch after push phone")
-            GameScoreManager.instance.getLatestGameScore()
+            GameScoreManager.shared.getLatestGameScore()
         }
     }
 }

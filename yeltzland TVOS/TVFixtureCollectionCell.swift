@@ -30,7 +30,7 @@ class TVFixtureCollectionCell: UICollectionViewCell {
         // Setup the colors
         self.layer.backgroundColor = UIColor.black.cgColor
         
-        TeamImageManager.instance.loadTeamImage(teamName: dataItem.opponent, view: self.calendarImage)
+        TeamImageManager.shared.loadTeamImage(teamName: dataItem.opponent, view: self.calendarImage)
         //self.calendarImage.image = self.calendarImage.image!.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
         
         if (dataItem.inProgress || dataItem.score.count == 0) {

@@ -50,10 +50,10 @@ class LocationsViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         self.mapView.isZoomEnabled = true
         
         // Setup initial view covering points
-        self.mapView.setRegion(LocationManager.instance.mapRegion(), animated: true)
+        self.mapView.setRegion(LocationManager.shared.mapRegion(), animated: true)
                 
         // Add locations on map
-        for location in LocationManager.instance.locations {
+        for location in LocationManager.shared.locations {
             let cooordinate = CLLocationCoordinate2DMake(location.latitude!, location.longitude!)
             let annotation = LocationAnnotation(coordinate: cooordinate, team: location.team)
             self.mapView.addAnnotation(annotation)
@@ -92,7 +92,7 @@ class LocationsViewController: UIViewController, MKMapViewDelegate, CLLocationMa
                 view.centerOffset = CGPoint(x: 0.0, y: -10.0)
 
                 view.leftCalloutAccessoryView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
-                TeamImageManager.instance.loadTeamImage(teamName: annotation.title!, view: view.leftCalloutAccessoryView as! UIImageView)
+                TeamImageManager.shared.loadTeamImage(teamName: annotation.title!, view: view.leftCalloutAccessoryView as! UIImageView)
             }
             
             return view

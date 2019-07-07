@@ -29,9 +29,9 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         var entry: CLKComplicationTimelineEntry?
         
         // Find the next fixture to use
-        var latestFixture: Fixture? = FixtureManager.instance.getLastGame()
+        var latestFixture: Fixture? = FixtureManager.shared.getLastGame()
         
-        if let currentFixture = GameScoreManager.instance.getCurrentFixture {
+        if let currentFixture = GameScoreManager.shared.getCurrentFixture {
             if currentFixture.inProgress {
                 latestFixture = currentFixture
             }
@@ -39,7 +39,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         
         // If the next fixture is missing or too far away, get next game
         if latestFixture == nil || latestFixture!.state == .manyDaysAfter {
-            latestFixture = FixtureManager.instance.getNextGame()
+            latestFixture = FixtureManager.shared.getNextGame()
         }
         
         if let fixture = latestFixture {

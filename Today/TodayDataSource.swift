@@ -24,7 +24,7 @@ class TodayDataSource: NSObject, UITableViewDataSource {
         // Get last game details
         self.currentScores.removeAll()
 
-        if let currentFixture = GameScoreManager.instance.getCurrentFixture {
+        if let currentFixture = GameScoreManager.shared.getCurrentFixture {
             if currentFixture.inProgress {
                 self.currentScores.append(TodayDataItem(opponent: currentFixture.displayOpponent,
                                                         scoreOrDate: currentFixture.inProgressScore,
@@ -34,7 +34,7 @@ class TodayDataSource: NSObject, UITableViewDataSource {
  
         self.lastGames.removeAll()
 
-        let lastResult = FixtureManager.instance.getLastGame()
+        let lastResult = FixtureManager.shared.getLastGame()
         if let fixture = lastResult {
             self.lastGames.append(TodayDataItem(opponent: fixture.displayOpponent,
                                                 scoreOrDate: fixture.score,
@@ -51,7 +51,7 @@ class TodayDataSource: NSObject, UITableViewDataSource {
         self.nextGames.removeAll()
         
         var i = 0
-        for fixture in FixtureManager.instance.getNextFixtures(fixturesNeeded) {
+        for fixture in FixtureManager.shared.getNextFixtures(fixturesNeeded) {
             
             // Only add first fixture if no current game
             if (i > 0 || self.currentScores.count == 0) {

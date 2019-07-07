@@ -14,7 +14,7 @@ public class GameSettings: BaseSettings, WCSessionDelegate {
 
     private static let sharedInstance = GameSettings()
     
-    class var instance: GameSettings {
+    class var shared: GameSettings {
         get {
             return sharedInstance
         }
@@ -37,7 +37,7 @@ public class GameSettings: BaseSettings, WCSessionDelegate {
     }
     
     @objc fileprivate func fixturesUpdated() {
-        GameScoreManager.instance.reloadData()
+        GameScoreManager.shared.reloadData()
         self.updateLatestScoreSettings()
     }
     
