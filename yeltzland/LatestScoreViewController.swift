@@ -21,35 +21,6 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
     
     var reloadButton: UIBarButtonItem!
     
-    // MARK: - Initialisation
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        self.setupNotificationWatcher()
-    }
-    
-    init() {
-        super.init(nibName: nil, bundle: nil)
-        self.setupNotificationWatcher()
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-        print("Removed notification handler for game score updates")
-    }
-    
-    fileprivate func setupNotificationWatcher() {
-        NotificationCenter.default.addObserver(self, selector: #selector(LatestScoreViewController.gameScoreUpdated), name: NSNotification.Name(rawValue: GameScoreManager.GameScoreNotification), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(LatestScoreViewController.gameScoreUpdated), name: NSNotification.Name(rawValue: FixtureManager.shared.notificationName), object: nil)
-        print("Setup notification handler for game score updates")
-    }
-    
-    @objc fileprivate func gameScoreUpdated(_ notification: Notification) {
-        print("Game score or fixture message received")
-        DispatchQueue.main.async(execute: { () -> Void in
-            self.updateUI()
-        })
-    }
-    
     // MARK: - View event handlers
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,10 +59,27 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
     
     // MARK: - Event handlers
     @objc func reloadButtonTouchUp() {
-        GameScoreManager.shared.getLatestGameScore()
+        FixtureManager.shared.fetchLatestData() { result in
+            if result == .success(true) {
+                self.gameScoreUpdated()
+            }
+        }
+        
+        GameScoreManager.shared.fetchLatestData() { result in
+            if result == .success(true) {
+                self.gameScoreUpdated()
+            }
+        }
     }
     
     // MARK: - Helper functions
+    private func gameScoreUpdated() {
+        print("Game score or fixture message received")
+        DispatchQueue.main.async(execute: { () -> Void in
+            self.updateUI()
+        })
+    }
+
     private func updateUI() {
         var latestFixture: Fixture? = FixtureManager.shared.getLastGame()
         

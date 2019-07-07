@@ -43,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Update the fixture and game score caches
         FixtureManager.shared.fetchLatestData(completion: nil)
-        GameScoreManager.shared.getLatestGameScore()
+        GameScoreManager.shared.fetchLatestData(completion: nil)
         
         // Setup background fetch
         application.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
@@ -81,7 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if let differenceInMinutes = (Calendar.current as NSCalendar).components(.minute, from: now, to: nextGame.fixtureDate, options: []).minute {
                 if (differenceInMinutes < 0) {
                     // After game kicked off, so go get game score
-                    GameScoreManager.shared.getLatestGameScore()
+                    GameScoreManager.shared.fetchLatestData(completion: nil)
                     FixtureManager.shared.fetchLatestData(completion: nil)
                     
                     completionHandler(UIBackgroundFetchResult.newData)
@@ -165,7 +165,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         Messaging.messaging().appDidReceiveMessage(response.notification.request.content.userInfo)
         
         // Go and update the game score and fixtures
-        GameScoreManager.shared.getLatestGameScore()
+        GameScoreManager.shared.fetchLatestData(completion: nil)
         FixtureManager.shared.fetchLatestData(completion: nil)
 
         // If app in foreground, show a toast

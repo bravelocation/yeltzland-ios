@@ -42,7 +42,11 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
             }
         }
         
-        GameScoreManager.shared.getLatestGameScore()
+        GameScoreManager.shared.fetchLatestData() { result in
+            if result == .success(true) {
+                self.fixturesUpdated()
+            }
+        }
         
         var rowCount: CGFloat = 5.0
         if (self.inExpandedMode) {
@@ -66,7 +70,7 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
         self.tableView.reloadData()
     }
     
-    fileprivate func fixturesUpdated() {
+    func fixturesUpdated() {
         print("Fixture update message received in today view")
         DispatchQueue.main.async(execute: { () -> Void in
             self.dataSource.loadLatestData()

@@ -31,7 +31,7 @@ class NextGameController: WKInterfaceController {
     
     @IBAction func refreshTap() {
         FixtureManager.shared.fetchLatestData(completion: nil)
-        GameScoreManager.shared.getLatestGameScore()
+        GameScoreManager.shared.fetchLatestData(completion: nil)
     }
     
     override func willActivate() {

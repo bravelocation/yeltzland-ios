@@ -32,12 +32,12 @@ public class GameSettings: BaseSettings, WCSessionDelegate {
     
     fileprivate func setupNotificationWatchers() {
         NotificationCenter.default.addObserver(self, selector: #selector(GameSettings.fixturesUpdated), name: NSNotification.Name(rawValue: FixtureManager.shared.notificationName), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(GameSettings.gameScoresUpdated), name: NSNotification.Name(rawValue: GameScoreManager.GameScoreNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(GameSettings.gameScoresUpdated), name: NSNotification.Name(rawValue: GameScoreManager.shared.notificationName), object: nil)
         print("Setup notification handlers for fixture or score updates in game settings")
     }
     
     @objc fileprivate func fixturesUpdated() {
-        GameScoreManager.shared.reloadData()
+        GameScoreManager.shared.fetchLatestData(completion: nil)
         self.updateLatestScoreSettings()
     }
     

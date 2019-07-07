@@ -32,7 +32,7 @@ public class WatchGameSettings: BaseSettings, WCSessionDelegate {
     
     fileprivate func setupNotificationWatchers() {
         NotificationCenter.default.addObserver(self, selector: #selector(WatchGameSettings.updateLatestScoreSettings), name: NSNotification.Name(rawValue: FixtureManager.shared.notificationName), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(WatchGameSettings.updateLatestScoreSettings), name: NSNotification.Name(rawValue: GameScoreManager.GameScoreNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(WatchGameSettings.updateLatestScoreSettings), name: NSNotification.Name(rawValue: GameScoreManager.shared.notificationName), object: nil)
         print("Setup notification handlers for fixture or score updates in watch game settings")
     }
 
@@ -99,7 +99,7 @@ public class WatchGameSettings: BaseSettings, WCSessionDelegate {
         // If we store them directly, when we open the watch app after a long time we get lots of "updates" at once
         if (gameSettingsUpdated) {
             print("Game settings updating on watch after push phone")
-            GameScoreManager.shared.getLatestGameScore()
+            GameScoreManager.shared.fetchLatestData(completion: nil)
         }
     }
 }
