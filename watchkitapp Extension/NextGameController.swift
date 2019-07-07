@@ -30,7 +30,7 @@ class NextGameController: WKInterfaceController {
     }
     
     @IBAction func refreshTap() {
-        FixtureManager.shared.getLatestFixtures()
+        FixtureManager.shared.fetchLatestData(completion: nil)
         GameScoreManager.shared.getLatestGameScore()
     }
     

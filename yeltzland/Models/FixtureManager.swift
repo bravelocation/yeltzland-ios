@@ -8,16 +8,70 @@
 
 import Foundation
 
-public class FixtureManager {
-    public static let FixturesNotification: String = "YLZFixtureNotification"
+public class FixtureManager: CachedJSONData {
+
     private var fixtureList: [String: [Fixture]] = [:]
     
-    private static let sharedInstance = FixtureManager()
+    var fileName: String
+    var remoteURL: URL
+    var notificationName: String
+
+    private static let sharedInstance = FixtureManager(
+                                    fileName: "matches.json",
+                                    remoteURL: URL(string: "https://bravelocation.com/automation/feeds/matches.json")!,
+                                    notificationName: "YLZFixtureNotification")
+                                    
     class var shared: FixtureManager {
         get {
             return sharedInstance
         }
     }
+    
+    // MARK: - CachedJSONData functions
+    
+    required init(fileName: String, remoteURL: URL, notificationName: String) {
+        self.fileName = fileName
+        self.remoteURL = remoteURL
+        self.notificationName = notificationName
+        
+        _ = self.loadBundleFileIntoCache()
+        _ = self.loadDataFromCache()
+    }
+    
+    func parseJson(_ json: [String: AnyObject]) -> Result<Bool, JSONDataError> {
+        guard let matches = json["Matches"] as? Array<AnyObject> else { return .failure(.jsonFormatError)}
+        
+        var latestFixtures: [String: [Fixture]] = [:]
+        
+        // Add each fixture into the correct month
+        for currentMatch in matches {
+            if let match = currentMatch as? [String: AnyObject] {
+                if let currentFixture = Fixture(fromJson: match) {
+                    if latestFixtures[currentFixture.monthKey] != nil {
+                        latestFixtures[currentFixture.monthKey]?.append(currentFixture)
+                    } else {
+                        latestFixtures[currentFixture.monthKey] = [currentFixture]
+                    }
+                }
+            }
+        }
+        
+        // Sort the fixtures per month
+        for currentMonth in Array(latestFixtures.keys) {
+            latestFixtures[currentMonth] = latestFixtures[currentMonth]?.sorted(by: { $0.fixtureDate.compare($1.fixtureDate as Date) == .orderedAscending })
+        }
+        
+        // Finally, switch the fixture list with the new fixtures
+        self.fixtureList = latestFixtures
+        
+        return .success(true)
+    }
+    
+    func isValidJson(_ json: [String: AnyObject]) -> Bool {
+        return json["Matches"] != nil
+    }
+    
+    // MARK: - Data properties
     
     public var months: [String] {
         var result: [String] = []
@@ -36,73 +90,6 @@ public class FixtureManager {
         }
         
         return nil
-    }
-    
-    init() {
-        // Setup local data
-        self.moveSingleBundleFileToAppDirectory("matches", fileType: "json")
-        
-        let data: Data? = try? Data.init(contentsOf: URL(fileURLWithPath: self.appDirectoryFilePath("matches", fileType: "json")))
-        
-        if (data == nil) {
-            print("Couldn't load fixtures from cache")
-            return
-        }
-        
-        do {
-            print("Loading fixtures from cache ...")
-            let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions()) as? [String: AnyObject]
-            
-            if (json == nil) {
-                print("Couldn't parse fixtures from cache")
-                return
-            }
-            
-            self.parseMatchesJson(json!)
-            print("Loaded fixtures from cache")
-        } catch {
-            print("Error loading fixtures from cache ...")
-            print(error)
-        }
-    }
-    
-    public func getLatestFixtures() {
-        print("Preparing to fetch fixtures ...")
-        
-        let dataUrl = URL(string: "https://bravelocation.com/automation/feeds/matches.json")!
-        let urlRequest = URLRequest(url: dataUrl, cachePolicy: NSURLRequest.CachePolicy.useProtocolCachePolicy, timeoutInterval: 60.0)
- 
-        let config = URLSessionConfiguration.default
-        config.requestCachePolicy = .reloadIgnoringLocalCacheData
-        config.urlCache = nil
-        
-        let session = URLSession.init(configuration: config)
-        
-        let task = session.dataTask(with: urlRequest, completionHandler: {
-            (serverData, response, error) -> Void in
-            print("Fixture data received from server")
-            if (error != nil) {
-                print("Error downloading fixtures from server: \(error.debugDescription)")
-                return
-            }
-            
-            let httpResponse = response as! HTTPURLResponse
-            let statusCode = httpResponse.statusCode
-            
-            if (statusCode == 200) {
-                if (serverData == nil) {
-                    print("Couldn't download fixtures from server")
-                    return
-                }
-                
-                self.loadFixtureData(serverData)
-            } else {
-                print("Error response from server: \(statusCode)")
-            }
-        }) 
-        
-        task.resume()
-        print("Fixtures should be coming on background thread")
     }
     
     public func getAwayGames(_ opponent: String) -> [Fixture] {
@@ -214,125 +201,6 @@ public class FixtureManager {
         }
         
         return nil
-    }
-    
-    public func loadFixtureData(_ data: Data?) {
-        do {
-            let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions()) as? [String: AnyObject]
-            
-            if (json == nil) {
-                print("Couldn't parse fixtures from server")
-                return
-            }
-            
-            self.parseMatchesJson(json!)
-            
-            // Fetch went OK, so write to local file for next startup
-            if (self.months.count > 0) {
-                print("Saving server fixtures to cache")
-                
-                try data?.write(to: URL(fileURLWithPath: self.appDirectoryFilePath("matches", fileType: "json")), options: .atomic)
-            }
-            
-            print("Loaded fixtures from server")
-            
-            // Post notification message
-            NotificationCenter.default.post(name: Notification.Name(rawValue: FixtureManager.FixturesNotification), object: nil)
-        } catch {
-            print("Error loading fixtures from server ...")
-            print(error)
-        }
-    }
-    
-    fileprivate func parseMatchesJson(_ json: [String: AnyObject]) {
-        guard let matches = json["Matches"] as? Array<AnyObject> else { return }
-        
-        var latestFixtures: [String: [Fixture]] = [:]
-        
-        // Add each fixture into the correct month
-        for currentMatch in matches {
-            if let match = currentMatch as? [String: AnyObject] {
-                if let currentFixture = Fixture(fromJson: match) {
-                    if latestFixtures[currentFixture.monthKey] != nil {
-                        latestFixtures[currentFixture.monthKey]?.append(currentFixture)
-                    } else {
-                        latestFixtures[currentFixture.monthKey] = [currentFixture]
-                    }
-                }
-            }
-        }
-        
-        // Sort the fixtures per month
-        for currentMonth in Array(latestFixtures.keys) {
-            latestFixtures[currentMonth] = latestFixtures[currentMonth]?.sorted(by: { $0.fixtureDate.compare($1.fixtureDate as Date) == .orderedAscending })
-        }
-        
-        // Finally, switch the fixture list with the new fixtures
-        self.fixtureList = latestFixtures
-    }
-    
-    private func moveSingleBundleFileToAppDirectory(_ fileName: String, fileType: String) {
-        if (self.checkAppDirectoryExists(fileName, fileType: fileType)) {
-            // If file already exists, return
-            print("Fixtures file exists, don't copy from bundle")
-            return
-        }
-        
-        let fileManager = FileManager.default
-        let bundlePath = Bundle.main.path(forResource: fileName, ofType: fileType)!
-        if fileManager.fileExists(atPath: bundlePath) == false {
-            // No bundle file exists
-            print("Missing bundle file")
-            return
-        }
-        
-        // Finally, copy the bundle file
-        do {
-            try fileManager.copyItem(atPath: bundlePath, toPath: self.appDirectoryFilePath(fileName, fileType: fileType))
-            print("Copied Fixtures from bundle to cache")
-        } catch {
-            print("Problem copying fixtures file from bundle to cache")
-            return
-        }
-    }
-    
-    fileprivate func appDirectoryFilePath(_ fileName: String, fileType: String) -> String {
-        #if os(tvOS)
-            let appDirectoryPath = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)[0]
-            let filePath = String.init(format: "/%@.%@", fileName, fileType)
-            return appDirectoryPath + filePath
-        #else
-            let appDirectoryPath = self.applicationDirectory()?.path
-            let filePath = String.init(format: "%@.%@", fileName, fileType)
-            return ((appDirectoryPath)! + filePath)
-        #endif
-    }
-    
-    fileprivate func checkAppDirectoryExists(_ fileName: String, fileType: String) -> Bool {
-        let fileManager = FileManager.default
-        
-        return fileManager.fileExists(atPath: self.appDirectoryFilePath(fileName, fileType: fileType))
-    }
-    
-    fileprivate func applicationDirectory() -> URL? {
-        let bundleId = Bundle.main.bundleIdentifier
-        let fileManager = FileManager.default
-        var dirPath: URL? = nil
-        
-        // Find the application support directory in the home directory.
-        let appSupportDir = fileManager.urls(for: .applicationSupportDirectory, in: .userDomainMask)
-        if (appSupportDir.count > 0) {
-            // Append the bundle ID to the URL for the Application Support directory
-            dirPath = appSupportDir[0].appendingPathComponent(bundleId!, isDirectory: true)
-            
-            do {
-                try fileManager.createDirectory(at: dirPath!, withIntermediateDirectories: true, attributes: nil)
-            } catch {
-                return nil
-            }
-        }
-        
-        return dirPath
     }
     
     public func dayNumber(_ date: Date) -> Int {

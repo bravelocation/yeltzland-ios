@@ -31,7 +31,7 @@ public class WatchGameSettings: BaseSettings, WCSessionDelegate {
     }
     
     fileprivate func setupNotificationWatchers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(WatchGameSettings.updateLatestScoreSettings), name: NSNotification.Name(rawValue: FixtureManager.FixturesNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(WatchGameSettings.updateLatestScoreSettings), name: NSNotification.Name(rawValue: FixtureManager.shared.notificationName), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(WatchGameSettings.updateLatestScoreSettings), name: NSNotification.Name(rawValue: GameScoreManager.GameScoreNotification), object: nil)
         print("Setup notification handlers for fixture or score updates in watch game settings")
     }

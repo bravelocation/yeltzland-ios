@@ -35,28 +35,7 @@ class FixturesTableViewController: UITableViewController {
     private let cellIdentifier: String = "FixtureTableViewCell"
     private let fixturesRefreshControl = UIRefreshControl()
     
-    override init(style: UITableView.Style) {
-        super.init(style: style)
-        self.setupNotificationWatcher()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        self.setupNotificationWatcher()
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-        print("Removed notification handler for fixture updates")
-    }
-    
-    fileprivate func setupNotificationWatcher() {
-        NotificationCenter.default.addObserver(self, selector: #selector(FixturesTableViewController.fixturesUpdated), name: NSNotification.Name(rawValue: FixtureManager.FixturesNotification), object: nil)
-        print("Setup notification handler for fixture updates")
-    }
-    
-    @objc fileprivate func fixturesUpdated(_ notification: Notification) {
-        print("Fixture update message received")
+    fileprivate func fixturesUpdated() {
         DispatchQueue.main.async(execute: { () -> Void in
             self.fixturesRefreshControl.endRefreshing()
             self.tableView.reloadData()
@@ -91,7 +70,11 @@ class FixturesTableViewController: UITableViewController {
     }
     
     @objc func reloadButtonTouchUp() {
-        FixtureManager.shared.getLatestFixtures()
+        FixtureManager.shared.fetchLatestData() { result in
+            if result == .success(true) {
+                self.fixturesUpdated()
+            }
+        }
     }
 
     override func viewDidLoad() {
@@ -125,7 +108,11 @@ class FixturesTableViewController: UITableViewController {
     }
     
     @objc private func refreshSearchData(_ sender: Any) {
-        FixtureManager.shared.getLatestFixtures()
+        FixtureManager.shared.fetchLatestData() { result in
+            if result == .success(true) {
+                self.fixturesUpdated()
+            }
+        }
     }
 
     // MARK: - Keyboard options

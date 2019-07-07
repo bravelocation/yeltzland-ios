@@ -44,6 +44,13 @@
 		522716C422D0D438008FD210 /* AppImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522716C322D0D438008FD210 /* AppImages.swift */; };
 		522716C822D1B83D008FD210 /* AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211F7261CDA35CF0031496D /* AppFonts.swift */; };
 		522716CB22D1B85F008FD210 /* AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211F7261CDA35CF0031496D /* AppFonts.swift */; };
+		522716CD22D1BB50008FD210 /* CachedJSONData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522716CC22D1BB50008FD210 /* CachedJSONData.swift */; };
+		522716CE22D1BB50008FD210 /* CachedJSONData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522716CC22D1BB50008FD210 /* CachedJSONData.swift */; };
+		522716CF22D1BB50008FD210 /* CachedJSONData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522716CC22D1BB50008FD210 /* CachedJSONData.swift */; };
+		522716D022D1BB50008FD210 /* CachedJSONData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522716CC22D1BB50008FD210 /* CachedJSONData.swift */; };
+		522716D122D1BB50008FD210 /* CachedJSONData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522716CC22D1BB50008FD210 /* CachedJSONData.swift */; };
+		522716D222D1BB50008FD210 /* CachedJSONData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522716CC22D1BB50008FD210 /* CachedJSONData.swift */; };
+		522716D322D1D4C1008FD210 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B4475422CF316000E745EB /* AppColors.swift */; };
 		522EA44220EA236A00B90146 /* TeamImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522EA44120EA236A00B90146 /* TeamImageManager.swift */; };
 		5231F4FF215B6C56003FAC68 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5231F4FE215B6C56003FAC68 /* SettingsManager.swift */; };
 		5231F501215B6C92003FAC68 /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5231F500215B6C92003FAC68 /* Settings.plist */; };
@@ -262,6 +269,7 @@
 		52236AEA1D17ECB4004903AB /* matches.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = matches.json; sourceTree = "<group>"; };
 		52236AED1D1803C8004903AB /* FixturesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixturesTableViewController.swift; sourceTree = "<group>"; };
 		522716C322D0D438008FD210 /* AppImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppImages.swift; sourceTree = "<group>"; };
+		522716CC22D1BB50008FD210 /* CachedJSONData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedJSONData.swift; sourceTree = "<group>"; };
 		522EA44120EA236A00B90146 /* TeamImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamImageManager.swift; sourceTree = "<group>"; };
 		5231F4FE215B6C56003FAC68 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		5231F500215B6C92003FAC68 /* Settings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Settings.plist; sourceTree = "<group>"; };
@@ -496,6 +504,7 @@
 				527DAF201D2D096B0092BB8F /* LocationManager.swift */,
 				5231F4FE215B6C56003FAC68 /* SettingsManager.swift */,
 				528A347720CFB98D00E8475C /* TeamImageManager.swift */,
+				522716CC22D1BB50008FD210 /* CachedJSONData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -868,7 +877,7 @@
 					52176BB61D4B6D5900B7EFAE = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = W8B3V597R9;
-						LastSwiftMigration = 0920;
+						LastSwiftMigration = 1100;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -1359,6 +1368,7 @@
 				52176BE41D4B6EF000B7EFAE /* WatchGameSettings.swift in Sources */,
 				52176BD11D4B6D5900B7EFAE /* ComplicationController.swift in Sources */,
 				52E711A31D9CF5EB0002446A /* GameScoreManager.swift in Sources */,
+				522716CF22D1BB50008FD210 /* CachedJSONData.swift in Sources */,
 				52E711A81D9E52080002446A /* FixtureTableRow.swift in Sources */,
 				52E711A11D9CF5C90002446A /* FixtureManager.swift in Sources */,
 				52176BCD1D4B6D5900B7EFAE /* ExtensionDelegate.swift in Sources */,
@@ -1374,6 +1384,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				522716D022D1BB50008FD210 /* CachedJSONData.swift in Sources */,
 				525719801FDE8BBB005F1D80 /* FixtureManager.swift in Sources */,
 				52D8682C1FE92A440041B578 /* TVTwitterCollectionCell.swift in Sources */,
 				52D868291FE928DA0041B578 /* TwitterDataSource.swift in Sources */,
@@ -1403,8 +1414,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				52176BB11D4A200400B7EFAE /* GameScoreManager.swift in Sources */,
+				522716CE22D1BB50008FD210 /* CachedJSONData.swift in Sources */,
 				526F54631D214982001EA8D8 /* Fixture.swift in Sources */,
 				52DBCAA11D4A012E00D35F91 /* GameSettings.swift in Sources */,
+				522716D322D1D4C1008FD210 /* AppColors.swift in Sources */,
 				522716C822D1B83D008FD210 /* AppFonts.swift in Sources */,
 				529E81001EDAC05C002DC858 /* TodayDataItem.swift in Sources */,
 				529E80FE1EDABC91002DC858 /* TodayDataSource.swift in Sources */,
@@ -1442,6 +1455,7 @@
 				527DAF211D2D096B0092BB8F /* LocationManager.swift in Sources */,
 				527DAF231D2D0F550092BB8F /* LocationsViewController.swift in Sources */,
 				5259F9041CDA1292009C2AA8 /* MainTabBarController.swift in Sources */,
+				522716CD22D1BB50008FD210 /* CachedJSONData.swift in Sources */,
 				527DAF1B1D2BA9BA0092BB8F /* SafariActivity.swift in Sources */,
 				5236ECDB20CE99B80067AFFA /* LatestScoreViewController.swift in Sources */,
 				52EACDB721564462008B8DE5 /* Intent.intentdefinition in Sources */,
@@ -1459,6 +1473,7 @@
 				52EACDC2215646D0008B8DE5 /* GameScoreManager.swift in Sources */,
 				52EACDC0215646CD008B8DE5 /* Fixture.swift in Sources */,
 				52EACD9A215643FB008B8DE5 /* IntentHandler.swift in Sources */,
+				522716D122D1BB50008FD210 /* CachedJSONData.swift in Sources */,
 				52EACDBB21564586008B8DE5 /* LatestScoreIntentHandler.swift in Sources */,
 				52EACDC4215646D3008B8DE5 /* GameSettings.swift in Sources */,
 			);
@@ -1469,6 +1484,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52EACDBF215646C8008B8DE5 /* FixtureManager.swift in Sources */,
+				522716D222D1BB50008FD210 /* CachedJSONData.swift in Sources */,
 				52EACDC3215646D0008B8DE5 /* GameScoreManager.swift in Sources */,
 				52EACDC5215646D3008B8DE5 /* GameSettings.swift in Sources */,
 				522716CB22D1B85F008FD210 /* AppFonts.swift in Sources */,
@@ -1612,15 +1628,22 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = watchkitapp/watchkitapp.entitlements;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = W8B3V597R9;
 				IBSC_MODULE = watchkitapp_Extension;
 				INFOPLIST_FILE = watchkitapp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bravelocation.yeltzland.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
@@ -1633,11 +1656,17 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = watchkitapp/watchkitapp.entitlements;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = W8B3V597R9;
 				IBSC_MODULE = watchkitapp_Extension;
 				INFOPLIST_FILE = watchkitapp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bravelocation.yeltzland.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;

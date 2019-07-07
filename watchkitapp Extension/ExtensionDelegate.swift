@@ -35,7 +35,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
             self.setupBackgroundRefresh()
             
             // Go and fetch the latest data in the background
-            FixtureManager.shared.getLatestFixtures()
+            FixtureManager.shared.fetchLatestData(completion: nil)
             GameScoreManager.shared.getLatestGameScore()
         }
         
@@ -101,7 +101,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
             if (task is WKApplicationRefreshBackgroundTask) {
                 
                 // Go and fetch the latest data
-                FixtureManager.shared.getLatestFixtures()
+                FixtureManager.shared.fetchLatestData(completion: nil)
                 GameScoreManager.shared.getLatestGameScore()
                 
                 // Setup next background refresh

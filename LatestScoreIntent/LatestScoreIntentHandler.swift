@@ -14,7 +14,7 @@ class LatestScoreIntentHandler: NSObject, LatestScoreIntentHandling {
     func confirm(intent: LatestScoreIntent, completion: @escaping (LatestScoreIntentResponse) -> Void) {
         // Update the fixture and game score caches
         GameScoreManager.shared.getLatestGameScore()
-        FixtureManager.shared.getLatestFixtures()
+        FixtureManager.shared.fetchLatestData(completion: nil)
 
         completion(LatestScoreIntentResponse(code: .ready, userActivity: nil))
     }

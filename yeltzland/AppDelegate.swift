@@ -42,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.firebaseNotifications?.setupNotifications(false)
         
         // Update the fixture and game score caches
-        FixtureManager.shared.getLatestFixtures()
+        FixtureManager.shared.fetchLatestData(completion: nil)
         GameScoreManager.shared.getLatestGameScore()
         
         // Setup background fetch
@@ -82,7 +82,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 if (differenceInMinutes < 0) {
                     // After game kicked off, so go get game score
                     GameScoreManager.shared.getLatestGameScore()
-                    FixtureManager.shared.getLatestFixtures()
+                    FixtureManager.shared.fetchLatestData(completion: nil)
                     
                     completionHandler(UIBackgroundFetchResult.newData)
                     return
@@ -166,7 +166,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         
         // Go and update the game score and fixtures
         GameScoreManager.shared.getLatestGameScore()
-        FixtureManager.shared.getLatestFixtures()
+        FixtureManager.shared.fetchLatestData(completion: nil)
 
         // If app in foreground, show a toast
         if (UIApplication.shared.applicationState == .active) {

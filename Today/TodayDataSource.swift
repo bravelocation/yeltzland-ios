@@ -152,7 +152,7 @@ class TodayDataSource: NSObject, UITableViewDataSource {
         let teamScore = fixture.teamScore
         let opponentScore  = fixture.opponentScore
         
-        var resultColor = UIColor.black
+        var resultColor = AppColors.label
         
         if (teamScore != nil && opponentScore != nil) {
             if (teamScore! > opponentScore!) {
@@ -192,7 +192,6 @@ class TodayDataSource: NSObject, UITableViewDataSource {
         // Set colors
         cell.selectionStyle = .none
         cell.accessoryType = .none
-        cell.backgroundColor = UIColor.clear
         cell.separatorInset = UIEdgeInsets.init(top: 0.0, left: 20.0, bottom: 0.0, right: 0.0)
         
         cell.textLabel?.font = UIFont(name: AppFonts.AppFontName, size: AppFonts.TodayTextSize)!

@@ -29,7 +29,7 @@ class InterfaceController: WKInterfaceController {
     }
     
     @IBAction func refreshTouchUp() {
-        FixtureManager.shared.getLatestFixtures()
+        FixtureManager.shared.fetchLatestData(completion: nil)
     }
     
     fileprivate func updateViewData() {
