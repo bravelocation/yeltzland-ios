@@ -25,9 +25,6 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
         
         self.tableView.dataSource = self.dataSource
         self.tableView.delegate = self
-        
-        self.view.backgroundColor = UIColor.clear
-        self.tableView.backgroundColor = UIColor.clear
     }
     
     func widgetMarginInsets(forProposedMarginInsets defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
@@ -87,6 +84,7 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if let headerView = view as? UITableViewHeaderFooterView {
+            headerView.tintColor = UIColor.clear
             headerView.textLabel!.textColor = AppColors.label
             headerView.textLabel!.font = UIFont(name: AppFonts.AppFontName, size: AppFonts.TodayTextSize)!
             headerView.textLabel?.text = self.dataSource.headerText(section: section)
@@ -95,6 +93,7 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
     
     override func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
         if let footerView = view as? UITableViewHeaderFooterView {
+            footerView.tintColor = UIColor.clear
             footerView.textLabel!.textColor = AppColors.label
             footerView.textLabel!.font = UIFont(name: AppFonts.AppFontName, size: AppFonts.TodayFootnoteSize)!
             footerView.textLabel?.text = self.dataSource.footerText(section: section)

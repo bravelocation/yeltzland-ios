@@ -175,7 +175,7 @@ class TodayDataSource: NSObject, UITableViewDataSource {
         // Figure out data to show
         var opponent: String = ""
         var gameDetails = ""
-        var resultColor = UIColor.black
+        var resultColor = AppColors.label
         
         if let dataItems = self.dataItemsForSection(section: indexPath.section) {
             if (dataItems.count >= indexPath.row) {

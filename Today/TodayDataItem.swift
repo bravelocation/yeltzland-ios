@@ -11,7 +11,7 @@ import UIKit
 class TodayDataItem: NSObject {
     var opponent: String = ""
     var scoreOrDate: String = ""
-    var resultColor: UIColor = UIColor.black
+    var resultColor: UIColor = AppColors.label
     
     init(opponent: String, scoreOrDate: String, color: UIColor) {
         self.opponent = opponent
@@ -22,6 +22,6 @@ class TodayDataItem: NSObject {
     init(opponent: String, scoreOrDate: String) {
         self.opponent = opponent
         self.scoreOrDate = scoreOrDate
-        self.resultColor = UIColor.black
+        self.resultColor = AppColors.label
     }
 }
