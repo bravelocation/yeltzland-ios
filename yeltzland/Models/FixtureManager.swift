@@ -15,6 +15,7 @@ public class FixtureManager: CachedJSONData {
     var fileName: String
     var remoteURL: URL
     var notificationName: String
+    var fileCoordinator: NSFileCoordinator
 
     private static let sharedInstance = FixtureManager(
                                     fileName: "matches.json",
@@ -34,8 +35,24 @@ public class FixtureManager: CachedJSONData {
         self.remoteURL = remoteURL
         self.notificationName = notificationName
         
-        _ = self.loadBundleFileIntoCache()
-        _ = self.loadDataFromCache()
+        self.fileCoordinator = NSFileCoordinator(filePresenter: nil)
+        
+        self.loadBundleFileIntoCache() { result in
+            switch result {
+            case .success:
+                self.loadDataFromCache() { loaded in
+                    switch loaded {
+                    case .success:
+                        print("Loaded fixtures from cache")
+                    case .failure:
+                        print("A problem occurred loading fixtures from cache")
+                    }
+                }
+                
+            case .failure:
+                print("Couldn't load fixtures from bundle")
+            }
+        }
     }
     
     func parseJson(_ json: [String: AnyObject]) -> Result<Bool, JSONDataError> {

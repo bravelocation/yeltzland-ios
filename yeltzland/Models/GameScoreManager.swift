@@ -8,10 +8,11 @@
 
 import Foundation
 
-public class GameScoreManager : CachedJSONData {
+public class GameScoreManager: CachedJSONData {
     var fileName: String
     var remoteURL: URL
     var notificationName: String
+    var fileCoordinator: NSFileCoordinator
     
     fileprivate var currentFixture: Fixture?
 
@@ -30,9 +31,24 @@ public class GameScoreManager : CachedJSONData {
         self.fileName = fileName
         self.remoteURL = remoteURL
         self.notificationName = notificationName
+        self.fileCoordinator = NSFileCoordinator(filePresenter: nil)
         
-        _ = self.loadBundleFileIntoCache()
-        _ = self.loadDataFromCache()
+        self.loadBundleFileIntoCache() { result in
+            switch result {
+            case .success:
+                self.loadDataFromCache() { loaded in
+                    switch loaded {
+                    case .success:
+                        print("Loaded game score from cache")
+                    case .failure:
+                         print("A problem occurred loading game score from cache")
+                    }
+                }
+                
+            case .failure:
+                print("Couldn't load game score from bundle")
+            }
+        }
     }
     
     func parseJson(_ json: [String: AnyObject]) -> Result<Bool, JSONDataError> {

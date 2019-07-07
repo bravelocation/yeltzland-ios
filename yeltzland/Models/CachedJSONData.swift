@@ -21,6 +21,7 @@ protocol CachedJSONData {
     var fileName: String { get }
     var remoteURL: URL { get }
     var notificationName: String { get }
+    var fileCoordinator: NSFileCoordinator { get }
 
     init(fileName: String, remoteURL: URL, notificationName: String)
     func fetchLatestData(completion: ((Result<Bool, JSONDataError>) -> Void)?)
@@ -39,42 +40,50 @@ extension CachedJSONData {
     }
     
     /// Loads bundle file into cache if it doesn't already exist
-    func loadBundleFileIntoCache() -> Result<Bool, JSONDataError> {
+    func loadBundleFileIntoCache(completion: (Result<Bool, JSONDataError>) -> Void) {
         let fileManager = FileManager.default
         let cacheFileUrl = self.cacheFileUrl()
         
         if fileManager.fileExists(atPath: cacheFileUrl.path) {
             print("File already exists, don't copy from bundle")
-            return .success(false)
+            completion(.success(false))
+            return
         }
         
         // Get the file from the bundle
         let fileNameParts = self.fileName.components(separatedBy: ".")
         
-        guard fileNameParts.count == 2 else { return .failure(.incorrectFileName) }
+        guard fileNameParts.count == 2 else {
+            completion(.failure(.incorrectFileName))
+            return
+        }
         
         let bundlePath = Bundle.main.path(forResource: fileNameParts[0], ofType: fileNameParts[1])!
         if fileManager.fileExists(atPath: bundlePath) == false {
             // No bundle file exists
-            return .failure(.missingBundleFile)
+            completion(.failure(.missingBundleFile))
+            return
         }
         
         // Finally, copy the bundle file
         do {
             try fileManager.copyItem(atPath: bundlePath, toPath: cacheFileUrl.path)
-            return .success(true)
+            completion(.success(true))
         } catch {
-            return .failure(.fileSaveError)
+            completion(.failure(.fileSaveError))
         }
     }
     
     /// Loads data from cache
-    func loadDataFromCache() -> Result<Bool, JSONDataError> {
-        guard let data = self.loadData() else {
-            return .failure(.missingCacheData)
+    func loadDataFromCache(completion: (Result<Bool, JSONDataError>) -> Void) {
+        self.loadData() { result in
+            switch result {
+            case .success(let data):
+                completion(self.loadJSONFromData(data: data))
+            case .failure(let error):
+                completion(.failure(error))
+            }
         }
-        
-        return self.loadJSONFromData(data: data)
     }
     
     func loadJSONFromData(data: Data) -> Result<Bool, JSONDataError> {
@@ -92,22 +101,32 @@ extension CachedJSONData {
         }
     }
     
-    func loadData() -> Data? {
-        // TODO: Make thread-safe
-        
+    func loadData(completion: ((Result<Data, JSONDataError>) -> Void)) {
         let cacheFileUrl = self.cacheFileUrl()
-        return try? Data.init(contentsOf: cacheFileUrl)
+        
+        var error: NSError?
+        self.fileCoordinator.coordinate(readingItemAt: cacheFileUrl, options: .withoutChanges, error: &error, byAccessor: { _ in
+            do {
+                let data = try Data.init(contentsOf: cacheFileUrl)
+                completion(.success(data))
+            } catch {
+                completion(.failure(.missingCacheData))
+            }
+        })
     }
     
-    func saveData(data: Data) -> Result<Bool, JSONDataError> {
-        // TODO: Make thread-safe
+    func saveData(data: Data, completion: ((Result<Bool, JSONDataError>) -> Void)?) {
         let cacheFileUrl = self.cacheFileUrl()
-        do {
-            try data.write(to: cacheFileUrl, options: .atomic)
-            return .success(true)
-        } catch {
-            return .failure(.fileSaveError)
-        }
+        
+        var error: NSError?
+        self.fileCoordinator.coordinate(writingItemAt: cacheFileUrl, options: .forReplacing, error: &error, byAccessor: { _ in
+            do {
+                try data.write(to: cacheFileUrl, options: .atomic)
+                completion?(.success(true))
+            } catch {
+                completion?(.failure(.fileSaveError))
+            }
+        })
     }
     
     func fetchLatestData(completion: ((Result<Bool, JSONDataError>) -> Void)?) {
@@ -137,12 +156,11 @@ extension CachedJSONData {
                     switch parseResult {
                     case .success:
                         // JSON is good, so save it
-                        let saveResult = self.saveData(data: data)
-                        
-                        // Post notification message
-                        NotificationCenter.default.post(name: Notification.Name(rawValue: self.notificationName), object: nil)
-                        
-                        completion?(saveResult)
+                        self.saveData(data: data) { saveResult in
+                            // Post notification message
+                            NotificationCenter.default.post(name: Notification.Name(rawValue: self.notificationName), object: nil)
+                            completion?(saveResult)
+                        }
                     case .failure(let error):
                         completion?(.failure(error))
                     }
