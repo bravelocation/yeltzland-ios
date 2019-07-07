@@ -26,8 +26,6 @@ class IntentViewController: UIViewController, INUIHostedViewControlling {
     @IBOutlet weak var homeTeamScoreLabel: UILabel!
     @IBOutlet weak var awayTeamScoreLabel: UILabel!
     
-    let gameSettings = GameSettings.shared
-    
     // Mark :- View event handlers
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,7 +60,7 @@ class IntentViewController: UIViewController, INUIHostedViewControlling {
         var homeTeamScore = 0
         var awayTeamScore = 0
         
-        if let fixture = self.gameSettings.getLatestFixtureFromSettings() {
+        if let fixture = GameScoreManager.shared.currentFixture {
             // If currently in a game
             if fixture.inProgress {
                 gameState = "The latest score is ..."

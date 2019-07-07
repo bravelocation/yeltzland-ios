@@ -9,8 +9,6 @@
 import Foundation
 
 class LatestScoreIntentHandler: NSObject, LatestScoreIntentHandling {
-    let gameSettings = GameSettings.shared
-    
     func confirm(intent: LatestScoreIntent, completion: @escaping (LatestScoreIntentResponse) -> Void) {
         // Update the fixture and game score caches
         GameScoreManager.shared.fetchLatestData(completion: nil)
@@ -26,7 +24,7 @@ class LatestScoreIntentHandler: NSObject, LatestScoreIntentHandling {
         var homeTeamScore: Int = 0
         var awayTeamScore: Int = 0
         
-        if let fixture = self.gameSettings.getLatestFixtureFromSettings() {
+        if let fixture = GameScoreManager.shared.currentFixture {
             // If currently in a game
             if fixture.inProgress {
                 gameState = "latest score is"
