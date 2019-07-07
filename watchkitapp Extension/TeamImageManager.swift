@@ -12,7 +12,7 @@ import SDWebImage
 
 public class TeamImageManager {
     fileprivate static let sharedInstance = TeamImageManager()
-    class var instance: TeamImageManager {
+    class var shared: TeamImageManager {
         get {
             return sharedInstance
         }
