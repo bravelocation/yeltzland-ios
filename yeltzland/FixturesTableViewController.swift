@@ -35,7 +35,27 @@ class FixturesTableViewController: UITableViewController {
     private let cellIdentifier: String = "FixtureTableViewCell"
     private let fixturesRefreshControl = UIRefreshControl()
     
-    fileprivate func fixturesUpdated() {
+    override init(style: UITableView.Style) {
+        super.init(style: style)
+        self.setupNotificationWatcher()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.setupNotificationWatcher()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+        print("Removed notification handler for fixture updates")
+    }
+    
+    fileprivate func setupNotificationWatcher() {
+        NotificationCenter.default.addObserver(self, selector: #selector(FixturesTableViewController.fixturesUpdated), name: NSNotification.Name(rawValue: FixtureManager.shared.notificationName), object: nil)
+        print("Setup notification handler for fixture updates")
+    }
+    
+    @objc fileprivate func fixturesUpdated() {
         DispatchQueue.main.async(execute: { () -> Void in
             self.fixturesRefreshControl.endRefreshing()
             self.tableView.reloadData()
