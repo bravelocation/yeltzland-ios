@@ -51,6 +51,7 @@
 		522716D122D1BB50008FD210 /* CachedJSONData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522716CC22D1BB50008FD210 /* CachedJSONData.swift */; };
 		522716D222D1BB50008FD210 /* CachedJSONData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522716CC22D1BB50008FD210 /* CachedJSONData.swift */; };
 		522716D322D1D4C1008FD210 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B4475422CF316000E745EB /* AppColors.swift */; };
+		522716D422D1E3FC008FD210 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B4475422CF316000E745EB /* AppColors.swift */; };
 		522EA44220EA236A00B90146 /* TeamImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522EA44120EA236A00B90146 /* TeamImageManager.swift */; };
 		5231F4FF215B6C56003FAC68 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5231F4FE215B6C56003FAC68 /* SettingsManager.swift */; };
 		5231F501215B6C92003FAC68 /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5231F500215B6C92003FAC68 /* Settings.plist */; };
@@ -1487,6 +1488,7 @@
 				522716D222D1BB50008FD210 /* CachedJSONData.swift in Sources */,
 				52EACDC3215646D0008B8DE5 /* GameScoreManager.swift in Sources */,
 				52EACDC5215646D3008B8DE5 /* GameSettings.swift in Sources */,
+				522716D422D1E3FC008FD210 /* AppColors.swift in Sources */,
 				522716CB22D1B85F008FD210 /* AppFonts.swift in Sources */,
 				52EACDB921564467008B8DE5 /* Intent.intentdefinition in Sources */,
 				52EACDC7215646DA008B8DE5 /* BaseSettings.swift in Sources */,

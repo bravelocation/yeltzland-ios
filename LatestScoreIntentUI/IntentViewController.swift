@@ -33,11 +33,11 @@ class IntentViewController: UIViewController, INUIHostedViewControlling {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor.clear
-        self.gameStateLabel.textColor = UIColor.black
-        self.homeTeamNameLabel.textColor = UIColor.black
-        self.awayTeamNameLabel.textColor = UIColor.black
-        self.homeTeamScoreLabel.textColor = UIColor.black
-        self.awayTeamScoreLabel.textColor = UIColor.black
+        self.gameStateLabel.textColor = AppColors.label
+        self.homeTeamNameLabel.textColor = AppColors.label
+        self.awayTeamNameLabel.textColor = AppColors.label
+        self.homeTeamScoreLabel.textColor = AppColors.label
+        self.awayTeamScoreLabel.textColor = AppColors.label
         
         self.gameStateLabel.font = UIFont(name: AppFonts.AppFontName, size: AppFonts.SiriIntentTextSize)!
         self.homeTeamNameLabel.font = UIFont(name: AppFonts.AppFontName, size: AppFonts.SiriIntentTextSize)!
