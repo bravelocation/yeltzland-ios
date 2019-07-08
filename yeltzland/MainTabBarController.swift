@@ -9,11 +9,14 @@
 import UIKit
 import Intents
 
+/// Main tab bar controller
 class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUserActivityDelegate {
     
-    let defaults = UserDefaults.standard
-    let otherTabIndex = 4
+    // MARK: Private variables
+    private let defaults = UserDefaults.standard
+    private let otherTabIndex = 4
     
+    // MARK: - Initialisation
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
         self.setupNotificationWatcher()
@@ -36,9 +39,10 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         print("Setup notification handler for URL updates")
     }
 
+    // MARK: Event handlers
     override func viewDidLoad() {
         super.viewDidLoad()
-        delegate = self
+        self.delegate = self
         
         // Colors
         self.tabBar.barTintColor = AppColors.systemBackground
@@ -64,72 +68,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         }
     }
     
-    func addChildViewControllers() {
-        // N.B. Must set font after setFAIcon as that messes up the text fonts
-        
-        // Forum
-        let forumViewController = WebPageViewController()
-        forumViewController.homeUrl = URL(string: "https://www.yeltz.co.uk")
-        forumViewController.pageTitle = "Yeltz Forum"
-        let forumNavigationController = UINavigationController(rootViewController: forumViewController)
-        
-        let forumIcon = UITabBarItem(title: "Yeltz Forum", image: UIImage(named: "forum"), selectedImage: nil)
-        forumIcon.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: AppFonts.AppFontName, size: AppFonts.TabBarTextSize)!], for: UIControl.State())
-        forumNavigationController.tabBarItem = forumIcon
-
-        // Official Site
-        let officialViewController = WebPageViewController()
-        officialViewController.homeUrl = URL(string: "https://www.ht-fc.co.uk")
-        officialViewController.pageTitle = "Official Site"
-        let officialNavigationController = UINavigationController(rootViewController: officialViewController)
-        
-        let officialIcon = UITabBarItem(title: "Official Site", image: UIImage(named: "official"), selectedImage: nil)
-        officialIcon.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: AppFonts.AppFontName, size: AppFonts.TabBarTextSize)!], for: UIControl.State())
-        officialNavigationController.tabBarItem = officialIcon
-        
-        // Yeltz TV
-        let tvViewController = WebPageViewController()
-        tvViewController.homeUrl = URL(string: "https://www.youtube.com/user/HalesowenTownFC")
-        tvViewController.pageTitle = "Yeltz TV"
-        let tvNavigationController = UINavigationController(rootViewController: tvViewController)
-        
-        let tvIcon = UITabBarItem(title: "Yeltz TV", image: UIImage(named: "yeltztv"), selectedImage: nil)
-        tvIcon.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: AppFonts.AppFontName, size: AppFonts.TabBarTextSize)!], for: UIControl.State())
-        tvNavigationController.tabBarItem = tvIcon
-        
-        // Twitter
-        let twitterViewController = TwitterUserTimelineViewController()
-        twitterViewController.userScreenName = "halesowentownfc"
-        let twitterNavigationController = UINavigationController(rootViewController: twitterViewController)
-        
-        let twitterIcon = UITabBarItem(title: "Twitter", image: UIImage(named: "twitter"), selectedImage: nil)
-        twitterIcon.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: AppFonts.AppFontName, size: AppFonts.TabBarTextSize)!], for: UIControl.State())
-        twitterNavigationController.tabBarItem = twitterIcon
-        
-        // Other Links
-        var tableStyle: UITableView.Style = .grouped
-        
-        if #available(iOS 13.0, *) {
-            tableStyle = .insetGrouped
-        }
-        
-        let otherViewController = OtherLinksTableViewController(style: tableStyle)
-        let otherNavigationController = UINavigationController(rootViewController: otherViewController)
-        
-        let otherIcon = UITabBarItem(tabBarSystemItem: .more, tag: self.otherTabIndex)
-        otherIcon.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: AppFonts.AppFontName, size: AppFonts.TabBarTextSize)!], for: UIControl.State())
-        otherNavigationController.tabBarItem = otherIcon
-
-        // Add controllers
-        let controllers = [forumNavigationController, officialNavigationController, tvNavigationController, twitterNavigationController, otherNavigationController]
-        self.viewControllers = controllers
-    }
-    
-    func latestUrl(_ url: URL) {
-        
-    }
-    
-    // Delegate methods
+    // MARK: - UITabBarControllerDelegate methods
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         
         // Find tab index of selected view controller, and store it as last selected
@@ -150,54 +89,42 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         return true
     }
     
-    @objc func setupHandoff() {
-        // Set activity for handoff
-        let activity = NSUserActivity(activityType: "com.bravelocation.yeltzland.currenttab")
-        activity.delegate = self
+    // MARK: - NSUserActivityDelegate functions
+    func userActivityWillSave(_ userActivity: NSUserActivity) {
+        print("Saving user activity \(String(describing: userActivity.title)) index to be \(GameSettings.shared.lastSelectedTab)")
         
-        // Eligible for handoff
-        activity.isEligibleForHandoff = true
-        activity.isEligibleForSearch = true
-
-        // Set the title
-        self.setActivitySearchTitleAndPhrase(activity)
-        activity.needsSave = true
-
-        self.userActivity = activity
-        self.userActivity?.becomeCurrent()
-    }
-    
-    private func setActivitySearchTitleAndPhrase(_ activity: NSUserActivity) {
-        let currentIndex = GameSettings.shared.lastSelectedTab
+        userActivity.userInfo = [
+            "com.bravelocation.yeltzland.currenttab.key": NSNumber(value: GameSettings.shared.lastSelectedTab as Int)
+        ]
         
-        var activityTitle = "Open Yeltzland"
-        var activityInvocationPhrase = "Open Yeltzland"
+        // Add current URL if a web view
         
-        switch currentIndex {
-        case 0:
-            activityTitle = "Read Yeltz Forum"
-            activityInvocationPhrase = "Read the forum"
-        case 1:
-            activityTitle = "Read HTFC Official Site"
-            activityInvocationPhrase = "Read the club website"
-        case 2:
-            activityTitle = "Watch Yeltz TV"
-            activityInvocationPhrase = "Watch Yeltz TV"
-        case 3:
-            activityTitle = "Read HTFC Twitter Feed"
-            activityInvocationPhrase = "Read the club twitter"
-        default:
-            break
-        }
-        
-        activity.title = activityTitle
-        if #available(iOS 12.0, *) {
-            activity.suggestedInvocationPhrase = activityInvocationPhrase
-            activity.isEligibleForPrediction = true
-            activity.persistentIdentifier = String(format: "%@.com.bravelocation.yeltzland.currenttab.%d", Bundle.main.bundleIdentifier!, currentIndex)
+        DispatchQueue.main.async {
+            var currentUrl: URL? = nil
+            
+            if let currentController = self.viewControllers![self.selectedIndex] as? UINavigationController {
+                if let selectedController = currentController.viewControllers[0] as? WebPageViewController {
+                    DispatchQueue.main.async(execute: { () -> Void in
+                        currentUrl = selectedController.webView.url
+                    })
+                }
+            }
+            
+            if (currentUrl != nil) {
+                userActivity.userInfo = [
+                    "com.bravelocation.yeltzland.currenttab.key": NSNumber(value: GameSettings.shared.lastSelectedTab as Int),
+                    "com.bravelocation.yeltzland.currenttab.currenturl": currentUrl!
+                ]
+                
+                print("Saving user activity current URL to be \(currentUrl!)")
+            }
         }
     }
     
+    // MARK: - UIResponder function
+    
+    /// Description Restores the tab state based on the juser activity
+    /// - Parameter activity: Activity state to restore
     //swiftlint:disable:next cyclomatic_complexity
     override func restoreUserActivityState(_ activity: NSUserActivity) {
         print("Restoring user activity in tab controller ...")
@@ -244,34 +171,116 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         }
     }
     
-    func userActivityWillSave(_ userActivity: NSUserActivity) {
-        print("Saving user activity \(String(describing: userActivity.title)) index to be \(GameSettings.shared.lastSelectedTab)")
-
-        userActivity.userInfo = [
-            "com.bravelocation.yeltzland.currenttab.key": NSNumber(value: GameSettings.shared.lastSelectedTab as Int)
-        ]
+    // MARK: - Private functions
+    
+    /// Sets up the child controllers for the tabs
+    func addChildViewControllers() {
+        // Forum
+        let forumViewController = WebPageViewController()
+        forumViewController.homeUrl = URL(string: "https://www.yeltz.co.uk")
+        forumViewController.pageTitle = "Yeltz Forum"
+        let forumNavigationController = UINavigationController(rootViewController: forumViewController)
         
-        // Add current URL if a web view
+        let forumIcon = UITabBarItem(title: "Yeltz Forum", image: UIImage(named: "forum"), selectedImage: nil)
+        forumIcon.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: AppFonts.AppFontName, size: AppFonts.TabBarTextSize)!], for: UIControl.State())
+        forumNavigationController.tabBarItem = forumIcon
         
-        DispatchQueue.main.async {
-            var currentUrl: URL? = nil
+        // Official Site
+        let officialViewController = WebPageViewController()
+        officialViewController.homeUrl = URL(string: "https://www.ht-fc.co.uk")
+        officialViewController.pageTitle = "Official Site"
+        let officialNavigationController = UINavigationController(rootViewController: officialViewController)
+        
+        let officialIcon = UITabBarItem(title: "Official Site", image: UIImage(named: "official"), selectedImage: nil)
+        officialIcon.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: AppFonts.AppFontName, size: AppFonts.TabBarTextSize)!], for: UIControl.State())
+        officialNavigationController.tabBarItem = officialIcon
+        
+        // Yeltz TV
+        let tvViewController = WebPageViewController()
+        tvViewController.homeUrl = URL(string: "https://www.youtube.com/user/HalesowenTownFC")
+        tvViewController.pageTitle = "Yeltz TV"
+        let tvNavigationController = UINavigationController(rootViewController: tvViewController)
+        
+        let tvIcon = UITabBarItem(title: "Yeltz TV", image: UIImage(named: "yeltztv"), selectedImage: nil)
+        tvIcon.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: AppFonts.AppFontName, size: AppFonts.TabBarTextSize)!], for: UIControl.State())
+        tvNavigationController.tabBarItem = tvIcon
+        
+        // Twitter
+        let twitterViewController = TwitterUserTimelineViewController()
+        twitterViewController.userScreenName = "halesowentownfc"
+        let twitterNavigationController = UINavigationController(rootViewController: twitterViewController)
+        
+        let twitterIcon = UITabBarItem(title: "Twitter", image: UIImage(named: "twitter"), selectedImage: nil)
+        twitterIcon.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: AppFonts.AppFontName, size: AppFonts.TabBarTextSize)!], for: UIControl.State())
+        twitterNavigationController.tabBarItem = twitterIcon
+        
+        // Other Links
+        var tableStyle: UITableView.Style = .grouped
+        
+        if #available(iOS 13.0, *) {
+            tableStyle = .insetGrouped
+        }
+        
+        let otherViewController = OtherLinksTableViewController(style: tableStyle)
+        let otherNavigationController = UINavigationController(rootViewController: otherViewController)
+        
+        let otherIcon = UITabBarItem(tabBarSystemItem: .more, tag: self.otherTabIndex)
+        otherIcon.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: AppFonts.AppFontName, size: AppFonts.TabBarTextSize)!], for: UIControl.State())
+        otherNavigationController.tabBarItem = otherIcon
+        
+        // Add controllers
+        let controllers = [forumNavigationController, officialNavigationController, tvNavigationController, twitterNavigationController, otherNavigationController]
+        self.viewControllers = controllers
+    }
+    
+    /// Called when we need to save user activity
+    @objc func setupHandoff() {
+        // Set activity for handoff
+        let activity = NSUserActivity(activityType: "com.bravelocation.yeltzland.currenttab")
+        activity.delegate = self
+        
+        // Eligible for handoff
+        activity.isEligibleForHandoff = true
+        activity.isEligibleForSearch = true
 
-            if let currentController = self.viewControllers![self.selectedIndex] as? UINavigationController {
-                if let selectedController = currentController.viewControllers[0] as? WebPageViewController {
-                    DispatchQueue.main.async(execute: { () -> Void in
-                        currentUrl = selectedController.webView.url
-                    })
-                }
-            }
-            
-            if (currentUrl != nil) {
-                userActivity.userInfo = [
-                    "com.bravelocation.yeltzland.currenttab.key": NSNumber(value: GameSettings.shared.lastSelectedTab as Int),
-                    "com.bravelocation.yeltzland.currenttab.currenturl": currentUrl!
-                ]
-                
-                print("Saving user activity current URL to be \(currentUrl!)")
-            }
+        // Set the title
+        self.setActivitySearchTitleAndPhrase(activity)
+        activity.needsSave = true
+
+        self.userActivity = activity
+        self.userActivity?.becomeCurrent()
+    }
+    
+    /// Sets the title and invocation phrase for the user activity
+    /// - Parameter activity: User activity to configure
+    private func setActivitySearchTitleAndPhrase(_ activity: NSUserActivity) {
+        let currentIndex = GameSettings.shared.lastSelectedTab
+        
+        var activityTitle = "Open Yeltzland"
+        var activityInvocationPhrase = "Open Yeltzland"
+        
+        switch currentIndex {
+        case 0:
+            activityTitle = "Read Yeltz Forum"
+            activityInvocationPhrase = "Read the forum"
+        case 1:
+            activityTitle = "Read HTFC Official Site"
+            activityInvocationPhrase = "Read the club website"
+        case 2:
+            activityTitle = "Watch Yeltz TV"
+            activityInvocationPhrase = "Watch Yeltz TV"
+        case 3:
+            activityTitle = "Read HTFC Twitter Feed"
+            activityInvocationPhrase = "Read the club twitter"
+        default:
+            break
+        }
+        
+        activity.title = activityTitle
+        if #available(iOS 12.0, *) {
+            activity.suggestedInvocationPhrase = activityInvocationPhrase
+            activity.isEligibleForPrediction = true
+            activity.persistentIdentifier = String(format: "%@.com.bravelocation.yeltzland.currenttab.%d", Bundle.main.bundleIdentifier!, currentIndex)
         }
     }
 }

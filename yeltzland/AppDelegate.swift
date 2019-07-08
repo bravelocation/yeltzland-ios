@@ -14,9 +14,11 @@ import Intents
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    // MARK: Application properties
     var window: UIWindow?
     var firebaseNotifications: FirebaseNotifications?
     
+    // MARK: - UIApplicationDelegate functions
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // Nav bar colors
@@ -56,16 +58,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             ShortcutManager.shared.donateAllShortcuts()
         }
         
+        // Calculate the correct user activity to pre-populate the selected tab
+        let startingActivity = NSUserActivity(activityType: "com.bravelocation.yeltzland.currenttab")
+        startingActivity.userInfo = [:]
+        startingActivity.userInfo?["com.bravelocation.yeltzland.currenttab.key"] = GameSettings.shared.lastSelectedTab
+        
         // If came from a notification, always start on the Twitter tab
         if launchOptions?[UIApplication.LaunchOptionsKey.remoteNotification] != nil {
-            GameSettings.shared.lastSelectedTab = 3
-        } else if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] {
-            let result = self.handleShortcut(shortcutItem as! UIApplicationShortcutItem)
-            print("Opened via shortcut: \(result)")
+            startingActivity.userInfo?["com.bravelocation.yeltzland.currenttab.key"] = 3
+        }
+        
+        // If came from a shortcut
+        if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] {
+            startingActivity.userInfo?["com.bravelocation.yeltzland.currenttab.key"] =  self.handleShortcut(shortcutItem as! UIApplicationShortcutItem)
         }
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
         let initialTabViewController = MainTabBarController()
+        initialTabViewController.restoreUserActivityState(startingActivity)
+        
         self.window?.rootViewController = initialTabViewController
         self.window?.makeKeyAndVisible()
         
@@ -97,14 +108,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
         print("3D Touch when from shortcut action")
-        let handledShortCut = self.handleShortcut(shortcutItem)
-        
+        let startingActivity = NSUserActivity(activityType: "com.bravelocation.yeltzland.currenttab")
+        startingActivity.userInfo = [:]
+        startingActivity.userInfo?["com.bravelocation.yeltzland.currenttab.key"] = self.handleShortcut(shortcutItem)
+
         // Reset selected tab
         if let mainViewController = self.window?.rootViewController as? MainTabBarController {
-            mainViewController.selectedIndex = GameSettings.shared.lastSelectedTab
+            mainViewController.restoreUserActivityState(startingActivity)
         }
         
-        return completionHandler(handledShortCut)
+        return completionHandler(true)
     }
         
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
@@ -113,32 +126,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         return true
-    }
-    
-    func handleShortcut(_ shortcutItem: UIApplicationShortcutItem) -> Bool {
-        print("Handling shortcut item %@", shortcutItem.type)
-        
-        if (shortcutItem.type == "com.bravelocation.yeltzland.forum") {
-            GameSettings.shared.lastSelectedTab = 0
-            return true
-        }
-        
-        if (shortcutItem.type == "com.bravelocation.yeltzland.official") {
-            GameSettings.shared.lastSelectedTab = 1
-            return true
-        }
-        
-        if (shortcutItem.type == "com.bravelocation.yeltzland.yeltztv") {
-            GameSettings.shared.lastSelectedTab = 2
-            return true
-        }
-        
-        if (shortcutItem.type == "com.bravelocation.yeltzland.twitter") {
-            GameSettings.shared.lastSelectedTab = 3
-            return true
-        }
-        
-        return false
     }
  
     func application(_ application: UIApplication,
@@ -152,8 +139,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tokenError = error as NSError
         print(tokenError.description)
     }
+    
+    // MARK: - Private functions
+    func handleShortcut(_ shortcutItem: UIApplicationShortcutItem) -> Int {
+        print("Handling shortcut item %@", shortcutItem.type)
+        
+        switch shortcutItem.type {
+        case "com.bravelocation.yeltzland.forum":
+            return 0
+        case "com.bravelocation.yeltzland.official":
+            return 1
+        case "com.bravelocation.yeltzland.yeltztv":
+            return 2
+        case "com.bravelocation.yeltzland.twitter":
+            return 3
+        default:
+            return 0
+        }
+    }
 }
 
+// MARK: - UNUserNotificationCenterDelegate
 extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         

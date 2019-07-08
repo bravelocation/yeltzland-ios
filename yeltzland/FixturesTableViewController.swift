@@ -217,7 +217,7 @@ class FixturesTableViewController: UITableViewController {
         return 0.0
     }
     
-    // - MARK Handoff
+    // MARK: Handoff
     @objc func setupHandoff() {
         // Set activity for handoff
         let activity = NSUserActivity(activityType: "com.bravelocation.yeltzland.fixtures")
