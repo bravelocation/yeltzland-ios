@@ -197,7 +197,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         
         // Yeltz TV
         let tvViewController = WebPageViewController()
-        tvViewController.homeUrl = URL(string: "https://www.youtube.com/user/HalesowenTownFC")
+        tvViewController.homeUrl = URL(string: "https://www.youtube.com/channel/UCGZMWQtMsC4Tep6uLm5V0nQ")
         tvViewController.pageTitle = "Yeltz TV"
         let tvNavigationController = UINavigationController(rootViewController: tvViewController)
         
