@@ -12,7 +12,7 @@ import SafariServices
 class OtherLinksTableViewController: UITableViewController, SFSafariViewControllerDelegate {
 
     let firebaseNotifications = FirebaseNotifications()
-    let leagueTableUrl = URL(string: "https://www.evostikleaguesouthern.co.uk/league-table/Evo-stik%20League%20South%20Division%20One%20Central/2019/2020/P/")
+    let leagueTableUrl = URL(string: "https://www.betvictorsouthern.co.uk/league-table/BetVictor%20Southern%20Division%20One%20Central/2019/2020/P/")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -217,7 +217,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             case 0:
                 url = URL(string: "https://www.facebook.com/HalesowenTown1873")
             case 1:
-                url = URL(string: "https://www.evostikleaguesouthern.co.uk")
+                url = URL(string: "https://www.betvictorsouthern.co.uk")
             case 2:
                 url = URL(string: "https://fantasyisland.yeltz.co.uk")
             case 3:
