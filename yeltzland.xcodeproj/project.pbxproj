@@ -149,6 +149,7 @@
 		52EACDC6215646DA008B8DE5 /* BaseSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52176BB21D4B62DC00B7EFAE /* BaseSettings.swift */; };
 		52EACDC7215646DA008B8DE5 /* BaseSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52176BB21D4B62DC00B7EFAE /* BaseSettings.swift */; };
 		52F5CA9F20ED1F45000143A1 /* TeamImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A347720CFB98D00E8475C /* TeamImageManager.swift */; };
+		52F9CDB222D6687C00E0FFE8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9CDB122D6687C00E0FFE8 /* SceneDelegate.swift */; };
 		937784A0FE49B904B7681F19 /* Pods_LatestScoreIntentUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1EB3CDB05AFB690D5D25630 /* Pods_LatestScoreIntentUI.framework */; };
 		DB860C2661D34E99E75814F6 /* Pods_yeltzlandTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59A5577BD1AF23F460D4B20 /* Pods_yeltzlandTVOS.framework */; };
 		F2C923D6766D78C589FBFD9A /* Pods_watchkitapp_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3CD79B24EF0B6634FC3AFFA /* Pods_watchkitapp_Extension.framework */; };
@@ -343,6 +344,7 @@
 		52EACDA9215643FC008B8DE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52EACDB621564462008B8DE5 /* Intent.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Intent.intentdefinition; sourceTree = "<group>"; };
 		52EACDBA21564586008B8DE5 /* LatestScoreIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestScoreIntentHandler.swift; sourceTree = "<group>"; };
+		52F9CDB122D6687C00E0FFE8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		6C2886E0C6D579332BF2A5A8 /* Pods-yeltzland.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yeltzland.debug.xcconfig"; path = "Pods/Target Support Files/Pods-yeltzland/Pods-yeltzland.debug.xcconfig"; sourceTree = "<group>"; };
 		8541FCDE5A3B1A03D43E3DBD /* Pods-watchkitapp Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watchkitapp Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-watchkitapp Extension/Pods-watchkitapp Extension.release.xcconfig"; sourceTree = "<group>"; };
 		8ED64AAED15F6BBC43FC3EEB /* Pods-LatestScoreIntentUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LatestScoreIntentUI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LatestScoreIntentUI/Pods-LatestScoreIntentUI.debug.xcconfig"; sourceTree = "<group>"; };
@@ -662,6 +664,7 @@
 				52E3DF761CD9FA78009F18BD /* AppDelegate.swift */,
 				52DC9EAE1FC95C9E00AE02F6 /* FirebaseNotifications.swift */,
 				520C09A12157C46100CCC2D8 /* ShortcutManager.swift */,
+				52F9CDB122D6687C00E0FFE8 /* SceneDelegate.swift */,
 			);
 			path = yeltzland;
 			sourceTree = "<group>";
@@ -1437,6 +1440,7 @@
 				5211F72D1CDB1EE50031496D /* OtherLinksTableViewController.swift in Sources */,
 				52176BB31D4B62DC00B7EFAE /* BaseSettings.swift in Sources */,
 				52E3DF791CD9FA78009F18BD /* WebPageViewController.swift in Sources */,
+				52F9CDB222D6687C00E0FFE8 /* SceneDelegate.swift in Sources */,
 				52E711AB1D9FB5B70002446A /* MakeToast.swift in Sources */,
 				52176BB01D4A1B3200B7EFAE /* GameScoreManager.swift in Sources */,
 				523C84201CE70806006F1865 /* ChromeActivity.swift in Sources */,

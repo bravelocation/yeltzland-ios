@@ -73,12 +73,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             startingActivity.userInfo?["com.bravelocation.yeltzland.currenttab.key"] =  self.handleShortcut(shortcutItem as! UIApplicationShortcutItem)
         }
         
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        let initialTabViewController = MainTabBarController()
-        initialTabViewController.restoreUserActivityState(startingActivity)
-        
-        self.window?.rootViewController = initialTabViewController
-        self.window?.makeKeyAndVisible()
+        if #available(iOS 13.0, *) {
+            // Window initialisation will be handled by the scenedelegate
+        } else {
+            self.window = UIWindow(frame: UIScreen.main.bounds)
+            let initialTabViewController = MainTabBarController()
+            initialTabViewController.restoreUserActivityState(startingActivity)
+            
+            self.window?.rootViewController = initialTabViewController
+            self.window?.makeKeyAndVisible()
+        }
         
         return true
     }
