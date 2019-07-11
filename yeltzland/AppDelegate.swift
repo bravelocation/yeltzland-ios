@@ -58,24 +58,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             ShortcutManager.shared.donateAllShortcuts()
         }
         
-        // Calculate the correct user activity to pre-populate the selected tab
-        let startingActivity = NSUserActivity(activityType: "com.bravelocation.yeltzland.currenttab")
-        startingActivity.userInfo = [:]
-        startingActivity.userInfo?["com.bravelocation.yeltzland.currenttab.key"] = GameSettings.shared.lastSelectedTab
-        
-        // If came from a notification, always start on the Twitter tab
-        if launchOptions?[UIApplication.LaunchOptionsKey.remoteNotification] != nil {
-            startingActivity.userInfo?["com.bravelocation.yeltzland.currenttab.key"] = 3
-        }
-        
-        // If came from a shortcut
-        if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] {
-            startingActivity.userInfo?["com.bravelocation.yeltzland.currenttab.key"] =  self.handleShortcut(shortcutItem as! UIApplicationShortcutItem)
-        }
-        
         if #available(iOS 13.0, *) {
-            // Window initialisation will be handled by the scenedelegate
+            // Window initialisation will be handled by the scene delegate in iOS 13+
         } else {
+            
+            // Calculate the correct user activity to pre-populate the selected tab
+            let startingActivity = NSUserActivity(activityType: "com.bravelocation.yeltzland.currenttab")
+            startingActivity.userInfo = [:]
+            startingActivity.userInfo?["com.bravelocation.yeltzland.currenttab.key"] = GameSettings.shared.lastSelectedTab
+            
+            // If came from a notification, always start on the Twitter tab
+            if launchOptions?[UIApplication.LaunchOptionsKey.remoteNotification] != nil {
+                startingActivity.userInfo?["com.bravelocation.yeltzland.currenttab.key"] = 3
+            }
+            
+            // If came from a shortcut
+            if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] {
+                startingActivity.userInfo?["com.bravelocation.yeltzland.currenttab.key"] =  self.handleShortcut(shortcutItem as! UIApplicationShortcutItem)
+            }
+            
             self.window = UIWindow(frame: UIScreen.main.bounds)
             let initialTabViewController = MainTabBarController()
             initialTabViewController.restoreUserActivityState(startingActivity)

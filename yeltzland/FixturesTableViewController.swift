@@ -238,5 +238,9 @@ class FixturesTableViewController: UITableViewController {
         
         self.userActivity = activity
         self.userActivity?.becomeCurrent()
+        
+        if #available(iOS 13.0, *) {
+            self.view.window?.windowScene?.userActivity = activity
+        }
     }
 }

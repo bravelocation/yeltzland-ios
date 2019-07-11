@@ -173,6 +173,10 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
         
         self.userActivity = activity
         self.userActivity?.becomeCurrent()
+        
+        if #available(iOS 13.0, *) {
+            self.view.window?.windowScene?.userActivity = activity
+        }
     }
     
     // MARK: - Siri Intents

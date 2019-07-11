@@ -25,7 +25,6 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
     init() {
         super.init(nibName: nil, bundle: nil)
         self.addChildViewControllers()
-        self.selectedIndex = GameSettings.shared.lastSelectedTab
         self.setupNotificationWatcher()
     }
 
@@ -69,54 +68,39 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
     }
     
     // MARK: - UITabBarControllerDelegate methods
-    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        
-        // Find tab index of selected view controller, and store it as last selected
-        var currentIndex = 0
-        var selectedIndex = 0
-        
-        for currentController in self.viewControllers! {
-            if (currentController == viewController) {
-                selectedIndex = currentIndex
-                break
-            }
-            currentIndex += 1
-        }
-        
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         GameSettings.shared.lastSelectedTab = selectedIndex
         self.setupHandoff()
-
-        return true
     }
     
     // MARK: - NSUserActivityDelegate functions
     func userActivityWillSave(_ userActivity: NSUserActivity) {
-        print("Saving user activity \(String(describing: userActivity.title)) index to be \(GameSettings.shared.lastSelectedTab)")
-        
-        userActivity.userInfo = [
-            "com.bravelocation.yeltzland.currenttab.key": NSNumber(value: GameSettings.shared.lastSelectedTab as Int)
-        ]
-        
-        // Add current URL if a web view
-        
+
         DispatchQueue.main.async {
             var currentUrl: URL? = nil
             
+            userActivity.userInfo = [
+                "com.bravelocation.yeltzland.currenttab.key": NSNumber(value: self.selectedIndex)
+            ]
+            
+            // Add current URL if a web view
             if let currentController = self.viewControllers![self.selectedIndex] as? UINavigationController {
                 if let selectedController = currentController.viewControllers[0] as? WebPageViewController {
-                    DispatchQueue.main.async(execute: { () -> Void in
-                        currentUrl = selectedController.webView.url
-                    })
+                    currentUrl = selectedController.webView.url
                 }
             }
             
             if (currentUrl != nil) {
                 userActivity.userInfo = [
-                    "com.bravelocation.yeltzland.currenttab.key": NSNumber(value: GameSettings.shared.lastSelectedTab as Int),
+                    "com.bravelocation.yeltzland.currenttab.key": NSNumber(value: self.selectedIndex),
                     "com.bravelocation.yeltzland.currenttab.currenturl": currentUrl!
                 ]
                 
                 print("Saving user activity current URL to be \(currentUrl!)")
+            }
+            
+            if #available(iOS 13.0, *) {
+                self.view.window?.windowScene?.userActivity = userActivity
             }
         }
     }
@@ -133,7 +117,6 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
             if let info = activity.userInfo {
                 if let tab = info["com.bravelocation.yeltzland.currenttab.key"] {
                     self.selectedIndex = tab as! Int
-                    GameSettings.shared.lastSelectedTab = tab as! Int
                     print("Set tab to \(tab) due to userActivity call")
                     
                     if let currentController = self.viewControllers![self.selectedIndex] as? UINavigationController {
@@ -150,7 +133,6 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
             print("Detected fixture list activity ...")
             // Set selected tab as More tab
             self.selectedIndex = self.otherTabIndex
-            GameSettings.shared.lastSelectedTab = self.otherTabIndex
             
             if let currentController = self.viewControllers![self.selectedIndex] as? UINavigationController {
                 if let selectedController = currentController.viewControllers[0] as? OtherLinksTableViewController {
@@ -161,7 +143,6 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
             print("Detected Latest score activity ...")
             // Set selected tab as More tab
             self.selectedIndex = self.otherTabIndex
-            GameSettings.shared.lastSelectedTab = self.otherTabIndex
             
             if let currentController = self.viewControllers![self.selectedIndex] as? UINavigationController {
                 if let selectedController = currentController.viewControllers[0] as? OtherLinksTableViewController {
@@ -254,12 +235,10 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
     /// Sets the title and invocation phrase for the user activity
     /// - Parameter activity: User activity to configure
     private func setActivitySearchTitleAndPhrase(_ activity: NSUserActivity) {
-        let currentIndex = GameSettings.shared.lastSelectedTab
-        
         var activityTitle = "Open Yeltzland"
         var activityInvocationPhrase = "Open Yeltzland"
         
-        switch currentIndex {
+        switch self.selectedIndex {
         case 0:
             activityTitle = "Read Yeltz Forum"
             activityInvocationPhrase = "Read the forum"
@@ -280,7 +259,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         if #available(iOS 12.0, *) {
             activity.suggestedInvocationPhrase = activityInvocationPhrase
             activity.isEligibleForPrediction = true
-            activity.persistentIdentifier = String(format: "%@.com.bravelocation.yeltzland.currenttab.%d", Bundle.main.bundleIdentifier!, currentIndex)
+            activity.persistentIdentifier = String(format: "%@.com.bravelocation.yeltzland.currenttab.%d", Bundle.main.bundleIdentifier!, self.selectedIndex)
         }
     }
 }

@@ -20,15 +20,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             
             let initialTabViewController = MainTabBarController()
             
-            var startingActivity = NSUserActivity(activityType: "com.bravelocation.yeltzland.currenttab")
-            startingActivity.userInfo = [:]
-            startingActivity.userInfo?["com.bravelocation.yeltzland.currenttab.key"] = GameSettings.shared.lastSelectedTab
-            
-            if session.stateRestorationActivity != nil {
-                startingActivity = session.stateRestorationActivity!
+            if let userActivity = connectionOptions.userActivities.first ?? session.stateRestorationActivity {
+                initialTabViewController.restoreUserActivityState(userActivity)
             }
-            
-            initialTabViewController.restoreUserActivityState(startingActivity)
             
             window.rootViewController = initialTabViewController
             self.window = window
@@ -37,22 +31,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     @available(iOS 13.0, *)
-    func sceneDidDisconnect(_ scene: UIScene) {
+    func stateRestorationActivity(for scene: UIScene) -> NSUserActivity? {
+        return scene.userActivity
     }
     
     @available(iOS 13.0, *)
-    func sceneDidBecomeActive(_ scene: UIScene) {
-    }
-    
-    @available(iOS 13.0, *)
-    func sceneWillResignActive(_ scene: UIScene) {
-    }
-    
-    @available(iOS 13.0, *)
-    func sceneWillEnterForeground(_ scene: UIScene) {
-    }
-    
-    @available(iOS 13.0, *)
-    func sceneDidEnterBackground(_ scene: UIScene) {
+    func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+        if let window = self.window {
+            window.rootViewController?.restoreUserActivityState(userActivity)
+        }
     }
 }

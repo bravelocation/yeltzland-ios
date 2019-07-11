@@ -656,10 +656,10 @@
 		52E3DF751CD9FA78009F18BD /* yeltzland */ = {
 			isa = PBXGroup;
 			children = (
-				522716C722D1B7C1008FD210 /* UI */,
 				522716C622D1B789008FD210 /* Activities */,
-				522716C522D1B74A008FD210 /* Models */,
 				52C4DA861D4C83C6009AFD25 /* Assets */,
+				522716C522D1B74A008FD210 /* Models */,
+				522716C722D1B7C1008FD210 /* UI */,
 				52C4DA851D4C838A009AFD25 /* ViewControllers */,
 				52E3DF761CD9FA78009F18BD /* AppDelegate.swift */,
 				52DC9EAE1FC95C9E00AE02F6 /* FirebaseNotifications.swift */,
