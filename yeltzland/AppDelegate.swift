@@ -67,11 +67,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             startingActivity.userInfo = [:]
             startingActivity.userInfo?["com.bravelocation.yeltzland.currenttab.key"] = GameSettings.shared.lastSelectedTab
             
-            // If came from a notification, always start on the Twitter tab
-            if launchOptions?[UIApplication.LaunchOptionsKey.remoteNotification] != nil {
-                startingActivity.userInfo?["com.bravelocation.yeltzland.currenttab.key"] = 3
-            }
-            
             // If came from a shortcut
             if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] {
                 startingActivity.userInfo?["com.bravelocation.yeltzland.currenttab.key"] =  self.handleShortcut(shortcutItem as! UIApplicationShortcutItem)
