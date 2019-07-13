@@ -41,7 +41,9 @@ class LatestScoreIntentHandler: NSObject, LatestScoreIntentHandling {
                 gameDetails.awayScore = NSNumber(value: fixture.teamScore!)
             }
             
-            gameDetails.kickoffTime = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: fixture.fixtureDate)
+            gameDetails.opponent = fixture.opponentNoCup
+            gameDetails.kickoffTime = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: fixture.fixtureDate)
+            gameDetails.displayKickoffTime = fixture.voiceKickoffTime
         }
         
         if gameDetails.homeTeam?.trimmingCharacters(in: .whitespacesAndNewlines).count == 0 || gameDetails.awayTeam?.trimmingCharacters(in: .whitespacesAndNewlines).count == 0 {

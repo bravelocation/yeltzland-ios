@@ -107,6 +107,7 @@
 		52D8682C1FE92A440041B578 /* TVTwitterCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D8682A1FE92A440041B578 /* TVTwitterCollectionCell.swift */; };
 		52D8682D1FE92A440041B578 /* TVTwitterCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52D8682B1FE92A440041B578 /* TVTwitterCollectionCell.xib */; };
 		52D8682F1FE933C20041B578 /* VerticallyAlignedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D8682E1FE933C20041B578 /* VerticallyAlignedLabel.swift */; };
+		52D8C9C622D9D685006FCAB9 /* NextGameIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D8C9C522D9D685006FCAB9 /* NextGameIntentHandler.swift */; };
 		52DBCAA01D4A012E00D35F91 /* GameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DBCA9F1D4A012E00D35F91 /* GameSettings.swift */; };
 		52DBCAA11D4A012E00D35F91 /* GameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DBCA9F1D4A012E00D35F91 /* GameSettings.swift */; };
 		52DC9EAF1FC95C9E00AE02F6 /* FirebaseNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DC9EAE1FC95C9E00AE02F6 /* FirebaseNotifications.swift */; };
@@ -321,6 +322,7 @@
 		52D8682A1FE92A440041B578 /* TVTwitterCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVTwitterCollectionCell.swift; sourceTree = "<group>"; };
 		52D8682B1FE92A440041B578 /* TVTwitterCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TVTwitterCollectionCell.xib; sourceTree = "<group>"; };
 		52D8682E1FE933C20041B578 /* VerticallyAlignedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticallyAlignedLabel.swift; sourceTree = "<group>"; };
+		52D8C9C522D9D685006FCAB9 /* NextGameIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextGameIntentHandler.swift; sourceTree = "<group>"; };
 		52DBCA9F1D4A012E00D35F91 /* GameSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSettings.swift; sourceTree = "<group>"; };
 		52DC9EAE1FC95C9E00AE02F6 /* FirebaseNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseNotifications.swift; sourceTree = "<group>"; };
 		52DC9EB61FC9C30E00AE02F6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -676,6 +678,7 @@
 				52EACD9B215643FB008B8DE5 /* Info.plist */,
 				5297C9E3215652AB00AB5D0F /* LatestScoreIntent.entitlements */,
 				52EACDBA21564586008B8DE5 /* LatestScoreIntentHandler.swift */,
+				52D8C9C522D9D685006FCAB9 /* NextGameIntentHandler.swift */,
 			);
 			path = LatestScoreIntent;
 			sourceTree = "<group>";
@@ -1475,6 +1478,7 @@
 				52EACDB821564466008B8DE5 /* Intent.intentdefinition in Sources */,
 				52EACDC6215646DA008B8DE5 /* BaseSettings.swift in Sources */,
 				52EACDBE215646C7008B8DE5 /* FixtureManager.swift in Sources */,
+				52D8C9C622D9D685006FCAB9 /* NextGameIntentHandler.swift in Sources */,
 				52EACDC2215646D0008B8DE5 /* GameScoreManager.swift in Sources */,
 				52EACDC0215646CD008B8DE5 /* Fixture.swift in Sources */,
 				52EACD9A215643FB008B8DE5 /* IntentHandler.swift in Sources */,

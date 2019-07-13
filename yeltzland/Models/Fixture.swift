@@ -145,6 +145,28 @@ public class Fixture {
         }
     }
     
+    var voiceKickoffTime: String {
+        get {
+            let formatter = DateFormatter()
+            var prefix = ""
+            
+            // Is the game today?
+            let now = Date()
+            let currentDayNumber = FixtureManager.shared.dayNumber(now)
+            let fixtureDayNumber = FixtureManager.shared.dayNumber(self.fixtureDate)
+            
+            if (currentDayNumber == fixtureDayNumber) {
+                prefix = "at"
+                formatter.dateFormat = "h:mm a"
+            } else {
+                prefix = "on"
+                formatter.dateFormat = "EEE dd MMM"
+            }
+            
+            return "\(prefix) \(formatter.string(from: self.fixtureDate))"
+        }
+    }
+    
     var tvResultDisplayKickoffTime: String {
         get {
             // Is the game today?

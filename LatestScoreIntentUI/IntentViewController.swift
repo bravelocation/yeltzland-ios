@@ -49,21 +49,25 @@ class IntentViewController: UIViewController, INUIHostedViewControlling {
     // Prepare your view controller for the interaction to handle.
     func configureView(for parameters: Set<INParameter>, of interaction: INInteraction, interactiveBehavior: INUIInteractiveBehavior, context: INUIHostedViewContext, completion: @escaping (Bool, Set<INParameter>, CGSize) -> Void) {
         
-        guard interaction.intent is LatestScoreIntent else {
-            completion(false, Set(), .zero)
-            return
+        var fixture: Fixture?
+        
+        if interaction.intent is LatestScoreIntent {
+            fixture = GameScoreManager.shared.currentFixture
+        } else if interaction.intent is NextGameIntent {
+            fixture = FixtureManager.shared.nextGame
         }
         
         var homeTeamName = ""
         var awayTeamName = ""
         var gameState = ""
-        var homeTeamScore = 0
-        var awayTeamScore = 0
+        var homeTeamScore = ""
+        var awayTeamScore = ""
         
-        if let fixture = GameScoreManager.shared.currentFixture {
-            // If currently in a game
+        if let fixture = fixture {
             if fixture.inProgress {
                 gameState = "The latest score is ..."
+            } else if interaction.intent is NextGameIntent {
+                gameState = "The next game is at \(fixture.fullDisplayKickoffTime)..."
             } else {
                 gameState = "The final score was ..."
             }
@@ -71,13 +75,25 @@ class IntentViewController: UIViewController, INUIHostedViewControlling {
             if fixture.home {
                 homeTeamName = "Yeltz"
                 awayTeamName = fixture.opponentNoCup
-                homeTeamScore = fixture.teamScore!
-                awayTeamScore = fixture.opponentScore!
             } else {
                 homeTeamName = fixture.opponentNoCup
                 awayTeamName = "Yeltz"
-                homeTeamScore = fixture.opponentScore!
-                awayTeamScore = fixture.teamScore!
+            }
+            
+            if let teamScore = fixture.teamScore {
+                if fixture.home {
+                    homeTeamScore = String(format: "%d", teamScore)
+                } else {
+                    awayTeamScore = String(format: "%d", teamScore)
+                }
+            }
+            
+            if let opponentScore = fixture.opponentScore {
+                if fixture.home {
+                    awayTeamScore = String(format: "%d", opponentScore)
+                } else {
+                    homeTeamScore = String(format: "%d", opponentScore)
+                }
             }
         } else {
             completion(false, Set(), .zero)
@@ -87,8 +103,8 @@ class IntentViewController: UIViewController, INUIHostedViewControlling {
         self.gameStateLabel.text = gameState
         self.homeTeamNameLabel.text = homeTeamName
         self.awayTeamNameLabel.text = awayTeamName
-        self.homeTeamScoreLabel.text = String(format: "%d", homeTeamScore)
-        self.awayTeamScoreLabel.text = String(format: "%d", awayTeamScore)
+        self.homeTeamScoreLabel.text = homeTeamScore
+        self.awayTeamScoreLabel.text = awayTeamScore
         
         let homeTeamForImage = homeTeamName == "Yeltz" ? "Halesowen Town" : homeTeamName
         let awayTeamForImage = awayTeamName == "Yeltz" ? "Halesowen Town" : awayTeamName

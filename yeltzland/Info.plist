@@ -60,6 +60,7 @@
 	<key>NSUserActivityTypes</key>
 	<array>
 		<string>LatestScoreIntent</string>
+		<string>NextGameIntent</string>
 		<string>com.bravelocation.yeltzland.currenttab</string>
 		<string>com.bravelocation.yeltzland.fixtures</string>
 		<string>com.bravelocation.yeltzland.latestscore</string>
