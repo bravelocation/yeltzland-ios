@@ -19,37 +19,25 @@ class LatestScoreIntentHandler: NSObject, LatestScoreIntentHandling {
     
     func handle(intent: LatestScoreIntent, completion: @escaping (LatestScoreIntentResponse) -> Void) {
         
-        let gameDetails = GameDetails(identifier: nil, display: "Game Details")
-        
         if let fixture = GameScoreManager.shared.currentFixture {
-            // If currently in a game
+            var gameState = ""
+
             if fixture.inProgress {
-                gameDetails.gameState = "latest score is"
+                gameState = "latest score is"
             } else {
-                gameDetails.gameState = "final score was"
+                gameState = "final score was"
             }
-            
-            if fixture.home {
-                gameDetails.homeTeam = "Yeltz"
-                gameDetails.awayTeam = fixture.opponentNoCup
-                gameDetails.homeScore = NSNumber(value: fixture.teamScore!)
-                gameDetails.awayScore =  NSNumber(value: fixture.opponentScore!)
-            } else {
-                gameDetails.homeTeam = fixture.opponentNoCup
-                gameDetails.awayTeam = "Yeltz"
-                gameDetails.homeScore = NSNumber(value: fixture.opponentScore!)
-                gameDetails.awayScore = NSNumber(value: fixture.teamScore!)
-            }
-            
+ 
+            let gameDetails = GameDetails(identifier: nil, display: "Game Details")
             gameDetails.opponent = fixture.opponentNoCup
             gameDetails.kickoffTime = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: fixture.fixtureDate)
-            gameDetails.displayKickoffTime = fixture.voiceKickoffTime
-        }
-        
-        if gameDetails.homeTeam?.trimmingCharacters(in: .whitespacesAndNewlines).count == 0 || gameDetails.awayTeam?.trimmingCharacters(in: .whitespacesAndNewlines).count == 0 {
-            completion(LatestScoreIntentResponse(code: LatestScoreIntentResponseCode.failureNoGames, userActivity: nil))
+            gameDetails.home = fixture.home as NSNumber
+            gameDetails.yeltzScore = NSNumber(value: fixture.teamScore!)
+            gameDetails.opponentScore = NSNumber(value: fixture.opponentScore!)
+
+            completion(LatestScoreIntentResponse.success(gameState: gameState, gameDetails: gameDetails))
         } else {
-            completion(LatestScoreIntentResponse.success(gameDetails: gameDetails))
+            completion(LatestScoreIntentResponse(code: LatestScoreIntentResponseCode.failureNoGames, userActivity: nil))
         }
     }
 }
