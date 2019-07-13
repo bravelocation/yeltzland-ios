@@ -19,12 +19,28 @@
 		<dict>
 			<key>INIntentCategory</key>
 			<string>information</string>
+			<key>INIntentConfigurable</key>
+			<true/>
 			<key>INIntentDefaultImageName</key>
 			<string>Logo</string>
 			<key>INIntentDescription</key>
 			<string>The latest Halesowen Town score</string>
 			<key>INIntentDescriptionID</key>
 			<string>M0t0z2</string>
+			<key>INIntentManagedParameterCombinations</key>
+			<dict>
+				<key></key>
+				<dict>
+					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
+					<true/>
+					<key>INIntentParameterCombinationTitle</key>
+					<string>Yeltz Latest Score</string>
+					<key>INIntentParameterCombinationTitleID</key>
+					<string>eSbsit</string>
+					<key>INIntentParameterCombinationUpdatesLinked</key>
+					<true/>
+				</dict>
+			</dict>
 			<key>INIntentName</key>
 			<string>LatestScore</string>
 			<key>INIntentParameterCombinations</key>
@@ -78,6 +94,8 @@
 				</array>
 				<key>INIntentResponseLastParameterTag</key>
 				<integer>11</integer>
+				<key>INIntentResponseOutput</key>
+				<string>gameDetails</string>
 				<key>INIntentResponseParameters</key>
 				<array>
 					<dict>
@@ -118,7 +136,7 @@
 			<key>INTypeDisplayNameID</key>
 			<string>ecbqh4</string>
 			<key>INTypeLastPropertyTag</key>
-			<integer>106</integer>
+			<integer>108</integer>
 			<key>INTypeName</key>
 			<string>GameDetails</string>
 			<key>INTypeProperties</key>
@@ -242,6 +260,31 @@
 					<integer>106</integer>
 					<key>INTypePropertyType</key>
 					<string>Integer</string>
+				</dict>
+				<dict>
+					<key>INTypePropertyDisplayName</key>
+					<string>Kickoff Time</string>
+					<key>INTypePropertyDisplayNameID</key>
+					<string>4dWswB</string>
+					<key>INTypePropertyDisplayPriority</key>
+					<integer>10</integer>
+					<key>INTypePropertyMetadata</key>
+					<dict>
+						<key>INTypePropertyMetadataDateStyle</key>
+						<string>Long</string>
+						<key>INTypePropertyMetadataFormat</key>
+						<string>Style</string>
+						<key>INTypePropertyMetadataTimeStyle</key>
+						<string>Medium</string>
+						<key>INTypePropertyMetadataType</key>
+						<string>DateTime</string>
+					</dict>
+					<key>INTypePropertyName</key>
+					<string>kickoffTime</string>
+					<key>INTypePropertyTag</key>
+					<integer>108</integer>
+					<key>INTypePropertyType</key>
+					<string>DateComponents</string>
 				</dict>
 			</array>
 		</dict>

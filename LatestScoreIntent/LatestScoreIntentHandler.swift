@@ -19,7 +19,7 @@ class LatestScoreIntentHandler: NSObject, LatestScoreIntentHandling {
     
     func handle(intent: LatestScoreIntent, completion: @escaping (LatestScoreIntentResponse) -> Void) {
         
-        let gameDetails = GameDetails(identifier: nil, display: "Dame Details")
+        let gameDetails = GameDetails(identifier: nil, display: "Game Details")
         
         if let fixture = GameScoreManager.shared.currentFixture {
             // If currently in a game
@@ -40,6 +40,8 @@ class LatestScoreIntentHandler: NSObject, LatestScoreIntentHandling {
                 gameDetails.homeScore = NSNumber(value: fixture.opponentScore!)
                 gameDetails.awayScore = NSNumber(value: fixture.teamScore!)
             }
+            
+            gameDetails.kickoffTime = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: fixture.fixtureDate)
         }
         
         if gameDetails.homeTeam?.trimmingCharacters(in: .whitespacesAndNewlines).count == 0 || gameDetails.awayTeam?.trimmingCharacters(in: .whitespacesAndNewlines).count == 0 {
