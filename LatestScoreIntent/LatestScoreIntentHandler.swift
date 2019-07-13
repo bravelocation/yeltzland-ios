@@ -18,42 +18,34 @@ class LatestScoreIntentHandler: NSObject, LatestScoreIntentHandling {
     }
     
     func handle(intent: LatestScoreIntent, completion: @escaping (LatestScoreIntentResponse) -> Void) {
-        var homeTeamName = ""
-        var awayTeamName = ""
-        var gameState = ""
-        var homeTeamScore: Int = 0
-        var awayTeamScore: Int = 0
+        
+        let gameDetails = GameDetails(identifier: nil, display: "Dame Details")
         
         if let fixture = GameScoreManager.shared.currentFixture {
             // If currently in a game
             if fixture.inProgress {
-                gameState = "latest score is"
+                gameDetails.gameState = "latest score is"
             } else {
-                gameState = "final score was"
+                gameDetails.gameState = "final score was"
             }
             
             if fixture.home {
-                homeTeamName = "Yeltz"
-                awayTeamName = fixture.opponentNoCup
-                homeTeamScore = fixture.teamScore!
-                awayTeamScore = fixture.opponentScore!
+                gameDetails.homeTeam = "Yeltz"
+                gameDetails.awayTeam = fixture.opponentNoCup
+                gameDetails.homeScore = NSNumber(value: fixture.teamScore!)
+                gameDetails.awayScore =  NSNumber(value: fixture.opponentScore!)
             } else {
-                homeTeamName = fixture.opponentNoCup
-                awayTeamName = "Yeltz"
-                homeTeamScore = fixture.opponentScore!
-                awayTeamScore = fixture.teamScore!
+                gameDetails.homeTeam = fixture.opponentNoCup
+                gameDetails.awayTeam = "Yeltz"
+                gameDetails.homeScore = NSNumber(value: fixture.opponentScore!)
+                gameDetails.awayScore = NSNumber(value: fixture.teamScore!)
             }
-
         }
         
-        if homeTeamName.trimmingCharacters(in: .whitespacesAndNewlines).count == 0 || awayTeamName.trimmingCharacters(in: .whitespacesAndNewlines).count == 0 {
+        if gameDetails.homeTeam?.trimmingCharacters(in: .whitespacesAndNewlines).count == 0 || gameDetails.awayTeam?.trimmingCharacters(in: .whitespacesAndNewlines).count == 0 {
             completion(LatestScoreIntentResponse(code: LatestScoreIntentResponseCode.failureNoGames, userActivity: nil))
         } else {
-            completion(LatestScoreIntentResponse.success(gameState: gameState,
-                                                         homeTeam: homeTeamName,
-                                                         homeScore: String(homeTeamScore),
-                                                         awayTeam: awayTeamName,
-                                                         awayScore: String(awayTeamScore)))
+            completion(LatestScoreIntentResponse.success(gameDetails: gameDetails))
         }
     }
 }

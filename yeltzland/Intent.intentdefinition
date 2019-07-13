@@ -5,24 +5,26 @@
 	<key>INEnums</key>
 	<array/>
 	<key>INIntentDefinitionModelVersion</key>
-	<string>1.0</string>
+	<string>1.1</string>
+	<key>INIntentDefinitionNamespace</key>
+	<string>zeWbXA</string>
 	<key>INIntentDefinitionSystemVersion</key>
 	<string>18F132</string>
 	<key>INIntentDefinitionToolsBuildVersion</key>
-	<string>10E1001</string>
+	<string>11M362v</string>
 	<key>INIntentDefinitionToolsVersion</key>
-	<string>10.2.1</string>
+	<string>11.0</string>
 	<key>INIntents</key>
 	<array>
 		<dict>
 			<key>INIntentCategory</key>
 			<string>information</string>
+			<key>INIntentDefaultImageName</key>
+			<string>Logo</string>
 			<key>INIntentDescription</key>
 			<string>The latest Halesowen Town score</string>
 			<key>INIntentDescriptionID</key>
 			<string>M0t0z2</string>
-			<key>INIntentLastParameterTag</key>
-			<integer>0</integer>
 			<key>INIntentName</key>
 			<string>LatestScore</string>
 			<key>INIntentParameterCombinations</key>
@@ -43,25 +45,13 @@
 					<string>6nXiAV</string>
 				</dict>
 			</dict>
-			<key>INIntentParameters</key>
-			<array/>
 			<key>INIntentResponse</key>
 			<dict>
 				<key>INIntentResponseCodes</key>
 				<array>
 					<dict>
 						<key>INIntentResponseCodeFormatString</key>
-						<string>Something went wrong</string>
-						<key>INIntentResponseCodeFormatStringID</key>
-						<string>nSUy34</string>
-						<key>INIntentResponseCodeName</key>
-						<string>failure</string>
-						<key>INIntentResponseCodeSuccess</key>
-						<false/>
-					</dict>
-					<dict>
-						<key>INIntentResponseCodeFormatString</key>
-						<string>The ${gameState} ${homeTeam} ${homeScore} ${awayTeam} ${awayScore}</string>
+						<string>The ${gameDetails.gameState} ${gameDetails.homeTeam} ${gameDetails.homeScore} ${gameDetails.awayTeam} ${gameDetails.awayScore}</string>
 						<key>INIntentResponseCodeFormatStringID</key>
 						<string>594Jwl</string>
 						<key>INIntentResponseCodeName</key>
@@ -71,93 +61,189 @@
 					</dict>
 					<dict>
 						<key>INIntentResponseCodeFormatString</key>
+						<string>Something went wrong</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>nSUy34</string>
+						<key>INIntentResponseCodeName</key>
+						<string>failure</string>
+					</dict>
+					<dict>
+						<key>INIntentResponseCodeFormatString</key>
 						<string>We have no latest score data right now</string>
 						<key>INIntentResponseCodeFormatStringID</key>
 						<string>PLubdf</string>
 						<key>INIntentResponseCodeName</key>
 						<string>failureNoGames</string>
-						<key>INIntentResponseCodeSuccess</key>
-						<false/>
 					</dict>
 				</array>
 				<key>INIntentResponseLastParameterTag</key>
-				<integer>9</integer>
+				<integer>11</integer>
 				<key>INIntentResponseParameters</key>
 				<array>
 					<dict>
+						<key>INIntentResponseParameterDisplayName</key>
+						<string>Game Details</string>
+						<key>INIntentResponseParameterDisplayNameID</key>
+						<string>ooSjiq</string>
 						<key>INIntentResponseParameterDisplayPriority</key>
 						<integer>1</integer>
 						<key>INIntentResponseParameterName</key>
-						<string>homeTeam</string>
-						<key>INIntentResponseParameterSupportsMultipleValues</key>
-						<false/>
+						<string>gameDetails</string>
+						<key>INIntentResponseParameterObjectType</key>
+						<string>GameDetails</string>
+						<key>INIntentResponseParameterObjectTypeNamespace</key>
+						<string>zeWbXA</string>
 						<key>INIntentResponseParameterTag</key>
-						<integer>1</integer>
+						<integer>11</integer>
 						<key>INIntentResponseParameterType</key>
-						<string>String</string>
-					</dict>
-					<dict>
-						<key>INIntentResponseParameterDisplayPriority</key>
-						<integer>2</integer>
-						<key>INIntentResponseParameterName</key>
-						<string>awayTeam</string>
-						<key>INIntentResponseParameterSupportsMultipleValues</key>
-						<false/>
-						<key>INIntentResponseParameterTag</key>
-						<integer>2</integer>
-						<key>INIntentResponseParameterType</key>
-						<string>String</string>
-					</dict>
-					<dict>
-						<key>INIntentResponseParameterDisplayPriority</key>
-						<integer>3</integer>
-						<key>INIntentResponseParameterName</key>
-						<string>homeScore</string>
-						<key>INIntentResponseParameterSupportsMultipleValues</key>
-						<false/>
-						<key>INIntentResponseParameterTag</key>
-						<integer>8</integer>
-						<key>INIntentResponseParameterType</key>
-						<string>String</string>
-					</dict>
-					<dict>
-						<key>INIntentResponseParameterDisplayPriority</key>
-						<integer>4</integer>
-						<key>INIntentResponseParameterName</key>
-						<string>awayScore</string>
-						<key>INIntentResponseParameterSupportsMultipleValues</key>
-						<false/>
-						<key>INIntentResponseParameterTag</key>
-						<integer>9</integer>
-						<key>INIntentResponseParameterType</key>
-						<string>String</string>
-					</dict>
-					<dict>
-						<key>INIntentResponseParameterDisplayPriority</key>
-						<integer>5</integer>
-						<key>INIntentResponseParameterName</key>
-						<string>gameState</string>
-						<key>INIntentResponseParameterSupportsMultipleValues</key>
-						<false/>
-						<key>INIntentResponseParameterTag</key>
-						<integer>7</integer>
-						<key>INIntentResponseParameterType</key>
-						<string>String</string>
+						<string>Object</string>
 					</dict>
 				</array>
 			</dict>
-			<key>INIntentRestrictions</key>
-			<integer>0</integer>
 			<key>INIntentTitle</key>
 			<string>Yeltz Latest Score</string>
 			<key>INIntentTitleID</key>
 			<string>evrFdJ</string>
 			<key>INIntentType</key>
 			<string>Custom</string>
-			<key>INIntentUserConfirmationRequired</key>
-			<false/>
 			<key>INIntentVerb</key>
 			<string>View</string>
+		</dict>
+	</array>
+	<key>INTypes</key>
+	<array>
+		<dict>
+			<key>INTypeDisplayName</key>
+			<string>Game Details</string>
+			<key>INTypeDisplayNameID</key>
+			<string>ecbqh4</string>
+			<key>INTypeLastPropertyTag</key>
+			<integer>106</integer>
+			<key>INTypeName</key>
+			<string>GameDetails</string>
+			<key>INTypeProperties</key>
+			<array>
+				<dict>
+					<key>INTypePropertyDefault</key>
+					<true/>
+					<key>INTypePropertyDisplayPriority</key>
+					<integer>1</integer>
+					<key>INTypePropertyName</key>
+					<string>identifier</string>
+					<key>INTypePropertyTag</key>
+					<integer>1</integer>
+					<key>INTypePropertyType</key>
+					<string>String</string>
+				</dict>
+				<dict>
+					<key>INTypePropertyDefault</key>
+					<true/>
+					<key>INTypePropertyDisplayPriority</key>
+					<integer>2</integer>
+					<key>INTypePropertyName</key>
+					<string>displayString</string>
+					<key>INTypePropertyTag</key>
+					<integer>2</integer>
+					<key>INTypePropertyType</key>
+					<string>String</string>
+				</dict>
+				<dict>
+					<key>INTypePropertyDefault</key>
+					<true/>
+					<key>INTypePropertyDisplayPriority</key>
+					<integer>3</integer>
+					<key>INTypePropertyName</key>
+					<string>pronunciationHint</string>
+					<key>INTypePropertyTag</key>
+					<integer>3</integer>
+					<key>INTypePropertyType</key>
+					<string>String</string>
+				</dict>
+				<dict>
+					<key>INTypePropertyDefault</key>
+					<true/>
+					<key>INTypePropertyDisplayPriority</key>
+					<integer>4</integer>
+					<key>INTypePropertyName</key>
+					<string>alternativeSpeakableMatches</string>
+					<key>INTypePropertySupportsMultipleValues</key>
+					<true/>
+					<key>INTypePropertyTag</key>
+					<integer>4</integer>
+					<key>INTypePropertyType</key>
+					<string>SpeakableString</string>
+				</dict>
+				<dict>
+					<key>INTypePropertyDisplayName</key>
+					<string>Game State</string>
+					<key>INTypePropertyDisplayNameID</key>
+					<string>Azd0HD</string>
+					<key>INTypePropertyDisplayPriority</key>
+					<integer>5</integer>
+					<key>INTypePropertyName</key>
+					<string>gameState</string>
+					<key>INTypePropertyTag</key>
+					<integer>100</integer>
+					<key>INTypePropertyType</key>
+					<string>String</string>
+				</dict>
+				<dict>
+					<key>INTypePropertyDisplayName</key>
+					<string>Home Team</string>
+					<key>INTypePropertyDisplayNameID</key>
+					<string>6IqAUi</string>
+					<key>INTypePropertyDisplayPriority</key>
+					<integer>6</integer>
+					<key>INTypePropertyName</key>
+					<string>homeTeam</string>
+					<key>INTypePropertyTag</key>
+					<integer>101</integer>
+					<key>INTypePropertyType</key>
+					<string>String</string>
+				</dict>
+				<dict>
+					<key>INTypePropertyDisplayName</key>
+					<string>Away Team</string>
+					<key>INTypePropertyDisplayNameID</key>
+					<string>dd34EK</string>
+					<key>INTypePropertyDisplayPriority</key>
+					<integer>7</integer>
+					<key>INTypePropertyName</key>
+					<string>awayTeam</string>
+					<key>INTypePropertyTag</key>
+					<integer>102</integer>
+					<key>INTypePropertyType</key>
+					<string>String</string>
+				</dict>
+				<dict>
+					<key>INTypePropertyDisplayName</key>
+					<string>Home Score</string>
+					<key>INTypePropertyDisplayNameID</key>
+					<string>sBJYO4</string>
+					<key>INTypePropertyDisplayPriority</key>
+					<integer>8</integer>
+					<key>INTypePropertyName</key>
+					<string>homeScore</string>
+					<key>INTypePropertyTag</key>
+					<integer>104</integer>
+					<key>INTypePropertyType</key>
+					<string>Integer</string>
+				</dict>
+				<dict>
+					<key>INTypePropertyDisplayName</key>
+					<string>Away Score</string>
+					<key>INTypePropertyDisplayNameID</key>
+					<string>HozZtP</string>
+					<key>INTypePropertyDisplayPriority</key>
+					<integer>9</integer>
+					<key>INTypePropertyName</key>
+					<string>awayScore</string>
+					<key>INTypePropertyTag</key>
+					<integer>106</integer>
+					<key>INTypePropertyType</key>
+					<string>Integer</string>
+				</dict>
+			</array>
 		</dict>
 	</array>
 </dict>
