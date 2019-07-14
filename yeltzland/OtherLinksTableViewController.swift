@@ -72,7 +72,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             
         } else {
             cell = UITableViewCell(style: UITableViewCell.CellStyle.subtitle, reuseIdentifier: "Cell")
-            cell!.selectionStyle = .default
+            cell!.selectionStyle = .none
             cell!.accessoryType = .disclosureIndicator
         }
         
