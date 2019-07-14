@@ -34,8 +34,12 @@ class LatestScoreIntentHandler: NSObject, LatestScoreIntentHandling {
             gameDetails.home = fixture.home as NSNumber
             gameDetails.yeltzScore = NSNumber(value: fixture.teamScore!)
             gameDetails.opponentScore = NSNumber(value: fixture.opponentScore!)
-
-            completion(LatestScoreIntentResponse.success(gameState: gameState, gameDetails: gameDetails))
+            
+            if fixture.home {
+                completion(LatestScoreIntentResponse.success(gameState: gameState, gameDetails: gameDetails))
+            } else {                
+                completion(LatestScoreIntentResponse.successAwayGame(gameState: gameState, gameDetails: gameDetails))
+            }
         } else {
             completion(LatestScoreIntentResponse(code: LatestScoreIntentResponseCode.failureNoGames, userActivity: nil))
         }

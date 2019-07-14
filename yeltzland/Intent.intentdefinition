@@ -67,11 +67,11 @@
 				<array>
 					<dict>
 						<key>INIntentResponseCodeConciseFormatString</key>
-						<string>The ${gameState}  Yeltz  ${gameDetails.yeltzScore}  - ${gameDetails.opponent}  ${gameDetails.opponentScore}</string>
+						<string>The ${gameState} Yeltz ${gameDetails.yeltzScore}-${gameDetails.opponentScore} ${gameDetails.opponent}</string>
 						<key>INIntentResponseCodeConciseFormatStringID</key>
 						<string>N3gzIR</string>
 						<key>INIntentResponseCodeFormatString</key>
-						<string>The ${gameState}  Yeltz  ${gameDetails.yeltzScore} ,${gameDetails.opponent}  ${gameDetails.opponentScore}</string>
+						<string>The ${gameState} Yeltz ${gameDetails.yeltzScore} ,${gameDetails.opponent} ${gameDetails.opponentScore}</string>
 						<key>INIntentResponseCodeFormatStringID</key>
 						<string>594Jwl</string>
 						<key>INIntentResponseCodeName</key>
@@ -94,6 +94,20 @@
 						<string>PLubdf</string>
 						<key>INIntentResponseCodeName</key>
 						<string>failureNoGames</string>
+					</dict>
+					<dict>
+						<key>INIntentResponseCodeConciseFormatString</key>
+						<string>The ${gameState} ${gameDetails.opponent} ${gameDetails.opponentScore}-${gameDetails.yeltzScore} Yeltz</string>
+						<key>INIntentResponseCodeConciseFormatStringID</key>
+						<string>V5R5Wt</string>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>The ${gameState}  ${gameDetails.opponent} ${gameDetails.opponentScore}, Yeltz ${gameDetails.yeltzScore}</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>ccSiRz</string>
+						<key>INIntentResponseCodeName</key>
+						<string>successAwayGame</string>
+						<key>INIntentResponseCodeSuccess</key>
+						<true/>
 					</dict>
 				</array>
 				<key>INIntentResponseLastParameterTag</key>
