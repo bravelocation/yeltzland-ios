@@ -8,6 +8,8 @@
 
 import UIKit
 import SafariServices
+import Intents
+import IntentsUI
 
 class OtherLinksTableViewController: UITableViewController, SFSafariViewControllerDelegate {
 
@@ -29,7 +31,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
 
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 6
+        return 7
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -44,6 +46,8 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         } else if (section == 4) {
             return 3
         } else if (section == 5) {
+            return 2
+        } else if (section == 6) {
             return 2
         }
         
@@ -161,6 +165,19 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         } else if ((indexPath as NSIndexPath).section == 5) {
             switch ((indexPath as NSIndexPath).row) {
             case 0:
+                cell!.textLabel?.text = "What's the latest score?"
+                let cellImage = UIImage(named: "siri")?.sd_tintedImage(with: UIColor(named: "blue-tint")!)
+                cell!.imageView?.image = cellImage
+            case 1:
+                cell!.textLabel?.text = "Who do we play next?"
+                let cellImage = UIImage(named: "siri")?.sd_tintedImage(with: UIColor(named: "blue-tint")!)
+                cell!.imageView?.image = cellImage
+            default:
+                break
+            }
+        } else if ((indexPath as NSIndexPath).section == 6) {
+            switch ((indexPath as NSIndexPath).row) {
+            case 0:
                 cell!.textLabel?.text = "Privacy Policy"
                 cell!.imageView?.image = nil
             case 1:
@@ -202,6 +219,25 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             } else if ((indexPath as NSIndexPath).row == 2) {
                 let locations = LocationsViewController()
                 self.navigationController!.pushViewController(locations, animated: true)
+                return
+            }
+        }
+        
+        // Add to Siri
+        if ((indexPath as NSIndexPath).section == 5) {
+            if ((indexPath as NSIndexPath).row == 0) {
+                if #available(iOS 12, *) {
+                    self.addToSiriAction(intent: ShortcutManager.shared.latestScoreIntent())
+                } else {
+                    MakeToast.show(self, title: "Add to Siri not available", message: "You need to be running iOS 12 or above to be able to Add to Siri")
+                }
+                return
+            } else if ((indexPath as NSIndexPath).row == 1) {
+                if #available(iOS 12, *) {
+                    self.addToSiriAction(intent: ShortcutManager.shared.nextGameIntent())
+                } else {
+                    MakeToast.show(self, title: "Add to Siri not available", message: "You need to be running iOS 12 or above to be able to Add to Siri")
+                }
                 return
             }
         }
@@ -249,7 +285,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             default:
                 break
             }
-        } else if ((indexPath as NSIndexPath).section == 5) {
+        } else if ((indexPath as NSIndexPath).section == 6) {
             switch ((indexPath as NSIndexPath).row) {
             case 0:
                 url = URL(string: "https://bravelocation.com/privacy/yeltzland")
@@ -282,6 +318,8 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         case 4:
             return "More from Yeltzland"
         case 5:
+            return "Add To Siri"
+        case 6:
             return "About"
         default:
             return ""
@@ -366,5 +404,31 @@ extension OtherLinksTableViewController {
                 break
             }
         }
+    }
+}
+
+extension OtherLinksTableViewController: INUIAddVoiceShortcutViewControllerDelegate {
+    
+    @available(iOS 12.0, *)
+    func addToSiriAction(intent: INIntent) {
+        if let shortcut = INShortcut(intent: intent) {
+            let viewController = INUIAddVoiceShortcutViewController(shortcut: shortcut)
+            viewController.modalPresentationStyle = .formSheet
+            viewController.delegate = self
+            self.present(viewController, animated: true, completion: nil)
+        }
+    }
+    
+    // MARK: - INUIAddVoiceShortcutViewControllerDelegate
+    @available(iOS 12.0, *)
+    func addVoiceShortcutViewController(_ controller: INUIAddVoiceShortcutViewController, didFinishWith voiceShortcut: INVoiceShortcut?, error: Error?) {
+        print("Added shortcut")
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
+    @available(iOS 12.0, *)
+    func addVoiceShortcutViewControllerDidCancel(_ controller: INUIAddVoiceShortcutViewController) {
+        print("Cancelled shortcut")
+        controller.dismiss(animated: true, completion: nil)
     }
 }
