@@ -148,7 +148,7 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
             self.latestScoreLabel.textColor = resultColor
             TeamImageManager.shared.loadTeamImage(teamName: fixture.opponent, view: self.opponentLogoImageView)
             
-            self.bestGuessLabel.isHidden = (fixture.inProgress == false)
+            //self.bestGuessLabel.isHidden = (fixture.inProgress == false)
         }
     }
     
@@ -194,7 +194,7 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
             button.addTarget(self, action: #selector(addToSiri(_:)), for: .touchUpInside)
 
             self.view.centerXAnchor.constraint(equalTo: button.centerXAnchor).isActive = true
-            self.latestScoreLabel.bottomAnchor.constraint(equalTo: button.topAnchor, constant: -32.0).isActive = true
+            self.view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: button.bottomAnchor, constant: 16.0).isActive = true
         }
     }
     
