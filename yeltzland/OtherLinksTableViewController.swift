@@ -48,7 +48,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         } else if (section == 5) {
             return 2
         } else if (section == 6) {
-            return 2
+            return 3
         }
         
         return 0
@@ -181,6 +181,9 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
                 cell!.textLabel?.text = "Privacy Policy"
                 cell!.imageView?.image = nil
             case 1:
+                cell!.textLabel?.text = "Icons from icons8.com"
+                cell!.imageView?.image = nil
+            case 2:
                 cell!.textLabel?.text = "More Brave Location Apps"
                 cell!.imageView?.image = nil
                 
@@ -290,6 +293,8 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             case 0:
                 url = URL(string: "https://bravelocation.com/privacy/yeltzland")
             case 1:
+                url = URL(string: "https://icons8.com")
+            case 2:
                 url = URL(string: "https://bravelocation.com/apps")
             default:
                 break
