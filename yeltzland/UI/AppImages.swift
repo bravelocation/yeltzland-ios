@@ -49,12 +49,4 @@ enum AppImages {
         
         return UIImage(named: "map")
     }
-    
-    static var mapMarker: UIImage? {
-        if #available(iOS 13, *) {
-            return UIImage(systemName: "mappin.and.ellipse")
-        }
-        
-        return UIImage(named: "map-marker")
-    }
 }
