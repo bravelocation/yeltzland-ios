@@ -229,17 +229,17 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         // Add to Siri
         if ((indexPath as NSIndexPath).section == 5) {
             if ((indexPath as NSIndexPath).row == 0) {
-                if #available(iOS 12, *) {
+                if #available(iOS 13, *) {
                     self.addToSiriAction(intent: ShortcutManager.shared.latestScoreIntent())
                 } else {
-                    MakeToast.show(self, title: "Add to Siri not available", message: "You need to be running iOS 12 or above to be able to Add to Siri")
+                    MakeToast.show(self, title: "Sorry!", message: "You need to be running iOS 13 or above to use this shortcut")
                 }
                 return
             } else if ((indexPath as NSIndexPath).row == 1) {
-                if #available(iOS 12, *) {
+                if #available(iOS 13, *) {
                     self.addToSiriAction(intent: ShortcutManager.shared.nextGameIntent())
                 } else {
-                    MakeToast.show(self, title: "Add to Siri not available", message: "You need to be running iOS 12 or above to be able to Add to Siri")
+                    MakeToast.show(self, title: "Sorry!", message: "You need to be running iOS 13 or above to use this shortcut")
                 }
                 return
             }
