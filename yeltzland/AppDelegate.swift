@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Push settings to watch in the background
         GameSettings.shared.forceBackgroundWatchUpdate()
         
-        // Donate all the shortcuts
+        // Donate all the shortcuts - no need to do this in iOS 13+
         if #available(iOS 12.0, *) {
             ShortcutManager.shared.donateAllShortcuts()
         }
