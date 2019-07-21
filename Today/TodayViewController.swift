@@ -86,7 +86,6 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
         if let headerView = view as? UITableViewHeaderFooterView {
             headerView.tintColor = UIColor.clear
             headerView.textLabel!.textColor = AppColors.label
-            headerView.textLabel!.font = UIFont(name: AppFonts.AppFontName, size: AppFonts.TodayTextSize)!
             headerView.textLabel?.text = self.dataSource.headerText(section: section)
         }
     }
@@ -95,7 +94,6 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
         if let footerView = view as? UITableViewHeaderFooterView {
             footerView.tintColor = UIColor.clear
             footerView.textLabel!.textColor = AppColors.label
-            footerView.textLabel!.font = UIFont(name: AppFonts.AppFontName, size: AppFonts.TodayFootnoteSize)!
             footerView.textLabel?.text = self.dataSource.footerText(section: section)
         }
     }

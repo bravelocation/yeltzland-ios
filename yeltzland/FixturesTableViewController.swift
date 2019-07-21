@@ -199,11 +199,6 @@ class FixturesTableViewController: UITableViewController {
         
         return fixturesForMonth![0].fixtureMonth
     }
-    
-    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
-        header.textLabel!.font = UIFont(name: AppFonts.AppFontName, size: AppFonts.OtherSectionTextSize)!
-    }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 33.0

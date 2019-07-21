@@ -163,7 +163,6 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         let forumNavigationController = UINavigationController(rootViewController: forumViewController)
         
         let forumIcon = UITabBarItem(title: "Yeltz Forum", image: UIImage(named: "forum"), selectedImage: nil)
-        forumIcon.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: AppFonts.AppFontName, size: AppFonts.TabBarTextSize)!], for: UIControl.State())
         forumNavigationController.tabBarItem = forumIcon
         
         // Official Site
@@ -173,7 +172,6 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         let officialNavigationController = UINavigationController(rootViewController: officialViewController)
         
         let officialIcon = UITabBarItem(title: "Official Site", image: UIImage(named: "official"), selectedImage: nil)
-        officialIcon.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: AppFonts.AppFontName, size: AppFonts.TabBarTextSize)!], for: UIControl.State())
         officialNavigationController.tabBarItem = officialIcon
         
         // Yeltz TV
@@ -183,7 +181,6 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         let tvNavigationController = UINavigationController(rootViewController: tvViewController)
         
         let tvIcon = UITabBarItem(title: "Yeltz TV", image: UIImage(named: "yeltztv"), selectedImage: nil)
-        tvIcon.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: AppFonts.AppFontName, size: AppFonts.TabBarTextSize)!], for: UIControl.State())
         tvNavigationController.tabBarItem = tvIcon
         
         // Twitter
@@ -192,7 +189,6 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         let twitterNavigationController = UINavigationController(rootViewController: twitterViewController)
         
         let twitterIcon = UITabBarItem(title: "Twitter", image: UIImage(named: "twitter"), selectedImage: nil)
-        twitterIcon.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: AppFonts.AppFontName, size: AppFonts.TabBarTextSize)!], for: UIControl.State())
         twitterNavigationController.tabBarItem = twitterIcon
         
         // Other Links
@@ -206,7 +202,6 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         let otherNavigationController = UINavigationController(rootViewController: otherViewController)
         
         let otherIcon = UITabBarItem(tabBarSystemItem: .more, tag: self.otherTabIndex)
-        otherIcon.setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: AppFonts.AppFontName, size: AppFonts.TabBarTextSize)!], for: UIControl.State())
         otherNavigationController.tabBarItem = otherIcon
         
         // Add controllers

@@ -25,8 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().barTintColor = UIColor(named: "yeltz-blue")
 
         UINavigationBar.appearance().titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor: UIColor.white,
-            NSAttributedString.Key.font: UIFont(name: AppFonts.AppFontName, size: AppFonts.NavBarTextSize)!
+            NSAttributedString.Key.foregroundColor: UIColor.white
         ]
         
         // Setup Twitter not via Fabric

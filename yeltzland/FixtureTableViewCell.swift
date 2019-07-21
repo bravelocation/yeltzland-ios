@@ -31,7 +31,6 @@ class FixtureTableViewCell: UITableViewCell {
         }
         
         // Set main label
-        self.teamNameLabel.font = UIFont(name: AppFonts.AppFontName, size: AppFonts.FixtureTeamSize)!
         self.teamNameLabel.textColor = resultColor
         self.teamNameLabel.adjustsFontSizeToFitWidth = true
         self.teamNameLabel.text = fixture.displayOpponent
@@ -39,7 +38,6 @@ class FixtureTableViewCell: UITableViewCell {
         // Set detail text
         self.scoreLabel.textColor = resultColor
         self.scoreLabel.adjustsFontSizeToFitWidth = true
-        self.scoreLabel.font = UIFont(name: AppFonts.AppFontName, size: AppFonts.FixtureScoreOrDateTextSize)!
         
         if (fixture.teamScore == nil || fixture.opponentScore == nil) {
             self.scoreLabel.text = fixture.kickoffTime

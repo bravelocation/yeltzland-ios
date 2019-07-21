@@ -10,7 +10,6 @@
 		481F530A2194ABBB0E4F3078 /* Pods_yeltzland.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BE281ED4B32969698046889 /* Pods_yeltzland.framework */; };
 		520C09A02157A73100CCC2D8 /* DefaultPreferences.plist in Resources */ = {isa = PBXBuildFile; fileRef = 528D74591CF2F4A400263685 /* DefaultPreferences.plist */; };
 		520C09A22157C46100CCC2D8 /* ShortcutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C09A12157C46100CCC2D8 /* ShortcutManager.swift */; };
-		5211F7271CDA35CF0031496D /* AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211F7261CDA35CF0031496D /* AppFonts.swift */; };
 		5211F72A1CDA53D70031496D /* TwitterUserTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211F7291CDA53D70031496D /* TwitterUserTimelineViewController.swift */; };
 		5211F72D1CDB1EE50031496D /* OtherLinksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211F72C1CDB1EE50031496D /* OtherLinksTableViewController.swift */; };
 		52176BAC1D4A14C700B7EFAE /* DefaultPreferences.plist in Resources */ = {isa = PBXBuildFile; fileRef = 528D74591CF2F4A400263685 /* DefaultPreferences.plist */; };
@@ -42,8 +41,6 @@
 		52236AEB1D17ECB4004903AB /* matches.json in Resources */ = {isa = PBXBuildFile; fileRef = 52236AEA1D17ECB4004903AB /* matches.json */; };
 		52236AEE1D1803C8004903AB /* FixturesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236AED1D1803C8004903AB /* FixturesTableViewController.swift */; };
 		522716C422D0D438008FD210 /* AppImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522716C322D0D438008FD210 /* AppImages.swift */; };
-		522716C822D1B83D008FD210 /* AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211F7261CDA35CF0031496D /* AppFonts.swift */; };
-		522716CB22D1B85F008FD210 /* AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211F7261CDA35CF0031496D /* AppFonts.swift */; };
 		522716CD22D1BB50008FD210 /* CachedJSONData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522716CC22D1BB50008FD210 /* CachedJSONData.swift */; };
 		522716CE22D1BB50008FD210 /* CachedJSONData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522716CC22D1BB50008FD210 /* CachedJSONData.swift */; };
 		522716CF22D1BB50008FD210 /* CachedJSONData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522716CC22D1BB50008FD210 /* CachedJSONData.swift */; };
@@ -244,7 +241,6 @@
 		2C4284847AD21978846F1AA7 /* Pods-LatestScoreIntentUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LatestScoreIntentUI.release.xcconfig"; path = "Pods/Target Support Files/Pods-LatestScoreIntentUI/Pods-LatestScoreIntentUI.release.xcconfig"; sourceTree = "<group>"; };
 		31D85CE3D6629F7148E43670 /* Pods-yeltzlandTVOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yeltzlandTVOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-yeltzlandTVOS/Pods-yeltzlandTVOS.release.xcconfig"; sourceTree = "<group>"; };
 		520C09A12157C46100CCC2D8 /* ShortcutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutManager.swift; sourceTree = "<group>"; };
-		5211F7261CDA35CF0031496D /* AppFonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppFonts.swift; sourceTree = "<group>"; };
 		5211F7291CDA53D70031496D /* TwitterUserTimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterUserTimelineViewController.swift; sourceTree = "<group>"; };
 		5211F72C1CDB1EE50031496D /* OtherLinksTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherLinksTableViewController.swift; sourceTree = "<group>"; };
 		52176BAA1D4A0D9A00B7EFAE /* yeltzland.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = yeltzland.entitlements; sourceTree = "<group>"; };
@@ -527,7 +523,6 @@
 			isa = PBXGroup;
 			children = (
 				52B4475422CF316000E745EB /* AppColors.swift */,
-				5211F7261CDA35CF0031496D /* AppFonts.swift */,
 				522716C322D0D438008FD210 /* AppImages.swift */,
 				527DAF241D2D308F0092BB8F /* LocationAnnotation.swift */,
 				52E711AA1D9FB5B70002446A /* MakeToast.swift */,
@@ -1425,7 +1420,6 @@
 				526F54631D214982001EA8D8 /* Fixture.swift in Sources */,
 				52DBCAA11D4A012E00D35F91 /* GameSettings.swift in Sources */,
 				522716D322D1D4C1008FD210 /* AppColors.swift in Sources */,
-				522716C822D1B83D008FD210 /* AppFonts.swift in Sources */,
 				529E81001EDAC05C002DC858 /* TodayDataItem.swift in Sources */,
 				529E80FE1EDABC91002DC858 /* TodayDataSource.swift in Sources */,
 				52176BB41D4B62DC00B7EFAE /* BaseSettings.swift in Sources */,
@@ -1454,7 +1448,6 @@
 				52236AE61D17DFF8004903AB /* Fixture.swift in Sources */,
 				527DAF1F1D2D082C0092BB8F /* Location.swift in Sources */,
 				527DAF251D2D308F0092BB8F /* LocationAnnotation.swift in Sources */,
-				5211F7271CDA35CF0031496D /* AppFonts.swift in Sources */,
 				5231F4FF215B6C56003FAC68 /* SettingsManager.swift in Sources */,
 				52DC9EAF1FC95C9E00AE02F6 /* FirebaseNotifications.swift in Sources */,
 				52236AE81D17E4D3004903AB /* FixtureManager.swift in Sources */,
@@ -1497,7 +1490,6 @@
 				52EACDC3215646D0008B8DE5 /* GameScoreManager.swift in Sources */,
 				52EACDC5215646D3008B8DE5 /* GameSettings.swift in Sources */,
 				522716D422D1E3FC008FD210 /* AppColors.swift in Sources */,
-				522716CB22D1B85F008FD210 /* AppFonts.swift in Sources */,
 				52EACDB921564467008B8DE5 /* Intent.intentdefinition in Sources */,
 				52EACDC7215646DA008B8DE5 /* BaseSettings.swift in Sources */,
 				52EACDA5215643FC008B8DE5 /* IntentViewController.swift in Sources */,

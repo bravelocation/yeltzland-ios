@@ -197,11 +197,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             }
         }
 
-        // Set fonts
-        cell!.textLabel?.font = UIFont(name: AppFonts.AppFontName, size: AppFonts.OtherTextSize)!
         cell!.textLabel?.adjustsFontSizeToFitWidth = true
-        cell!.detailTextLabel?.font = UIFont(name: AppFonts.AppFontName, size: AppFonts.OtherDetailTextSize)!
-        
         cell!.textLabel?.textColor = AppColors.label
         cell!.detailTextLabel?.textColor = AppColors.secondaryLabel
         
@@ -329,11 +325,6 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         default:
             return ""
         }
-    }
-    
-    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
-        header.textLabel!.font = UIFont(name: AppFonts.AppFontName, size: AppFonts.OtherSectionTextSize)!
     }
     
     public func openFixtures() {

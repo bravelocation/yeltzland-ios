@@ -194,9 +194,7 @@ class TodayDataSource: NSObject, UITableViewDataSource {
         cell.accessoryType = .none
         cell.separatorInset = UIEdgeInsets.init(top: 0.0, left: 20.0, bottom: 0.0, right: 0.0)
         
-        cell.textLabel?.font = UIFont(name: AppFonts.AppFontName, size: AppFonts.TodayTextSize)!
         cell.textLabel?.adjustsFontSizeToFitWidth = true
-        cell.detailTextLabel?.font = UIFont(name: AppFonts.AppFontName, size: AppFonts.TodayFootnoteSize)!
         cell.detailTextLabel?.adjustsFontSizeToFitWidth = true
         
         cell.textLabel?.textColor = resultColor
