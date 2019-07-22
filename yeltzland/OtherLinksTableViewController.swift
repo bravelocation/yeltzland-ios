@@ -48,7 +48,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         } else if (section == 5) {
             return 2
         } else if (section == 6) {
-            return 3
+            return 4
         }
         
         return 0
@@ -186,12 +186,17 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             case 2:
                 cell!.textLabel?.text = "More Brave Location Apps"
                 cell!.imageView?.image = nil
+            case 3:
+                cell!.textLabel?.text = ""
+                cell!.imageView?.image = nil
                 
                 let infoDictionary = Bundle.main.infoDictionary!
                 let version = infoDictionary["CFBundleShortVersionString"]
                 let build = infoDictionary["CFBundleVersion"]
                 
                 cell!.detailTextLabel?.text = "v\(version!).\(build!)"
+                cell?.accessoryType = .none
+                cell!.selectionStyle = .none
             default:
                 break
             }
