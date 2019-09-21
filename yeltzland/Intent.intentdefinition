@@ -9,9 +9,9 @@
 	<key>INIntentDefinitionNamespace</key>
 	<string>zeWbXA</string>
 	<key>INIntentDefinitionSystemVersion</key>
-	<string>18F132</string>
+	<string>18G95</string>
 	<key>INIntentDefinitionToolsBuildVersion</key>
-	<string>11M362v</string>
+	<string>11A420a</string>
 	<key>INIntentDefinitionToolsVersion</key>
 	<string>11.0</string>
 	<key>INIntents</key>
@@ -67,11 +67,11 @@
 				<array>
 					<dict>
 						<key>INIntentResponseCodeConciseFormatString</key>
-						<string>The ${gameState} Yeltz ${gameDetails.yeltzScore}-${gameDetails.opponentScore} ${gameDetails.opponent}</string>
+						<string>The ${gameState} Yeltz ${yeltzScore}-${opponentScore} ${opponent}</string>
 						<key>INIntentResponseCodeConciseFormatStringID</key>
 						<string>N3gzIR</string>
 						<key>INIntentResponseCodeFormatString</key>
-						<string>The ${gameState} Yeltz ${gameDetails.yeltzScore} ,${gameDetails.opponent} ${gameDetails.opponentScore}</string>
+						<string>The ${gameState} Yeltz  ${yeltzScore}, ${opponent}  ${opponentScore} </string>
 						<key>INIntentResponseCodeFormatStringID</key>
 						<string>594Jwl</string>
 						<key>INIntentResponseCodeName</key>
@@ -97,11 +97,11 @@
 					</dict>
 					<dict>
 						<key>INIntentResponseCodeConciseFormatString</key>
-						<string>The ${gameState} ${gameDetails.opponent} ${gameDetails.opponentScore}-${gameDetails.yeltzScore} Yeltz</string>
+						<string>The ${gameState} ${opponent} ${opponentScore}-${yeltzScore} Yeltz</string>
 						<key>INIntentResponseCodeConciseFormatStringID</key>
 						<string>V5R5Wt</string>
 						<key>INIntentResponseCodeFormatString</key>
-						<string>The ${gameState}  ${gameDetails.opponent} ${gameDetails.opponentScore}, Yeltz ${gameDetails.yeltzScore}</string>
+						<string>The ${gameState}  ${opponent}  ${opponentScore}, Yeltz ${yeltzScore}</string>
 						<key>INIntentResponseCodeFormatStringID</key>
 						<string>ccSiRz</string>
 						<key>INIntentResponseCodeName</key>
@@ -111,7 +111,7 @@
 					</dict>
 				</array>
 				<key>INIntentResponseLastParameterTag</key>
-				<integer>12</integer>
+				<integer>15</integer>
 				<key>INIntentResponseOutput</key>
 				<string>gameDetails</string>
 				<key>INIntentResponseParameters</key>
@@ -145,6 +145,48 @@
 						<string>gameState</string>
 						<key>INIntentResponseParameterTag</key>
 						<integer>12</integer>
+						<key>INIntentResponseParameterType</key>
+						<string>String</string>
+					</dict>
+					<dict>
+						<key>INIntentResponseParameterDisplayName</key>
+						<string>Yeltz Score</string>
+						<key>INIntentResponseParameterDisplayNameID</key>
+						<string>BRvaoy</string>
+						<key>INIntentResponseParameterDisplayPriority</key>
+						<integer>3</integer>
+						<key>INIntentResponseParameterName</key>
+						<string>yeltzScore</string>
+						<key>INIntentResponseParameterTag</key>
+						<integer>13</integer>
+						<key>INIntentResponseParameterType</key>
+						<string>String</string>
+					</dict>
+					<dict>
+						<key>INIntentResponseParameterDisplayName</key>
+						<string>Opponent</string>
+						<key>INIntentResponseParameterDisplayNameID</key>
+						<string>ANi914</string>
+						<key>INIntentResponseParameterDisplayPriority</key>
+						<integer>4</integer>
+						<key>INIntentResponseParameterName</key>
+						<string>opponent</string>
+						<key>INIntentResponseParameterTag</key>
+						<integer>14</integer>
+						<key>INIntentResponseParameterType</key>
+						<string>String</string>
+					</dict>
+					<dict>
+						<key>INIntentResponseParameterDisplayName</key>
+						<string>Opponent Score</string>
+						<key>INIntentResponseParameterDisplayNameID</key>
+						<string>SA45wq</string>
+						<key>INIntentResponseParameterDisplayPriority</key>
+						<integer>5</integer>
+						<key>INIntentResponseParameterName</key>
+						<string>opponentScore</string>
+						<key>INIntentResponseParameterTag</key>
+						<integer>15</integer>
 						<key>INIntentResponseParameterType</key>
 						<string>String</string>
 					</dict>
@@ -209,8 +251,12 @@
 				<key>INIntentResponseCodes</key>
 				<array>
 					<dict>
+						<key>INIntentResponseCodeConciseFormatString</key>
+						<string>The next game is against ${opponent} ${kickoffTime}</string>
+						<key>INIntentResponseCodeConciseFormatStringID</key>
+						<string>Fut5fh</string>
 						<key>INIntentResponseCodeFormatString</key>
-						<string>The next game is against ${gameDetails.opponent}  ${kickoffTime}</string>
+						<string>The next game is against ${opponent} ${kickoffTime}</string>
 						<key>INIntentResponseCodeFormatStringID</key>
 						<string>R7sqyJ</string>
 						<key>INIntentResponseCodeName</key>
@@ -238,7 +284,7 @@
 					</dict>
 				</array>
 				<key>INIntentResponseLastParameterTag</key>
-				<integer>4</integer>
+				<integer>5</integer>
 				<key>INIntentResponseOutput</key>
 				<string>gameDetails</string>
 				<key>INIntentResponseParameters</key>
@@ -286,6 +332,20 @@
 						<string>kickoffTime</string>
 						<key>INIntentResponseParameterTag</key>
 						<integer>4</integer>
+						<key>INIntentResponseParameterType</key>
+						<string>String</string>
+					</dict>
+					<dict>
+						<key>INIntentResponseParameterDisplayName</key>
+						<string>Opponent</string>
+						<key>INIntentResponseParameterDisplayNameID</key>
+						<string>6a9gpv</string>
+						<key>INIntentResponseParameterDisplayPriority</key>
+						<integer>4</integer>
+						<key>INIntentResponseParameterName</key>
+						<string>opponent</string>
+						<key>INIntentResponseParameterTag</key>
+						<integer>5</integer>
 						<key>INIntentResponseParameterType</key>
 						<string>String</string>
 					</dict>

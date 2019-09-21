@@ -27,18 +27,11 @@ class LatestScoreIntentHandler: NSObject, LatestScoreIntentHandling {
             } else {
                 gameState = "final score was"
             }
- 
-            let gameDetails = GameDetails(identifier: nil, display: "Game Details")
-            gameDetails.opponent = fixture.opponentNoCup
-            gameDetails.kickoffTime = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: fixture.fixtureDate)
-            gameDetails.home = fixture.home as NSNumber
-            gameDetails.yeltzScore = NSNumber(value: fixture.teamScore!)
-            gameDetails.opponentScore = NSNumber(value: fixture.opponentScore!)
             
             if fixture.home {
-                completion(LatestScoreIntentResponse.success(gameState: gameState, gameDetails: gameDetails))
-            } else {                
-                completion(LatestScoreIntentResponse.successAwayGame(gameState: gameState, gameDetails: gameDetails))
+                completion(LatestScoreIntentResponse.success(gameState: gameState, yeltzScore: "\(fixture.teamScore!)", opponent: fixture.opponentNoCup, opponentScore: "\(fixture.opponentScore!)"))
+            } else {
+                completion(LatestScoreIntentResponse.successAwayGame(gameState: gameState, opponent: fixture.opponentNoCup, opponentScore: "\(fixture.opponentScore!)", yeltzScore: "\(fixture.teamScore!)"))
             }
         } else {
             completion(LatestScoreIntentResponse(code: LatestScoreIntentResponseCode.failureNoGames, userActivity: nil))

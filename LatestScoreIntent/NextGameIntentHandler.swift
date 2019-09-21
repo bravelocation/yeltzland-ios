@@ -20,13 +20,7 @@ class NextGameIntentHandler: NSObject, NextGameIntentHandling {
     func handle(intent: NextGameIntent, completion: @escaping (NextGameIntentResponse) -> Void) {
         
         if let fixture = FixtureManager.shared.nextGame {
-            let gameDetails = GameDetails(identifier: nil, display: "Game Details")
- 
-            gameDetails.opponent = fixture.opponentNoCup
-            gameDetails.kickoffTime = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: fixture.fixtureDate)
-            gameDetails.home = fixture.home as NSNumber
-            
-            completion(NextGameIntentResponse.success(gameDetails: gameDetails, kickoffTime: fixture.voiceKickoffTime))
+            completion(NextGameIntentResponse.success(opponent: fixture.opponentNoCup, kickoffTime: fixture.voiceKickoffTime))
         } else {
             completion(NextGameIntentResponse(code: NextGameIntentResponseCode.failureNoGame, userActivity: nil))
         }
