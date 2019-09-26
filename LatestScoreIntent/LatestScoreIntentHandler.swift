@@ -9,25 +9,19 @@
 import Foundation
 
 class LatestScoreIntentHandler: NSObject, LatestScoreIntentHandling {
-    let gameSettings = GameSettings.instance
-    
     func confirm(intent: LatestScoreIntent, completion: @escaping (LatestScoreIntentResponse) -> Void) {
         // Update the fixture and game score caches
-        GameScoreManager.instance.getLatestGameScore()
-        FixtureManager.instance.getLatestFixtures()
+        GameScoreManager.shared.fetchLatestData(completion: nil)
+        FixtureManager.shared.fetchLatestData(completion: nil)
 
         completion(LatestScoreIntentResponse(code: .ready, userActivity: nil))
     }
     
     func handle(intent: LatestScoreIntent, completion: @escaping (LatestScoreIntentResponse) -> Void) {
-        var homeTeamName = ""
-        var awayTeamName = ""
-        var gameState = ""
-        var homeTeamScore: Int = 0
-        var awayTeamScore: Int = 0
         
-        if let fixture = self.gameSettings.getLatestFixtureFromSettings() {
-            // If currently in a game
+        if let fixture = GameScoreManager.shared.currentFixture {
+            var gameState = ""
+
             if fixture.inProgress {
                 gameState = "latest score is"
             } else {
@@ -35,27 +29,12 @@ class LatestScoreIntentHandler: NSObject, LatestScoreIntentHandling {
             }
             
             if fixture.home {
-                homeTeamName = "Yeltz"
-                awayTeamName = fixture.opponentNoCup
-                homeTeamScore = fixture.teamScore!
-                awayTeamScore = fixture.opponentScore!
+                completion(LatestScoreIntentResponse.success(gameState: gameState, yeltzScore: "\(fixture.teamScore!)", opponent: fixture.opponentNoCup, opponentScore: "\(fixture.opponentScore!)"))
             } else {
-                homeTeamName = fixture.opponentNoCup
-                awayTeamName = "Yeltz"
-                homeTeamScore = fixture.opponentScore!
-                awayTeamScore = fixture.teamScore!
+                completion(LatestScoreIntentResponse.successAwayGame(gameState: gameState, opponent: fixture.opponentNoCup, opponentScore: "\(fixture.opponentScore!)", yeltzScore: "\(fixture.teamScore!)"))
             }
-
         } else {
             completion(LatestScoreIntentResponse(code: LatestScoreIntentResponseCode.failureNoGames, userActivity: nil))
-            return
         }
-
-        completion(LatestScoreIntentResponse.success(gameState: gameState,
-                                                     homeTeam: homeTeamName,
-                                                     homeScore: String(homeTeamScore),
-                                                     awayTeam: awayTeamName,
-                                                     awayScore: String(awayTeamScore)))
-
     }
 }

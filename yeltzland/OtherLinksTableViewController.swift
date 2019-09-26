@@ -8,11 +8,13 @@
 
 import UIKit
 import SafariServices
-import Font_Awesome_Swift
+import Intents
+import IntentsUI
 
 class OtherLinksTableViewController: UITableViewController, SFSafariViewControllerDelegate {
 
     let firebaseNotifications = FirebaseNotifications()
+    let leagueTableUrl = URL(string: "https://www.betvictorsouthern.co.uk/league-table/BetVictor%20Southern%20Division%20One%20Central/2019/2020/P/")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,8 +22,8 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         // Setup navigation
         self.navigationItem.title = "More"
         
-        self.view.backgroundColor = AppColors.OtherBackground
-        self.tableView.separatorColor = AppColors.OtherSeparator
+        self.view.backgroundColor = AppColors.systemBackground
+        self.tableView.separatorColor = AppColors.systemBackground
         
         self.tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "Cell")
         self.tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "SettingsCell")
@@ -29,7 +31,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
 
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 6
+        return 7
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -45,6 +47,8 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             return 3
         } else if (section == 5) {
             return 2
+        } else if (section == 6) {
+            return 4
         }
         
         return 0
@@ -60,6 +64,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             cell!.accessoryType = .none
             
             let switchView = UISwitch(frame: CGRect.zero)
+            switchView.onTintColor = UIColor(named: "blue-tint")
             cell!.accessoryView = switchView
             
             switchView.isOn = self.firebaseNotifications.enabled
@@ -67,7 +72,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             
         } else {
             cell = UITableViewCell(style: UITableViewCell.CellStyle.subtitle, reuseIdentifier: "Cell")
-            cell!.selectionStyle = .default
+            cell!.selectionStyle = .none
             cell!.accessoryType = .disclosureIndicator
         }
         
@@ -75,19 +80,19 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             switch ((indexPath as NSIndexPath).row) {
             case 0:
                 cell!.textLabel?.text = "Fixture List"
-                let cellImage = UIImage(icon: FAType.FACalendar, size: CGSize(width: 100, height: 100), textColor: AppColors.Fixtures, backgroundColor: UIColor.clear)
+                let cellImage = UIImage(named: "fixtures")?.sd_tintedImage(with: UIColor(named: "blue-tint")!)
                 cell!.imageView?.image = cellImage
             case 1:
                 cell!.textLabel?.text = "Latest Score"
-                let cellImage = UIImage(icon: FAType.FAClockO, size: CGSize(width: 100, height: 100), textColor: AppColors.Fixtures, backgroundColor: UIColor.clear)
+                let cellImage = UIImage(named: "latest-score")?.sd_tintedImage(with: UIColor(named: "blue-tint")!)
                 cell!.imageView?.image = cellImage
             case 2:
                 cell!.textLabel?.text = "Where's the Ground?"
-                let cellImage = UIImage(icon: FAType.FAMapMarker, size: CGSize(width: 100, height: 100), textColor: AppColors.Fixtures, backgroundColor: UIColor.clear)
+                let cellImage = UIImage(named: "map")?.sd_tintedImage(with: UIColor(named: "blue-tint")!)
                 cell!.imageView?.image = cellImage
             case 3:
                 cell!.textLabel?.text = "League Table"
-                let cellImage = UIImage(icon: FAType.FATable, size: CGSize(width: 100, height: 100), textColor: AppColors.Fixtures, backgroundColor: UIColor.clear)
+                let cellImage = UIImage(named: "table")?.sd_tintedImage(with: UIColor(named: "blue-tint")!)
                 cell!.imageView?.image = cellImage
             default:
                 break
@@ -96,23 +101,23 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             switch ((indexPath as NSIndexPath).row) {
             case 0:
                 cell!.textLabel?.text = "HTFC on Facebook"
-                let cellImage = UIImage(icon: FAType.FAFacebookSquare, size: CGSize(width: 100, height: 100), textColor: AppColors.Facebook, backgroundColor: UIColor.clear)
+                let cellImage = UIImage(named: "facebook")?.sd_tintedImage(with: UIColor(named: "blue-tint")!)
                 cell!.imageView?.image = cellImage
             case 1:
                 cell!.textLabel?.text = "Southern League site"
-                let cellImage = UIImage(icon: FAType.FASoccerBallO, size: CGSize(width: 100, height: 100), textColor: AppColors.Evostick, backgroundColor: UIColor.clear)
+                let cellImage = UIImage(named: "southern-league")?.sd_tintedImage(with: UIColor(named: "blue-tint")!)
                 cell!.imageView?.image = cellImage
             case 2:
                 cell!.textLabel?.text = "Fantasy Island"
-                let cellImage = UIImage(icon: FAType.FAPlane, size: CGSize(width: 100, height: 100), textColor: AppColors.Fantasy, backgroundColor: UIColor.clear)
+                let cellImage = UIImage(named: "fantasy-island")?.sd_tintedImage(with: UIColor(named: "blue-tint")!)
                 cell!.imageView?.image = cellImage
             case 3:
                 cell!.textLabel?.text = "Stourbridge Town FC"
-                let cellImage = UIImage(icon: FAType.FAThumbsODown, size: CGSize(width: 100, height: 100), textColor: AppColors.Stour, backgroundColor: UIColor.clear)
+                let cellImage = UIImage(named: "stourbridge")?.sd_tintedImage(with: UIColor(named: "blue-tint")!)
                 cell!.imageView?.image = cellImage
             case 4:
                 cell!.textLabel?.text = "Club Shop"
-                let cellImage = UIImage(icon: FAType.FAShoppingCart, size: CGSize(width: 100, height: 100), textColor: AppColors.ClubShop, backgroundColor: UIColor.clear)
+                let cellImage = UIImage(named: "club-shop")?.sd_tintedImage(with: UIColor(named: "blue-tint")!)
                 cell!.imageView?.image = cellImage
             default:
                 break
@@ -121,23 +126,22 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             switch ((indexPath as NSIndexPath).row) {
             case 0:
                 cell!.textLabel?.text = "Follow Your Instinct"
-                let cellImage = UIImage(icon: FAType.FANewspaperO, size: CGSize(width: 100, height: 100), textColor: AppColors.Archive, backgroundColor: UIColor.clear)
+                let cellImage = UIImage(named: "fyi")?.sd_tintedImage(with: UIColor(named: "blue-tint")!)
                 cell!.imageView?.image = cellImage
             case 1:
                 cell!.textLabel?.text = "Yeltz Archives"
-                let cellImage = UIImage(icon: FAType.FAArchive, size: CGSize(width: 100, height: 100), textColor: AppColors.Archive, backgroundColor: UIColor.clear)
+                let cellImage = UIImage(named: "yeltz-archive")?.sd_tintedImage(with: UIColor(named: "blue-tint")!)
                 cell!.imageView?.image = cellImage
             case 2:
                 cell!.textLabel?.text = "News Archive (1997-2006)"
-                let cellImage = UIImage(icon: FAType.FAArchive, size: CGSize(width: 100, height: 100), textColor: AppColors.Archive, backgroundColor: UIColor.clear)
+                let cellImage = UIImage(named: "news-archive")?.sd_tintedImage(with: UIColor(named: "blue-tint")!)
                 cell!.imageView?.image = cellImage
             default:
                 break
             }
         } else if ((indexPath as NSIndexPath).section == 3) {
             cell!.textLabel?.text = "Game time tweets"
-            let cellImage = UIImage(icon: FAType.FATwitter, size: CGSize(width: 100, height: 100), textColor: AppColors.TwitterIcon, backgroundColor: UIColor.clear)
-
+            let cellImage = UIImage(named: "game-time")?.sd_tintedImage(with: UIColor(named: "blue-tint")!)
             cell!.imageView?.image = cellImage
 
             cell!.detailTextLabel?.text = "Enable notifications"
@@ -145,15 +149,15 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             switch ((indexPath as NSIndexPath).row) {
             case 0:
                 cell!.textLabel?.text = "Yeltzland on Amazon Echo"
-                let cellImage = UIImage(icon: FAType.FAAmazon, size: CGSize(width: 100, height: 100), textColor: AppColors.Archive, backgroundColor: UIColor.clear)
+                let cellImage = UIImage(named: "amazon")?.sd_tintedImage(with: UIColor(named: "blue-tint")!)
                 cell!.imageView?.image = cellImage
             case 1:
                 cell!.textLabel?.text = "Yeltzland on Google Assistant"
-                let cellImage = UIImage(icon: FAType.FAGoogle, size: CGSize(width: 100, height: 100), textColor: AppColors.Fixtures, backgroundColor: UIColor.clear)
+                let cellImage = UIImage(named: "google")?.sd_tintedImage(with: UIColor(named: "blue-tint")!)
                 cell!.imageView?.image = cellImage
             case 2:
                     cell!.textLabel?.text = "Add Fixture List to Calendar"
-                    let cellImage = UIImage(icon: FAType.FACalendar, size: CGSize(width: 100, height: 100), textColor: AppColors.Fixtures, backgroundColor: UIColor.clear)
+                    let cellImage = UIImage(named: "fixtures")?.sd_tintedImage(with: UIColor(named: "blue-tint")!)
                     cell!.imageView?.image = cellImage
             default:
                 break
@@ -161,10 +165,29 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         } else if ((indexPath as NSIndexPath).section == 5) {
             switch ((indexPath as NSIndexPath).row) {
             case 0:
+                cell!.textLabel?.text = "What's the latest score?"
+                let cellImage = UIImage(named: "siri")?.sd_tintedImage(with: UIColor(named: "blue-tint")!)
+                cell!.imageView?.image = cellImage
+            case 1:
+                cell!.textLabel?.text = "Who do we play next?"
+                let cellImage = UIImage(named: "siri")?.sd_tintedImage(with: UIColor(named: "blue-tint")!)
+                cell!.imageView?.image = cellImage
+            default:
+                break
+            }
+        } else if ((indexPath as NSIndexPath).section == 6) {
+            switch ((indexPath as NSIndexPath).row) {
+            case 0:
                 cell!.textLabel?.text = "Privacy Policy"
                 cell!.imageView?.image = nil
             case 1:
+                cell!.textLabel?.text = "Icons from icons8.com"
+                cell!.imageView?.image = nil
+            case 2:
                 cell!.textLabel?.text = "More Brave Location Apps"
+                cell!.imageView?.image = nil
+            case 3:
+                cell!.textLabel?.text = ""
                 cell!.imageView?.image = nil
                 
                 let infoDictionary = Bundle.main.infoDictionary!
@@ -172,18 +195,16 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
                 let build = infoDictionary["CFBundleVersion"]
                 
                 cell!.detailTextLabel?.text = "v\(version!).\(build!)"
+                cell?.accessoryType = .none
+                cell!.selectionStyle = .none
             default:
                 break
             }
         }
 
-        // Set fonts
-        cell!.textLabel?.font = UIFont(name: AppColors.AppFontName, size: AppColors.OtherTextSize)!
         cell!.textLabel?.adjustsFontSizeToFitWidth = true
-        cell!.detailTextLabel?.font = UIFont(name: AppColors.AppFontName, size: AppColors.OtherDetailTextSize)!
-        
-        cell!.textLabel?.textColor = AppColors.OtherTextColor
-        cell!.detailTextLabel?.textColor = AppColors.OtherDetailColor
+        cell!.textLabel?.textColor = AppColors.label
+        cell!.detailTextLabel?.textColor = AppColors.secondaryLabel
         
         return cell!
     }
@@ -206,24 +227,43 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             }
         }
         
+        // Add to Siri
+        if ((indexPath as NSIndexPath).section == 5) {
+            if ((indexPath as NSIndexPath).row == 0) {
+                if #available(iOS 13, *) {
+                    self.addToSiriAction(intent: ShortcutManager.shared.latestScoreIntent())
+                } else {
+                    MakeToast.show(self, title: "Sorry!", message: "You need to be running iOS 13 or above to use this shortcut")
+                }
+                return
+            } else if ((indexPath as NSIndexPath).row == 1) {
+                if #available(iOS 13, *) {
+                    self.addToSiriAction(intent: ShortcutManager.shared.nextGameIntent())
+                } else {
+                    MakeToast.show(self, title: "Sorry!", message: "You need to be running iOS 13 or above to use this shortcut")
+                }
+                return
+            }
+        }
+        
         var url: URL? = nil
         
         if ((indexPath as NSIndexPath).section == 0) {
             if ((indexPath as NSIndexPath).row == 3) {
-                url = URL(string: "https://www.evostikleaguesouthern.co.uk/league-table/Evo-stik%20League%20South%20Division%20One%20Central/2019/2020/P/")
+                url = self.leagueTableUrl
             }
         } else if ((indexPath as NSIndexPath).section == 1) {
             switch ((indexPath as NSIndexPath).row) {
             case 0:
                 url = URL(string: "https://www.facebook.com/HalesowenTown1873")
             case 1:
-                url = URL(string: "https://www.evostikleaguesouthern.co.uk")
+                url = URL(string: "https://www.betvictorsouthern.co.uk")
             case 2:
                 url = URL(string: "https://fantasyisland.yeltz.co.uk")
             case 3:
                 url = URL(string: "https://www.youtube.com/watch?v=dQw4w9WgXcQ")
             case 4:
-                url = URL(string: "https://www.yeltzclubshop.co.uk")
+                url = URL(string: "https://www.yeltzclubshop.com")
             default:
                 break
             }
@@ -249,11 +289,13 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             default:
                 break
             }
-        } else if ((indexPath as NSIndexPath).section == 5) {
+        } else if ((indexPath as NSIndexPath).section == 6) {
             switch ((indexPath as NSIndexPath).row) {
             case 0:
                 url = URL(string: "https://bravelocation.com/privacy/yeltzland")
             case 1:
+                url = URL(string: "https://icons8.com")
+            case 2:
                 url = URL(string: "https://bravelocation.com/apps")
             default:
                 break
@@ -263,10 +305,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         if (url != nil) {
             let svc = SFSafariViewController(url: url!)
             svc.delegate = self
-            
-            if #available(iOS 10.0, *) {
-                svc.preferredControlTintColor = AppColors.SafariControl
-            }
+            svc.preferredControlTintColor = UIColor(named: "safari-view-tint")
             
             self.present(svc, animated: true, completion: nil)
         }
@@ -285,17 +324,12 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         case 4:
             return "More from Yeltzland"
         case 5:
+            return "Add To Siri"
+        case 6:
             return "About"
         default:
             return ""
         }
-    }
-    
-    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
-        header.contentView.backgroundColor = AppColors.OtherSectionBackground
-        header.textLabel!.textColor = AppColors.OtherSectionText
-        header.textLabel!.font = UIFont(name: AppColors.AppFontName, size: AppColors.OtherSectionTextSize)!
     }
     
     public func openFixtures() {
@@ -335,5 +369,67 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         }
         
         return []
+    }
+}
+
+// MARK: - Keyboard options
+extension OtherLinksTableViewController {
+    
+    override var keyCommands: [UIKeyCommand]? {
+        return [
+            UIKeyCommand(input: "F", modifierFlags: .command, action: #selector(MainTabBarController.keyboardSelectTab), discoverabilityTitle: "Fixture List"),
+            UIKeyCommand(input: "L", modifierFlags: .command, action: #selector(MainTabBarController.keyboardSelectTab), discoverabilityTitle: "Latest Score"),
+            UIKeyCommand(input: "G", modifierFlags: .command, action: #selector(MainTabBarController.keyboardSelectTab), discoverabilityTitle: "Where's the Ground"),
+            UIKeyCommand(input: "T", modifierFlags: .command, action: #selector(MainTabBarController.keyboardSelectTab), discoverabilityTitle: "League Table")
+        ]
+    }
+    
+    @objc func keyboardSelectTab(sender: UIKeyCommand) {
+        if let input = sender.input {
+            switch input {
+            case "F":
+                let fixtures = FixturesTableViewController(style: .grouped)
+                self.navigationController!.pushViewController(fixtures, animated: true)
+            case "L":
+                let latestScore = LatestScoreViewController()
+                self.navigationController!.pushViewController(latestScore, animated: true)
+            case "G":
+                let locations = LocationsViewController()
+                self.navigationController!.pushViewController(locations, animated: true)
+            case "T":
+                let svc = SFSafariViewController(url: self.leagueTableUrl!)
+                svc.delegate = self
+                svc.preferredControlTintColor = UIColor(named: "safari-view-tint")
+                self.present(svc, animated: true, completion: nil)
+            default:
+                break
+            }
+        }
+    }
+}
+
+extension OtherLinksTableViewController: INUIAddVoiceShortcutViewControllerDelegate {
+    
+    @available(iOS 12.0, *)
+    func addToSiriAction(intent: INIntent) {
+        if let shortcut = INShortcut(intent: intent) {
+            let viewController = INUIAddVoiceShortcutViewController(shortcut: shortcut)
+            viewController.modalPresentationStyle = .formSheet
+            viewController.delegate = self
+            self.present(viewController, animated: true, completion: nil)
+        }
+    }
+    
+    // MARK: - INUIAddVoiceShortcutViewControllerDelegate
+    @available(iOS 12.0, *)
+    func addVoiceShortcutViewController(_ controller: INUIAddVoiceShortcutViewController, didFinishWith voiceShortcut: INVoiceShortcut?, error: Error?) {
+        print("Added shortcut")
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
+    @available(iOS 12.0, *)
+    func addVoiceShortcutViewControllerDidCancel(_ controller: INUIAddVoiceShortcutViewController) {
+        print("Cancelled shortcut")
+        controller.dismiss(animated: true, completion: nil)
     }
 }

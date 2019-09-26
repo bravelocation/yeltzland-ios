@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14835.7" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14790.5"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -62,28 +59,28 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*Best guess from Twitter" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ndi-jf-59t">
-                    <rect key="frame" x="16" y="635" width="343" height="16"/>
-                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3bT-hR-oSM">
-                    <rect key="frame" x="110.5" y="52" width="154" height="154"/>
+                    <rect key="frame" x="100.5" y="32" width="174" height="174"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="3bT-hR-oSM" secondAttribute="height" multiplier="1:1" id="2B9-CL-Gef"/>
                     </constraints>
                 </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*Best guess from Twitter" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ndi-jf-59t">
+                    <rect key="frame" x="16" y="432" width="343" height="16"/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="n5h-vw-Jns" secondAttribute="trailing" constant="16" id="090-iD-uDR"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Sb9-k2-kyp" secondAttribute="trailing" constant="16" id="0RE-Ge-6fo"/>
                 <constraint firstItem="gcW-5K-5b0" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="1Dd-HE-kEz"/>
+                <constraint firstItem="ndi-jf-59t" firstAttribute="top" secondItem="Sb9-k2-kyp" secondAttribute="bottom" id="5nh-t0-bdY"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ndi-jf-59t" secondAttribute="trailing" constant="16" id="870-k5-UPE"/>
                 <constraint firstItem="ndi-jf-59t" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="DeE-m9-GGO"/>
                 <constraint firstItem="mrX-Vf-278" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="FHF-QR-TuP"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="ndi-jf-59t" secondAttribute="bottom" constant="16" id="FcE-6l-Yox"/>
                 <constraint firstItem="Sb9-k2-kyp" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Fpd-E6-Y5m"/>
                 <constraint firstItem="gcW-5K-5b0" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="MhY-PJ-fas"/>
                 <constraint firstItem="3bT-hR-oSM" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Sg6-ir-17S"/>

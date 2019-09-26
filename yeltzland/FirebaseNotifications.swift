@@ -15,17 +15,21 @@ public class FirebaseNotifications: NSObject, MessagingDelegate {
     
     var enabled: Bool {
         get {
-            return GameSettings.instance.gameTimeTweetsEnabled
+            return GameSettings.shared.gameTimeTweetsEnabled
         }
         set(newValue) {
-            // If changed, set the value and re-register
-            let currentValue = self.enabled
+            // If changed, set the value
+            if (newValue != self.enabled) {
+                GameSettings.shared.gameTimeTweetsEnabled = newValue
+            }
             
-            if (newValue != currentValue) {
-                GameSettings.instance.gameTimeTweetsEnabled = newValue
-                
+            // If setting to true, setup notifications
+            if newValue {
                 self.setupNotifications(true)
             }
+            
+            // Setup subscriptions
+            self.subscribe(newValue)
         }
     }
     
@@ -36,37 +40,43 @@ public class FirebaseNotifications: NSObject, MessagingDelegate {
         #if DEBUG
             self.topicName = "testtag"
         #endif
-        
+
         Messaging.messaging().delegate = self
     }
     
     func setupNotifications(_ forceSetup: Bool) {
         if (forceSetup || self.enabled) {
-            let application = UIApplication.shared
-            
-            let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .sound], categories: nil)
-            application.registerUserNotificationSettings(settings)
-            application.registerForRemoteNotifications()
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { (granted, _) in
+                if (granted) {
+                    DispatchQueue.main.async {
+                        UIApplication.shared.registerForRemoteNotifications()
+                    }
+                }
+            }
         }
     }
     
     func register(_ deviceToken: Data) {
         // Register with Firebase Hub
         Messaging.messaging().apnsToken = deviceToken
-        
-        let fullTopic = self.topicName!
-        
-        if (self.enabled) {
-            Messaging.messaging().subscribe(toTopic: fullTopic)
-            print("Registered with Firebase: \(fullTopic)")
-        } else {
-            Messaging.messaging().unsubscribe(fromTopic: fullTopic)
-            print("Unregistered with firebase \(fullTopic)")
+    }
+    
+    func subscribe(_ subscribe: Bool) {
+        if let fullTopic = self.topicName {
+            if subscribe {
+                Messaging.messaging().subscribe(toTopic: fullTopic)
+                print("Registered with Firebase: \(fullTopic)")
+            } else {
+                Messaging.messaging().unsubscribe(fromTopic: fullTopic)
+                print("Unregistered with firebase \(fullTopic)")
+            }
         }
     }
     
     // MARK: - MessagingDelegate    
     public func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
         print("Firebase registration token: \(fcmToken)")
+        
+        self.subscribe(self.enabled)
     }
 }

@@ -29,14 +29,14 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
     func applicationDidBecomeActive() {
         print("Application did become active")
-        WatchGameSettings.instance.initialiseWatchSession()
+        WatchGameSettings.shared.initialiseWatchSession()
         
         if (self.backgroundTaskSetup == false) {
             self.setupBackgroundRefresh()
             
             // Go and fetch the latest data in the background
-            FixtureManager.instance.getLatestFixtures()
-            GameScoreManager.instance.getLatestGameScore()
+            FixtureManager.shared.fetchLatestData(completion: nil)
+            GameScoreManager.shared.fetchLatestData(completion: nil)
         }
         
         // Always force a complication update if you open the app
@@ -51,9 +51,9 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         var backgroundRefreshMinutes = 6 * 60
         
         // Find the next fixture to use
-        var latestFixture: Fixture? = FixtureManager.instance.getLastGame()
+        var latestFixture: Fixture? = FixtureManager.shared.lastGame
         
-        if let currentFixture = GameScoreManager.instance.getCurrentFixture {
+        if let currentFixture = GameScoreManager.shared.currentFixture {
             if currentFixture.inProgress {
                 latestFixture = currentFixture
             }
@@ -61,7 +61,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         
         // If the next fixture is missing or too far away, get next game
         if latestFixture == nil || latestFixture!.state == .manyDaysAfter {
-            latestFixture = FixtureManager.instance.getNextGame()
+            latestFixture = FixtureManager.shared.nextGame
         }
         
         if let fixture = latestFixture {
@@ -101,8 +101,8 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
             if (task is WKApplicationRefreshBackgroundTask) {
                 
                 // Go and fetch the latest data
-                FixtureManager.instance.getLatestFixtures()
-                GameScoreManager.instance.getLatestGameScore()
+                FixtureManager.shared.fetchLatestData(completion: nil)
+                GameScoreManager.shared.fetchLatestData(completion: nil)
                 
                 // Setup next background refresh
                 self.setupBackgroundRefresh()

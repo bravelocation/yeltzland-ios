@@ -5,24 +5,42 @@
 	<key>INEnums</key>
 	<array/>
 	<key>INIntentDefinitionModelVersion</key>
-	<string>1.0</string>
+	<string>1.1</string>
+	<key>INIntentDefinitionNamespace</key>
+	<string>zeWbXA</string>
 	<key>INIntentDefinitionSystemVersion</key>
-	<string>17G65</string>
+	<string>18G95</string>
 	<key>INIntentDefinitionToolsBuildVersion</key>
-	<string>10A255</string>
+	<string>11A420a</string>
 	<key>INIntentDefinitionToolsVersion</key>
-	<string>10.0</string>
+	<string>11.0</string>
 	<key>INIntents</key>
 	<array>
 		<dict>
 			<key>INIntentCategory</key>
 			<string>information</string>
+			<key>INIntentConfigurable</key>
+			<true/>
+			<key>INIntentDefaultImageName</key>
+			<string>Logo</string>
 			<key>INIntentDescription</key>
 			<string>The latest Halesowen Town score</string>
 			<key>INIntentDescriptionID</key>
 			<string>M0t0z2</string>
-			<key>INIntentLastParameterTag</key>
-			<integer>0</integer>
+			<key>INIntentManagedParameterCombinations</key>
+			<dict>
+				<key></key>
+				<dict>
+					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
+					<true/>
+					<key>INIntentParameterCombinationTitle</key>
+					<string>Yeltz Latest Score</string>
+					<key>INIntentParameterCombinationTitleID</key>
+					<string>eSbsit</string>
+					<key>INIntentParameterCombinationUpdatesLinked</key>
+					<true/>
+				</dict>
+			</dict>
 			<key>INIntentName</key>
 			<string>LatestScore</string>
 			<key>INIntentParameterCombinations</key>
@@ -43,25 +61,17 @@
 					<string>6nXiAV</string>
 				</dict>
 			</dict>
-			<key>INIntentParameters</key>
-			<array/>
 			<key>INIntentResponse</key>
 			<dict>
 				<key>INIntentResponseCodes</key>
 				<array>
 					<dict>
+						<key>INIntentResponseCodeConciseFormatString</key>
+						<string>The ${gameState} Yeltz ${yeltzScore}-${opponentScore} ${opponent}</string>
+						<key>INIntentResponseCodeConciseFormatStringID</key>
+						<string>N3gzIR</string>
 						<key>INIntentResponseCodeFormatString</key>
-						<string>Something went wrong</string>
-						<key>INIntentResponseCodeFormatStringID</key>
-						<string>nSUy34</string>
-						<key>INIntentResponseCodeName</key>
-						<string>failure</string>
-						<key>INIntentResponseCodeSuccess</key>
-						<false/>
-					</dict>
-					<dict>
-						<key>INIntentResponseCodeFormatString</key>
-						<string>The ${gameState} ${homeTeam} ${homeScore} ${awayTeam} ${awayScore}</string>
+						<string>The ${gameState} Yeltz  ${yeltzScore}, ${opponent}  ${opponentScore} </string>
 						<key>INIntentResponseCodeFormatStringID</key>
 						<string>594Jwl</string>
 						<key>INIntentResponseCodeName</key>
@@ -71,93 +81,442 @@
 					</dict>
 					<dict>
 						<key>INIntentResponseCodeFormatString</key>
-						<string>We have no fixture data right now</string>
+						<string>Something went wrong</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>nSUy34</string>
+						<key>INIntentResponseCodeName</key>
+						<string>failure</string>
+					</dict>
+					<dict>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>We have no latest score data right now</string>
 						<key>INIntentResponseCodeFormatStringID</key>
 						<string>PLubdf</string>
 						<key>INIntentResponseCodeName</key>
 						<string>failureNoGames</string>
+					</dict>
+					<dict>
+						<key>INIntentResponseCodeConciseFormatString</key>
+						<string>The ${gameState} ${opponent} ${opponentScore}-${yeltzScore} Yeltz</string>
+						<key>INIntentResponseCodeConciseFormatStringID</key>
+						<string>V5R5Wt</string>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>The ${gameState}  ${opponent}  ${opponentScore}, Yeltz ${yeltzScore}</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>ccSiRz</string>
+						<key>INIntentResponseCodeName</key>
+						<string>successAwayGame</string>
 						<key>INIntentResponseCodeSuccess</key>
-						<false/>
+						<true/>
 					</dict>
 				</array>
 				<key>INIntentResponseLastParameterTag</key>
-				<integer>9</integer>
+				<integer>15</integer>
+				<key>INIntentResponseOutput</key>
+				<string>gameDetails</string>
 				<key>INIntentResponseParameters</key>
 				<array>
 					<dict>
+						<key>INIntentResponseParameterDisplayName</key>
+						<string>Game Details</string>
+						<key>INIntentResponseParameterDisplayNameID</key>
+						<string>ooSjiq</string>
 						<key>INIntentResponseParameterDisplayPriority</key>
 						<integer>1</integer>
 						<key>INIntentResponseParameterName</key>
-						<string>homeTeam</string>
-						<key>INIntentResponseParameterSupportsMultipleValues</key>
-						<false/>
+						<string>gameDetails</string>
+						<key>INIntentResponseParameterObjectType</key>
+						<string>GameDetails</string>
+						<key>INIntentResponseParameterObjectTypeNamespace</key>
+						<string>zeWbXA</string>
 						<key>INIntentResponseParameterTag</key>
-						<integer>1</integer>
+						<integer>11</integer>
+						<key>INIntentResponseParameterType</key>
+						<string>Object</string>
+					</dict>
+					<dict>
+						<key>INIntentResponseParameterDisplayName</key>
+						<string>Game State</string>
+						<key>INIntentResponseParameterDisplayNameID</key>
+						<string>kww7nj</string>
+						<key>INIntentResponseParameterDisplayPriority</key>
+						<integer>2</integer>
+						<key>INIntentResponseParameterName</key>
+						<string>gameState</string>
+						<key>INIntentResponseParameterTag</key>
+						<integer>12</integer>
 						<key>INIntentResponseParameterType</key>
 						<string>String</string>
 					</dict>
 					<dict>
-						<key>INIntentResponseParameterDisplayPriority</key>
-						<integer>2</integer>
-						<key>INIntentResponseParameterName</key>
-						<string>awayTeam</string>
-						<key>INIntentResponseParameterSupportsMultipleValues</key>
-						<false/>
-						<key>INIntentResponseParameterTag</key>
-						<integer>2</integer>
-						<key>INIntentResponseParameterType</key>
-						<string>String</string>
-					</dict>
-					<dict>
+						<key>INIntentResponseParameterDisplayName</key>
+						<string>Yeltz Score</string>
+						<key>INIntentResponseParameterDisplayNameID</key>
+						<string>BRvaoy</string>
 						<key>INIntentResponseParameterDisplayPriority</key>
 						<integer>3</integer>
 						<key>INIntentResponseParameterName</key>
-						<string>homeScore</string>
-						<key>INIntentResponseParameterSupportsMultipleValues</key>
-						<false/>
+						<string>yeltzScore</string>
 						<key>INIntentResponseParameterTag</key>
-						<integer>8</integer>
+						<integer>13</integer>
 						<key>INIntentResponseParameterType</key>
 						<string>String</string>
 					</dict>
 					<dict>
+						<key>INIntentResponseParameterDisplayName</key>
+						<string>Opponent</string>
+						<key>INIntentResponseParameterDisplayNameID</key>
+						<string>ANi914</string>
 						<key>INIntentResponseParameterDisplayPriority</key>
 						<integer>4</integer>
 						<key>INIntentResponseParameterName</key>
-						<string>awayScore</string>
-						<key>INIntentResponseParameterSupportsMultipleValues</key>
-						<false/>
+						<string>opponent</string>
 						<key>INIntentResponseParameterTag</key>
-						<integer>9</integer>
+						<integer>14</integer>
 						<key>INIntentResponseParameterType</key>
 						<string>String</string>
 					</dict>
 					<dict>
+						<key>INIntentResponseParameterDisplayName</key>
+						<string>Opponent Score</string>
+						<key>INIntentResponseParameterDisplayNameID</key>
+						<string>SA45wq</string>
 						<key>INIntentResponseParameterDisplayPriority</key>
 						<integer>5</integer>
 						<key>INIntentResponseParameterName</key>
-						<string>gameState</string>
-						<key>INIntentResponseParameterSupportsMultipleValues</key>
-						<false/>
+						<string>opponentScore</string>
 						<key>INIntentResponseParameterTag</key>
-						<integer>7</integer>
+						<integer>15</integer>
 						<key>INIntentResponseParameterType</key>
 						<string>String</string>
 					</dict>
 				</array>
 			</dict>
-			<key>INIntentRestrictions</key>
-			<integer>0</integer>
 			<key>INIntentTitle</key>
 			<string>Yeltz Latest Score</string>
 			<key>INIntentTitleID</key>
 			<string>evrFdJ</string>
 			<key>INIntentType</key>
 			<string>Custom</string>
-			<key>INIntentUserConfirmationRequired</key>
-			<false/>
 			<key>INIntentVerb</key>
 			<string>View</string>
+		</dict>
+		<dict>
+			<key>INIntentCategory</key>
+			<string>information</string>
+			<key>INIntentConfigurable</key>
+			<true/>
+			<key>INIntentDefaultImageName</key>
+			<string>Logo</string>
+			<key>INIntentDescription</key>
+			<string> Halesowen Town's next game</string>
+			<key>INIntentDescriptionID</key>
+			<string>jEumUv</string>
+			<key>INIntentManagedParameterCombinations</key>
+			<dict>
+				<key></key>
+				<dict>
+					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
+					<true/>
+					<key>INIntentParameterCombinationTitle</key>
+					<string>Yeltz Next Game</string>
+					<key>INIntentParameterCombinationTitleID</key>
+					<string>sG9RiY</string>
+					<key>INIntentParameterCombinationUpdatesLinked</key>
+					<true/>
+				</dict>
+			</dict>
+			<key>INIntentName</key>
+			<string>NextGame</string>
+			<key>INIntentParameterCombinations</key>
+			<dict>
+				<key></key>
+				<dict>
+					<key>INIntentParameterCombinationIsPrimary</key>
+					<true/>
+					<key>INIntentParameterCombinationSubtitle</key>
+					<string> Halesowen Town's next game</string>
+					<key>INIntentParameterCombinationSubtitleID</key>
+					<string>LRlHk6</string>
+					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
+					<true/>
+					<key>INIntentParameterCombinationTitle</key>
+					<string>Yeltz Next Game</string>
+					<key>INIntentParameterCombinationTitleID</key>
+					<string>FxPcyS</string>
+				</dict>
+			</dict>
+			<key>INIntentResponse</key>
+			<dict>
+				<key>INIntentResponseCodes</key>
+				<array>
+					<dict>
+						<key>INIntentResponseCodeConciseFormatString</key>
+						<string>The next game is against ${opponent} ${kickoffTime}</string>
+						<key>INIntentResponseCodeConciseFormatStringID</key>
+						<string>Fut5fh</string>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>The next game is against ${opponent} ${kickoffTime}</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>R7sqyJ</string>
+						<key>INIntentResponseCodeName</key>
+						<string>success</string>
+						<key>INIntentResponseCodeSuccess</key>
+						<true/>
+					</dict>
+					<dict>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>Something went wrong</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>JWWglT</string>
+						<key>INIntentResponseCodeName</key>
+						<string>failure</string>
+					</dict>
+					<dict>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>We have no fixture data right now</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>LlKKqh</string>
+						<key>INIntentResponseCodeName</key>
+						<string>failureNoGame</string>
+						<key>INIntentResponseCodeSuccess</key>
+						<true/>
+					</dict>
+				</array>
+				<key>INIntentResponseLastParameterTag</key>
+				<integer>5</integer>
+				<key>INIntentResponseOutput</key>
+				<string>gameDetails</string>
+				<key>INIntentResponseParameters</key>
+				<array>
+					<dict>
+						<key>INIntentResponseParameterDisplayName</key>
+						<string>Game Details</string>
+						<key>INIntentResponseParameterDisplayNameID</key>
+						<string>cTiACu</string>
+						<key>INIntentResponseParameterDisplayPriority</key>
+						<integer>1</integer>
+						<key>INIntentResponseParameterName</key>
+						<string>gameDetails</string>
+						<key>INIntentResponseParameterObjectType</key>
+						<string>GameDetails</string>
+						<key>INIntentResponseParameterObjectTypeNamespace</key>
+						<string>zeWbXA</string>
+						<key>INIntentResponseParameterTag</key>
+						<integer>2</integer>
+						<key>INIntentResponseParameterType</key>
+						<string>Object</string>
+					</dict>
+					<dict>
+						<key>INIntentResponseParameterDisplayName</key>
+						<string>Game State</string>
+						<key>INIntentResponseParameterDisplayNameID</key>
+						<string>3uyQOX</string>
+						<key>INIntentResponseParameterDisplayPriority</key>
+						<integer>2</integer>
+						<key>INIntentResponseParameterName</key>
+						<string>gameState</string>
+						<key>INIntentResponseParameterTag</key>
+						<integer>3</integer>
+						<key>INIntentResponseParameterType</key>
+						<string>String</string>
+					</dict>
+					<dict>
+						<key>INIntentResponseParameterDisplayName</key>
+						<string>Kickoff Time</string>
+						<key>INIntentResponseParameterDisplayNameID</key>
+						<string>u7elNi</string>
+						<key>INIntentResponseParameterDisplayPriority</key>
+						<integer>3</integer>
+						<key>INIntentResponseParameterName</key>
+						<string>kickoffTime</string>
+						<key>INIntentResponseParameterTag</key>
+						<integer>4</integer>
+						<key>INIntentResponseParameterType</key>
+						<string>String</string>
+					</dict>
+					<dict>
+						<key>INIntentResponseParameterDisplayName</key>
+						<string>Opponent</string>
+						<key>INIntentResponseParameterDisplayNameID</key>
+						<string>6a9gpv</string>
+						<key>INIntentResponseParameterDisplayPriority</key>
+						<integer>4</integer>
+						<key>INIntentResponseParameterName</key>
+						<string>opponent</string>
+						<key>INIntentResponseParameterTag</key>
+						<integer>5</integer>
+						<key>INIntentResponseParameterType</key>
+						<string>String</string>
+					</dict>
+				</array>
+			</dict>
+			<key>INIntentTitle</key>
+			<string>Yeltz Next Game</string>
+			<key>INIntentTitleID</key>
+			<string>uWA9nQ</string>
+			<key>INIntentType</key>
+			<string>Custom</string>
+			<key>INIntentVerb</key>
+			<string>View</string>
+		</dict>
+	</array>
+	<key>INTypes</key>
+	<array>
+		<dict>
+			<key>INTypeDisplayName</key>
+			<string>Game Details</string>
+			<key>INTypeDisplayNameID</key>
+			<string>ecbqh4</string>
+			<key>INTypeLastPropertyTag</key>
+			<integer>116</integer>
+			<key>INTypeName</key>
+			<string>GameDetails</string>
+			<key>INTypeProperties</key>
+			<array>
+				<dict>
+					<key>INTypePropertyDefault</key>
+					<true/>
+					<key>INTypePropertyDisplayPriority</key>
+					<integer>1</integer>
+					<key>INTypePropertyName</key>
+					<string>identifier</string>
+					<key>INTypePropertyTag</key>
+					<integer>1</integer>
+					<key>INTypePropertyType</key>
+					<string>String</string>
+				</dict>
+				<dict>
+					<key>INTypePropertyDefault</key>
+					<true/>
+					<key>INTypePropertyDisplayPriority</key>
+					<integer>2</integer>
+					<key>INTypePropertyName</key>
+					<string>displayString</string>
+					<key>INTypePropertyTag</key>
+					<integer>2</integer>
+					<key>INTypePropertyType</key>
+					<string>String</string>
+				</dict>
+				<dict>
+					<key>INTypePropertyDisplayName</key>
+					<string>Opponent</string>
+					<key>INTypePropertyDisplayNameID</key>
+					<string>CATDbq</string>
+					<key>INTypePropertyDisplayPriority</key>
+					<integer>3</integer>
+					<key>INTypePropertyName</key>
+					<string>opponent</string>
+					<key>INTypePropertyTag</key>
+					<integer>109</integer>
+					<key>INTypePropertyType</key>
+					<string>String</string>
+				</dict>
+				<dict>
+					<key>INTypePropertyDisplayName</key>
+					<string>Home</string>
+					<key>INTypePropertyDisplayNameID</key>
+					<string>a0IiU3</string>
+					<key>INTypePropertyDisplayPriority</key>
+					<integer>4</integer>
+					<key>INTypePropertyMetadata</key>
+					<dict>
+						<key>INTypePropertyMetadataFalseDisplayName</key>
+						<string>away</string>
+						<key>INTypePropertyMetadataFalseDisplayNameID</key>
+						<string>0PSXcQ</string>
+						<key>INTypePropertyMetadataTrueDisplayName</key>
+						<string>home</string>
+						<key>INTypePropertyMetadataTrueDisplayNameID</key>
+						<string>Nsdczd</string>
+					</dict>
+					<key>INTypePropertyName</key>
+					<string>home</string>
+					<key>INTypePropertyTag</key>
+					<integer>112</integer>
+					<key>INTypePropertyType</key>
+					<string>Boolean</string>
+				</dict>
+				<dict>
+					<key>INTypePropertyDisplayName</key>
+					<string>Yeltz Score</string>
+					<key>INTypePropertyDisplayNameID</key>
+					<string>ulCw5M</string>
+					<key>INTypePropertyDisplayPriority</key>
+					<integer>5</integer>
+					<key>INTypePropertyName</key>
+					<string>yeltzScore</string>
+					<key>INTypePropertyTag</key>
+					<integer>115</integer>
+					<key>INTypePropertyType</key>
+					<string>Integer</string>
+				</dict>
+				<dict>
+					<key>INTypePropertyDisplayName</key>
+					<string>Opponent Score</string>
+					<key>INTypePropertyDisplayNameID</key>
+					<string>KwvuMs</string>
+					<key>INTypePropertyDisplayPriority</key>
+					<integer>6</integer>
+					<key>INTypePropertyName</key>
+					<string>opponentScore</string>
+					<key>INTypePropertyTag</key>
+					<integer>116</integer>
+					<key>INTypePropertyType</key>
+					<string>Integer</string>
+				</dict>
+				<dict>
+					<key>INTypePropertyDefault</key>
+					<true/>
+					<key>INTypePropertyDisplayPriority</key>
+					<integer>7</integer>
+					<key>INTypePropertyName</key>
+					<string>pronunciationHint</string>
+					<key>INTypePropertyTag</key>
+					<integer>3</integer>
+					<key>INTypePropertyType</key>
+					<string>String</string>
+				</dict>
+				<dict>
+					<key>INTypePropertyDefault</key>
+					<true/>
+					<key>INTypePropertyDisplayPriority</key>
+					<integer>8</integer>
+					<key>INTypePropertyName</key>
+					<string>alternativeSpeakableMatches</string>
+					<key>INTypePropertySupportsMultipleValues</key>
+					<true/>
+					<key>INTypePropertyTag</key>
+					<integer>4</integer>
+					<key>INTypePropertyType</key>
+					<string>SpeakableString</string>
+				</dict>
+				<dict>
+					<key>INTypePropertyDisplayName</key>
+					<string>Kickoff Time</string>
+					<key>INTypePropertyDisplayNameID</key>
+					<string>4dWswB</string>
+					<key>INTypePropertyDisplayPriority</key>
+					<integer>9</integer>
+					<key>INTypePropertyMetadata</key>
+					<dict>
+						<key>INTypePropertyMetadataDateStyle</key>
+						<string>Short</string>
+						<key>INTypePropertyMetadataFormat</key>
+						<string>Style</string>
+						<key>INTypePropertyMetadataTimeStyle</key>
+						<string>Short</string>
+						<key>INTypePropertyMetadataType</key>
+						<string>DateTime</string>
+					</dict>
+					<key>INTypePropertyName</key>
+					<string>kickoffTime</string>
+					<key>INTypePropertyTag</key>
+					<integer>108</integer>
+					<key>INTypePropertyType</key>
+					<string>DateComponents</string>
+				</dict>
+			</array>
 		</dict>
 	</array>
 </dict>

@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 import TwitterKit
 import SafariServices
-import Font_Awesome_Swift
 
 class TwitterUserTimelineViewController: TWTRTimelineViewController, TWTRTweetViewDelegate, SFSafariViewControllerDelegate {
     
@@ -29,20 +28,19 @@ class TwitterUserTimelineViewController: TWTRTimelineViewController, TWTRTweetVi
         
         // Setup navigation
         self.navigationItem.title = "@\(self.userScreenName!)"
-        
+
         self.reloadButton = UIBarButtonItem(
-            title: "Reload",
-            style: .plain,
+            barButtonSystemItem: .refresh,
             target: self,
             action: #selector(TwitterUserTimelineViewController.reloadData)
         )
-        self.reloadButton.FAIcon = FAType.FARotateRight
-        self.reloadButton.tintColor = AppColors.NavBarTintColor
+        
+        self.reloadButton.tintColor = UIColor.white
         
         self.navigationItem.rightBarButtonItems = [self.reloadButton]
         
-        self.view.backgroundColor = AppColors.TwitterBackground
-        self.tableView.separatorColor = AppColors.TwitterSeparator
+        self.view.backgroundColor = UIColor.white
+        self.tableView.separatorColor = UIColor.white
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,6 +50,9 @@ class TwitterUserTimelineViewController: TWTRTimelineViewController, TWTRTweetVi
    
     func tweetView(_ tweetView: TWTRTweetView, didTap url: URL) {
         let svc = SFSafariViewController(url: url)
+        svc.delegate = self
+        svc.preferredControlTintColor = UIColor(named: "safari-view-tint")
+
         self.present(svc, animated: true, completion: nil)
     }
     

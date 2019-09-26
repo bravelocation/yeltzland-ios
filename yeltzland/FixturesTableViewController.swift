@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Font_Awesome_Swift
 import Intents
 
 private func < <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
@@ -52,12 +51,11 @@ class FixturesTableViewController: UITableViewController {
     }
     
     fileprivate func setupNotificationWatcher() {
-        NotificationCenter.default.addObserver(self, selector: #selector(FixturesTableViewController.fixturesUpdated), name: NSNotification.Name(rawValue: FixtureManager.FixturesNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(FixturesTableViewController.fixturesUpdated), name: NSNotification.Name(rawValue: FixtureManager.shared.notificationName), object: nil)
         print("Setup notification handler for fixture updates")
     }
     
-    @objc fileprivate func fixturesUpdated(_ notification: Notification) {
-        print("Fixture update message received")
+    @objc fileprivate func fixturesUpdated() {
         DispatchQueue.main.async(execute: { () -> Void in
             self.fixturesRefreshControl.endRefreshing()
             self.tableView.reloadData()
@@ -65,7 +63,7 @@ class FixturesTableViewController: UITableViewController {
             let currentMonthIndexPath = IndexPath(row: 0, section: self.currentMonthSection())
             
             // Try to handle case where fixtures may have updated
-            if (currentMonthIndexPath.section < FixtureManager.instance.months.count) {
+            if (currentMonthIndexPath.section < FixtureManager.shared.months.count) {
                 self.tableView.scrollToRow(at: currentMonthIndexPath, at: UITableView.ScrollPosition.top, animated: true)
             }
         })
@@ -79,7 +77,7 @@ class FixturesTableViewController: UITableViewController {
         formatter.dateFormat = "yyyyMM"
         let currentMonth = formatter.string(from: now)
         
-        for month in FixtureManager.instance.months {
+        for month in FixtureManager.shared.months {
             if (month == currentMonth) {
                 return monthIndex
             }
@@ -92,7 +90,11 @@ class FixturesTableViewController: UITableViewController {
     }
     
     @objc func reloadButtonTouchUp() {
-        FixtureManager.instance.getLatestFixtures()
+        FixtureManager.shared.fetchLatestData() { result in
+            if result == .success(true) {
+                self.fixturesUpdated()
+            }
+        }
     }
 
     override func viewDidLoad() {
@@ -104,35 +106,33 @@ class FixturesTableViewController: UITableViewController {
         // Setup navigation
         self.navigationItem.title = "Fixtures"
         
-        self.view.backgroundColor = AppColors.OtherBackground
-        self.tableView.separatorColor = AppColors.OtherSeparator
+        self.view.backgroundColor = AppColors.systemBackground
+        self.tableView.separatorColor = AppColors.systemBackground
         
         self.tableView.register(UINib(nibName: self.cellIdentifier, bundle: nil), forCellReuseIdentifier: self.cellIdentifier)
         
         // Setup refresh button
         self.reloadButton = UIBarButtonItem(
-            title: "Reload",
-            style: .plain,
+            barButtonSystemItem: .refresh,
             target: self,
             action: #selector(FixturesTableViewController.reloadButtonTouchUp)
         )
-        self.reloadButton.FAIcon = FAType.FARotateRight
-        self.reloadButton.tintColor = AppColors.NavBarTintColor
-        self.navigationController?.navigationBar.tintColor = AppColors.NavBarTintColor
+        self.reloadButton.tintColor = UIColor.white
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationItem.rightBarButtonItems = [self.reloadButton]
         
-        if #available(iOS 10.0, *) {
-            self.tableView.refreshControl = self.fixturesRefreshControl
-        } else {
-            self.tableView.addSubview(self.fixturesRefreshControl)
-        }
+        self.tableView.refreshControl = self.fixturesRefreshControl
         
         self.fixturesRefreshControl.addTarget(self, action: #selector(FixturesTableViewController.refreshSearchData), for: .valueChanged)
         self.setupHandoff()
     }
     
     @objc private func refreshSearchData(_ sender: Any) {
-        FixtureManager.instance.getLatestFixtures()
+        FixtureManager.shared.fetchLatestData() { result in
+            if result == .success(true) {
+                self.fixturesUpdated()
+            }
+        }
     }
 
     // MARK: - Keyboard options
@@ -144,17 +144,17 @@ class FixturesTableViewController: UITableViewController {
 
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return FixtureManager.instance.months.count
+        return FixtureManager.shared.months.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        let months = FixtureManager.instance.months
+        let months = FixtureManager.shared.months
         if (months.count <= section) {
             return 0
         }
         
-        let fixturesForMonth = FixtureManager.instance.fixturesForMonth(months[section])
+        let fixturesForMonth = FixtureManager.shared.fixturesForMonth(months[section])
         
         if (fixturesForMonth == nil || fixturesForMonth?.count == 0) {
             return 0
@@ -169,10 +169,10 @@ class FixturesTableViewController: UITableViewController {
 
         // Find the fixture
         var currentFixture: Fixture? = nil
-        let months = FixtureManager.instance.months
+        let months = FixtureManager.shared.months
         
         if (months.count > (indexPath as NSIndexPath).section) {
-            let fixturesForMonth = FixtureManager.instance.fixturesForMonth(months[(indexPath as NSIndexPath).section])
+            let fixturesForMonth = FixtureManager.shared.fixturesForMonth(months[(indexPath as NSIndexPath).section])
         
             if (fixturesForMonth != nil && fixturesForMonth?.count > (indexPath as NSIndexPath).row) {
                 currentFixture = fixturesForMonth![(indexPath as NSIndexPath).row]
@@ -187,24 +187,17 @@ class FixturesTableViewController: UITableViewController {
     }
     
     override func tableView( _ tableView: UITableView, titleForHeaderInSection section: Int) -> String {
-        let months = FixtureManager.instance.months
+        let months = FixtureManager.shared.months
         if (months.count <= section) {
             return ""
         }
         
-        let fixturesForMonth = FixtureManager.instance.fixturesForMonth(months[section])
+        let fixturesForMonth = FixtureManager.shared.fixturesForMonth(months[section])
         if (fixturesForMonth == nil || fixturesForMonth?.count == 0) {
             return ""
         }
         
         return fixturesForMonth![0].fixtureMonth
-    }
-    
-    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        let header: UITableViewHeaderFooterView = view as! UITableViewHeaderFooterView
-        header.contentView.backgroundColor = AppColors.OtherSectionBackground
-        header.textLabel!.textColor = AppColors.OtherSectionText
-        header.textLabel!.font = UIFont(name: AppColors.AppFontName, size: AppColors.OtherSectionTextSize)!
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -219,7 +212,7 @@ class FixturesTableViewController: UITableViewController {
         return 0.0
     }
     
-    // - MARK Handoff
+    // MARK: Handoff
     @objc func setupHandoff() {
         // Set activity for handoff
         let activity = NSUserActivity(activityType: "com.bravelocation.yeltzland.fixtures")
@@ -240,5 +233,9 @@ class FixturesTableViewController: UITableViewController {
         
         self.userActivity = activity
         self.userActivity?.becomeCurrent()
+        
+        if #available(iOS 13.0, *) {
+            self.view.window?.windowScene?.userActivity = activity
+        }
     }
 }

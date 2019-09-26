@@ -8,7 +8,6 @@
 
 import UIKit
 import MapKit
-import Font_Awesome_Swift
 import SDWebImage
 
 class LocationsViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
@@ -30,9 +29,9 @@ class LocationsViewController: UIViewController, MKMapViewDelegate, CLLocationMa
             target: self,
             action: #selector(LocationsViewController.mapToggleButtonTouchUp)
         )
-        self.mapToggleButton.FAIcon = FAType.FAMapO
-        self.mapToggleButton.tintColor = AppColors.NavBarTintColor
-        self.navigationController?.navigationBar.tintColor = AppColors.NavBarTintColor
+        self.mapToggleButton.image = AppImages.map
+        self.mapToggleButton.tintColor = UIColor.white
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationItem.rightBarButtonItems = [self.mapToggleButton]
         
         self.navigationItem.title = "Where's The Ground?"
@@ -51,10 +50,10 @@ class LocationsViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         self.mapView.isZoomEnabled = true
         
         // Setup initial view covering points
-        self.mapView.setRegion(LocationManager.instance.mapRegion(), animated: true)
+        self.mapView.setRegion(LocationManager.shared.mapRegion(), animated: true)
                 
         // Add locations on map
-        for location in LocationManager.instance.locations {
+        for location in LocationManager.shared.locations {
             let cooordinate = CLLocationCoordinate2DMake(location.latitude!, location.longitude!)
             let annotation = LocationAnnotation(coordinate: cooordinate, team: location.team)
             self.mapView.addAnnotation(annotation)
@@ -85,15 +84,15 @@ class LocationsViewController: UIViewController, MKMapViewDelegate, CLLocationMa
                 dequeuedView.annotation = annotation
                 view = dequeuedView
             } else {
-                let ballImage = UIImage(icon: FAType.FASoccerBallO, size: CGSize(width: 20, height: 20), textColor: AppColors.Evostick, backgroundColor: UIColor.clear)
+                let ballImage = UIImage(named: "map-marker")!.sd_tintedImage(with: AppColors.red)
                 
                 view = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 view.canShowCallout = true
                 view.image = ballImage
                 view.centerOffset = CGPoint(x: 0.0, y: -10.0)
-                
+
                 view.leftCalloutAccessoryView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
-                TeamImageManager.instance.loadTeamImage(teamName: annotation.title!, view: view.leftCalloutAccessoryView as! UIImageView)
+                TeamImageManager.shared.loadTeamImage(teamName: annotation.title!, view: view.leftCalloutAccessoryView as! UIImageView)
             }
             
             return view

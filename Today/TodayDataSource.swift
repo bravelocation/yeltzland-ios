@@ -24,7 +24,7 @@ class TodayDataSource: NSObject, UITableViewDataSource {
         // Get last game details
         self.currentScores.removeAll()
 
-        if let currentFixture = GameScoreManager.instance.getCurrentFixture {
+        if let currentFixture = GameScoreManager.shared.currentFixture {
             if currentFixture.inProgress {
                 self.currentScores.append(TodayDataItem(opponent: currentFixture.displayOpponent,
                                                         scoreOrDate: currentFixture.inProgressScore,
@@ -34,7 +34,7 @@ class TodayDataSource: NSObject, UITableViewDataSource {
  
         self.lastGames.removeAll()
 
-        let lastResult = FixtureManager.instance.getLastGame()
+        let lastResult = FixtureManager.shared.lastGame
         if let fixture = lastResult {
             self.lastGames.append(TodayDataItem(opponent: fixture.displayOpponent,
                                                 scoreOrDate: fixture.score,
@@ -51,7 +51,7 @@ class TodayDataSource: NSObject, UITableViewDataSource {
         self.nextGames.removeAll()
         
         var i = 0
-        for fixture in FixtureManager.instance.getNextFixtures(fixturesNeeded) {
+        for fixture in FixtureManager.shared.nextFixtures(fixturesNeeded) {
             
             // Only add first fixture if no current game
             if (i > 0 || self.currentScores.count == 0) {
@@ -152,15 +152,15 @@ class TodayDataSource: NSObject, UITableViewDataSource {
         let teamScore = fixture.teamScore
         let opponentScore  = fixture.opponentScore
         
-        var resultColor = AppColors.TodayText
+        var resultColor = AppColors.label
         
         if (teamScore != nil && opponentScore != nil) {
             if (teamScore! > opponentScore!) {
-                resultColor = AppColors.FixtureWin
+                resultColor = UIColor(named: "fixture-win")!
             } else if (teamScore! < opponentScore!) {
-                resultColor = AppColors.FixtureLose
+                resultColor = UIColor(named: "fixture-lose")!
             } else {
-                resultColor = AppColors.FixtureDraw
+                resultColor = UIColor(named: "fixture-draw")!
             }
         }
         
@@ -175,7 +175,7 @@ class TodayDataSource: NSObject, UITableViewDataSource {
         // Figure out data to show
         var opponent: String = ""
         var gameDetails = ""
-        var resultColor = AppColors.TodayText
+        var resultColor = AppColors.label
         
         if let dataItems = self.dataItemsForSection(section: indexPath.section) {
             if (dataItems.count >= indexPath.row) {
@@ -192,12 +192,9 @@ class TodayDataSource: NSObject, UITableViewDataSource {
         // Set colors
         cell.selectionStyle = .none
         cell.accessoryType = .none
-        cell.backgroundColor = AppColors.TodayBackground
         cell.separatorInset = UIEdgeInsets.init(top: 0.0, left: 20.0, bottom: 0.0, right: 0.0)
         
-        cell.textLabel?.font = UIFont(name: AppColors.AppFontName, size: AppColors.TodayTextSize)!
         cell.textLabel?.adjustsFontSizeToFitWidth = true
-        cell.detailTextLabel?.font = UIFont(name: AppColors.AppFontName, size: AppColors.TodayFootnoteSize)!
         cell.detailTextLabel?.adjustsFontSizeToFitWidth = true
         
         cell.textLabel?.textColor = resultColor

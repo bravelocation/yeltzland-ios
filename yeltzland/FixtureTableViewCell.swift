@@ -18,20 +18,19 @@ class FixtureTableViewCell: UITableViewCell {
         self.selectionStyle = .none
         self.accessoryType = .none
         
-        var resultColor = AppColors.FixtureNone
+        var resultColor = AppColors.label
         
         if (fixture.teamScore == nil || fixture.opponentScore == nil) {
-            resultColor = AppColors.FixtureNone
+            resultColor = AppColors.label
         } else if (fixture.teamScore! > fixture.opponentScore!) {
-            resultColor = AppColors.FixtureWin
+            resultColor = UIColor(named: "fixture-win")!
         } else if (fixture.teamScore! < fixture.opponentScore!) {
-            resultColor = AppColors.FixtureLose
+            resultColor = UIColor(named: "fixture-lose")!
         } else {
-            resultColor = AppColors.FixtureDraw
+            resultColor = UIColor(named: "fixture-draw")!
         }
         
         // Set main label
-        self.teamNameLabel.font = UIFont(name: AppColors.AppFontName, size: AppColors.FixtureTeamSize)!
         self.teamNameLabel.textColor = resultColor
         self.teamNameLabel.adjustsFontSizeToFitWidth = true
         self.teamNameLabel.text = fixture.displayOpponent
@@ -39,7 +38,6 @@ class FixtureTableViewCell: UITableViewCell {
         // Set detail text
         self.scoreLabel.textColor = resultColor
         self.scoreLabel.adjustsFontSizeToFitWidth = true
-        self.scoreLabel.font = UIFont(name: AppColors.AppFontName, size: AppColors.FixtureScoreOrDateTextSize)!
         
         if (fixture.teamScore == nil || fixture.opponentScore == nil) {
             self.scoreLabel.text = fixture.kickoffTime
@@ -47,7 +45,7 @@ class FixtureTableViewCell: UITableViewCell {
             self.scoreLabel.text = fixture.score
         }
         
-        TeamImageManager.instance.loadTeamImage(teamName: fixture.displayOpponent, view: self.logoImage)
+        TeamImageManager.shared.loadTeamImage(teamName: fixture.displayOpponent, view: self.logoImage)
     }
     
     override func awakeFromNib() {

@@ -29,19 +29,19 @@ class InterfaceController: WKInterfaceController {
     }
     
     @IBAction func refreshTouchUp() {
-        FixtureManager.instance.getLatestFixtures()
+        FixtureManager.shared.fetchLatestData(completion: nil)
     }
     
     fileprivate func updateViewData() {
         // A row per month, plus for each fixture
-        self.fixtureTable.setNumberOfRows(FixtureManager.instance.fixtureCount(), withRowType: "FixtureRowType")
+        self.fixtureTable.setNumberOfRows(FixtureManager.shared.fixtureCount, withRowType: "FixtureRowType")
 
         // Get each month in turn
         var rowCount = 0
         var firstFixtureRow = 0
         
-        for month in FixtureManager.instance.months {
-            let fixturesForMonth = FixtureManager.instance.fixturesForMonth(month)
+        for month in FixtureManager.shared.months {
+            let fixturesForMonth = FixtureManager.shared.fixturesForMonth(month)
             
             if (fixturesForMonth == nil || fixturesForMonth!.count == 0) {
                 continue
@@ -52,7 +52,7 @@ class InterfaceController: WKInterfaceController {
                 let fixture = fixturesForMonth![i]
                 let row: FixtureRowType = self.fixtureTable.rowController(at: rowCount) as! FixtureRowType
                 
-                var resultColor = AppColors.WatchTextColor
+                var resultColor = UIColor.white
 
                 if (fixture.teamScore == nil && fixture.opponentScore == nil) {
                      // Mark this fixture
@@ -65,11 +65,11 @@ class InterfaceController: WKInterfaceController {
                     
                     if (teamScore != nil && opponentScore != nil) {
                         if (teamScore! > opponentScore!) {
-                            resultColor = AppColors.WatchFixtureWin
+                            resultColor = UIColor(named: "watch-fixture-win")!
                         } else if (teamScore! < opponentScore!) {
-                            resultColor = AppColors.WatchFixtureLose
+                            resultColor = UIColor(named: "watch-fixture-lose")!
                         } else {
-                            resultColor = AppColors.WatchFixtureDraw
+                            resultColor = UIColor.white
                         }
                     }
                 }

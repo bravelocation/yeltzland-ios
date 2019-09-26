@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Font_Awesome_Swift
 import Intents
 import IntentsUI
 
@@ -39,12 +38,12 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
     }
     
     fileprivate func setupNotificationWatcher() {
-        NotificationCenter.default.addObserver(self, selector: #selector(LatestScoreViewController.gameScoreUpdated), name: NSNotification.Name(rawValue: GameScoreManager.GameScoreNotification), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(LatestScoreViewController.gameScoreUpdated), name: NSNotification.Name(rawValue: FixtureManager.FixturesNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(LatestScoreViewController.gameScoreUpdated), name: NSNotification.Name(rawValue: GameScoreManager.shared.notificationName), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(LatestScoreViewController.gameScoreUpdated), name: NSNotification.Name(rawValue: FixtureManager.shared.notificationName), object: nil)
         print("Setup notification handler for game score updates")
     }
     
-    @objc fileprivate func gameScoreUpdated(_ notification: Notification) {
+    @objc fileprivate func gameScoreUpdated() {
         print("Game score or fixture message received")
         DispatchQueue.main.async(execute: { () -> Void in
             self.updateUI()
@@ -61,18 +60,17 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
         // Setup navigation
         self.navigationItem.title = "Latest Score"
         
-        self.view.backgroundColor = AppColors.OtherBackground
+        self.view.backgroundColor = AppColors.systemBackground
         
         // Setup refresh button
         self.reloadButton = UIBarButtonItem(
-            title: "Reload",
-            style: .plain,
+            barButtonSystemItem: .refresh,
             target: self,
             action: #selector(LatestScoreViewController.reloadButtonTouchUp)
         )
-        self.reloadButton.FAIcon = FAType.FARotateRight
-        self.reloadButton.tintColor = AppColors.NavBarTintColor
-        self.navigationController?.navigationBar.tintColor = AppColors.NavBarTintColor
+        
+        self.reloadButton.tintColor = UIColor.white
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationItem.rightBarButtonItems = [self.reloadButton]
         
         self.updateUI()
@@ -90,27 +88,38 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
     
     // MARK: - Event handlers
     @objc func reloadButtonTouchUp() {
-        GameScoreManager.instance.getLatestGameScore()
+        FixtureManager.shared.fetchLatestData() { result in
+            if result == .success(true) {
+                self.gameScoreUpdated()
+            }
+        }
+        
+        GameScoreManager.shared.fetchLatestData() { result in
+            if result == .success(true) {
+                self.gameScoreUpdated()
+            }
+        }
     }
     
     // MARK: - Helper functions
+
     private func updateUI() {
-        var latestFixture: Fixture? = FixtureManager.instance.getLastGame()
+        var latestFixture: Fixture? = FixtureManager.shared.lastGame
         
-        if let currentFixture = GameScoreManager.instance.getCurrentFixture {
+        if let currentFixture = GameScoreManager.shared.currentFixture {
             if currentFixture.inProgress {
                 latestFixture = currentFixture
             }
         }
         
         if latestFixture == nil {
-            if let nextFixture = FixtureManager.instance.getNextGame() {
+            if let nextFixture = FixtureManager.shared.nextGame {
                 latestFixture = nextFixture
             }
         }
         
         var homeOrAway = "vs"
-        var resultColor = AppColors.FixtureNone
+        var resultColor = AppColors.label
         var score = "TBD"
         
         if let fixture = latestFixture {
@@ -125,11 +134,11 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
                 score = String(format: "%d-%d%@", teamScore!, opponentScore!, fixture.inProgress ? "*" : "")
                 
                 if (teamScore! > opponentScore!) {
-                    resultColor = AppColors.FixtureWin
+                    resultColor = UIColor(named: "fixture-win")!
                 } else if (teamScore! < opponentScore!) {
-                    resultColor = AppColors.FixtureLose
+                    resultColor = UIColor(named: "fixture-lose")!
                 } else {
-                    resultColor = AppColors.FixtureDraw
+                    resultColor = UIColor(named: "fixture-draw")!
                 }
             }
  
@@ -137,7 +146,7 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
             self.homeOrAwayLabel.text = homeOrAway
             self.latestScoreLabel.text = score
             self.latestScoreLabel.textColor = resultColor
-            TeamImageManager.instance.loadTeamImage(teamName: fixture.opponent, view: self.opponentLogoImageView)
+            TeamImageManager.shared.loadTeamImage(teamName: fixture.opponent, view: self.opponentLogoImageView)
             
             self.bestGuessLabel.isHidden = (fixture.inProgress == false)
         }
@@ -164,25 +173,35 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
         
         self.userActivity = activity
         self.userActivity?.becomeCurrent()
+        
+        if #available(iOS 13.0, *) {
+            self.view.window?.windowScene?.userActivity = activity
+        }
     }
     
     // MARK: - Siri Intents
     func addSiriButton() {
         if #available(iOS 12.0, *) {
-            let button = INUIAddVoiceShortcutButton(style: .whiteOutline)
+            var buttonStyle: INUIAddVoiceShortcutButtonStyle = .whiteOutline
+            
+            if #available(iOS 13.0, *) {
+                buttonStyle = .automaticOutline
+            }
+            
+            let button = INUIAddVoiceShortcutButton(style: buttonStyle)
             button.translatesAutoresizingMaskIntoConstraints = false
             self.view.addSubview(button)
             button.addTarget(self, action: #selector(addToSiri(_:)), for: .touchUpInside)
 
             self.view.centerXAnchor.constraint(equalTo: button.centerXAnchor).isActive = true
-            self.latestScoreLabel.bottomAnchor.constraint(equalTo: button.topAnchor, constant: -32.0).isActive = true
+            self.view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: button.bottomAnchor, constant: 16.0).isActive = true
         }
     }
     
     @objc
     func addToSiri(_ sender: Any) {
         if #available(iOS 12.0, *) {
-            let intent = ShortcutManager.instance.latestScoreIntent()
+            let intent = ShortcutManager.shared.latestScoreIntent()
             
             if let shortcut = INShortcut(intent: intent) {
                 let viewController = INUIAddVoiceShortcutViewController(shortcut: shortcut)

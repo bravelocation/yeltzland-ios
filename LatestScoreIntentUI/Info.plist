@@ -37,8 +37,8 @@
 		<dict>
 			<key>IntentsSupported</key>
 			<array>
-				<string>INSendMessageIntent</string>
 				<string>LatestScoreIntent</string>
+				<string>NextGameIntent</string>
 			</array>
 		</dict>
 		<key>NSExtensionMainStoryboard</key>

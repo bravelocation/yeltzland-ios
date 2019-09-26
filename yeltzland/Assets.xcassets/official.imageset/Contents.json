@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "ic_official.png",
+      "filename" : "church30.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "official@2x.png",
+      "filename" : "church60.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "official@3x.png",
+      "filename" : "church90.png",
       "scale" : "3x"
     }
   ],

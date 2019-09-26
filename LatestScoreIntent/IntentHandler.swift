@@ -11,10 +11,15 @@ import Intents
 class IntentHandler: INExtension {
     
     override func handler(for intent: INIntent) -> Any {
-        guard intent is LatestScoreIntent else {
-            fatalError("Unhandled intent type: \(intent)")
+        
+        if intent is LatestScoreIntent {
+            return LatestScoreIntentHandler()
         }
         
-        return LatestScoreIntentHandler()
+        if intent is NextGameIntent {
+            return NextGameIntentHandler()
+        }
+        
+        fatalError("Unhandled intent type: \(intent)")
     }
 }

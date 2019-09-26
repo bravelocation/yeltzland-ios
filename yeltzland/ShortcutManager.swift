@@ -12,7 +12,7 @@ import Intents
 public class ShortcutManager {
     
     fileprivate static let sharedInstance = ShortcutManager()
-    class var instance: ShortcutManager {
+    class var shared: ShortcutManager {
         get {
             return sharedInstance
         }
@@ -27,10 +27,21 @@ public class ShortcutManager {
     }
     
     @available(iOS 12.0, *)
-    public func donateAllShortcuts() {
-        let intentResponse = LatestScoreIntentResponse()
-        let intent = self.latestScoreIntent()
+    public func nextGameIntent() -> NextGameIntent {
+        let intent = NextGameIntent()
+        intent.suggestedInvocationPhrase = "Who do we play next"
         
+        return intent
+    }
+    
+    @available(iOS 12.0, *)
+    public func donateAllShortcuts() {
+        self.donateShortcut(intent: self.latestScoreIntent(), intentResponse: LatestScoreIntentResponse())
+        self.donateShortcut(intent: self.nextGameIntent(), intentResponse: NextGameIntentResponse())
+    }
+    
+    @available(iOS 12.0, *)
+    private func donateShortcut(intent: INIntent, intentResponse: INIntentResponse) {
         let interaction = INInteraction(intent: intent, response: intentResponse)
         interaction.donate { (error) in
             if error != nil {
@@ -38,7 +49,7 @@ public class ShortcutManager {
                     print("Interaction donation failed: %@", error)
                 }
             } else {
-                print("Successfully donated interaction")
+                print("Successfully donated interaction: %@", intent.intentDescription ?? "Unknown intent")
             }
         }
     }

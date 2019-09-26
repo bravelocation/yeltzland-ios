@@ -14,56 +14,70 @@ import Intents
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    // MARK: Application properties
     var window: UIWindow?
-    let firebaseNotifications = FirebaseNotifications()
+    var firebaseNotifications: FirebaseNotifications?
     
+    // MARK: - UIApplicationDelegate functions
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // Nav bar colors
-        UINavigationBar.appearance().barTintColor = AppColors.NavBarColor
+        UINavigationBar.appearance().barTintColor = UIColor(named: "yeltz-blue")
 
         UINavigationBar.appearance().titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor: AppColors.NavBarTextColor,
-            NSAttributedString.Key.font: UIFont(name: AppColors.AppFontName, size: AppColors.NavBarTextSize)!
+            NSAttributedString.Key.foregroundColor: UIColor.white
         ]
         
         // Setup Twitter not via Fabric
-        let twitterConsumerKey = SettingsManager.instance.getSetting("TwitterConsumerKey") as! String
-        let twitterConsumerSecret = SettingsManager.instance.getSetting("TwitterConsumerSecret") as! String
+        let twitterConsumerKey = SettingsManager.shared.getSetting("TwitterConsumerKey") as! String
+        let twitterConsumerSecret = SettingsManager.shared.getSetting("TwitterConsumerSecret") as! String
 
         TWTRTwitter.sharedInstance().start(withConsumerKey: twitterConsumerKey, consumerSecret: twitterConsumerSecret)
 
         // Setup notifications
+        UNUserNotificationCenter.current().delegate = self
         FirebaseApp.configure()
-        self.firebaseNotifications.setupNotifications(false)
+        
+        // Must be done after FirebaseApp.configure() according to https://github.com/firebase/firebase-ios-sdk/issues/2240
+        self.firebaseNotifications = FirebaseNotifications()
+        self.firebaseNotifications?.setupNotifications(false)
         
         // Update the fixture and game score caches
-        FixtureManager.instance.getLatestFixtures()
-        GameScoreManager.instance.getLatestGameScore()
+        FixtureManager.shared.fetchLatestData(completion: nil)
+        GameScoreManager.shared.fetchLatestData(completion: nil)
         
         // Setup background fetch
         application.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
         
         // Push settings to watch in the background
-        GameSettings.instance.forceBackgroundWatchUpdate()
+        GameSettings.shared.forceBackgroundWatchUpdate()
         
-        // Donate all the shortcuts
+        // Donate all the shortcuts - no need to do this in iOS 13+
         if #available(iOS 12.0, *) {
-            ShortcutManager.instance.donateAllShortcuts()
+            ShortcutManager.shared.donateAllShortcuts()
         }
         
-        // If came from a notification, always start on the Twitter tab
-        if launchOptions?[UIApplication.LaunchOptionsKey.remoteNotification] != nil {
-            GameSettings.instance.lastSelectedTab = 3
-        } else if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] {
-            let result = self.handleShortcut(shortcutItem as! UIApplicationShortcutItem)
-            print("Opened via shortcut: \(result)")
+        if #available(iOS 13.0, *) {
+            // Window initialisation will be handled by the scene delegate in iOS 13+
+        } else {
+            
+            // Calculate the correct user activity to pre-populate the selected tab
+            let startingActivity = NSUserActivity(activityType: "com.bravelocation.yeltzland.currenttab")
+            startingActivity.userInfo = [:]
+            startingActivity.userInfo?["com.bravelocation.yeltzland.currenttab.key"] = GameSettings.shared.lastSelectedTab
+            
+            // If came from a shortcut
+            if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] {
+                startingActivity.userInfo?["com.bravelocation.yeltzland.currenttab.key"] =  self.handleShortcut(shortcutItem as! UIApplicationShortcutItem)
+            }
+            
+            self.window = UIWindow(frame: UIScreen.main.bounds)
+            let initialTabViewController = MainTabBarController()
+            initialTabViewController.restoreUserActivityState(startingActivity)
+            
+            self.window?.rootViewController = initialTabViewController
+            self.window?.makeKeyAndVisible()
         }
-        
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        let initialTabViewController = MainTabBarController()
-        self.window?.rootViewController = initialTabViewController
-        self.window?.makeKeyAndVisible()
         
         return true
     }
@@ -73,12 +87,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("In background refresh ...")
         let now = Date()
         
-        if let nextGame = FixtureManager.instance.getNextGame() {
+        if let nextGame = FixtureManager.shared.nextGame {
             if let differenceInMinutes = (Calendar.current as NSCalendar).components(.minute, from: now, to: nextGame.fixtureDate, options: []).minute {
                 if (differenceInMinutes < 0) {
                     // After game kicked off, so go get game score
-                    GameScoreManager.instance.getLatestGameScore()
-                    FixtureManager.instance.getLatestFixtures()
+                    GameScoreManager.shared.fetchLatestData(completion: nil)
+                    FixtureManager.shared.fetchLatestData(completion: nil)
                     
                     completionHandler(UIBackgroundFetchResult.newData)
                     return
@@ -87,20 +101,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         // Otherwise, make sure the watch is updated occasionally
-        GameSettings.instance.forceBackgroundWatchUpdate()
+        GameSettings.shared.forceBackgroundWatchUpdate()
         completionHandler(UIBackgroundFetchResult.noData)
     }
     
     func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
         print("3D Touch when from shortcut action")
-        let handledShortCut = self.handleShortcut(shortcutItem)
-        
+        let startingActivity = NSUserActivity(activityType: "com.bravelocation.yeltzland.currenttab")
+        startingActivity.userInfo = [:]
+        startingActivity.userInfo?["com.bravelocation.yeltzland.currenttab.key"] = self.handleShortcut(shortcutItem)
+
         // Reset selected tab
         if let mainViewController = self.window?.rootViewController as? MainTabBarController {
-            mainViewController.selectedIndex = GameSettings.instance.lastSelectedTab
+            mainViewController.restoreUserActivityState(startingActivity)
         }
         
-        return completionHandler(handledShortCut)
+        return completionHandler(true)
     }
         
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
@@ -110,36 +126,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
-    
-    func handleShortcut(_ shortcutItem: UIApplicationShortcutItem) -> Bool {
-        print("Handling shortcut item %@", shortcutItem.type)
-        
-        if (shortcutItem.type == "com.bravelocation.yeltzland.forum") {
-            GameSettings.instance.lastSelectedTab = 0
-            return true
-        }
-        
-        if (shortcutItem.type == "com.bravelocation.yeltzland.official") {
-            GameSettings.instance.lastSelectedTab = 1
-            return true
-        }
-        
-        if (shortcutItem.type == "com.bravelocation.yeltzland.yeltztv") {
-            GameSettings.instance.lastSelectedTab = 2
-            return true
-        }
-        
-        if (shortcutItem.type == "com.bravelocation.yeltzland.twitter") {
-            GameSettings.instance.lastSelectedTab = 3
-            return true
-        }
-        
-        return false
-    }
  
     func application(_ application: UIApplication,
                      didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        self.firebaseNotifications.register(deviceToken)
+        self.firebaseNotifications?.register(deviceToken)
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
@@ -148,31 +138,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tokenError = error as NSError
         print(tokenError.description)
     }
+    
+    // MARK: - Private functions
+    func handleShortcut(_ shortcutItem: UIApplicationShortcutItem) -> Int {
+        print("Handling shortcut item %@", shortcutItem.type)
+        
+        switch shortcutItem.type {
+        case "com.bravelocation.yeltzland.forum":
+            return 0
+        case "com.bravelocation.yeltzland.official":
+            return 1
+        case "com.bravelocation.yeltzland.yeltztv":
+            return 2
+        case "com.bravelocation.yeltzland.twitter":
+            return 3
+        default:
+            return 0
+        }
+    }
+}
 
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
-        self.messageReceived(application, userInfo: userInfo)
-    }
-    
-    func application(_ application: UIApplication,
-                     didReceiveRemoteNotification userInfo: [AnyHashable: Any],
-                     fetchCompletionHandler handler: @escaping (UIBackgroundFetchResult) -> Void) {
-        self.messageReceived(application, userInfo: userInfo)
-        handler(UIBackgroundFetchResult.noData)
-    }
-    
-    func messageReceived(_ application: UIApplication,
-                         userInfo: [AnyHashable: Any]) {
+// MARK: - UNUserNotificationCenterDelegate
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+        let userInfo = response.notification.request.content.userInfo
+
         // Print message
         print("Notification received: \(userInfo)")
         
-        Messaging.messaging().appDidReceiveMessage(userInfo)
+        Messaging.messaging().appDidReceiveMessage(response.notification.request.content.userInfo)
         
         // Go and update the game score and fixtures
-        GameScoreManager.instance.getLatestGameScore()
-        FixtureManager.instance.getLatestFixtures()
-        
+        GameScoreManager.shared.fetchLatestData(completion: nil)
+        FixtureManager.shared.fetchLatestData(completion: nil)
+
         // If app in foreground, show a toast
-        if (application.applicationState == .active) {
+        if (UIApplication.shared.applicationState == .active) {
             if let aps = userInfo["aps"] as? NSDictionary {
                 if let alert = aps["alert"] as? NSDictionary {
                     if let body = alert["body"] as? NSString {
@@ -187,5 +189,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
         }
+        
+        completionHandler()
     }
 }

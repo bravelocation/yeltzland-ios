@@ -29,9 +29,9 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         var entry: CLKComplicationTimelineEntry?
         
         // Find the next fixture to use
-        var latestFixture: Fixture? = FixtureManager.instance.getLastGame()
+        var latestFixture: Fixture? = FixtureManager.shared.lastGame
         
-        if let currentFixture = GameScoreManager.instance.getCurrentFixture {
+        if let currentFixture = GameScoreManager.shared.currentFixture {
             if currentFixture.inProgress {
                 latestFixture = currentFixture
             }
@@ -39,7 +39,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         
         // If the next fixture is missing or too far away, get next game
         if latestFixture == nil || latestFixture!.state == .manyDaysAfter {
-            latestFixture = FixtureManager.instance.getNextGame()
+            latestFixture = FixtureManager.shared.nextGame
         }
         
         if let fixture = latestFixture {
@@ -48,35 +48,35 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
                 let template = CLKComplicationTemplateModularSmallStackText()
                 template.line1TextProvider = CLKSimpleTextProvider(text: fixture.smallOpponent)
                 template.line2TextProvider = CLKSimpleTextProvider(text: fixture.smallScoreOrDate)
-                template.tintColor = AppColors.WatchComplicationColor
+                template.tintColor = UIColor(named: "light-blue")
                 entry = CLKComplicationTimelineEntry(date: now, complicationTemplate: template)
             case .modularLarge:
                 let template = CLKComplicationTemplateModularLargeStandardBody()
                 template.headerTextProvider = CLKSimpleTextProvider(text: fixture.fullTitle)
                 template.body1TextProvider = CLKSimpleTextProvider(text: fixture.truncateOpponent)
                 template.body2TextProvider = CLKSimpleTextProvider(text: fixture.fullScoreOrDate)
-                template.tintColor = AppColors.WatchComplicationColor
+                template.tintColor = UIColor(named: "light-blue")
                 entry = CLKComplicationTimelineEntry(date: now, complicationTemplate: template)
             case .utilitarianSmall, .utilitarianSmallFlat:
                 let template = CLKComplicationTemplateUtilitarianSmallFlat()
                 template.textProvider = CLKSimpleTextProvider(text: fixture.smallScore)
-                template.tintColor = AppColors.WatchComplicationColor
+                template.tintColor = UIColor(named: "light-blue")
                 entry = CLKComplicationTimelineEntry(date: now, complicationTemplate: template)
             case .utilitarianLarge:
                 let template = CLKComplicationTemplateUtilitarianLargeFlat()
                 template.textProvider = CLKSimpleTextProvider(text: String(format: "%@ %@", fixture.truncateOpponent, fixture.smallScore))
-                template.tintColor = AppColors.WatchComplicationColor
+                template.tintColor = UIColor(named: "light-blue")
                 entry = CLKComplicationTimelineEntry(date: now, complicationTemplate: template)
             case .circularSmall:
                 let template = CLKComplicationTemplateCircularSmallStackText()
                 template.line1TextProvider = CLKSimpleTextProvider(text: fixture.smallOpponent)
                 template.line2TextProvider = CLKSimpleTextProvider(text: fixture.smallScoreOrDate)
-                template.tintColor = AppColors.WatchComplicationColor
+                template.tintColor = UIColor(named: "light-blue")
                 entry = CLKComplicationTimelineEntry(date: now, complicationTemplate: template)
             case .extraLarge:
                 let template = CLKComplicationTemplateExtraLargeSimpleText()
                 template.textProvider = CLKSimpleTextProvider(text: fixture.smallScore)
-                template.tintColor = AppColors.WatchComplicationColor
+                template.tintColor = UIColor(named: "light-blue")
                 entry = CLKComplicationTimelineEntry(date: now, complicationTemplate: template)
             case .graphicBezel:
                 if #available(watchOS 5, *) {
@@ -86,7 +86,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
                     let imageProvider = CLKComplicationTemplateGraphicCircularImage()
                     imageProvider.imageProvider = CLKFullColorImageProvider(fullColorImage: UIImage(named: "Complication/Graphic Bezel")!)
                     template.circularTemplate = imageProvider
-                    template.tintColor = AppColors.WatchComplicationColor
+                    template.tintColor = UIColor(named: "light-blue")
                     
                     entry = CLKComplicationTimelineEntry(date: now, complicationTemplate: template)
                 }
@@ -95,14 +95,14 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
                     let template = CLKComplicationTemplateGraphicCornerStackText()
                     template.outerTextProvider = CLKSimpleTextProvider(text: fixture.smallOpponent)
                     template.innerTextProvider = CLKSimpleTextProvider(text: fixture.smallScoreOrDate)
-                    template.tintColor = AppColors.WatchComplicationColor
+                    template.tintColor = UIColor(named: "light-blue")
                     entry = CLKComplicationTimelineEntry(date: now, complicationTemplate: template)
                 }
             case .graphicCircular:
                 if #available(watchOS 5, *) {
                     let template = CLKComplicationTemplateGraphicCircularImage()
                     template.imageProvider = CLKFullColorImageProvider(fullColorImage: UIImage(named: "Complication/Graphic Circular")!)
-                    template.tintColor = AppColors.WatchComplicationColor
+                    template.tintColor = UIColor(named: "light-blue")
                     entry = CLKComplicationTimelineEntry(date: now, complicationTemplate: template)
                 }
             case .graphicRectangular:
@@ -111,7 +111,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
                     template.headerTextProvider = CLKSimpleTextProvider(text: fixture.fullTitle)
                     template.body1TextProvider = CLKSimpleTextProvider(text: fixture.truncateOpponent)
                     template.body2TextProvider = CLKSimpleTextProvider(text: fixture.fullScoreOrDate)
-                    template.tintColor = AppColors.WatchComplicationColor
+                    template.tintColor = UIColor(named: "light-blue")
                     
                     entry = CLKComplicationTimelineEntry(date: now, complicationTemplate: template)
                 }
@@ -143,35 +143,35 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             let template = CLKComplicationTemplateModularSmallStackText()
             template.line1TextProvider = CLKSimpleTextProvider(text: "STOU")
             template.line2TextProvider = CLKSimpleTextProvider(text: "2-0")
-            template.tintColor = AppColors.WatchComplicationColor
+            template.tintColor = UIColor(named: "light-blue")
             handler(template)
         case .modularLarge:
             let template = CLKComplicationTemplateModularLargeStandardBody()
             template.headerTextProvider = CLKSimpleTextProvider(text: "Next game:")
             template.body1TextProvider = CLKSimpleTextProvider(text: "Stourbridge")
             template.body2TextProvider = CLKSimpleTextProvider(text: "Tue 26 Dec")
-            template.tintColor = AppColors.WatchComplicationColor
+            template.tintColor = UIColor(named: "light-blue")
             handler(template)
         case .utilitarianSmall, .utilitarianSmallFlat:
             let template = CLKComplicationTemplateUtilitarianSmallFlat()
             template.textProvider = CLKSimpleTextProvider(text: "2-0")
-            template.tintColor = AppColors.WatchComplicationColor
+            template.tintColor = UIColor(named: "light-blue")
             handler(template)
         case .utilitarianLarge:
             let template = CLKComplicationTemplateUtilitarianLargeFlat()
             template.textProvider = CLKSimpleTextProvider(text: "Stourbridge 10-0")
-            template.tintColor = AppColors.WatchComplicationColor
+            template.tintColor = UIColor(named: "light-blue")
             handler(template)
         case .circularSmall:
             let template = CLKComplicationTemplateCircularSmallStackText()
             template.line1TextProvider = CLKSimpleTextProvider(text: "STOU")
             template.line2TextProvider = CLKSimpleTextProvider(text: "2-0")
-            template.tintColor = AppColors.WatchComplicationColor
+            template.tintColor = UIColor(named: "light-blue")
             handler(template)
         case .extraLarge:
             let template = CLKComplicationTemplateExtraLargeSimpleText()
             template.textProvider = CLKSimpleTextProvider(text: "2-0")
-            template.tintColor = AppColors.WatchComplicationColor
+            template.tintColor = UIColor(named: "light-blue")
             handler(template)
         case .graphicBezel:
             if #available(watchOS 5, *) {
@@ -181,7 +181,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
                 let imageProvider = CLKComplicationTemplateGraphicCircularImage()
                 imageProvider.imageProvider = CLKFullColorImageProvider(fullColorImage: UIImage(named: "Complication/Graphic Bezel")!)
                 template.circularTemplate = imageProvider
-                template.tintColor = AppColors.WatchComplicationColor
+                template.tintColor = UIColor(named: "light-blue")
                 
                 handler(template)
             }
@@ -190,14 +190,14 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
                 let template = CLKComplicationTemplateGraphicCornerStackText()
                 template.outerTextProvider = CLKSimpleTextProvider(text: "STOU")
                 template.innerTextProvider = CLKSimpleTextProvider(text: "2-0")
-                template.tintColor = AppColors.WatchComplicationColor
+                template.tintColor = UIColor(named: "light-blue")
                 handler(template)
             }
         case .graphicCircular:
             if #available(watchOS 5, *) {
                 let template = CLKComplicationTemplateGraphicCircularImage()
                 template.imageProvider = CLKFullColorImageProvider(fullColorImage: UIImage(named: "Complication/Graphic Circular")!)
-                template.tintColor = AppColors.WatchComplicationColor
+                template.tintColor = UIColor(named: "light-blue")
 
                 handler(template)
             }
@@ -207,7 +207,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
                 template.headerTextProvider = CLKSimpleTextProvider(text: "Next game:")
                 template.body1TextProvider = CLKSimpleTextProvider(text: "Stourbridge")
                 template.body2TextProvider = CLKSimpleTextProvider(text: "Tue 26 Dec")
-                template.tintColor = AppColors.WatchComplicationColor
+                template.tintColor = UIColor(named: "light-blue")
                 
                 handler(template)
             }

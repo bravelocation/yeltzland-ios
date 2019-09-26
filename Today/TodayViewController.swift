@@ -15,16 +15,6 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
     var inExpandedMode: Bool = false
     let dataSource = TodayDataSource()
     
-    override init(style: UITableView.Style) {
-        super.init(style: style)
-        self.setupNotificationWatchers()
-    }
-    
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)!
-        self.setupNotificationWatchers()
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         if #available(iOSApplicationExtension 10.0, *) {
@@ -35,9 +25,6 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
         
         self.tableView.dataSource = self.dataSource
         self.tableView.delegate = self
-        
-        self.view.backgroundColor = AppColors.TodayBackground
-        self.tableView.backgroundColor = AppColors.TodayBackground
     }
     
     func widgetMarginInsets(forProposedMarginInsets defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
@@ -46,8 +33,17 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
     
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
         // Fetch latest fixtures
-        FixtureManager.instance.getLatestFixtures()
-        GameScoreManager.instance.getLatestGameScore()
+        FixtureManager.shared.fetchLatestData() { result in
+            if result == .success(true) {
+                self.fixturesUpdated()
+            }
+        }
+        
+        GameScoreManager.shared.fetchLatestData() { result in
+            if result == .success(true) {
+                self.fixturesUpdated()
+            }
+        }
         
         var rowCount: CGFloat = 5.0
         if (self.inExpandedMode) {
@@ -71,17 +67,7 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
         self.tableView.reloadData()
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-        print("Removed notification handler for fixture updates in today view")
-    }
-    
-    fileprivate func setupNotificationWatchers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(TodayViewController.fixturesUpdated), name: NSNotification.Name(rawValue: BaseSettings.SettingsUpdateNotification), object: nil)
-        print("Setup notification handlers for fixture or score updates in today view")
-    }
-    
-    @objc fileprivate func fixturesUpdated(_ notification: Notification) {
+    func fixturesUpdated() {
         print("Fixture update message received in today view")
         DispatchQueue.main.async(execute: { () -> Void in
             self.dataSource.loadLatestData()
@@ -98,20 +84,16 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if let headerView = view as? UITableViewHeaderFooterView {
-            headerView.backgroundView?.backgroundColor = AppColors.TodayBackground
-            
-            headerView.textLabel!.textColor = AppColors.TodayHeaderText
-            headerView.textLabel!.font = UIFont(name: AppColors.AppFontName, size: AppColors.TodayTextSize)!
+            headerView.tintColor = UIColor.clear
+            headerView.textLabel!.textColor = AppColors.label
             headerView.textLabel?.text = self.dataSource.headerText(section: section)
         }
     }
     
     override func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
         if let footerView = view as? UITableViewHeaderFooterView {
-            footerView.backgroundView?.backgroundColor = AppColors.TodayBackground
-            
-            footerView.textLabel!.textColor = AppColors.TodayText
-            footerView.textLabel!.font = UIFont(name: AppColors.AppFontName, size: AppColors.TodayFootnoteSize)!
+            footerView.tintColor = UIColor.clear
+            footerView.textLabel!.textColor = AppColors.label
             footerView.textLabel?.text = self.dataSource.footerText(section: section)
         }
     }
