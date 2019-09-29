@@ -52,15 +52,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Push settings to watch in the background
         GameSettings.shared.forceBackgroundWatchUpdate()
         
-        // Donate all the shortcuts - no need to do this in iOS 13+
-        if #available(iOS 12.0, *) {
-            ShortcutManager.shared.donateAllShortcuts()
-        }
-        
         if #available(iOS 13.0, *) {
             // Window initialisation will be handled by the scene delegate in iOS 13+
         } else {
-            
             // Calculate the correct user activity to pre-populate the selected tab
             let startingActivity = NSUserActivity(activityType: "com.bravelocation.yeltzland.currenttab")
             startingActivity.userInfo = [:]
