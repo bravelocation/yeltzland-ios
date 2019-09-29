@@ -62,7 +62,6 @@
 		525719741FDE8AE2005F1D80 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525719731FDE8AE2005F1D80 /* AppDelegate.swift */; };
 		525719761FDE8AE2005F1D80 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525719751FDE8AE2005F1D80 /* ViewController.swift */; };
 		525719791FDE8AE2005F1D80 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 525719771FDE8AE2005F1D80 /* Main.storyboard */; };
-		5257197B1FDE8AE2005F1D80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5257197A1FDE8AE2005F1D80 /* Assets.xcassets */; };
 		525719801FDE8BBB005F1D80 /* FixtureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236AE71D17E4D3004903AB /* FixtureManager.swift */; };
 		525719811FDE8BBF005F1D80 /* Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236AE51D17DFF8004903AB /* Fixture.swift */; };
 		525719821FDE8BC2005F1D80 /* GameScoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52176BAF1D4A1B3200B7EFAE /* GameScoreManager.swift */; };
@@ -146,6 +145,7 @@
 		52EACDC5215646D3008B8DE5 /* GameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DBCA9F1D4A012E00D35F91 /* GameSettings.swift */; };
 		52EACDC6215646DA008B8DE5 /* BaseSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52176BB21D4B62DC00B7EFAE /* BaseSettings.swift */; };
 		52EACDC7215646DA008B8DE5 /* BaseSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52176BB21D4B62DC00B7EFAE /* BaseSettings.swift */; };
+		52EBCF492340AC7000A2157A /* TVAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52EBCF482340AC7000A2157A /* TVAssets.xcassets */; };
 		52F5CA9F20ED1F45000143A1 /* TeamImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A347720CFB98D00E8475C /* TeamImageManager.swift */; };
 		52F9CDB222D6687C00E0FFE8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9CDB122D6687C00E0FFE8 /* SceneDelegate.swift */; };
 		937784A0FE49B904B7681F19 /* Pods_LatestScoreIntentUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1EB3CDB05AFB690D5D25630 /* Pods_LatestScoreIntentUI.framework */; };
@@ -283,7 +283,6 @@
 		525719731FDE8AE2005F1D80 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		525719751FDE8AE2005F1D80 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		525719781FDE8AE2005F1D80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		5257197A1FDE8AE2005F1D80 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5257197C1FDE8AE2005F1D80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5257E8BA1CDB953400157CED /* yeltzlandUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = yeltzlandUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5257E8BC1CDB953400157CED /* YeltzlandUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YeltzlandUITests.swift; sourceTree = "<group>"; };
@@ -343,6 +342,7 @@
 		52EACDB621564462008B8DE5 /* Intent.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Intent.intentdefinition; sourceTree = "<group>"; };
 		52EACDBA21564586008B8DE5 /* LatestScoreIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestScoreIntentHandler.swift; sourceTree = "<group>"; };
 		52EBCF472340A1C300A2157A /* yeltzlandTVOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = yeltzlandTVOS.entitlements; sourceTree = "<group>"; };
+		52EBCF482340AC7000A2157A /* TVAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TVAssets.xcassets; sourceTree = "<group>"; };
 		52F9CDB122D6687C00E0FFE8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		6C2886E0C6D579332BF2A5A8 /* Pods-yeltzland.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yeltzland.debug.xcconfig"; path = "Pods/Target Support Files/Pods-yeltzland/Pods-yeltzland.debug.xcconfig"; sourceTree = "<group>"; };
 		8541FCDE5A3B1A03D43E3DBD /* Pods-watchkitapp Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watchkitapp Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-watchkitapp Extension/Pods-watchkitapp Extension.release.xcconfig"; sourceTree = "<group>"; };
@@ -546,7 +546,6 @@
 				525719731FDE8AE2005F1D80 /* AppDelegate.swift */,
 				525719751FDE8AE2005F1D80 /* ViewController.swift */,
 				525719771FDE8AE2005F1D80 /* Main.storyboard */,
-				5257197A1FDE8AE2005F1D80 /* Assets.xcassets */,
 				5257197C1FDE8AE2005F1D80 /* Info.plist */,
 				52E77DE41FDEBB6C0069FCFB /* TVFixtureData.swift */,
 				52E77DE71FDEBBB60069FCFB /* TVFixturesDataSource.swift */,
@@ -556,6 +555,7 @@
 				52D8682A1FE92A440041B578 /* TVTwitterCollectionCell.swift */,
 				52D8682B1FE92A440041B578 /* TVTwitterCollectionCell.xib */,
 				52D8682E1FE933C20041B578 /* VerticallyAlignedLabel.swift */,
+				52EBCF482340AC7000A2157A /* TVAssets.xcassets */,
 			);
 			path = "yeltzland TVOS";
 			sourceTree = "<group>";
@@ -1025,8 +1025,8 @@
 				52D868271FE81B6E0041B578 /* TVFixtureCollectionCell.xib in Resources */,
 				52E77DEC1FDEC0770069FCFB /* gamescore.json in Resources */,
 				520C09A02157A73100CCC2D8 /* DefaultPreferences.plist in Resources */,
-				5257197B1FDE8AE2005F1D80 /* Assets.xcassets in Resources */,
 				52D8682D1FE92A440041B578 /* TVTwitterCollectionCell.xib in Resources */,
+				52EBCF492340AC7000A2157A /* TVAssets.xcassets in Resources */,
 				521B94AB22CBB621009DFF76 /* Colors.xcassets in Resources */,
 				52E77DEB1FDEC0740069FCFB /* matches.json in Resources */,
 				525719791FDE8AE2005F1D80 /* Main.storyboard in Resources */,
