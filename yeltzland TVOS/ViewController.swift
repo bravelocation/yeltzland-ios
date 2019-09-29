@@ -32,8 +32,8 @@ class ViewController: UIViewController, UICollectionViewDelegate {
     }
     
     fileprivate func setupNotificationWatcher() {
-        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.fixturesUpdated), name: NSNotification.Name(rawValue: FixtureManager.FixturesNotification), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.fixturesUpdated), name: NSNotification.Name(rawValue: GameScoreManager.GameScoreNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.fixturesUpdated), name: NSNotification.Name(rawValue: FixtureManager.shared.notificationName), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.fixturesUpdated), name: NSNotification.Name(rawValue: GameScoreManager.shared.notificationName), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.tweetsUpdated), name: NSNotification.Name(rawValue: TwitterDataSource.TweetsNotification), object: nil)
         print("Setup notification handler for updates")
     }
@@ -91,8 +91,8 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         print("*** Fetching latest data ...")
 
         // Update the fixture and game score caches
-        FixtureManager.shared.getLatestFixtures()
-        GameScoreManager.shared.getLatestGameScore()
+        FixtureManager.shared.fetchLatestData(completion: nil)
+        GameScoreManager.shared.fetchLatestData(completion: nil)
         
         // Update the tweets
         self.tweetsDataSource.loadLatestData()
