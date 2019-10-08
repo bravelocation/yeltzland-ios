@@ -92,7 +92,7 @@ DEPENDENCIES:
   - TwitterKit
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - Firebase
     - FirebaseAnalytics
     - FirebaseAnalyticsInterop
@@ -134,4 +134,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: a61fe562d10ef9737c629107aa8237411473588a
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.8.3
