@@ -21,18 +21,18 @@ class TVFixturesDataSource: NSObject, UICollectionViewDataSource {
     func loadLatestData() {
         var inProgressFixture: Fixture?
         
-        if let currentFixture = GameScoreManager.shared.getCurrentFixture {
+        if let currentFixture = GameScoreManager.shared.currentFixture {
             if currentFixture.inProgress {
                 inProgressFixture = currentFixture
             }
         }
         
-        let nextGame = FixtureManager.shared.getNextGame()
+        let nextGame = FixtureManager.shared.nextGame
         
         // Add next matches
         self.allGames.removeAll()
         
-        for fixture in FixtureManager.shared.getAllMatches() {
+        for fixture in FixtureManager.shared.allMatches {
             if (inProgressFixture != nil && nextGame != nil && fixture === nextGame!) {
                 // Is it an in-progress game
                 self.allGames.append(TVFixtureData(opponent: fixture.displayOpponent,

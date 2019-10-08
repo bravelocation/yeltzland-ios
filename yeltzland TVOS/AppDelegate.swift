@@ -20,8 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Update the fixture and game score caches
-        FixtureManager.shared.getLatestFixtures()
-        GameScoreManager.shared.getLatestGameScore()
+        FixtureManager.shared.fetchLatestData(completion: nil)
+        GameScoreManager.shared.fetchLatestData(completion: nil)
     }
     
     func application(_ application: UIApplication,
@@ -29,13 +29,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("In background refresh ...")
         let now = Date()
         
-        if let nextGame = FixtureManager.shared.getNextGame() {
+        if let nextGame = FixtureManager.shared.nextGame {
             if let differenceInMinutes = (Calendar.current as NSCalendar).components(.minute, from: now, to: nextGame.fixtureDate, options: []).minute {
                 if (differenceInMinutes < 0) {
                     // After game kicked off, so go get game score
-                    GameScoreManager.shared.getLatestGameScore()
-                    FixtureManager.shared.getLatestFixtures()
-                    
+                    FixtureManager.shared.fetchLatestData(completion: nil)
+                    GameScoreManager.shared.fetchLatestData(completion: nil)
+
                     completionHandler(UIBackgroundFetchResult.newData)
                     return
                 }
