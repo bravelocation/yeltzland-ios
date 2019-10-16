@@ -79,8 +79,8 @@ public class BaseSettings: NSObject {
         set { self.writeObjectToStore(newValue as AnyObject, key: "currentGameInProgress") }
     }
     
-    var forumCookies: String {
-        get { return self.readObjectFromStore("ForumCookies") as! String }
+    var forumCookies: String? {
+        get { return self.readObjectFromStore("ForumCookies") as! String? }
         set { self.writeObjectToStore(newValue as AnyObject, key: "ForumCookies") }
     }
 

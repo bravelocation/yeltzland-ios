@@ -24,7 +24,9 @@ class YeltzForumHelper {
             // Check the current cookies and save them if changed
             self.currentCookieString(webView: webView, completionHandler: {(currentCookieString) in
                 if (currentCookieString.count > 0) {
-                    let storedCookieString = self.storedCookieString()
+                    guard let storedCookieString = self.storedCookieString() else {
+                        return
+                    }
                     
                     if (currentCookieString.elementsEqual(storedCookieString) == false) {
                         self.saveCookieString(currentCookieString)
@@ -38,7 +40,9 @@ class YeltzForumHelper {
     func addForumCookies(request: NSMutableURLRequest) {
         if let url = request.url {
             if (self.isForumRequest(url: url) == true && self.isLoginRequest(url: url) == false && self.isLogoutRequest(url: url) == false) {
-                let cookieString = self.storedCookieString()
+                guard let cookieString = self.storedCookieString() else {
+                    return
+                }
                 
                 if (cookieString.count > 0) {
                     request.addValue(cookieString, forHTTPHeaderField: "Cookie")
@@ -51,7 +55,10 @@ class YeltzForumHelper {
     func cookiesAvailableAndMissing(url: URL, webView: WKWebView, completionHandler: @escaping (_ result: Bool) -> Void) {
         if (self.isForumRequest(url: url) && self.isLoginRequest(url: url) == false && self.isLogoutRequest(url: url) == false) {
             self.currentCookieString(webView: webView, completionHandler: {(currentCookieString) in
-                let storedCookieString = self.storedCookieString()
+                guard let storedCookieString = self.storedCookieString() else {
+                    completionHandler(false)
+                    return
+                }
                 
                 if (storedCookieString.count > 0 && currentCookieString.count == 0) {
                     completionHandler(true)
@@ -121,7 +128,7 @@ class YeltzForumHelper {
         GameSettings.shared.forumCookies = cookieString
     }
     
-    private func storedCookieString() -> String {
+    private func storedCookieString() -> String? {
         // Retrieve the values from storage
         return GameSettings.shared.forumCookies
     }
