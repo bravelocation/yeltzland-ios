@@ -28,6 +28,11 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         self.tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "Cell")
         self.tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "SettingsCell")
     }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        // Reload the table on trait change, in particular to change images on dark mode change
+        self.tableView.reloadData()
+    }
 
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {

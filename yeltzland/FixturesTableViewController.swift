@@ -134,6 +134,11 @@ class FixturesTableViewController: UITableViewController {
             }
         }
     }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        // Reload the table on trait change, in particular to change images on dark mode change
+        self.tableView.reloadData()
+    }
 
     // MARK: - Keyboard options
     override var keyCommands: [UIKeyCommand]? {
