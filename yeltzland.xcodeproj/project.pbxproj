@@ -96,6 +96,7 @@
 		529E81001EDAC05C002DC858 /* TodayDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529E80FF1EDAC05C002DC858 /* TodayDataItem.swift */; };
 		52A4596E1D89666E00822D8C /* gallery.ckcomplication in Resources */ = {isa = PBXBuildFile; fileRef = 52A4596D1D89666E00822D8C /* gallery.ckcomplication */; };
 		52B4475522CF316000E745EB /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B4475422CF316000E745EB /* AppColors.swift */; };
+		52BF0B6C2357079900AE1351 /* YeltzForumHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BF0B6B2357079900AE1351 /* YeltzForumHelper.swift */; };
 		52C4DA881D4CA68A009AFD25 /* american_typewriter_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 52C4DA871D4CA68A009AFD25 /* american_typewriter_regular.ttf */; };
 		52C4DA891D4CA68A009AFD25 /* american_typewriter_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 52C4DA871D4CA68A009AFD25 /* american_typewriter_regular.ttf */; };
 		52D868261FE81B6E0041B578 /* TVFixtureCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D868241FE81B6E0041B578 /* TVFixtureCollectionCell.swift */; };
@@ -311,6 +312,7 @@
 		529E80FF1EDAC05C002DC858 /* TodayDataItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayDataItem.swift; sourceTree = "<group>"; };
 		52A4596D1D89666E00822D8C /* gallery.ckcomplication */ = {isa = PBXFileReference; lastKnownFileType = folder; path = gallery.ckcomplication; sourceTree = "<group>"; };
 		52B4475422CF316000E745EB /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
+		52BF0B6B2357079900AE1351 /* YeltzForumHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YeltzForumHelper.swift; sourceTree = "<group>"; };
 		52C4DA871D4CA68A009AFD25 /* american_typewriter_regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = american_typewriter_regular.ttf; sourceTree = "<group>"; };
 		52D868241FE81B6E0041B578 /* TVFixtureCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVFixtureCollectionCell.swift; sourceTree = "<group>"; };
 		52D868251FE81B6E0041B578 /* TVFixtureCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TVFixtureCollectionCell.xib; sourceTree = "<group>"; };
@@ -507,6 +509,7 @@
 				5231F4FE215B6C56003FAC68 /* SettingsManager.swift */,
 				528A347720CFB98D00E8475C /* TeamImageManager.swift */,
 				522716CC22D1BB50008FD210 /* CachedJSONData.swift */,
+				52BF0B6B2357079900AE1351 /* YeltzForumHelper.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1430,6 +1433,7 @@
 				52176BB01D4A1B3200B7EFAE /* GameScoreManager.swift in Sources */,
 				523C84201CE70806006F1865 /* ChromeActivity.swift in Sources */,
 				5211F72A1CDA53D70031496D /* TwitterUserTimelineViewController.swift in Sources */,
+				52BF0B6C2357079900AE1351 /* YeltzForumHelper.swift in Sources */,
 				522716C422D0D438008FD210 /* AppImages.swift in Sources */,
 				52B4475522CF316000E745EB /* AppColors.swift in Sources */,
 				520C09A22157C46100CCC2D8 /* ShortcutManager.swift in Sources */,
@@ -1860,7 +1864,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				SHARED_VERSION_NUMBER = 4.0.1;
+				SHARED_VERSION_NUMBER = 4.0.2;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1912,7 +1916,7 @@
 				LD_VERIFY_BITCODE = NO;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SHARED_VERSION_NUMBER = 4.0.1;
+				SHARED_VERSION_NUMBER = 4.0.2;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2";
