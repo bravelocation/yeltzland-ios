@@ -78,11 +78,6 @@ public class BaseSettings: NSObject {
         get { return self.readObjectFromStore("currentGameInProgress") as! Bool }
         set { self.writeObjectToStore(newValue as AnyObject, key: "currentGameInProgress") }
     }
-    
-    var forumCookies: String? {
-        get { return self.readObjectFromStore("ForumCookies") as! String? }
-        set { self.writeObjectToStore(newValue as AnyObject, key: "ForumCookies") }
-    }
 
     // MARK: - Latest score functions
     @objc public func updateLatestScoreSettings() {

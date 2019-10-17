@@ -35,9 +35,6 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
     let webView = WKWebView()
     let progressBar = UIProgressView(progressViewStyle: .bar)
     var spinner: UIActivityIndicatorView!
-    
-    // Yeltz Forum Helper
-    let forumHelper = YeltzForumHelper()
 
     // Initializers
     required init(coder aDecoder: NSCoder) {
@@ -191,17 +188,10 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         self.webView.stopLoading()
         progressBar.setProgress(0, animated: false)
         
-        self.forumHelper.cookiesAvailableAndMissing(url: requestUrl,
-                                                    webView: self.webView,
-                                                    completionHandler: { missing in
-                                                        let req = NSMutableURLRequest(url: requestUrl)
-                                                        if (missing) {
-                                                            self.forumHelper.addForumCookies(request: req)
-                                                        }
-                                                        
-                                                        self.webView.load(req as URLRequest)
-                                                        print("Loading page:", requestUrl)
-        })
+        let req = URLRequest(url: requestUrl)
+        self.webView.load(req)
+
+        print("Loading page:", requestUrl)
     }
     
     @objc func shareButtonTouchUp() {
@@ -315,14 +305,6 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         })
     }
     
-    func webView(_ webView: WKWebView,
-                 decidePolicyFor navigationResponse: WKNavigationResponse,
-                 decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
-        forumHelper.saveForumCookies(url: navigationResponse.response.url!, webView: webView)
-        
-        decisionHandler(WKNavigationResponsePolicy.allow)
-    }
-    
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         DispatchQueue.main.async(execute: { () -> Void in
             var externalUrl: URL? = nil
@@ -341,23 +323,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
                 
                 decisionHandler(WKNavigationActionPolicy.cancel)
             } else {
-                
-                self.forumHelper.cookiesAvailableAndMissing(url: navigationAction.request.url!,
-                                                            webView: webView,
-                                                            completionHandler: { missing in
-                    if (missing) {
-                        // Reset cookies if forum request and not on request - see https://stackoverflow.com/questions/26573137/can-i-set-the-cookies-to-be-used-by-a-wkwebview/32196541#32196541
-                        
-                        let req = NSMutableURLRequest(url: navigationAction.request.url!)
-                        self.forumHelper.addForumCookies(request: req)
-                        webView.load(req as URLRequest)
-                        
-                        decisionHandler(WKNavigationActionPolicy.cancel)
-                        print("Reloading request having added cookies: \(navigationAction.request.url!.absoluteString)")
-                    } else {
-                        decisionHandler(WKNavigationActionPolicy.allow)
-                    }
-                })
+                decisionHandler(WKNavigationActionPolicy.allow)
             }
         })
     }
