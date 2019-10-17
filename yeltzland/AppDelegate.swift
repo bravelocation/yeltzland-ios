@@ -10,6 +10,7 @@ import UIKit
 import TwitterKit
 import Firebase
 import Intents
+import WebKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: Application properties
     var window: UIWindow?
     var firebaseNotifications: FirebaseNotifications?
+    var processPool: WKProcessPool = WKProcessPool()
     
     // MARK: - UIApplicationDelegate functions
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
