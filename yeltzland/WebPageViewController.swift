@@ -32,9 +32,22 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
     var reloadButton: UIBarButtonItem!
     var shareButton: UIBarButtonItem!
     
-    let webView = WKWebView()
     let progressBar = UIProgressView(progressViewStyle: .bar)
     var spinner: UIActivityIndicatorView!
+    
+    lazy var webView: WKWebView = {
+        // Setting configuration based on LinhT_24 comment in https://forums.developer.apple.com/thread/99674
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        // Use a single process pool for all web views
+        let webConfiguration = WKWebViewConfiguration()
+        webConfiguration.processPool = appDelegate.processPool
+
+        let webView = WKWebView(frame: .zero, configuration: webConfiguration)
+        webView.navigationDelegate = self
+        
+        return webView
+    }()
 
     // Initializers
     required init(coder aDecoder: NSCoder) {
