@@ -89,7 +89,6 @@ DEPENDENCIES:
   - Firebase/Messaging
   - SDWebImage
   - SwiftLint
-  - TwitterCore
   - TwitterKit
 
 SPEC REPOS:
@@ -133,6 +132,6 @@ SPEC CHECKSUMS:
   TwitterCore: 8cbc9ad34d91c63a0035ea05bfbfc0d7ca72a28c
   TwitterKit: 5e4f41d70b9abdb41df5467f52d7aa2c0fd26ebb
 
-PODFILE CHECKSUM: a61fe562d10ef9737c629107aa8237411473588a
+PODFILE CHECKSUM: 38c1b8a656bfa858480e0048e4c7a9fd74d5c697
 
 COCOAPODS: 1.8.3

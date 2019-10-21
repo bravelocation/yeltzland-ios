@@ -6,7 +6,6 @@ target 'yeltzland' do
   platform :ios, '11.0'
   
   pod 'TwitterKit'
-  pod 'TwitterCore'
   pod 'Firebase/Core'
   pod 'Firebase/Messaging'
   pod 'SDWebImage'
