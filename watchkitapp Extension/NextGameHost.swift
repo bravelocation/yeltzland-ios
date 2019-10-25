@@ -15,4 +15,3 @@ class NextGameHost: WKHostingController<NextGameView> {
         return NextGameView()
     }
 }
-

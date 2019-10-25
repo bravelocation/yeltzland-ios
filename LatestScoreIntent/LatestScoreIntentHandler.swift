@@ -32,8 +32,8 @@ class LatestScoreIntentHandler: NSObject, LatestScoreIntentHandling {
             gameDetails.home = fixture.home ? 1 : 0
             gameDetails.kickoffTime = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: fixture.fixtureDate)
             gameDetails.opponent = fixture.opponentNoCup
-            gameDetails.opponentScore = NSNumber(integerLiteral: fixture.opponentScore!)
-            gameDetails.yeltzScore = NSNumber(integerLiteral: fixture.teamScore!)
+            gameDetails.opponentScore = NSNumber(value: fixture.opponentScore!)
+            gameDetails.yeltzScore = NSNumber(value: fixture.teamScore!)
 
             var response: LatestScoreIntentResponse? = nil
             
