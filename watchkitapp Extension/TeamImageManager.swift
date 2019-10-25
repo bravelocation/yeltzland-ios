@@ -28,6 +28,14 @@ public class TeamImageManager {
         view.sd_setImage(with: self.teamURL(teamName), placeholderImage: UIImage(imageLiteralResourceName: "blank_team"), completed: nil)
     }
     
+    public func loadTeamImage(teamName: String, completion: @escaping (UIImage?) -> Void) {
+        SDWebImageManager.shared.loadImage(with: self.teamURL(teamName),
+                                           options: .continueInBackground,
+                                           progress: nil) { image, _, _, _, _, _  in
+                                            completion(image)
+        }
+    }
+    
     func makeTeamFileName(_ teamName: String) -> String {
         let teamFileName = teamName.replacingOccurrences(of: " ", with: "_").lowercased()
         

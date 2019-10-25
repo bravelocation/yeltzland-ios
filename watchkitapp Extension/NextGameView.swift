@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import SDWebImageSwiftUI
 
 struct NextGameView: View {
     @ObservedObject var fixtureData = FixtureListData()
@@ -15,11 +14,11 @@ struct NextGameView: View {
     var body: some View {
         VStack {
             HStack {
-                WebImage(url: teamImageUrl(fixture: fixtureData.latest, homeTeam: true))
+                self.fixtureData.teamImage(self.teamImageName(fixture: fixtureData.latest, homeTeam: true))
                     .resizable()
                     .scaledToFit()
                     .frame(width: CGFloat(50), height: CGFloat(50), alignment: .center)
-                WebImage(url: teamImageUrl(fixture: fixtureData.latest, homeTeam: false))
+                self.fixtureData.teamImage(self.teamImageName(fixture: fixtureData.latest, homeTeam: false))
                     .resizable()
                     .scaledToFit()
                     .frame(width: CGFloat(50), height: CGFloat(50), alignment: .center)
@@ -62,16 +61,16 @@ struct NextGameView: View {
         return false
     }
     
-    func teamImageUrl(fixture: Fixture?, homeTeam: Bool) -> URL? {
+    func teamImageName(fixture: Fixture?, homeTeam: Bool) -> String {
         if let fixture = fixture {
             if fixture.home == true && homeTeam == false {
-                return TeamImageManager.shared.teamURL(fixture.opponent)
+                return fixture.opponentNoCup
             } else if fixture.home == false && homeTeam == true {
-               return TeamImageManager.shared.teamURL(fixture.opponent)
+               return fixture.opponentNoCup
             }
         }
         
-        return TeamImageManager.shared.teamURL("Halesowen Town")
+        return "Halesowen Town"
     }
 }
 

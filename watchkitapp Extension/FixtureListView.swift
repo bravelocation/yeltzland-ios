@@ -7,17 +7,19 @@
 //
 
 import SwiftUI
-import SDWebImageSwiftUI
 
 struct FixtureListView: View {
     @ObservedObject var fixtureData = FixtureListData()
+    
+    // TODO: Figure out how to scroll to latest fixture
+    // TODO: Make list non-selectable?
     
     var body: some View {
         List(self.fixtureData.fixtures, id: \.self) { fixture in
 
             VStack(alignment: .leading) {
                 HStack {
-                    WebImage(url: TeamImageManager.shared.teamURL(fixture.opponent))
+                    self.fixtureData.teamImage(fixture.opponentNoCup)
                         .resizable()
                         .scaledToFit()
                         .frame(width: CGFloat(50), height: CGFloat(50), alignment: .center)
@@ -61,7 +63,6 @@ struct FixtureListView: View {
         
         return Color.white
     }
-    
 }
 
 struct FixtureListView_Previews: PreviewProvider {

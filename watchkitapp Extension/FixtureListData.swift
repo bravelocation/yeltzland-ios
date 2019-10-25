@@ -13,6 +13,7 @@ import Combine
 class FixtureListData: ObservableObject {
     @Published var fixtures: [Fixture] = []
     @Published var latest: Fixture? = nil
+    @Published var logos: [String: UIImage] = [:]
     
     init() {
         //Add notification handler for updating on updated fixtures
@@ -20,6 +21,7 @@ class FixtureListData: ObservableObject {
         
         self.fixtures = FixtureManager.shared.allMatches
         self.latest = self.calculateLatestFixture()
+        self.cacheAllLogos()
         
         // Go fetch the latest fixtures and game score
         self.refreshData()
@@ -33,6 +35,30 @@ class FixtureListData: ObservableObject {
         // Go fetch the latest fixtures and game score
         FixtureManager.shared.fetchLatestData(completion: nil)
         GameScoreManager.shared.fetchLatestData(completion: nil)
+    }
+    
+    func teamImage(_ teamName: String) -> Image {
+        if let image = self.logos[teamName] {
+            return Image(uiImage: image)
+        }
+        
+        return Image("blank-team")
+    }
+    
+    fileprivate func cacheAllLogos() {
+        self.fetchTeamLogo("Halesowen Town")
+        
+        for fixture in self.fixtures where self.logos[fixture.opponentNoCup] == nil {
+            self.fetchTeamLogo(fixture.opponentNoCup)
+        }
+    }
+    
+    fileprivate func fetchTeamLogo(_ teamName: String) {
+        TeamImageManager.shared.loadTeamImage(teamName: teamName) { image in
+            if image != nil {
+                self.logos[teamName] = image
+            }
+        }
     }
     
     fileprivate func calculateLatestFixture() -> Fixture? {
@@ -53,6 +79,7 @@ class FixtureListData: ObservableObject {
         DispatchQueue.main.async {
             self.fixtures = FixtureManager.shared.allMatches
             self.latest = self.calculateLatestFixture()
+            self.cacheAllLogos()
         }
     }
 }

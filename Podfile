@@ -17,7 +17,6 @@ target 'watchkitapp Extension' do
   platform :watchos, '6.0'
 
   pod 'SDWebImage'
-  pod 'SDWebImageSwiftUI'
 end
 
 target 'yeltzlandTVOS' do
