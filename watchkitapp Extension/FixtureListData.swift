@@ -22,15 +22,20 @@ class FixtureListData: ObservableObject {
         self.latest = self.calculateLatestFixture()
         
         // Go fetch the latest fixtures and game score
-        FixtureManager.shared.fetchLatestData(completion: nil)
-        GameScoreManager.shared.fetchLatestData(completion: nil)
+        self.refreshData()
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
     
-    func calculateLatestFixture() -> Fixture? {
+    func refreshData() {
+        // Go fetch the latest fixtures and game score
+        FixtureManager.shared.fetchLatestData(completion: nil)
+        GameScoreManager.shared.fetchLatestData(completion: nil)
+    }
+    
+    fileprivate func calculateLatestFixture() -> Fixture? {
         var latestFixture: Fixture? = FixtureManager.shared.lastGame
 
         if let currentFixture = GameScoreManager.shared.currentFixture {

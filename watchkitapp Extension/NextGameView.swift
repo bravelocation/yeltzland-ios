@@ -33,6 +33,17 @@ struct NextGameView: View {
                 .font(.footnote)
                 .multilineTextAlignment(.trailing)
         }
+        .contextMenu(menuItems: {
+            Button(action: {
+                self.fixtureData.refreshData()
+            }, label: {
+                VStack {
+                    Image(systemName: "arrow.clockwise")
+                        .font(.title)
+                    Text("Refresh data")
+                }
+            })
+        })
     }
     
     func unwrapString(_ val: String?) -> String {

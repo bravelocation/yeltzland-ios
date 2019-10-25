@@ -31,7 +31,19 @@ struct FixtureListView: View {
                     .foregroundColor(self.resultColor(fixture))
             }
             .padding(8)
-        }.listStyle(CarouselListStyle())
+        }
+        .listStyle(CarouselListStyle())
+        .contextMenu(menuItems: {
+            Button(action: {
+                self.fixtureData.refreshData()
+            }, label: {
+                VStack {
+                    Image(systemName: "arrow.clockwise")
+                        .font(.title)
+                    Text("Refresh data")
+                }
+            })
+        })
        
     }
     
