@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14460.31" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="928-1F-cke">
-    <device id="watch42" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="15400" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="928-1F-cke">
+    <device id="watch42"/>
     <dependencies>
-        <deployment identifier="watchOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14460.16"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="15400"/>
     </dependencies>
     <scenes>
         <!--Next Game Controller-->
@@ -62,72 +59,18 @@
             </objects>
             <point key="canvasLocation" x="-72" y="349"/>
         </scene>
-        <!--Interface Controller-->
+        <!--Fixture List Host-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller animationDuration="2" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="watchkitapp" customModuleProvider="target">
-                    <items>
-                        <separator alignment="left" semanticContentAttribute="spatial" alpha="0.0" id="Pia-g8-Zc6"/>
-                        <imageView width="1" alignment="center" image="logo" contentMode="center" id="g3O-YU-52c"/>
-                        <separator alignment="left" semanticContentAttribute="spatial" alpha="0.0" id="7nE-Lf-mUq"/>
-                        <label width="1" alignment="left" text="HTFC Fixture List" textAlignment="center" minimumScaleFactor="0.5" id="Jlh-93-pUI">
-                            <color key="textColor" red="0.79215686269999996" green="0.86274509799999999" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
-                        </label>
-                        <table alignment="left" id="aGY-fu-J3s">
-                            <items>
-                                <tableRow identifier="FixtureRowType" selectable="NO" id="iCM-SX-B06" customClass="FixtureRowType" customModule="watchkitapp_Extension">
-                                    <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" spacing="0.0" id="2PX-Tg-cBr">
-                                        <items>
-                                            <imageView width="32" height="32" alignment="center" id="ZOu-Il-kFe"/>
-                                            <label width="1" alignment="left" textAlignment="center" minimumScaleFactor="0.80000000000000004" id="AqB-kH-yuq">
-                                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="font" style="UICTFontTextStyleBody"/>
-                                            </label>
-                                            <label width="1" alignment="left" textAlignment="center" id="m6C-1M-rpJ">
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </label>
-                                            <label width="1" alignment="left" textAlignment="center" id="P4d-0F-Sj2">
-                                                <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
-                                            </label>
-                                            <label width="1" alignment="left" textAlignment="center" id="byH-JI-B4J">
-                                                <fontDescription key="font" style="UICTFontTextStyleBody"/>
-                                            </label>
-                                            <separator alignment="left" id="LcS-GK-ZGG">
-                                                <color key="color" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </separator>
-                                        </items>
-                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    </group>
-                                    <connections>
-                                        <outlet property="labelDateTime" destination="AqB-kH-yuq" id="JH7-vD-kGc"/>
-                                        <outlet property="labelOpponent" destination="P4d-0F-Sj2" id="cdd-3M-f2C"/>
-                                        <outlet property="labelScore" destination="byH-JI-B4J" id="egs-wR-w3O"/>
-                                        <outlet property="labelhomeAway" destination="m6C-1M-rpJ" id="zip-Fb-r2y"/>
-                                        <outlet property="teamImage" destination="ZOu-Il-kFe" id="4uM-Jq-u2U"/>
-                                    </connections>
-                                </tableRow>
-                            </items>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        </table>
-                    </items>
-                    <menu key="menu" id="ZXW-Fa-qV5">
-                        <items>
-                            <menuItem title="Refresh" icon="resume" id="Jqw-Xq-TMy">
-                                <connections>
-                                    <action selector="refreshTouchUp" destination="AgC-eL-Hgc" id="aKX-tN-NLW"/>
-                                </connections>
-                            </menuItem>
-                        </items>
-                    </menu>
+                <controller animationDuration="2" id="AgC-eL-Hgc" customClass="FixtureListHost" customModule="watchkitapp_Extension">
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                    <connections>
-                        <outlet property="fixtureTable" destination="aGY-fu-J3s" id="XCc-Um-9T2"/>
-                    </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="217.94871794871796" y="342.17948717948718"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Logo" width="256" height="256"/>
+    </resources>
     <color key="tintColor" red="0.79215686269999996" green="0.86274509799999999" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

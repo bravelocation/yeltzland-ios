@@ -18,11 +18,14 @@ public class TeamImageManager {
         }
     }
     
-    public func loadTeamImage(teamName: String, view: WKInterfaceImage) {
+    public func teamURL(_ teamName: String) -> URL? {
         let imageUrl = String(format: "https://bravelocation.com/teamlogos/%@.png", self.makeTeamFileName(teamName))
-        print("Loading team image: \(imageUrl)")
         
-        view.sd_setImage(with: URL(string: imageUrl), placeholderImage: UIImage(imageLiteralResourceName: "blank_team"), completed: nil)
+        return URL(string: imageUrl)
+    }
+    
+    public func loadTeamImage(teamName: String, view: WKInterfaceImage) {
+        view.sd_setImage(with: self.teamURL(teamName), placeholderImage: UIImage(imageLiteralResourceName: "blank_team"), completed: nil)
     }
     
     func makeTeamFileName(_ teamName: String) -> String {

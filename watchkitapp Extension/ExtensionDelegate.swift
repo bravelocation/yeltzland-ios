@@ -111,7 +111,9 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
                 self.settingsUpdated()
             }
             
-            task.setTaskCompleted()
+            // Take a snapshot (unless this was a snapshot refresh task itself!)
+            let snapshotTaken = task is WKSnapshotRefreshBackgroundTask
+            task.setTaskCompletedWithSnapshot(!snapshotTaken)
         }
     }
     

@@ -38,7 +38,7 @@ public enum FixtureState {
     case manyDaysAfter
 }
 
-public class Fixture {
+public struct Fixture: Hashable {
     var fixtureDate: Date
     var opponent: String
     var home: Bool

@@ -21,7 +21,6 @@
 		52176BBB1D4B6D5900B7EFAE /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52176BB91D4B6D5900B7EFAE /* Interface.storyboard */; };
 		52176BBD1D4B6D5900B7EFAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52176BBC1D4B6D5900B7EFAE /* Assets.xcassets */; };
 		52176BC41D4B6D5900B7EFAE /* watchkitapp Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 52176BC31D4B6D5900B7EFAE /* watchkitapp Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		52176BCB1D4B6D5900B7EFAE /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52176BCA1D4B6D5900B7EFAE /* InterfaceController.swift */; };
 		52176BCD1D4B6D5900B7EFAE /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52176BCC1D4B6D5900B7EFAE /* ExtensionDelegate.swift */; };
 		52176BD11D4B6D5900B7EFAE /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52176BD01D4B6D5900B7EFAE /* ComplicationController.swift */; };
 		52176BD31D4B6D5900B7EFAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52176BD21D4B6D5900B7EFAE /* Assets.xcassets */; };
@@ -83,6 +82,9 @@
 		527DAF231D2D0F550092BB8F /* LocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527DAF221D2D0F550092BB8F /* LocationsViewController.swift */; };
 		527DAF251D2D308F0092BB8F /* LocationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527DAF241D2D308F0092BB8F /* LocationAnnotation.swift */; };
 		5284902D1D512EDC00486B1A /* gamescore.json in Resources */ = {isa = PBXBuildFile; fileRef = 52176BAD1D4A1AF600B7EFAE /* gamescore.json */; };
+		5286D3A623631016000DADFC /* FixtureListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286D3A523631016000DADFC /* FixtureListView.swift */; };
+		5286D3A823631085000DADFC /* FixtureListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286D3A723631085000DADFC /* FixtureListData.swift */; };
+		5286D3AA236312E0000DADFC /* FixtureListHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286D3A9236312E0000DADFC /* FixtureListHost.swift */; };
 		528A347820CFB98D00E8475C /* TeamImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A347720CFB98D00E8475C /* TeamImageManager.swift */; };
 		528D745A1CF2F4A400263685 /* DefaultPreferences.plist in Resources */ = {isa = PBXBuildFile; fileRef = 528D74591CF2F4A400263685 /* DefaultPreferences.plist */; };
 		528D745C1CF3201400263685 /* whistleshort.wav in Resources */ = {isa = PBXBuildFile; fileRef = 528D745B1CF3201400263685 /* whistleshort.wav */; };
@@ -254,7 +256,6 @@
 		52176BBE1D4B6D5900B7EFAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52176BC31D4B6D5900B7EFAE /* watchkitapp Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "watchkitapp Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52176BC91D4B6D5900B7EFAE /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
-		52176BCA1D4B6D5900B7EFAE /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
 		52176BCC1D4B6D5900B7EFAE /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		52176BD01D4B6D5900B7EFAE /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		52176BD21D4B6D5900B7EFAE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -301,6 +302,9 @@
 		527DAF201D2D096B0092BB8F /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		527DAF221D2D0F550092BB8F /* LocationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsViewController.swift; sourceTree = "<group>"; };
 		527DAF241D2D308F0092BB8F /* LocationAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationAnnotation.swift; sourceTree = "<group>"; };
+		5286D3A523631016000DADFC /* FixtureListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureListView.swift; sourceTree = "<group>"; };
+		5286D3A723631085000DADFC /* FixtureListData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureListData.swift; sourceTree = "<group>"; };
+		5286D3A9236312E0000DADFC /* FixtureListHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureListHost.swift; sourceTree = "<group>"; };
 		528A347720CFB98D00E8475C /* TeamImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamImageManager.swift; sourceTree = "<group>"; };
 		528D74561CF1A6FF00263685 /* yeltzland-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "yeltzland-Bridging-Header.h"; sourceTree = "<group>"; };
 		528D74591CF2F4A400263685 /* DefaultPreferences.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultPreferences.plist; sourceTree = "<group>"; };
@@ -464,9 +468,11 @@
 				52176BD21D4B6D5900B7EFAE /* Assets.xcassets */,
 				52176BD01D4B6D5900B7EFAE /* ComplicationController.swift */,
 				52176BCC1D4B6D5900B7EFAE /* ExtensionDelegate.swift */,
+				5286D3A723631085000DADFC /* FixtureListData.swift */,
+				5286D3A9236312E0000DADFC /* FixtureListHost.swift */,
+				5286D3A523631016000DADFC /* FixtureListView.swift */,
 				52E711A71D9E52080002446A /* FixtureTableRow.swift */,
 				52176BD41D4B6D5900B7EFAE /* Info.plist */,
-				52176BCA1D4B6D5900B7EFAE /* InterfaceController.swift */,
 				524A01171EEC3A7D00862509 /* NextGameController.swift */,
 				522EA44120EA236A00B90146 /* TeamImageManager.swift */,
 				52176BE31D4B6EF000B7EFAE /* WatchGameSettings.swift */,
@@ -1358,15 +1364,17 @@
 				52176BE41D4B6EF000B7EFAE /* WatchGameSettings.swift in Sources */,
 				52176BD11D4B6D5900B7EFAE /* ComplicationController.swift in Sources */,
 				52E711A31D9CF5EB0002446A /* GameScoreManager.swift in Sources */,
+				5286D3AA236312E0000DADFC /* FixtureListHost.swift in Sources */,
 				522716CF22D1BB50008FD210 /* CachedJSONData.swift in Sources */,
+				5286D3A623631016000DADFC /* FixtureListView.swift in Sources */,
 				52E711A81D9E52080002446A /* FixtureTableRow.swift in Sources */,
 				52E711A11D9CF5C90002446A /* FixtureManager.swift in Sources */,
 				52176BCD1D4B6D5900B7EFAE /* ExtensionDelegate.swift in Sources */,
 				52E711A41D9CF5F40002446A /* Fixture.swift in Sources */,
+				5286D3A823631085000DADFC /* FixtureListData.swift in Sources */,
 				524A01181EEC3A7D00862509 /* NextGameController.swift in Sources */,
 				52176BE01D4B6D7300B7EFAE /* BaseSettings.swift in Sources */,
 				522EA44220EA236A00B90146 /* TeamImageManager.swift in Sources */,
-				52176BCB1D4B6D5900B7EFAE /* InterfaceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1585,7 +1593,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
 			};
 			name = Debug;
 		};
@@ -1609,7 +1617,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
 			};
 			name = Release;
 		};
@@ -1637,7 +1645,7 @@
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
 			};
 			name = Debug;
 		};
@@ -1664,7 +1672,7 @@
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 4.0;
+				WATCHOS_DEPLOYMENT_TARGET = 6.0;
 			};
 			name = Release;
 		};
