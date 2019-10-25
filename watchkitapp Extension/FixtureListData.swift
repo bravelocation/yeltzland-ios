@@ -42,7 +42,7 @@ class FixtureListData: ObservableObject {
             return Image(uiImage: image)
         }
         
-        return Image("blank-team")
+        return Image("blank_team")
     }
     
     fileprivate func cacheAllLogos() {
