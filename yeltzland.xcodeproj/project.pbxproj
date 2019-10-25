@@ -57,7 +57,6 @@
 		523C84201CE70806006F1865 /* ChromeActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523C841F1CE70806006F1865 /* ChromeActivity.swift */; };
 		523CE54D214F9A54002F29EF /* FixtureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523CE54B214F9A54002F29EF /* FixtureTableViewCell.swift */; };
 		523CE54E214F9A54002F29EF /* FixtureTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 523CE54C214F9A54002F29EF /* FixtureTableViewCell.xib */; };
-		524A01181EEC3A7D00862509 /* NextGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A01171EEC3A7D00862509 /* NextGameController.swift */; };
 		525719741FDE8AE2005F1D80 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525719731FDE8AE2005F1D80 /* AppDelegate.swift */; };
 		525719761FDE8AE2005F1D80 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525719751FDE8AE2005F1D80 /* ViewController.swift */; };
 		525719791FDE8AE2005F1D80 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 525719771FDE8AE2005F1D80 /* Main.storyboard */; };
@@ -85,6 +84,8 @@
 		5286D3A623631016000DADFC /* FixtureListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286D3A523631016000DADFC /* FixtureListView.swift */; };
 		5286D3A823631085000DADFC /* FixtureListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286D3A723631085000DADFC /* FixtureListData.swift */; };
 		5286D3AA236312E0000DADFC /* FixtureListHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286D3A9236312E0000DADFC /* FixtureListHost.swift */; };
+		5286D3AC23633145000DADFC /* NextGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286D3AB23633145000DADFC /* NextGameView.swift */; };
+		5286D3AE236336EE000DADFC /* NextGameHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286D3AD236336EE000DADFC /* NextGameHost.swift */; };
 		528A347820CFB98D00E8475C /* TeamImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A347720CFB98D00E8475C /* TeamImageManager.swift */; };
 		528D745A1CF2F4A400263685 /* DefaultPreferences.plist in Resources */ = {isa = PBXBuildFile; fileRef = 528D74591CF2F4A400263685 /* DefaultPreferences.plist */; };
 		528D745C1CF3201400263685 /* whistleshort.wav in Resources */ = {isa = PBXBuildFile; fileRef = 528D745B1CF3201400263685 /* whistleshort.wav */; };
@@ -98,8 +99,6 @@
 		529E81001EDAC05C002DC858 /* TodayDataItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529E80FF1EDAC05C002DC858 /* TodayDataItem.swift */; };
 		52A4596E1D89666E00822D8C /* gallery.ckcomplication in Resources */ = {isa = PBXBuildFile; fileRef = 52A4596D1D89666E00822D8C /* gallery.ckcomplication */; };
 		52B4475522CF316000E745EB /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B4475422CF316000E745EB /* AppColors.swift */; };
-		52C4DA881D4CA68A009AFD25 /* american_typewriter_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 52C4DA871D4CA68A009AFD25 /* american_typewriter_regular.ttf */; };
-		52C4DA891D4CA68A009AFD25 /* american_typewriter_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 52C4DA871D4CA68A009AFD25 /* american_typewriter_regular.ttf */; };
 		52D868261FE81B6E0041B578 /* TVFixtureCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D868241FE81B6E0041B578 /* TVFixtureCollectionCell.swift */; };
 		52D868271FE81B6E0041B578 /* TVFixtureCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52D868251FE81B6E0041B578 /* TVFixtureCollectionCell.xib */; };
 		52D868291FE928DA0041B578 /* TwitterDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D868281FE928DA0041B578 /* TwitterDataSource.swift */; };
@@ -120,7 +119,6 @@
 		52E711A41D9CF5F40002446A /* Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236AE51D17DFF8004903AB /* Fixture.swift */; };
 		52E711A51D9CFDD50002446A /* matches.json in Resources */ = {isa = PBXBuildFile; fileRef = 52236AEA1D17ECB4004903AB /* matches.json */; };
 		52E711A61D9CFDD90002446A /* gamescore.json in Resources */ = {isa = PBXBuildFile; fileRef = 52176BAD1D4A1AF600B7EFAE /* gamescore.json */; };
-		52E711A81D9E52080002446A /* FixtureTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E711A71D9E52080002446A /* FixtureTableRow.swift */; };
 		52E711AB1D9FB5B70002446A /* MakeToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E711AA1D9FB5B70002446A /* MakeToast.swift */; };
 		52E77DE51FDEBB6C0069FCFB /* TVFixtureData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E77DE41FDEBB6C0069FCFB /* TVFixtureData.swift */; };
 		52E77DE81FDEBBB60069FCFB /* TVFixturesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E77DE71FDEBBB60069FCFB /* TVFixturesDataSource.swift */; };
@@ -255,7 +253,6 @@
 		52176BBC1D4B6D5900B7EFAE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		52176BBE1D4B6D5900B7EFAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52176BC31D4B6D5900B7EFAE /* watchkitapp Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "watchkitapp Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		52176BC91D4B6D5900B7EFAE /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		52176BCC1D4B6D5900B7EFAE /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		52176BD01D4B6D5900B7EFAE /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		52176BD21D4B6D5900B7EFAE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -279,7 +276,6 @@
 		523C841F1CE70806006F1865 /* ChromeActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChromeActivity.swift; sourceTree = "<group>"; };
 		523CE54B214F9A54002F29EF /* FixtureTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureTableViewCell.swift; sourceTree = "<group>"; };
 		523CE54C214F9A54002F29EF /* FixtureTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FixtureTableViewCell.xib; sourceTree = "<group>"; };
-		524A01171EEC3A7D00862509 /* NextGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextGameController.swift; sourceTree = "<group>"; };
 		525719711FDE8AE1005F1D80 /* yeltzlandTVOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = yeltzlandTVOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		525719731FDE8AE2005F1D80 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		525719751FDE8AE2005F1D80 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -305,6 +301,8 @@
 		5286D3A523631016000DADFC /* FixtureListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureListView.swift; sourceTree = "<group>"; };
 		5286D3A723631085000DADFC /* FixtureListData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureListData.swift; sourceTree = "<group>"; };
 		5286D3A9236312E0000DADFC /* FixtureListHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureListHost.swift; sourceTree = "<group>"; };
+		5286D3AB23633145000DADFC /* NextGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextGameView.swift; sourceTree = "<group>"; };
+		5286D3AD236336EE000DADFC /* NextGameHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextGameHost.swift; sourceTree = "<group>"; };
 		528A347720CFB98D00E8475C /* TeamImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamImageManager.swift; sourceTree = "<group>"; };
 		528D74561CF1A6FF00263685 /* yeltzland-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "yeltzland-Bridging-Header.h"; sourceTree = "<group>"; };
 		528D74591CF2F4A400263685 /* DefaultPreferences.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultPreferences.plist; sourceTree = "<group>"; };
@@ -315,7 +313,6 @@
 		529E80FF1EDAC05C002DC858 /* TodayDataItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TodayDataItem.swift; sourceTree = "<group>"; };
 		52A4596D1D89666E00822D8C /* gallery.ckcomplication */ = {isa = PBXFileReference; lastKnownFileType = folder; path = gallery.ckcomplication; sourceTree = "<group>"; };
 		52B4475422CF316000E745EB /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
-		52C4DA871D4CA68A009AFD25 /* american_typewriter_regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = american_typewriter_regular.ttf; sourceTree = "<group>"; };
 		52D868241FE81B6E0041B578 /* TVFixtureCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVFixtureCollectionCell.swift; sourceTree = "<group>"; };
 		52D868251FE81B6E0041B578 /* TVFixtureCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TVFixtureCollectionCell.xib; sourceTree = "<group>"; };
 		52D868281FE928DA0041B578 /* TwitterDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterDataSource.swift; sourceTree = "<group>"; };
@@ -332,7 +329,6 @@
 		52E3DF7D1CD9FA78009F18BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		52E3DF801CD9FA78009F18BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		52E3DF821CD9FA78009F18BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		52E711A71D9E52080002446A /* FixtureTableRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FixtureTableRow.swift; sourceTree = "<group>"; };
 		52E711AA1D9FB5B70002446A /* MakeToast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakeToast.swift; sourceTree = "<group>"; };
 		52E77DE41FDEBB6C0069FCFB /* TVFixtureData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVFixtureData.swift; sourceTree = "<group>"; };
 		52E77DE71FDEBBB60069FCFB /* TVFixturesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVFixturesDataSource.swift; sourceTree = "<group>"; };
@@ -471,23 +467,13 @@
 				5286D3A723631085000DADFC /* FixtureListData.swift */,
 				5286D3A9236312E0000DADFC /* FixtureListHost.swift */,
 				5286D3A523631016000DADFC /* FixtureListView.swift */,
-				52E711A71D9E52080002446A /* FixtureTableRow.swift */,
 				52176BD41D4B6D5900B7EFAE /* Info.plist */,
-				524A01171EEC3A7D00862509 /* NextGameController.swift */,
+				5286D3AD236336EE000DADFC /* NextGameHost.swift */,
+				5286D3AB23633145000DADFC /* NextGameView.swift */,
 				522EA44120EA236A00B90146 /* TeamImageManager.swift */,
 				52176BE31D4B6EF000B7EFAE /* WatchGameSettings.swift */,
-				52176BC81D4B6D5900B7EFAE /* Supporting Files */,
 			);
 			path = "watchkitapp Extension";
-			sourceTree = "<group>";
-		};
-		52176BC81D4B6D5900B7EFAE /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				52C4DA871D4CA68A009AFD25 /* american_typewriter_regular.ttf */,
-				52176BC91D4B6D5900B7EFAE /* PushNotificationPayload.apns */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		52236AE91D17EC90004903AB /* data */ = {
@@ -1004,7 +990,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52C4DA881D4CA68A009AFD25 /* american_typewriter_regular.ttf in Resources */,
 				521B94A922CBB621009DFF76 /* Colors.xcassets in Resources */,
 				52176BBD1D4B6D5900B7EFAE /* Assets.xcassets in Resources */,
 				52176BBB1D4B6D5900B7EFAE /* Interface.storyboard in Resources */,
@@ -1015,7 +1000,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52C4DA891D4CA68A009AFD25 /* american_typewriter_regular.ttf in Resources */,
 				52E711A51D9CFDD50002446A /* matches.json in Resources */,
 				52176BD31D4B6D5900B7EFAE /* Assets.xcassets in Resources */,
 				521B94AA22CBB621009DFF76 /* Colors.xcassets in Resources */,
@@ -1365,15 +1349,15 @@
 				52176BD11D4B6D5900B7EFAE /* ComplicationController.swift in Sources */,
 				52E711A31D9CF5EB0002446A /* GameScoreManager.swift in Sources */,
 				5286D3AA236312E0000DADFC /* FixtureListHost.swift in Sources */,
+				5286D3AE236336EE000DADFC /* NextGameHost.swift in Sources */,
 				522716CF22D1BB50008FD210 /* CachedJSONData.swift in Sources */,
 				5286D3A623631016000DADFC /* FixtureListView.swift in Sources */,
-				52E711A81D9E52080002446A /* FixtureTableRow.swift in Sources */,
 				52E711A11D9CF5C90002446A /* FixtureManager.swift in Sources */,
 				52176BCD1D4B6D5900B7EFAE /* ExtensionDelegate.swift in Sources */,
 				52E711A41D9CF5F40002446A /* Fixture.swift in Sources */,
 				5286D3A823631085000DADFC /* FixtureListData.swift in Sources */,
-				524A01181EEC3A7D00862509 /* NextGameController.swift in Sources */,
 				52176BE01D4B6D7300B7EFAE /* BaseSettings.swift in Sources */,
+				5286D3AC23633145000DADFC /* NextGameView.swift in Sources */,
 				522EA44220EA236A00B90146 /* TeamImageManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,0 +1,71 @@
+//
+//  NextGameView.swift
+//  watchkitapp Extension
+//
+//  Created by John Pollard on 25/10/2019.
+//  Copyright © 2019 John Pollard. All rights reserved.
+//
+
+import SwiftUI
+import SDWebImageSwiftUI
+
+struct NextGameView: View {
+    @ObservedObject var fixtureData = FixtureListData()
+    
+    var body: some View {
+        VStack {
+            HStack {
+                WebImage(url: teamImageUrl(fixture: fixtureData.latest, homeTeam: true))
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: CGFloat(50), height: CGFloat(50), alignment: .center)
+                WebImage(url: teamImageUrl(fixture: fixtureData.latest, homeTeam: false))
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: CGFloat(50), height: CGFloat(50), alignment: .center)
+            }
+            Text(isInProgress(fixtureData.latest) ? "Latest Score" : "Final Score")
+                .foregroundColor(Color("light-blue"))
+            Text(fixtureData.latest?.displayOpponent ?? "No more games")
+            Text(isInProgress(fixtureData.latest) ? unwrapString(fixtureData.latest?.inProgressScore) : unwrapString(fixtureData.latest?.score))
+            Spacer()
+            Text(isInProgress(fixtureData.latest) ? "* Best guess from Twitter" : "")
+                .font(.footnote)
+                .multilineTextAlignment(.trailing)
+        }
+    }
+    
+    func unwrapString(_ val: String?) -> String {
+        if let val = val {
+            return val
+        }
+        
+        return ""
+    }
+    
+    func isInProgress(_ fixture: Fixture?) -> Bool {
+        if let fixture = fixture {
+            return fixture.inProgress
+        }
+        
+        return false
+    }
+    
+    func teamImageUrl(fixture: Fixture?, homeTeam: Bool) -> URL? {
+        if let fixture = fixture {
+            if fixture.home == true && homeTeam == false {
+                return TeamImageManager.shared.teamURL(fixture.opponent)
+            } else if fixture.home == false && homeTeam == true {
+               return TeamImageManager.shared.teamURL(fixture.opponent)
+            }
+        }
+        
+        return TeamImageManager.shared.teamURL("Halesowen Town")
+    }
+}
+
+struct NextGameView_Previews: PreviewProvider {
+    static var previews: some View {
+        NextGameView()
+    }
+}
