@@ -11,24 +11,24 @@ import SwiftUI
 struct FixtureListView: View {
     @ObservedObject var fixtureData = FixtureListData()
     
+    let logoDim = CGFloat(40)
+    
     // TODO: Figure out how to scroll to latest fixture
     // TODO: Make list non-selectable?
-    
+        
     var body: some View {
         List(self.fixtureData.fixtures, id: \.self) { fixture in
 
             VStack(alignment: .leading) {
-                HStack {
-                    self.fixtureData.teamImage(fixture.opponentNoCup)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: CGFloat(50), height: CGFloat(50), alignment: .center)
-                    Spacer()
-                    Text(fixture.tvResultDisplayKickoffTime)
-                }
+                self.fixtureData.teamImage(fixture.opponentNoCup)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: self.logoDim, height: self.logoDim, alignment: .center)
+
                 Text(fixture.displayOpponent)
-                    .lineLimit(2)
-                Text(fixture.score)
+                        .lineLimit(2)
+                
+                Text(fixture.fullScoreOrDate)
                     .multilineTextAlignment(.trailing)
                     .foregroundColor(self.resultColor(fixture))
             }
@@ -46,7 +46,6 @@ struct FixtureListView: View {
                 }
             })
         })
-       
     }
     
     func resultColor(_ fixture: Fixture) -> Color {

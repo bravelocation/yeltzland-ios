@@ -11,17 +11,19 @@ import SwiftUI
 struct NextGameView: View {
     @ObservedObject var fixtureData = FixtureListData()
     
+    let logoDim = CGFloat(40)
+    
     var body: some View {
         VStack {
             HStack {
                 self.fixtureData.teamImage(self.teamImageName(fixture: fixtureData.latest, homeTeam: true))
                     .resizable()
                     .scaledToFit()
-                    .frame(width: CGFloat(50), height: CGFloat(50), alignment: .center)
+                    .frame(width: self.logoDim, height: self.logoDim, alignment: .center)
                 self.fixtureData.teamImage(self.teamImageName(fixture: fixtureData.latest, homeTeam: false))
                     .resizable()
                     .scaledToFit()
-                    .frame(width: CGFloat(50), height: CGFloat(50), alignment: .center)
+                    .frame(width: self.logoDim, height: self.logoDim, alignment: .center)
             }
             Text(isInProgress(fixtureData.latest) ? "Latest Score" : "Final Score")
                 .foregroundColor(Color("light-blue"))
