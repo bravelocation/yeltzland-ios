@@ -20,6 +20,8 @@ struct FixtureListView: View {
                 .font(.headline)
                 .foregroundColor(Color("light-blue"))
             
+            Text(self.showResults ? (self.fixtureData.results.count == 0 ? "No results" : "") : (self.fixtureData.fixtures.count == 0 ? "No fixtures" : ""))
+            
             List(self.showResults ? self.fixtureData.results : self.fixtureData.fixtures, id: \.self) { fixture in
 
                 VStack(alignment: .leading) {
