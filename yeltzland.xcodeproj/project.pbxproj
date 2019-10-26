@@ -86,6 +86,7 @@
 		5286D3AA236312E0000DADFC /* FixtureListHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286D3A9236312E0000DADFC /* FixtureListHost.swift */; };
 		5286D3AC23633145000DADFC /* NextGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286D3AB23633145000DADFC /* NextGameView.swift */; };
 		5286D3AE236336EE000DADFC /* NextGameHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286D3AD236336EE000DADFC /* NextGameHost.swift */; };
+		5287A2DD23648E67005EDBA0 /* ResultsListHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5287A2DC23648E67005EDBA0 /* ResultsListHost.swift */; };
 		528A347820CFB98D00E8475C /* TeamImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A347720CFB98D00E8475C /* TeamImageManager.swift */; };
 		528D745A1CF2F4A400263685 /* DefaultPreferences.plist in Resources */ = {isa = PBXBuildFile; fileRef = 528D74591CF2F4A400263685 /* DefaultPreferences.plist */; };
 		528D745C1CF3201400263685 /* whistleshort.wav in Resources */ = {isa = PBXBuildFile; fileRef = 528D745B1CF3201400263685 /* whistleshort.wav */; };
@@ -303,6 +304,7 @@
 		5286D3A9236312E0000DADFC /* FixtureListHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureListHost.swift; sourceTree = "<group>"; };
 		5286D3AB23633145000DADFC /* NextGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextGameView.swift; sourceTree = "<group>"; };
 		5286D3AD236336EE000DADFC /* NextGameHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextGameHost.swift; sourceTree = "<group>"; };
+		5287A2DC23648E67005EDBA0 /* ResultsListHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsListHost.swift; sourceTree = "<group>"; };
 		528A347720CFB98D00E8475C /* TeamImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamImageManager.swift; sourceTree = "<group>"; };
 		528D74561CF1A6FF00263685 /* yeltzland-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "yeltzland-Bridging-Header.h"; sourceTree = "<group>"; };
 		528D74591CF2F4A400263685 /* DefaultPreferences.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultPreferences.plist; sourceTree = "<group>"; };
@@ -470,6 +472,7 @@
 				52176BD41D4B6D5900B7EFAE /* Info.plist */,
 				5286D3AD236336EE000DADFC /* NextGameHost.swift */,
 				5286D3AB23633145000DADFC /* NextGameView.swift */,
+				5287A2DC23648E67005EDBA0 /* ResultsListHost.swift */,
 				522EA44120EA236A00B90146 /* TeamImageManager.swift */,
 				52176BE31D4B6EF000B7EFAE /* WatchGameSettings.swift */,
 			);
@@ -1356,6 +1359,7 @@
 				52176BCD1D4B6D5900B7EFAE /* ExtensionDelegate.swift in Sources */,
 				52E711A41D9CF5F40002446A /* Fixture.swift in Sources */,
 				5286D3A823631085000DADFC /* FixtureListData.swift in Sources */,
+				5287A2DD23648E67005EDBA0 /* ResultsListHost.swift in Sources */,
 				52176BE01D4B6D7300B7EFAE /* BaseSettings.swift in Sources */,
 				5286D3AC23633145000DADFC /* NextGameView.swift in Sources */,
 				522EA44220EA236A00B90146 /* TeamImageManager.swift in Sources */,

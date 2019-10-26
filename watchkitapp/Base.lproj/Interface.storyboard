@@ -22,9 +22,19 @@
             <objects>
                 <controller animationDuration="2" id="AgC-eL-Hgc" customClass="FixtureListHost" customModule="watchkitapp_Extension">
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <segue destination="5QS-v9-yJk" kind="relationship" relationship="nextPage" id="lop-3U-GEu"/>
+                    </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="217.94871794871796" y="342.17948717948718"/>
+        </scene>
+        <!--Results List Host-->
+        <scene sceneID="Q00-ZB-9ld">
+            <objects>
+                <controller id="5QS-v9-yJk" customClass="ResultsListHost" customModule="watchkitapp_Extension"/>
+            </objects>
+            <point key="canvasLocation" x="483" y="350"/>
         </scene>
     </scenes>
     <color key="tintColor" red="0.79215686269999996" green="0.86274509799999999" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

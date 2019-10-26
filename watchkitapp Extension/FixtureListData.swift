@@ -12,6 +12,7 @@ import Combine
 
 class FixtureListData: ObservableObject {
     @Published var fixtures: [Fixture] = []
+    @Published var results: [Fixture] = []
     @Published var latest: Fixture? = nil
     @Published var logos: [String: UIImage] = [:]
     
@@ -19,9 +20,7 @@ class FixtureListData: ObservableObject {
         //Add notification handler for updating on updated fixtures
         NotificationCenter.default.addObserver(self, selector: #selector(FixtureListData.userSettingsUpdated(_:)), name: NSNotification.Name(rawValue: BaseSettings.SettingsUpdateNotification), object: nil)
         
-        self.fixtures = FixtureManager.shared.allMatches
-        self.latest = self.calculateLatestFixture()
-        self.cacheAllLogos()
+        self.resetData()
         
         // Go fetch the latest fixtures and game score
         self.refreshData()
@@ -45,12 +44,23 @@ class FixtureListData: ObservableObject {
         return Image("blank_team")
     }
     
-    fileprivate func cacheAllLogos() {
-        self.fetchTeamLogo("Halesowen Town")
-        
-        for fixture in self.fixtures where self.logos[fixture.opponentNoCup] == nil {
-            self.fetchTeamLogo(fixture.opponentNoCup)
+    func resultColor(_ fixture: Fixture?) -> Color {
+        guard let fixture = fixture else {
+            return Color.white
         }
+        
+        let teamScore = fixture.teamScore
+        let opponentScore  = fixture.opponentScore
+         
+        if (teamScore != nil && opponentScore != nil) {
+             if (teamScore! > opponentScore!) {
+                return Color("watch-fixture-win")
+             } else if (teamScore! < opponentScore!) {
+                return Color("watch-fixture-lose")
+             }
+        }
+        
+        return Color.white
     }
     
     fileprivate func fetchTeamLogo(_ teamName: String) {
@@ -73,13 +83,35 @@ class FixtureListData: ObservableObject {
         return latestFixture
     }
     
+    fileprivate func resetData() {
+        var newFixtures: [Fixture] = []
+        var newResults: [Fixture] = []
+
+        for fixture in FixtureManager.shared.allMatches {
+            if fixture.teamScore == nil && fixture.opponentScore == nil {
+                newFixtures.append(fixture)
+            } else {
+                newResults.append(fixture)
+            }
+            
+            if self.logos[fixture.opponentNoCup] == nil {
+                self.fetchTeamLogo(fixture.opponentNoCup)
+            }
+        }
+        
+        self.fetchTeamLogo("Halesowen Town")
+        
+        self.fixtures = newFixtures
+        self.results = newResults
+
+        self.latest = self.calculateLatestFixture()
+    }
+    
     @objc
     fileprivate func userSettingsUpdated(_ notification: Notification) {
         // Update fixtures data on main thread
         DispatchQueue.main.async {
-            self.fixtures = FixtureManager.shared.allMatches
-            self.latest = self.calculateLatestFixture()
-            self.cacheAllLogos()
+            self.resetData()
         }
     }
 }

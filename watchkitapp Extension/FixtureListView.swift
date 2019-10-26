@@ -10,69 +10,54 @@ import SwiftUI
 
 struct FixtureListView: View {
     @ObservedObject var fixtureData = FixtureListData()
+    var showResults: Bool
     
     let logoDim = CGFloat(40)
-    
-    // TODO: Figure out how to scroll to latest fixture
-    // TODO: Make list non-selectable?
         
     var body: some View {
-        List(self.fixtureData.fixtures, id: \.self) { fixture in
+        VStack {
+            Text(self.showResults ? "Results" : "Fixtures")
+                .font(.headline)
+                .foregroundColor(Color("light-blue"))
+            
+            List(self.showResults ? self.fixtureData.results : self.fixtureData.fixtures, id: \.self) { fixture in
 
-            VStack(alignment: .leading) {
-                self.fixtureData.teamImage(fixture.opponentNoCup)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: self.logoDim, height: self.logoDim, alignment: .center)
+                VStack(alignment: .leading) {
+                    self.fixtureData.teamImage(fixture.opponentNoCup)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: self.logoDim, height: self.logoDim, alignment: .center)
 
-                Text(fixture.displayOpponent)
-                        .lineLimit(2)
-                
-                Text(fixture.fullScoreOrDate)
-                    .multilineTextAlignment(.trailing)
-                    .foregroundColor(self.resultColor(fixture))
-            }
-            .padding(8)
-        }
-        .listStyle(CarouselListStyle())
-        .contextMenu(menuItems: {
-            Button(action: {
-                self.fixtureData.refreshData()
-            }, label: {
-                VStack {
-                    Image(systemName: "arrow.clockwise")
-                        .font(.title)
-                    Text("Refresh data")
+                    Text(fixture.displayOpponent)
+                            .lineLimit(2)
+                    Text(fixture.tvResultDisplayKickoffTime)
+                    Text(fixture.score)
+                        .multilineTextAlignment(.trailing)
+                        .foregroundColor(self.fixtureData.resultColor(fixture))
                 }
+                .padding(8)
+            }
+            .listStyle(CarouselListStyle())
+            .contextMenu(menuItems: {
+                Button(action: {
+                    self.fixtureData.refreshData()
+                }, label: {
+                    VStack {
+                        Image(systemName: "arrow.clockwise")
+                            .font(.title)
+                        Text("Refresh data")
+                    }
+                })
             })
-        })
-    }
-    
-    func resultColor(_ fixture: Fixture) -> Color {
-        let teamScore = fixture.teamScore
-        let opponentScore  = fixture.opponentScore
-         
-        if (teamScore != nil && opponentScore != nil) {
-             if (teamScore! > opponentScore!) {
-                return Color("watch-fixture-win")
-             } else if (teamScore! < opponentScore!) {
-                return Color("watch-fixture-lose")
-             }
         }
-        
-        return Color.white
     }
 }
 
 struct FixtureListView_Previews: PreviewProvider {
     static var previews: some View {
-        FixtureListView()
+        Group {
+            FixtureListView(showResults: false)
+            FixtureListView(showResults: true)
+        }
     }
 }
-
-/*
-
- TeamImageManager.shared.loadTeamImage(teamName: fixture.opponent, view: self.teamImage)
-
- self.labelScore?.setTextColor(resultColor)
- */

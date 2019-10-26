@@ -15,6 +15,10 @@ struct NextGameView: View {
     
     var body: some View {
         VStack {
+            Text(isInProgress(fixtureData.latest) ? "Latest Score" : "Final Score")
+                .font(.headline)
+                .foregroundColor(Color("light-blue"))
+
             HStack {
                 self.fixtureData.teamImage(self.teamImageName(fixture: fixtureData.latest, homeTeam: true))
                     .resizable()
@@ -25,10 +29,9 @@ struct NextGameView: View {
                     .scaledToFit()
                     .frame(width: self.logoDim, height: self.logoDim, alignment: .center)
             }
-            Text(isInProgress(fixtureData.latest) ? "Latest Score" : "Final Score")
-                .foregroundColor(Color("light-blue"))
             Text(fixtureData.latest?.displayOpponent ?? "No more games")
             Text(isInProgress(fixtureData.latest) ? unwrapString(fixtureData.latest?.inProgressScore) : unwrapString(fixtureData.latest?.score))
+                .foregroundColor(self.fixtureData.resultColor(fixtureData.latest))
             Spacer()
             Text(isInProgress(fixtureData.latest) ? "* Best guess from Twitter" : "")
                 .font(.footnote)
