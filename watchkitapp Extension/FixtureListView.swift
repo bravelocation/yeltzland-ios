@@ -19,7 +19,7 @@ struct FixtureListView: View {
             Text(self.showResults ? "Results" : "Fixtures")
                 .font(.headline)
                 .foregroundColor(Color("light-blue"))
-                .padding(8)
+                .padding(.bottom, 8)
             
             Text(self.showResults ? (self.fixtureData.results.count == 0 ? "No results" : "") : (self.fixtureData.fixtures.count == 0 ? "No fixtures" : ""))
             
