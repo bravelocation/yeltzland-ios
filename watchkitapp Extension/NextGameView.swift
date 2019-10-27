@@ -48,6 +48,9 @@ struct NextGameView: View {
                 }
             })
         })
+        .onAppear {
+            self.fixtureData.refreshData()
+        }
     }
     
     func unwrapString(_ val: String?) -> String {

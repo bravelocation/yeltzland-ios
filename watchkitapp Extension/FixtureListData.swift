@@ -21,9 +21,6 @@ class FixtureListData: ObservableObject {
         NotificationCenter.default.addObserver(self, selector: #selector(FixtureListData.userSettingsUpdated(_:)), name: NSNotification.Name(rawValue: BaseSettings.SettingsUpdateNotification), object: nil)
         
         self.resetData()
-        
-        // Go fetch the latest fixtures and game score
-        self.refreshData()
     }
     
     deinit {
@@ -64,6 +61,10 @@ class FixtureListData: ObservableObject {
     }
     
     fileprivate func fetchTeamLogo(_ teamName: String) {
+        if self.logos[teamName] != nil {
+            return
+        }
+        
         TeamImageManager.shared.loadTeamImage(teamName: teamName) { image in
             if image != nil {
                 self.logos[teamName] = image
@@ -94,9 +95,7 @@ class FixtureListData: ObservableObject {
                 newResults.append(fixture)
             }
             
-            if self.logos[fixture.opponentNoCup] == nil {
-                self.fetchTeamLogo(fixture.opponentNoCup)
-            }
+            self.fetchTeamLogo(fixture.opponentNoCup)
         }
         
         self.fetchTeamLogo("Halesowen Town")
