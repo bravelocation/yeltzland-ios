@@ -14,7 +14,7 @@ target 'yeltzland' do
 end
 
 target 'watchkitapp Extension' do
-  platform :watchos, '4.0'
+  platform :watchos, '6.0'
 
   pod 'SDWebImage'
 end
