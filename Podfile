@@ -5,7 +5,7 @@ inhibit_all_warnings!
 target 'yeltzland' do
   platform :ios, '11.0'
   
-  pod 'TwitterKit'
+  pod 'TwitterKit', :podspec => 'https://raw.githubusercontent.com/bravelocation/twitter-kit-ios/master/TwitterKit/TwitterKit.podspec'
   pod 'Firebase/Core'
   pod 'Firebase/Messaging'
   pod 'SDWebImage'
