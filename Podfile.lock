@@ -87,7 +87,7 @@ PODS:
   - SDWebImage/Core (5.5.2)
   - SwiftLint (0.39.1)
   - TwitterCore (3.2.0)
-  - TwitterKit (3.4.2):
+  - TwitterKit5 (5.2.1):
     - TwitterCore (>= 3.1.0)
 
 DEPENDENCIES:
@@ -95,7 +95,7 @@ DEPENDENCIES:
   - Firebase/Messaging
   - SDWebImage
   - SwiftLint
-  - TwitterKit (from `https://raw.githubusercontent.com/bravelocation/twitter-kit-ios/master/TwitterKit/TwitterKit.podspec`)
+  - TwitterKit5 (from `https://raw.githubusercontent.com/bravelocation/twitter-kit-ios/master/TwitterKit5.podspec`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -120,8 +120,8 @@ SPEC REPOS:
     - TwitterCore
 
 EXTERNAL SOURCES:
-  TwitterKit:
-    :podspec: https://raw.githubusercontent.com/bravelocation/twitter-kit-ios/master/TwitterKit/TwitterKit.podspec
+  TwitterKit5:
+    :podspec: https://raw.githubusercontent.com/bravelocation/twitter-kit-ios/master/TwitterKit5.podspec
 
 SPEC CHECKSUMS:
   Firebase: 0490eca762a72e4f1582319539153897f1508dee
@@ -143,8 +143,8 @@ SPEC CHECKSUMS:
   SDWebImage: 4d5c027c935438f341ed33dbac53ff9f479922ca
   SwiftLint: 55e96a4a4d537d4a3156859fc1c54bd24851a046
   TwitterCore: 8cbc9ad34d91c63a0035ea05bfbfc0d7ca72a28c
-  TwitterKit: 704beb35ec85542f96325041f6f66354c9acdbae
+  TwitterKit5: c4063667bf872945d795d2eb48fbabbc5ffdc15d
 
-PODFILE CHECKSUM: 4452807caba0e869402246014eeaca7af3dd3a94
+PODFILE CHECKSUM: 520127052f5a4198c519bc4b8dd7bd7a44e2857e
 
 COCOAPODS: 1.8.3
