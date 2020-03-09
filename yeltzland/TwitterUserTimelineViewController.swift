@@ -39,13 +39,18 @@ class TwitterUserTimelineViewController: TWTRTimelineViewController, TWTRTweetVi
         
         self.navigationItem.rightBarButtonItems = [self.reloadButton]
         
-        self.view.backgroundColor = UIColor.white
-        self.tableView.separatorColor = UIColor.white
+        self.view.backgroundColor = AppColors.systemBackground
+        self.tableView.separatorColor = AppColors.systemBackground
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.reloadData()
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        // Reload the table on trait change
+        self.tableView.reloadData()
     }
    
     func tweetView(_ tweetView: TWTRTweetView, didTap url: URL) {
