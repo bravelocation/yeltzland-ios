@@ -802,6 +802,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 52E3DF851CD9FA79009F18BD /* Build configuration list for PBXNativeTarget "yeltzland" */;
 			buildPhases = (
+				5284895A24B9B5AA00D626DE /* Download Latest Data */,
 				71ADE6DF9E407B473C7C01FD /* [CP] Check Pods Manifest.lock */,
 				52E3DF6F1CD9FA78009F18BD /* Sources */,
 				52E3DF701CD9FA78009F18BD /* Frameworks */,
@@ -1201,6 +1202,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "git=`sh /etc/profile; which git`\nappBuild=`$git rev-list --all |wc -l`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\necho \"Updated ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n";
+		};
+		5284895A24B9B5AA00D626DE /* Download Latest Data */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Download Latest Data";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "MATCHESFILE=${TEMP_DIR}/matches.json\ncurl -o $MATCHESFILE https://bravelocation.com/automation/feeds/matches.json\ncp -f $MATCHESFILE ${SRCROOT}/matches.json\n\nGAMESCOREFILE=${TEMP_DIR}/gamescore.json\ncurl -o $GAMESCOREFILE https://bravelocation.com/automation/feeds/gamescore.json\ncp -f $GAMESCOREFILE ${SRCROOT}/gamescore.json\n\n\n\n";
 		};
 		5297C9EB2156630A00AB5D0F /* Set Build Number from Git */ = {
 			isa = PBXShellScriptBuildPhase;
