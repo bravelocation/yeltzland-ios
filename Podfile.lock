@@ -1,10 +1,10 @@
 PODS:
-  - Firebase/CoreOnly (6.27.0):
-    - FirebaseCore (= 6.8.0)
-  - Firebase/Messaging (6.27.0):
+  - Firebase/CoreOnly (6.27.1):
+    - FirebaseCore (= 6.8.1)
+  - Firebase/Messaging (6.27.1):
     - Firebase/CoreOnly
     - FirebaseMessaging (~> 4.5.0)
-  - FirebaseCore (6.8.0):
+  - FirebaseCore (6.8.1):
     - FirebaseCoreDiagnostics (~> 1.3)
     - GoogleUtilities/Environment (~> 6.5)
     - GoogleUtilities/Logger (~> 6.5)
@@ -59,9 +59,9 @@ PODS:
   - nanopb/encode (1.30905.0)
   - PromisesObjC (1.2.9)
   - Protobuf (3.12.0)
-  - SDWebImage (5.8.1):
-    - SDWebImage/Core (= 5.8.1)
-  - SDWebImage/Core (5.8.1)
+  - SDWebImage (5.8.3):
+    - SDWebImage/Core (= 5.8.3)
+  - SDWebImage/Core (5.8.3)
   - SwiftLint (0.39.2)
   - TwitterCore (3.2.0)
   - TwitterKit5 (5.2.1):
@@ -96,8 +96,8 @@ EXTERNAL SOURCES:
     :podspec: https://raw.githubusercontent.com/bravelocation/twitter-kit-ios/master/TwitterKit5.podspec
 
 SPEC CHECKSUMS:
-  Firebase: fc4cbf6f1592636431821ef9a3c557e4dfd9f268
-  FirebaseCore: feda061cb1ee6d8ad4824f4a4a8ffbcfe284f595
+  Firebase: 919186c8e119dd9372a45fd1dd17a8a942bc1892
+  FirebaseCore: 8cd4f8ea22075e0ee582849b1cf79d8816506085
   FirebaseCoreDiagnostics: 4505e4d4009b1d93f605088ee7d7764d5f0d1c84
   FirebaseInstallations: 293f567159b6d66d1c990f13bb868066096c94ec
   FirebaseInstanceID: 3b119bfe90e904851218159c9a4ecb847cc51d18
@@ -108,7 +108,7 @@ SPEC CHECKSUMS:
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
   PromisesObjC: b48e0338dbbac2207e611750777895f7a5811b75
   Protobuf: 2793fcd0622a00b546c60e7cbbcc493e043e9bb9
-  SDWebImage: e3eae2eda88578db0685a0c88597fdadd9433f05
+  SDWebImage: 112503ec94a5a2a41869503844a15e8d8f1ead5c
   SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
   TwitterCore: 8cbc9ad34d91c63a0035ea05bfbfc0d7ca72a28c
   TwitterKit5: c4063667bf872945d795d2eb48fbabbc5ffdc15d
