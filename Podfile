@@ -6,7 +6,6 @@ target 'yeltzland' do
   platform :ios, '11.0'
   
   pod 'TwitterKit5', :podspec => 'https://raw.githubusercontent.com/bravelocation/twitter-kit-ios/master/TwitterKit5.podspec'
-  pod 'Firebase/Core'
   pod 'Firebase/Messaging'
   pod 'SDWebImage'
   
@@ -29,15 +28,4 @@ target 'LatestScoreIntentUI' do
     platform :ios, '11.0'
     
     pod 'SDWebImage'
-end
-
-
-post_install do |installer|
-    installer.pods_project.build_configurations.each do |config|
-        if config.name == 'Release'
-            config.build_settings['SWIFT_OPTIMIZATION_LEVEL'] = '-Owholemodule'
-        else
-            config.build_settings['SWIFT_OPTIMIZATION_LEVEL'] = '-Onone'
-        end
-    end
 end

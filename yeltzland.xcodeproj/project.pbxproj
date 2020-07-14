@@ -802,8 +802,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 52E3DF851CD9FA79009F18BD /* Build configuration list for PBXNativeTarget "yeltzland" */;
 			buildPhases = (
-				5284895A24B9B5AA00D626DE /* Download Latest Data */,
 				71ADE6DF9E407B473C7C01FD /* [CP] Check Pods Manifest.lock */,
+				5284895A24B9B5AA00D626DE /* Download Latest Data */,
 				52E3DF6F1CD9FA78009F18BD /* Sources */,
 				52E3DF701CD9FA78009F18BD /* Frameworks */,
 				52E3DF711CD9FA78009F18BD /* Resources */,
