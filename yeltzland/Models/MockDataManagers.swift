@@ -18,8 +18,8 @@ public class MockFixtureManager: TimelineFixtureProvider {
     public func nextFixtures(_ numberOfFixtures: Int) -> [Fixture] {
         var fixtures: [Fixture] = []
         
-        fixtures.append(Fixture(date: makeDate("2020/10/10 15:00"), opponent: "Stourbridge Town", home: true, teamScore: nil, opponentScore: nil, inProgress: false))
-        fixtures.append(Fixture(date: makeDate("2020/10/14 19:45"), opponent: "Harrogate Town", home: true, teamScore: nil, opponentScore: nil, inProgress: false))
+        fixtures.append(Fixture(date: makeDate("2020/10/10 15:00"), opponent: "Stourbridge", home: true, teamScore: nil, opponentScore: nil, inProgress: false))
+        fixtures.append(Fixture(date: makeDate("2020/10/14 19:45"), opponent: "Barnet", home: true, teamScore: nil, opponentScore: nil, inProgress: false))
         
         return fixtures
     }
@@ -28,7 +28,7 @@ public class MockFixtureManager: TimelineFixtureProvider {
         var results: [Fixture] = []
         
         results.append(Fixture(date: makeDate("2020/10/03 15:00"), opponent: "Concord Rangers", home: true, teamScore: 2, opponentScore: 0, inProgress: false))
-        results.append(Fixture(date: makeDate("2020/10/07 19:45"), opponent: "Lye Town", home: true, teamScore: 3, opponentScore: 1, inProgress: false))
+        results.append(Fixture(date: makeDate("2020/10/07 19:45"), opponent: "Halifax Town", home: true, teamScore: 3, opponentScore: 1, inProgress: false))
         
         return results.reversed()
     }
@@ -42,6 +42,6 @@ public class MockGameScoreManager: TimelineGameScoreProvider {
     }
     
     public var currentFixture: Fixture? {
-        return Fixture(date: makeDate("2020/10/10 15:00"), opponent: "Stourbridge Town", home: true, teamScore: 4, opponentScore: 0, inProgress: true)
+        return Fixture(date: makeDate("2020/10/10 15:00"), opponent: "Stourbridge", home: true, teamScore: 4, opponentScore: 0, inProgress: true)
     }
 }

@@ -16,7 +16,7 @@ class TodayViewController: UICollectionViewController, NCWidgetProviding {
     
     static var cellReuseIdentifier = "TodayFixtureCollectionViewCell"
     
-    private let sectionInsets: UIEdgeInsets =  UIEdgeInsets.init(top: 4.0, left: 4.0, bottom: 4.0, right: 4.0)
+    private let sectionInsets: UIEdgeInsets =  UIEdgeInsets.init(top: 8.0, left: 8.0, bottom: 0.0, right: 8.0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +31,7 @@ class TodayViewController: UICollectionViewController, NCWidgetProviding {
 
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
+        self.collectionView.allowsSelection = true
     }
     
     func widgetMarginInsets(forProposedMarginInsets defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
@@ -84,19 +85,12 @@ class TodayViewController: UICollectionViewController, NCWidgetProviding {
         // Configure the cell
         return cell
     }
-
-    // MARK: - Table view delegate
-    /*
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let url = URL(string: "yeltzland://")
         print("Opening app")
         self.extensionContext?.open(url!, completionHandler: nil)
     }
-
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return self.cellRowHeight
-    }
- */
 }
 
 // MARK: - Collection View Flow Layout Delegate

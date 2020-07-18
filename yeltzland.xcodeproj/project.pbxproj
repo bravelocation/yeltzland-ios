@@ -594,12 +594,12 @@
 		526F54531D214705001EA8D8 /* Today */ = {
 			isa = PBXGroup;
 			children = (
-				52176BAB1D4A0DB700B7EFAE /* Today.entitlements */,
-				526F54541D214705001EA8D8 /* TodayViewController.swift */,
-				526F54561D214705001EA8D8 /* MainInterface.storyboard */,
 				526F54591D214705001EA8D8 /* Info.plist */,
+				526F54561D214705001EA8D8 /* MainInterface.storyboard */,
+				52176BAB1D4A0DB700B7EFAE /* Today.entitlements */,
 				526B211824C304BC005CE9C7 /* TodayFixtureCollectionViewCell.swift */,
 				526B211924C304BC005CE9C7 /* TodayFixtureCollectionViewCell.xib */,
+				526F54541D214705001EA8D8 /* TodayViewController.swift */,
 			);
 			path = Today;
 			sourceTree = "<group>";

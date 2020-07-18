@@ -10,6 +10,7 @@ import UIKit
 
 class TodayFixtureCollectionViewCell: UICollectionViewCell {
 
+    @IBOutlet weak var gameTypeLabel: UILabel!
     @IBOutlet weak var opponentLabel: UILabel!
     @IBOutlet weak var scoreOrDateLabel: UILabel!
     
@@ -24,10 +25,14 @@ class TodayFixtureCollectionViewCell: UICollectionViewCell {
         
         switch (entry.status) {
         case .result:
+            self.gameTypeLabel.text = "RESULT"
             self.scoreOrDateLabel.text = "\(entry.teamScore ?? 0)-\(entry.opponentScore ?? 0)"
         case .inProgress:
+            self.gameTypeLabel.text = "LATEST SCORE"
             self.scoreOrDateLabel.text = "\(entry.teamScore ?? 0)-\(entry.opponentScore ?? 0)*"
         case .fixture:
+            self.gameTypeLabel.text = "FIXTURE"
+            
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "EEE dd MMM"
             
@@ -38,11 +43,19 @@ class TodayFixtureCollectionViewCell: UICollectionViewCell {
         self.scoreOrDateLabel.adjustsFontSizeToFitWidth = true
         
         // Set colors
-        let resultColor = self.getFixtureDisplayColor(entry)
-        self.opponentLabel.textColor = resultColor
-        self.scoreOrDateLabel.textColor = resultColor
+        self.gameTypeLabel.textColor = UIColor.white
+        self.opponentLabel.textColor = UIColor.white
+        self.scoreOrDateLabel.textColor = UIColor.white
         
-        self.backgroundColor = UIColor.blue
+        self.contentView.layer.backgroundColor = UIColor(named: "yeltz-blue")?.cgColor
+        
+        // Set cell border
+        self.contentView.layer.cornerRadius = 8.0
+        self.contentView.layer.borderWidth = 2.0
+        self.contentView.layer.borderColor = UIColor.white.cgColor
+        self.contentView.layer.masksToBounds = true
+        
+        self.contentView.isUserInteractionEnabled = true
     }
     
     private func getFixtureDisplayColor(_ fixture: TimelineEntry?) -> UIColor {
