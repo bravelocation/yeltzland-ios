@@ -9,17 +9,26 @@
 import UIKit
 import NotificationCenter
 
-class TodayViewController: UITableViewController, NCWidgetProviding {
+class TodayViewController: UICollectionViewController, NCWidgetProviding {
     
-    let cellRowHeight: CGFloat = 22.0
-    let dataSource = TodayDataSource()
+    private var timelineManager: TimelineManager!
+    private var timelineEntries: [TimelineEntry] = []
+    
+    static var cellReuseIdentifier = "TodayFixtureCollectionViewCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.extensionContext?.widgetLargestAvailableDisplayMode = NCWidgetDisplayMode.compact
         
-        self.tableView.dataSource = self.dataSource
-        self.tableView.delegate = self
+        // TODO: Don't forget to switch this back to the real provider before release
+        //self.timelineManager = TimelineManager(fixtureManager: FixtureManager.shared, gameScoreManager: GameScoreManager.shared)
+        self.timelineManager = TimelineManager(fixtureManager: MockFixtureManager(), gameScoreManager: MockGameScoreManager())
+        self.timelineEntries = timelineManager.timelineEntries
+        
+        self.extensionContext?.widgetLargestAvailableDisplayMode = NCWidgetDisplayMode.compact
+        self.collectionView.register(UINib(nibName: TodayViewController.cellReuseIdentifier, bundle: .main), forCellWithReuseIdentifier: TodayViewController.cellReuseIdentifier)
+
+        self.collectionView.dataSource = self
+        self.collectionView.delegate = self
     }
     
     func widgetMarginInsets(forProposedMarginInsets defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
@@ -40,19 +49,42 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
             }
         }
         
-        self.preferredContentSize = CGSize(width: 0.0, height: self.cellRowHeight * 5.0)
         completionHandler(NCUpdateResult.newData)
     }
     
     func fixturesUpdated() {
         print("Fixture update message received in today view")
         DispatchQueue.main.async(execute: { () -> Void in
-            self.dataSource.reloadData()
-            self.tableView.reloadData()
+            self.timelineManager.reloadData()
+            self.collectionView.reloadData()
         })
+    }
+    
+    // MARK: - Collection view data source
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.timelineEntries.count
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TodayViewController.cellReuseIdentifier, for: indexPath) as! TodayFixtureCollectionViewCell
+        
+        // Figure out data to show
+        var entry: TimelineEntry?
+        
+        if (self.timelineEntries.count >= indexPath.row) {
+            entry = self.timelineEntries[indexPath.row]
+        }
+        
+        if let entry = entry {
+            cell.updateData(entry)
+        }
+        
+        // Configure the cell
+        return cell
     }
 
     // MARK: - Table view delegate
+    /*
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let url = URL(string: "yeltzland://")
         print("Opening app")
@@ -62,4 +94,5 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return self.cellRowHeight
     }
+ */
 }
