@@ -32,11 +32,7 @@ class TodayFixtureCollectionViewCell: UICollectionViewCell {
             self.scoreOrDateLabel.text = "\(entry.teamScore ?? 0)-\(entry.opponentScore ?? 0)*"
         case .fixture:
             self.gameTypeLabel.text = "FIXTURE"
-            
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "EEE dd MMM"
-            
-            self.scoreOrDateLabel.text = dateFormatter.string(from: entry.date)
+            self.scoreOrDateLabel.text = entry.fullDisplayKickoffTime
         }
         
         self.opponentLabel.adjustsFontSizeToFitWidth = true

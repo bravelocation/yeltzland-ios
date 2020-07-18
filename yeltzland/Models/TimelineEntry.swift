@@ -28,4 +28,31 @@ public struct TimelineEntry {
         self.opponentScore = opponentScore
         self.status = status
     }
+    
+    var fullKickoffTime: String {
+        get {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "EEE dd MMM HH:mm"
+            
+            return formatter.string(from: self.date)
+        }
+    }
+    
+    var fullDisplayKickoffTime: String {
+        get {
+            // Is the game today?
+            let now = Date()
+            let currentDayNumber = FixtureManager.shared.dayNumber(now)
+            let fixtureDayNumber = FixtureManager.shared.dayNumber(self.date)
+            
+            if (currentDayNumber == fixtureDayNumber) {
+                let formatter = DateFormatter()
+                formatter.dateFormat = "HH:mm"
+                
+                return formatter.string(from: self.date)
+            } else {
+                return self.fullKickoffTime
+            }
+        }
+    }
 }
