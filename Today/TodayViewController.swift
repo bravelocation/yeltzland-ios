@@ -16,6 +16,8 @@ class TodayViewController: UICollectionViewController, NCWidgetProviding {
     
     static var cellReuseIdentifier = "TodayFixtureCollectionViewCell"
     
+    private let sectionInsets: UIEdgeInsets =  UIEdgeInsets.init(top: 4.0, left: 4.0, bottom: 4.0, right: 4.0)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,7 +34,7 @@ class TodayViewController: UICollectionViewController, NCWidgetProviding {
     }
     
     func widgetMarginInsets(forProposedMarginInsets defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
-        return UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
+        return self.sectionInsets
     }
     
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
@@ -95,4 +97,46 @@ class TodayViewController: UICollectionViewController, NCWidgetProviding {
         return self.cellRowHeight
     }
  */
+}
+
+// MARK: - Collection View Flow Layout Delegate
+extension TodayViewController: UICollectionViewDelegateFlowLayout {
+    fileprivate var itemsPerRow: CGFloat {
+        return 2
+    }
+
+    fileprivate var interitemSpace: CGFloat {
+        return 5.0
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let sectionPadding = sectionInsets.left * (itemsPerRow + 1)
+        let interitemPadding = max(0.0, itemsPerRow - 1) * interitemSpace
+        let availableWidth = collectionView.bounds.width - sectionPadding - interitemPadding
+        let widthPerItem = availableWidth / itemsPerRow
+        
+        let availableHeight = collectionView.bounds.height - sectionPadding
+
+        return CGSize(width: widthPerItem, height: availableHeight)
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        return sectionInsets
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0.0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0.0
+    }
 }

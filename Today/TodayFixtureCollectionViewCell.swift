@@ -22,7 +22,6 @@ class TodayFixtureCollectionViewCell: UICollectionViewCell {
         
         self.opponentLabel.text = entry.opponent
         
-        
         switch (entry.status) {
         case .result:
             self.scoreOrDateLabel.text = "\(entry.teamScore ?? 0)-\(entry.opponentScore ?? 0)"
@@ -42,6 +41,8 @@ class TodayFixtureCollectionViewCell: UICollectionViewCell {
         let resultColor = self.getFixtureDisplayColor(entry)
         self.opponentLabel.textColor = resultColor
         self.scoreOrDateLabel.textColor = resultColor
+        
+        self.backgroundColor = UIColor.blue
     }
     
     private func getFixtureDisplayColor(_ fixture: TimelineEntry?) -> UIColor {
