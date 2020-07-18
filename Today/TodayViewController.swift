@@ -86,10 +86,13 @@ class TodayViewController: UICollectionViewController, NCWidgetProviding {
         return cell
     }
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let url = URL(string: "yeltzland://")
-        print("Opening app")
-        self.extensionContext?.open(url!, completionHandler: nil)
+    override func collectionView(_ collectionView: UICollectionView,
+                                 shouldSelectItemAt indexPath: IndexPath) -> Bool {
+      let url = URL(string: "yeltzland://")
+      print("Opening app")
+      self.extensionContext?.open(url!, completionHandler: nil)
+
+      return false
     }
 }
 
