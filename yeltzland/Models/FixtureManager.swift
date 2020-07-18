@@ -156,6 +156,29 @@ public class FixtureManager: CachedJSONData {
         return lastCompletedGame
     }
     
+    public func lastResults(_ numberOfFixtures: Int) -> [Fixture] {
+        var results: [Fixture] = []
+        
+        for month in self.months {
+            if let monthFixtures = self.fixturesForMonth(month) {
+                for fixture in monthFixtures {
+                    // If score and match is before today
+                    if (fixture.teamScore != nil && fixture.opponentScore != nil) {
+                        results.append(fixture)
+                    }
+                }
+            }
+        }
+        
+        // Return the last N
+        
+        if (results.count <= numberOfFixtures) {
+            return results
+        }
+        
+        return results.suffix(numberOfFixtures).reversed()
+    }
+    
     public var nextGame: Fixture? {
         let fixtures = self.nextFixtures(1)
         
