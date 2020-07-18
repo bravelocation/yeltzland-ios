@@ -14,7 +14,10 @@ class TodayDataSource: NSObject, UITableViewDataSource {
     private var timelineEntries: [TimelineEntry]
     
     override init() {
-        self.timelineManager = TimelineManager(fixtureManager: FixtureManager.shared, gameScoreManager: GameScoreManager.shared)
+        // TODO: Don't forget to switch this back to the real provider before release
+        //self.timelineManager = TimelineManager(fixtureManager: FixtureManager.shared, gameScoreManager: GameScoreManager.shared)
+        self.timelineManager = TimelineManager(fixtureManager: MockFixtureManager(), gameScoreManager: MockGameScoreManager())
+        
         self.timelineEntries = self.timelineManager.timelineEntries
         
         super.init()

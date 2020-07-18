@@ -8,7 +8,12 @@
 
 import Foundation
 
-public class FixtureManager: CachedJSONData {
+public protocol TimelineFixtureProvider {
+    func nextFixtures(_ numberOfFixtures: Int) -> [Fixture]
+    func lastResults(_ numberOfFixtures: Int) -> [Fixture] 
+}
+
+public class FixtureManager: CachedJSONData, TimelineFixtureProvider {
 
     private var fixtureList: [String: [Fixture]] = [:]
     
@@ -156,29 +161,6 @@ public class FixtureManager: CachedJSONData {
         return lastCompletedGame
     }
     
-    public func lastResults(_ numberOfFixtures: Int) -> [Fixture] {
-        var results: [Fixture] = []
-        
-        for month in self.months {
-            if let monthFixtures = self.fixturesForMonth(month) {
-                for fixture in monthFixtures {
-                    // If score and match is before today
-                    if (fixture.teamScore != nil && fixture.opponentScore != nil) {
-                        results.append(fixture)
-                    }
-                }
-            }
-        }
-        
-        // Return the last N
-        
-        if (results.count <= numberOfFixtures) {
-            return results
-        }
-        
-        return results.suffix(numberOfFixtures).reversed()
-    }
-    
     public var nextGame: Fixture? {
         let fixtures = self.nextFixtures(1)
         
@@ -187,30 +169,6 @@ public class FixtureManager: CachedJSONData {
         }
         
         return nil
-    }
-    
-    public func nextFixtures(_ numberOfFixtures: Int) -> [Fixture] {
-        var fixtures: [Fixture] = []
-        let currentDayNumber = self.dayNumber(Date())
-        
-        for month in self.months {
-            if let monthFixtures = self.fixturesForMonth(month) {
-                for fixture in monthFixtures {
-                    let matchDayNumber = self.dayNumber(fixture.fixtureDate as Date)
-                    
-                    // If no score and match is not before today
-                    if (fixture.teamScore == nil && fixture.opponentScore == nil && currentDayNumber <= matchDayNumber) {
-                        fixtures.append(fixture)
-                        
-                        if (fixtures.count == numberOfFixtures) {
-                            return fixtures
-                        }
-                    }
-                }
-            }
-        }
-        
-        return fixtures
     }
     
     public var allMatches: [Fixture] {
@@ -252,5 +210,53 @@ public class FixtureManager: CachedJSONData {
         let intervalToStaryOfDay = startOfDay!.timeIntervalSince1970
         let daysDifference = floor(intervalToStaryOfDay) / 86400  // Number of seconds per day = 60 * 60 * 24 = 86400
         return Int(daysDifference)
+    }
+    
+    // MARK: - TimelineFixtureProvider implementation
+    public func nextFixtures(_ numberOfFixtures: Int) -> [Fixture] {
+        var fixtures: [Fixture] = []
+        let currentDayNumber = self.dayNumber(Date())
+        
+        for month in self.months {
+            if let monthFixtures = self.fixturesForMonth(month) {
+                for fixture in monthFixtures {
+                    let matchDayNumber = self.dayNumber(fixture.fixtureDate as Date)
+                    
+                    // If no score and match is not before today
+                    if (fixture.teamScore == nil && fixture.opponentScore == nil && currentDayNumber <= matchDayNumber) {
+                        fixtures.append(fixture)
+                        
+                        if (fixtures.count == numberOfFixtures) {
+                            return fixtures
+                        }
+                    }
+                }
+            }
+        }
+        
+        return fixtures
+    }
+    
+    public func lastResults(_ numberOfFixtures: Int) -> [Fixture] {
+        var results: [Fixture] = []
+        
+        for month in self.months {
+            if let monthFixtures = self.fixturesForMonth(month) {
+                for fixture in monthFixtures {
+                    // If score and match is before today
+                    if (fixture.teamScore != nil && fixture.opponentScore != nil) {
+                        results.append(fixture)
+                    }
+                }
+            }
+        }
+        
+        // Return the last N
+        
+        if (results.count <= numberOfFixtures) {
+            return results
+        }
+        
+        return results.suffix(numberOfFixtures).reversed()
     }
 }

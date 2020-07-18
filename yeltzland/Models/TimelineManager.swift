@@ -9,14 +9,14 @@
 import Foundation
 
 class TimelineManager {
-    private var fixtureManager: FixtureManager
-    private var gameScoreManager: GameScoreManager
+    private var fixtureManager: TimelineFixtureProvider
+    private var gameScoreManager: TimelineGameScoreProvider
     
     private var lastGames = Array<TimelineEntry>()
     private var currentScore: TimelineEntry?
     private var nextGames = Array<TimelineEntry>()
 
-    required init(fixtureManager: FixtureManager, gameScoreManager: GameScoreManager) {
+    required init(fixtureManager: TimelineFixtureProvider, gameScoreManager: TimelineGameScoreProvider) {
         self.fixtureManager = fixtureManager
         self.gameScoreManager = gameScoreManager
         

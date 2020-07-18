@@ -8,7 +8,11 @@
 
 import Foundation
 
-public class GameScoreManager: CachedJSONData {
+public protocol TimelineGameScoreProvider {
+    var currentFixture: Fixture? { get }
+}
+
+public class GameScoreManager: CachedJSONData, TimelineGameScoreProvider {
     var fileName: String
     var remoteURL: URL
     var notificationName: String
@@ -111,7 +115,6 @@ public class GameScoreManager: CachedJSONData {
         return json["match"] != nil
     }
     
-    // MARK: - Data properties
-
+    // MARK: - TimelineGameScoreProvider implementation
     public var currentFixture: Fixture?
 }
