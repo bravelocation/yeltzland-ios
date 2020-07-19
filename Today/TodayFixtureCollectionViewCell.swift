@@ -21,7 +21,7 @@ class TodayFixtureCollectionViewCell: UICollectionViewCell {
     
     public func updateData(_ entry: TimelineEntry) {
         
-        self.opponentLabel.text = entry.opponent
+        self.opponentLabel.text = "\(entry.opponent) (\(entry.home ? "H" : "A"))"
         
         switch (entry.status) {
         case .result:

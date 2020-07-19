@@ -28,20 +28,20 @@ public class MockFixtureManager: TimelineFixtureProvider {
     public func nextFixtures(_ numberOfFixtures: Int) -> [Fixture] {
         var fixtures: [Fixture] = []
         
-        fixtures.append(Fixture(date: MockFixtureManager.makeDate(daysToAdd: 1), opponent: "Stourbridge", home: true, teamScore: nil, opponentScore: nil, inProgress: false))
-        fixtures.append(Fixture(date: MockFixtureManager.makeDate(daysToAdd: 3), opponent: "Barnet", home: true, teamScore: nil, opponentScore: nil, inProgress: false))
+        fixtures.append(Fixture(date: MockFixtureManager.makeDate(daysToAdd: 0), opponent: "Stourbridge", home: true, teamScore: nil, opponentScore: nil, inProgress: false))
+        fixtures.append(Fixture(date: MockFixtureManager.makeDate(daysToAdd: 3), opponent: "Barnet", home: false, teamScore: nil, opponentScore: nil, inProgress: false))
         
         return fixtures
     }
     
     public var lastGame: Fixture? {
-        return Fixture(date: MockFixtureManager.makeDate(daysToAdd: -2), opponent: "Halifax Town", home: true, teamScore: 3, opponentScore: 1, inProgress: false)
+        return Fixture(date: MockFixtureManager.makeDate(daysToAdd: -2), opponent: "Halifax Town", home: false, teamScore: 1, opponentScore: 0, inProgress: false)
     }
 }
 
 public class MockGameScoreManager: TimelineGameScoreProvider {
     public var currentFixture: Fixture? {
-        return nil
-        //return Fixture(date: MockFixtureManager.makeDate(daysToAdd: 0), opponent: "Stourbridge", home: true, teamScore: 4, opponentScore: 0, inProgress: true)
+        //return nil
+        return Fixture(date: MockFixtureManager.makeDate(daysToAdd: 0), opponent: "Stourbridge", home: true, teamScore: 4, opponentScore: 0, inProgress: true)
     }
 }

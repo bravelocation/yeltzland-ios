@@ -92,6 +92,7 @@ class TimelineManager {
             if currentFixture.inProgress {
                 self.currentScore = TimelineEntry(
                     opponent: currentFixture.opponent,
+                    home: currentFixture.home,
                     date: currentFixture.fixtureDate,
                     teamScore: currentFixture.teamScore,
                     opponentScore: currentFixture.opponentScore,
@@ -104,6 +105,7 @@ class TimelineManager {
         if let lastResult = self.fixtureManager.lastGame {
             self.lastGame = TimelineEntry(
                     opponent: lastResult.opponent,
+                    home: lastResult.home,
                     date: lastResult.fixtureDate,
                     teamScore: lastResult.teamScore,
                     opponentScore: lastResult.opponentScore,
@@ -116,6 +118,7 @@ class TimelineManager {
         for fixture in self.fixtureManager.nextFixtures(2) {
            let fixtureData = TimelineEntry(
                opponent: fixture.opponent,
+               home: fixture.home,
                date: fixture.fixtureDate,
                teamScore: fixture.teamScore,
                opponentScore: fixture.opponentScore,

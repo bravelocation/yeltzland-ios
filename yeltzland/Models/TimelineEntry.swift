@@ -16,13 +16,15 @@ public enum TimelineEntryStatus {
 
 public struct TimelineEntry: Equatable {
     var opponent: String
+    var home: Bool
     var date: Date
     var teamScore: Int?
     var opponentScore: Int?
     var status: TimelineEntryStatus
     
-    init(opponent: String, date: Date, teamScore: Int?, opponentScore: Int?, status: TimelineEntryStatus) {
+    init(opponent: String, home: Bool, date: Date, teamScore: Int?, opponentScore: Int?, status: TimelineEntryStatus) {
         self.opponent = opponent
+        self.home = home
         self.date = date
         self.teamScore = teamScore
         self.opponentScore = opponentScore
@@ -57,6 +59,6 @@ public struct TimelineEntry: Equatable {
     }
     
     public static func == (lhs: TimelineEntry, rhs: TimelineEntry) -> Bool {
-        return lhs.opponent == rhs.opponent && lhs.date == rhs.date
+        return lhs.opponent == rhs.opponent && lhs.date == rhs.date && lhs.home == rhs.home
     }
 }
