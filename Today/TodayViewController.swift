@@ -100,15 +100,15 @@ extension TodayViewController: UICollectionViewDelegateFlowLayout {
         return 2
     }
 
-    fileprivate var interitemSpace: CGFloat {
-        return 5.0
+    fileprivate var interItemSpace: CGFloat {
+        return 4.0
     }
 
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let sectionPadding = sectionInsets.left * (itemsPerRow + 1)
-        let interitemPadding = max(0.0, itemsPerRow - 1) * interitemSpace
+        let interitemPadding = max(0.0, itemsPerRow - 1) * interItemSpace
         let availableWidth = collectionView.bounds.width - sectionPadding - interitemPadding
         let widthPerItem = availableWidth / itemsPerRow
         
