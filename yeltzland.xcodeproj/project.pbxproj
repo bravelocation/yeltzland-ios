@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1001EE7E1D9461A60DD351AC /* Pods_yeltzlandUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D371F1D95F52270B381A5E0D /* Pods_yeltzlandUnitTests.framework */; };
 		481F530A2194ABBB0E4F3078 /* Pods_yeltzland.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BE281ED4B32969698046889 /* Pods_yeltzland.framework */; };
 		520C09A02157A73100CCC2D8 /* DefaultPreferences.plist in Resources */ = {isa = PBXBuildFile; fileRef = 528D74591CF2F4A400263685 /* DefaultPreferences.plist */; };
 		520C09A22157C46100CCC2D8 /* ShortcutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C09A12157C46100CCC2D8 /* ShortcutManager.swift */; };
@@ -57,6 +58,22 @@
 		523C84201CE70806006F1865 /* ChromeActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523C841F1CE70806006F1865 /* ChromeActivity.swift */; };
 		523CE54D214F9A54002F29EF /* FixtureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523CE54B214F9A54002F29EF /* FixtureTableViewCell.swift */; };
 		523CE54E214F9A54002F29EF /* FixtureTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 523CE54C214F9A54002F29EF /* FixtureTableViewCell.xib */; };
+		5252774324C42C5400F93050 /* TimelineUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5252774224C42C5400F93050 /* TimelineUnitTests.swift */; };
+		5252774A24C42C7500F93050 /* MockDataManagers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B211124C2EF54005CE9C7 /* MockDataManagers.swift */; };
+		5252774C24C42D1400F93050 /* TeamImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A347720CFB98D00E8475C /* TeamImageManager.swift */; };
+		5252774D24C42D1600F93050 /* TeamImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A347720CFB98D00E8475C /* TeamImageManager.swift */; };
+		5252774E24C42D1F00F93050 /* TimelineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B210324C2CD6E005CE9C7 /* TimelineManager.swift */; };
+		5252774F24C42D2800F93050 /* FixtureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236AE71D17E4D3004903AB /* FixtureManager.swift */; };
+		5252775024C42D2C00F93050 /* GameScoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52176BAF1D4A1B3200B7EFAE /* GameScoreManager.swift */; };
+		5252775124C42D5E00F93050 /* TimelineEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B210A24C2CE66005CE9C7 /* TimelineEntry.swift */; };
+		5252775224C42D6400F93050 /* Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236AE51D17DFF8004903AB /* Fixture.swift */; };
+		5252775324C42DF400F93050 /* CachedJSONData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522716CC22D1BB50008FD210 /* CachedJSONData.swift */; };
+		5252775424C42DF800F93050 /* BaseSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52176BB21D4B62DC00B7EFAE /* BaseSettings.swift */; };
+		5252775524C42DFE00F93050 /* GameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DBCA9F1D4A012E00D35F91 /* GameSettings.swift */; };
+		5252775624C42DFE00F93050 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527DAF1E1D2D082C0092BB8F /* Location.swift */; };
+		5252775724C42DFE00F93050 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527DAF201D2D096B0092BB8F /* LocationManager.swift */; };
+		5252775824C42DFE00F93050 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5231F4FE215B6C56003FAC68 /* SettingsManager.swift */; };
+		5252775924C42DFE00F93050 /* TeamImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A347720CFB98D00E8475C /* TeamImageManager.swift */; };
 		525719741FDE8AE2005F1D80 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525719731FDE8AE2005F1D80 /* AppDelegate.swift */; };
 		525719761FDE8AE2005F1D80 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525719751FDE8AE2005F1D80 /* ViewController.swift */; };
 		525719791FDE8AE2005F1D80 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 525719771FDE8AE2005F1D80 /* Main.storyboard */; };
@@ -69,22 +86,12 @@
 		5259F9041CDA1292009C2AA8 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5259F9031CDA1292009C2AA8 /* MainTabBarController.swift */; };
 		526B210424C2CD6E005CE9C7 /* TimelineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B210324C2CD6E005CE9C7 /* TimelineManager.swift */; };
 		526B210524C2CD6E005CE9C7 /* TimelineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B210324C2CD6E005CE9C7 /* TimelineManager.swift */; };
-		526B210624C2CD6E005CE9C7 /* TimelineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B210324C2CD6E005CE9C7 /* TimelineManager.swift */; };
-		526B210724C2CD6E005CE9C7 /* TimelineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B210324C2CD6E005CE9C7 /* TimelineManager.swift */; };
-		526B210824C2CD6E005CE9C7 /* TimelineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B210324C2CD6E005CE9C7 /* TimelineManager.swift */; };
-		526B210924C2CD6E005CE9C7 /* TimelineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B210324C2CD6E005CE9C7 /* TimelineManager.swift */; };
 		526B210B24C2CE66005CE9C7 /* TimelineEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B210A24C2CE66005CE9C7 /* TimelineEntry.swift */; };
 		526B210C24C2CE66005CE9C7 /* TimelineEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B210A24C2CE66005CE9C7 /* TimelineEntry.swift */; };
 		526B210D24C2CE66005CE9C7 /* TimelineEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B210A24C2CE66005CE9C7 /* TimelineEntry.swift */; };
 		526B210E24C2CE66005CE9C7 /* TimelineEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B210A24C2CE66005CE9C7 /* TimelineEntry.swift */; };
 		526B210F24C2CE66005CE9C7 /* TimelineEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B210A24C2CE66005CE9C7 /* TimelineEntry.swift */; };
 		526B211024C2CE66005CE9C7 /* TimelineEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B210A24C2CE66005CE9C7 /* TimelineEntry.swift */; };
-		526B211224C2EF54005CE9C7 /* MockDataManagers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B211124C2EF54005CE9C7 /* MockDataManagers.swift */; };
-		526B211324C2EF54005CE9C7 /* MockDataManagers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B211124C2EF54005CE9C7 /* MockDataManagers.swift */; };
-		526B211424C2EF54005CE9C7 /* MockDataManagers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B211124C2EF54005CE9C7 /* MockDataManagers.swift */; };
-		526B211524C2EF54005CE9C7 /* MockDataManagers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B211124C2EF54005CE9C7 /* MockDataManagers.swift */; };
-		526B211624C2EF54005CE9C7 /* MockDataManagers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B211124C2EF54005CE9C7 /* MockDataManagers.swift */; };
-		526B211724C2EF54005CE9C7 /* MockDataManagers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B211124C2EF54005CE9C7 /* MockDataManagers.swift */; };
 		526B211A24C304BC005CE9C7 /* TodayFixtureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B211824C304BC005CE9C7 /* TodayFixtureCollectionViewCell.swift */; };
 		526B211B24C304BC005CE9C7 /* TodayFixtureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B211824C304BC005CE9C7 /* TodayFixtureCollectionViewCell.swift */; };
 		526B211C24C304BC005CE9C7 /* TodayFixtureCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 526B211924C304BC005CE9C7 /* TodayFixtureCollectionViewCell.xib */; };
@@ -116,7 +123,6 @@
 		5297C9E52156538800AB5D0F /* matches.json in Resources */ = {isa = PBXBuildFile; fileRef = 52236AEA1D17ECB4004903AB /* matches.json */; };
 		5297C9E62156538B00AB5D0F /* gamescore.json in Resources */ = {isa = PBXBuildFile; fileRef = 52176BAD1D4A1AF600B7EFAE /* gamescore.json */; };
 		5297C9E72156538B00AB5D0F /* gamescore.json in Resources */ = {isa = PBXBuildFile; fileRef = 52176BAD1D4A1AF600B7EFAE /* gamescore.json */; };
-		5297C9E82156544C00AB5D0F /* TeamImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A347720CFB98D00E8475C /* TeamImageManager.swift */; };
 		5297C9E921565A7600AB5D0F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52E3DF7D1CD9FA78009F18BD /* Assets.xcassets */; };
 		52A4596E1D89666E00822D8C /* gallery.ckcomplication in Resources */ = {isa = PBXBuildFile; fileRef = 52A4596D1D89666E00822D8C /* gallery.ckcomplication */; };
 		52B4475522CF316000E745EB /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B4475422CF316000E745EB /* AppColors.swift */; };
@@ -167,7 +173,6 @@
 		52EACDC5215646D3008B8DE5 /* GameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DBCA9F1D4A012E00D35F91 /* GameSettings.swift */; };
 		52EACDC6215646DA008B8DE5 /* BaseSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52176BB21D4B62DC00B7EFAE /* BaseSettings.swift */; };
 		52EACDC7215646DA008B8DE5 /* BaseSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52176BB21D4B62DC00B7EFAE /* BaseSettings.swift */; };
-		52F5CA9F20ED1F45000143A1 /* TeamImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A347720CFB98D00E8475C /* TeamImageManager.swift */; };
 		52F9CDB222D6687C00E0FFE8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9CDB122D6687C00E0FFE8 /* SceneDelegate.swift */; };
 		937784A0FE49B904B7681F19 /* Pods_LatestScoreIntentUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1EB3CDB05AFB690D5D25630 /* Pods_LatestScoreIntentUI.framework */; };
 		DB860C2661D34E99E75814F6 /* Pods_yeltzlandTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59A5577BD1AF23F460D4B20 /* Pods_yeltzlandTVOS.framework */; };
@@ -188,6 +193,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 52176BB61D4B6D5900B7EFAE;
 			remoteInfo = watchkitapp;
+		};
+		5252774524C42C5400F93050 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52E3DF6B1CD9FA78009F18BD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 52E3DF721CD9FA78009F18BD;
+			remoteInfo = yeltzland;
 		};
 		5257E8BF1CDB953400157CED /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -260,6 +272,7 @@
 /* Begin PBXFileReference section */
 		2552AC500EB5468A6630D33E /* Pods-watchkitapp Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watchkitapp Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-watchkitapp Extension/Pods-watchkitapp Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		2C4284847AD21978846F1AA7 /* Pods-LatestScoreIntentUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LatestScoreIntentUI.release.xcconfig"; path = "Pods/Target Support Files/Pods-LatestScoreIntentUI/Pods-LatestScoreIntentUI.release.xcconfig"; sourceTree = "<group>"; };
+		2D1DEE9A8770E728E2386C61 /* Pods-yeltzlandUnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yeltzlandUnitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-yeltzlandUnitTests/Pods-yeltzlandUnitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		31D85CE3D6629F7148E43670 /* Pods-yeltzlandTVOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yeltzlandTVOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-yeltzlandTVOS/Pods-yeltzlandTVOS.release.xcconfig"; sourceTree = "<group>"; };
 		520C09A12157C46100CCC2D8 /* ShortcutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutManager.swift; sourceTree = "<group>"; };
 		5211F7291CDA53D70031496D /* TwitterUserTimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterUserTimelineViewController.swift; sourceTree = "<group>"; };
@@ -297,6 +310,9 @@
 		523C841F1CE70806006F1865 /* ChromeActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChromeActivity.swift; sourceTree = "<group>"; };
 		523CE54B214F9A54002F29EF /* FixtureTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureTableViewCell.swift; sourceTree = "<group>"; };
 		523CE54C214F9A54002F29EF /* FixtureTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FixtureTableViewCell.xib; sourceTree = "<group>"; };
+		5252774024C42C5400F93050 /* yeltzlandUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = yeltzlandUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5252774224C42C5400F93050 /* TimelineUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineUnitTests.swift; sourceTree = "<group>"; };
+		5252774424C42C5400F93050 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		525719711FDE8AE1005F1D80 /* yeltzlandTVOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = yeltzlandTVOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		525719731FDE8AE2005F1D80 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		525719751FDE8AE2005F1D80 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -370,6 +386,7 @@
 		52EBCF472340A1C300A2157A /* yeltzlandTVOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = yeltzlandTVOS.entitlements; sourceTree = "<group>"; };
 		52F9CDB122D6687C00E0FFE8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		6C2886E0C6D579332BF2A5A8 /* Pods-yeltzland.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yeltzland.debug.xcconfig"; path = "Pods/Target Support Files/Pods-yeltzland/Pods-yeltzland.debug.xcconfig"; sourceTree = "<group>"; };
+		84B09CCF34E827938262A3C5 /* Pods-yeltzlandUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yeltzlandUnitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-yeltzlandUnitTests/Pods-yeltzlandUnitTests.release.xcconfig"; sourceTree = "<group>"; };
 		8541FCDE5A3B1A03D43E3DBD /* Pods-watchkitapp Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watchkitapp Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-watchkitapp Extension/Pods-watchkitapp Extension.release.xcconfig"; sourceTree = "<group>"; };
 		8ED64AAED15F6BBC43FC3EEB /* Pods-LatestScoreIntentUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LatestScoreIntentUI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LatestScoreIntentUI/Pods-LatestScoreIntentUI.debug.xcconfig"; sourceTree = "<group>"; };
 		9BE281ED4B32969698046889 /* Pods_yeltzland.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_yeltzland.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -377,6 +394,7 @@
 		C11AF69119A85B889C5CADB2 /* Pods-yeltzland.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yeltzland.release.xcconfig"; path = "Pods/Target Support Files/Pods-yeltzland/Pods-yeltzland.release.xcconfig"; sourceTree = "<group>"; };
 		C3CD79B24EF0B6634FC3AFFA /* Pods_watchkitapp_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_watchkitapp_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C59A5577BD1AF23F460D4B20 /* Pods_yeltzlandTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_yeltzlandTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D371F1D95F52270B381A5E0D /* Pods_yeltzlandUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_yeltzlandUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F148785E694134A862B5222B /* Pods-yeltzlandTVOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yeltzlandTVOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-yeltzlandTVOS/Pods-yeltzlandTVOS.debug.xcconfig"; sourceTree = "<group>"; };
 		FA6F5775F3F24493B838AC89 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -387,6 +405,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2C923D6766D78C589FBFD9A /* Pods_watchkitapp_Extension.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5252773D24C42C5400F93050 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1001EE7E1D9461A60DD351AC /* Pods_yeltzlandUnitTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,6 +484,8 @@
 				8541FCDE5A3B1A03D43E3DBD /* Pods-watchkitapp Extension.release.xcconfig */,
 				8ED64AAED15F6BBC43FC3EEB /* Pods-LatestScoreIntentUI.debug.xcconfig */,
 				2C4284847AD21978846F1AA7 /* Pods-LatestScoreIntentUI.release.xcconfig */,
+				2D1DEE9A8770E728E2386C61 /* Pods-yeltzlandUnitTests.debug.xcconfig */,
+				84B09CCF34E827938262A3C5 /* Pods-yeltzlandUnitTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -527,7 +555,6 @@
 				528A347720CFB98D00E8475C /* TeamImageManager.swift */,
 				526B210A24C2CE66005CE9C7 /* TimelineEntry.swift */,
 				526B210324C2CD6E005CE9C7 /* TimelineManager.swift */,
-				526B211124C2EF54005CE9C7 /* MockDataManagers.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -559,6 +586,16 @@
 				523CE54C214F9A54002F29EF /* FixtureTableViewCell.xib */,
 			);
 			name = Cells;
+			sourceTree = "<group>";
+		};
+		5252774124C42C5400F93050 /* yeltzlandUnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				526B211124C2EF54005CE9C7 /* MockDataManagers.swift */,
+				5252774224C42C5400F93050 /* TimelineUnitTests.swift */,
+				5252774424C42C5400F93050 /* Info.plist */,
+			);
+			path = yeltzlandUnitTests;
 			sourceTree = "<group>";
 		};
 		525719721FDE8AE2005F1D80 /* yeltzland TVOS */ = {
@@ -652,6 +689,7 @@
 				525719721FDE8AE2005F1D80 /* yeltzland TVOS */,
 				52EACD98215643FB008B8DE5 /* LatestScoreIntent */,
 				52EACDA3215643FC008B8DE5 /* LatestScoreIntentUI */,
+				5252774124C42C5400F93050 /* yeltzlandUnitTests */,
 				52E3DF741CD9FA78009F18BD /* Products */,
 				D15072796B891DCF46FC1DA6 /* Frameworks */,
 				094D27B64A778A50E38BC04C /* Pods */,
@@ -669,6 +707,7 @@
 				525719711FDE8AE1005F1D80 /* yeltzlandTVOS.app */,
 				52EACD97215643FB008B8DE5 /* LatestScoreIntent.appex */,
 				52EACDA0215643FC008B8DE5 /* LatestScoreIntentUI.appex */,
+				5252774024C42C5400F93050 /* yeltzlandUnitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -722,6 +761,7 @@
 				C59A5577BD1AF23F460D4B20 /* Pods_yeltzlandTVOS.framework */,
 				52EACDA1215643FC008B8DE5 /* IntentsUI.framework */,
 				B1EB3CDB05AFB690D5D25630 /* Pods_LatestScoreIntentUI.framework */,
+				D371F1D95F52270B381A5E0D /* Pods_yeltzlandUnitTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -767,6 +807,27 @@
 			productName = "watchkitapp Extension";
 			productReference = 52176BC31D4B6D5900B7EFAE /* watchkitapp Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
+		};
+		5252773F24C42C5400F93050 /* yeltzlandUnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5252774724C42C5400F93050 /* Build configuration list for PBXNativeTarget "yeltzlandUnitTests" */;
+			buildPhases = (
+				6251F79858B4178980D1F24D /* [CP] Check Pods Manifest.lock */,
+				5252773C24C42C5400F93050 /* Sources */,
+				5252773D24C42C5400F93050 /* Frameworks */,
+				5252773E24C42C5400F93050 /* Resources */,
+				739FB51989B69864AF1D381C /* [CP] Embed Pods Frameworks */,
+				6BCF5FAD7B8A5C8EDAD2EA85 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5252774624C42C5400F93050 /* PBXTargetDependency */,
+			);
+			name = yeltzlandUnitTests;
+			productName = yeltzlandUnitTests;
+			productReference = 5252774024C42C5400F93050 /* yeltzlandUnitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		525719701FDE8AE1005F1D80 /* yeltzlandTVOS */ = {
 			isa = PBXNativeTarget;
@@ -896,7 +957,7 @@
 		52E3DF6B1CD9FA78009F18BD /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1000;
+				LastSwiftUpdateCheck = 1160;
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "John Pollard";
 				TargetAttributes = {
@@ -919,6 +980,10 @@
 								enabled = 1;
 							};
 						};
+					};
+					5252773F24C42C5400F93050 = {
+						CreatedOnToolsVersion = 11.6;
+						TestTargetID = 52E3DF721CD9FA78009F18BD;
 					};
 					525719701FDE8AE1005F1D80 = {
 						CreatedOnToolsVersion = 9.2;
@@ -1011,6 +1076,7 @@
 				525719701FDE8AE1005F1D80 /* yeltzlandTVOS */,
 				52EACD96215643FB008B8DE5 /* LatestScoreIntent */,
 				52EACD9F215643FC008B8DE5 /* LatestScoreIntentUI */,
+				5252773F24C42C5400F93050 /* yeltzlandUnitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1035,6 +1101,13 @@
 				521B94AA22CBB621009DFF76 /* Colors.xcassets in Resources */,
 				52176BE51D4B73BA00B7EFAE /* DefaultPreferences.plist in Resources */,
 				52E711A61D9CFDD90002446A /* gamescore.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5252773E24C42C5400F93050 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1283,6 +1356,28 @@
 			shellPath = /bin/sh;
 			shellScript = "git=`sh /etc/profile; which git`\nappBuild=`$git rev-list --all |wc -l`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\necho \"Updated ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"";
 		};
+		6251F79858B4178980D1F24D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-yeltzlandUnitTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		63BB4CBBF5413A6045855209 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1298,6 +1393,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-yeltzland/Pods-yeltzland-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6BCF5FAD7B8A5C8EDAD2EA85 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-yeltzlandUnitTests/Pods-yeltzlandUnitTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-yeltzlandUnitTests/Pods-yeltzlandUnitTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-yeltzlandUnitTests/Pods-yeltzlandUnitTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		71ADE6DF9E407B473C7C01FD /* [CP] Check Pods Manifest.lock */ = {
@@ -1316,6 +1428,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		739FB51989B69864AF1D381C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-yeltzlandUnitTests/Pods-yeltzlandUnitTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-yeltzlandUnitTests/Pods-yeltzlandUnitTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-yeltzlandUnitTests/Pods-yeltzlandUnitTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		79633DFA921C528F9AE984BF /* [CP] Check Pods Manifest.lock */ = {
@@ -1397,12 +1526,10 @@
 			files = (
 				52176BE41D4B6EF000B7EFAE /* WatchGameSettings.swift in Sources */,
 				52176BD11D4B6D5900B7EFAE /* ComplicationController.swift in Sources */,
-				526B210624C2CD6E005CE9C7 /* TimelineManager.swift in Sources */,
 				52E711A31D9CF5EB0002446A /* GameScoreManager.swift in Sources */,
 				5286D3AA236312E0000DADFC /* FixtureListHost.swift in Sources */,
 				5286D3AE236336EE000DADFC /* NextGameHost.swift in Sources */,
 				522716CF22D1BB50008FD210 /* CachedJSONData.swift in Sources */,
-				526B211424C2EF54005CE9C7 /* MockDataManagers.swift in Sources */,
 				5286D3A623631016000DADFC /* FixtureListView.swift in Sources */,
 				52E711A11D9CF5C90002446A /* FixtureManager.swift in Sources */,
 				52176BCD1D4B6D5900B7EFAE /* ExtensionDelegate.swift in Sources */,
@@ -1416,25 +1543,44 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5252773C24C42C5400F93050 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5252774324C42C5400F93050 /* TimelineUnitTests.swift in Sources */,
+				5252775824C42DFE00F93050 /* SettingsManager.swift in Sources */,
+				5252775624C42DFE00F93050 /* Location.swift in Sources */,
+				5252775024C42D2C00F93050 /* GameScoreManager.swift in Sources */,
+				5252775524C42DFE00F93050 /* GameSettings.swift in Sources */,
+				5252774F24C42D2800F93050 /* FixtureManager.swift in Sources */,
+				5252775324C42DF400F93050 /* CachedJSONData.swift in Sources */,
+				5252775124C42D5E00F93050 /* TimelineEntry.swift in Sources */,
+				5252775924C42DFE00F93050 /* TeamImageManager.swift in Sources */,
+				5252775424C42DF800F93050 /* BaseSettings.swift in Sources */,
+				5252775724C42DFE00F93050 /* LocationManager.swift in Sources */,
+				5252775224C42D6400F93050 /* Fixture.swift in Sources */,
+				5252774A24C42C7500F93050 /* MockDataManagers.swift in Sources */,
+				5252774E24C42D1F00F93050 /* TimelineManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5257196D1FDE8AE1005F1D80 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				526B210724C2CD6E005CE9C7 /* TimelineManager.swift in Sources */,
 				522716D022D1BB50008FD210 /* CachedJSONData.swift in Sources */,
 				525719801FDE8BBB005F1D80 /* FixtureManager.swift in Sources */,
-				526B211524C2EF54005CE9C7 /* MockDataManagers.swift in Sources */,
 				52D8682C1FE92A440041B578 /* TVTwitterCollectionCell.swift in Sources */,
 				52D868291FE928DA0041B578 /* TwitterDataSource.swift in Sources */,
 				525719821FDE8BC2005F1D80 /* GameScoreManager.swift in Sources */,
 				52E77DE81FDEBBB60069FCFB /* TVFixturesDataSource.swift in Sources */,
 				52D8682F1FE933C20041B578 /* VerticallyAlignedLabel.swift in Sources */,
 				52D868261FE81B6E0041B578 /* TVFixtureCollectionCell.swift in Sources */,
-				52F5CA9F20ED1F45000143A1 /* TeamImageManager.swift in Sources */,
 				525719761FDE8AE2005F1D80 /* ViewController.swift in Sources */,
 				525719741FDE8AE2005F1D80 /* AppDelegate.swift in Sources */,
 				526B210E24C2CE66005CE9C7 /* TimelineEntry.swift in Sources */,
 				52E77DE51FDEBB6C0069FCFB /* TVFixtureData.swift in Sources */,
+				5252774C24C42D1400F93050 /* TeamImageManager.swift in Sources */,
 				525719811FDE8BBF005F1D80 /* Fixture.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1461,7 +1607,6 @@
 				522716D322D1D4C1008FD210 /* AppColors.swift in Sources */,
 				526B210524C2CD6E005CE9C7 /* TimelineManager.swift in Sources */,
 				52176BB41D4B62DC00B7EFAE /* BaseSettings.swift in Sources */,
-				526B211324C2EF54005CE9C7 /* MockDataManagers.swift in Sources */,
 				526F54641D214982001EA8D8 /* FixtureManager.swift in Sources */,
 				526F54551D214705001EA8D8 /* TodayViewController.swift in Sources */,
 			);
@@ -1474,7 +1619,6 @@
 				523CE54D214F9A54002F29EF /* FixtureTableViewCell.swift in Sources */,
 				528A347820CFB98D00E8475C /* TeamImageManager.swift in Sources */,
 				5211F72D1CDB1EE50031496D /* OtherLinksTableViewController.swift in Sources */,
-				526B211224C2EF54005CE9C7 /* MockDataManagers.swift in Sources */,
 				52176BB31D4B62DC00B7EFAE /* BaseSettings.swift in Sources */,
 				52E3DF791CD9FA78009F18BD /* WebPageViewController.swift in Sources */,
 				52F9CDB222D6687C00E0FFE8 /* SceneDelegate.swift in Sources */,
@@ -1519,9 +1663,7 @@
 				52EACDC2215646D0008B8DE5 /* GameScoreManager.swift in Sources */,
 				52EACDC0215646CD008B8DE5 /* Fixture.swift in Sources */,
 				52EACD9A215643FB008B8DE5 /* IntentHandler.swift in Sources */,
-				526B210824C2CD6E005CE9C7 /* TimelineManager.swift in Sources */,
 				522716D122D1BB50008FD210 /* CachedJSONData.swift in Sources */,
-				526B211624C2EF54005CE9C7 /* MockDataManagers.swift in Sources */,
 				52EACDBB21564586008B8DE5 /* LatestScoreIntentHandler.swift in Sources */,
 				52EACDC4215646D3008B8DE5 /* GameSettings.swift in Sources */,
 			);
@@ -1539,10 +1681,8 @@
 				522716D422D1E3FC008FD210 /* AppColors.swift in Sources */,
 				52EACDB921564467008B8DE5 /* Intent.intentdefinition in Sources */,
 				52EACDC7215646DA008B8DE5 /* BaseSettings.swift in Sources */,
-				526B210924C2CD6E005CE9C7 /* TimelineManager.swift in Sources */,
 				52EACDA5215643FC008B8DE5 /* IntentViewController.swift in Sources */,
-				526B211724C2EF54005CE9C7 /* MockDataManagers.swift in Sources */,
-				5297C9E82156544C00AB5D0F /* TeamImageManager.swift in Sources */,
+				5252774D24C42D1600F93050 /* TeamImageManager.swift in Sources */,
 				52EACDC1215646CE008B8DE5 /* Fixture.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1559,6 +1699,11 @@
 			isa = PBXTargetDependency;
 			target = 52176BB61D4B6D5900B7EFAE /* watchkitapp */;
 			targetProxy = 52176BD51D4B6D5900B7EFAE /* PBXContainerItemProxy */;
+		};
+		5252774624C42C5400F93050 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 52E3DF721CD9FA78009F18BD /* yeltzland */;
+			targetProxy = 5252774524C42C5400F93050 /* PBXContainerItemProxy */;
 		};
 		5257E8C01CDB953400157CED /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1726,6 +1871,66 @@
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Release;
+		};
+		5252774824C42C5400F93050 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D1DEE9A8770E728E2386C61 /* Pods-yeltzlandUnitTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W8B3V597R9;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = yeltzlandUnitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bravelocation.yeltzlandUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/yeltzland.app/yeltzland";
+			};
+			name = Debug;
+		};
+		5252774924C42C5400F93050 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 84B09CCF34E827938262A3C5 /* Pods-yeltzlandUnitTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = W8B3V597R9;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = yeltzlandUnitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bravelocation.yeltzlandUnitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/yeltzland.app/yeltzland";
 			};
 			name = Release;
 		};
@@ -2188,6 +2393,15 @@
 			buildConfigurations = (
 				52176BDD1D4B6D5900B7EFAE /* Debug */,
 				52176BDE1D4B6D5900B7EFAE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5252774724C42C5400F93050 /* Build configuration list for PBXNativeTarget "yeltzlandUnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5252774824C42C5400F93050 /* Debug */,
+				5252774924C42C5400F93050 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

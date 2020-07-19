@@ -21,9 +21,7 @@ class TodayViewController: UICollectionViewController, NCWidgetProviding {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // TODO: Don't forget to switch this back to the real provider before release
-        //self.timelineManager = TimelineManager(fixtureManager: FixtureManager.shared, gameScoreManager: GameScoreManager.shared)
-        self.timelineManager = TimelineManager(fixtureManager: MockFixtureManager(), gameScoreManager: MockGameScoreManager())
+        self.timelineManager = TimelineManager(fixtureManager: FixtureManager.shared, gameScoreManager: GameScoreManager.shared)
         self.timelineEntries = timelineManager.timelineEntries
         
         self.extensionContext?.widgetLargestAvailableDisplayMode = NCWidgetDisplayMode.compact

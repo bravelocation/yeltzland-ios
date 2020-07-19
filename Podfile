@@ -12,6 +12,16 @@ target 'yeltzland' do
   pod 'SwiftLint'
 end
 
+target 'yeltzlandUnitTests' do
+  platform :ios, '11.0'
+  
+  pod 'TwitterKit5', :podspec => 'https://raw.githubusercontent.com/bravelocation/twitter-kit-ios/master/TwitterKit5.podspec'
+  pod 'Firebase/Messaging'
+  pod 'SDWebImage'
+  
+  pod 'SwiftLint'
+end
+
 target 'watchkitapp Extension' do
   platform :watchos, '6.0'
 
