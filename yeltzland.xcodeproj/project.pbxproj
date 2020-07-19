@@ -74,6 +74,8 @@
 		5252775724C42DFE00F93050 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527DAF201D2D096B0092BB8F /* LocationManager.swift */; };
 		5252775824C42DFE00F93050 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5231F4FE215B6C56003FAC68 /* SettingsManager.swift */; };
 		5252775924C42DFE00F93050 /* TeamImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A347720CFB98D00E8475C /* TeamImageManager.swift */; };
+		5252775B24C498DD00F93050 /* NextGameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5252775A24C498DD00F93050 /* NextGameData.swift */; };
+		5252775C24C4999100F93050 /* TimelineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B210324C2CD6E005CE9C7 /* TimelineManager.swift */; };
 		525719741FDE8AE2005F1D80 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525719731FDE8AE2005F1D80 /* AppDelegate.swift */; };
 		525719761FDE8AE2005F1D80 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525719751FDE8AE2005F1D80 /* ViewController.swift */; };
 		525719791FDE8AE2005F1D80 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 525719771FDE8AE2005F1D80 /* Main.storyboard */; };
@@ -313,6 +315,7 @@
 		5252774024C42C5400F93050 /* yeltzlandUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = yeltzlandUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5252774224C42C5400F93050 /* TimelineUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineUnitTests.swift; sourceTree = "<group>"; };
 		5252774424C42C5400F93050 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5252775A24C498DD00F93050 /* NextGameData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextGameData.swift; sourceTree = "<group>"; };
 		525719711FDE8AE1005F1D80 /* yeltzlandTVOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = yeltzlandTVOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		525719731FDE8AE2005F1D80 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		525719751FDE8AE2005F1D80 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -521,6 +524,7 @@
 				5286D3A9236312E0000DADFC /* FixtureListHost.swift */,
 				5286D3A523631016000DADFC /* FixtureListView.swift */,
 				52176BD41D4B6D5900B7EFAE /* Info.plist */,
+				5252775A24C498DD00F93050 /* NextGameData.swift */,
 				5286D3AD236336EE000DADFC /* NextGameHost.swift */,
 				5286D3AB23633145000DADFC /* NextGameView.swift */,
 				5287A2DC23648E67005EDBA0 /* ResultsListHost.swift */,
@@ -1532,12 +1536,14 @@
 				522716CF22D1BB50008FD210 /* CachedJSONData.swift in Sources */,
 				5286D3A623631016000DADFC /* FixtureListView.swift in Sources */,
 				52E711A11D9CF5C90002446A /* FixtureManager.swift in Sources */,
+				5252775C24C4999100F93050 /* TimelineManager.swift in Sources */,
 				52176BCD1D4B6D5900B7EFAE /* ExtensionDelegate.swift in Sources */,
 				526B210D24C2CE66005CE9C7 /* TimelineEntry.swift in Sources */,
 				52E711A41D9CF5F40002446A /* Fixture.swift in Sources */,
 				5286D3A823631085000DADFC /* FixtureListData.swift in Sources */,
 				5287A2DD23648E67005EDBA0 /* ResultsListHost.swift in Sources */,
 				52176BE01D4B6D7300B7EFAE /* BaseSettings.swift in Sources */,
+				5252775B24C498DD00F93050 /* NextGameData.swift in Sources */,
 				5286D3AC23633145000DADFC /* NextGameView.swift in Sources */,
 				522EA44220EA236A00B90146 /* TeamImageManager.swift in Sources */,
 			);

@@ -9,37 +9,37 @@
 import SwiftUI
 
 struct NextGameView: View {
-    @ObservedObject var fixtureData = FixtureListData()
+    @ObservedObject var data = NextGameData()
     
     let logoDim = CGFloat(40)
     
     var body: some View {
-        VStack {
-            Text(isInProgress(fixtureData.latest) ? "Latest Score" : "Final Score")
-                .font(.headline)
-                .foregroundColor(Color("light-blue"))
-
-            HStack {
-                self.fixtureData.teamImage(self.teamImageName(fixture: fixtureData.latest, homeTeam: true))
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: self.logoDim, height: self.logoDim, alignment: .center)
-                self.fixtureData.teamImage(self.teamImageName(fixture: fixtureData.latest, homeTeam: false))
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: self.logoDim, height: self.logoDim, alignment: .center)
+        HStack {
+            VStack(alignment: .leading) {
+                Text(gameStatus(data.latest))
+                    .font(.footnote)
+                    
+                Text(opponentText(data.latest))
+                    .font(.body)
+                
+                Text(scoreOrDate(data.latest))
+                    .font(.largeTitle)
+                
+                Spacer()
             }
-            Text(fixtureData.latest?.displayOpponent ?? "No more games")
-            Text(isInProgress(fixtureData.latest) ? unwrapString(fixtureData.latest?.inProgressScore) : unwrapString(fixtureData.latest?.score))
-                .foregroundColor(self.fixtureData.resultColor(fixtureData.latest))
+                .foregroundColor(Color("light-blue"))
+                .padding()
+            
             Spacer()
-            Text(isInProgress(fixtureData.latest) ? "* Best guess from Twitter" : "")
-                .font(.footnote)
-                .multilineTextAlignment(.trailing)
         }
+        .overlay(
+            RoundedRectangle(cornerRadius: 16)
+            .stroke(Color("light-blue"), lineWidth: 2)
+        )
+        .padding()
         .contextMenu(menuItems: {
             Button(action: {
-                self.fixtureData.refreshData()
+                self.data.refreshData()
             }, label: {
                 VStack {
                     Image(systemName: "arrow.clockwise")
@@ -49,36 +49,47 @@ struct NextGameView: View {
             })
         })
         .onAppear {
-            self.fixtureData.refreshData()
+            self.data.refreshData()
         }
     }
     
-    func unwrapString(_ val: String?) -> String {
-        if let val = val {
-            return val
+    func opponentText (_ entry: TimelineEntry?) -> String {
+        if let entry = entry {
+            return "\(entry.opponent) (\(entry.home ? "H" : "A"))"
+        }
+        
+        return "No more games"
+    }
+    
+    func gameStatus(_ entry: TimelineEntry?) -> String {
+        if let entry = entry {
+            switch (entry.status) {
+            case .result:
+                return "RESULT"
+            case .inProgress:
+                return "LATEST SCORE"
+            case .fixture:
+                return "FIXTURE"
+            }
         }
         
         return ""
     }
     
-    func isInProgress(_ fixture: Fixture?) -> Bool {
-        if let fixture = fixture {
-            return fixture.inProgress
-        }
+    func scoreOrDate(_ entry: TimelineEntry?) -> String {
         
-        return false
-    }
-    
-    func teamImageName(fixture: Fixture?, homeTeam: Bool) -> String {
-        if let fixture = fixture {
-            if fixture.home == true && homeTeam == false {
-                return fixture.opponentNoCup
-            } else if fixture.home == false && homeTeam == true {
-               return fixture.opponentNoCup
+        if let entry = entry {
+            switch (entry.status) {
+            case .result:
+                return "\(entry.teamScore ?? 0)-\(entry.opponentScore ?? 0)"
+            case .inProgress:
+                return "\(entry.teamScore ?? 0)-\(entry.opponentScore ?? 0)*"
+            case .fixture:
+                return entry.fullDisplayKickoffTime
             }
         }
         
-        return "Halesowen Town"
+        return ""
     }
 }
 
