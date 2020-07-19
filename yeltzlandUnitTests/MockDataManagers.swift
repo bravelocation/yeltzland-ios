@@ -56,7 +56,7 @@ public class MockFixtureManager: TimelineFixtureProvider {
     
     // MARK: - TimelineFixtureProvider interface
     public func nextFixtures(_ numberOfFixtures: Int) -> [Fixture] {
-        return self.fixtures
+        return self.fixtures.sorted { return $0.fixtureDate < $1.fixtureDate }
     }
     
     public var lastGame: Fixture? {
