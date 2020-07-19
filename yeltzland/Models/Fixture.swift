@@ -104,8 +104,8 @@ public struct Fixture: Hashable {
         get {
             // Is the game today?
             let now = Date()
-            let currentDayNumber = FixtureManager.shared.dayNumber(now)
-            let fixtureDayNumber = FixtureManager.shared.dayNumber(self.fixtureDate)
+            let currentDayNumber = FixtureManager.dayNumber(now)
+            let fixtureDayNumber = FixtureManager.dayNumber(self.fixtureDate)
             
             if (currentDayNumber == fixtureDayNumber) {
                 let formatter = DateFormatter()
@@ -122,8 +122,8 @@ public struct Fixture: Hashable {
         get {
             // Is the game today?
             let now = Date()
-            let currentDayNumber = FixtureManager.shared.dayNumber(now)
-            let fixtureDayNumber = FixtureManager.shared.dayNumber(self.fixtureDate)
+            let currentDayNumber = FixtureManager.dayNumber(now)
+            let fixtureDayNumber = FixtureManager.dayNumber(self.fixtureDate)
             
             if (currentDayNumber == fixtureDayNumber) {
                 let formatter = DateFormatter()
@@ -152,8 +152,8 @@ public struct Fixture: Hashable {
             
             // Is the game today?
             let now = Date()
-            let currentDayNumber = FixtureManager.shared.dayNumber(now)
-            let fixtureDayNumber = FixtureManager.shared.dayNumber(self.fixtureDate)
+            let currentDayNumber = FixtureManager.dayNumber(now)
+            let fixtureDayNumber = FixtureManager.dayNumber(self.fixtureDate)
             
             if (currentDayNumber == fixtureDayNumber) {
                 prefix = "at"
@@ -171,8 +171,8 @@ public struct Fixture: Hashable {
         get {
             // Is the game today?
             let now = Date()
-            let currentDayNumber = FixtureManager.shared.dayNumber(now)
-            let fixtureDayNumber = FixtureManager.shared.dayNumber(self.fixtureDate)
+            let currentDayNumber = FixtureManager.dayNumber(now)
+            let fixtureDayNumber = FixtureManager.dayNumber(self.fixtureDate)
             
             if (currentDayNumber == fixtureDayNumber) {
                 let formatter = DateFormatter()
@@ -335,8 +335,8 @@ public struct Fixture: Hashable {
             
             let now = Date()
             let beforeKickoff = now.compare(self.fixtureDate) == ComparisonResult.orderedAscending
-            let todayDayNumber = FixtureManager.shared.dayNumber(now)
-            let fixtureDayNumber = FixtureManager.shared.dayNumber(self.fixtureDate)
+            let todayDayNumber = FixtureManager.dayNumber(now)
+            let fixtureDayNumber = FixtureManager.dayNumber(self.fixtureDate)
             
             // If next game is today, and we are before kickoff ...
             if (todayDayNumber == fixtureDayNumber) {

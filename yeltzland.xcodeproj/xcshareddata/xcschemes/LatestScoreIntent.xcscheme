@@ -52,6 +52,16 @@
          </BuildableReference>
       </MacroExpansion>
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "5252773F24C42C5400F93050"
+               BuildableName = "yeltzlandUnitTests.xctest"
+               BlueprintName = "yeltzlandUnitTests"
+               ReferencedContainer = "container:yeltzland.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

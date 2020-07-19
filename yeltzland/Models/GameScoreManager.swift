@@ -8,7 +8,11 @@
 
 import Foundation
 
-public class GameScoreManager: CachedJSONData {
+public protocol TimelineGameScoreProvider {
+    var currentFixture: Fixture? { get }
+}
+
+public class GameScoreManager: CachedJSONData, TimelineGameScoreProvider {
     var fileName: String
     var remoteURL: URL
     var notificationName: String
@@ -73,7 +77,7 @@ public class GameScoreManager: CachedJSONData {
             // Is the game in progress?
             
             if let nextFixture = FixtureManager.shared.nextGame {
-                if (FixtureManager.shared.dayNumber(nextFixture.fixtureDate) == FixtureManager.shared.dayNumber(fixture.fixtureDate)) {
+                if (FixtureManager.dayNumber(nextFixture.fixtureDate) == FixtureManager.dayNumber(fixture.fixtureDate)) {
                     // If current score is on same day as next fixture, then we are in progress
                     self.currentFixture = Fixture(date: fixture.fixtureDate,
                                                   opponent: fixture.opponent,
@@ -111,7 +115,6 @@ public class GameScoreManager: CachedJSONData {
         return json["match"] != nil
     }
     
-    // MARK: - Data properties
-
+    // MARK: - TimelineGameScoreProvider implementation
     public var currentFixture: Fixture?
 }

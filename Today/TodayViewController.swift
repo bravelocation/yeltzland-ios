@@ -9,26 +9,31 @@
 import UIKit
 import NotificationCenter
 
-class TodayViewController: UITableViewController, NCWidgetProviding {
+class TodayViewController: UICollectionViewController, NCWidgetProviding {
     
-    let cellRowHeight: CGFloat = 22.0
-    var inExpandedMode: Bool = false
-    let dataSource = TodayDataSource()
+    private var timelineManager: TimelineManager!
+    private var timelineEntries: [TimelineEntry] = []
+    
+    static var cellReuseIdentifier = "TodayFixtureCollectionViewCell"
+    
+    private let sectionInsets: UIEdgeInsets =  UIEdgeInsets.init(top: 8.0, left: 8.0, bottom: 0.0, right: 8.0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if #available(iOSApplicationExtension 10.0, *) {
-            self.extensionContext?.widgetLargestAvailableDisplayMode = NCWidgetDisplayMode.expanded
-        } else {
-            // Fallback on earlier versions
-        }
         
-        self.tableView.dataSource = self.dataSource
-        self.tableView.delegate = self
+        self.timelineManager = TimelineManager(fixtureManager: FixtureManager.shared, gameScoreManager: GameScoreManager.shared)
+        self.timelineEntries = timelineManager.timelineEntries
+        
+        self.extensionContext?.widgetLargestAvailableDisplayMode = NCWidgetDisplayMode.compact
+        self.collectionView.register(UINib(nibName: TodayViewController.cellReuseIdentifier, bundle: .main), forCellWithReuseIdentifier: TodayViewController.cellReuseIdentifier)
+
+        self.collectionView.dataSource = self
+        self.collectionView.delegate = self
+        self.collectionView.allowsSelection = true
     }
     
     func widgetMarginInsets(forProposedMarginInsets defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
-        return UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
+        return self.sectionInsets
     }
     
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
@@ -45,74 +50,88 @@ class TodayViewController: UITableViewController, NCWidgetProviding {
             }
         }
         
-        var rowCount: CGFloat = 5.0
-        if (self.inExpandedMode) {
-            rowCount = 9.0
-        }
-        
-        self.preferredContentSize = CGSize(width: 0.0, height: self.cellRowHeight * rowCount)
         completionHandler(NCUpdateResult.newData)
-    }
-    
-    @available(iOSApplicationExtension 10.0, *)
-    func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
-        if (activeDisplayMode == NCWidgetDisplayMode.compact) {
-            self.preferredContentSize = maxSize
-            self.inExpandedMode = false
-        } else {
-            self.preferredContentSize = CGSize(width: maxSize.width, height: self.cellRowHeight * 9)
-            self.inExpandedMode = true
-        }
-        
-        self.tableView.reloadData()
     }
     
     func fixturesUpdated() {
         print("Fixture update message received in today view")
         DispatchQueue.main.async(execute: { () -> Void in
-            self.dataSource.loadLatestData()
-            self.tableView.reloadData()
+            self.timelineManager.reloadData()
+            self.collectionView.reloadData()
         })
     }
-
-    // MARK: - Table view delegate
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let url = URL(string: "yeltzland://")
-        print("Opening app")
-        self.extensionContext?.open(url!, completionHandler: nil)
+    
+    // MARK: - Collection view data source
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.timelineEntries.count
     }
     
-    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        if let headerView = view as? UITableViewHeaderFooterView {
-            headerView.tintColor = UIColor.clear
-            headerView.textLabel!.textColor = AppColors.label
-            headerView.textLabel?.text = self.dataSource.headerText(section: section)
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
-        if let footerView = view as? UITableViewHeaderFooterView {
-            footerView.tintColor = UIColor.clear
-            footerView.textLabel!.textColor = AppColors.label
-            footerView.textLabel?.text = self.dataSource.footerText(section: section)
-        }
-    }
-
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return self.cellRowHeight
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return self.cellRowHeight
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        let footerText = self.dataSource.footerText(section: section)
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TodayViewController.cellReuseIdentifier, for: indexPath) as! TodayFixtureCollectionViewCell
         
-        if (footerText.count > 0) {
-            return self.cellRowHeight
+        // Figure out data to show
+        var entry: TimelineEntry?
+        
+        if (self.timelineEntries.count >= indexPath.row) {
+            entry = self.timelineEntries[indexPath.row]
         }
         
+        if let entry = entry {
+            cell.updateData(entry)
+        }
+        
+        // Configure the cell
+        return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView,
+                                 shouldSelectItemAt indexPath: IndexPath) -> Bool {
+      let url = URL(string: "yeltzland://")
+      print("Opening app")
+      self.extensionContext?.open(url!, completionHandler: nil)
+
+      return false
+    }
+}
+
+// MARK: - Collection View Flow Layout Delegate
+extension TodayViewController: UICollectionViewDelegateFlowLayout {
+    fileprivate var itemsPerRow: CGFloat {
+        return 2
+    }
+
+    fileprivate var interItemSpace: CGFloat {
+        return 4.0
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let sectionPadding = sectionInsets.left * (itemsPerRow + 1)
+        let interitemPadding = max(0.0, itemsPerRow - 1) * interItemSpace
+        let availableWidth = collectionView.bounds.width - sectionPadding - interitemPadding
+        let widthPerItem = availableWidth / itemsPerRow
+        
+        let availableHeight = collectionView.bounds.height - sectionPadding
+
+        return CGSize(width: widthPerItem, height: availableHeight)
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        return sectionInsets
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0.0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0.0
     }
 }
