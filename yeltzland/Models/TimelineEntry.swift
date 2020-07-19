@@ -14,7 +14,7 @@ public enum TimelineEntryStatus {
     case fixture
 }
 
-public struct TimelineEntry {
+public struct TimelineEntry: Equatable {
     var opponent: String
     var date: Date
     var teamScore: Int?
@@ -42,8 +42,8 @@ public struct TimelineEntry {
         get {
             // Is the game today?
             let now = Date()
-            let currentDayNumber = FixtureManager.shared.dayNumber(now)
-            let fixtureDayNumber = FixtureManager.shared.dayNumber(self.date)
+            let currentDayNumber = FixtureManager.dayNumber(now)
+            let fixtureDayNumber = FixtureManager.dayNumber(self.date)
             
             if (currentDayNumber == fixtureDayNumber) {
                 let formatter = DateFormatter()
@@ -54,5 +54,9 @@ public struct TimelineEntry {
                 return self.fullKickoffTime
             }
         }
+    }
+    
+    public static func == (lhs: TimelineEntry, rhs: TimelineEntry) -> Bool {
+        return lhs.opponent == rhs.opponent && lhs.date == rhs.date
     }
 }

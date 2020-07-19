@@ -10,7 +10,7 @@ import Foundation
 
 public protocol TimelineFixtureProvider {
     func nextFixtures(_ numberOfFixtures: Int) -> [Fixture]
-    func lastResults(_ numberOfFixtures: Int) -> [Fixture] 
+    var lastGame: Fixture? { get }
 }
 
 public class FixtureManager: CachedJSONData, TimelineFixtureProvider {
@@ -143,24 +143,6 @@ public class FixtureManager: CachedJSONData, TimelineFixtureProvider {
 
     }
     
-    public var lastGame: Fixture? {
-        var lastCompletedGame: Fixture? = nil
-        
-        for month in self.months {
-            if let monthFixtures = self.fixturesForMonth(month) {
-                for fixture in monthFixtures {
-                    if (fixture.teamScore != nil && fixture.opponentScore != nil) {
-                        lastCompletedGame = fixture
-                    } else {
-                        return lastCompletedGame
-                    }
-                }
-            }
-        }
-        
-        return lastCompletedGame
-    }
-    
     public var nextGame: Fixture? {
         let fixtures = self.nextFixtures(1)
         
@@ -201,7 +183,7 @@ public class FixtureManager: CachedJSONData, TimelineFixtureProvider {
         return nil
     }
     
-    public func dayNumber(_ date: Date) -> Int {
+    public static func dayNumber(_ date: Date) -> Int {
         // Removes the time components from a date
         let calendar = Calendar.current
         let unitFlags: NSCalendar.Unit = [.day, .month, .year]
@@ -215,12 +197,12 @@ public class FixtureManager: CachedJSONData, TimelineFixtureProvider {
     // MARK: - TimelineFixtureProvider implementation
     public func nextFixtures(_ numberOfFixtures: Int) -> [Fixture] {
         var fixtures: [Fixture] = []
-        let currentDayNumber = self.dayNumber(Date())
+        let currentDayNumber = FixtureManager.dayNumber(Date())
         
         for month in self.months {
             if let monthFixtures = self.fixturesForMonth(month) {
                 for fixture in monthFixtures {
-                    let matchDayNumber = self.dayNumber(fixture.fixtureDate as Date)
+                    let matchDayNumber = FixtureManager.dayNumber(fixture.fixtureDate as Date)
                     
                     // If no score and match is not before today
                     if (fixture.teamScore == nil && fixture.opponentScore == nil && currentDayNumber <= matchDayNumber) {
@@ -237,26 +219,21 @@ public class FixtureManager: CachedJSONData, TimelineFixtureProvider {
         return fixtures
     }
     
-    public func lastResults(_ numberOfFixtures: Int) -> [Fixture] {
-        var results: [Fixture] = []
+    public var lastGame: Fixture? {
+        var lastCompletedGame: Fixture? = nil
         
         for month in self.months {
             if let monthFixtures = self.fixturesForMonth(month) {
                 for fixture in monthFixtures {
-                    // If score and match is before today
                     if (fixture.teamScore != nil && fixture.opponentScore != nil) {
-                        results.append(fixture)
+                        lastCompletedGame = fixture
+                    } else {
+                        return lastCompletedGame
                     }
                 }
             }
         }
         
-        // Return the last N
-        
-        if (results.count <= numberOfFixtures) {
-            return results
-        }
-        
-        return results.suffix(numberOfFixtures).reversed()
+        return lastCompletedGame
     }
 }

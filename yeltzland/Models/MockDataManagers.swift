@@ -9,6 +9,7 @@
 import Foundation
 
 public class MockFixtureManager: TimelineFixtureProvider {
+    
     static func makeDate(daysToAdd: Int) -> Date {
         // Get today at 1500
         let dateCurrent = Date()
@@ -33,19 +34,14 @@ public class MockFixtureManager: TimelineFixtureProvider {
         return fixtures
     }
     
-    public func lastResults(_ numberOfFixtures: Int) -> [Fixture] {
-        var results: [Fixture] = []
-        
-        results.append(Fixture(date: MockFixtureManager.makeDate(daysToAdd: -7), opponent: "Concord Rangers", home: true, teamScore: 2, opponentScore: 0, inProgress: false))
-        results.append(Fixture(date: MockFixtureManager.makeDate(daysToAdd: -4), opponent: "Halifax Town", home: true, teamScore: 3, opponentScore: 1, inProgress: false))
-        
-        return results.reversed()
+    public var lastGame: Fixture? {
+        return Fixture(date: MockFixtureManager.makeDate(daysToAdd: -2), opponent: "Halifax Town", home: true, teamScore: 3, opponentScore: 1, inProgress: false)
     }
 }
 
 public class MockGameScoreManager: TimelineGameScoreProvider {
     public var currentFixture: Fixture? {
         return nil
-        return Fixture(date: MockFixtureManager.makeDate(daysToAdd: 0), opponent: "Stourbridge", home: true, teamScore: 4, opponentScore: 0, inProgress: true)
+        //return Fixture(date: MockFixtureManager.makeDate(daysToAdd: 0), opponent: "Stourbridge", home: true, teamScore: 4, opponentScore: 0, inProgress: true)
     }
 }

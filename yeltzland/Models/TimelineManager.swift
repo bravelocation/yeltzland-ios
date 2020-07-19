@@ -12,7 +12,7 @@ class TimelineManager {
     private var fixtureManager: TimelineFixtureProvider
     private var gameScoreManager: TimelineGameScoreProvider
     
-    private var lastGames = Array<TimelineEntry>()
+    private var lastGame: TimelineEntry?
     private var currentScore: TimelineEntry?
     private var nextGames = Array<TimelineEntry>()
 
@@ -31,25 +31,48 @@ class TimelineManager {
         var firstEntry: TimelineEntry?
         var secondEntry: TimelineEntry?
         
-        // Second entry should always be the next fixture if we have it
-        secondEntry = self.nextGames.first
+        // 1. Get last game, put it into slot 1
+        firstEntry = self.lastGame
         
-        // First entry should be the current score if we have it
-        firstEntry = currentScore
-        
-        // Switch the first entry to the last result if empty
-        if firstEntry == nil {
-            firstEntry = self.lastGames.first
+        // 2. If current game is in progress, put it into slot one
+        if let currentGame = self.currentScore {
+            firstEntry = currentGame
         }
         
-        // If we have a 2nd and not 1st, we must have only fixtures, so add the next fixture at the end
-        if (firstEntry == nil && secondEntry != nil) {
-            firstEntry = secondEntry
+        // 3. Get next fixture
+        if self.nextGames.count > 0 {
+            let nextGame = self.nextGames[0]
+            
+            // 1. If it is not the current game
+            if nextGame != self.currentScore {
+                // If the last game was yesterday or today, put it into slot two, otherwise slot one
+                if let lastGame = self.lastGame {
+                    if daysSinceResult(result: lastGame) <= 1 {
+                        secondEntry = nextGame
+                    } else {
+                        firstEntry = nextGame
+                    }
+                } else {
+                    firstEntry = nextGame
+                }
+            }
+        }
+        
+        // 4. Fill up the remaining slots with subsequent fixtures
+        if firstEntry == nil {
+            if self.nextGames.count > 0 {
+                firstEntry = self.nextGames[0]
+            }
             if self.nextGames.count > 1 {
+                secondEntry = self.nextGames[1]
+            }
+        } else if secondEntry == nil {
+          if self.nextGames.count > 1 {
                 secondEntry = self.nextGames[1]
             }
         }
         
+        // Return the first and second in an array
         var entries: [TimelineEntry] = []
         if let first = firstEntry {
             entries.append(first)
@@ -76,36 +99,35 @@ class TimelineManager {
            }
         }
         
-        self.lastGames.removeAll()
+        self.lastGame = nil
         
-        for result in self.fixtureManager.lastResults(2) {
-            self.lastGames.append(
-                TimelineEntry(
-                    opponent: result.opponent,
-                    date: result.fixtureDate,
-                    teamScore: result.teamScore,
-                    opponentScore: result.opponentScore,
-                    status: .result))
+        if let lastResult = self.fixtureManager.lastGame {
+            self.lastGame = TimelineEntry(
+                    opponent: lastResult.opponent,
+                    date: lastResult.fixtureDate,
+                    teamScore: lastResult.teamScore,
+                    opponentScore: lastResult.opponentScore,
+                    status: .result)
         }
        
         // Get next games
         self.nextGames.removeAll()
-       
-        // Only add first fixture if no current game
-        var i = 0
-        
+
         for fixture in self.fixtureManager.nextFixtures(2) {
-            if (i > 0 || self.currentScore == nil) {
-               let fixtureData = TimelineEntry(
-                   opponent: fixture.opponent,
-                   date: fixture.fixtureDate,
-                   teamScore: fixture.teamScore,
-                   opponentScore: fixture.opponentScore,
-                   status: .fixture)
-               self.nextGames.append(fixtureData)
-            }
-            
-            i += 1
+           let fixtureData = TimelineEntry(
+               opponent: fixture.opponent,
+               date: fixture.fixtureDate,
+               teamScore: fixture.teamScore,
+               opponentScore: fixture.opponentScore,
+               status: .fixture)
+           self.nextGames.append(fixtureData)
         }
-   }
+    }
+    
+    private func daysSinceResult(result: TimelineEntry) -> Int {
+        let dayNumberForResult = FixtureManager.dayNumber(result.date)
+        let dayNumberForToday = FixtureManager.dayNumber(Date())
+        
+        return dayNumberForToday - dayNumberForResult
+    }
 }
