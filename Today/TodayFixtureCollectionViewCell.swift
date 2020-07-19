@@ -43,6 +43,7 @@ class TodayFixtureCollectionViewCell: UICollectionViewCell {
         self.opponentLabel.textColor = UIColor.white
         self.scoreOrDateLabel.textColor = UIColor.white
         
+        self.backgroundColor = UIColor.clear
         self.contentView.layer.backgroundColor = UIColor(named: "yeltz-blue")?.cgColor
         
         // Set cell border
