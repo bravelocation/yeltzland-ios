@@ -48,11 +48,11 @@ struct CurrentGameView: View {
             }, label: {
                 Image(systemName: "arrow.clockwise")
                     .font(.footnote)
-                    .foregroundColor(Color.gray)
+                    .foregroundColor(Color("yeltz-blue"))
 
             })
             .frame(width: 24.0, height: 24.0, alignment: .center)
-            .background(Color("light-blue").opacity(0.2))
+            .background(Color("light-blue").opacity(0.5))
             .cornerRadius(12), alignment: .bottomTrailing
         )
         .onAppear {

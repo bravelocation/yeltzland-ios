@@ -119,8 +119,10 @@ class FixtureListData: ObservableObject {
         
         self.fetchTeamLogo("Halesowen Town")
         
-        self.fixtures = newFixtures
-        self.results = newResults.reversed()
+        DispatchQueue.main.async {
+            self.fixtures = newFixtures
+            self.results = newResults.reversed()
+        }
     }
     
     @objc
