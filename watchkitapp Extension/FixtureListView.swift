@@ -16,29 +16,37 @@ struct FixtureListView: View {
         
     var body: some View {
         VStack {
-            Text(self.showResults ? "Results" : "Fixtures")
-                .font(.headline)
-                .foregroundColor(Color("light-blue"))
-                .padding(.bottom, 8)
-            
             Text(self.showResults ? (self.fixtureData.results.count == 0 ? "No results" : "") : (self.fixtureData.fixtures.count == 0 ? "No fixtures" : ""))
             
             List(self.showResults ? self.fixtureData.results : self.fixtureData.fixtures, id: \.self) { fixture in
 
-                VStack(alignment: .leading) {
-                    self.fixtureData.teamImage(fixture.opponentNoCup)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: self.logoDim, height: self.logoDim, alignment: .center)
+                HStack {
+                    VStack(alignment: .leading) {
+                        self.fixtureData.teamImage(fixture.opponentNoCup)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: self.logoDim, height: self.logoDim, alignment: .center)
 
-                    Text(fixture.displayOpponent)
-                            .lineLimit(2)
-                    Text(fixture.tvResultDisplayKickoffTime)
-                    Text(fixture.score)
-                        .multilineTextAlignment(.trailing)
-                        .foregroundColor(self.fixtureData.resultColor(fixture))
-                }
-                .padding(8)
+                        Text(fixture.displayOpponent)
+                                .lineLimit(2)
+                            .font(.body)
+                        Text(fixture.tvResultDisplayKickoffTime)
+                            .font(self.kickoffSize())
+                        Text(fixture.score)
+                            .multilineTextAlignment(.trailing)
+                            .foregroundColor(self.fixtureData.resultColor(fixture))
+                            .font(self.scoreSize())
+                    }
+                    .foregroundColor(Color("light-blue"))
+                    .padding(8)
+                    
+                    Spacer()
+                }.overlay(
+                    RoundedRectangle(cornerRadius: 16)
+                    .stroke(Color("light-blue"), lineWidth: 2)
+                )
+                    .padding(.top)
+                    .padding(.bottom)
             }
             .listStyle(CarouselListStyle())
             .contextMenu(menuItems: {
@@ -52,6 +60,22 @@ struct FixtureListView: View {
                     }
                 })
             })
+        }.navigationBarTitle(Text(showResults ? "Results" : "Fixtures"))
+    }
+    
+    func kickoffSize() -> Font {
+        if self.showResults {
+            return .footnote
+        } else {
+            return .largeTitle
+        }
+    }
+    
+    func scoreSize() -> Font {
+        if self.showResults == false {
+            return .footnote
+        } else {
+            return .largeTitle
         }
     }
 }

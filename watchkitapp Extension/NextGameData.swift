@@ -26,7 +26,9 @@ class NextGameData: ObservableObject {
     
     fileprivate func resetData() {
         self.timelineManager.reloadData()
-        self.latest = self.timelineManager.timelineEntries.first
+        DispatchQueue.main.async {
+            self.latest = self.timelineManager.timelineEntries.first
+        }
     }
 
     public func refreshData() {

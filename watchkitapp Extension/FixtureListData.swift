@@ -13,7 +13,6 @@ import Combine
 class FixtureListData: ObservableObject {
     @Published var fixtures: [Fixture] = []
     @Published var results: [Fixture] = []
-    @Published var latest: Fixture? = nil
     @Published var logos: [String: UIImage] = [:]
     
     init() {
@@ -72,18 +71,6 @@ class FixtureListData: ObservableObject {
         }
     }
     
-    fileprivate func calculateLatestFixture() -> Fixture? {
-        var latestFixture: Fixture? = FixtureManager.shared.lastGame
-
-        if let currentFixture = GameScoreManager.shared.currentFixture {
-            if currentFixture.inProgress {
-                latestFixture = currentFixture
-            }
-        }
-        
-        return latestFixture
-    }
-    
     fileprivate func resetData() {
         var newFixtures: [Fixture] = []
         var newResults: [Fixture] = []
@@ -101,9 +88,7 @@ class FixtureListData: ObservableObject {
         self.fetchTeamLogo("Halesowen Town")
         
         self.fixtures = newFixtures
-        self.results = newResults
-
-        self.latest = self.calculateLatestFixture()
+        self.results = newResults.reversed()
     }
     
     @objc
