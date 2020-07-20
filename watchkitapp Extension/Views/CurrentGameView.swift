@@ -11,24 +11,26 @@ import SwiftUI
 struct CurrentGameView: View {
     @ObservedObject var data: CurrentGameData
     
-    let logoDim = CGFloat(20)
+    let logoDim = CGFloat(40)
     
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text(gameStatus(data.latest))
-                    .font(.footnote)
-                    
                 self.data.teamImage
                     .resizable()
                     .scaledToFit()
                     .frame(width: self.logoDim, height: self.logoDim, alignment: .center)
                 
                 Text(opponentText(data.latest))
+                    .lineLimit(2)
                     .font(.body)
                 
                 Text(scoreOrDate(data.latest))
-                    .font(.largeTitle)
+                    .font(scoreOrDateFont(data.latest))
+                
+                Text(gameStatus(data.latest))
+                    .lineLimit(2)
+                    .font(.footnote)
                 
                 Spacer()
             }
@@ -60,7 +62,7 @@ struct CurrentGameView: View {
     
     func opponentText (_ entry: TimelineEntry?) -> String {
         if let entry = entry {
-            return "\(entry.opponent) (\(entry.home ? "H" : "A"))"
+            return entry.displayOpponent
         }
         
         return "No more games"
@@ -72,9 +74,9 @@ struct CurrentGameView: View {
             case .result:
                 return "RESULT"
             case .inProgress:
-                return "LATEST SCORE"
+                return "* BASED ON TWITTER"
             case .fixture:
-                return "FIXTURE"
+                return ""
             }
         }
         
@@ -95,6 +97,20 @@ struct CurrentGameView: View {
         }
         
         return ""
+    }
+    
+    func scoreOrDateFont(_ entry: TimelineEntry?) -> Font {
+        if let entry = entry {
+            switch (entry.status) {
+            case .result, .inProgress:
+                return .largeTitle
+            case .fixture:
+                let kickoffTime = entry.fullDisplayKickoffTime
+                return kickoffTime.count > 6 ? .headline : .largeTitle
+            }
+        }
+        
+        return .body
     }
 }
 

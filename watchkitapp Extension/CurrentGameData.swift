@@ -12,8 +12,7 @@ import Combine
 
 class CurrentGameData: ObservableObject {
     @Published var latest: TimelineEntry?
-    
-    var logo: UIImage?
+    @Published var teamImage: Image = Image("blank_team")
     
     var timelineManager: TimelineManager!
     var fixtureManager: TimelineFixtureProvider
@@ -29,14 +28,6 @@ class CurrentGameData: ObservableObject {
         )
         
         self.resetData()
-    }
-    
-    var teamImage: Image {
-        if let image = self.logo {
-            return Image(uiImage: image)
-        }
-        
-        return Image("blank_team")
     }
 
     public func refreshData() {
@@ -58,8 +49,8 @@ class CurrentGameData: ObservableObject {
     
     fileprivate func fetchTeamLogo(_ teamName: String) {
         TeamImageManager.shared.loadTeamImage(teamName: teamName) { image in
-            if image != nil {
-                self.logo = image
+            if let image = image {
+                self.teamImage = Image(uiImage: image)
             }
         }
     }

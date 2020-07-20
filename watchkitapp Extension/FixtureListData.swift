@@ -13,11 +13,10 @@ import Combine
 class FixtureListData: ObservableObject {
     @Published var fixtures: [TimelineEntry] = []
     @Published var results: [TimelineEntry] = []
+    @Published var logos: [String: UIImage] = [:]
 
     var fixtureManager: TimelineFixtureProvider
     var gameScoreManager: TimelineGameScoreProvider
-    
-    var logos: [String: UIImage] = [:]
     
     init() {
         self.fixtureManager = FixtureManager.shared

@@ -28,7 +28,7 @@ struct FixtureListView: View {
                             .frame(width: self.logoDim, height: self.logoDim, alignment: .center)
 
                         Text(fixture.displayOpponent)
-                                .lineLimit(2)
+                            .lineLimit(2)
                             .font(.body)
                         Text(fixture.fullDisplayKickoffTime)
                             .font(self.kickoffSize())
@@ -45,10 +45,10 @@ struct FixtureListView: View {
                     RoundedRectangle(cornerRadius: 16)
                     .stroke(Color("light-blue"), lineWidth: 2)
                 )
-                    .padding(.top)
-                    .padding(.bottom)
+                .padding(.top, 2)
+                .padding(.bottom, 2)
             }
-            .listStyle(CarouselListStyle())
+            //.listStyle(CarouselListStyle())
             .contextMenu(menuItems: {
                 Button(action: {
                     self.fixtureData.refreshData()
