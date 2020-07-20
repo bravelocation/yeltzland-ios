@@ -48,7 +48,6 @@ struct FixtureListView: View {
                 .padding(.top, 2)
                 .padding(.bottom, 2)
             }
-            //.listStyle(CarouselListStyle())
             .contextMenu(menuItems: {
                 Button(action: {
                     self.fixtureData.refreshData()
