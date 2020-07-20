@@ -67,7 +67,11 @@ public struct TimelineEntry: Equatable, Hashable {
     
     var displayScore: String {
         get {
-            return "\(self.teamScore ?? 0)-\(self.opponentScore ?? 0)"
+            if let teamScore = self.teamScore, let opponentScore = self.opponentScore {
+                 return "\(teamScore)-\(opponentScore)"
+            }
+        
+            return ""
         }
     }
     

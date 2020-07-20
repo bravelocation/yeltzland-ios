@@ -13,23 +13,41 @@ import Combine
 class FixtureListData: ObservableObject {
     @Published var fixtures: [TimelineEntry] = []
     @Published var results: [TimelineEntry] = []
-    @Published var logos: [String: UIImage] = [:]
+
+    var fixtureManager: TimelineFixtureProvider
+    var gameScoreManager: TimelineGameScoreProvider
+    
+    var logos: [String: UIImage] = [:]
     
     init() {
-        //Add notification handler for updating on updated fixtures
-        NotificationCenter.default.addObserver(self, selector: #selector(FixtureListData.userSettingsUpdated(_:)), name: NSNotification.Name(rawValue: BaseSettings.SettingsUpdateNotification), object: nil)
+        self.fixtureManager = FixtureManager.shared
+        self.gameScoreManager = GameScoreManager.shared
         
-        self.resetData()
+        self.setup()
+    }
+    
+    init(fixtureManager: TimelineFixtureProvider, gameScoreManager: TimelineGameScoreProvider) {
+        self.fixtureManager = fixtureManager
+        self.gameScoreManager = gameScoreManager
+        
+        self.setup()
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
     
+    private func setup() {
+        //Add notification handler for updating on updated fixtures
+        NotificationCenter.default.addObserver(self, selector: #selector(FixtureListData.userSettingsUpdated(_:)), name: NSNotification.Name(rawValue: BaseSettings.SettingsUpdateNotification), object: nil)
+        
+        self.resetData()
+    }
+    
     func refreshData() {
         // Go fetch the latest fixtures and game score
-        FixtureManager.shared.fetchLatestData(completion: nil)
-        GameScoreManager.shared.fetchLatestData(completion: nil)
+        self.fixtureManager.fetchLatestData(completion: nil)
+        self.gameScoreManager.fetchLatestData(completion: nil)
     }
     
     func teamImage(_ teamName: String) -> Image {
@@ -67,7 +85,7 @@ class FixtureListData: ObservableObject {
         var newFixtures: [TimelineEntry] = []
         var newResults: [TimelineEntry] = []
 
-        for fixture in FixtureManager.shared.allMatches {
+        for fixture in self.fixtureManager.allMatches {
             if fixture.teamScore == nil && fixture.opponentScore == nil {
                 newFixtures.append(
                     TimelineEntry(opponent: fixture.opponent,

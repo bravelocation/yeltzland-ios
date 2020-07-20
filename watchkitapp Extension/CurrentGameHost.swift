@@ -12,6 +12,9 @@ import SwiftUI
 class CurrentGameHost: WKHostingController<CurrentGameView> {
 
     override var body: CurrentGameView {
-        return CurrentGameView()
+        return CurrentGameView(data: CurrentGameData(
+            fixtureManager: FixtureManager.shared,
+            gameScoreManager: GameScoreManager.shared)
+        )
     }
 }

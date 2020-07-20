@@ -13,27 +13,54 @@ import Combine
 class CurrentGameData: ObservableObject {
     @Published var latest: TimelineEntry?
     
-    var timelineManager: TimelineManager!
+    var logo: UIImage?
     
-    init() {
-        timelineManager = TimelineManager(
-            fixtureManager: FixtureManager.shared,
-            gameScoreManager: GameScoreManager.shared
+    var timelineManager: TimelineManager!
+    var fixtureManager: TimelineFixtureProvider
+    var gameScoreManager: TimelineGameScoreProvider
+    
+    init(fixtureManager: TimelineFixtureProvider, gameScoreManager: TimelineGameScoreProvider) {
+        self.fixtureManager = fixtureManager
+        self.gameScoreManager = gameScoreManager
+        
+        self.timelineManager = TimelineManager(
+            fixtureManager: fixtureManager,
+            gameScoreManager: gameScoreManager
         )
         
         self.resetData()
+    }
+    
+    var teamImage: Image {
+        if let image = self.logo {
+            return Image(uiImage: image)
+        }
+        
+        return Image("blank_team")
+    }
+
+    public func refreshData() {
+        // Go fetch the latest fixtures and game score, then reload the timeline
+        fixtureManager.fetchLatestData { _ in self.resetData() }
+        gameScoreManager.fetchLatestData { _ in self.resetData() }
     }
     
     fileprivate func resetData() {
         self.timelineManager.reloadData()
         DispatchQueue.main.async {
             self.latest = self.timelineManager.timelineEntries.first
+            
+            if let latest = self.latest {
+                self.fetchTeamLogo(latest.opponentNoCup)
+            }
         }
     }
-
-    public func refreshData() {
-        // Go fetch the latest fixtures and game score, then reload the timeline
-        FixtureManager.shared.fetchLatestData { _ in self.resetData() }
-        GameScoreManager.shared.fetchLatestData { _ in self.resetData() }
+    
+    fileprivate func fetchTeamLogo(_ teamName: String) {
+        TeamImageManager.shared.loadTeamImage(teamName: teamName) { image in
+            if image != nil {
+                self.logo = image
+            }
+        }
     }
 }

@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct FixtureListView: View {
-    @ObservedObject var fixtureData = FixtureListData()
+    @ObservedObject var fixtureData: FixtureListData
     var showResults: Bool
     
     let logoDim = CGFloat(40)
@@ -67,7 +67,7 @@ struct FixtureListView: View {
         if self.showResults {
             return .footnote
         } else {
-            return .largeTitle
+            return .headline
         }
     }
     
@@ -83,8 +83,14 @@ struct FixtureListView: View {
 struct FixtureListView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            FixtureListView(showResults: false)
-            FixtureListView(showResults: true)
+            FixtureListView(
+                fixtureData: FixtureListData(fixtureManager: PreviewFixtureManager(), gameScoreManager: PreviewGameScoreManager()),
+                showResults: false
+            )
+            FixtureListView(
+                fixtureData: FixtureListData(fixtureManager: PreviewFixtureManager(), gameScoreManager: PreviewGameScoreManager()),
+                showResults: true
+            )
         }
     }
 }

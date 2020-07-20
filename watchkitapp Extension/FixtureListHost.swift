@@ -12,6 +12,9 @@ import SwiftUI
 class FixtureListHost: WKHostingController<FixtureListView> {
 
     override var body: FixtureListView {
-        return FixtureListView(showResults: false)
+        return FixtureListView(
+            fixtureData: FixtureListData(),
+            showResults: false
+        )
     }
 }

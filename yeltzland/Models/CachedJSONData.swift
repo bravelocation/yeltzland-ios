@@ -11,7 +11,7 @@ import Foundation
 // MARK: - Errors
 
 /// Errors for downloading, loading or parsing JSON
-enum JSONDataError: Error {
+public enum JSONDataError: Error {
     case incorrectFileName
     case missingBundleFile
     case fileSaveError
@@ -138,7 +138,7 @@ extension CachedJSONData {
         })
     }
     
-    func fetchLatestData(completion: ((Result<Bool, JSONDataError>) -> Void)?) {
+    public func fetchLatestData(completion: ((Result<Bool, JSONDataError>) -> Void)?) {
         let urlRequest = URLRequest(url: self.remoteURL, cachePolicy: NSURLRequest.CachePolicy.useProtocolCachePolicy, timeoutInterval: 60.0)
         
         let config = URLSessionConfiguration.default

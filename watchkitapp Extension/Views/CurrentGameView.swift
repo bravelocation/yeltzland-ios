@@ -9,9 +9,9 @@
 import SwiftUI
 
 struct CurrentGameView: View {
-    @ObservedObject var data = CurrentGameData()
+    @ObservedObject var data: CurrentGameData
     
-    let logoDim = CGFloat(40)
+    let logoDim = CGFloat(20)
     
     var body: some View {
         HStack {
@@ -19,6 +19,11 @@ struct CurrentGameView: View {
                 Text(gameStatus(data.latest))
                     .font(.footnote)
                     
+                self.data.teamImage
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: self.logoDim, height: self.logoDim, alignment: .center)
+                
                 Text(opponentText(data.latest))
                     .font(.body)
                 
@@ -95,6 +100,9 @@ struct CurrentGameView: View {
 
 struct NextGameView_Previews: PreviewProvider {
     static var previews: some View {
-        CurrentGameView()
+        CurrentGameView(data: CurrentGameData(
+            fixtureManager: PreviewFixtureManager(),
+            gameScoreManager: PreviewGameScoreManager())
+        )
     }
 }

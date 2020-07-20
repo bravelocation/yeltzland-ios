@@ -143,6 +143,8 @@
 		52E3DF791CD9FA78009F18BD /* WebPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E3DF781CD9FA78009F18BD /* WebPageViewController.swift */; };
 		52E3DF7E1CD9FA78009F18BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52E3DF7D1CD9FA78009F18BD /* Assets.xcassets */; };
 		52E3DF811CD9FA78009F18BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52E3DF7F1CD9FA78009F18BD /* LaunchScreen.storyboard */; };
+		52E54D8024C5A9B10007B44E /* PreviewFixtureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E54D7F24C5A9B10007B44E /* PreviewFixtureManager.swift */; };
+		52E54D8224C5AAE30007B44E /* PreviewGameScoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E54D8124C5AAE30007B44E /* PreviewGameScoreManager.swift */; };
 		52E711A11D9CF5C90002446A /* FixtureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236AE71D17E4D3004903AB /* FixtureManager.swift */; };
 		52E711A31D9CF5EB0002446A /* GameScoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52176BAF1D4A1B3200B7EFAE /* GameScoreManager.swift */; };
 		52E711A41D9CF5F40002446A /* Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236AE51D17DFF8004903AB /* Fixture.swift */; };
@@ -373,6 +375,8 @@
 		52E3DF7D1CD9FA78009F18BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		52E3DF801CD9FA78009F18BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		52E3DF821CD9FA78009F18BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		52E54D7F24C5A9B10007B44E /* PreviewFixtureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewFixtureManager.swift; sourceTree = "<group>"; };
+		52E54D8124C5AAE30007B44E /* PreviewGameScoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewGameScoreManager.swift; sourceTree = "<group>"; };
 		52E711AA1D9FB5B70002446A /* MakeToast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakeToast.swift; sourceTree = "<group>"; };
 		52E77DE41FDEBB6C0069FCFB /* TVFixtureData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVFixtureData.swift; sourceTree = "<group>"; };
 		52E77DE71FDEBBB60069FCFB /* TVFixturesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVFixturesDataSource.swift; sourceTree = "<group>"; };
@@ -516,6 +520,7 @@
 		52176BC71D4B6D5900B7EFAE /* watchkitapp Extension */ = {
 			isa = PBXGroup;
 			children = (
+				52E54D7E24C5A98F0007B44E /* Previews */,
 				52E54D7D24C59BE90007B44E /* HostControllers */,
 				52E54D7C24C59BD10007B44E /* Models */,
 				52E54D7B24C59BAD0007B44E /* Views */,
@@ -754,6 +759,15 @@
 				5287A2DC23648E67005EDBA0 /* ResultsListHost.swift */,
 			);
 			name = HostControllers;
+			sourceTree = "<group>";
+		};
+		52E54D7E24C5A98F0007B44E /* Previews */ = {
+			isa = PBXGroup;
+			children = (
+				52E54D7F24C5A9B10007B44E /* PreviewFixtureManager.swift */,
+				52E54D8124C5AAE30007B44E /* PreviewGameScoreManager.swift */,
+			);
+			name = Previews;
 			sourceTree = "<group>";
 		};
 		52EACD98215643FB008B8DE5 /* LatestScoreIntent */ = {
@@ -1557,7 +1571,9 @@
 				52E711A31D9CF5EB0002446A /* GameScoreManager.swift in Sources */,
 				5286D3AA236312E0000DADFC /* FixtureListHost.swift in Sources */,
 				5286D3AE236336EE000DADFC /* CurrentGameHost.swift in Sources */,
+				52E54D8024C5A9B10007B44E /* PreviewFixtureManager.swift in Sources */,
 				522716CF22D1BB50008FD210 /* CachedJSONData.swift in Sources */,
+				52E54D8224C5AAE30007B44E /* PreviewGameScoreManager.swift in Sources */,
 				5286D3A623631016000DADFC /* FixtureListView.swift in Sources */,
 				52E711A11D9CF5C90002446A /* FixtureManager.swift in Sources */,
 				5252775C24C4999100F93050 /* TimelineManager.swift in Sources */,
