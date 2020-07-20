@@ -31,23 +31,21 @@ struct FixtureListView: View {
                             .lineLimit(2)
                             .font(.body)
                         Text(fixture.fullDisplayKickoffTime)
-                            .font(self.kickoffSize())
+                            .font(self.kickoffSize(fixture))
                         Text(fixture.displayScore)
                             .multilineTextAlignment(.trailing)
                             .foregroundColor(self.fixtureData.resultColor(fixture))
-                            .font(self.scoreSize())
+                            .font(self.scoreSize(fixture))
                     }
                     .foregroundColor(Color("light-blue"))
                     .padding(8)
                     
                     Spacer()
-                }.overlay(
-                    RoundedRectangle(cornerRadius: 16)
-                    .stroke(Color("light-blue"), lineWidth: 2)
-                )
-                .padding(.top, 2)
-                .padding(.bottom, 2)
+                }
+                .padding()
             }
+            .listRowBackground(Color("yeltz-blue"))
+            .listStyle(CarouselListStyle())
             .contextMenu(menuItems: {
                 Button(action: {
                     self.fixtureData.refreshData()
@@ -62,20 +60,31 @@ struct FixtureListView: View {
         }.navigationBarTitle(Text(showResults ? "Results" : "Fixtures"))
     }
     
-    func kickoffSize() -> Font {
-        if self.showResults {
-            return .footnote
-        } else {
-            return .headline
+    func kickoffSize(_ entry: TimelineEntry?) -> Font {
+        if let entry = entry {
+            switch (entry.status) {
+            case .result, .inProgress:
+                return .footnote
+            case .fixture:
+                let kickoffTime = entry.fullDisplayKickoffTime
+                return kickoffTime.count > 6 ? .headline : .largeTitle
+            }
         }
+        
+        return .body
     }
     
-    func scoreSize() -> Font {
-        if self.showResults == false {
-            return .footnote
-        } else {
-            return .largeTitle
+    func scoreSize(_ entry: TimelineEntry?) -> Font {
+        if let entry = entry {
+            switch (entry.status) {
+            case .result, .inProgress:
+                return .largeTitle
+            case .fixture:
+                return .footnote
+            }
         }
+        
+        return .body
     }
 }
 
