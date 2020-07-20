@@ -57,7 +57,7 @@ public class PreviewFixtureManager: TimelineFixtureProvider {
     // MARK: - TimelineFixtureProvider interface
     public func nextFixtures(_ numberOfFixtures: Int) -> [Fixture] {
         return self.fixtures.filter({ (fixture) -> Bool in
-            return fixture.teamScore == nil && fixture.fixtureDate > Date()
+            return fixture.teamScore == nil
         }).sorted { return $0.fixtureDate < $1.fixtureDate }
     }
     

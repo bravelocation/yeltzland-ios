@@ -16,6 +16,11 @@ struct CurrentGameView: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
+        
+                Text(gameStatus(data.latest))
+                    .lineLimit(2)
+                    .font(.footnote)
+                
                 self.data.teamImage
                     .resizable()
                     .scaledToFit()
@@ -27,22 +32,15 @@ struct CurrentGameView: View {
                 
                 Text(scoreOrDate(data.latest))
                     .font(scoreOrDateFont(data.latest))
-                
-                Text(gameStatus(data.latest))
-                    .lineLimit(2)
-                    .font(.footnote)
-                
+                    .foregroundColor(self.data.resultColor)
+
                 Spacer()
             }
-                .foregroundColor(Color("light-blue"))
-                .padding()
+            .foregroundColor(Color("light-blue"))
+            .padding()
             
             Spacer()
         }
-        .overlay(
-            RoundedRectangle(cornerRadius: 16)
-            .stroke(Color("light-blue"), lineWidth: 2)
-        )
         .padding()
         .overlay(
             Button(action: {
@@ -50,11 +48,11 @@ struct CurrentGameView: View {
             }, label: {
                 Image(systemName: "arrow.clockwise")
                     .font(.footnote)
-                    .foregroundColor(Color("yeltz-blue"))
+                    .foregroundColor(Color.gray)
 
             })
             .frame(width: 24.0, height: 24.0, alignment: .center)
-            .background(Color("light-blue"))
+            .background(Color("light-blue").opacity(0.2))
             .cornerRadius(12), alignment: .bottomTrailing
         )
         .onAppear {
@@ -77,9 +75,9 @@ struct CurrentGameView: View {
             case .result:
                 return "RESULT"
             case .inProgress:
-                return "* BASED ON TWITTER"
+                return "LATEST SCORE"
             case .fixture:
-                return ""
+                return "NEXT GAME"
             }
         }
         
@@ -91,9 +89,9 @@ struct CurrentGameView: View {
         if let entry = entry {
             switch (entry.status) {
             case .result:
-                return "\(entry.teamScore ?? 0)-\(entry.opponentScore ?? 0)"
+                return entry.displayScore
             case .inProgress:
-                return "\(entry.teamScore ?? 0)-\(entry.opponentScore ?? 0)*"
+                return "\(entry.displayScore)*"
             case .fixture:
                 return entry.fullDisplayKickoffTime
             }
