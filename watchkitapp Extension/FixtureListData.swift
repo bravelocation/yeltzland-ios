@@ -43,10 +43,19 @@ class FixtureListData: ObservableObject {
         self.resetData()
     }
     
-    func refreshData() {
-        // Go fetch the latest fixtures and game score
-        self.fixtureManager.fetchLatestData(completion: nil)
-        self.gameScoreManager.fetchLatestData(completion: nil)
+    public func refreshData() {
+        // Go fetch the latest fixtures and game score, then reload the timeline
+        fixtureManager.fetchLatestData { result in
+            if result == .success(true) {
+                self.resetData()
+            }
+        }
+        
+        gameScoreManager.fetchLatestData { result in
+            if result == .success(true) {
+                self.resetData()
+            }
+        }
     }
     
     func teamImage(_ teamName: String) -> Image {

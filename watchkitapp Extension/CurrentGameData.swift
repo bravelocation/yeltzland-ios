@@ -13,6 +13,7 @@ import Combine
 class CurrentGameData: ObservableObject {
     @Published var latest: TimelineEntry?
     @Published var teamImage: Image = Image("blank_team")
+    @Published var title: String = ""
     
     var timelineManager: TimelineManager!
     var fixtureManager: TimelineFixtureProvider
@@ -31,14 +32,36 @@ class CurrentGameData: ObservableObject {
     }
 
     public func refreshData() {
+        self.setTitle("Loading ...")
+        
         // Go fetch the latest fixtures and game score, then reload the timeline
-        fixtureManager.fetchLatestData { _ in self.resetData() }
-        gameScoreManager.fetchLatestData { _ in self.resetData() }
+        fixtureManager.fetchLatestData { result in
+            if result == .success(true) {
+                self.resetData()
+            }
+            
+            self.setTitle("")
+        }
+        
+        gameScoreManager.fetchLatestData { result in
+            if result == .success(true) {
+                self.resetData()
+            }
+            
+            self.setTitle("")
+        }
+    }
+    
+    private func setTitle(_ titleUpdate: String) {
+        DispatchQueue.main.async {
+            self.title = titleUpdate
+        }
     }
     
     fileprivate func resetData() {
         self.timelineManager.reloadData()
         DispatchQueue.main.async {
+            self.timelineManager.reloadData()
             self.latest = self.timelineManager.timelineEntries.first
             
             if let latest = self.latest {

@@ -44,20 +44,23 @@ struct CurrentGameView: View {
             .stroke(Color("light-blue"), lineWidth: 2)
         )
         .padding()
-        .contextMenu(menuItems: {
+        .overlay(
             Button(action: {
                 self.data.refreshData()
             }, label: {
-                VStack {
-                    Image(systemName: "arrow.clockwise")
-                        .font(.title)
-                    Text("Refresh data")
-                }
+                Image(systemName: "arrow.clockwise")
+                    .font(.footnote)
+                    .foregroundColor(Color("yeltz-blue"))
+
             })
-        })
+            .frame(width: 24.0, height: 24.0, alignment: .center)
+            .background(Color("light-blue"))
+            .cornerRadius(12), alignment: .bottomTrailing
+        )
         .onAppear {
             self.data.refreshData()
         }
+        .navigationBarTitle(Text(data.title))
     }
     
     func opponentText (_ entry: TimelineEntry?) -> String {
