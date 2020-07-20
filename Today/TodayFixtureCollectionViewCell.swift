@@ -21,19 +21,15 @@ class TodayFixtureCollectionViewCell: UICollectionViewCell {
     
     public func updateData(_ entry: TimelineEntry) {
         
-        if (entry.home) {
-            self.opponentLabel.text = "\(entry.opponent.uppercased()) (H)"
-        } else {
-            self.opponentLabel.text = "\(entry.opponent) (A)"
-        }
-        
+        self.opponentLabel.text = entry.displayOpponent
+
         switch (entry.status) {
         case .result:
             self.gameTypeLabel.text = "RESULT"
-            self.scoreOrDateLabel.text = "\(entry.teamScore ?? 0)-\(entry.opponentScore ?? 0)"
+            self.scoreOrDateLabel.text = entry.displayScore
         case .inProgress:
             self.gameTypeLabel.text = "LATEST SCORE"
-            self.scoreOrDateLabel.text = "\(entry.teamScore ?? 0)-\(entry.opponentScore ?? 0)*"
+            self.scoreOrDateLabel.text = "\(entry.displayScore)*"
         case .fixture:
             self.gameTypeLabel.text = "FIXTURE"
             self.scoreOrDateLabel.text = entry.fullDisplayKickoffTime

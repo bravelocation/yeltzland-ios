@@ -14,7 +14,14 @@ public enum TimelineEntryStatus {
     case fixture
 }
 
-public struct TimelineEntry: Equatable {
+public enum TimelineEntryResult {
+    case win
+    case draw
+    case lose
+    case notFinished
+}
+
+public struct TimelineEntry: Equatable, Hashable {
     var opponent: String
     var home: Bool
     var date: Date
@@ -55,6 +62,47 @@ public struct TimelineEntry: Equatable {
             } else {
                 return self.fullKickoffTime
             }
+        }
+    }
+    
+    var displayScore: String {
+        get {
+            return "\(self.teamScore ?? 0)-\(self.opponentScore ?? 0)"
+        }
+    }
+    
+    var displayOpponent: String {
+        get {
+            if (self.home) {
+                return "\(self.opponent.uppercased()) (H)"
+            } else {
+                return "\(self.opponent) (A)"
+            }
+        }
+    }
+    
+    var result: TimelineEntryResult {
+        if let teamScore = self.teamScore, let opponentScore = self.opponentScore {
+            if teamScore > opponentScore {
+                return .win
+            } else if teamScore == opponentScore {
+                return .draw
+            } else {
+                return .lose
+            }
+        }
+        
+        return .notFinished
+    }
+    
+    public var opponentNoCup: String {
+        // Do we have a bracket in the name
+        let bracketPos = self.opponent.firstIndex(of: "(")
+        if bracketPos == nil {
+            return self.opponent
+        } else {
+            let beforeBracket = self.opponent.split(separator: "(", maxSplits: 1, omittingEmptySubsequences: true)[0]
+            return beforeBracket.trimmingCharacters(in: CharacterSet(charactersIn: " "))
         }
     }
     
