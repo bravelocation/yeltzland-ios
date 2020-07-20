@@ -1,5 +1,5 @@
 //
-//  NextGameView.swift
+//  CurrentGameView.swift
 //  watchkitapp Extension
 //
 //  Created by John Pollard on 25/10/2019.
@@ -8,8 +8,8 @@
 
 import SwiftUI
 
-struct NextGameView: View {
-    @ObservedObject var data = NextGameData()
+struct CurrentGameView: View {
+    @ObservedObject var data = CurrentGameData()
     
     let logoDim = CGFloat(40)
     
@@ -95,6 +95,6 @@ struct NextGameView: View {
 
 struct NextGameView_Previews: PreviewProvider {
     static var previews: some View {
-        NextGameView()
+        CurrentGameView()
     }
 }

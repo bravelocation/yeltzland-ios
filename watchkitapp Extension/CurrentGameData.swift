@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 import Combine
 
-class NextGameData: ObservableObject {
+class CurrentGameData: ObservableObject {
     @Published var latest: TimelineEntry?
     
     var timelineManager: TimelineManager!

@@ -1,5 +1,5 @@
 //
-//  NextGameHost.swift
+//  CurrentGameHost.swift
 //  watchkitapp Extension
 //
 //  Created by John Pollard on 25/10/2019.
@@ -9,9 +9,9 @@
 import Foundation
 import SwiftUI
 
-class NextGameHost: WKHostingController<NextGameView> {
+class CurrentGameHost: WKHostingController<CurrentGameView> {
 
-    override var body: NextGameView {
-        return NextGameView()
+    override var body: CurrentGameView {
+        return CurrentGameView()
     }
 }
