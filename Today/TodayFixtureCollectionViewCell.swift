@@ -21,7 +21,11 @@ class TodayFixtureCollectionViewCell: UICollectionViewCell {
     
     public func updateData(_ entry: TimelineEntry) {
         
-        self.opponentLabel.text = "\(entry.opponent) (\(entry.home ? "H" : "A"))"
+        if (entry.home) {
+            self.opponentLabel.text = "\(entry.opponent.uppercased()) (H)"
+        } else {
+            self.opponentLabel.text = "\(entry.opponent) (A)"
+        }
         
         switch (entry.status) {
         case .result:
@@ -54,28 +58,4 @@ class TodayFixtureCollectionViewCell: UICollectionViewCell {
         
         self.contentView.isUserInteractionEnabled = true
     }
-    
-    private func getFixtureDisplayColor(_ fixture: TimelineEntry?) -> UIColor {
-        var resultColor = AppColors.label
-        
-        guard let fixture = fixture else {
-            return resultColor
-        }
-        
-        let teamScore = fixture.teamScore
-        let opponentScore  = fixture.opponentScore
-        
-        if (teamScore != nil && opponentScore != nil) {
-            if (teamScore! > opponentScore!) {
-                resultColor = UIColor(named: "fixture-win")!
-            } else if (teamScore! < opponentScore!) {
-                resultColor = UIColor(named: "fixture-lose")!
-            } else {
-                resultColor = UIColor(named: "fixture-draw")!
-            }
-        }
-        
-        return resultColor
-    }
-
 }
