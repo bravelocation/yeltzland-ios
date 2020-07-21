@@ -11,6 +11,8 @@ import Foundation
 public protocol TimelineFixtureProvider {
     func nextFixtures(_ numberOfFixtures: Int) -> [Fixture]
     var lastGame: Fixture? { get }
+    func fetchLatestData(completion: ((Result<Bool, JSONDataError>) -> Void)?)
+    var allMatches: [Fixture] { get }
 }
 
 public class FixtureManager: CachedJSONData, TimelineFixtureProvider {

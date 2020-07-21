@@ -11,26 +11,51 @@ import SwiftUI
 import Combine
 
 class FixtureListData: ObservableObject {
-    @Published var fixtures: [Fixture] = []
-    @Published var results: [Fixture] = []
-    @Published var latest: Fixture? = nil
+    @Published var fixtures: [TimelineEntry] = []
+    @Published var results: [TimelineEntry] = []
     @Published var logos: [String: UIImage] = [:]
+
+    var fixtureManager: TimelineFixtureProvider
+    var gameScoreManager: TimelineGameScoreProvider
     
     init() {
-        //Add notification handler for updating on updated fixtures
-        NotificationCenter.default.addObserver(self, selector: #selector(FixtureListData.userSettingsUpdated(_:)), name: NSNotification.Name(rawValue: BaseSettings.SettingsUpdateNotification), object: nil)
+        self.fixtureManager = FixtureManager.shared
+        self.gameScoreManager = GameScoreManager.shared
         
-        self.resetData()
+        self.setup()
+    }
+    
+    init(fixtureManager: TimelineFixtureProvider, gameScoreManager: TimelineGameScoreProvider) {
+        self.fixtureManager = fixtureManager
+        self.gameScoreManager = gameScoreManager
+        
+        self.setup()
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
     
-    func refreshData() {
-        // Go fetch the latest fixtures and game score
-        FixtureManager.shared.fetchLatestData(completion: nil)
-        GameScoreManager.shared.fetchLatestData(completion: nil)
+    private func setup() {
+        //Add notification handler for updating on updated fixtures
+        NotificationCenter.default.addObserver(self, selector: #selector(FixtureListData.userSettingsUpdated(_:)), name: NSNotification.Name(rawValue: BaseSettings.SettingsUpdateNotification), object: nil)
+        
+        self.resetData()
+    }
+    
+    public func refreshData() {
+        // Go fetch the latest fixtures and game score, then reload the timeline
+        fixtureManager.fetchLatestData { result in
+            if result == .success(true) {
+                self.resetData()
+            }
+        }
+        
+        gameScoreManager.fetchLatestData { result in
+            if result == .success(true) {
+                self.resetData()
+            }
+        }
     }
     
     func teamImage(_ teamName: String) -> Image {
@@ -41,23 +66,15 @@ class FixtureListData: ObservableObject {
         return Image("blank_team")
     }
     
-    func resultColor(_ fixture: Fixture?) -> Color {
-        guard let fixture = fixture else {
+    func resultColor(_ fixture: TimelineEntry) -> Color {
+        switch fixture.result {
+        case .win:
+            return Color("watch-fixture-win")
+        case .lose:
+            return Color("watch-fixture-lose")
+        default:
             return Color.white
         }
-        
-        let teamScore = fixture.teamScore
-        let opponentScore  = fixture.opponentScore
-         
-        if (teamScore != nil && opponentScore != nil) {
-             if (teamScore! > opponentScore!) {
-                return Color("watch-fixture-win")
-             } else if (teamScore! < opponentScore!) {
-                return Color("watch-fixture-lose")
-             }
-        }
-        
-        return Color.white
     }
     
     fileprivate func fetchTeamLogo(_ teamName: String) {
@@ -72,27 +89,29 @@ class FixtureListData: ObservableObject {
         }
     }
     
-    fileprivate func calculateLatestFixture() -> Fixture? {
-        var latestFixture: Fixture? = FixtureManager.shared.lastGame
-
-        if let currentFixture = GameScoreManager.shared.currentFixture {
-            if currentFixture.inProgress {
-                latestFixture = currentFixture
-            }
-        }
-        
-        return latestFixture
-    }
-    
     fileprivate func resetData() {
-        var newFixtures: [Fixture] = []
-        var newResults: [Fixture] = []
+        var newFixtures: [TimelineEntry] = []
+        var newResults: [TimelineEntry] = []
 
-        for fixture in FixtureManager.shared.allMatches {
+        for fixture in self.fixtureManager.allMatches {
             if fixture.teamScore == nil && fixture.opponentScore == nil {
-                newFixtures.append(fixture)
+                newFixtures.append(
+                    TimelineEntry(opponent: fixture.opponent,
+                                  home: fixture.home,
+                                  date: fixture.fixtureDate,
+                                  teamScore: fixture.teamScore,
+                                  opponentScore: fixture.opponentScore,
+                                  status: .fixture)
+                )
             } else {
-                newResults.append(fixture)
+                newResults.append(
+                    TimelineEntry(opponent: fixture.opponent,
+                                  home: fixture.home,
+                                  date: fixture.fixtureDate,
+                                  teamScore: fixture.teamScore,
+                                  opponentScore: fixture.opponentScore,
+                                  status: .result)
+                )
             }
             
             self.fetchTeamLogo(fixture.opponentNoCup)
@@ -100,10 +119,10 @@ class FixtureListData: ObservableObject {
         
         self.fetchTeamLogo("Halesowen Town")
         
-        self.fixtures = newFixtures
-        self.results = newResults
-
-        self.latest = self.calculateLatestFixture()
+        DispatchQueue.main.async {
+            self.fixtures = newFixtures
+            self.results = newResults.reversed()
+        }
     }
     
     @objc

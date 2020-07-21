@@ -74,6 +74,8 @@
 		5252775724C42DFE00F93050 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527DAF201D2D096B0092BB8F /* LocationManager.swift */; };
 		5252775824C42DFE00F93050 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5231F4FE215B6C56003FAC68 /* SettingsManager.swift */; };
 		5252775924C42DFE00F93050 /* TeamImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A347720CFB98D00E8475C /* TeamImageManager.swift */; };
+		5252775B24C498DD00F93050 /* CurrentGameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5252775A24C498DD00F93050 /* CurrentGameData.swift */; };
+		5252775C24C4999100F93050 /* TimelineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B210324C2CD6E005CE9C7 /* TimelineManager.swift */; };
 		525719741FDE8AE2005F1D80 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525719731FDE8AE2005F1D80 /* AppDelegate.swift */; };
 		525719761FDE8AE2005F1D80 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525719751FDE8AE2005F1D80 /* ViewController.swift */; };
 		525719791FDE8AE2005F1D80 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 525719771FDE8AE2005F1D80 /* Main.storyboard */; };
@@ -113,8 +115,8 @@
 		5286D3A623631016000DADFC /* FixtureListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286D3A523631016000DADFC /* FixtureListView.swift */; };
 		5286D3A823631085000DADFC /* FixtureListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286D3A723631085000DADFC /* FixtureListData.swift */; };
 		5286D3AA236312E0000DADFC /* FixtureListHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286D3A9236312E0000DADFC /* FixtureListHost.swift */; };
-		5286D3AC23633145000DADFC /* NextGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286D3AB23633145000DADFC /* NextGameView.swift */; };
-		5286D3AE236336EE000DADFC /* NextGameHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286D3AD236336EE000DADFC /* NextGameHost.swift */; };
+		5286D3AC23633145000DADFC /* CurrentGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286D3AB23633145000DADFC /* CurrentGameView.swift */; };
+		5286D3AE236336EE000DADFC /* CurrentGameHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286D3AD236336EE000DADFC /* CurrentGameHost.swift */; };
 		5287A2DD23648E67005EDBA0 /* ResultsListHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5287A2DC23648E67005EDBA0 /* ResultsListHost.swift */; };
 		528A347820CFB98D00E8475C /* TeamImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A347720CFB98D00E8475C /* TeamImageManager.swift */; };
 		528D745A1CF2F4A400263685 /* DefaultPreferences.plist in Resources */ = {isa = PBXBuildFile; fileRef = 528D74591CF2F4A400263685 /* DefaultPreferences.plist */; };
@@ -141,6 +143,8 @@
 		52E3DF791CD9FA78009F18BD /* WebPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E3DF781CD9FA78009F18BD /* WebPageViewController.swift */; };
 		52E3DF7E1CD9FA78009F18BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52E3DF7D1CD9FA78009F18BD /* Assets.xcassets */; };
 		52E3DF811CD9FA78009F18BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52E3DF7F1CD9FA78009F18BD /* LaunchScreen.storyboard */; };
+		52E54D8024C5A9B10007B44E /* PreviewFixtureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E54D7F24C5A9B10007B44E /* PreviewFixtureManager.swift */; };
+		52E54D8224C5AAE30007B44E /* PreviewGameScoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E54D8124C5AAE30007B44E /* PreviewGameScoreManager.swift */; };
 		52E711A11D9CF5C90002446A /* FixtureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236AE71D17E4D3004903AB /* FixtureManager.swift */; };
 		52E711A31D9CF5EB0002446A /* GameScoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52176BAF1D4A1B3200B7EFAE /* GameScoreManager.swift */; };
 		52E711A41D9CF5F40002446A /* Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236AE51D17DFF8004903AB /* Fixture.swift */; };
@@ -313,6 +317,7 @@
 		5252774024C42C5400F93050 /* yeltzlandUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = yeltzlandUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5252774224C42C5400F93050 /* TimelineUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineUnitTests.swift; sourceTree = "<group>"; };
 		5252774424C42C5400F93050 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5252775A24C498DD00F93050 /* CurrentGameData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentGameData.swift; sourceTree = "<group>"; };
 		525719711FDE8AE1005F1D80 /* yeltzlandTVOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = yeltzlandTVOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		525719731FDE8AE2005F1D80 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		525719751FDE8AE2005F1D80 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -343,8 +348,8 @@
 		5286D3A523631016000DADFC /* FixtureListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureListView.swift; sourceTree = "<group>"; };
 		5286D3A723631085000DADFC /* FixtureListData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureListData.swift; sourceTree = "<group>"; };
 		5286D3A9236312E0000DADFC /* FixtureListHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureListHost.swift; sourceTree = "<group>"; };
-		5286D3AB23633145000DADFC /* NextGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextGameView.swift; sourceTree = "<group>"; };
-		5286D3AD236336EE000DADFC /* NextGameHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextGameHost.swift; sourceTree = "<group>"; };
+		5286D3AB23633145000DADFC /* CurrentGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentGameView.swift; sourceTree = "<group>"; };
+		5286D3AD236336EE000DADFC /* CurrentGameHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentGameHost.swift; sourceTree = "<group>"; };
 		5287A2DC23648E67005EDBA0 /* ResultsListHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsListHost.swift; sourceTree = "<group>"; };
 		528A347720CFB98D00E8475C /* TeamImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamImageManager.swift; sourceTree = "<group>"; };
 		528D74561CF1A6FF00263685 /* yeltzland-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "yeltzland-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -370,6 +375,8 @@
 		52E3DF7D1CD9FA78009F18BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		52E3DF801CD9FA78009F18BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		52E3DF821CD9FA78009F18BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		52E54D7F24C5A9B10007B44E /* PreviewFixtureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewFixtureManager.swift; sourceTree = "<group>"; };
+		52E54D8124C5AAE30007B44E /* PreviewGameScoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewGameScoreManager.swift; sourceTree = "<group>"; };
 		52E711AA1D9FB5B70002446A /* MakeToast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakeToast.swift; sourceTree = "<group>"; };
 		52E77DE41FDEBB6C0069FCFB /* TVFixtureData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVFixtureData.swift; sourceTree = "<group>"; };
 		52E77DE71FDEBBB60069FCFB /* TVFixturesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVFixturesDataSource.swift; sourceTree = "<group>"; };
@@ -513,17 +520,15 @@
 		52176BC71D4B6D5900B7EFAE /* watchkitapp Extension */ = {
 			isa = PBXGroup;
 			children = (
+				52E54D7E24C5A98F0007B44E /* Previews */,
+				52E54D7D24C59BE90007B44E /* HostControllers */,
+				52E54D7C24C59BD10007B44E /* Models */,
+				52E54D7B24C59BAD0007B44E /* Views */,
 				52176BE11D4B6E1200B7EFAE /* watchkitapp Extension.entitlements */,
 				52176BD21D4B6D5900B7EFAE /* Assets.xcassets */,
 				52176BD01D4B6D5900B7EFAE /* ComplicationController.swift */,
 				52176BCC1D4B6D5900B7EFAE /* ExtensionDelegate.swift */,
-				5286D3A723631085000DADFC /* FixtureListData.swift */,
-				5286D3A9236312E0000DADFC /* FixtureListHost.swift */,
-				5286D3A523631016000DADFC /* FixtureListView.swift */,
 				52176BD41D4B6D5900B7EFAE /* Info.plist */,
-				5286D3AD236336EE000DADFC /* NextGameHost.swift */,
-				5286D3AB23633145000DADFC /* NextGameView.swift */,
-				5287A2DC23648E67005EDBA0 /* ResultsListHost.swift */,
 				522EA44120EA236A00B90146 /* TeamImageManager.swift */,
 				52176BE31D4B6EF000B7EFAE /* WatchGameSettings.swift */,
 			);
@@ -726,6 +731,43 @@
 				52F9CDB122D6687C00E0FFE8 /* SceneDelegate.swift */,
 			);
 			path = yeltzland;
+			sourceTree = "<group>";
+		};
+		52E54D7B24C59BAD0007B44E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5286D3AB23633145000DADFC /* CurrentGameView.swift */,
+				5286D3A523631016000DADFC /* FixtureListView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		52E54D7C24C59BD10007B44E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5252775A24C498DD00F93050 /* CurrentGameData.swift */,
+				5286D3A723631085000DADFC /* FixtureListData.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		52E54D7D24C59BE90007B44E /* HostControllers */ = {
+			isa = PBXGroup;
+			children = (
+				5286D3AD236336EE000DADFC /* CurrentGameHost.swift */,
+				5286D3A9236312E0000DADFC /* FixtureListHost.swift */,
+				5287A2DC23648E67005EDBA0 /* ResultsListHost.swift */,
+			);
+			name = HostControllers;
+			sourceTree = "<group>";
+		};
+		52E54D7E24C5A98F0007B44E /* Previews */ = {
+			isa = PBXGroup;
+			children = (
+				52E54D7F24C5A9B10007B44E /* PreviewFixtureManager.swift */,
+				52E54D8124C5AAE30007B44E /* PreviewGameScoreManager.swift */,
+			);
+			name = Previews;
 			sourceTree = "<group>";
 		};
 		52EACD98215643FB008B8DE5 /* LatestScoreIntent */ = {
@@ -1528,17 +1570,21 @@
 				52176BD11D4B6D5900B7EFAE /* ComplicationController.swift in Sources */,
 				52E711A31D9CF5EB0002446A /* GameScoreManager.swift in Sources */,
 				5286D3AA236312E0000DADFC /* FixtureListHost.swift in Sources */,
-				5286D3AE236336EE000DADFC /* NextGameHost.swift in Sources */,
+				5286D3AE236336EE000DADFC /* CurrentGameHost.swift in Sources */,
+				52E54D8024C5A9B10007B44E /* PreviewFixtureManager.swift in Sources */,
 				522716CF22D1BB50008FD210 /* CachedJSONData.swift in Sources */,
+				52E54D8224C5AAE30007B44E /* PreviewGameScoreManager.swift in Sources */,
 				5286D3A623631016000DADFC /* FixtureListView.swift in Sources */,
 				52E711A11D9CF5C90002446A /* FixtureManager.swift in Sources */,
+				5252775C24C4999100F93050 /* TimelineManager.swift in Sources */,
 				52176BCD1D4B6D5900B7EFAE /* ExtensionDelegate.swift in Sources */,
 				526B210D24C2CE66005CE9C7 /* TimelineEntry.swift in Sources */,
 				52E711A41D9CF5F40002446A /* Fixture.swift in Sources */,
 				5286D3A823631085000DADFC /* FixtureListData.swift in Sources */,
 				5287A2DD23648E67005EDBA0 /* ResultsListHost.swift in Sources */,
 				52176BE01D4B6D7300B7EFAE /* BaseSettings.swift in Sources */,
-				5286D3AC23633145000DADFC /* NextGameView.swift in Sources */,
+				5252775B24C498DD00F93050 /* CurrentGameData.swift in Sources */,
+				5286D3AC23633145000DADFC /* CurrentGameView.swift in Sources */,
 				522EA44220EA236A00B90146 /* TeamImageManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

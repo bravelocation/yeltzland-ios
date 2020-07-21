@@ -10,7 +10,7 @@ import Foundation
 import yeltzland
 
 public class MockFixtureManager: TimelineFixtureProvider {
-    
+
     private var fixtures: [Fixture] = []
     private var result: Fixture?
     
@@ -62,6 +62,16 @@ public class MockFixtureManager: TimelineFixtureProvider {
     public var lastGame: Fixture? {
         return self.result
     }
+    
+    public func fetchLatestData(completion: ((Result<Bool, JSONDataError>) -> Void)?) {
+        if let completion = completion {
+            completion(.success(true))
+        }
+    }
+    
+    public var allMatches: [Fixture] {
+        return self.fixtures.sorted { return $0.fixtureDate < $1.fixtureDate }
+    }
 }
 
 public class MockGameScoreManager: TimelineGameScoreProvider {
@@ -84,5 +94,11 @@ public class MockGameScoreManager: TimelineGameScoreProvider {
     // MARK: - TimelineGameScoreProvider interface
     public var currentFixture: Fixture? {
         return self.gameScore
+    }
+    
+    public func fetchLatestData(completion: ((Result<Bool, JSONDataError>) -> Void)?) {
+        if let completion = completion {
+            completion(.success(true))
+        }
     }
 }

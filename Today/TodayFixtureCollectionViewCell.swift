@@ -21,15 +21,15 @@ class TodayFixtureCollectionViewCell: UICollectionViewCell {
     
     public func updateData(_ entry: TimelineEntry) {
         
-        self.opponentLabel.text = "\(entry.opponent) (\(entry.home ? "H" : "A"))"
-        
+        self.opponentLabel.text = entry.displayOpponent
+
         switch (entry.status) {
         case .result:
             self.gameTypeLabel.text = "RESULT"
-            self.scoreOrDateLabel.text = "\(entry.teamScore ?? 0)-\(entry.opponentScore ?? 0)"
+            self.scoreOrDateLabel.text = entry.displayScore
         case .inProgress:
             self.gameTypeLabel.text = "LATEST SCORE"
-            self.scoreOrDateLabel.text = "\(entry.teamScore ?? 0)-\(entry.opponentScore ?? 0)*"
+            self.scoreOrDateLabel.text = "\(entry.displayScore)*"
         case .fixture:
             self.gameTypeLabel.text = "FIXTURE"
             self.scoreOrDateLabel.text = entry.fullDisplayKickoffTime
@@ -54,28 +54,4 @@ class TodayFixtureCollectionViewCell: UICollectionViewCell {
         
         self.contentView.isUserInteractionEnabled = true
     }
-    
-    private func getFixtureDisplayColor(_ fixture: TimelineEntry?) -> UIColor {
-        var resultColor = AppColors.label
-        
-        guard let fixture = fixture else {
-            return resultColor
-        }
-        
-        let teamScore = fixture.teamScore
-        let opponentScore  = fixture.opponentScore
-        
-        if (teamScore != nil && opponentScore != nil) {
-            if (teamScore! > opponentScore!) {
-                resultColor = UIColor(named: "fixture-win")!
-            } else if (teamScore! < opponentScore!) {
-                resultColor = UIColor(named: "fixture-lose")!
-            } else {
-                resultColor = UIColor(named: "fixture-draw")!
-            }
-        }
-        
-        return resultColor
-    }
-
 }

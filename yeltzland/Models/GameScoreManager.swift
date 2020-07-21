@@ -10,6 +10,7 @@ import Foundation
 
 public protocol TimelineGameScoreProvider {
     var currentFixture: Fixture? { get }
+    func fetchLatestData(completion: ((Result<Bool, JSONDataError>) -> Void)?)
 }
 
 public class GameScoreManager: CachedJSONData, TimelineGameScoreProvider {
