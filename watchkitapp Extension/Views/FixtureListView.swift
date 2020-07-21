@@ -42,7 +42,6 @@ struct FixtureListView: View {
                     
                     Spacer()
                 }
-                .padding()
             }
             .listRowBackground(Color("yeltz-blue"))
             .listStyle(CarouselListStyle())
