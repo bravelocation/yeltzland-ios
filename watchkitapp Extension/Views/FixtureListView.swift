@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct FixtureListView: View {
+struct FixturesListView: View {
     @ObservedObject var fixtureData: FixtureListData
     var showResults: Bool
     
@@ -95,11 +95,11 @@ struct FixtureListView: View {
 struct FixtureListView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            FixtureListView(
+            FixturesListView(
                 fixtureData: FixtureListData(fixtureManager: PreviewFixtureManager(), gameScoreManager: PreviewGameScoreManager()),
                 showResults: false
             )
-            FixtureListView(
+            FixturesListView(
                 fixtureData: FixtureListData(fixtureManager: PreviewFixtureManager(), gameScoreManager: PreviewGameScoreManager()),
                 showResults: true
             )

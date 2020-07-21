@@ -9,12 +9,9 @@
 import Foundation
 import SwiftUI
 
-class FixtureListHost: WKHostingController<FixtureListView> {
+class FixtureListHost: WKHostingController<FixturesListView> {
 
-    override var body: FixtureListView {
-        return FixtureListView(
-            fixtureData: FixtureListData(),
-            showResults: false
-        )
+    override var body: FixturesListView {
+        return FixturesListView(fixtureData: FixtureListData())
     }
 }

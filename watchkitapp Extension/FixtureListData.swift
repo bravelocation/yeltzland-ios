@@ -73,7 +73,7 @@ class FixtureListData: ObservableObject {
         case .lose:
             return Color("watch-fixture-lose")
         default:
-            return Color.white
+            return Color("watch-fixture-draw")
         }
     }
     
