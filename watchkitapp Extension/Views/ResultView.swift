@@ -31,7 +31,7 @@ struct ResultView: View {
                 Text(fixture.fullDisplayKickoffTime)
                     .fixedSize(horizontal: false, vertical: true)
                     .font(.footnote)
-                Text(fixture.displayScore)
+                Text("\(fixture.displayScore)\(fixture.status == .inProgress ? "*" : "")")
                     .multilineTextAlignment(.trailing)
                     .foregroundColor(resultColor)
                     .font(.largeTitle)
@@ -63,7 +63,7 @@ struct ResultView_Previews: PreviewProvider {
                                                date: PreviewFixtureManager.makeDate(daysToAdd: 0),
                                                teamScore: 1,
                                                opponentScore: 1,
-                                               status: .result),
+                                               status: .inProgress),
                         teamImage: Image("preview-team"),
                         resultColor: Color("watch-fixture-draw")
             )

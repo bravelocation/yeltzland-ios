@@ -30,7 +30,7 @@ struct FixtureView: View {
                 
                 Text(fixture.fullDisplayKickoffTime)
                     .fixedSize(horizontal: false, vertical: true)
-                    .font(self.fixture.fullDisplayKickoffTime.count > 6 ? .headline : .largeTitle)
+                    .font(self.fixture.fullDisplayKickoffTime.count > 6 ? .headline : .largeTitle) // Prefer title2 in WatchOS7
             }
             .foregroundColor(Color("light-blue"))
             .padding(8)
