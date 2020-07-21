@@ -25,18 +25,19 @@ struct FixturesListView: View {
             }
             .listRowBackground(Color("yeltz-blue"))
             .listStyle(CarouselListStyle())
-            .contextMenu(menuItems: {
-                Button(action: {
-                    self.fixtureData.refreshData()
-                }, label: {
-                    VStack {
-                        Image(systemName: "arrow.clockwise")
-                            .font(.title)
-                        Text("Refresh data")
-                    }
-                })
-            })
         }
+        .overlay(
+            Button(action: {
+                self.fixtureData.refreshData()
+            }, label: {
+                Image(systemName: "arrow.clockwise")
+                    .font(.footnote)
+                    .padding()
+
+            })
+            .buttonStyle(PlainButtonStyle())
+            .frame(width: 24.0, height: 24.0, alignment: .center), alignment: .topTrailing
+        )
         .onAppear {
             self.fixtureData.refreshData()
         }
