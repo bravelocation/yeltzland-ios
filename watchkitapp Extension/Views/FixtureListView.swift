@@ -31,6 +31,7 @@ struct FixtureListView: View {
                             .lineLimit(2)
                             .font(.body)
                         Text(fixture.fullDisplayKickoffTime)
+                            .fixedSize(horizontal: true, vertical: false)
                             .font(self.kickoffSize(fixture))
                         Text(fixture.displayScore)
                             .multilineTextAlignment(.trailing)
@@ -56,7 +57,11 @@ struct FixtureListView: View {
                     }
                 })
             })
-        }.navigationBarTitle(Text(showResults ? "Results" : "Fixtures"))
+        }
+        .onAppear {
+            self.fixtureData.refreshData()
+        }
+        .navigationBarTitle(Text(showResults ? "Results" : "Fixtures"))
     }
     
     func kickoffSize(_ entry: TimelineEntry?) -> Font {

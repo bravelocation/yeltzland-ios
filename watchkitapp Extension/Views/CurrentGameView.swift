@@ -31,6 +31,7 @@ struct CurrentGameView: View {
                     .font(.body)
                 
                 Text(scoreOrDate(data.latest))
+                    .fixedSize(horizontal: true, vertical: false)
                     .font(scoreOrDateFont(data.latest))
                     .foregroundColor(self.data.resultColor)
 
