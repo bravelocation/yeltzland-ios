@@ -9,9 +9,9 @@
 import Foundation
 import SwiftUI
 
-class ResultsListHost: WKHostingController<ResultsListView> {
+class ResultsListHost: WKHostingController<GamesListView> {
 
-    override var body: ResultsListView {
-        return ResultsListView(gamesData: AllGamesData(useResults: true))
+    override var body: GamesListView {
+        return GamesListView(gamesData: AllGamesData(useResults: true))
     }
 }

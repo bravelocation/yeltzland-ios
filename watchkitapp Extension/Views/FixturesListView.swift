@@ -8,19 +8,28 @@
 
 import SwiftUI
 
-struct FixturesListView: View {
+struct GamesListView: View {
     @ObservedObject var gamesData: AllGamesData
         
     var body: some View {
         VStack {
             if self.gamesData.games.count == 0 {
-                Text("No fixtures").padding()
+                Text("No games").padding()
             }
             
             List(self.gamesData.games, id: \.self) { fixture in
 
                 HStack {
-                    FixtureView(fixture: fixture, teamImage: self.gamesData.teamImage(fixture.opponentNoCup))
+                    Group {
+                        if (fixture.status == .fixture) {
+                            FixtureView(fixture: fixture,
+                                        teamImage: self.gamesData.teamImage(fixture.opponentNoCup))
+                        } else {
+                            ResultView(fixture: fixture,
+                                       teamImage: self.gamesData.teamImage(fixture.opponentNoCup),
+                                       resultColor: self.gamesData.resultColor(fixture))
+                        }
+                    }
 
                     Spacer()
                 }
@@ -51,7 +60,7 @@ struct FixturesListView: View {
 struct FixtureListView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            FixturesListView(
+            GamesListView(
                 gamesData: AllGamesData(fixtureManager: PreviewFixtureManager(), gameScoreManager: PreviewGameScoreManager(), useResults: false)
             )
         }

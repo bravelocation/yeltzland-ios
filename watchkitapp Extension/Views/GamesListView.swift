@@ -1,5 +1,5 @@
 //
-//  ResultsListView.swift
+//  FixtureListView.swift
 //  watchkitapp Extension
 //
 //  Created by John Pollard on 25/10/2019.
@@ -8,21 +8,29 @@
 
 import SwiftUI
 
-struct ResultsListView: View {
+struct GamesListView: View {
     @ObservedObject var gamesData: AllGamesData
-    
+        
     var body: some View {
         VStack {
             if self.gamesData.games.count == 0 {
-                Text("No results").padding()
+                Text("No games").padding()
             }
             
             List(self.gamesData.games, id: \.self) { fixture in
+
                 HStack {
-                    ResultView(fixture: fixture,
-                               teamImage: self.gamesData.teamImage(fixture.opponentNoCup),
-                               resultColor: self.gamesData.resultColor(fixture))
-                    
+                    Group {
+                        if (fixture.status == .fixture) {
+                            FixtureView(fixture: fixture,
+                                        teamImage: self.gamesData.teamImage(fixture.opponentNoCup))
+                        } else {
+                            ResultView(fixture: fixture,
+                                       teamImage: self.gamesData.teamImage(fixture.opponentNoCup),
+                                       resultColor: self.gamesData.resultColor(fixture))
+                        }
+                    }
+
                     Spacer()
                 }
             }
@@ -49,13 +57,15 @@ struct ResultsListView: View {
     }
 }
 
-struct ResultsListView_Previews: PreviewProvider {
+struct FixtureListView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ResultsListView(
-                gamesData: AllGamesData(fixtureManager: PreviewFixtureManager(),
-                                          gameScoreManager: PreviewGameScoreManager(),
-                                          useResults: true)
+            GamesListView(
+                gamesData: AllGamesData(fixtureManager: PreviewFixtureManager(), gameScoreManager: PreviewGameScoreManager(), useResults: false)
+            )
+            
+            GamesListView(
+                gamesData: AllGamesData(fixtureManager: PreviewFixtureManager(), gameScoreManager: PreviewGameScoreManager(), useResults: true)
             )
         }
     }
