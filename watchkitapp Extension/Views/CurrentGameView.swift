@@ -27,8 +27,9 @@ struct CurrentGameView: View {
                         Text("No games").padding()
                     }
                 }
+                
+                Spacer()
             }
-            .foregroundColor(Color("light-blue"))
             Spacer()
         }
         .overlay(
@@ -38,11 +39,11 @@ struct CurrentGameView: View {
                 Image(systemName: "arrow.clockwise")
                     .font(.footnote)
                     .padding()
-
             })
             .buttonStyle(PlainButtonStyle())
-            .frame(width: 24.0, height: 24.0, alignment: .center), alignment: .topTrailing
+            .frame(width: 24.0, height: 24.0, alignment: .center), alignment: .trailing
         )
+        .foregroundColor(Color("light-blue"))
         .onAppear {
             self.data.refreshData()
         }

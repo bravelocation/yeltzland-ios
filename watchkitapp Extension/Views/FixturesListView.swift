@@ -25,7 +25,6 @@ struct FixturesListView: View {
                     Spacer()
                 }
             }
-            .listRowBackground(Color("yeltz-blue"))
             .listStyle(CarouselListStyle())
         }
         .overlay(
@@ -38,8 +37,9 @@ struct FixturesListView: View {
 
             })
             .buttonStyle(PlainButtonStyle())
-            .frame(width: 24.0, height: 24.0, alignment: .center), alignment: .topTrailing
+            .frame(width: 24.0, height: 24.0, alignment: .center), alignment: .trailing
         )
+        .foregroundColor(Color("light-blue"))
         .onAppear {
             self.fixtureData.refreshData()
         }
