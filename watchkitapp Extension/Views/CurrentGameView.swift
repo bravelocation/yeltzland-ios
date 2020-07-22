@@ -40,8 +40,9 @@ struct CurrentGameView: View {
                     .font(.footnote)
                     .padding()
             })
-            .buttonStyle(PlainButtonStyle())
-            .frame(width: 24.0, height: 24.0, alignment: .center), alignment: .trailing
+            .frame(width: 24.0, height: 24.0, alignment: .center)
+            .background(Color.gray.opacity(0.5))
+            .cornerRadius(12), alignment: .bottomTrailing
         )
         .foregroundColor(Color("light-blue"))
         .onAppear {

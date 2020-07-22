@@ -12,6 +12,6 @@ import SwiftUI
 class ResultsListHost: WKHostingController<ResultsListView> {
 
     override var body: ResultsListView {
-        return ResultsListView(fixtureData: FixtureListData())
+        return ResultsListView(gamesData: AllGamesData(useResults: true))
     }
 }

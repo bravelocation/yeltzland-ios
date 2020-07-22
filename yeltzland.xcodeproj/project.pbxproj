@@ -116,7 +116,7 @@
 		527DAF251D2D308F0092BB8F /* LocationAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527DAF241D2D308F0092BB8F /* LocationAnnotation.swift */; };
 		5284902D1D512EDC00486B1A /* gamescore.json in Resources */ = {isa = PBXBuildFile; fileRef = 52176BAD1D4A1AF600B7EFAE /* gamescore.json */; };
 		5286D3A623631016000DADFC /* FixturesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286D3A523631016000DADFC /* FixturesListView.swift */; };
-		5286D3A823631085000DADFC /* FixtureListData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286D3A723631085000DADFC /* FixtureListData.swift */; };
+		5286D3A823631085000DADFC /* AllGamesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286D3A723631085000DADFC /* AllGamesData.swift */; };
 		5286D3AA236312E0000DADFC /* FixtureListHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286D3A9236312E0000DADFC /* FixtureListHost.swift */; };
 		5286D3AC23633145000DADFC /* CurrentGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286D3AB23633145000DADFC /* CurrentGameView.swift */; };
 		5286D3AE236336EE000DADFC /* CurrentGameHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286D3AD236336EE000DADFC /* CurrentGameHost.swift */; };
@@ -352,7 +352,7 @@
 		527DAF221D2D0F550092BB8F /* LocationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsViewController.swift; sourceTree = "<group>"; };
 		527DAF241D2D308F0092BB8F /* LocationAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationAnnotation.swift; sourceTree = "<group>"; };
 		5286D3A523631016000DADFC /* FixturesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixturesListView.swift; sourceTree = "<group>"; };
-		5286D3A723631085000DADFC /* FixtureListData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureListData.swift; sourceTree = "<group>"; };
+		5286D3A723631085000DADFC /* AllGamesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllGamesData.swift; sourceTree = "<group>"; };
 		5286D3A9236312E0000DADFC /* FixtureListHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureListHost.swift; sourceTree = "<group>"; };
 		5286D3AB23633145000DADFC /* CurrentGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentGameView.swift; sourceTree = "<group>"; };
 		5286D3AD236336EE000DADFC /* CurrentGameHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentGameHost.swift; sourceTree = "<group>"; };
@@ -755,7 +755,7 @@
 			isa = PBXGroup;
 			children = (
 				5252775A24C498DD00F93050 /* CurrentGameData.swift */,
-				5286D3A723631085000DADFC /* FixtureListData.swift */,
+				5286D3A723631085000DADFC /* AllGamesData.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1590,7 +1590,7 @@
 				526B210D24C2CE66005CE9C7 /* TimelineEntry.swift in Sources */,
 				522C442524C768950018E89A /* ResultView.swift in Sources */,
 				52E711A41D9CF5F40002446A /* Fixture.swift in Sources */,
-				5286D3A823631085000DADFC /* FixtureListData.swift in Sources */,
+				5286D3A823631085000DADFC /* AllGamesData.swift in Sources */,
 				5287A2DD23648E67005EDBA0 /* ResultsListHost.swift in Sources */,
 				52176BE01D4B6D7300B7EFAE /* BaseSettings.swift in Sources */,
 				522C442324C764170018E89A /* FixtureView.swift in Sources */,
