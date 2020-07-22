@@ -13,7 +13,9 @@ struct ResultsListView: View {
     
     var body: some View {
         VStack {
-            Text(self.fixtureData.results.count == 0 ? "No results" : "")
+            if self.fixtureData.results.count == 0 {
+                Text("No results").padding()
+            }
             
             List(self.fixtureData.results, id: \.self) { fixture in
                 HStack {

@@ -13,7 +13,9 @@ struct FixturesListView: View {
         
     var body: some View {
         VStack {
-            Text(self.fixtureData.fixtures.count == 0 ? "No fixtures" : "")
+            if self.fixtureData.fixtures.count == 0 {
+                Text("No fixtures").padding()
+            }
             
             List(self.fixtureData.fixtures, id: \.self) { fixture in
 

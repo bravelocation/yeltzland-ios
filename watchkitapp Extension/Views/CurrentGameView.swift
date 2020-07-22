@@ -24,7 +24,7 @@ struct CurrentGameView: View {
                             ResultView(fixture: self.data.latest!, teamImage: self.data.teamImage, resultColor: self.data.resultColor)
                         }
                     } else {
-                        Text("No games")
+                        Text("No games").padding()
                     }
                 }
             }
