@@ -23,10 +23,10 @@ struct GamesListView: View {
                     Group {
                         if (fixture.status == .fixture) {
                             FixtureView(fixture: fixture,
-                                        teamImage: self.gamesData.teamImage(fixture.opponentNoCup))
+                                        teamImage: self.gamesData.teamImage(fixture.logoImageName))
                         } else {
                             ResultView(fixture: fixture,
-                                       teamImage: self.gamesData.teamImage(fixture.opponentNoCup),
+                                       teamImage: self.gamesData.teamImage(fixture.logoImageName),
                                        resultColor: self.gamesData.resultColor(fixture))
                         }
                     }

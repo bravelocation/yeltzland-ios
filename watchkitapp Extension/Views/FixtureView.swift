@@ -24,13 +24,13 @@ struct FixtureView: View {
                     .scaledToFit()
                     .frame(width: self.logoDim, height: self.logoDim, alignment: .center)
 
-                Text(fixture.displayOpponent)
+                Text(fixture.opponentPlusHomeAway)
                     .fixedSize(horizontal: false, vertical: true)
                     .font(.body)
                 
-                Text(fixture.fullDisplayKickoffTime)
+                Text(fixture.kickoffTime)
                     .fixedSize(horizontal: false, vertical: true)
-                    .font(self.fixture.fullDisplayKickoffTime.count > 6 ? .headline : .largeTitle) // Prefer title2 in WatchOS7
+                    .font(self.fixture.kickoffTime.count > 6 ? .headline : .largeTitle) // Prefer title2 in WatchOS7
             }
             .foregroundColor(Color("light-blue"))
             .padding(8)
