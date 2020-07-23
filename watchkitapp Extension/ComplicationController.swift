@@ -28,60 +28,72 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         let now = Date()
         var entry: CLKComplicationTimelineEntry?
         
+        let timelineManager = TimelineManager(
+            fixtureManager: FixtureManager.shared,
+            gameScoreManager: GameScoreManager.shared
+        )
+        
         // Find the next fixture to use
-        var latestFixture: Fixture? = FixtureManager.shared.lastGame
-        
-        if let currentFixture = GameScoreManager.shared.currentFixture {
-            if currentFixture.inProgress {
-                latestFixture = currentFixture
+        if let fixture = timelineManager.timelineEntries.first {
+            var abbreviatedScoreOrDate = ""
+            var fullScoreOrDate = ""
+            var gameType = ""
+            
+            switch fixture.status {
+            case .inProgress:
+                abbreviatedScoreOrDate = fixture.score
+                fullScoreOrDate = fixture.score
+                gameType = "In progress"
+            case .result:
+                abbreviatedScoreOrDate = fixture.score
+                fullScoreOrDate = fixture.score
+                gameType = "Result"
+            case .fixture:
+                abbreviatedScoreOrDate = fixture.minimalKickoffTime
+                fullScoreOrDate = fixture.kickoffTime
+                gameType = "Next game"
             }
-        }
-        
-        // If the next fixture is missing or too far away, get next game
-        if latestFixture == nil || latestFixture!.state == .manyDaysAfter {
-            latestFixture = FixtureManager.shared.nextGame
-        }
-        
-        if let fixture = latestFixture {
+            
             switch complication.family {
             case .modularSmall:
                 let template = CLKComplicationTemplateModularSmallStackText()
-                template.line1TextProvider = CLKSimpleTextProvider(text: fixture.smallOpponent)
-                template.line2TextProvider = CLKSimpleTextProvider(text: fixture.smallScoreOrDate)
+                template.line1TextProvider = CLKSimpleTextProvider(text: fixture.opponentAbbreviation)
+                template.line2TextProvider = CLKSimpleTextProvider(text: abbreviatedScoreOrDate)
                 template.tintColor = UIColor(named: "light-blue")
                 entry = CLKComplicationTimelineEntry(date: now, complicationTemplate: template)
             case .modularLarge:
                 let template = CLKComplicationTemplateModularLargeStandardBody()
-                template.headerTextProvider = CLKSimpleTextProvider(text: fixture.fullTitle)
-                template.body1TextProvider = CLKSimpleTextProvider(text: fixture.truncateOpponent)
-                template.body2TextProvider = CLKSimpleTextProvider(text: fixture.fullScoreOrDate)
+                template.headerTextProvider = CLKSimpleTextProvider(text: gameType)
+                template.body1TextProvider = CLKSimpleTextProvider(text: fixture.opponentShortened)
+                template.body2TextProvider = CLKSimpleTextProvider(text: fullScoreOrDate)
                 template.tintColor = UIColor(named: "light-blue")
                 entry = CLKComplicationTimelineEntry(date: now, complicationTemplate: template)
             case .utilitarianSmall, .utilitarianSmallFlat:
                 let template = CLKComplicationTemplateUtilitarianSmallFlat()
-                template.textProvider = CLKSimpleTextProvider(text: fixture.smallScore)
+                template.textProvider = CLKSimpleTextProvider(text: String(format: "%@ %@", fixture.opponentAbbreviation, abbreviatedScoreOrDate))
                 template.tintColor = UIColor(named: "light-blue")
                 entry = CLKComplicationTimelineEntry(date: now, complicationTemplate: template)
             case .utilitarianLarge:
                 let template = CLKComplicationTemplateUtilitarianLargeFlat()
-                template.textProvider = CLKSimpleTextProvider(text: String(format: "%@ %@", fixture.truncateOpponent, fixture.smallScore))
+                template.textProvider = CLKSimpleTextProvider(text: String(format: "%@ %@", fixture.opponentShortened, abbreviatedScoreOrDate))
                 template.tintColor = UIColor(named: "light-blue")
                 entry = CLKComplicationTimelineEntry(date: now, complicationTemplate: template)
             case .circularSmall:
                 let template = CLKComplicationTemplateCircularSmallStackText()
-                template.line1TextProvider = CLKSimpleTextProvider(text: fixture.smallOpponent)
-                template.line2TextProvider = CLKSimpleTextProvider(text: fixture.smallScoreOrDate)
+                template.line1TextProvider = CLKSimpleTextProvider(text: fixture.opponentAbbreviation)
+                template.line2TextProvider = CLKSimpleTextProvider(text: abbreviatedScoreOrDate)
                 template.tintColor = UIColor(named: "light-blue")
                 entry = CLKComplicationTimelineEntry(date: now, complicationTemplate: template)
             case .extraLarge:
-                let template = CLKComplicationTemplateExtraLargeSimpleText()
-                template.textProvider = CLKSimpleTextProvider(text: fixture.smallScore)
+                let template = CLKComplicationTemplateExtraLargeStackText()
+                template.line1TextProvider = CLKSimpleTextProvider(text: fixture.opponentAbbreviation)
+                template.line2TextProvider = CLKSimpleTextProvider(text: abbreviatedScoreOrDate)
                 template.tintColor = UIColor(named: "light-blue")
                 entry = CLKComplicationTimelineEntry(date: now, complicationTemplate: template)
             case .graphicBezel:
                 if #available(watchOS 5, *) {
                     let template = CLKComplicationTemplateGraphicBezelCircularText()
-                    template.textProvider = CLKSimpleTextProvider(text: String(format: "%@ %@", fixture.truncateOpponent, fixture.smallScore))
+                    template.textProvider = CLKSimpleTextProvider(text: String(format: "%@ %@", fixture.opponentShortened, abbreviatedScoreOrDate))
                     
                     let imageProvider = CLKComplicationTemplateGraphicCircularImage()
                     imageProvider.imageProvider = CLKFullColorImageProvider(fullColorImage: UIImage(named: "Complication/Graphic Bezel")!)
@@ -93,8 +105,8 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             case .graphicCorner:
                 if #available(watchOS 5, *) {
                     let template = CLKComplicationTemplateGraphicCornerStackText()
-                    template.outerTextProvider = CLKSimpleTextProvider(text: fixture.smallOpponent)
-                    template.innerTextProvider = CLKSimpleTextProvider(text: fixture.smallScoreOrDate)
+                    template.outerTextProvider = CLKSimpleTextProvider(text: fixture.opponentAbbreviation)
+                    template.innerTextProvider = CLKSimpleTextProvider(text: abbreviatedScoreOrDate)
                     template.tintColor = UIColor(named: "light-blue")
                     entry = CLKComplicationTimelineEntry(date: now, complicationTemplate: template)
                 }
@@ -108,9 +120,9 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             case .graphicRectangular:
                 if #available(watchOS 5, *) {
                     let template = CLKComplicationTemplateGraphicRectangularStandardBody()
-                    template.headerTextProvider = CLKSimpleTextProvider(text: fixture.fullTitle)
-                    template.body1TextProvider = CLKSimpleTextProvider(text: fixture.truncateOpponent)
-                    template.body2TextProvider = CLKSimpleTextProvider(text: fixture.fullScoreOrDate)
+                    template.headerTextProvider = CLKSimpleTextProvider(text: gameType)
+                    template.body1TextProvider = CLKSimpleTextProvider(text: fixture.opponentShortened)
+                    template.body2TextProvider = CLKSimpleTextProvider(text: fullScoreOrDate)
                     template.tintColor = UIColor(named: "light-blue")
                     
                     entry = CLKComplicationTimelineEntry(date: now, complicationTemplate: template)
