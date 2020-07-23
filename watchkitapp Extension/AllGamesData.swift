@@ -11,8 +11,9 @@ import SwiftUI
 import Combine
 
 class AllGamesData: ObservableObject {
-    @Published var data: [TimelineEntry] = []
+    @Published var games: [TimelineEntry] = []
     @Published var logos: [String: UIImage] = [:]
+    @Published var title: String = ""
 
     var fixtureManager: TimelineFixtureProvider
     var gameScoreManager: TimelineGameScoreProvider
@@ -32,10 +33,19 @@ class AllGamesData: ObservableObject {
         self.useResults = useResults
         
         self.setup()
+        self.resetDefaultTitle()
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    private func resetDefaultTitle() {
+        if self.useResults {
+            self.setTitle("Results")
+        } else {
+            self.setTitle("Fixtures")
+        }
     }
     
     private func setup() {
@@ -46,17 +56,24 @@ class AllGamesData: ObservableObject {
     }
     
     public func refreshData() {
+        self.setTitle("Loading ...")
+        print("Refreshing watch game data ...")
+        
         // Go fetch the latest fixtures and game score, then reload the timeline
         fixtureManager.fetchLatestData { result in
             if result == .success(true) {
                 self.resetData()
             }
+            
+            self.resetDefaultTitle()
         }
         
         gameScoreManager.fetchLatestData { result in
             if result == .success(true) {
                 self.resetData()
             }
+            
+            self.resetDefaultTitle()
         }
     }
     
@@ -88,6 +105,12 @@ class AllGamesData: ObservableObject {
             if image != nil {
                 self.logos[teamName] = image
             }
+        }
+    }
+    
+    private func setTitle(_ titleUpdate: String) {
+        DispatchQueue.main.async {
+            self.title = titleUpdate
         }
     }
     
@@ -123,9 +146,9 @@ class AllGamesData: ObservableObject {
         
         DispatchQueue.main.async {
             if (self.useResults) {
-                self.data = newResults.reversed()
+                self.games = newResults.reversed()
             } else {
-                self.data = newFixtures
+                self.games = newFixtures
             }
         }
     }
