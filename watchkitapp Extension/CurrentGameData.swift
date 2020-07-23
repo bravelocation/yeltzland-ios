@@ -80,7 +80,7 @@ class CurrentGameData: ObservableObject {
             self.latest = self.timelineManager.timelineEntries.first
             
             if let latest = self.latest {
-                self.fetchTeamLogo(latest.opponentNoCup)
+                self.fetchTeamLogo(latest.logoImageName)
             }
         }
     }

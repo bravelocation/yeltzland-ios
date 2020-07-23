@@ -209,12 +209,6 @@ public struct Fixture: Hashable {
         }
     }
     
-    public var smallOpponent: String {
-        get {
-            return self.truncateTeamName(self.opponent, max: 4)
-        }
-    }
-    
     public var opponentNoCup: String {
         // Do we have a bracket in the name
         let bracketPos = self.opponent.firstIndex(of: "(")
@@ -244,16 +238,6 @@ public struct Fixture: Hashable {
             return String.init(format: "%@ %d-%d", result, self.teamScore!, self.opponentScore!)
         }
     }
-    
-    var smallScore: String {
-        get {
-            if ((self.teamScore == nil) || (self.opponentScore == nil)) {
-                return ""
-            }
-            
-            return String.init(format: "%d-%d", self.teamScore!, self.opponentScore!)
-        }
-    }
 
     var inProgressScore: String {
         get {
@@ -262,29 +246,6 @@ public struct Fixture: Hashable {
             }
             
             return String.init(format: "%d-%d%@", self.teamScore!, self.opponentScore!, self.inProgress ? "*" : "")
-        }
-    }
-    
-    public var smallScoreOrDate: String {
-        get {
-            switch self.state {
-            case .manyDaysBefore:
-                let formatter = DateFormatter()
-                formatter.dateFormat = "d"
-                return formatter.string(from: self.fixtureDate)
-            case .daysBefore:
-                let formatter = DateFormatter()
-                formatter.dateFormat = "E"
-                return formatter.string(from: self.fixtureDate)
-            case .gameDayBefore:
-                let formatter = DateFormatter()
-                formatter.dateFormat = "HHmm"
-                return formatter.string(from: self.fixtureDate)
-            case .during:
-                return self.inProgressScore
-            case .after, .dayAfter, .manyDaysAfter:
-                return self.smallScore
-            }
         }
     }
     
@@ -304,12 +265,6 @@ public struct Fixture: Hashable {
             case .after, .dayAfter, .manyDaysAfter:
                 return self.score
             }
-        }
-    }
-    
-    public var truncateOpponent: String {
-        get {
-            return self.truncateTeamName(self.opponent, max: 16)
         }
     }
     
@@ -359,32 +314,5 @@ public struct Fixture: Hashable {
                 return FixtureState.manyDaysAfter
             }
         }
-    }
-    
-    private func truncateTeamName(_ original: String, max: Int) -> String {
-        let originalLength = original.count
-        
-        // If the original is short enough, we're done
-        if (originalLength <= max) {
-            return original
-        }
-        
-        // Find the first space
-        var firstSpace = 0
-        for c in original {
-            if (c == Character(" ")) {
-                break
-            }
-            firstSpace += 1
-        }
-        
-        if (firstSpace < max) {
-            return String(original[original.startIndex..<original.index(original.startIndex, offsetBy: firstSpace)])
-        }
-        
-        // If still not found, just truncate it
-        return original[original.startIndex..<original.index(original.startIndex, offsetBy: max)].trimmingCharacters(
-            in: CharacterSet.whitespacesAndNewlines
-        )
     }
 }

@@ -21,18 +21,18 @@ class TodayFixtureCollectionViewCell: UICollectionViewCell {
     
     public func updateData(_ entry: TimelineEntry) {
         
-        self.opponentLabel.text = entry.displayOpponent
+        self.opponentLabel.text = entry.opponentPlusHomeAway
 
         switch (entry.status) {
         case .result:
             self.gameTypeLabel.text = "RESULT"
-            self.scoreOrDateLabel.text = entry.displayScore
+            self.scoreOrDateLabel.text = entry.score
         case .inProgress:
             self.gameTypeLabel.text = "LATEST SCORE"
-            self.scoreOrDateLabel.text = "\(entry.displayScore)*"
+            self.scoreOrDateLabel.text = entry.score
         case .fixture:
             self.gameTypeLabel.text = "FIXTURE"
-            self.scoreOrDateLabel.text = entry.fullDisplayKickoffTime
+            self.scoreOrDateLabel.text = entry.kickoffTime
         }
         
         self.opponentLabel.adjustsFontSizeToFitWidth = true
