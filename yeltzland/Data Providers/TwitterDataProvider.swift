@@ -8,7 +8,12 @@
 
 import Foundation
 
-class TwitterDataProvider {
+protocol TwitterDataProviderProtocol {
+    var tweets: [Tweet] { get }
+    func refreshData()
+}
+
+class TwitterDataProvider: TwitterDataProviderProtocol {
     public static let TweetsNotification: String = "YLZTweetsNotification"
 
     private var twitterConsumerKey: String
@@ -35,7 +40,7 @@ class TwitterDataProvider {
     
     public func refreshData() {
         // Load from Twitter API
-        let userTimelineURL = "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=\(self.accountName)&count=\(self.tweetCount)&trim_user=1&tweet_mode=extended"
+        let userTimelineURL = "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=\(self.accountName)&count=\(self.tweetCount)&trim_user=1&exclude_replies=true&tweet_mode=extended"
         self.authenticateRequest(userTimelineURL)
     }
     

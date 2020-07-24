@@ -185,16 +185,28 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         tvNavigationController.tabBarItem = tvIcon
         
         // Twitter
-        let twitterIcon = UITabBarItem(title: "Twitter", image: UIImage(named: "twitter"), selectedImage: nil)
+        let twitterIcon = UITabBarItem(title: "@halesowentownfc", image: UIImage(named: "twitter"), selectedImage: nil)
         var twitterNavigationController: UINavigationController?
         
         if #available(iOS 13.0, *) {
-            let twitterViewController = UIHostingController(rootView: TwitterTimelineView())
+            let twitterConsumerKey = SettingsManager.shared.getSetting("TwitterConsumerKey") as! String
+            let twitterConsumerSecret = SettingsManager.shared.getSetting("TwitterConsumerSecret") as! String
+            
+            let twitterDataProvider = TwitterDataProvider(
+                twitterConsumerKey: twitterConsumerKey,
+                twitterConsumerSecret: twitterConsumerSecret,
+                tweetCount: 20,
+                accountName: "halesowentownfc"
+            )
+            let tweetData = TweetData(dataProvider: twitterDataProvider)
+            let twitterViewController = UIHostingController(rootView: TwitterTimelineView(tweetData: tweetData))
+            
             twitterNavigationController = UINavigationController(rootViewController: twitterViewController)
             twitterNavigationController?.tabBarItem = twitterIcon
         } else {
             let twitterViewController = TwitterUserTimelineViewController()
             twitterViewController.userScreenName = "halesowentownfc"
+            
             twitterNavigationController = UINavigationController(rootViewController: twitterViewController)
             twitterNavigationController?.tabBarItem = twitterIcon
         }

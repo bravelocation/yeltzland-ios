@@ -8,6 +8,6 @@
 
 import Foundation
 
-struct Tweet {
+struct Tweet: Hashable {
     var fullTweet: String
 }
