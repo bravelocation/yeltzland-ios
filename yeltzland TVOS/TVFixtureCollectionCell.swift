@@ -16,12 +16,12 @@ class TVFixtureCollectionCell: UICollectionViewCell {
     @IBOutlet weak var homeAwayLabel: UILabel!
     @IBOutlet weak var calendarImage: UIImageView!
     
-    func loadData(dataItem: TVFixtureData) {
-        self.opponentLabel.text = dataItem.opponent
+    func loadData(dataItem: TimelineEntry) {
+        self.opponentLabel.text = dataItem.opponentPlusHomeAway
         self.scoreLabel.text = dataItem.score
-        self.dateLabel.text = dataItem.matchDate
+        self.dateLabel.text = dataItem.kickoffTime
         
-        if (dataItem.atHome) {
+        if (dataItem.home) {
             self.homeAwayLabel.text = "at home to"
         } else {
             self.homeAwayLabel.text = "away at"
@@ -33,19 +33,24 @@ class TVFixtureCollectionCell: UICollectionViewCell {
         TeamImageManager.shared.loadTeamImage(teamName: dataItem.opponent, view: self.calendarImage)
         //self.calendarImage.image = self.calendarImage.image!.withRenderingMode(UIImageRenderingMode.alwaysTemplate)
         
-        if (dataItem.inProgress || dataItem.score.count == 0) {
-            self.contentView.backgroundColor = UIColor(named: "dark-blue")
-            self.opponentLabel.textColor = UIColor.white
-            self.dateLabel.textColor = UIColor.white
-            self.homeAwayLabel.textColor = UIColor.white
-            self.calendarImage.tintColor = UIColor.white
-        } else {
-            self.contentView.backgroundColor = UIColor(named: "dark-blue")
-            self.opponentLabel.textColor = UIColor.white
-            self.dateLabel.textColor = UIColor.white
-            self.homeAwayLabel.textColor = UIColor.white
-            self.scoreLabel.textColor = dataItem.scoreColor
-            self.calendarImage.tintColor = UIColor.white
+        self.contentView.backgroundColor = UIColor(named: "dark-blue")
+        self.opponentLabel.textColor = UIColor.white
+        self.dateLabel.textColor = UIColor.white
+        self.homeAwayLabel.textColor = UIColor.white
+        self.calendarImage.tintColor = UIColor.white
+        
+        if (dataItem.status == .inProgress || dataItem.status == .result) {
+            var resultColor: UIColor = UIColor.white
+            
+            if (dataItem.teamScore! > dataItem.opponentScore!) {
+                resultColor = UIColor(named: "tv-fixture-win")!
+            } else if (dataItem.teamScore! < dataItem.opponentScore!) {
+                resultColor = UIColor(named: "tv-fixture-lose")!
+            } else {
+                resultColor = UIColor(named: "light-blue")!
+            }
+            
+            self.scoreLabel.textColor = resultColor
         }
         
         self.contentView.layer.borderWidth = 0.0

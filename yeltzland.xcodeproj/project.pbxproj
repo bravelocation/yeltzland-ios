@@ -180,7 +180,6 @@
 		52E711A51D9CFDD50002446A /* matches.json in Resources */ = {isa = PBXBuildFile; fileRef = 52236AEA1D17ECB4004903AB /* matches.json */; };
 		52E711A61D9CFDD90002446A /* gamescore.json in Resources */ = {isa = PBXBuildFile; fileRef = 52176BAD1D4A1AF600B7EFAE /* gamescore.json */; };
 		52E711AB1D9FB5B70002446A /* MakeToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E711AA1D9FB5B70002446A /* MakeToast.swift */; };
-		52E77DE51FDEBB6C0069FCFB /* TVFixtureData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E77DE41FDEBB6C0069FCFB /* TVFixtureData.swift */; };
 		52E77DE81FDEBBB60069FCFB /* TVFixturesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E77DE71FDEBBB60069FCFB /* TVFixturesDataSource.swift */; };
 		52E77DEB1FDEC0740069FCFB /* matches.json in Resources */ = {isa = PBXBuildFile; fileRef = 52236AEA1D17ECB4004903AB /* matches.json */; };
 		52E77DEC1FDEC0770069FCFB /* gamescore.json in Resources */ = {isa = PBXBuildFile; fileRef = 52176BAD1D4A1AF600B7EFAE /* gamescore.json */; };
@@ -414,7 +413,6 @@
 		52E54D7F24C5A9B10007B44E /* PreviewFixtureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewFixtureManager.swift; sourceTree = "<group>"; };
 		52E54D8124C5AAE30007B44E /* PreviewGameScoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewGameScoreManager.swift; sourceTree = "<group>"; };
 		52E711AA1D9FB5B70002446A /* MakeToast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakeToast.swift; sourceTree = "<group>"; };
-		52E77DE41FDEBB6C0069FCFB /* TVFixtureData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVFixtureData.swift; sourceTree = "<group>"; };
 		52E77DE71FDEBBB60069FCFB /* TVFixturesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVFixturesDataSource.swift; sourceTree = "<group>"; };
 		52EACD97215643FB008B8DE5 /* LatestScoreIntent.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LatestScoreIntent.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		52EACD99215643FB008B8DE5 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
@@ -656,7 +654,6 @@
 				525719771FDE8AE2005F1D80 /* Main.storyboard */,
 				5257197A1FDE8AE2005F1D80 /* Assets.xcassets */,
 				5257197C1FDE8AE2005F1D80 /* Info.plist */,
-				52E77DE41FDEBB6C0069FCFB /* TVFixtureData.swift */,
 				52E77DE71FDEBBB60069FCFB /* TVFixturesDataSource.swift */,
 				52D868241FE81B6E0041B578 /* TVFixtureCollectionCell.swift */,
 				52D868251FE81B6E0041B578 /* TVFixtureCollectionCell.xib */,
@@ -1700,7 +1697,6 @@
 				526B210E24C2CE66005CE9C7 /* TimelineEntry.swift in Sources */,
 				5206BC5B24CABC0D00A927B3 /* TwitterDataProvider.swift in Sources */,
 				5206BC5C24CABE8B00A927B3 /* SettingsManager.swift in Sources */,
-				52E77DE51FDEBB6C0069FCFB /* TVFixtureData.swift in Sources */,
 				5252774C24C42D1400F93050 /* TeamImageManager.swift in Sources */,
 				525719811FDE8BBF005F1D80 /* Fixture.swift in Sources */,
 			);
