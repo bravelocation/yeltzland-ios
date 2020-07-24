@@ -40,7 +40,7 @@ class TwitterDataProvider: TwitterDataProviderProtocol {
     
     public func refreshData() {
         // Load from Twitter API
-        let userTimelineURL = "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=\(self.accountName)&count=\(self.tweetCount)&trim_user=1&exclude_replies=true&tweet_mode=extended"
+        let userTimelineURL = "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=\(self.accountName)&count=\(self.tweetCount)&exclude_replies=true&tweet_mode=extended"
         self.authenticateRequest(userTimelineURL)
     }
     

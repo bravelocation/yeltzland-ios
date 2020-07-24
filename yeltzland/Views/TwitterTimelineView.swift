@@ -19,10 +19,11 @@ struct TwitterTimelineView: View {
             }
             
             List(self.tweetData.tweets, id: \.self) { tweet in
-                HStack {
+                VStack {
+                    Text(tweet.user.name)
                     Text(tweet.fullText)
                 }.onTapGesture {
-                    UIApplication.shared.open(URL(string: "https://twitter.com/\(self.tweetData.accountName)/status/\(tweet.id)")!)
+                    UIApplication.shared.open(URL(string: "https://twitter.com/\(tweet.user.screenName)/status/\(tweet.id)")!)
                 }
             }
         }

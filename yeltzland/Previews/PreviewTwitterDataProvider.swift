@@ -12,8 +12,14 @@ class PreviewTwitterDataProvider: TwitterDataProviderProtocol {
     var tweets: [Tweet] {
         var testTweets: [Tweet] = []
         
-        testTweets.append(Tweet(id: "1286327578949832704", fullText: "Test tweet 1"))
-        testTweets.append(Tweet(id: "1286229541627756544", fullText: "Test tweet 2"))
+        testTweets.append(
+            Tweet(id: "1286327578949832704",
+                  fullText: "Test tweet 1",
+                  user: User(name: "Halesowen Town FC",
+                             screenName: "John Pollard",
+                             profileImageUrl: "https://pbs.twimg.com/profile_images/1195108198715400192/TMrPMD8B_normal.jpg")
+            )
+        )
         
         return testTweets
     }
