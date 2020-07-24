@@ -33,7 +33,7 @@ class TVFixturesDataSource: NSObject, UICollectionViewDataSource {
         self.allGames.removeAll()
         
         for fixture in FixtureManager.shared.allMatches {
-            if (inProgressFixture != nil && nextGame != nil && fixture === nextGame!) {
+            if (inProgressFixture != nil && nextGame != nil && inProgressFixture == nextGame) {
                 // Is it an in-progress game
                 self.allGames.append(TVFixtureData(opponent: fixture.displayOpponent,
                                                 matchDate: fixture.tvResultDisplayKickoffTime,

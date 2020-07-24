@@ -34,7 +34,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
     fileprivate func setupNotificationWatcher() {
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.fixturesUpdated), name: NSNotification.Name(rawValue: FixtureManager.shared.notificationName), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.fixturesUpdated), name: NSNotification.Name(rawValue: GameScoreManager.shared.notificationName), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.tweetsUpdated), name: NSNotification.Name(rawValue: TwitterDataSource.TweetsNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.tweetsUpdated), name: NSNotification.Name(rawValue: TwitterDataProvider.TweetsNotification), object: nil)
         print("Setup notification handler for updates")
     }
     

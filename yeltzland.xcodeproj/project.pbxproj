@@ -10,6 +10,11 @@
 		1001EE7E1D9461A60DD351AC /* Pods_yeltzlandUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D371F1D95F52270B381A5E0D /* Pods_yeltzlandUnitTests.framework */; };
 		481F530A2194ABBB0E4F3078 /* Pods_yeltzland.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BE281ED4B32969698046889 /* Pods_yeltzland.framework */; };
 		5206BC5424CABAE500A927B3 /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5231F500215B6C92003FAC68 /* Settings.plist */; };
+		5206BC5724CABBA200A927B3 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5206BC5624CABBA200A927B3 /* Tweet.swift */; };
+		5206BC5824CABBA200A927B3 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5206BC5624CABBA200A927B3 /* Tweet.swift */; };
+		5206BC5A24CABC0D00A927B3 /* TwitterDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5206BC5924CABC0D00A927B3 /* TwitterDataProvider.swift */; };
+		5206BC5B24CABC0D00A927B3 /* TwitterDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5206BC5924CABC0D00A927B3 /* TwitterDataProvider.swift */; };
+		5206BC5C24CABE8B00A927B3 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5231F4FE215B6C56003FAC68 /* SettingsManager.swift */; };
 		520C09A02157A73100CCC2D8 /* DefaultPreferences.plist in Resources */ = {isa = PBXBuildFile; fileRef = 528D74591CF2F4A400263685 /* DefaultPreferences.plist */; };
 		520C09A22157C46100CCC2D8 /* ShortcutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C09A12157C46100CCC2D8 /* ShortcutManager.swift */; };
 		5211F72A1CDA53D70031496D /* TwitterUserTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211F7291CDA53D70031496D /* TwitterUserTimelineViewController.swift */; };
@@ -302,6 +307,8 @@
 		2C4284847AD21978846F1AA7 /* Pods-LatestScoreIntentUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LatestScoreIntentUI.release.xcconfig"; path = "Pods/Target Support Files/Pods-LatestScoreIntentUI/Pods-LatestScoreIntentUI.release.xcconfig"; sourceTree = "<group>"; };
 		2D1DEE9A8770E728E2386C61 /* Pods-yeltzlandUnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yeltzlandUnitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-yeltzlandUnitTests/Pods-yeltzlandUnitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		31D85CE3D6629F7148E43670 /* Pods-yeltzlandTVOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yeltzlandTVOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-yeltzlandTVOS/Pods-yeltzlandTVOS.release.xcconfig"; sourceTree = "<group>"; };
+		5206BC5624CABBA200A927B3 /* Tweet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
+		5206BC5924CABC0D00A927B3 /* TwitterDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterDataProvider.swift; sourceTree = "<group>"; };
 		520C09A12157C46100CCC2D8 /* ShortcutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutManager.swift; sourceTree = "<group>"; };
 		5211F7291CDA53D70031496D /* TwitterUserTimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterUserTimelineViewController.swift; sourceTree = "<group>"; };
 		5211F72C1CDB1EE50031496D /* OtherLinksTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherLinksTableViewController.swift; sourceTree = "<group>"; };
@@ -538,6 +545,7 @@
 				528A347720CFB98D00E8475C /* TeamImageManager.swift */,
 				52DBCA9F1D4A012E00D35F91 /* GameSettings.swift */,
 				522716CC22D1BB50008FD210 /* CachedJSONData.swift */,
+				5206BC5924CABC0D00A927B3 /* TwitterDataProvider.swift */,
 			);
 			path = "Data Providers";
 			sourceTree = "<group>";
@@ -596,6 +604,7 @@
 				52236AE51D17DFF8004903AB /* Fixture.swift */,
 				527DAF1E1D2D082C0092BB8F /* Location.swift */,
 				526B210A24C2CE66005CE9C7 /* TimelineEntry.swift */,
+				5206BC5624CABBA200A927B3 /* Tweet.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1676,6 +1685,7 @@
 				522716D022D1BB50008FD210 /* CachedJSONData.swift in Sources */,
 				528C5D0D24C9AB750019DA0F /* TimelineEntry+Score.swift in Sources */,
 				525719801FDE8BBB005F1D80 /* FixtureManager.swift in Sources */,
+				5206BC5824CABBA200A927B3 /* Tweet.swift in Sources */,
 				52D8682C1FE92A440041B578 /* TVTwitterCollectionCell.swift in Sources */,
 				52D868291FE928DA0041B578 /* TwitterDataSource.swift in Sources */,
 				525719821FDE8BC2005F1D80 /* GameScoreManager.swift in Sources */,
@@ -1687,6 +1697,8 @@
 				525719741FDE8AE2005F1D80 /* AppDelegate.swift in Sources */,
 				528C5CFD24C9AAB20019DA0F /* TimelineEntry+Date.swift in Sources */,
 				526B210E24C2CE66005CE9C7 /* TimelineEntry.swift in Sources */,
+				5206BC5B24CABC0D00A927B3 /* TwitterDataProvider.swift in Sources */,
+				5206BC5C24CABE8B00A927B3 /* SettingsManager.swift in Sources */,
 				52E77DE51FDEBB6C0069FCFB /* TVFixtureData.swift in Sources */,
 				5252774C24C42D1400F93050 /* TeamImageManager.swift in Sources */,
 				525719811FDE8BBF005F1D80 /* Fixture.swift in Sources */,
@@ -1730,6 +1742,7 @@
 				523CE54D214F9A54002F29EF /* FixtureTableViewCell.swift in Sources */,
 				528A347820CFB98D00E8475C /* TeamImageManager.swift in Sources */,
 				5211F72D1CDB1EE50031496D /* OtherLinksTableViewController.swift in Sources */,
+				5206BC5724CABBA200A927B3 /* Tweet.swift in Sources */,
 				52176BB31D4B62DC00B7EFAE /* BaseSettings.swift in Sources */,
 				52E3DF791CD9FA78009F18BD /* WebPageViewController.swift in Sources */,
 				52F9CDB222D6687C00E0FFE8 /* SceneDelegate.swift in Sources */,
@@ -1762,6 +1775,7 @@
 				5236ECDB20CE99B80067AFFA /* LatestScoreViewController.swift in Sources */,
 				52EACDB721564462008B8DE5 /* Intent.intentdefinition in Sources */,
 				52236AEE1D1803C8004903AB /* FixturesTableViewController.swift in Sources */,
+				5206BC5A24CABC0D00A927B3 /* TwitterDataProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
