@@ -12,8 +12,8 @@ class PreviewTwitterDataProvider: TwitterDataProviderProtocol {
     var tweets: [Tweet] {
         var testTweets: [Tweet] = []
         
-        testTweets.append(Tweet(fullText: "Test tweet 1"))
-        testTweets.append(Tweet(fullText: "Test tweet 2"))
+        testTweets.append(Tweet(id: "1286327578949832704", fullText: "Test tweet 1"))
+        testTweets.append(Tweet(id: "1286229541627756544", fullText: "Test tweet 2"))
         
         return testTweets
     }

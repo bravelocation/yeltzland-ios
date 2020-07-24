@@ -9,9 +9,11 @@
 import Foundation
 
 struct Tweet: Codable, Hashable {
+    var id: String
     var fullText: String
     
     enum CodingKeys: String, CodingKey {
+        case id = "id_str"
         case fullText = "full_text"
     }
 }

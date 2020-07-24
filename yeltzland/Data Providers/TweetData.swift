@@ -14,11 +14,13 @@ import Combine
 class TweetData: ObservableObject {
     
     @Published var tweets: [Tweet] = []
+    @Published var accountName: String = ""
     
     var dataProvider: TwitterDataProviderProtocol
     
-    init(dataProvider: TwitterDataProviderProtocol) {
+    init(dataProvider: TwitterDataProviderProtocol, accountName: String) {
         self.dataProvider = dataProvider
+        self.accountName = accountName
         
         self.refreshData()
     }

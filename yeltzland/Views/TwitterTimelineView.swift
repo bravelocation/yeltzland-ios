@@ -19,20 +19,25 @@ struct TwitterTimelineView: View {
             }
             
             List(self.tweetData.tweets, id: \.self) { tweet in
-
-                Text(tweet.fullText)
+                HStack {
+                    Text(tweet.fullText)
+                }.onTapGesture {
+                    UIApplication.shared.open(URL(string: "https://twitter.com/\(self.tweetData.accountName)/status/\(tweet.id)")!)
+                }
             }
         }
         .onAppear {
             self.tweetData.refreshData()
         }
-        .navigationBarTitle(Text("@halesowentownfc"))
+        .navigationBarTitle(Text("@\(tweetData.accountName)"))
     }
 }
 
 @available(iOS 13.0.0, *)
 struct TwitterTimelineView_Previews: PreviewProvider {
     static var previews: some View {
-        TwitterTimelineView(tweetData: TweetData(dataProvider: PreviewTwitterDataProvider()))
+        TwitterTimelineView(tweetData: TweetData(
+            dataProvider: PreviewTwitterDataProvider(),
+            accountName: "halesowentownfc"))
     }
 }
