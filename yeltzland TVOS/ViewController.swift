@@ -118,7 +118,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
                         didUpdateFocusIn context: UICollectionViewFocusUpdateContext,
                         with coordinator: UIFocusAnimationCoordinator) {
         if (context.nextFocusedIndexPath != nil && !collectionView.isScrollEnabled) {
-            collectionView.scrollToItem(at: context.nextFocusedIndexPath!, at: UICollectionViewScrollPosition.centeredHorizontally, animated: true)
+            collectionView.scrollToItem(at: context.nextFocusedIndexPath!, at: UICollectionView.ScrollPosition.centeredHorizontally, animated: true)
         }
         
         // Set the border on selected item, and unset on last item
@@ -142,7 +142,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         let nextFixturePath = IndexPath(row: self.fixturesDataSource.indexOfFirstFixture(), section: 0)
         
         if (nextFixturePath.row > 0) {
-            self.fixturesCollectionView.scrollToItem(at: nextFixturePath, at: UICollectionViewScrollPosition.centeredHorizontally, animated: true)
+            self.fixturesCollectionView.scrollToItem(at: nextFixturePath, at: UICollectionView.ScrollPosition.centeredHorizontally, animated: true)
         }
     }
 }
