@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftUI
 import Intents
 
 /// Main tab bar controller
@@ -184,12 +185,19 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         tvNavigationController.tabBarItem = tvIcon
         
         // Twitter
-        let twitterViewController = TwitterUserTimelineViewController()
-        twitterViewController.userScreenName = "halesowentownfc"
-        let twitterNavigationController = UINavigationController(rootViewController: twitterViewController)
-        
         let twitterIcon = UITabBarItem(title: "Twitter", image: UIImage(named: "twitter"), selectedImage: nil)
-        twitterNavigationController.tabBarItem = twitterIcon
+        var twitterNavigationController: UINavigationController?
+        
+        if #available(iOS 13.0, *) {
+            let twitterViewController = UIHostingController(rootView: TwitterTimelineView())
+            twitterNavigationController = UINavigationController(rootViewController: twitterViewController)
+            twitterNavigationController?.tabBarItem = twitterIcon
+        } else {
+            let twitterViewController = TwitterUserTimelineViewController()
+            twitterViewController.userScreenName = "halesowentownfc"
+            twitterNavigationController = UINavigationController(rootViewController: twitterViewController)
+            twitterNavigationController?.tabBarItem = twitterIcon
+        }
         
         // Other Links
         var tableStyle: UITableView.Style = .grouped
@@ -205,7 +213,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         otherNavigationController.tabBarItem = otherIcon
         
         // Add controllers
-        let controllers = [forumNavigationController, officialNavigationController, tvNavigationController, twitterNavigationController, otherNavigationController]
+        let controllers = [forumNavigationController, officialNavigationController, tvNavigationController, twitterNavigationController!, otherNavigationController]
         self.viewControllers = controllers
     }
     

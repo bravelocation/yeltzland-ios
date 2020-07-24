@@ -14,9 +14,7 @@ class TwitterDataSource: NSObject, UICollectionViewDataSource {
     private var dataProvider: TwitterDataProvider
     
     override init() {
-
-        
-        let settings = SettingsManager.shared;
+        let settings = SettingsManager.shared
         let twitterConsumerKey = settings.getSetting("TwitterConsumerKey") as! String
         let twitterConsumerSecret = settings.getSetting("TwitterConsumerSecret") as! String
         
