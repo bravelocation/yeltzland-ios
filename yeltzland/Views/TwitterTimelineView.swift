@@ -20,7 +20,7 @@ struct TwitterTimelineView: View {
             
             List(self.tweetData.tweets, id: \.self) { tweet in
 
-                Text(tweet.fullTweet)
+                Text(tweet.fullText)
             }
         }
         .onAppear {

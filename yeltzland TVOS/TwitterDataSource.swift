@@ -39,7 +39,7 @@ class TwitterDataSource: NSObject, UICollectionViewDataSource {
                                                                               for: indexPath) as! TVTwitterCollectionCell
         
         let tweet = self.dataProvider.tweets[indexPath.row]
-        cell.loadData(tweet: tweet.fullTweet)
+        cell.loadData(tweet: tweet.fullText)
         
         return cell
     }

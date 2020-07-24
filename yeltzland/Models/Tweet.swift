@@ -8,6 +8,10 @@
 
 import Foundation
 
-struct Tweet: Hashable {
-    var fullTweet: String
+struct Tweet: Codable, Hashable {
+    var fullText: String
+    
+    enum CodingKeys: String, CodingKey {
+        case fullText = "full_text"
+    }
 }

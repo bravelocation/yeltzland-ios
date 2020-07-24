@@ -107,10 +107,11 @@ class TwitterDataProvider: TwitterDataProviderProtocol {
             
             session.dataTask(with: request) { data, _, error in
                 if let validData = data, error == nil {
+                    let decoder = JSONDecoder()
+                    
                     do {
-                        if let results = try JSONSerialization.jsonObject(with: validData, options: JSONSerialization.ReadingOptions.allowFragments) as? Array<Any> {
-                            self.processUserTweets(results)
-                        }
+                        let results = try decoder.decode([Tweet].self, from: validData)
+                        self.processUserTweets(results)
                     } catch let error as NSError {
                         print(error.localizedDescription)
                     }
@@ -121,17 +122,9 @@ class TwitterDataProvider: TwitterDataProviderProtocol {
         }
     }
     
-    func processUserTweets(_ results: Array<Any>) {
+    func processUserTweets(_ results: Array<Tweet>) {
         self.allTweets.removeAll()
-        
-        // Parse the array
-        for result in results {
-            if let tweetDictionary = result as? [String: Any] {
-                if let tweetText = tweetDictionary["full_text"] as? String {
-                    self.allTweets.append(Tweet(fullTweet: tweetText))
-                }
-            }
-        }
+        self.allTweets.append(contentsOf: results)
         
         // Post notification message
         NotificationCenter.default.post(name: Notification.Name(rawValue: TwitterDataProvider.TweetsNotification), object: nil)
