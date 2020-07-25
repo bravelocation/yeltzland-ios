@@ -11,6 +11,8 @@ import SwiftUI
 @available(iOS 13.0.0, *)
 struct TwitterTimelineView: View {
     @ObservedObject var tweetData: TweetData
+    
+    let logoDim = CGFloat(40)
         
     var body: some View {
         VStack {
@@ -19,7 +21,11 @@ struct TwitterTimelineView: View {
             }
             
             List(self.tweetData.tweets, id: \.self) { tweet in
-                VStack {
+                VStack(alignment: .leading) {
+                    self.tweetData.profilePic(tweet)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: self.logoDim, height: self.logoDim, alignment: .center)
                     Text(tweet.user.name)
                     Text(tweet.fullText)
                 }.onTapGesture {
