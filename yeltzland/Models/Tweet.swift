@@ -13,6 +13,7 @@ protocol DisplayTweet {
     var fullText: String { get }
     var user: User { get }
     var createdAt: Date { get }
+    var isRetweet: Bool { get }
 }
 
 struct Tweet: Codable, Hashable, DisplayTweet {
@@ -29,6 +30,8 @@ struct Tweet: Codable, Hashable, DisplayTweet {
         case createdAt = "created_at"
         case retweet = "retweeted_status"
     }
+    
+    var isRetweet: Bool { return false }
 }
 
 struct Retweet: Codable, Hashable, DisplayTweet {
@@ -43,6 +46,8 @@ struct Retweet: Codable, Hashable, DisplayTweet {
         case user = "user"
         case createdAt = "created_at"
     }
+    
+    var isRetweet: Bool { return true }
 }
 
 struct User: Codable, Hashable {

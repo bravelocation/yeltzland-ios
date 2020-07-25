@@ -16,11 +16,19 @@ struct TweetView: View {
     
     var body: some View {
         HStack(alignment: .top) {
-            self.profilePic
-            .resizable()
-            .scaledToFit()
-            .frame(width: 32, height: 32, alignment: .center)
-            .cornerRadius(4.0)
+            VStack {
+                self.profilePic
+                .resizable()
+                .scaledToFit()
+                .frame(width: 32, height: 32, alignment: .center)
+                .cornerRadius(4.0)
+                
+                if (tweet.isRetweet) {
+                    Image(systemName: "arrow.right.arrow.left.square")
+                        .foregroundColor(.secondary)
+                        .font(.caption)
+                }
+            }
             
             VStack(alignment: .leading) {
                 HStack(alignment: .top) {
