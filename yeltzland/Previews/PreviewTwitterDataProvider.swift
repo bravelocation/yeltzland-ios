@@ -17,7 +17,8 @@ class PreviewTwitterDataProvider: TwitterDataProviderProtocol {
                   fullText: "Test tweet 1",
                   user: User(name: "Halesowen Town FC",
                              screenName: "John Pollard",
-                             profileImageUrl: "https://pbs.twimg.com/profile_images/1195108198715400192/TMrPMD8B_normal.jpg")
+                             profileImageUrl: "https://pbs.twimg.com/profile_images/1195108198715400192/TMrPMD8B_normal.jpg"),
+                  createdAt: Date()
             )
         )
         

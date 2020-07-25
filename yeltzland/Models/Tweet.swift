@@ -12,11 +12,13 @@ struct Tweet: Codable, Hashable {
     var id: String
     var fullText: String
     var user: User
+    var createdAt: Date
     
     enum CodingKeys: String, CodingKey {
         case id = "id_str"
         case fullText = "full_text"
         case user = "user"
+        case createdAt = "created_at"
     }
 }
 
