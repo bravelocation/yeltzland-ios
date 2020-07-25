@@ -52,7 +52,7 @@ class TweetData: ObservableObject {
             return Image(uiImage: image)
         }
         
-        return Image("blank_team")
+        return Image(systemName: "person.circle")
     }
     
     private func fetchProfilePic(_ tweet: Tweet) {

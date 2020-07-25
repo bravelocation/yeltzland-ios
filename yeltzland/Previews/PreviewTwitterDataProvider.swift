@@ -16,7 +16,7 @@ class PreviewTwitterDataProvider: TwitterDataProviderProtocol {
             Tweet(id: "1286327578949832704",
                   fullText: "Test tweet 1",
                   user: User(name: "Halesowen Town FC",
-                             screenName: "John Pollard",
+                             screenName: "halesowentownfc",
                              profileImageUrl: "https://pbs.twimg.com/profile_images/1195108198715400192/TMrPMD8B_normal.jpg"),
                   createdAt: Date()
             )
@@ -26,6 +26,7 @@ class PreviewTwitterDataProvider: TwitterDataProviderProtocol {
     }
     
     func refreshData() {
-        // Do nothing
+        // Post notification message
+        NotificationCenter.default.post(name: Notification.Name(rawValue: TwitterDataProvider.TweetsNotification), object: nil)
     }
 }
