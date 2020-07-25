@@ -68,7 +68,10 @@ struct TweetView_Previews: PreviewProvider {
                      profileImageUrl: "https://pbs.twimg.com/profile_images/1195108198715400192/TMrPMD8B_normal.jpg"),
           createdAt: Date(),
           entities: Entities(
-                        hashtags: []
+                        hashtags: [],
+                        urls: [],
+                        userMentions: [],
+                        symbols: []
                     )
     )
     

@@ -75,6 +75,16 @@ struct User: Codable, Hashable {
 
 struct Entities: Codable, Hashable {
     var hashtags: [Hashtag]
+    var urls: [TweetUrl]
+    var userMentions: [UserMention]
+    var symbols: [TweetSymbol]
+    
+    enum CodingKeys: String, CodingKey {
+        case hashtags
+        case urls
+        case userMentions = "user_mentions"
+        case symbols = "symbols"
+    }
 }
 
 struct Hashtag: Codable, Hashable, TweetEntity {
@@ -83,5 +93,50 @@ struct Hashtag: Codable, Hashable, TweetEntity {
     
     var displayText: String {
         return "#\(self.text)"
+    }
+}
+
+struct TweetUrl: Codable, Hashable, TweetEntity {
+    var url: String
+    var displayUrl: String
+    var expandedUrl: String
+    var indices: [Int]
+    
+    enum CodingKeys: String, CodingKey {
+        case url
+        case displayUrl = "display_url"
+        case expandedUrl = "expanded_url"
+        case indices
+    }
+    
+    var displayText: String {
+        return self.expandedUrl
+    }
+}
+
+struct UserMention: Codable, Hashable, TweetEntity {
+    var name: String
+    var screenName: String
+    var id: String
+    var indices: [Int]
+    
+    enum CodingKeys: String, CodingKey {
+        case name
+        case screenName = "screen_name"
+        case id = "id_str"
+        case indices
+    }
+    
+    var displayText: String {
+        return "@\(self.screenName)"
+    }
+}
+
+struct TweetSymbol: Codable, Hashable, TweetEntity {
+    var text: String
+    var indices: [Int]
+    
+    var displayText: String {
+        return "$\(self.text)"
     }
 }

@@ -18,6 +18,10 @@ extension DisplayTweet {
         var entityParts: [TweetEntity] = []
         
         entityParts.append(contentsOf: self.entities.hashtags)
+        entityParts.append(contentsOf: self.entities.urls)
+        entityParts.append(contentsOf: self.entities.userMentions)
+        entityParts.append(contentsOf: self.entities.symbols)
+        
         entityParts.sort { (a, b) -> Bool in
             return a.indices.first! < b.indices.first!
         }
@@ -30,7 +34,7 @@ extension DisplayTweet {
             let entityStart = entityPart.indices[0]
             let entityEnd = entityPart.indices[1]
             
-            if currentPoint < entityStart {
+            if currentPoint <= entityStart {
                 // Add the tweet text up to the entity
                 let textUpToEntityStart = String(self.fullText.dropFirst(currentPoint).prefix(entityStart - currentPoint))
                 textParts.append(TweetPart(text: textUpToEntityStart, highlight: false))

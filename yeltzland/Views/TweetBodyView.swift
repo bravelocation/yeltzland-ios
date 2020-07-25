@@ -20,7 +20,7 @@ struct TweetBodyView: View {
         for part in self.textParts {
             var nextText = Text(part.text)
             if (part.highlight) {
-                nextText = nextText.foregroundColor(.blue).underline()
+                nextText = nextText.foregroundColor(Color("blue-tint"))
             }
             
             combined = combined + nextText
