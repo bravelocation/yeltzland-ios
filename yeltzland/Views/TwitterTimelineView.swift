@@ -44,6 +44,15 @@ struct TwitterTimelineView: View {
             self.tweetData.refreshData()
         }
         .navigationBarTitle(Text("@\(tweetData.accountName)"))
+        .navigationBarItems(trailing:
+            Button(
+                action: {
+                    self.tweetData.refreshData()
+                },
+                label: {
+                    Image(systemName: "arrow.counterclockwise").foregroundColor(Color.white)
+                })
+        )
     }
 }
 
