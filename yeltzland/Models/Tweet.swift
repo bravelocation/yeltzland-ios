@@ -13,7 +13,14 @@ protocol DisplayTweet {
     var fullText: String { get }
     var user: User { get }
     var createdAt: Date { get }
+    var entities: Entities { get }
+    
     var isRetweet: Bool { get }
+}
+
+protocol TweetEntity {
+    var indices: [Int] { get }
+    var displayText: String { get }
 }
 
 struct Tweet: Codable, Hashable, DisplayTweet {
@@ -21,6 +28,7 @@ struct Tweet: Codable, Hashable, DisplayTweet {
     var fullText: String
     var user: User
     var createdAt: Date
+    var entities: Entities
     var retweet: Retweet?
     
     enum CodingKeys: String, CodingKey {
@@ -28,6 +36,7 @@ struct Tweet: Codable, Hashable, DisplayTweet {
         case fullText = "full_text"
         case user = "user"
         case createdAt = "created_at"
+        case entities = "entities"
         case retweet = "retweeted_status"
     }
     
@@ -39,12 +48,14 @@ struct Retweet: Codable, Hashable, DisplayTweet {
     var fullText: String
     var user: User
     var createdAt: Date
+    var entities: Entities
     
     enum CodingKeys: String, CodingKey {
         case id = "id_str"
         case fullText = "full_text"
         case user = "user"
         case createdAt = "created_at"
+        case entities = "entities"
     }
     
     var isRetweet: Bool { return true }
@@ -59,5 +70,18 @@ struct User: Codable, Hashable {
         case name
         case screenName = "screen_name"
         case profileImageUrl = "profile_image_url_https"
+    }
+}
+
+struct Entities: Codable, Hashable {
+    var hashtags: [Hashtag]
+}
+
+struct Hashtag: Codable, Hashable, TweetEntity {
+    var text: String
+    var indices: [Int]
+    
+    var displayText: String {
+        return "#\(self.text)"
     }
 }

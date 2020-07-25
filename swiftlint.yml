@@ -56,6 +56,7 @@ disabled_rules: # rule identifiers to exclude from running
  - control_statement
  - custom_rules
  - line_length
+ - shorthand_operator
 
 excluded: # paths to ignore during linting. Takes precedence over `included`.
  - Pods

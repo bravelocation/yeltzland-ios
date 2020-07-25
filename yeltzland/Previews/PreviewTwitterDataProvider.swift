@@ -18,7 +18,10 @@ class PreviewTwitterDataProvider: TwitterDataProviderProtocol {
                   user: User(name: "Halesowen Town FC",
                              screenName: "halesowentownfc",
                              profileImageUrl: "https://pbs.twimg.com/profile_images/1195108198715400192/TMrPMD8B_normal.jpg"),
-                  createdAt: Date()
+                  createdAt: Date(),
+                  entities: Entities(
+                                hashtags: []
+                            )
             )
         )
         

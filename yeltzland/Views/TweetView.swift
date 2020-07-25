@@ -49,10 +49,8 @@ struct TweetView: View {
                         .lineLimit(nil)
                 }
                 
-                Text(self.tweet.fullText)
+                TweetBodyView(textParts: self.tweet.textParts)
                     .padding(.top, 8)
-                    .font(.body)
-                    .lineLimit(nil)
             }
         }
         .onTapGesture {
@@ -68,7 +66,10 @@ struct TweetView_Previews: PreviewProvider {
           user: User(name: "Halesowen Town FC",
                      screenName: "halesowentownfc",
                      profileImageUrl: "https://pbs.twimg.com/profile_images/1195108198715400192/TMrPMD8B_normal.jpg"),
-          createdAt: Date()
+          createdAt: Date(),
+          entities: Entities(
+                        hashtags: []
+                    )
     )
     
     static var previews: some View {
