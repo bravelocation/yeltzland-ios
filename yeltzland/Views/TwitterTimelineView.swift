@@ -19,7 +19,9 @@ struct TwitterTimelineView: View {
             }
             
             List(self.tweetData.tweets, id: \.self) { tweet in
-                TweetView(tweet: tweet, profilePic: self.tweetData.profilePic(tweet))
+                TweetView(
+                    tweet: tweet.retweet ?? tweet,
+                    profilePic: self.tweetData.profilePic(tweet.retweet == nil ? tweet.user.screenName : tweet.retweet!.user.screenName))
             }
         }
         .onAppear {
@@ -32,7 +34,7 @@ struct TwitterTimelineView: View {
                     self.tweetData.refreshData()
                 },
                 label: {
-                    Image(systemName: "arrow.counterclockwise").foregroundColor(Color.white)
+                    Image(systemName: "arrow.clockwise").foregroundColor(Color.white)
                 })
         )
     }

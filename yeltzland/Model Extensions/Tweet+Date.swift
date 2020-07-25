@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension Tweet {
+extension DisplayTweet {
     var timeAgo: String {
         get {
            // Is the game today?

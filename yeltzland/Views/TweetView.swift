@@ -11,7 +11,7 @@ import SwiftUI
 @available(iOS 13.0.0, *)
 struct TweetView: View {
     
-    var tweet: Tweet
+    var tweet: DisplayTweet
     var profilePic: Image
     
     var body: some View {
@@ -20,15 +20,18 @@ struct TweetView: View {
             .resizable()
             .scaledToFit()
             .frame(width: 32, height: 32, alignment: .center)
+            .cornerRadius(4.0)
             
             VStack(alignment: .leading) {
-                HStack(alignment: .firstTextBaseline) {
-                    Text(self.tweet.user.name)
-                        .font(.callout)
-                    Text("@\(self.tweet.user.screenName)")
-                        .font(.footnote)
-                        .foregroundColor(.secondary)
-                    
+                HStack(alignment: .top) {
+                    VStack(alignment: .leading) {
+                        Text(self.tweet.user.name)
+                            .font(.callout)
+                        Text("@\(self.tweet.user.screenName)")
+                            .font(.footnote)
+                            .foregroundColor(.secondary)
+                    }
+
                     Spacer()
                     
                     Text(self.tweet.timeAgo)

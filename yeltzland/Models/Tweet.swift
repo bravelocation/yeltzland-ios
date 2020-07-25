@@ -8,7 +8,30 @@
 
 import Foundation
 
-struct Tweet: Codable, Hashable {
+protocol DisplayTweet {
+    var id: String { get }
+    var fullText: String { get }
+    var user: User { get }
+    var createdAt: Date { get }
+}
+
+struct Tweet: Codable, Hashable, DisplayTweet {
+    var id: String
+    var fullText: String
+    var user: User
+    var createdAt: Date
+    var retweet: Retweet?
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "id_str"
+        case fullText = "full_text"
+        case user = "user"
+        case createdAt = "created_at"
+        case retweet = "retweeted_status"
+    }
+}
+
+struct Retweet: Codable, Hashable, DisplayTweet {
     var id: String
     var fullText: String
     var user: User

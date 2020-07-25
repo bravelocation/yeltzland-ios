@@ -43,32 +43,36 @@ class TweetData: ObservableObject {
         self.tweets.append(contentsOf: self.dataProvider.tweets)
         
         for tweet in self.tweets {
-            self.fetchProfilePic(tweet)
+            self.fetchProfilePic(screenName: tweet.user.screenName, profileImageUrl: tweet.user.profileImageUrl)
+            
+            if let retweet = tweet.retweet {
+                self.fetchProfilePic(screenName: retweet.user.screenName, profileImageUrl: retweet.user.profileImageUrl)
+            }
         }
     }
     
-    func profilePic(_ tweet: Tweet) -> Image {
-        if let image = self.profilePics[tweet.user.screenName] {
+    func profilePic(_ screenName: String) -> Image {
+        if let image = self.profilePics[screenName] {
             return Image(uiImage: image)
         }
         
         return Image(systemName: "person.circle")
     }
     
-    private func fetchProfilePic(_ tweet: Tweet) {
-        if self.profilePics[tweet.user.screenName] != nil {
+    private func fetchProfilePic(screenName: String, profileImageUrl: String) {
+        if self.profilePics[screenName] != nil {
             return
         }
         
-        self.loadUserProfileImage(tweet: tweet) { image in
+        self.loadUserProfileImage(profileImageUrl: profileImageUrl) { image in
             if image != nil {
-                self.profilePics[tweet.user.screenName] = image
+                self.profilePics[screenName] = image
             }
         }
     }
     
-    private func loadUserProfileImage(tweet: Tweet, completion: @escaping (UIImage?) -> Void) {
-        if let profileUrl = URL(string: tweet.user.profileImageUrl) {
+    private func loadUserProfileImage(profileImageUrl: String, completion: @escaping (UIImage?) -> Void) {
+        if let profileUrl = URL(string: profileImageUrl) {
             SDWebImageManager.shared.loadImage(with: profileUrl,
                                            options: .continueInBackground,
                                            progress: nil) { image, _, _, _, _, _  in
