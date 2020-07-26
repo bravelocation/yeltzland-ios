@@ -23,7 +23,8 @@ class PreviewTwitterDataProvider: TwitterDataProviderProtocol {
                                 hashtags: [],
                                 urls: [],
                                 userMentions: [],
-                                symbols: []
+                                symbols: [],
+                                media: []
                             )
             )
         )

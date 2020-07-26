@@ -816,11 +816,11 @@
 				5201D3B224CB1D7400726CAD /* Previews */,
 				522716C722D1B7C1008FD210 /* UI */,
 				52C4DA851D4C838A009AFD25 /* ViewControllers */,
+				5201D3AD24CB14CB00726CAD /* Views */,
 				52E3DF761CD9FA78009F18BD /* AppDelegate.swift */,
 				52DC9EAE1FC95C9E00AE02F6 /* FirebaseNotifications.swift */,
 				520C09A12157C46100CCC2D8 /* ShortcutManager.swift */,
 				52F9CDB122D6687C00E0FFE8 /* SceneDelegate.swift */,
-				5201D3AD24CB14CB00726CAD /* Views */,
 			);
 			path = yeltzland;
 			sourceTree = "<group>";

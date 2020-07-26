@@ -78,12 +78,14 @@ struct Entities: Codable, Hashable {
     var urls: [TweetUrl]
     var userMentions: [UserMention]
     var symbols: [TweetSymbol]
+    var media: [Media]?
     
     enum CodingKeys: String, CodingKey {
         case hashtags
         case urls
         case userMentions = "user_mentions"
         case symbols = "symbols"
+        case media
     }
 }
 
@@ -138,5 +140,46 @@ struct TweetSymbol: Codable, Hashable, TweetEntity {
     
     var displayText: String {
         return "$\(self.text)"
+    }
+}
+
+struct Media: Codable, Hashable, TweetEntity {
+    var id: String
+    var displayUrl: String
+    var expandedUrl: String
+    var mediaUrl: String
+    var sizes: MediaSizes
+    var indices: [Int]
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "id_str"
+        case displayUrl = "display_url"
+        case expandedUrl = "expanded_url"
+        case mediaUrl = "media_url_https"
+        case sizes
+        case indices
+    }
+    
+    var displayText: String {
+        return "" // Hide the media URL in the tweet, as we will load images directly
+    }
+}
+
+struct MediaSizes: Codable, Hashable {
+    var thumb: MediaSize
+    var large: MediaSize
+    var medium: MediaSize
+    var small: MediaSize
+}
+
+struct MediaSize: Codable, Hashable {
+    var height: Int
+    var resize: String
+    var width: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case height = "h"
+        case resize = "resize"
+        case width = "w"
     }
 }

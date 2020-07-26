@@ -21,7 +21,10 @@ extension DisplayTweet {
         entityParts.append(contentsOf: self.entities.urls)
         entityParts.append(contentsOf: self.entities.userMentions)
         entityParts.append(contentsOf: self.entities.symbols)
-        
+        if let media = self.entities.media {
+            entityParts.append(contentsOf: media)
+        }
+
         entityParts.sort { (a, b) -> Bool in
             return a.indices.first! < b.indices.first!
         }
