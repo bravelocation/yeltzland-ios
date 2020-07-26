@@ -39,14 +39,17 @@ class TweetData: ObservableObject {
     }
     
     private func reloadTweets() {
-        self.tweets.removeAll()
-        self.tweets.append(contentsOf: self.dataProvider.tweets)
-        
-        for tweet in self.tweets {
-            self.fetchTweetImages(tweet: tweet)
+        // Update fixtures data on main thread
+        DispatchQueue.main.async {
+            self.tweets.removeAll()
+            self.tweets.append(contentsOf: self.dataProvider.tweets)
             
-            if let retweet = tweet.retweet {
-                self.fetchTweetImages(tweet: retweet)
+            for tweet in self.tweets {
+                self.fetchTweetImages(tweet: tweet)
+                
+                if let retweet = tweet.retweet {
+                    self.fetchTweetImages(tweet: retweet)
+                }
             }
         }
     }
@@ -73,8 +76,8 @@ class TweetData: ObservableObject {
         // Fetch profile image
         if self.images[tweet.user.profileImageUrl] == nil {
             self.loadImage(profileImageUrl: tweet.user.profileImageUrl) { image in
-                if image != nil {
-                    self.images[tweet.user.profileImageUrl] = image
+                if let image = image {
+                    self.addImageToCache(key: tweet.user.profileImageUrl, image: image)
                 }
             }
         }
@@ -85,8 +88,8 @@ class TweetData: ObservableObject {
                 if let imageUrl = media.smallImageUrl {
                     if self.images[imageUrl] == nil {
                         self.loadImage(profileImageUrl: imageUrl) { image in
-                            if image != nil {
-                                self.images[imageUrl] = image
+                            if let image = image {
+                                self.addImageToCache(key: imageUrl, image: image)
                             }
                         }
                     }
@@ -109,9 +112,13 @@ class TweetData: ObservableObject {
     
     @objc
     fileprivate func dataUpdated(_ notification: Notification) {
-        // Update fixtures data on main thread
+        self.reloadTweets()
+    }
+    
+    private func addImageToCache(key: String, image: UIImage) {
+        // Update images on main thread
         DispatchQueue.main.async {
-            self.reloadTweets()
+            self.images[key] = image
         }
     }
 }

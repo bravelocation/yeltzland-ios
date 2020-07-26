@@ -71,6 +71,15 @@ struct TweetView: View {
                             self.openTweetPage()
                         }
                 }
+                
+                if self.tweet.quote != nil {
+                    TweetView(tweet: self.tweet.quote!)
+                        .padding()
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 16)
+                                .stroke(Color("light-blue"), lineWidth: 1)
+                        )
+                }
             }
         }
     }

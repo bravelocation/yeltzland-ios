@@ -14,6 +14,7 @@ protocol DisplayTweet {
     var user: User { get }
     var createdAt: Date { get }
     var entities: Entities { get }
+    var quote: DisplayTweet? { get }
     
     var isRetweet: Bool { get }
 }
@@ -30,6 +31,7 @@ struct Tweet: Codable, Hashable, DisplayTweet {
     var createdAt: Date
     var entities: Entities
     var retweet: Retweet?
+    var quotedTweet: QuotedTweet?
     
     enum CodingKeys: String, CodingKey {
         case id = "id_str"
@@ -38,12 +40,35 @@ struct Tweet: Codable, Hashable, DisplayTweet {
         case createdAt = "created_at"
         case entities = "entities"
         case retweet = "retweeted_status"
+        case quotedTweet = "quoted_status"
     }
     
     var isRetweet: Bool { return false }
+    var quote: DisplayTweet? { return quotedTweet }
 }
 
 struct Retweet: Codable, Hashable, DisplayTweet {
+    var id: String
+    var fullText: String
+    var user: User
+    var createdAt: Date
+    var entities: Entities
+    var quotedTweet: QuotedTweet?
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "id_str"
+        case fullText = "full_text"
+        case user = "user"
+        case createdAt = "created_at"
+        case entities = "entities"
+        case quotedTweet = "quoted_status"
+    }
+    
+    var isRetweet: Bool { return true }
+    var quote: DisplayTweet? { return quotedTweet }
+}
+
+struct QuotedTweet: Codable, Hashable, DisplayTweet {
     var id: String
     var fullText: String
     var user: User
@@ -58,7 +83,8 @@ struct Retweet: Codable, Hashable, DisplayTweet {
         case entities = "entities"
     }
     
-    var isRetweet: Bool { return true }
+    var isRetweet: Bool { return false }
+    var quote: DisplayTweet? { return nil }
 }
 
 struct User: Codable, Hashable {
@@ -112,6 +138,12 @@ struct TweetUrl: Codable, Hashable, TweetEntity {
     }
     
     var displayText: String {
+        
+        // Don't show URLs that start with https://twitter.com
+        if (self.expandedUrl.starts(with: "https://twitter.com")) {
+            return ""
+        }
+        
         return self.expandedUrl
     }
 }
