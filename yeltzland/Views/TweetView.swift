@@ -11,8 +11,9 @@ import SwiftUI
 @available(iOS 13.0.0, *)
 struct TweetView: View {
     
+    @EnvironmentObject var tweetData: TweetData
+    
     var tweet: DisplayTweet
-    var profilePic: Image
     
     var body: some View {
         HStack(alignment: .top) {
@@ -20,7 +21,7 @@ struct TweetView: View {
                 Button(action: {
                     self.openUserTwitterPage()
                 }) {
-                    self.profilePic
+                    self.tweetData.profilePic(tweet)
                     .resizable()
                     .scaledToFit()
                     .frame(width: 32, height: 32, alignment: .center)
@@ -62,6 +63,14 @@ struct TweetView: View {
                     .onTapGesture {
                         self.openTweetPage()
                     }
+            
+                if self.tweet.entities.media != nil {
+                    TweetImagesView(mediaParts: self.tweet.entities.media!)
+                        .padding([.bottom], 8)
+                        .onTapGesture {
+                            self.openTweetPage()
+                        }
+                }
             }
         }
     }
@@ -107,6 +116,9 @@ struct TweetView_Previews: PreviewProvider {
     )
     
     static var previews: some View {
-        TweetView(tweet: TweetView_Previews.testTweet, profilePic: Image(systemName: "person.circle"))
+        TweetView(tweet: TweetView_Previews.testTweet)
+                        .environmentObject(
+                TweetData(dataProvider: PreviewTwitterDataProvider(),
+                          accountName: "halesowentownfc"))
     }
 }

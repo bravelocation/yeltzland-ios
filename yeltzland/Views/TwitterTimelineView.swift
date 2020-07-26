@@ -10,7 +10,7 @@ import SwiftUI
 
 @available(iOS 13.0.0, *)
 struct TwitterTimelineView: View {
-    @ObservedObject var tweetData: TweetData
+    @EnvironmentObject var tweetData: TweetData
         
     var body: some View {
         VStack {
@@ -20,8 +20,8 @@ struct TwitterTimelineView: View {
             
             List(self.tweetData.tweets, id: \.self) { tweet in
                 TweetView(
-                    tweet: tweet.retweet ?? tweet,
-                    profilePic: self.tweetData.profilePic(tweet.retweet == nil ? tweet.user.screenName : tweet.retweet!.user.screenName))
+                    tweet: tweet.retweet ?? tweet
+                )
             }
         }
         .onAppear {
@@ -43,8 +43,9 @@ struct TwitterTimelineView: View {
 @available(iOS 13.0.0, *)
 struct TwitterTimelineView_Previews: PreviewProvider {
     static var previews: some View {
-        TwitterTimelineView(tweetData: TweetData(
-            dataProvider: PreviewTwitterDataProvider(),
-            accountName: "halesowentownfc"))
+        TwitterTimelineView()
+            .environmentObject(
+                TweetData(dataProvider: PreviewTwitterDataProvider(),
+                          accountName: "halesowentownfc"))
     }
 }

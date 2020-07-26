@@ -17,6 +17,8 @@
 		5201D3B924CC2E1600726CAD /* Tweet+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5201D3B724CC2E1600726CAD /* Tweet+Date.swift */; };
 		5201D3C124CC79E600726CAD /* TweetBodyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5201D3C024CC79E600726CAD /* TweetBodyView.swift */; };
 		5201D3C324CC821E00726CAD /* Tweet+Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5201D3C224CC821E00726CAD /* Tweet+Text.swift */; };
+		5201D3C524CD5F1800726CAD /* Tweet+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5201D3C424CD5F1800726CAD /* Tweet+Image.swift */; };
+		5201D3C724CD622F00726CAD /* TweetImagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5201D3C624CD622F00726CAD /* TweetImagesView.swift */; };
 		5206BC5424CABAE500A927B3 /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5231F500215B6C92003FAC68 /* Settings.plist */; };
 		5206BC5724CABBA200A927B3 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5206BC5624CABBA200A927B3 /* Tweet.swift */; };
 		5206BC5824CABBA200A927B3 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5206BC5624CABBA200A927B3 /* Tweet.swift */; };
@@ -321,6 +323,8 @@
 		5201D3B724CC2E1600726CAD /* Tweet+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tweet+Date.swift"; sourceTree = "<group>"; };
 		5201D3C024CC79E600726CAD /* TweetBodyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetBodyView.swift; sourceTree = "<group>"; };
 		5201D3C224CC821E00726CAD /* Tweet+Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tweet+Text.swift"; sourceTree = "<group>"; };
+		5201D3C424CD5F1800726CAD /* Tweet+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tweet+Image.swift"; sourceTree = "<group>"; };
+		5201D3C624CD622F00726CAD /* TweetImagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetImagesView.swift; sourceTree = "<group>"; };
 		5206BC5624CABBA200A927B3 /* Tweet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		5206BC5924CABC0D00A927B3 /* TwitterDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterDataProvider.swift; sourceTree = "<group>"; };
 		520C09A12157C46100CCC2D8 /* ShortcutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutManager.swift; sourceTree = "<group>"; };
@@ -549,9 +553,10 @@
 		5201D3AD24CB14CB00726CAD /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5201D3C024CC79E600726CAD /* TweetBodyView.swift */,
+				5201D3C624CD622F00726CAD /* TweetImagesView.swift */,
 				5201D3AE24CB14FE00726CAD /* TwitterTimelineView.swift */,
 				5201D3B524CC246000726CAD /* TweetView.swift */,
-				5201D3C024CC79E600726CAD /* TweetBodyView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -730,6 +735,7 @@
 				528C5D0924C9AB750019DA0F /* TimelineEntry+Score.swift */,
 				5201D3B724CC2E1600726CAD /* Tweet+Date.swift */,
 				5201D3C224CC821E00726CAD /* Tweet+Text.swift */,
+				5201D3C424CD5F1800726CAD /* Tweet+Image.swift */,
 			);
 			path = "Model Extensions";
 			sourceTree = "<group>";
@@ -1796,6 +1802,7 @@
 				526B211A24C304BC005CE9C7 /* TodayFixtureCollectionViewCell.swift in Sources */,
 				520C09A22157C46100CCC2D8 /* ShortcutManager.swift in Sources */,
 				52236AE61D17DFF8004903AB /* Fixture.swift in Sources */,
+				5201D3C724CD622F00726CAD /* TweetImagesView.swift in Sources */,
 				526B210424C2CD6E005CE9C7 /* TimelineManager.swift in Sources */,
 				528C5D0A24C9AB750019DA0F /* TimelineEntry+Score.swift in Sources */,
 				527DAF1F1D2D082C0092BB8F /* Location.swift in Sources */,
@@ -1813,6 +1820,7 @@
 				526B210B24C2CE66005CE9C7 /* TimelineEntry.swift in Sources */,
 				528C5D0224C9AAF30019DA0F /* TimelineEntry+Opponent.swift in Sources */,
 				5259F9041CDA1292009C2AA8 /* MainTabBarController.swift in Sources */,
+				5201D3C524CD5F1800726CAD /* Tweet+Image.swift in Sources */,
 				522716CD22D1BB50008FD210 /* CachedJSONData.swift in Sources */,
 				527DAF1B1D2BA9BA0092BB8F /* SafariActivity.swift in Sources */,
 				5236ECDB20CE99B80067AFFA /* LatestScoreViewController.swift in Sources */,

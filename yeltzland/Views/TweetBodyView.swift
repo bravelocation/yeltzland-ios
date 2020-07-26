@@ -28,7 +28,6 @@ struct TweetBodyView: View {
         
         return combined
     }
-
 }
 
 @available(iOS 13.0.0, *)
