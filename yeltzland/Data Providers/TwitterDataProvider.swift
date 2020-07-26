@@ -13,9 +13,11 @@ protocol TwitterDataProviderProtocol {
     func refreshData()
 }
 
-class TwitterDataProvider: TwitterDataProviderProtocol {
-    public static let TweetsNotification: String = "YLZTweetsNotification"
+extension Notification.Name {
+    static let TweetsUpdated = Notification.Name(rawValue: "YLZTweetsNotification")
+}
 
+class TwitterDataProvider: TwitterDataProviderProtocol {
     private var twitterConsumerKey: String
     private var twitterConsumerSecret: String
     private var accountName: String
@@ -132,6 +134,6 @@ class TwitterDataProvider: TwitterDataProviderProtocol {
         self.allTweets.append(contentsOf: results)
         
         // Post notification message
-        NotificationCenter.default.post(name: Notification.Name(rawValue: TwitterDataProvider.TweetsNotification), object: nil)
+        NotificationCenter.default.post(name: .TweetsUpdated, object: nil)
     }
 }

@@ -34,6 +34,6 @@ class PreviewTwitterDataProvider: TwitterDataProviderProtocol {
     
     func refreshData() {
         // Post notification message
-        NotificationCenter.default.post(name: Notification.Name(rawValue: TwitterDataProvider.TweetsNotification), object: nil)
+        NotificationCenter.default.post(name: .TweetsUpdated, object: nil)
     }
 }

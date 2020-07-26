@@ -25,7 +25,7 @@ class TweetData: ObservableObject {
         self.accountName = accountName
         
         //Add notification handler for updating on updated tweets
-        NotificationCenter.default.addObserver(self, selector: #selector(TweetData.dataUpdated(_:)), name: NSNotification.Name(rawValue: TwitterDataProvider.TweetsNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(TweetData.dataUpdated(_:)), name: .TweetsUpdated, object: nil)
         
         self.refreshData()
     }
