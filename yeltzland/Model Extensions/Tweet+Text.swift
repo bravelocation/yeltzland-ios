@@ -21,7 +21,7 @@ extension DisplayTweet {
         entityParts.append(contentsOf: self.entities.urls)
         entityParts.append(contentsOf: self.entities.userMentions)
         entityParts.append(contentsOf: self.entities.symbols)
-        if let media = self.entities.media {
+        if let media = self.extendedEntities?.media {
             entityParts.append(contentsOf: media)
         }
 

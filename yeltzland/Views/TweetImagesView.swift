@@ -16,12 +16,14 @@ struct TweetImagesView: View {
     var mediaParts: [Media]
     
     var body: some View {
-        let tweetImage = self.tweetData.tweetImage(self.mediaParts.first)
-        
-        return tweetImage!
-            .resizable()
-            .scaledToFit()
-            .cornerRadius(16.0)
+        VStack {
+            ForEach(mediaParts, id: \.self) { media in
+               self.tweetData.tweetImage(media)
+                .resizable()
+                .scaledToFit()
+                .cornerRadius(16.0)
+            }
+        }
     }
 }
 

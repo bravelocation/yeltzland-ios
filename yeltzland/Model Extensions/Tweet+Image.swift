@@ -24,3 +24,15 @@ extension Media {
         return nil
     }
 }
+
+extension DisplayTweet {
+    var allMedia: [Media] {
+        var media: [Media] = []
+        
+        if let extendiaMedia = self.extendedEntities?.media {
+           media.append(contentsOf: extendiaMedia)
+        }
+        
+        return media
+    }
+}

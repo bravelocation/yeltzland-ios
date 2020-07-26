@@ -65,8 +65,8 @@ struct TweetView: View {
                             self.openTweetPage()
                         }
                 
-                    if self.tweet.entities.media != nil {
-                        TweetImagesView(mediaParts: self.tweet.entities.media!)
+                    if self.tweet.allMedia.isEmpty == false {
+                        TweetImagesView(mediaParts: self.tweet.allMedia)
                             .padding([.bottom], 8)
                             .onTapGesture {
                                 self.openTweetPage()
@@ -110,20 +110,20 @@ struct TweetView_Previews: PreviewProvider {
                                         expandedUrl: "https://www.ht-fc.co.uk/yeltzmen-book-launch",
                                         indices: [111, 134])],
                         userMentions: [],
-                        symbols: [],
-                        media: [
-                            Media(id: "1286327220433231880",
-                                  displayUrl: "pic.twitter.com/R1xNPbQAvM",
-                                  expandedUrl: "https://twitter.com/halesowentownfc/status/1286327578949832704/photo/1",
-                                  mediaUrl: "https://pbs.twimg.com/media/Ednzyq7WoAghlfJ.jpg",
-                                  sizes: MediaSizes(
-                                    thumb: MediaSize(height: 150, resize: "crop", width: 150),
-                                    large: MediaSize(height: 1598, resize: "fit", width: 1600),
-                                    medium: MediaSize(height: 1199, resize: "fit", width: 1200),
-                                    small: MediaSize(height: 679, resize: "fit", width: 680)),
-                                  indices: [147, 170])
-                        ]
-                    )
+                        symbols: []
+                    ),
+            extendedEntities: ExtendedEntities(media: [
+                Media(id: "1286327220433231880",
+                      displayUrl: "pic.twitter.com/R1xNPbQAvM",
+                      expandedUrl: "https://twitter.com/halesowentownfc/status/1286327578949832704/photo/1",
+                      mediaUrl: "https://pbs.twimg.com/media/Ednzyq7WoAghlfJ.jpg",
+                      sizes: MediaSizes(
+                        thumb: MediaSize(height: 150, resize: "crop", width: 150),
+                        large: MediaSize(height: 1598, resize: "fit", width: 1600),
+                        medium: MediaSize(height: 1199, resize: "fit", width: 1200),
+                        small: MediaSize(height: 679, resize: "fit", width: 680)),
+                      indices: [147, 170])
+            ])
     )
     
     static var previews: some View {

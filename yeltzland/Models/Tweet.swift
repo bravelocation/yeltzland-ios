@@ -14,6 +14,7 @@ protocol DisplayTweet {
     var user: User { get }
     var createdAt: Date { get }
     var entities: Entities { get }
+    var extendedEntities: ExtendedEntities? { get }
     var quote: DisplayTweet? { get }
     
     var isRetweet: Bool { get }
@@ -30,6 +31,7 @@ struct Tweet: Codable, Hashable, DisplayTweet {
     var user: User
     var createdAt: Date
     var entities: Entities
+    var extendedEntities: ExtendedEntities?
     var retweet: Retweet?
     var quotedTweet: QuotedTweet?
     
@@ -39,6 +41,7 @@ struct Tweet: Codable, Hashable, DisplayTweet {
         case user = "user"
         case createdAt = "created_at"
         case entities = "entities"
+        case extendedEntities = "extended_entities"
         case retweet = "retweeted_status"
         case quotedTweet = "quoted_status"
     }
@@ -53,6 +56,7 @@ struct Retweet: Codable, Hashable, DisplayTweet {
     var user: User
     var createdAt: Date
     var entities: Entities
+    var extendedEntities: ExtendedEntities?
     var quotedTweet: QuotedTweet?
     
     enum CodingKeys: String, CodingKey {
@@ -61,6 +65,7 @@ struct Retweet: Codable, Hashable, DisplayTweet {
         case user = "user"
         case createdAt = "created_at"
         case entities = "entities"
+        case extendedEntities = "extended_entities"
         case quotedTweet = "quoted_status"
     }
     
@@ -74,6 +79,7 @@ struct QuotedTweet: Codable, Hashable, DisplayTweet {
     var user: User
     var createdAt: Date
     var entities: Entities
+    var extendedEntities: ExtendedEntities?
     
     enum CodingKeys: String, CodingKey {
         case id = "id_str"
@@ -81,6 +87,7 @@ struct QuotedTweet: Codable, Hashable, DisplayTweet {
         case user = "user"
         case createdAt = "created_at"
         case entities = "entities"
+        case extendedEntities = "extended_entities"
     }
     
     var isRetweet: Bool { return false }
@@ -104,15 +111,17 @@ struct Entities: Codable, Hashable {
     var urls: [TweetUrl]
     var userMentions: [UserMention]
     var symbols: [TweetSymbol]
-    var media: [Media]?
     
     enum CodingKeys: String, CodingKey {
         case hashtags
         case urls
         case userMentions = "user_mentions"
         case symbols = "symbols"
-        case media
     }
+}
+
+struct ExtendedEntities: Codable, Hashable {
+    var media: [Media]?
 }
 
 struct Hashtag: Codable, Hashable, TweetEntity {

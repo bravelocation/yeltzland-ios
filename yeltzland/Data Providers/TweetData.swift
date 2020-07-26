@@ -62,7 +62,7 @@ class TweetData: ObservableObject {
         return Image(systemName: "person.circle")
     }
     
-    func tweetImage(_ media: Media?) -> Image? {
+    func tweetImage(_ media: Media?) -> Image {
         if let media = media {
             if let imageUrl = media.smallImageUrl, let image = self.images[imageUrl] {
                 return Image(uiImage: image)
@@ -75,7 +75,7 @@ class TweetData: ObservableObject {
     private func fetchTweetImages(tweet: DisplayTweet) {
         // Fetch profile image
         if self.images[tweet.user.profileImageUrl] == nil {
-            self.loadImage(profileImageUrl: tweet.user.profileImageUrl) { image in
+            self.loadImage(imageUrl: tweet.user.profileImageUrl) { image in
                 if let image = image {
                     self.addImageToCache(key: tweet.user.profileImageUrl, image: image)
                 }
@@ -83,11 +83,24 @@ class TweetData: ObservableObject {
         }
         
         // Fetch tweet images
-        if let mediaParts = tweet.entities.media {
+        for media in tweet.allMedia {
+            if let imageUrl = media.smallImageUrl {
+                if self.images[imageUrl] == nil {
+                    self.loadImage(imageUrl: imageUrl) { image in
+                        if let image = image {
+                            self.addImageToCache(key: imageUrl, image: image)
+                        }
+                    }
+                }
+            }
+        }
+        
+        // Fetch quoted tweet images
+        if let mediaParts = tweet.quote?.allMedia {
             for media in mediaParts {
                 if let imageUrl = media.smallImageUrl {
                     if self.images[imageUrl] == nil {
-                        self.loadImage(profileImageUrl: imageUrl) { image in
+                        self.loadImage(imageUrl: imageUrl) { image in
                             if let image = image {
                                 self.addImageToCache(key: imageUrl, image: image)
                             }
@@ -98,9 +111,9 @@ class TweetData: ObservableObject {
         }
     }
     
-    private func loadImage(profileImageUrl: String, completion: @escaping (UIImage?) -> Void) {
-        if let profileUrl = URL(string: profileImageUrl) {
-            SDWebImageManager.shared.loadImage(with: profileUrl,
+    private func loadImage(imageUrl: String, completion: @escaping (UIImage?) -> Void) {
+        if let loadUrl = URL(string: imageUrl) {
+            SDWebImageManager.shared.loadImage(with: loadUrl,
                                            options: .continueInBackground,
                                            progress: nil) { image, _, _, _, _, _  in
                                                 completion(image)
