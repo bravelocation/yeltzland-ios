@@ -17,14 +17,19 @@ struct TweetView: View {
     var body: some View {
         HStack(alignment: .top) {
             VStack {
-                self.profilePic
-                .resizable()
-                .scaledToFit()
-                .frame(width: 32, height: 32, alignment: .center)
-                .cornerRadius(4.0)
+                Button(action: {
+                    self.openUserTwitterPage()
+                }) {
+                    self.profilePic
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 32, height: 32, alignment: .center)
+                    .cornerRadius(4.0)
+                }
+                .buttonStyle(PlainButtonStyle())
                 
                 if (tweet.isRetweet) {
-                    Image(systemName: "arrow.right.arrow.left.square")
+                    Image(systemName: "arrow.right.arrow.left")
                         .foregroundColor(.secondary)
                         .font(.caption)
                 }
@@ -34,10 +39,13 @@ struct TweetView: View {
                 HStack(alignment: .top) {
                     VStack(alignment: .leading) {
                         Text(self.tweet.user.name)
-                            .font(.callout)
+                            .font(.headline)
                         Text("@\(self.tweet.user.screenName)")
                             .font(.footnote)
                             .foregroundColor(.secondary)
+                    }
+                    .onTapGesture {
+                        self.openUserTwitterPage()
                     }
 
                     Spacer()
@@ -50,12 +58,20 @@ struct TweetView: View {
                 }
                 
                 TweetBodyView(textParts: self.tweet.textParts)
-                    .padding(.top, 8)
+                    .padding([.top, .bottom], 8)
+                    .onTapGesture {
+                        self.openTweetPage()
+                    }
             }
         }
-        .onTapGesture {
-            UIApplication.shared.open(URL(string: "https://twitter.com/\(self.tweet.user.screenName)/status/\(self.tweet.id)")!)
-        }
+    }
+    
+    func openUserTwitterPage() {
+        UIApplication.shared.open(URL(string: "https://twitter.com/\(self.tweet.user.screenName)")!)
+    }
+    
+    func openTweetPage() {
+        UIApplication.shared.open(URL(string: "https://twitter.com/\(self.tweet.user.screenName)/status/\(self.tweet.id)")!)
     }
 }
 
@@ -68,8 +84,11 @@ struct TweetView_Previews: PreviewProvider {
                      profileImageUrl: "https://pbs.twimg.com/profile_images/1195108198715400192/TMrPMD8B_normal.jpg"),
           createdAt: Date(),
           entities: Entities(
-                        hashtags: [],
-                        urls: [],
+                        hashtags: [Hashtag(text: "UpTheYeltz", indices: [135, 146])],
+                        urls: [TweetUrl(url: "https://t.co/jtzAOR5yjJ",
+                                        displayUrl: "ht-fc.co.uk/yeltzmen-book-\\u2026",
+                                        expandedUrl: "https://www.ht-fc.co.uk/yeltzmen-book-launch",
+                                        indices: [111, 134])],
                         userMentions: [],
                         symbols: []
                     )
