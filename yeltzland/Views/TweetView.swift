@@ -16,70 +16,72 @@ struct TweetView: View {
     var tweet: DisplayTweet
     
     var body: some View {
-        HStack(alignment: .top) {
-            VStack {
-                Button(action: {
-                    self.openUserTwitterPage()
-                }) {
-                    self.tweetData.profilePic(tweet)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 32, height: 32, alignment: .center)
-                    .cornerRadius(16)
+        VStack {
+            HStack(alignment: .top) {
+                VStack {
+                    Button(action: {
+                        self.openUserTwitterPage()
+                    }) {
+                        self.tweetData.profilePic(tweet)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 32, height: 32, alignment: .center)
+                        .cornerRadius(16)
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                    
+                    if (tweet.isRetweet) {
+                        Image(systemName: "arrow.right.arrow.left")
+                            .foregroundColor(.secondary)
+                            .font(.caption)
+                    }
                 }
-                .buttonStyle(PlainButtonStyle())
                 
-                if (tweet.isRetweet) {
-                    Image(systemName: "arrow.right.arrow.left")
-                        .foregroundColor(.secondary)
-                        .font(.caption)
-                }
-            }
-            
-            VStack(alignment: .leading) {
-                HStack(alignment: .top) {
-                    VStack(alignment: .leading) {
-                        Text(self.tweet.user.name)
-                            .font(.headline)
-                        Text("@\(self.tweet.user.screenName)")
+                VStack(alignment: .leading) {
+                    HStack(alignment: .top) {
+                        VStack(alignment: .leading) {
+                            Text(self.tweet.user.name)
+                                .font(.headline)
+                            Text("@\(self.tweet.user.screenName)")
+                                .font(.footnote)
+                                .foregroundColor(.secondary)
+                        }
+                        .onTapGesture {
+                            self.openUserTwitterPage()
+                        }
+
+                        Spacer()
+                        
+                        Text(self.tweet.timeAgo)
                             .font(.footnote)
                             .foregroundColor(.secondary)
+                            .multilineTextAlignment(.trailing)
+                            .lineLimit(nil)
                     }
-                    .onTapGesture {
-                        self.openUserTwitterPage()
-                    }
-
-                    Spacer()
                     
-                    Text(self.tweet.timeAgo)
-                        .font(.footnote)
-                        .foregroundColor(.secondary)
-                        .multilineTextAlignment(.trailing)
-                        .lineLimit(nil)
-                }
-                
-                TweetBodyView(textParts: self.tweet.textParts)
-                    .padding([.top, .bottom], 8)
-                    .onTapGesture {
-                        self.openTweetPage()
-                    }
-            
-                if self.tweet.entities.media != nil {
-                    TweetImagesView(mediaParts: self.tweet.entities.media!)
-                        .padding([.bottom], 8)
+                    TweetBodyView(textParts: self.tweet.textParts)
+                        .padding([.top, .bottom], 8)
                         .onTapGesture {
                             self.openTweetPage()
                         }
-                }
                 
-                if self.tweet.quote != nil {
-                    TweetView(tweet: self.tweet.quote!)
-                        .padding()
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 16)
-                                .stroke(Color("light-blue"), lineWidth: 1)
-                        )
+                    if self.tweet.entities.media != nil {
+                        TweetImagesView(mediaParts: self.tweet.entities.media!)
+                            .padding([.bottom], 8)
+                            .onTapGesture {
+                                self.openTweetPage()
+                            }
+                    }
                 }
+            }
+            
+            if self.tweet.quote != nil {
+                TweetView(tweet: self.tweet.quote!)
+                    .padding()
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 16)
+                            .stroke(Color("light-blue"), lineWidth: 1)
+                    )
             }
         }
     }
