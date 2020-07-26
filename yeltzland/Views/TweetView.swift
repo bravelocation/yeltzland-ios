@@ -25,7 +25,7 @@ struct TweetView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 32, height: 32, alignment: .center)
-                    .cornerRadius(4.0)
+                    .cornerRadius(16)
                 }
                 .buttonStyle(PlainButtonStyle())
                 

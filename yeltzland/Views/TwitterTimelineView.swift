@@ -21,7 +21,7 @@ struct TwitterTimelineView: View {
             List(self.tweetData.tweets, id: \.self) { tweet in
                 TweetView(
                     tweet: tweet.retweet ?? tweet
-                )
+                ).padding([.top, .bottom], 8)
             }
         }
         .onAppear {

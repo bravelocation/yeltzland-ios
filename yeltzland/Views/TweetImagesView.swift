@@ -21,7 +21,7 @@ struct TweetImagesView: View {
         return tweetImage!
             .resizable()
             .scaledToFit()
-            .cornerRadius(4.0)
+            .cornerRadius(16.0)
     }
 }
 
