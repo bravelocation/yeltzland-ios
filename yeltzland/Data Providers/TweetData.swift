@@ -83,27 +83,21 @@ class TweetData: ObservableObject {
         }
         
         // Fetch tweet images
-        for media in tweet.allMedia {
+        self.fetchImagesForMediaParts(tweet.allMedia)
+        
+        // Fetch quoted tweet images
+        if let mediaParts = tweet.quote?.allMedia {
+            self.fetchImagesForMediaParts(mediaParts)
+        }
+    }
+    
+    private func fetchImagesForMediaParts(_ mediaParts: [Media]) {
+        for media in mediaParts {
             if let imageUrl = media.smallImageUrl {
                 if self.images[imageUrl] == nil {
                     self.loadImage(imageUrl: imageUrl) { image in
                         if let image = image {
                             self.addImageToCache(key: imageUrl, image: image)
-                        }
-                    }
-                }
-            }
-        }
-        
-        // Fetch quoted tweet images
-        if let mediaParts = tweet.quote?.allMedia {
-            for media in mediaParts {
-                if let imageUrl = media.smallImageUrl {
-                    if self.images[imageUrl] == nil {
-                        self.loadImage(imageUrl: imageUrl) { image in
-                            if let image = image {
-                                self.addImageToCache(key: imageUrl, image: image)
-                            }
                         }
                     }
                 }

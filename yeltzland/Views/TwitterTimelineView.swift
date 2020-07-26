@@ -13,15 +13,15 @@ struct TwitterTimelineView: View {
     @EnvironmentObject var tweetData: TweetData
         
     var body: some View {
-        VStack {
+        Group {
             if self.tweetData.tweets.count == 0 {
                 Text("Loading ...").padding()
-            }
-            
-            List(self.tweetData.tweets, id: \.self) { tweet in
-                TweetView(
-                    tweet: tweet.retweet ?? tweet
-                ).padding([.top, .bottom], 8)
+            } else {
+                List(self.tweetData.tweets, id: \.self) { tweet in
+                    TweetView(
+                        tweet: tweet.retweet ?? tweet
+                    ).padding([.top, .bottom], 8)
+                }
             }
         }
         .onAppear {
