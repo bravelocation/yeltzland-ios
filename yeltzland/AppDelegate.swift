@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import TwitterKit
 import Firebase
 import Intents
 import WebKit
@@ -29,12 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().titleTextAttributes = [
             NSAttributedString.Key.foregroundColor: UIColor.white
         ]
-        
-        // Setup Twitter not via Fabric
-        let twitterConsumerKey = SettingsManager.shared.getSetting("TwitterConsumerKey") as! String
-        let twitterConsumerSecret = SettingsManager.shared.getSetting("TwitterConsumerSecret") as! String
-
-        TWTRTwitter.sharedInstance().start(withConsumerKey: twitterConsumerKey, consumerSecret: twitterConsumerSecret)
 
         // Setup notifications
         UNUserNotificationCenter.current().delegate = self

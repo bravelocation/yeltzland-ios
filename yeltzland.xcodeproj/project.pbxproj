@@ -27,7 +27,6 @@
 		5206BC5C24CABE8B00A927B3 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5231F4FE215B6C56003FAC68 /* SettingsManager.swift */; };
 		520C09A02157A73100CCC2D8 /* DefaultPreferences.plist in Resources */ = {isa = PBXBuildFile; fileRef = 528D74591CF2F4A400263685 /* DefaultPreferences.plist */; };
 		520C09A22157C46100CCC2D8 /* ShortcutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C09A12157C46100CCC2D8 /* ShortcutManager.swift */; };
-		5211F72A1CDA53D70031496D /* TwitterUserTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211F7291CDA53D70031496D /* TwitterUserTimelineViewController.swift */; };
 		5211F72D1CDB1EE50031496D /* OtherLinksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211F72C1CDB1EE50031496D /* OtherLinksTableViewController.swift */; };
 		52176BAC1D4A14C700B7EFAE /* DefaultPreferences.plist in Resources */ = {isa = PBXBuildFile; fileRef = 528D74591CF2F4A400263685 /* DefaultPreferences.plist */; };
 		52176BAE1D4A1AF600B7EFAE /* gamescore.json in Resources */ = {isa = PBXBuildFile; fileRef = 52176BAD1D4A1AF600B7EFAE /* gamescore.json */; };
@@ -329,7 +328,6 @@
 		5206BC5624CABBA200A927B3 /* Tweet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		5206BC5924CABC0D00A927B3 /* TwitterDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterDataProvider.swift; sourceTree = "<group>"; };
 		520C09A12157C46100CCC2D8 /* ShortcutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutManager.swift; sourceTree = "<group>"; };
-		5211F7291CDA53D70031496D /* TwitterUserTimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterUserTimelineViewController.swift; sourceTree = "<group>"; };
 		5211F72C1CDB1EE50031496D /* OtherLinksTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherLinksTableViewController.swift; sourceTree = "<group>"; };
 		52176BAA1D4A0D9A00B7EFAE /* yeltzland.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = yeltzland.entitlements; sourceTree = "<group>"; };
 		52176BAB1D4A0DB700B7EFAE /* Today.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Today.entitlements; sourceTree = "<group>"; };
@@ -751,7 +749,6 @@
 				527DAF221D2D0F550092BB8F /* LocationsViewController.swift */,
 				5259F9031CDA1292009C2AA8 /* MainTabBarController.swift */,
 				5211F72C1CDB1EE50031496D /* OtherLinksTableViewController.swift */,
-				5211F7291CDA53D70031496D /* TwitterUserTimelineViewController.swift */,
 				52E3DF781CD9FA78009F18BD /* WebPageViewController.swift */,
 				5236ECD920CE99B80067AFFA /* LatestScoreViewController.swift */,
 				5236ECDA20CE99B80067AFFA /* LatestScoreViewController.xib */,
@@ -963,7 +960,6 @@
 				5252773D24C42C5400F93050 /* Frameworks */,
 				5252773E24C42C5400F93050 /* Resources */,
 				739FB51989B69864AF1D381C /* [CP] Embed Pods Frameworks */,
-				6BCF5FAD7B8A5C8EDAD2EA85 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1043,7 +1039,6 @@
 				5211F7281CDA51EC0031496D /* Set Build Number from Git */,
 				521B9C4122C8E89E00185CF4 /* Swift Lint */,
 				A105CF8EDA0A39E089673162 /* [CP] Embed Pods Frameworks */,
-				63BB4CBBF5413A6045855209 /* [CP] Copy Pods Resources */,
 				52176BDF1D4B6D5900B7EFAE /* Embed Watch Content */,
 				526F54601D214705001EA8D8 /* Embed App Extensions */,
 			);
@@ -1526,40 +1521,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		63BB4CBBF5413A6045855209 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-yeltzland/Pods-yeltzland-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-yeltzland/Pods-yeltzland-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-yeltzland/Pods-yeltzland-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6BCF5FAD7B8A5C8EDAD2EA85 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-yeltzlandUnitTests/Pods-yeltzlandUnitTests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-yeltzlandUnitTests/Pods-yeltzlandUnitTests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-yeltzlandUnitTests/Pods-yeltzlandUnitTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		71ADE6DF9E407B473C7C01FD /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1797,7 +1758,6 @@
 				52176BB01D4A1B3200B7EFAE /* GameScoreManager.swift in Sources */,
 				5201D3B424CB1DA300726CAD /* PreviewTwitterDataProvider.swift in Sources */,
 				523C84201CE70806006F1865 /* ChromeActivity.swift in Sources */,
-				5211F72A1CDA53D70031496D /* TwitterUserTimelineViewController.swift in Sources */,
 				528C5CFA24C9AAB20019DA0F /* TimelineEntry+Date.swift in Sources */,
 				522716C422D0D438008FD210 /* AppImages.swift in Sources */,
 				5201D3AF24CB14FE00726CAD /* TwitterTimelineView.swift in Sources */,

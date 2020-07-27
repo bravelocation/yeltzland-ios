@@ -208,14 +208,9 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
             twitterNavigationController = UINavigationController(rootViewController: twitterViewController)
             twitterNavigationController?.tabBarItem = twitterIcon
         } else {
-            let twitterViewController = TwitterUserTimelineViewController()
-            twitterViewController.userScreenName = twitterAccountName
-            
-            /*
             let twitterViewController = WebPageViewController()
             twitterViewController.homeUrl = URL(string: "https://mobile.twitter.com/\(twitterAccountName)")
             twitterViewController.pageTitle = "Twitter"
-             */
             
             twitterNavigationController = UINavigationController(rootViewController: twitterViewController)
             twitterNavigationController?.tabBarItem = twitterIcon
