@@ -27,11 +27,11 @@ protocol CachedJSONData {
     // MARK: - Properties
     var fileName: String { get }
     var remoteURL: URL { get }
-    var notificationName: String { get }
+    var notificationName: Notification.Name { get }
     var fileCoordinator: NSFileCoordinator { get }
 
     // MARK: - Functions
-    init(fileName: String, remoteURL: URL, notificationName: String)
+    init(fileName: String, remoteURL: URL, notificationName: Notification.Name)
     func fetchLatestData(completion: ((Result<Bool, JSONDataError>) -> Void)?)
     func parseJson(_ json: [String: AnyObject]) -> Result<Bool, JSONDataError>
     func isValidJson(_ json: [String: AnyObject]) -> Bool
@@ -167,7 +167,7 @@ extension CachedJSONData {
                         // JSON is good, so save it
                         self.saveData(data: data) { saveResult in
                             // Post notification message
-                            NotificationCenter.default.post(name: Notification.Name(rawValue: self.notificationName), object: nil)
+                            NotificationCenter.default.post(name: self.notificationName, object: nil)
                             completion?(saveResult)
                         }
                     case .failure(let error):
