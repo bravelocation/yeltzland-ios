@@ -213,13 +213,11 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
     }
     
     // MARK: - INUIAddVoiceShortcutViewControllerDelegate
-    @available(iOS 12.0, *)
     func addVoiceShortcutViewController(_ controller: INUIAddVoiceShortcutViewController, didFinishWith voiceShortcut: INVoiceShortcut?, error: Error?) {
         print("Added shortcut")
         controller.dismiss(animated: true, completion: nil)
     }
     
-    @available(iOS 12.0, *)
     func addVoiceShortcutViewControllerDidCancel(_ controller: INUIAddVoiceShortcutViewController) {
         print("Cancelled shortcut")
         controller.dismiss(animated: true, completion: nil)

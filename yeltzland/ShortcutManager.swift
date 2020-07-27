@@ -18,7 +18,6 @@ public class ShortcutManager {
         }
     }
     
-    @available(iOS 12.0, *)
     public func latestScoreIntent() -> LatestScoreIntent {
         let intent = LatestScoreIntent()
         intent.suggestedInvocationPhrase = "What's the latest score"
@@ -26,7 +25,6 @@ public class ShortcutManager {
         return intent
     }
     
-    @available(iOS 12.0, *)
     public func nextGameIntent() -> NextGameIntent {
         let intent = NextGameIntent()
         intent.suggestedInvocationPhrase = "Who do we play next"

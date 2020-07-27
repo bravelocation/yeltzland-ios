@@ -7,7 +7,10 @@
 //
 
 import Foundation
+
+#if canImport(SwiftUI)
 import SwiftUI
+#endif
 
 @available(iOS 13.0.0, *)
 struct TweetBodyView: View {

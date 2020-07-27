@@ -7,9 +7,12 @@
 //
 
 import Foundation
+import SDWebImage
+
+#if canImport(SwiftUI)
 import SwiftUI
 import Combine
-import SDWebImage
+#endif
 
 @available(iOS 13.0, *)
 class TweetData: ObservableObject {

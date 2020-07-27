@@ -7,8 +7,11 @@
 //
 
 import UIKit
-import SwiftUI
 import Intents
+
+#if canImport(SwiftUI)
+import SwiftUI
+#endif
 
 /// Main tab bar controller
 class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUserActivityDelegate {
@@ -207,6 +210,12 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         } else {
             let twitterViewController = TwitterUserTimelineViewController()
             twitterViewController.userScreenName = twitterAccountName
+            
+            /*
+            let twitterViewController = WebPageViewController()
+            twitterViewController.homeUrl = URL(string: "https://mobile.twitter.com/\(twitterAccountName)")
+            twitterViewController.pageTitle = "Twitter"
+             */
             
             twitterNavigationController = UINavigationController(rootViewController: twitterViewController)
             twitterNavigationController?.tabBarItem = twitterIcon
