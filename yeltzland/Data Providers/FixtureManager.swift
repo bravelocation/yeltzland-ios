@@ -15,19 +15,23 @@ public protocol TimelineFixtureProvider {
     var allMatches: [Fixture] { get }
 }
 
+extension Notification.Name {
+    static let FixturesUpdated = Notification.Name(rawValue: "YLZFixtureNotification")
+}
+
 public class FixtureManager: CachedJSONData, TimelineFixtureProvider {
 
     private var fixtureList: [String: [Fixture]] = [:]
     
     var fileName: String
     var remoteURL: URL
-    var notificationName: String
+    var notificationName: Notification.Name
     var fileCoordinator: NSFileCoordinator
 
     private static let sharedInstance = FixtureManager(
                                     fileName: "matches.json",
                                     remoteURL: URL(string: "https://bravelocation.com/automation/feeds/matches.json")!,
-                                    notificationName: "YLZFixtureNotification")
+                                    notificationName: .FixturesUpdated)
                                     
     class var shared: FixtureManager {
         get {
@@ -37,7 +41,7 @@ public class FixtureManager: CachedJSONData, TimelineFixtureProvider {
     
     // MARK: - CachedJSONData functions
     
-    required init(fileName: String, remoteURL: URL, notificationName: String) {
+    required init(fileName: String, remoteURL: URL, notificationName: Notification.Name) {
         self.fileName = fileName
         self.remoteURL = remoteURL
         self.notificationName = notificationName

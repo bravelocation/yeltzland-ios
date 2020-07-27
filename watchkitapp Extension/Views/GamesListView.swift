@@ -53,7 +53,7 @@ struct GamesListView: View {
         .onAppear {
             self.gamesData.refreshData()
         }
-        .navigationBarTitle(Text(self.gamesData.title))
+        .navigationBarTitle(Text(self.gamesData.state == .isLoading ? "Loading ..." : self.gamesData.title))
     }
 }
 

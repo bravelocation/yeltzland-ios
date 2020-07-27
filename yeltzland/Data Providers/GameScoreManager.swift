@@ -13,15 +13,19 @@ public protocol TimelineGameScoreProvider {
     func fetchLatestData(completion: ((Result<Bool, JSONDataError>) -> Void)?)
 }
 
+extension Notification.Name {
+    static let GameScoreUpdated = Notification.Name(rawValue: "YLZGameScoreNotification")
+}
+
 public class GameScoreManager: CachedJSONData, TimelineGameScoreProvider {
     var fileName: String
     var remoteURL: URL
-    var notificationName: String
+    var notificationName: Notification.Name
     var fileCoordinator: NSFileCoordinator
     
     fileprivate static let sharedInstance = GameScoreManager(fileName: "gamescore.json",
                                                              remoteURL: URL(string: "https://bravelocation.com/automation/feeds/gamescore.json")!,
-                                                             notificationName: "YLZGameScoreNotification")
+                                                             notificationName: .GameScoreUpdated)
     class var shared: GameScoreManager {
         get {
             return sharedInstance
@@ -30,7 +34,7 @@ public class GameScoreManager: CachedJSONData, TimelineGameScoreProvider {
     
     // MARK: - CachedJSONData functions
     
-    required init(fileName: String, remoteURL: URL, notificationName: String) {
+    required init(fileName: String, remoteURL: URL, notificationName: Notification.Name) {
         self.fileName = fileName
         self.remoteURL = remoteURL
         self.notificationName = notificationName

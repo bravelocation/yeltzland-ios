@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class TVFixturesDataSource: NSObject, UICollectionViewDataSource {
-    private var allGames = Array<TVFixtureData>()
+    private var allGames: [TimelineEntry] = []
     
     override init() {
         super.init()
@@ -33,36 +33,31 @@ class TVFixturesDataSource: NSObject, UICollectionViewDataSource {
         self.allGames.removeAll()
         
         for fixture in FixtureManager.shared.allMatches {
-            if (inProgressFixture != nil && nextGame != nil && fixture === nextGame!) {
+            if (inProgressFixture != nil && nextGame != nil && inProgressFixture == nextGame) {
                 // Is it an in-progress game
-                self.allGames.append(TVFixtureData(opponent: fixture.displayOpponent,
-                                                matchDate: fixture.tvResultDisplayKickoffTime,
-                                                score: inProgressFixture!.inProgressScore,
-                                                inProgress: true,
-                                                atHome: fixture.home))
-            } else if (fixture.score.count == 0) {
-                self.allGames.append(TVFixtureData(opponent: fixture.displayOpponent,
-                                                matchDate: fixture.tvFixtureDisplayKickoffTime,
-                                                score: fixture.score,
-                                                inProgress: false,
-                                                atHome: fixture.home))
-            } else {
-                var resultColor: UIColor = UIColor.white
-                
-                if (fixture.teamScore! > fixture.opponentScore!) {
-                    resultColor = UIColor(named: "tv-fixture-win")!
-                } else if (fixture.teamScore! < fixture.opponentScore!) {
-                    resultColor = UIColor(named: "tv-fixture-lose")!
-                } else {
-                    resultColor = UIColor(named: "light-blue")!
-                }
-                
-                self.allGames.append(TVFixtureData(opponent: fixture.displayOpponent,
-                                                matchDate: fixture.tvResultDisplayKickoffTime,
-                                                score: fixture.score,
-                                                inProgress: false,
-                                                atHome: fixture.home,
-                                                scoreColor: resultColor))
+                self.allGames.append(TimelineEntry(
+                    opponent: fixture.opponent,
+                    home: fixture.home,
+                    date: fixture.fixtureDate,
+                    teamScore: fixture.teamScore,
+                    opponentScore: fixture.opponentScore,
+                    status: .inProgress))
+            } else if (fixture.teamScore == nil) {
+                self.allGames.append(TimelineEntry(
+                    opponent: fixture.opponent,
+                    home: fixture.home,
+                    date: fixture.fixtureDate,
+                    teamScore: nil,
+                    opponentScore: nil,
+                    status: .fixture))
+            } else {                
+                self.allGames.append(TimelineEntry(
+                    opponent: fixture.opponent,
+                    home: fixture.home,
+                    date: fixture.fixtureDate,
+                    teamScore: fixture.teamScore,
+                    opponentScore: fixture.opponentScore,
+                    status: .result))
             }
         }
     }
@@ -88,9 +83,7 @@ class TVFixturesDataSource: NSObject, UICollectionViewDataSource {
         var i = 0
         
         for match in self.allGames {
-            if (match.inProgress) {
-                return i
-            } else if (match.score.count == 0) {
+            if (match.status == .inProgress || match.status == .fixture) {
                 return i
             }
             

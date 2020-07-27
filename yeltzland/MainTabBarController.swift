@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftUI
 import Intents
 
 /// Main tab bar controller
@@ -184,12 +185,32 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         tvNavigationController.tabBarItem = tvIcon
         
         // Twitter
-        let twitterViewController = TwitterUserTimelineViewController()
-        twitterViewController.userScreenName = "halesowentownfc"
-        let twitterNavigationController = UINavigationController(rootViewController: twitterViewController)
+        let twitterAccountName = "halesowentownfc"
+        let twitterIcon = UITabBarItem(title: "@\(twitterAccountName)", image: UIImage(named: "twitter"), selectedImage: nil)
+        var twitterNavigationController: UINavigationController?
         
-        let twitterIcon = UITabBarItem(title: "Twitter", image: UIImage(named: "twitter"), selectedImage: nil)
-        twitterNavigationController.tabBarItem = twitterIcon
+        if #available(iOS 13.0, *) {
+            let twitterConsumerKey = SettingsManager.shared.getSetting("TwitterConsumerKey") as! String
+            let twitterConsumerSecret = SettingsManager.shared.getSetting("TwitterConsumerSecret") as! String
+            
+            let twitterDataProvider = TwitterDataProvider(
+                twitterConsumerKey: twitterConsumerKey,
+                twitterConsumerSecret: twitterConsumerSecret,
+                tweetCount: 20,
+                accountName: twitterAccountName
+            )
+            let tweetData = TweetData(dataProvider: twitterDataProvider, accountName: twitterAccountName)
+            let twitterViewController = UIHostingController(rootView: TwitterTimelineView().environmentObject(tweetData))
+            
+            twitterNavigationController = UINavigationController(rootViewController: twitterViewController)
+            twitterNavigationController?.tabBarItem = twitterIcon
+        } else {
+            let twitterViewController = TwitterUserTimelineViewController()
+            twitterViewController.userScreenName = twitterAccountName
+            
+            twitterNavigationController = UINavigationController(rootViewController: twitterViewController)
+            twitterNavigationController?.tabBarItem = twitterIcon
+        }
         
         // Other Links
         var tableStyle: UITableView.Style = .grouped
@@ -205,7 +226,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         otherNavigationController.tabBarItem = otherIcon
         
         // Add controllers
-        let controllers = [forumNavigationController, officialNavigationController, tvNavigationController, twitterNavigationController, otherNavigationController]
+        let controllers = [forumNavigationController, officialNavigationController, tvNavigationController, twitterNavigationController!, otherNavigationController]
         self.viewControllers = controllers
     }
     

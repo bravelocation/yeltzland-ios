@@ -51,7 +51,7 @@ class FixturesTableViewController: UITableViewController {
     }
     
     fileprivate func setupNotificationWatcher() {
-        NotificationCenter.default.addObserver(self, selector: #selector(FixturesTableViewController.fixturesUpdated), name: NSNotification.Name(rawValue: FixtureManager.shared.notificationName), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(FixturesTableViewController.fixturesUpdated), name: .FixturesUpdated, object: nil)
         print("Setup notification handler for fixture updates")
     }
     

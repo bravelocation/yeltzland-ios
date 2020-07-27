@@ -9,6 +9,22 @@
 /* Begin PBXBuildFile section */
 		1001EE7E1D9461A60DD351AC /* Pods_yeltzlandUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D371F1D95F52270B381A5E0D /* Pods_yeltzlandUnitTests.framework */; };
 		481F530A2194ABBB0E4F3078 /* Pods_yeltzland.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BE281ED4B32969698046889 /* Pods_yeltzland.framework */; };
+		5201D3AF24CB14FE00726CAD /* TwitterTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5201D3AE24CB14FE00726CAD /* TwitterTimelineView.swift */; };
+		5201D3B124CB1B0900726CAD /* TweetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5201D3B024CB1B0900726CAD /* TweetData.swift */; };
+		5201D3B424CB1DA300726CAD /* PreviewTwitterDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5201D3B324CB1DA300726CAD /* PreviewTwitterDataProvider.swift */; };
+		5201D3B624CC246000726CAD /* TweetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5201D3B524CC246000726CAD /* TweetView.swift */; };
+		5201D3B824CC2E1600726CAD /* Tweet+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5201D3B724CC2E1600726CAD /* Tweet+Date.swift */; };
+		5201D3B924CC2E1600726CAD /* Tweet+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5201D3B724CC2E1600726CAD /* Tweet+Date.swift */; };
+		5201D3C124CC79E600726CAD /* TweetBodyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5201D3C024CC79E600726CAD /* TweetBodyView.swift */; };
+		5201D3C324CC821E00726CAD /* Tweet+Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5201D3C224CC821E00726CAD /* Tweet+Text.swift */; };
+		5201D3C524CD5F1800726CAD /* Tweet+Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5201D3C424CD5F1800726CAD /* Tweet+Image.swift */; };
+		5201D3C724CD622F00726CAD /* TweetImagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5201D3C624CD622F00726CAD /* TweetImagesView.swift */; };
+		5206BC5424CABAE500A927B3 /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5231F500215B6C92003FAC68 /* Settings.plist */; };
+		5206BC5724CABBA200A927B3 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5206BC5624CABBA200A927B3 /* Tweet.swift */; };
+		5206BC5824CABBA200A927B3 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5206BC5624CABBA200A927B3 /* Tweet.swift */; };
+		5206BC5A24CABC0D00A927B3 /* TwitterDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5206BC5924CABC0D00A927B3 /* TwitterDataProvider.swift */; };
+		5206BC5B24CABC0D00A927B3 /* TwitterDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5206BC5924CABC0D00A927B3 /* TwitterDataProvider.swift */; };
+		5206BC5C24CABE8B00A927B3 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5231F4FE215B6C56003FAC68 /* SettingsManager.swift */; };
 		520C09A02157A73100CCC2D8 /* DefaultPreferences.plist in Resources */ = {isa = PBXBuildFile; fileRef = 528D74591CF2F4A400263685 /* DefaultPreferences.plist */; };
 		520C09A22157C46100CCC2D8 /* ShortcutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C09A12157C46100CCC2D8 /* ShortcutManager.swift */; };
 		5211F72A1CDA53D70031496D /* TwitterUserTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211F7291CDA53D70031496D /* TwitterUserTimelineViewController.swift */; };
@@ -174,7 +190,6 @@
 		52E711A51D9CFDD50002446A /* matches.json in Resources */ = {isa = PBXBuildFile; fileRef = 52236AEA1D17ECB4004903AB /* matches.json */; };
 		52E711A61D9CFDD90002446A /* gamescore.json in Resources */ = {isa = PBXBuildFile; fileRef = 52176BAD1D4A1AF600B7EFAE /* gamescore.json */; };
 		52E711AB1D9FB5B70002446A /* MakeToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E711AA1D9FB5B70002446A /* MakeToast.swift */; };
-		52E77DE51FDEBB6C0069FCFB /* TVFixtureData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E77DE41FDEBB6C0069FCFB /* TVFixtureData.swift */; };
 		52E77DE81FDEBBB60069FCFB /* TVFixturesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E77DE71FDEBBB60069FCFB /* TVFixturesDataSource.swift */; };
 		52E77DEB1FDEC0740069FCFB /* matches.json in Resources */ = {isa = PBXBuildFile; fileRef = 52236AEA1D17ECB4004903AB /* matches.json */; };
 		52E77DEC1FDEC0770069FCFB /* gamescore.json in Resources */ = {isa = PBXBuildFile; fileRef = 52176BAD1D4A1AF600B7EFAE /* gamescore.json */; };
@@ -301,6 +316,17 @@
 		2C4284847AD21978846F1AA7 /* Pods-LatestScoreIntentUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LatestScoreIntentUI.release.xcconfig"; path = "Pods/Target Support Files/Pods-LatestScoreIntentUI/Pods-LatestScoreIntentUI.release.xcconfig"; sourceTree = "<group>"; };
 		2D1DEE9A8770E728E2386C61 /* Pods-yeltzlandUnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yeltzlandUnitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-yeltzlandUnitTests/Pods-yeltzlandUnitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		31D85CE3D6629F7148E43670 /* Pods-yeltzlandTVOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yeltzlandTVOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-yeltzlandTVOS/Pods-yeltzlandTVOS.release.xcconfig"; sourceTree = "<group>"; };
+		5201D3AE24CB14FE00726CAD /* TwitterTimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterTimelineView.swift; sourceTree = "<group>"; };
+		5201D3B024CB1B0900726CAD /* TweetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetData.swift; sourceTree = "<group>"; };
+		5201D3B324CB1DA300726CAD /* PreviewTwitterDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewTwitterDataProvider.swift; sourceTree = "<group>"; };
+		5201D3B524CC246000726CAD /* TweetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetView.swift; sourceTree = "<group>"; };
+		5201D3B724CC2E1600726CAD /* Tweet+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tweet+Date.swift"; sourceTree = "<group>"; };
+		5201D3C024CC79E600726CAD /* TweetBodyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetBodyView.swift; sourceTree = "<group>"; };
+		5201D3C224CC821E00726CAD /* Tweet+Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tweet+Text.swift"; sourceTree = "<group>"; };
+		5201D3C424CD5F1800726CAD /* Tweet+Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tweet+Image.swift"; sourceTree = "<group>"; };
+		5201D3C624CD622F00726CAD /* TweetImagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetImagesView.swift; sourceTree = "<group>"; };
+		5206BC5624CABBA200A927B3 /* Tweet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
+		5206BC5924CABC0D00A927B3 /* TwitterDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterDataProvider.swift; sourceTree = "<group>"; };
 		520C09A12157C46100CCC2D8 /* ShortcutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutManager.swift; sourceTree = "<group>"; };
 		5211F7291CDA53D70031496D /* TwitterUserTimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterUserTimelineViewController.swift; sourceTree = "<group>"; };
 		5211F72C1CDB1EE50031496D /* OtherLinksTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherLinksTableViewController.swift; sourceTree = "<group>"; };
@@ -406,7 +432,6 @@
 		52E54D7F24C5A9B10007B44E /* PreviewFixtureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewFixtureManager.swift; sourceTree = "<group>"; };
 		52E54D8124C5AAE30007B44E /* PreviewGameScoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewGameScoreManager.swift; sourceTree = "<group>"; };
 		52E711AA1D9FB5B70002446A /* MakeToast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakeToast.swift; sourceTree = "<group>"; };
-		52E77DE41FDEBB6C0069FCFB /* TVFixtureData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVFixtureData.swift; sourceTree = "<group>"; };
 		52E77DE71FDEBBB60069FCFB /* TVFixturesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVFixturesDataSource.swift; sourceTree = "<group>"; };
 		52EACD97215643FB008B8DE5 /* LatestScoreIntent.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = LatestScoreIntent.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		52EACD99215643FB008B8DE5 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
@@ -525,6 +550,43 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		5201D3AD24CB14CB00726CAD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5201D3C024CC79E600726CAD /* TweetBodyView.swift */,
+				5201D3C624CD622F00726CAD /* TweetImagesView.swift */,
+				5201D3AE24CB14FE00726CAD /* TwitterTimelineView.swift */,
+				5201D3B524CC246000726CAD /* TweetView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5201D3B224CB1D7400726CAD /* Previews */ = {
+			isa = PBXGroup;
+			children = (
+				5201D3B324CB1DA300726CAD /* PreviewTwitterDataProvider.swift */,
+			);
+			path = Previews;
+			sourceTree = "<group>";
+		};
+		5206BC5524CABB2F00A927B3 /* Data Providers */ = {
+			isa = PBXGroup;
+			children = (
+				52176BB21D4B62DC00B7EFAE /* BaseSettings.swift */,
+				52236AE71D17E4D3004903AB /* FixtureManager.swift */,
+				52176BAF1D4A1B3200B7EFAE /* GameScoreManager.swift */,
+				527DAF201D2D096B0092BB8F /* LocationManager.swift */,
+				5231F4FE215B6C56003FAC68 /* SettingsManager.swift */,
+				526B210324C2CD6E005CE9C7 /* TimelineManager.swift */,
+				528A347720CFB98D00E8475C /* TeamImageManager.swift */,
+				52DBCA9F1D4A012E00D35F91 /* GameSettings.swift */,
+				522716CC22D1BB50008FD210 /* CachedJSONData.swift */,
+				5206BC5924CABC0D00A927B3 /* TwitterDataProvider.swift */,
+				5201D3B024CB1B0900726CAD /* TweetData.swift */,
+			);
+			path = "Data Providers";
+			sourceTree = "<group>";
+		};
 		5211F7231CDA33580031496D /* images */ = {
 			isa = PBXGroup;
 			children = (
@@ -576,18 +638,10 @@
 		522716C522D1B74A008FD210 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				52176BB21D4B62DC00B7EFAE /* BaseSettings.swift */,
-				522716CC22D1BB50008FD210 /* CachedJSONData.swift */,
 				52236AE51D17DFF8004903AB /* Fixture.swift */,
-				52236AE71D17E4D3004903AB /* FixtureManager.swift */,
-				52176BAF1D4A1B3200B7EFAE /* GameScoreManager.swift */,
-				52DBCA9F1D4A012E00D35F91 /* GameSettings.swift */,
 				527DAF1E1D2D082C0092BB8F /* Location.swift */,
-				527DAF201D2D096B0092BB8F /* LocationManager.swift */,
-				5231F4FE215B6C56003FAC68 /* SettingsManager.swift */,
-				528A347720CFB98D00E8475C /* TeamImageManager.swift */,
 				526B210A24C2CE66005CE9C7 /* TimelineEntry.swift */,
-				526B210324C2CD6E005CE9C7 /* TimelineManager.swift */,
+				5206BC5624CABBA200A927B3 /* Tweet.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -639,7 +693,6 @@
 				525719771FDE8AE2005F1D80 /* Main.storyboard */,
 				5257197A1FDE8AE2005F1D80 /* Assets.xcassets */,
 				5257197C1FDE8AE2005F1D80 /* Info.plist */,
-				52E77DE41FDEBB6C0069FCFB /* TVFixtureData.swift */,
 				52E77DE71FDEBBB60069FCFB /* TVFixturesDataSource.swift */,
 				52D868241FE81B6E0041B578 /* TVFixtureCollectionCell.swift */,
 				52D868251FE81B6E0041B578 /* TVFixtureCollectionCell.xib */,
@@ -680,6 +733,9 @@
 				528C5CF924C9AAB20019DA0F /* TimelineEntry+Date.swift */,
 				528C5D0124C9AAF30019DA0F /* TimelineEntry+Opponent.swift */,
 				528C5D0924C9AB750019DA0F /* TimelineEntry+Score.swift */,
+				5201D3B724CC2E1600726CAD /* Tweet+Date.swift */,
+				5201D3C224CC821E00726CAD /* Tweet+Text.swift */,
+				5201D3C424CD5F1800726CAD /* Tweet+Image.swift */,
 			);
 			path = "Model Extensions";
 			sourceTree = "<group>";
@@ -760,10 +816,13 @@
 			children = (
 				522716C622D1B789008FD210 /* Activities */,
 				52C4DA861D4C83C6009AFD25 /* Assets */,
+				5206BC5524CABB2F00A927B3 /* Data Providers */,
 				522716C522D1B74A008FD210 /* Models */,
 				528C5CF824C9AA6C0019DA0F /* Model Extensions */,
+				5201D3B224CB1D7400726CAD /* Previews */,
 				522716C722D1B7C1008FD210 /* UI */,
 				52C4DA851D4C838A009AFD25 /* ViewControllers */,
+				5201D3AD24CB14CB00726CAD /* Views */,
 				52E3DF761CD9FA78009F18BD /* AppDelegate.swift */,
 				52DC9EAE1FC95C9E00AE02F6 /* FirebaseNotifications.swift */,
 				520C09A12157C46100CCC2D8 /* ShortcutManager.swift */,
@@ -1071,6 +1130,7 @@
 					525719701FDE8AE1005F1D80 = {
 						CreatedOnToolsVersion = 9.2;
 						DevelopmentTeam = W8B3V597R9;
+						LastSwiftMigration = 1160;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes.appletvos = {
@@ -1200,6 +1260,7 @@
 			files = (
 				52D868271FE81B6E0041B578 /* TVFixtureCollectionCell.xib in Resources */,
 				52E77DEC1FDEC0770069FCFB /* gamescore.json in Resources */,
+				5206BC5424CABAE500A927B3 /* Settings.plist in Resources */,
 				520C09A02157A73100CCC2D8 /* DefaultPreferences.plist in Resources */,
 				5257197B1FDE8AE2005F1D80 /* Assets.xcassets in Resources */,
 				52D8682D1FE92A440041B578 /* TVTwitterCollectionCell.xib in Resources */,
@@ -1666,6 +1727,7 @@
 				522716D022D1BB50008FD210 /* CachedJSONData.swift in Sources */,
 				528C5D0D24C9AB750019DA0F /* TimelineEntry+Score.swift in Sources */,
 				525719801FDE8BBB005F1D80 /* FixtureManager.swift in Sources */,
+				5206BC5824CABBA200A927B3 /* Tweet.swift in Sources */,
 				52D8682C1FE92A440041B578 /* TVTwitterCollectionCell.swift in Sources */,
 				52D868291FE928DA0041B578 /* TwitterDataSource.swift in Sources */,
 				525719821FDE8BC2005F1D80 /* GameScoreManager.swift in Sources */,
@@ -1677,7 +1739,9 @@
 				525719741FDE8AE2005F1D80 /* AppDelegate.swift in Sources */,
 				528C5CFD24C9AAB20019DA0F /* TimelineEntry+Date.swift in Sources */,
 				526B210E24C2CE66005CE9C7 /* TimelineEntry.swift in Sources */,
-				52E77DE51FDEBB6C0069FCFB /* TVFixtureData.swift in Sources */,
+				5206BC5B24CABC0D00A927B3 /* TwitterDataProvider.swift in Sources */,
+				5206BC5C24CABE8B00A927B3 /* SettingsManager.swift in Sources */,
+				5201D3B924CC2E1600726CAD /* Tweet+Date.swift in Sources */,
 				5252774C24C42D1400F93050 /* TeamImageManager.swift in Sources */,
 				525719811FDE8BBF005F1D80 /* Fixture.swift in Sources */,
 			);
@@ -1717,28 +1781,37 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5201D3B124CB1B0900726CAD /* TweetData.swift in Sources */,
 				523CE54D214F9A54002F29EF /* FixtureTableViewCell.swift in Sources */,
 				528A347820CFB98D00E8475C /* TeamImageManager.swift in Sources */,
 				5211F72D1CDB1EE50031496D /* OtherLinksTableViewController.swift in Sources */,
+				5206BC5724CABBA200A927B3 /* Tweet.swift in Sources */,
 				52176BB31D4B62DC00B7EFAE /* BaseSettings.swift in Sources */,
 				52E3DF791CD9FA78009F18BD /* WebPageViewController.swift in Sources */,
 				52F9CDB222D6687C00E0FFE8 /* SceneDelegate.swift in Sources */,
 				52E711AB1D9FB5B70002446A /* MakeToast.swift in Sources */,
 				52176BB01D4A1B3200B7EFAE /* GameScoreManager.swift in Sources */,
+				5201D3B424CB1DA300726CAD /* PreviewTwitterDataProvider.swift in Sources */,
 				523C84201CE70806006F1865 /* ChromeActivity.swift in Sources */,
 				5211F72A1CDA53D70031496D /* TwitterUserTimelineViewController.swift in Sources */,
 				528C5CFA24C9AAB20019DA0F /* TimelineEntry+Date.swift in Sources */,
 				522716C422D0D438008FD210 /* AppImages.swift in Sources */,
+				5201D3AF24CB14FE00726CAD /* TwitterTimelineView.swift in Sources */,
 				52B4475522CF316000E745EB /* AppColors.swift in Sources */,
+				5201D3B824CC2E1600726CAD /* Tweet+Date.swift in Sources */,
 				526B211A24C304BC005CE9C7 /* TodayFixtureCollectionViewCell.swift in Sources */,
 				520C09A22157C46100CCC2D8 /* ShortcutManager.swift in Sources */,
 				52236AE61D17DFF8004903AB /* Fixture.swift in Sources */,
+				5201D3C724CD622F00726CAD /* TweetImagesView.swift in Sources */,
 				526B210424C2CD6E005CE9C7 /* TimelineManager.swift in Sources */,
 				528C5D0A24C9AB750019DA0F /* TimelineEntry+Score.swift in Sources */,
 				527DAF1F1D2D082C0092BB8F /* Location.swift in Sources */,
+				5201D3C124CC79E600726CAD /* TweetBodyView.swift in Sources */,
 				527DAF251D2D308F0092BB8F /* LocationAnnotation.swift in Sources */,
 				5231F4FF215B6C56003FAC68 /* SettingsManager.swift in Sources */,
 				52DC9EAF1FC95C9E00AE02F6 /* FirebaseNotifications.swift in Sources */,
+				5201D3C324CC821E00726CAD /* Tweet+Text.swift in Sources */,
+				5201D3B624CC246000726CAD /* TweetView.swift in Sources */,
 				52236AE81D17E4D3004903AB /* FixtureManager.swift in Sources */,
 				52DBCAA01D4A012E00D35F91 /* GameSettings.swift in Sources */,
 				52E3DF771CD9FA78009F18BD /* AppDelegate.swift in Sources */,
@@ -1747,11 +1820,13 @@
 				526B210B24C2CE66005CE9C7 /* TimelineEntry.swift in Sources */,
 				528C5D0224C9AAF30019DA0F /* TimelineEntry+Opponent.swift in Sources */,
 				5259F9041CDA1292009C2AA8 /* MainTabBarController.swift in Sources */,
+				5201D3C524CD5F1800726CAD /* Tweet+Image.swift in Sources */,
 				522716CD22D1BB50008FD210 /* CachedJSONData.swift in Sources */,
 				527DAF1B1D2BA9BA0092BB8F /* SafariActivity.swift in Sources */,
 				5236ECDB20CE99B80067AFFA /* LatestScoreViewController.swift in Sources */,
 				52EACDB721564462008B8DE5 /* Intent.intentdefinition in Sources */,
 				52236AEE1D1803C8004903AB /* FixturesTableViewController.swift in Sources */,
+				5206BC5A24CABC0D00A927B3 /* TwitterDataProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2068,7 +2143,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 11.2;
 			};
@@ -2097,7 +2172,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 11.2;
 			};

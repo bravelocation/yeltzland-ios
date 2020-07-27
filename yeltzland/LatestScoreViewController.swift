@@ -38,8 +38,8 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
     }
     
     fileprivate func setupNotificationWatcher() {
-        NotificationCenter.default.addObserver(self, selector: #selector(LatestScoreViewController.gameScoreUpdated), name: NSNotification.Name(rawValue: GameScoreManager.shared.notificationName), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(LatestScoreViewController.gameScoreUpdated), name: NSNotification.Name(rawValue: FixtureManager.shared.notificationName), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(LatestScoreViewController.gameScoreUpdated), name: .GameScoreUpdated, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(LatestScoreViewController.gameScoreUpdated), name: .FixturesUpdated, object: nil)
         print("Setup notification handler for game score updates")
     }
     
