@@ -6,7 +6,9 @@
 //  Copyright © 2020 John Pollard. All rights reserved.
 //
 
+#if canImport(SwiftUI)
 import SwiftUI
+#endif
 
 @available(iOS 13.0.0, *)
 struct TweetView: View {

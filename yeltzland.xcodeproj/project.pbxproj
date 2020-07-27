@@ -116,6 +116,7 @@
 		526B211B24C304BC005CE9C7 /* TodayFixtureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B211824C304BC005CE9C7 /* TodayFixtureCollectionViewCell.swift */; };
 		526B211C24C304BC005CE9C7 /* TodayFixtureCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 526B211924C304BC005CE9C7 /* TodayFixtureCollectionViewCell.xib */; };
 		526B211D24C304BC005CE9C7 /* TodayFixtureCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 526B211924C304BC005CE9C7 /* TodayFixtureCollectionViewCell.xib */; };
+		526CE78E24CF0E9A00CC1023 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 526CE78D24CF0E9A00CC1023 /* SwiftUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		526F54521D214705001EA8D8 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 526F54511D214705001EA8D8 /* NotificationCenter.framework */; };
 		526F54551D214705001EA8D8 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526F54541D214705001EA8D8 /* TodayViewController.swift */; };
 		526F54581D214705001EA8D8 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 526F54561D214705001EA8D8 /* MainInterface.storyboard */; };
@@ -385,6 +386,7 @@
 		526B211124C2EF54005CE9C7 /* MockDataManagers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataManagers.swift; sourceTree = "<group>"; };
 		526B211824C304BC005CE9C7 /* TodayFixtureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayFixtureCollectionViewCell.swift; sourceTree = "<group>"; };
 		526B211924C304BC005CE9C7 /* TodayFixtureCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodayFixtureCollectionViewCell.xib; sourceTree = "<group>"; };
+		526CE78D24CF0E9A00CC1023 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		526F54501D214705001EA8D8 /* Today.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Today.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		526F54511D214705001EA8D8 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		526F54541D214705001EA8D8 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -503,6 +505,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				526CE78E24CF0E9A00CC1023 /* SwiftUI.framework in Frameworks */,
 				481F530A2194ABBB0E4F3078 /* Pods_yeltzland.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -896,6 +899,7 @@
 		D15072796B891DCF46FC1DA6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				526CE78D24CF0E9A00CC1023 /* SwiftUI.framework */,
 				FA6F5775F3F24493B838AC89 /* Pods.framework */,
 				9BE281ED4B32969698046889 /* Pods_yeltzland.framework */,
 				526F54511D214705001EA8D8 /* NotificationCenter.framework */,
