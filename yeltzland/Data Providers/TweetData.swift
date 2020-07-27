@@ -22,14 +22,13 @@ class TweetData: ObservableObject {
     @Published var tweets: [Tweet] = []
     @Published var images: [String: UIImage] = [:]
     @Published var accountName: String = ""
-    @Published var state: State
+    @Published var state: State = State.isLoading
     
     var dataProvider: TwitterDataProviderProtocol
     
     init(dataProvider: TwitterDataProviderProtocol, accountName: String) {
         self.dataProvider = dataProvider
         self.accountName = accountName
-        self.state = .isLoading
         
         //Add notification handler for updating on updated tweets
         NotificationCenter.default.addObserver(self, selector: #selector(TweetData.dataUpdated(_:)), name: .TweetsUpdated, object: nil)

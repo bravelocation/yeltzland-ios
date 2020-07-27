@@ -37,7 +37,7 @@ class CurrentGameData: ObservableObject {
     }
 
     public func refreshData() {
-        self.state = .isLoading
+        self.setState(.isLoading)
         
         // Go fetch the latest fixtures and game score, then reload the timeline
         fixtureManager.fetchLatestData { result in
