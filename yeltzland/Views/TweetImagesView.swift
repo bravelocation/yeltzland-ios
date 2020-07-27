@@ -22,6 +22,7 @@ struct TweetImagesView: View {
                 .resizable()
                 .scaledToFit()
                 .cornerRadius(16.0)
+                .frame(maxWidth: 500)
             }
         }
     }
