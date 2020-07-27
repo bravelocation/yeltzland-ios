@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -40,7 +40,7 @@
 		52176BCD1D4B6D5900B7EFAE /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52176BCC1D4B6D5900B7EFAE /* ExtensionDelegate.swift */; };
 		52176BD11D4B6D5900B7EFAE /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52176BD01D4B6D5900B7EFAE /* ComplicationController.swift */; };
 		52176BD31D4B6D5900B7EFAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52176BD21D4B6D5900B7EFAE /* Assets.xcassets */; };
-		52176BD71D4B6D5900B7EFAE /* watchkitapp.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 52176BB71D4B6D5900B7EFAE /* watchkitapp.app */; };
+		52176BD71D4B6D5900B7EFAE /* watchkitapp.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 52176BB71D4B6D5900B7EFAE /* watchkitapp.app */; platformFilter = ios; };
 		52176BE01D4B6D7300B7EFAE /* BaseSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52176BB21D4B62DC00B7EFAE /* BaseSettings.swift */; };
 		52176BE41D4B6EF000B7EFAE /* WatchGameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52176BE31D4B6EF000B7EFAE /* WatchGameSettings.swift */; };
 		52176BE51D4B73BA00B7EFAE /* DefaultPreferences.plist in Resources */ = {isa = PBXBuildFile; fileRef = 528D74591CF2F4A400263685 /* DefaultPreferences.plist */; };
@@ -119,7 +119,7 @@
 		526F54521D214705001EA8D8 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 526F54511D214705001EA8D8 /* NotificationCenter.framework */; };
 		526F54551D214705001EA8D8 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526F54541D214705001EA8D8 /* TodayViewController.swift */; };
 		526F54581D214705001EA8D8 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 526F54561D214705001EA8D8 /* MainInterface.storyboard */; };
-		526F545C1D214705001EA8D8 /* Today.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 526F54501D214705001EA8D8 /* Today.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		526F545C1D214705001EA8D8 /* Today.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 526F54501D214705001EA8D8 /* Today.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		526F54631D214982001EA8D8 /* Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236AE51D17DFF8004903AB /* Fixture.swift */; };
 		526F54641D214982001EA8D8 /* FixtureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236AE71D17E4D3004903AB /* FixtureManager.swift */; };
 		526F54651D214C3B001EA8D8 /* matches.json in Resources */ = {isa = PBXBuildFile; fileRef = 52236AEA1D17ECB4004903AB /* matches.json */; };
@@ -197,8 +197,8 @@
 		52EACDA2215643FC008B8DE5 /* IntentsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52EACDA1215643FC008B8DE5 /* IntentsUI.framework */; };
 		52EACDA5215643FC008B8DE5 /* IntentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EACDA4215643FC008B8DE5 /* IntentViewController.swift */; };
 		52EACDA8215643FC008B8DE5 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52EACDA6215643FC008B8DE5 /* MainInterface.storyboard */; };
-		52EACDAC215643FC008B8DE5 /* LatestScoreIntentUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 52EACDA0215643FC008B8DE5 /* LatestScoreIntentUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		52EACDAF215643FC008B8DE5 /* LatestScoreIntent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 52EACD97215643FB008B8DE5 /* LatestScoreIntent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		52EACDAC215643FC008B8DE5 /* LatestScoreIntentUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 52EACDA0215643FC008B8DE5 /* LatestScoreIntentUI.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		52EACDAF215643FC008B8DE5 /* LatestScoreIntent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 52EACD97215643FB008B8DE5 /* LatestScoreIntent.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		52EACDB721564462008B8DE5 /* Intent.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 52EACDB621564462008B8DE5 /* Intent.intentdefinition */; };
 		52EACDB821564466008B8DE5 /* Intent.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 52EACDB621564462008B8DE5 /* Intent.intentdefinition */; };
 		52EACDB921564467008B8DE5 /* Intent.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 52EACDB621564462008B8DE5 /* Intent.intentdefinition */; };
@@ -1846,6 +1846,7 @@
 		};
 		52176BD61D4B6D5900B7EFAE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 52176BB61D4B6D5900B7EFAE /* watchkitapp */;
 			targetProxy = 52176BD51D4B6D5900B7EFAE /* PBXContainerItemProxy */;
 		};
@@ -1861,16 +1862,19 @@
 		};
 		526F545B1D214705001EA8D8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 526F544F1D214705001EA8D8 /* Today */;
 			targetProxy = 526F545A1D214705001EA8D8 /* PBXContainerItemProxy */;
 		};
 		52EACDAB215643FC008B8DE5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 52EACD9F215643FC008B8DE5 /* LatestScoreIntentUI */;
 			targetProxy = 52EACDAA215643FC008B8DE5 /* PBXContainerItemProxy */;
 		};
 		52EACDAE215643FC008B8DE5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 52EACD96215643FB008B8DE5 /* LatestScoreIntent */;
 			targetProxy = 52EACDAD215643FC008B8DE5 /* PBXContainerItemProxy */;
 		};
@@ -2197,6 +2201,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bravelocation.yeltzland.Today;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -2218,6 +2223,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bravelocation.yeltzland.Today;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -2362,6 +2368,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "./yeltzland/yeltzland-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
@@ -2394,6 +2401,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "./yeltzland/yeltzland-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
@@ -2426,6 +2434,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bravelocation.yeltzland.LatestScoreIntentUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2458,6 +2467,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bravelocation.yeltzland.LatestScoreIntentUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2489,6 +2499,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bravelocation.yeltzland.LatestScoreIntent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2520,6 +2531,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bravelocation.yeltzland.LatestScoreIntent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
