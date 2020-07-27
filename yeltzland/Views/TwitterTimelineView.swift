@@ -14,7 +14,7 @@ struct TwitterTimelineView: View {
         
     var body: some View {
         Group {
-            if self.tweetData.tweets.count == 0 {
+            if self.tweetData.state == .isLoading {
                 Text("Loading ...").padding()
             } else {
                 List(self.tweetData.tweets, id: \.self) { tweet in

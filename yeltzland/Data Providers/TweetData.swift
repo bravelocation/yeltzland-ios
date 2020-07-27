@@ -14,15 +14,22 @@ import SDWebImage
 @available(iOS 13.0, *)
 class TweetData: ObservableObject {
     
+    enum State {
+        case isLoading
+        case loaded
+    }
+    
     @Published var tweets: [Tweet] = []
     @Published var images: [String: UIImage] = [:]
     @Published var accountName: String = ""
+    @Published var state: State
     
     var dataProvider: TwitterDataProviderProtocol
     
     init(dataProvider: TwitterDataProviderProtocol, accountName: String) {
         self.dataProvider = dataProvider
         self.accountName = accountName
+        self.state = .isLoading
         
         //Add notification handler for updating on updated tweets
         NotificationCenter.default.addObserver(self, selector: #selector(TweetData.dataUpdated(_:)), name: .TweetsUpdated, object: nil)
@@ -35,7 +42,14 @@ class TweetData: ObservableObject {
     }
     
     public func refreshData() {
+        self.setState(.isLoading)
         self.dataProvider.refreshData()
+    }
+    
+    private func setState(_ state: State) {
+        DispatchQueue.main.async {
+            self.state = state
+        }
     }
     
     private func reloadTweets() {
@@ -51,6 +65,8 @@ class TweetData: ObservableObject {
                     self.fetchTweetImages(tweet: retweet)
                 }
             }
+            
+            self.setState(.loaded)
         }
     }
     

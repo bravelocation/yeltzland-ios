@@ -130,10 +130,12 @@ class TwitterDataProvider: TwitterDataProviderProtocol {
     }
     
     func processUserTweets(_ results: Array<Tweet>) {
-        self.allTweets.removeAll()
-        self.allTweets.append(contentsOf: results)
-        
-        // Post notification message
-        NotificationCenter.default.post(name: .TweetsUpdated, object: nil)
+        DispatchQueue.main.async {
+            self.allTweets.removeAll()
+            self.allTweets.append(contentsOf: results)
+            
+            // Post notification message
+            NotificationCenter.default.post(name: .TweetsUpdated, object: nil)
+        }
     }
 }
