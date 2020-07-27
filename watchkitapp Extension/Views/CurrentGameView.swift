@@ -48,7 +48,7 @@ struct CurrentGameView: View {
         .onAppear {
             self.data.refreshData()
         }
-        .navigationBarTitle(Text(data.title))
+        .navigationBarTitle(Text(self.data.state == .isLoading ? "Loading... " : "Yeltzland"))
     }
 }
 

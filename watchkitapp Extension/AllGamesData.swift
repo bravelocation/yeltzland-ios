@@ -11,9 +11,15 @@ import SwiftUI
 import Combine
 
 class AllGamesData: ObservableObject {
+    enum State {
+        case isLoading
+        case loaded
+    }
+    
     @Published var games: [TimelineEntry] = []
     @Published var logos: [String: UIImage] = [:]
     @Published var title: String = ""
+    @Published var state = State.isLoading
 
     var fixtureManager: TimelineFixtureProvider
     var gameScoreManager: TimelineGameScoreProvider
@@ -33,22 +39,20 @@ class AllGamesData: ObservableObject {
         self.useResults = useResults
         
         self.setup()
-        self.resetDefaultTitle()
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
     
-    private func resetDefaultTitle() {
-        if self.useResults {
-            self.setTitle("Results")
-        } else {
-            self.setTitle("Fixtures")
-        }
-    }
     
     private func setup() {
+        if self.useResults {
+            self.title = "Results"
+        } else {
+            self.title = "Fixtures"
+        }
+        
         //Add notification handler for updating on updated fixtures
         NotificationCenter.default.addObserver(self, selector: #selector(AllGamesData.userSettingsUpdated(_:)), name: NSNotification.Name(rawValue: BaseSettings.SettingsUpdateNotification), object: nil)
         
@@ -56,7 +60,7 @@ class AllGamesData: ObservableObject {
     }
     
     public func refreshData() {
-        self.setTitle("Loading ...")
+        self.setState(.isLoading)
         print("Refreshing watch game data ...")
         
         // Go fetch the latest fixtures and game score, then reload the timeline
@@ -65,7 +69,7 @@ class AllGamesData: ObservableObject {
                 self.resetData()
             }
             
-            self.resetDefaultTitle()
+            self.setState(.loaded)
         }
         
         gameScoreManager.fetchLatestData { result in
@@ -73,7 +77,7 @@ class AllGamesData: ObservableObject {
                 self.resetData()
             }
             
-            self.resetDefaultTitle()
+            self.setState(.loaded)
         }
     }
     
@@ -108,9 +112,9 @@ class AllGamesData: ObservableObject {
         }
     }
     
-    private func setTitle(_ titleUpdate: String) {
+    private func setState(_ state: State) {
         DispatchQueue.main.async {
-            self.title = titleUpdate
+            self.state = state
         }
     }
     

@@ -11,9 +11,14 @@ import SwiftUI
 import Combine
 
 class CurrentGameData: ObservableObject {
+    enum State {
+        case isLoading
+        case loaded
+    }
+    
     @Published var latest: TimelineEntry?
     @Published var teamImage: Image = Image("blank_team")
-    @Published var title: String = "Yeltzland"
+    @Published var state = State.isLoading
     
     var timelineManager: TimelineManager!
     var fixtureManager: TimelineFixtureProvider
@@ -32,7 +37,7 @@ class CurrentGameData: ObservableObject {
     }
 
     public func refreshData() {
-        self.setTitle("Loading ...")
+        self.state = .isLoading
         
         // Go fetch the latest fixtures and game score, then reload the timeline
         fixtureManager.fetchLatestData { result in
@@ -40,15 +45,16 @@ class CurrentGameData: ObservableObject {
                 self.resetData()
             }
             
-            self.setTitle("Yeltzland")
+           self.setState(.loaded)
         }
         
         gameScoreManager.fetchLatestData { result in
             if result == .success(true) {
                 self.resetData()
+                self.setState(.loaded)
             }
             
-            self.setTitle("Yeltzland")
+            self.setState(.loaded)
         }
     }
     
@@ -67,9 +73,9 @@ class CurrentGameData: ObservableObject {
         return Color("light-blue")
     }
     
-    private func setTitle(_ titleUpdate: String) {
+    private func setState(_ state: State) {
         DispatchQueue.main.async {
-            self.title = titleUpdate
+            self.state = state
         }
     }
     
