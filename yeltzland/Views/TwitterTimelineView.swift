@@ -24,6 +24,7 @@ struct TwitterTimelineView: View {
                 }
             }
         }
+        .frame(maxWidth: 800)
         .onAppear {
             self.tweetData.refreshData()
         }
