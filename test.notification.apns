@@ -1,0 +1,10 @@
+{
+    "Simulator Target Bundle": "com.bravelocation.yeltzland",
+    "aps": {
+        "alert": {
+            "body": "1-0 '88 GOAL: Yeltz take the lead at Wembley!",
+            "title": "Goal"
+        },
+        "goalScored": 1
+    }
+}
