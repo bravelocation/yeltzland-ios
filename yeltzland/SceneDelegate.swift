@@ -57,6 +57,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         return completionHandler(true)
     }
     
+    @available(iOS 13.0, *)
+    func sceneDidEnterBackground(_ scene: UIScene) {
+        (UIApplication.shared.delegate as! AppDelegate).scheduleBackgroundFetch()
+    }
+    
     // MARK: - Private functions
     func handleShortcut(_ shortcutItem: UIApplicationShortcutItem) -> Int {
         print("Handling shortcut item %@", shortcutItem.type)

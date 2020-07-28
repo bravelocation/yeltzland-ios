@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import BackgroundTasks
 import Firebase
 import Intents
 import WebKit
@@ -42,7 +43,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         GameScoreManager.shared.fetchLatestData(completion: nil)
         
         // Setup background fetch
-        application.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
+        if #available(iOS 13.0, *) {
+            BGTaskScheduler.shared.register(forTaskWithIdentifier: "com.bravelocation.yeltzland.backgroundRefresh", using: nil) { (task) in
+              self.handleAppRefreshTask(task: task as! BGAppRefreshTask)
+            }
+        } else {
+            application.setMinimumBackgroundFetchInterval(UIApplication.backgroundFetchIntervalMinimum)
+        }
         
         // Push settings to watch in the background
         GameSettings.shared.forceBackgroundWatchUpdate()
@@ -70,30 +77,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
-    
-    func application(_ application: UIApplication,
-                     performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        print("In background refresh ...")
-        let now = Date()
-        
-        if let nextGame = FixtureManager.shared.nextGame {
-            if let differenceInMinutes = (Calendar.current as NSCalendar).components(.minute, from: now, to: nextGame.fixtureDate, options: []).minute {
-                if (differenceInMinutes < 0) {
-                    // After game kicked off, so go get game score
-                    GameScoreManager.shared.fetchLatestData(completion: nil)
-                    FixtureManager.shared.fetchLatestData(completion: nil)
-                    
-                    completionHandler(UIBackgroundFetchResult.newData)
-                    return
-                }
-            }
-        }
-        
-        // Otherwise, make sure the watch is updated occasionally
-        GameSettings.shared.forceBackgroundWatchUpdate()
-        completionHandler(UIBackgroundFetchResult.noData)
-    }
-    
+
     func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
         print("3D Touch when from shortcut action")
         let startingActivity = NSUserActivity(activityType: "com.bravelocation.yeltzland.currenttab")
@@ -180,5 +164,61 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         }
         
         completionHandler()
+    }
+}
+
+// MARK: - Background refresh logic
+extension AppDelegate {
+    
+    func application(_ application: UIApplication,
+                     performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        let newDataFetched = self.appRefresh()
+        if newDataFetched {
+            completionHandler(UIBackgroundFetchResult.newData)
+        } else {
+            completionHandler(UIBackgroundFetchResult.noData)
+        }
+    }
+    
+    @available(iOS 13.0, *)
+    func handleAppRefreshTask(task: BGAppRefreshTask) {
+        _ = self.appRefresh()
+        
+        task.expirationHandler = {} // Nothing to do on expiration
+    }
+    
+    @available(iOS 13.0, *)
+    func scheduleBackgroundFetch() {
+        print("Scheduling background task ...")
+        
+        let fixtureDataFetchTask = BGAppRefreshTaskRequest(identifier: "com.bravelocation.yeltzland.backgroundRefresh")
+        fixtureDataFetchTask.earliestBeginDate = Date(timeIntervalSinceNow: 60)
+        do {
+          try BGTaskScheduler.shared.submit(fixtureDataFetchTask)
+        } catch {
+          print("Unable to submit background task: \(error.localizedDescription)")
+        }
+    }
+    
+    // Handles app refresh logic - retturns true if we fetched new data
+    private func appRefresh() -> Bool {
+        print("In background refresh ...")
+        let now = Date()
+        
+        if let nextGame = FixtureManager.shared.nextGame {
+            if let differenceInMinutes = (Calendar.current as NSCalendar).components(.minute, from: now, to: nextGame.fixtureDate, options: []).minute {
+                if (differenceInMinutes < 0) {
+                    // After game kicked off, so go get game score
+                    GameScoreManager.shared.fetchLatestData(completion: nil)
+                    FixtureManager.shared.fetchLatestData(completion: nil)
+                    
+                    return true
+                }
+            }
+        }
+        
+        // Otherwise, make sure the watch is updated occasionally
+        GameSettings.shared.forceBackgroundWatchUpdate()
+        return false
     }
 }
