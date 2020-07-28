@@ -164,12 +164,21 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
     
     // MARK: - Keyboard options
     override var keyCommands: [UIKeyCommand]? {
-        return [
-            UIKeyCommand(input: UIKeyCommand.inputRightArrow, modifierFlags: .command, action: #selector(WebPageViewController.forwardButtonTouchUp), discoverabilityTitle: "Forward"),
-            UIKeyCommand(input: UIKeyCommand.inputLeftArrow, modifierFlags: .command, action: #selector(WebPageViewController.backButtonTouchUp), discoverabilityTitle: "Back"),
-            UIKeyCommand(input: "r", modifierFlags: .command, action: #selector(WebPageViewController.reloadButtonTouchUp), discoverabilityTitle: "Reload"),
-            UIKeyCommand(input: "h", modifierFlags: [.command, .shift], action: #selector(WebPageViewController.loadHomePage), discoverabilityTitle: "Home")
-        ]
+         if #available(iOS 13.0, *) {
+            return [
+                UIKeyCommand(title: "Forward", action: #selector(WebPageViewController.forwardButtonTouchUp), input: UIKeyCommand.inputRightArrow, modifierFlags: .command),
+                UIKeyCommand(title: "Back", action: #selector(WebPageViewController.backButtonTouchUp), input: UIKeyCommand.inputLeftArrow, modifierFlags: .command),
+                UIKeyCommand(title: "Reload", action: #selector(WebPageViewController.reloadButtonTouchUp), input: "R", modifierFlags: .command),
+                UIKeyCommand(title: "Home", action: #selector(WebPageViewController.loadHomePage), input: "H", modifierFlags: [.command, .shift])
+            ]
+         } else {
+            return [
+                UIKeyCommand(input: UIKeyCommand.inputRightArrow, modifierFlags: .command, action: #selector(WebPageViewController.forwardButtonTouchUp), discoverabilityTitle: "Forward"),
+                UIKeyCommand(input: UIKeyCommand.inputLeftArrow, modifierFlags: .command, action: #selector(WebPageViewController.backButtonTouchUp), discoverabilityTitle: "Back"),
+                UIKeyCommand(input: "R", modifierFlags: .command, action: #selector(WebPageViewController.reloadButtonTouchUp), discoverabilityTitle: "Reload"),
+                UIKeyCommand(input: "H", modifierFlags: [.command, .shift], action: #selector(WebPageViewController.loadHomePage), discoverabilityTitle: "Home")
+            ]
+        }
     }
     
     // MARK: - Nav bar actions

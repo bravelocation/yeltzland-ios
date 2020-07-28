@@ -142,9 +142,15 @@ class FixturesTableViewController: UITableViewController {
 
     // MARK: - Keyboard options
     override var keyCommands: [UIKeyCommand]? {
-        return [
-            UIKeyCommand(input: "r", modifierFlags: .command, action: #selector(FixturesTableViewController.reloadButtonTouchUp), discoverabilityTitle: "Reload")
-        ]
+         if #available(iOS 13.0, *) {
+            return [
+                UIKeyCommand(title: "Reload", action: #selector(FixturesTableViewController.reloadButtonTouchUp), input: "R", modifierFlags: .command)
+            ]
+         } else {
+            return [
+                UIKeyCommand(input: "r", modifierFlags: .command, action: #selector(FixturesTableViewController.reloadButtonTouchUp), discoverabilityTitle: "Reload")
+            ]
+        }
     }
 
     // MARK: - Table view data source
