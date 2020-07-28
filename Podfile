@@ -3,7 +3,7 @@ use_frameworks!
 inhibit_all_warnings!
 
 target 'yeltzland' do
-  platform :ios, '11.0'
+  platform :ios, '12.0'
   
   pod 'Firebase/Messaging'
   pod 'SDWebImage'
@@ -12,7 +12,7 @@ target 'yeltzland' do
 end
 
 target 'yeltzlandUnitTests' do
-  platform :ios, '11.0'
+  platform :ios, '12.0'
   
   pod 'Firebase/Messaging'
   pod 'SDWebImage'
@@ -27,13 +27,13 @@ target 'watchkitapp Extension' do
 end
 
 target 'yeltzlandTVOS' do
-    platform :tvos, '11.2'
+    platform :tvos, '13.0'
     
     pod 'SDWebImage'
 end
 
 target 'LatestScoreIntentUI' do
-    platform :ios, '11.0'
+    platform :ios, '12.0'
     
     pod 'SDWebImage'
 end
