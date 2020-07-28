@@ -64,7 +64,16 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         
         // Calculate position on screen of elements
         let progressBarHeight = CGFloat(2.0)
-        let topPosition = (self.navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.height
+        
+        var barHeight: CGFloat = 0.0
+
+        if #available(iOS 13, *) {
+            barHeight = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0.0
+        } else {
+            barHeight = UIApplication.shared.statusBarFrame.height
+        }
+        
+        let topPosition = (self.navigationController?.navigationBar.frame.size.height)! + barHeight
         
         let webViewHeight = view.frame.height -
             (topPosition + progressBarHeight + (self.tabBarController?.tabBar.frame)!.height)
