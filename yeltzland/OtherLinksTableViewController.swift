@@ -382,10 +382,10 @@ extension OtherLinksTableViewController {
     
     override var keyCommands: [UIKeyCommand]? {
         return [
-            UIKeyCommand(title: "Fixture List", action: #selector(MainTabBarController.keyboardSelectTab), input: "F", modifierFlags: .command),
-            UIKeyCommand(title: "Latest Score", action: #selector(MainTabBarController.keyboardSelectTab), input: "L", modifierFlags: .command),
-            UIKeyCommand(title: "Where's the Ground", action: #selector(MainTabBarController.keyboardSelectTab), input: "G", modifierFlags: .command),
-            UIKeyCommand(title: "League Table", action: #selector(MainTabBarController.keyboardSelectTab), input: "T", modifierFlags: .command)
+            UIKeyCommand(input: "F", modifierFlags: .command, action: #selector(MainTabBarController.keyboardSelectTab), discoverabilityTitle: "Fixture List"),
+            UIKeyCommand(input: "L", modifierFlags: .command, action: #selector(MainTabBarController.keyboardSelectTab), discoverabilityTitle: "Latest Score"),
+            UIKeyCommand(input: "G", modifierFlags: .command, action: #selector(MainTabBarController.keyboardSelectTab), discoverabilityTitle: "Where's the Ground"),
+            UIKeyCommand(input: "T", modifierFlags: .command, action: #selector(MainTabBarController.keyboardSelectTab), discoverabilityTitle: "League Table")
         ]
     }
     

@@ -143,7 +143,7 @@ class FixturesTableViewController: UITableViewController {
     // MARK: - Keyboard options
     override var keyCommands: [UIKeyCommand]? {
         return [
-            UIKeyCommand(title: "Reload", action: #selector(FixturesTableViewController.reloadButtonTouchUp), input: "R", modifierFlags: .command)
+            UIKeyCommand(input: "r", modifierFlags: .command, action: #selector(FixturesTableViewController.reloadButtonTouchUp), discoverabilityTitle: "Reload")
         ]
     }
 

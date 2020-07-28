@@ -82,7 +82,7 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
     // MARK: - Keyboard options
     override var keyCommands: [UIKeyCommand]? {
         return [
-            UIKeyCommand(title: "Reload", action: #selector(LatestScoreViewController.reloadButtonTouchUp), input: "R", modifierFlags: .command)
+            UIKeyCommand(input: "r", modifierFlags: .command, action: #selector(LatestScoreViewController.reloadButtonTouchUp), discoverabilityTitle: "Reload")
         ]
     }
     
