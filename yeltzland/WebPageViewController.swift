@@ -279,7 +279,6 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
             self.showSpinner()
             self.progressBar.setProgress(0, animated: false)
             UIView.animate(withDuration: 0.3, delay: 0, options: UIView.AnimationOptions(), animations: { self.progressBar.alpha = 1 }, completion: nil)
-            UIApplication.shared.isNetworkActivityIndicatorVisible = true
         })
     }
     
@@ -300,7 +299,6 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
 
             self.progressBar.setProgress(1, animated: true)
             UIView.animate(withDuration: 0.3, delay: 1, options: UIView.AnimationOptions(), animations: { self.progressBar.alpha = 0 }, completion: nil)
-            UIApplication.shared.isNetworkActivityIndicatorVisible = false
             
             self.backButton.isEnabled = webView.canGoBack
             self.forwardButton.isEnabled = webView.canGoForward
@@ -316,7 +314,6 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
             self.hideSpinner()
             self.progressBar.setProgress(1, animated: true)
             UIView.animate(withDuration: 0.3, delay: 1, options: UIView.AnimationOptions(), animations: { self.progressBar.alpha = 0 }, completion: nil)
-            UIApplication.shared.isNetworkActivityIndicatorVisible = false
             
             // Show brief error message
             let navigationError = error as NSError
