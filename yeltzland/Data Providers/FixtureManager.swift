@@ -200,6 +200,10 @@ public class FixtureManager: CachedJSONData, TimelineFixtureProvider {
         return Int(daysDifference)
     }
     
+    public static func hourNumber(_ date: Date) -> Int {
+        return Calendar.current.component(.hour, from: date)
+    }
+    
     // MARK: - TimelineFixtureProvider implementation
     public func nextFixtures(_ numberOfFixtures: Int) -> [Fixture] {
         var fixtures: [Fixture] = []
