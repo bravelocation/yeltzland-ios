@@ -364,17 +364,17 @@
 		523C841F1CE70806006F1865 /* ChromeActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChromeActivity.swift; sourceTree = "<group>"; };
 		523CE54B214F9A54002F29EF /* FixtureTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureTableViewCell.swift; sourceTree = "<group>"; };
 		523CE54C214F9A54002F29EF /* FixtureTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FixtureTableViewCell.xib; sourceTree = "<group>"; };
-		5252774024C42C5400F93050 /* yeltzlandUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = yeltzlandUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5252774024C42C5400F93050 /* YeltzlandUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YeltzlandUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5252774224C42C5400F93050 /* TimelineUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineUnitTests.swift; sourceTree = "<group>"; };
 		5252774424C42C5400F93050 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5252775A24C498DD00F93050 /* CurrentGameData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentGameData.swift; sourceTree = "<group>"; };
-		525719711FDE8AE1005F1D80 /* yeltzlandTVOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = yeltzlandTVOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		525719711FDE8AE1005F1D80 /* YeltzlandTVOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YeltzlandTVOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		525719731FDE8AE2005F1D80 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		525719751FDE8AE2005F1D80 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		525719781FDE8AE2005F1D80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5257197A1FDE8AE2005F1D80 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5257197C1FDE8AE2005F1D80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5257E8BA1CDB953400157CED /* yeltzlandUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = yeltzlandUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5257E8BA1CDB953400157CED /* YeltzlandUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YeltzlandUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5257E8BC1CDB953400157CED /* YeltzlandUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YeltzlandUITests.swift; sourceTree = "<group>"; };
 		5257E8BE1CDB953400157CED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5257E8C41CDB978700157CED /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
@@ -423,7 +423,7 @@
 		52DBCA9F1D4A012E00D35F91 /* GameSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSettings.swift; sourceTree = "<group>"; };
 		52DC9EAE1FC95C9E00AE02F6 /* FirebaseNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseNotifications.swift; sourceTree = "<group>"; };
 		52DC9EB61FC9C30E00AE02F6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		52E3DF731CD9FA78009F18BD /* yeltzland.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = yeltzland.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		52E3DF731CD9FA78009F18BD /* Yeltzland.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yeltzland.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52E3DF761CD9FA78009F18BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52E3DF781CD9FA78009F18BD /* WebPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebPageViewController.swift; sourceTree = "<group>"; };
 		52E3DF7D1CD9FA78009F18BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -798,15 +798,15 @@
 		52E3DF741CD9FA78009F18BD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				52E3DF731CD9FA78009F18BD /* yeltzland.app */,
-				5257E8BA1CDB953400157CED /* yeltzlandUITests.xctest */,
+				52E3DF731CD9FA78009F18BD /* Yeltzland.app */,
+				5257E8BA1CDB953400157CED /* YeltzlandUITests.xctest */,
 				526F54501D214705001EA8D8 /* Today.appex */,
 				52176BB71D4B6D5900B7EFAE /* watchkitapp.app */,
 				52176BC31D4B6D5900B7EFAE /* watchkitapp Extension.appex */,
-				525719711FDE8AE1005F1D80 /* yeltzlandTVOS.app */,
+				525719711FDE8AE1005F1D80 /* YeltzlandTVOS.app */,
 				52EACD97215643FB008B8DE5 /* LatestScoreIntent.appex */,
 				52EACDA0215643FC008B8DE5 /* LatestScoreIntentUI.appex */,
-				5252774024C42C5400F93050 /* yeltzlandUnitTests.xctest */,
+				5252774024C42C5400F93050 /* YeltzlandUnitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -951,9 +951,9 @@
 			productReference = 52176BC31D4B6D5900B7EFAE /* watchkitapp Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
-		5252773F24C42C5400F93050 /* yeltzlandUnitTests */ = {
+		5252773F24C42C5400F93050 /* YeltzlandUnitTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5252774724C42C5400F93050 /* Build configuration list for PBXNativeTarget "yeltzlandUnitTests" */;
+			buildConfigurationList = 5252774724C42C5400F93050 /* Build configuration list for PBXNativeTarget "YeltzlandUnitTests" */;
 			buildPhases = (
 				6251F79858B4178980D1F24D /* [CP] Check Pods Manifest.lock */,
 				5252773C24C42C5400F93050 /* Sources */,
@@ -966,14 +966,14 @@
 			dependencies = (
 				5252774624C42C5400F93050 /* PBXTargetDependency */,
 			);
-			name = yeltzlandUnitTests;
+			name = YeltzlandUnitTests;
 			productName = yeltzlandUnitTests;
-			productReference = 5252774024C42C5400F93050 /* yeltzlandUnitTests.xctest */;
+			productReference = 5252774024C42C5400F93050 /* YeltzlandUnitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		525719701FDE8AE1005F1D80 /* yeltzlandTVOS */ = {
+		525719701FDE8AE1005F1D80 /* YeltzlandTVOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5257197F1FDE8AE2005F1D80 /* Build configuration list for PBXNativeTarget "yeltzlandTVOS" */;
+			buildConfigurationList = 5257197F1FDE8AE2005F1D80 /* Build configuration list for PBXNativeTarget "YeltzlandTVOS" */;
 			buildPhases = (
 				EC464B1DCE93452ED32ED3F5 /* [CP] Check Pods Manifest.lock */,
 				5257196D1FDE8AE1005F1D80 /* Sources */,
@@ -986,14 +986,14 @@
 			);
 			dependencies = (
 			);
-			name = yeltzlandTVOS;
+			name = YeltzlandTVOS;
 			productName = "yeltzland TVOS";
-			productReference = 525719711FDE8AE1005F1D80 /* yeltzlandTVOS.app */;
+			productReference = 525719711FDE8AE1005F1D80 /* YeltzlandTVOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		5257E8B91CDB953400157CED /* yeltzlandUITests */ = {
+		5257E8B91CDB953400157CED /* YeltzlandUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5257E8C31CDB953400157CED /* Build configuration list for PBXNativeTarget "yeltzlandUITests" */;
+			buildConfigurationList = 5257E8C31CDB953400157CED /* Build configuration list for PBXNativeTarget "YeltzlandUITests" */;
 			buildPhases = (
 				5257E8B61CDB953400157CED /* Sources */,
 				5257E8B71CDB953400157CED /* Frameworks */,
@@ -1004,9 +1004,9 @@
 			dependencies = (
 				5257E8C01CDB953400157CED /* PBXTargetDependency */,
 			);
-			name = yeltzlandUITests;
+			name = YeltzlandUITests;
 			productName = yeltzlandUITests;
-			productReference = 5257E8BA1CDB953400157CED /* yeltzlandUITests.xctest */;
+			productReference = 5257E8BA1CDB953400157CED /* YeltzlandUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 		526F544F1D214705001EA8D8 /* Today */ = {
@@ -1027,9 +1027,9 @@
 			productReference = 526F54501D214705001EA8D8 /* Today.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		52E3DF721CD9FA78009F18BD /* yeltzland */ = {
+		52E3DF721CD9FA78009F18BD /* Yeltzland */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 52E3DF851CD9FA79009F18BD /* Build configuration list for PBXNativeTarget "yeltzland" */;
+			buildConfigurationList = 52E3DF851CD9FA79009F18BD /* Build configuration list for PBXNativeTarget "Yeltzland" */;
 			buildPhases = (
 				71ADE6DF9E407B473C7C01FD /* [CP] Check Pods Manifest.lock */,
 				5284895A24B9B5AA00D626DE /* Download Latest Data */,
@@ -1050,9 +1050,9 @@
 				52EACDAB215643FC008B8DE5 /* PBXTargetDependency */,
 				52EACDAE215643FC008B8DE5 /* PBXTargetDependency */,
 			);
-			name = yeltzland;
+			name = Yeltzland;
 			productName = yeltzland;
-			productReference = 52E3DF731CD9FA78009F18BD /* yeltzland.app */;
+			productReference = 52E3DF731CD9FA78009F18BD /* Yeltzland.app */;
 			productType = "com.apple.product-type.application";
 		};
 		52EACD96215643FB008B8DE5 /* LatestScoreIntent */ = {
@@ -1197,7 +1197,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 52E3DF6E1CD9FA78009F18BD /* Build configuration list for PBXProject "yeltzland" */;
+			buildConfigurationList = 52E3DF6E1CD9FA78009F18BD /* Build configuration list for PBXProject "Yeltzland" */;
 			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -1210,15 +1210,15 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				52E3DF721CD9FA78009F18BD /* yeltzland */,
-				5257E8B91CDB953400157CED /* yeltzlandUITests */,
+				52E3DF721CD9FA78009F18BD /* Yeltzland */,
+				5257E8B91CDB953400157CED /* YeltzlandUITests */,
 				526F544F1D214705001EA8D8 /* Today */,
 				52176BB61D4B6D5900B7EFAE /* watchkitapp */,
 				52176BC21D4B6D5900B7EFAE /* watchkitapp Extension */,
-				525719701FDE8AE1005F1D80 /* yeltzlandTVOS */,
+				525719701FDE8AE1005F1D80 /* YeltzlandTVOS */,
 				52EACD96215643FB008B8DE5 /* LatestScoreIntent */,
 				52EACD9F215643FC008B8DE5 /* LatestScoreIntentUI */,
-				5252773F24C42C5400F93050 /* yeltzlandUnitTests */,
+				5252773F24C42C5400F93050 /* YeltzlandUnitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1852,12 +1852,12 @@
 		};
 		5252774624C42C5400F93050 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 52E3DF721CD9FA78009F18BD /* yeltzland */;
+			target = 52E3DF721CD9FA78009F18BD /* Yeltzland */;
 			targetProxy = 5252774524C42C5400F93050 /* PBXContainerItemProxy */;
 		};
 		5257E8C01CDB953400157CED /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 52E3DF721CD9FA78009F18BD /* yeltzland */;
+			target = 52E3DF721CD9FA78009F18BD /* Yeltzland */;
 			targetProxy = 5257E8BF1CDB953400157CED /* PBXContainerItemProxy */;
 		};
 		526F545B1D214705001EA8D8 /* PBXTargetDependency */ = {
@@ -2054,7 +2054,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/yeltzland.app/yeltzland";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Yeltzland.app/Yeltzland";
 			};
 			name = Debug;
 		};
@@ -2083,7 +2083,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/yeltzland.app/yeltzland";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Yeltzland.app/Yeltzland";
 			};
 			name = Release;
 		};
@@ -2558,7 +2558,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5252774724C42C5400F93050 /* Build configuration list for PBXNativeTarget "yeltzlandUnitTests" */ = {
+		5252774724C42C5400F93050 /* Build configuration list for PBXNativeTarget "YeltzlandUnitTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5252774824C42C5400F93050 /* Debug */,
@@ -2567,7 +2567,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5257197F1FDE8AE2005F1D80 /* Build configuration list for PBXNativeTarget "yeltzlandTVOS" */ = {
+		5257197F1FDE8AE2005F1D80 /* Build configuration list for PBXNativeTarget "YeltzlandTVOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5257197D1FDE8AE2005F1D80 /* Debug */,
@@ -2576,7 +2576,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5257E8C31CDB953400157CED /* Build configuration list for PBXNativeTarget "yeltzlandUITests" */ = {
+		5257E8C31CDB953400157CED /* Build configuration list for PBXNativeTarget "YeltzlandUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5257E8C11CDB953400157CED /* Debug */,
@@ -2594,7 +2594,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		52E3DF6E1CD9FA78009F18BD /* Build configuration list for PBXProject "yeltzland" */ = {
+		52E3DF6E1CD9FA78009F18BD /* Build configuration list for PBXProject "Yeltzland" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				52E3DF831CD9FA79009F18BD /* Debug */,
@@ -2603,7 +2603,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		52E3DF851CD9FA79009F18BD /* Build configuration list for PBXNativeTarget "yeltzland" */ = {
+		52E3DF851CD9FA79009F18BD /* Build configuration list for PBXNativeTarget "Yeltzland" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				52E3DF861CD9FA79009F18BD /* Debug */,
