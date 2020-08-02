@@ -144,13 +144,19 @@ class FixturesTableViewController: UITableViewController {
     override var keyCommands: [UIKeyCommand]? {
          if #available(iOS 13.0, *) {
             return [
-                UIKeyCommand(title: "Reload", action: #selector(FixturesTableViewController.reloadButtonTouchUp), input: "R", modifierFlags: .command)
+                UIKeyCommand(title: "Reload", action: #selector(FixturesTableViewController.reloadButtonTouchUp), input: "R", modifierFlags: .command),
+                UIKeyCommand(title: "Back", action: #selector(FixturesTableViewController.goBack), input: UIKeyCommand.inputLeftArrow, modifierFlags: .command)
             ]
          } else {
             return [
-                UIKeyCommand(input: "r", modifierFlags: .command, action: #selector(FixturesTableViewController.reloadButtonTouchUp), discoverabilityTitle: "Reload")
+                UIKeyCommand(input: "r", modifierFlags: .command, action: #selector(FixturesTableViewController.reloadButtonTouchUp), discoverabilityTitle: "Reload"),
+                UIKeyCommand(input: UIKeyCommand.inputLeftArrow, modifierFlags: .command, action: #selector(FixturesTableViewController.goBack), discoverabilityTitle: "Back")
             ]
         }
+    }
+    
+    @objc func goBack() {
+        self.navigationController?.popViewController(animated: true)
     }
 
     // MARK: - Table view data source
