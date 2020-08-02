@@ -11,6 +11,7 @@ import Intents
 
 #if canImport(SwiftUI)
 import SwiftUI
+import Combine
 #endif
 
 /// Main tab bar controller
@@ -20,16 +21,21 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
     private let defaults = UserDefaults.standard
     private let otherTabIndex = 4
     
+    @available(iOS 13.0, *)
+    private lazy var menuSubscriber: AnyCancellable? = nil
+    
     // MARK: - Initialisation
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
         self.setupNotificationWatcher()
+        self.setupMenuCommandHandler()
     }
     
     init() {
         super.init(nibName: nil, bundle: nil)
         self.addChildViewControllers()
         self.setupNotificationWatcher()
+        self.setupMenuCommandHandler()
     }
 
     deinit {
@@ -60,7 +66,12 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
                 UIKeyCommand(title: "Official Site", action: #selector(MainTabBarController.keyboardSelectTab), input: "2", modifierFlags: .command),
                 UIKeyCommand(title: "Yeltz TV", action: #selector(MainTabBarController.keyboardSelectTab), input: "3", modifierFlags: .command),
                 UIKeyCommand(title: "Twitter", action: #selector(MainTabBarController.keyboardSelectTab), input: "4", modifierFlags: .command),
-                UIKeyCommand(title: "More", action: #selector(MainTabBarController.keyboardSelectTab), input: "5", modifierFlags: .command)
+                UIKeyCommand(title: "More", action: #selector(MainTabBarController.keyboardSelectTab), input: "5", modifierFlags: .command),
+                
+                UIKeyCommand(title: "Fixture List", action: #selector(MainTabBarController.keyboardSelectTab), input: "F", modifierFlags: .command),
+                UIKeyCommand(title: "Latest Score", action: #selector(MainTabBarController.keyboardSelectTab), input: "L", modifierFlags: .command),
+                UIKeyCommand(title: "Where's the Ground", action: #selector(MainTabBarController.keyboardSelectTab), input: "G", modifierFlags: .command),
+                UIKeyCommand(title: "League Table", action: #selector(MainTabBarController.keyboardSelectTab), input: "T", modifierFlags: .command)      
             ]
          } else {
             return [
@@ -68,16 +79,42 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
                 UIKeyCommand(input: "2", modifierFlags: .command, action: #selector(MainTabBarController.keyboardSelectTab), discoverabilityTitle: "Official Site"),
                 UIKeyCommand(input: "3", modifierFlags: .command, action: #selector(MainTabBarController.keyboardSelectTab), discoverabilityTitle: "Yeltz TV"),
                 UIKeyCommand(input: "4", modifierFlags: .command, action: #selector(MainTabBarController.keyboardSelectTab), discoverabilityTitle: "Twitter"),
-                UIKeyCommand(input: "5", modifierFlags: .command, action: #selector(MainTabBarController.keyboardSelectTab), discoverabilityTitle: "More")
+                UIKeyCommand(input: "5", modifierFlags: .command, action: #selector(MainTabBarController.keyboardSelectTab), discoverabilityTitle: "More"),
+                
+                UIKeyCommand(input: "F", modifierFlags: .command, action: #selector(MainTabBarController.keyboardSelectTab), discoverabilityTitle: "Fixture List"),
+                UIKeyCommand(input: "L", modifierFlags: .command, action: #selector(MainTabBarController.keyboardSelectTab), discoverabilityTitle: "Latest Score"),
+                UIKeyCommand(input: "G", modifierFlags: .command, action: #selector(MainTabBarController.keyboardSelectTab), discoverabilityTitle: "Where's the Ground"),
+                UIKeyCommand(input: "T", modifierFlags: .command, action: #selector(MainTabBarController.keyboardSelectTab), discoverabilityTitle: "League Table")
             ]
         }
     }
 
     @objc func keyboardSelectTab(sender: UIKeyCommand) {
-        if let selectedTab = sender.input {
-            if let inputValue = Int(selectedTab) {
+        if let keyInput = sender.input {
+            if let inputValue = Int(keyInput) {
                 self.selectedIndex = inputValue - 1
+            } else {
+                switch keyInput {
+                case "F": self.goToFixturesView()
+                case "L": self.goToLatestScore()
+                case "G": self.goToLocations()
+                case "T": self.goToLeagueTable()
+                default: break
+                }
             }
+        }
+    }
+
+    // MARK: - Menu options
+    func setupMenuCommandHandler() {
+        if #available(iOS 13.0, *) {
+            self.menuSubscriber = NotificationCenter.default.publisher(for: .navigationCommand)
+                .receive(on: RunLoop.main)
+                .sink(receiveValue: { notification in
+                    if let command = notification.object as? UIKeyCommand {
+                        self.keyboardSelectTab(sender: command)
+                    }
+                })
         }
     }
     
@@ -123,7 +160,6 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
     
     /// Description Restores the tab state based on the juser activity
     /// - Parameter activity: Activity state to restore
-    //swiftlint:disable:next cyclomatic_complexity
     override func restoreUserActivityState(_ activity: NSUserActivity) {
         print("Restoring user activity in tab controller ...")
         
@@ -145,28 +181,62 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
             }
         } else if (activity.activityType == "com.bravelocation.yeltzland.fixtures") {
             print("Detected fixture list activity ...")
-            // Set selected tab as More tab
-            self.selectedIndex = self.otherTabIndex
-            
-            if let currentController = self.viewControllers![self.selectedIndex] as? UINavigationController {
-                if let selectedController = currentController.viewControllers[0] as? OtherLinksTableViewController {
-                    selectedController.openFixtures()
-                }
-            }
+            self.goToFixturesView()
         } else if (activity.activityType == "com.bravelocation.yeltzland.latestscore") {
             print("Detected Latest score activity ...")
-            // Set selected tab as More tab
-            self.selectedIndex = self.otherTabIndex
-            
-            if let currentController = self.viewControllers![self.selectedIndex] as? UINavigationController {
-                if let selectedController = currentController.viewControllers[0] as? OtherLinksTableViewController {
-                    selectedController.openLatestScore()
-                }
-            }
+            self.goToLatestScore()
         }
     }
     
     // MARK: - Private functions
+    
+    func goToFixturesView() {
+        // Set selected tab as More tab
+        self.selectedIndex = self.otherTabIndex
+        
+        if let currentController = self.viewControllers![self.selectedIndex] as? UINavigationController {
+            currentController.popToRootViewController(animated: false)
+            if let selectedController = currentController.viewControllers[0] as? OtherLinksTableViewController {
+                selectedController.openFixtures()
+            }
+        }
+    }
+    
+    func goToLatestScore() {
+        // Set selected tab as More tab
+        self.selectedIndex = self.otherTabIndex
+        
+        if let currentController = self.viewControllers![self.selectedIndex] as? UINavigationController {
+            currentController.popToRootViewController(animated: false)
+            if let selectedController = currentController.viewControllers[0] as? OtherLinksTableViewController {
+                selectedController.openLatestScore()
+            }
+        }
+    }
+    
+    func goToLocations() {
+        // Set selected tab as More tab
+        self.selectedIndex = self.otherTabIndex
+        
+        if let currentController = self.viewControllers![self.selectedIndex] as? UINavigationController {
+            currentController.popToRootViewController(animated: false)
+            if let selectedController = currentController.viewControllers[0] as? OtherLinksTableViewController {
+                selectedController.openLocations()
+            }
+        }
+    }
+
+    func goToLeagueTable() {
+        // Set selected tab as More tab
+        self.selectedIndex = self.otherTabIndex
+        
+        if let currentController = self.viewControllers![self.selectedIndex] as? UINavigationController {
+            currentController.popToRootViewController(animated: false)
+            if let selectedController = currentController.viewControllers[0] as? OtherLinksTableViewController {
+                selectedController.openLeagueTable()
+            }
+        }
+    }
     
     /// Sets up the child controllers for the tabs
     func addChildViewControllers() {

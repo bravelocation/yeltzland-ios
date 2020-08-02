@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1001EE7E1D9461A60DD351AC /* Pods_yeltzlandUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D371F1D95F52270B381A5E0D /* Pods_yeltzlandUnitTests.framework */; };
-		481F530A2194ABBB0E4F3078 /* Pods_yeltzland.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BE281ED4B32969698046889 /* Pods_yeltzland.framework */; };
 		5201D3AF24CB14FE00726CAD /* TwitterTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5201D3AE24CB14FE00726CAD /* TwitterTimelineView.swift */; };
 		5201D3B124CB1B0900726CAD /* TweetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5201D3B024CB1B0900726CAD /* TweetData.swift */; };
 		5201D3B424CB1DA300726CAD /* PreviewTwitterDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5201D3B324CB1DA300726CAD /* PreviewTwitterDataProvider.swift */; };
@@ -174,6 +172,7 @@
 		52D8682D1FE92A440041B578 /* TVTwitterCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52D8682B1FE92A440041B578 /* TVTwitterCollectionCell.xib */; };
 		52D8682F1FE933C20041B578 /* VerticallyAlignedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D8682E1FE933C20041B578 /* VerticallyAlignedLabel.swift */; };
 		52D8C9C622D9D685006FCAB9 /* NextGameIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D8C9C522D9D685006FCAB9 /* NextGameIntentHandler.swift */; };
+		52DA841124D6AD3600E01C25 /* MenuBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DA841024D6AD3600E01C25 /* MenuBuilder.swift */; };
 		52DBCAA01D4A012E00D35F91 /* GameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DBCA9F1D4A012E00D35F91 /* GameSettings.swift */; };
 		52DBCAA11D4A012E00D35F91 /* GameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DBCA9F1D4A012E00D35F91 /* GameSettings.swift */; };
 		52DC9EAF1FC95C9E00AE02F6 /* FirebaseNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DC9EAE1FC95C9E00AE02F6 /* FirebaseNotifications.swift */; };
@@ -217,7 +216,9 @@
 		52EACDC7215646DA008B8DE5 /* BaseSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52176BB21D4B62DC00B7EFAE /* BaseSettings.swift */; };
 		52F9CDB222D6687C00E0FFE8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9CDB122D6687C00E0FFE8 /* SceneDelegate.swift */; };
 		937784A0FE49B904B7681F19 /* Pods_LatestScoreIntentUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1EB3CDB05AFB690D5D25630 /* Pods_LatestScoreIntentUI.framework */; };
-		DB860C2661D34E99E75814F6 /* Pods_yeltzlandTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59A5577BD1AF23F460D4B20 /* Pods_yeltzlandTVOS.framework */; };
+		A3EF45D9812E6A2A28C1480B /* Pods_YeltzlandTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92283CF6BA4404FBD866C82C /* Pods_YeltzlandTVOS.framework */; };
+		D40132971269818EC46584B4 /* Pods_Yeltzland.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0169FC4AAE3B4FA55E081580 /* Pods_Yeltzland.framework */; };
+		DAB3C264B2E8A47B5AA475FF /* Pods_YeltzlandUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FB55985341B9FD44EF024D0 /* Pods_YeltzlandUnitTests.framework */; };
 		F2C923D6766D78C589FBFD9A /* Pods_watchkitapp_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3CD79B24EF0B6634FC3AFFA /* Pods_watchkitapp_Extension.framework */; };
 /* End PBXBuildFile section */
 
@@ -312,6 +313,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0169FC4AAE3B4FA55E081580 /* Pods_Yeltzland.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Yeltzland.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2552AC500EB5468A6630D33E /* Pods-watchkitapp Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watchkitapp Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-watchkitapp Extension/Pods-watchkitapp Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		2C4284847AD21978846F1AA7 /* Pods-LatestScoreIntentUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LatestScoreIntentUI.release.xcconfig"; path = "Pods/Target Support Files/Pods-LatestScoreIntentUI/Pods-LatestScoreIntentUI.release.xcconfig"; sourceTree = "<group>"; };
 		2D1DEE9A8770E728E2386C61 /* Pods-yeltzlandUnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yeltzlandUnitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-yeltzlandUnitTests/Pods-yeltzlandUnitTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -420,6 +422,7 @@
 		52D8682B1FE92A440041B578 /* TVTwitterCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TVTwitterCollectionCell.xib; sourceTree = "<group>"; };
 		52D8682E1FE933C20041B578 /* VerticallyAlignedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticallyAlignedLabel.swift; sourceTree = "<group>"; };
 		52D8C9C522D9D685006FCAB9 /* NextGameIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextGameIntentHandler.swift; sourceTree = "<group>"; };
+		52DA841024D6AD3600E01C25 /* MenuBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBuilder.swift; sourceTree = "<group>"; };
 		52DBCA9F1D4A012E00D35F91 /* GameSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSettings.swift; sourceTree = "<group>"; };
 		52DC9EAE1FC95C9E00AE02F6 /* FirebaseNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseNotifications.swift; sourceTree = "<group>"; };
 		52DC9EB61FC9C30E00AE02F6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -445,16 +448,21 @@
 		52EACDBA21564586008B8DE5 /* LatestScoreIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestScoreIntentHandler.swift; sourceTree = "<group>"; };
 		52EBCF472340A1C300A2157A /* yeltzlandTVOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = yeltzlandTVOS.entitlements; sourceTree = "<group>"; };
 		52F9CDB122D6687C00E0FFE8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		684F68C317E1474E04B3AA97 /* Pods-YeltzlandUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YeltzlandUnitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-YeltzlandUnitTests/Pods-YeltzlandUnitTests.release.xcconfig"; sourceTree = "<group>"; };
+		6B5F6576A847D7567A17C4BF /* Pods-YeltzlandTVOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YeltzlandTVOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YeltzlandTVOS/Pods-YeltzlandTVOS.debug.xcconfig"; sourceTree = "<group>"; };
 		6C2886E0C6D579332BF2A5A8 /* Pods-yeltzland.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yeltzland.debug.xcconfig"; path = "Pods/Target Support Files/Pods-yeltzland/Pods-yeltzland.debug.xcconfig"; sourceTree = "<group>"; };
+		743038B5C1D95F1EFEEB6529 /* Pods-YeltzlandUnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YeltzlandUnitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YeltzlandUnitTests/Pods-YeltzlandUnitTests.debug.xcconfig"; sourceTree = "<group>"; };
+		7FB55985341B9FD44EF024D0 /* Pods_YeltzlandUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YeltzlandUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84B09CCF34E827938262A3C5 /* Pods-yeltzlandUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yeltzlandUnitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-yeltzlandUnitTests/Pods-yeltzlandUnitTests.release.xcconfig"; sourceTree = "<group>"; };
 		8541FCDE5A3B1A03D43E3DBD /* Pods-watchkitapp Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watchkitapp Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-watchkitapp Extension/Pods-watchkitapp Extension.release.xcconfig"; sourceTree = "<group>"; };
+		8C3E078A39D9759D27B66C4F /* Pods-Yeltzland.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yeltzland.release.xcconfig"; path = "Pods/Target Support Files/Pods-Yeltzland/Pods-Yeltzland.release.xcconfig"; sourceTree = "<group>"; };
 		8ED64AAED15F6BBC43FC3EEB /* Pods-LatestScoreIntentUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LatestScoreIntentUI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LatestScoreIntentUI/Pods-LatestScoreIntentUI.debug.xcconfig"; sourceTree = "<group>"; };
-		9BE281ED4B32969698046889 /* Pods_yeltzland.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_yeltzland.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		92283CF6BA4404FBD866C82C /* Pods_YeltzlandTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YeltzlandTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1EB3CDB05AFB690D5D25630 /* Pods_LatestScoreIntentUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LatestScoreIntentUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C11AF69119A85B889C5CADB2 /* Pods-yeltzland.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yeltzland.release.xcconfig"; path = "Pods/Target Support Files/Pods-yeltzland/Pods-yeltzland.release.xcconfig"; sourceTree = "<group>"; };
 		C3CD79B24EF0B6634FC3AFFA /* Pods_watchkitapp_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_watchkitapp_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C59A5577BD1AF23F460D4B20 /* Pods_yeltzlandTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_yeltzlandTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D371F1D95F52270B381A5E0D /* Pods_yeltzlandUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_yeltzlandUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C540CE17AAE4D1270116423D /* Pods-YeltzlandTVOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YeltzlandTVOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-YeltzlandTVOS/Pods-YeltzlandTVOS.release.xcconfig"; sourceTree = "<group>"; };
+		D0B2AF15E7E7962D5F1ADFD6 /* Pods-Yeltzland.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yeltzland.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Yeltzland/Pods-Yeltzland.debug.xcconfig"; sourceTree = "<group>"; };
 		F148785E694134A862B5222B /* Pods-yeltzlandTVOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yeltzlandTVOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-yeltzlandTVOS/Pods-yeltzlandTVOS.debug.xcconfig"; sourceTree = "<group>"; };
 		FA6F5775F3F24493B838AC89 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -472,7 +480,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1001EE7E1D9461A60DD351AC /* Pods_yeltzlandUnitTests.framework in Frameworks */,
+				DAB3C264B2E8A47B5AA475FF /* Pods_YeltzlandUnitTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,7 +488,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB860C2661D34E99E75814F6 /* Pods_yeltzlandTVOS.framework in Frameworks */,
+				A3EF45D9812E6A2A28C1480B /* Pods_YeltzlandTVOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,7 +512,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				526CE78E24CF0E9A00CC1023 /* SwiftUI.framework in Frameworks */,
-				481F530A2194ABBB0E4F3078 /* Pods_yeltzland.framework in Frameworks */,
+				D40132971269818EC46584B4 /* Pods_Yeltzland.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -547,6 +555,12 @@
 				2C4284847AD21978846F1AA7 /* Pods-LatestScoreIntentUI.release.xcconfig */,
 				2D1DEE9A8770E728E2386C61 /* Pods-yeltzlandUnitTests.debug.xcconfig */,
 				84B09CCF34E827938262A3C5 /* Pods-yeltzlandUnitTests.release.xcconfig */,
+				D0B2AF15E7E7962D5F1ADFD6 /* Pods-Yeltzland.debug.xcconfig */,
+				8C3E078A39D9759D27B66C4F /* Pods-Yeltzland.release.xcconfig */,
+				6B5F6576A847D7567A17C4BF /* Pods-YeltzlandTVOS.debug.xcconfig */,
+				C540CE17AAE4D1270116423D /* Pods-YeltzlandTVOS.release.xcconfig */,
+				743038B5C1D95F1EFEEB6529 /* Pods-YeltzlandUnitTests.debug.xcconfig */,
+				684F68C317E1474E04B3AA97 /* Pods-YeltzlandUnitTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -773,6 +787,14 @@
 			name = Assets;
 			sourceTree = "<group>";
 		};
+		52DA840F24D6AD1B00E01C25 /* Mac */ = {
+			isa = PBXGroup;
+			children = (
+				52DA841024D6AD3600E01C25 /* MenuBuilder.swift */,
+			);
+			path = Mac;
+			sourceTree = "<group>";
+		};
 		52E3DF6A1CD9FA78009F18BD = {
 			isa = PBXGroup;
 			children = (
@@ -817,6 +839,7 @@
 				522716C622D1B789008FD210 /* Activities */,
 				52C4DA861D4C83C6009AFD25 /* Assets */,
 				5206BC5524CABB2F00A927B3 /* Data Providers */,
+				52DA840F24D6AD1B00E01C25 /* Mac */,
 				522716C522D1B74A008FD210 /* Models */,
 				528C5CF824C9AA6C0019DA0F /* Model Extensions */,
 				5201D3B224CB1D7400726CAD /* Previews */,
@@ -898,13 +921,13 @@
 			children = (
 				526CE78D24CF0E9A00CC1023 /* SwiftUI.framework */,
 				FA6F5775F3F24493B838AC89 /* Pods.framework */,
-				9BE281ED4B32969698046889 /* Pods_yeltzland.framework */,
 				526F54511D214705001EA8D8 /* NotificationCenter.framework */,
 				C3CD79B24EF0B6634FC3AFFA /* Pods_watchkitapp_Extension.framework */,
-				C59A5577BD1AF23F460D4B20 /* Pods_yeltzlandTVOS.framework */,
 				52EACDA1215643FC008B8DE5 /* IntentsUI.framework */,
 				B1EB3CDB05AFB690D5D25630 /* Pods_LatestScoreIntentUI.framework */,
-				D371F1D95F52270B381A5E0D /* Pods_yeltzlandUnitTests.framework */,
+				0169FC4AAE3B4FA55E081580 /* Pods_Yeltzland.framework */,
+				92283CF6BA4404FBD866C82C /* Pods_YeltzlandTVOS.framework */,
+				7FB55985341B9FD44EF024D0 /* Pods_YeltzlandUnitTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1362,15 +1385,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-yeltzlandTVOS/Pods-yeltzlandTVOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-YeltzlandTVOS/Pods-YeltzlandTVOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-yeltzlandTVOS/Pods-yeltzlandTVOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-YeltzlandTVOS/Pods-YeltzlandTVOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-yeltzlandTVOS/Pods-yeltzlandTVOS-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YeltzlandTVOS/Pods-YeltzlandTVOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		5211F7281CDA51EC0031496D /* Set Build Number from Git */ = {
@@ -1514,7 +1537,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-yeltzlandUnitTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-YeltzlandUnitTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1532,7 +1555,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-yeltzland-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Yeltzland-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1545,15 +1568,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-yeltzlandUnitTests/Pods-yeltzlandUnitTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-YeltzlandUnitTests/Pods-YeltzlandUnitTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-yeltzlandUnitTests/Pods-yeltzlandUnitTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-YeltzlandUnitTests/Pods-YeltzlandUnitTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-yeltzlandUnitTests/Pods-yeltzlandUnitTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YeltzlandUnitTests/Pods-YeltzlandUnitTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		79633DFA921C528F9AE984BF /* [CP] Check Pods Manifest.lock */ = {
@@ -1580,15 +1603,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-yeltzland/Pods-yeltzland-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Yeltzland/Pods-Yeltzland-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-yeltzland/Pods-yeltzland-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Yeltzland/Pods-Yeltzland-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-yeltzland/Pods-yeltzland-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Yeltzland/Pods-Yeltzland-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EC464B1DCE93452ED32ED3F5 /* [CP] Check Pods Manifest.lock */ = {
@@ -1602,7 +1625,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-yeltzlandTVOS-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-YeltzlandTVOS-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1782,6 +1805,7 @@
 				527DAF211D2D096B0092BB8F /* LocationManager.swift in Sources */,
 				527DAF231D2D0F550092BB8F /* LocationsViewController.swift in Sources */,
 				526B210B24C2CE66005CE9C7 /* TimelineEntry.swift in Sources */,
+				52DA841124D6AD3600E01C25 /* MenuBuilder.swift in Sources */,
 				528C5D0224C9AAF30019DA0F /* TimelineEntry+Opponent.swift in Sources */,
 				5259F9041CDA1292009C2AA8 /* MainTabBarController.swift in Sources */,
 				5201D3C524CD5F1800726CAD /* Tweet+Image.swift in Sources */,
@@ -2029,7 +2053,7 @@
 		};
 		5252774824C42C5400F93050 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2D1DEE9A8770E728E2386C61 /* Pods-yeltzlandUnitTests.debug.xcconfig */;
+			baseConfigurationReference = 743038B5C1D95F1EFEEB6529 /* Pods-YeltzlandUnitTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -2060,7 +2084,7 @@
 		};
 		5252774924C42C5400F93050 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 84B09CCF34E827938262A3C5 /* Pods-yeltzlandUnitTests.release.xcconfig */;
+			baseConfigurationReference = 684F68C317E1474E04B3AA97 /* Pods-YeltzlandUnitTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -2089,7 +2113,7 @@
 		};
 		5257197D1FDE8AE2005F1D80 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F148785E694134A862B5222B /* Pods-yeltzlandTVOS.debug.xcconfig */;
+			baseConfigurationReference = 6B5F6576A847D7567A17C4BF /* Pods-YeltzlandTVOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -2119,7 +2143,7 @@
 		};
 		5257197E1FDE8AE2005F1D80 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 31D85CE3D6629F7148E43670 /* Pods-yeltzlandTVOS.release.xcconfig */;
+			baseConfigurationReference = C540CE17AAE4D1270116423D /* Pods-YeltzlandTVOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -2343,7 +2367,7 @@
 		};
 		52E3DF861CD9FA79009F18BD /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6C2886E0C6D579332BF2A5A8 /* Pods-yeltzland.debug.xcconfig */;
+			baseConfigurationReference = D0B2AF15E7E7962D5F1ADFD6 /* Pods-Yeltzland.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = yeltzland/yeltzland.entitlements;
@@ -2376,7 +2400,7 @@
 		};
 		52E3DF871CD9FA79009F18BD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C11AF69119A85B889C5CADB2 /* Pods-yeltzland.release.xcconfig */;
+			baseConfigurationReference = 8C3E078A39D9759D27B66C4F /* Pods-Yeltzland.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = yeltzland/yeltzland.entitlements;

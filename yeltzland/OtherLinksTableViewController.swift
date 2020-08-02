@@ -14,7 +14,7 @@ import IntentsUI
 class OtherLinksTableViewController: UITableViewController, SFSafariViewControllerDelegate {
 
     let firebaseNotifications = FirebaseNotifications()
-    let leagueTableUrl = URL(string: "https://www.betvictorsouthern.co.uk/league-table/BetVictor%20Southern%20Division%20One%20Central/2019/2020/P/")
+    let leagueTableUrl = URL(string: "https://southern-football-league.co.uk/league-table/Southern%20League%20Premier%20South/2020/2021/P")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -262,7 +262,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             case 0:
                 url = URL(string: "https://www.facebook.com/HalesowenTown1873")
             case 1:
-                url = URL(string: "https://www.betvictorsouthern.co.uk")
+                url = URL(string: "https://southern-football-league.co.uk")
             case 2:
                 url = URL(string: "https://fantasyisland.yeltz.co.uk")
             case 3:
@@ -352,6 +352,22 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableView.ScrollPosition.top)
         self.tableView(self.tableView, didSelectRowAt: indexPath)
     }
+    
+    public func openLocations() {
+        print("Opening Where's The Ground ...")
+        
+        let indexPath = IndexPath(row: 2, section: 0)
+        self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableView.ScrollPosition.top)
+        self.tableView(self.tableView, didSelectRowAt: indexPath)
+    }
+    
+    public func openLeagueTable() {
+        print("Opening League Table ...")
+        
+        let indexPath = IndexPath(row: 3, section: 0)
+        self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableView.ScrollPosition.top)
+        self.tableView(self.tableView, didSelectRowAt: indexPath)
+    }
 
     // MARK: - Event handler for switch
     @objc func notificationsSwitchChanged(_ sender: AnyObject) {
@@ -374,50 +390,6 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         }
         
         return []
-    }
-}
-
-// MARK: - Keyboard options
-extension OtherLinksTableViewController {
-    
-    override var keyCommands: [UIKeyCommand]? {
-         if #available(iOS 13.0, *) {
-            return [
-                UIKeyCommand(title: "Fixture List", action: #selector(MainTabBarController.keyboardSelectTab), input: "F", modifierFlags: .command),
-                UIKeyCommand(title: "Latest Score", action: #selector(MainTabBarController.keyboardSelectTab), input: "L", modifierFlags: .command),
-                UIKeyCommand(title: "Where's the Ground", action: #selector(MainTabBarController.keyboardSelectTab), input: "G", modifierFlags: .command),
-                UIKeyCommand(title: "League Table", action: #selector(MainTabBarController.keyboardSelectTab), input: "T", modifierFlags: .command)            ]
-         } else {
-            return [
-                UIKeyCommand(input: "F", modifierFlags: .command, action: #selector(MainTabBarController.keyboardSelectTab), discoverabilityTitle: "Fixture List"),
-                UIKeyCommand(input: "L", modifierFlags: .command, action: #selector(MainTabBarController.keyboardSelectTab), discoverabilityTitle: "Latest Score"),
-                UIKeyCommand(input: "G", modifierFlags: .command, action: #selector(MainTabBarController.keyboardSelectTab), discoverabilityTitle: "Where's the Ground"),
-                UIKeyCommand(input: "T", modifierFlags: .command, action: #selector(MainTabBarController.keyboardSelectTab), discoverabilityTitle: "League Table")
-            ]
-        }
-    }
-    
-    @objc func keyboardSelectTab(sender: UIKeyCommand) {
-        if let input = sender.input {
-            switch input {
-            case "F":
-                let fixtures = FixturesTableViewController(style: .grouped)
-                self.navigationController!.pushViewController(fixtures, animated: true)
-            case "L":
-                let latestScore = LatestScoreViewController()
-                self.navigationController!.pushViewController(latestScore, animated: true)
-            case "G":
-                let locations = LocationsViewController()
-                self.navigationController!.pushViewController(locations, animated: true)
-            case "T":
-                let svc = SFSafariViewController(url: self.leagueTableUrl!)
-                svc.delegate = self
-                svc.preferredControlTintColor = UIColor(named: "safari-view-tint")
-                self.present(svc, animated: true, completion: nil)
-            default:
-                break
-            }
-        }
     }
 }
 
