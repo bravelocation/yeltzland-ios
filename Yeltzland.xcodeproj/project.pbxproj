@@ -177,6 +177,7 @@
 		52DBCAA11D4A012E00D35F91 /* GameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DBCA9F1D4A012E00D35F91 /* GameSettings.swift */; };
 		52DC9EAF1FC95C9E00AE02F6 /* FirebaseNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DC9EAE1FC95C9E00AE02F6 /* FirebaseNotifications.swift */; };
 		52DC9EB71FC9C30E00AE02F6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52DC9EB61FC9C30E00AE02F6 /* GoogleService-Info.plist */; };
+		52E261D124D6DE510059D6F8 /* TouchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E261D024D6DE510059D6F8 /* TouchBar.swift */; };
 		52E3DF771CD9FA78009F18BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E3DF761CD9FA78009F18BD /* AppDelegate.swift */; };
 		52E3DF791CD9FA78009F18BD /* WebPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E3DF781CD9FA78009F18BD /* WebPageViewController.swift */; };
 		52E3DF7E1CD9FA78009F18BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52E3DF7D1CD9FA78009F18BD /* Assets.xcassets */; };
@@ -426,6 +427,7 @@
 		52DBCA9F1D4A012E00D35F91 /* GameSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSettings.swift; sourceTree = "<group>"; };
 		52DC9EAE1FC95C9E00AE02F6 /* FirebaseNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseNotifications.swift; sourceTree = "<group>"; };
 		52DC9EB61FC9C30E00AE02F6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		52E261D024D6DE510059D6F8 /* TouchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchBar.swift; sourceTree = "<group>"; };
 		52E3DF731CD9FA78009F18BD /* Yeltzland.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yeltzland.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52E3DF761CD9FA78009F18BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52E3DF781CD9FA78009F18BD /* WebPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebPageViewController.swift; sourceTree = "<group>"; };
@@ -791,6 +793,7 @@
 			isa = PBXGroup;
 			children = (
 				52DA841024D6AD3600E01C25 /* MenuBuilder.swift */,
+				52E261D024D6DE510059D6F8 /* TouchBar.swift */,
 			);
 			path = Mac;
 			sourceTree = "<group>";
@@ -1772,6 +1775,7 @@
 				5201D3B124CB1B0900726CAD /* TweetData.swift in Sources */,
 				523CE54D214F9A54002F29EF /* FixtureTableViewCell.swift in Sources */,
 				528A347820CFB98D00E8475C /* TeamImageManager.swift in Sources */,
+				52E261D124D6DE510059D6F8 /* TouchBar.swift in Sources */,
 				5211F72D1CDB1EE50031496D /* OtherLinksTableViewController.swift in Sources */,
 				5206BC5724CABBA200A927B3 /* Tweet.swift in Sources */,
 				52176BB31D4B62DC00B7EFAE /* BaseSettings.swift in Sources */,
