@@ -40,21 +40,19 @@ class CurrentGameData: ObservableObject {
         self.setState(.isLoading)
         
         // Go fetch the latest fixtures and game score, then reload the timeline
-        fixtureManager.fetchLatestData { result in
+        self.fixtureManager.fetchLatestData { result in
             if result == .success(true) {
                 self.resetData()
             }
             
-           self.setState(.loaded)
-        }
-        
-        gameScoreManager.fetchLatestData { result in
-            if result == .success(true) {
-                self.resetData()
+            self.gameScoreManager.fetchLatestData { result in
+                if result == .success(true) {
+                    self.resetData()
+                    self.setState(.loaded)
+                }
+                
                 self.setState(.loaded)
             }
-            
-            self.setState(.loaded)
         }
     }
     
