@@ -81,9 +81,15 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
     
     // MARK: - Keyboard options
     override var keyCommands: [UIKeyCommand]? {
-        return [
-            UIKeyCommand(input: "r", modifierFlags: .command, action: #selector(LatestScoreViewController.reloadButtonTouchUp), discoverabilityTitle: "Reload")
-        ]
+         if #available(iOS 13.0, *) {
+            return [
+                UIKeyCommand(title: "Reload", action: #selector(LatestScoreViewController.reloadButtonTouchUp), input: "R", modifierFlags: .command)
+            ]
+         } else {
+            return [
+                UIKeyCommand(input: "r", modifierFlags: .command, action: #selector(LatestScoreViewController.reloadButtonTouchUp), discoverabilityTitle: "Reload")
+            ]
+        }
     }
     
     // MARK: - Event handlers

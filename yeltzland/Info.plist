@@ -148,5 +148,9 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>com.bravelocation.yeltzland.backgroundRefresh</string>
+	</array>
 </dict>
 </plist>

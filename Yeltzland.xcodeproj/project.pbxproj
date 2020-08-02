@@ -3,12 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1001EE7E1D9461A60DD351AC /* Pods_yeltzlandUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D371F1D95F52270B381A5E0D /* Pods_yeltzlandUnitTests.framework */; };
-		481F530A2194ABBB0E4F3078 /* Pods_yeltzland.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BE281ED4B32969698046889 /* Pods_yeltzland.framework */; };
 		5201D3AF24CB14FE00726CAD /* TwitterTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5201D3AE24CB14FE00726CAD /* TwitterTimelineView.swift */; };
 		5201D3B124CB1B0900726CAD /* TweetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5201D3B024CB1B0900726CAD /* TweetData.swift */; };
 		5201D3B424CB1DA300726CAD /* PreviewTwitterDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5201D3B324CB1DA300726CAD /* PreviewTwitterDataProvider.swift */; };
@@ -27,7 +25,6 @@
 		5206BC5C24CABE8B00A927B3 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5231F4FE215B6C56003FAC68 /* SettingsManager.swift */; };
 		520C09A02157A73100CCC2D8 /* DefaultPreferences.plist in Resources */ = {isa = PBXBuildFile; fileRef = 528D74591CF2F4A400263685 /* DefaultPreferences.plist */; };
 		520C09A22157C46100CCC2D8 /* ShortcutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 520C09A12157C46100CCC2D8 /* ShortcutManager.swift */; };
-		5211F72A1CDA53D70031496D /* TwitterUserTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211F7291CDA53D70031496D /* TwitterUserTimelineViewController.swift */; };
 		5211F72D1CDB1EE50031496D /* OtherLinksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5211F72C1CDB1EE50031496D /* OtherLinksTableViewController.swift */; };
 		52176BAC1D4A14C700B7EFAE /* DefaultPreferences.plist in Resources */ = {isa = PBXBuildFile; fileRef = 528D74591CF2F4A400263685 /* DefaultPreferences.plist */; };
 		52176BAE1D4A1AF600B7EFAE /* gamescore.json in Resources */ = {isa = PBXBuildFile; fileRef = 52176BAD1D4A1AF600B7EFAE /* gamescore.json */; };
@@ -41,7 +38,7 @@
 		52176BCD1D4B6D5900B7EFAE /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52176BCC1D4B6D5900B7EFAE /* ExtensionDelegate.swift */; };
 		52176BD11D4B6D5900B7EFAE /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52176BD01D4B6D5900B7EFAE /* ComplicationController.swift */; };
 		52176BD31D4B6D5900B7EFAE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52176BD21D4B6D5900B7EFAE /* Assets.xcassets */; };
-		52176BD71D4B6D5900B7EFAE /* watchkitapp.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 52176BB71D4B6D5900B7EFAE /* watchkitapp.app */; };
+		52176BD71D4B6D5900B7EFAE /* watchkitapp.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 52176BB71D4B6D5900B7EFAE /* watchkitapp.app */; platformFilter = ios; };
 		52176BE01D4B6D7300B7EFAE /* BaseSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52176BB21D4B62DC00B7EFAE /* BaseSettings.swift */; };
 		52176BE41D4B6EF000B7EFAE /* WatchGameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52176BE31D4B6EF000B7EFAE /* WatchGameSettings.swift */; };
 		52176BE51D4B73BA00B7EFAE /* DefaultPreferences.plist in Resources */ = {isa = PBXBuildFile; fileRef = 528D74591CF2F4A400263685 /* DefaultPreferences.plist */; };
@@ -120,7 +117,7 @@
 		526F54521D214705001EA8D8 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 526F54511D214705001EA8D8 /* NotificationCenter.framework */; };
 		526F54551D214705001EA8D8 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526F54541D214705001EA8D8 /* TodayViewController.swift */; };
 		526F54581D214705001EA8D8 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 526F54561D214705001EA8D8 /* MainInterface.storyboard */; };
-		526F545C1D214705001EA8D8 /* Today.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 526F54501D214705001EA8D8 /* Today.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		526F545C1D214705001EA8D8 /* Today.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 526F54501D214705001EA8D8 /* Today.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		526F54631D214982001EA8D8 /* Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236AE51D17DFF8004903AB /* Fixture.swift */; };
 		526F54641D214982001EA8D8 /* FixtureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236AE71D17E4D3004903AB /* FixtureManager.swift */; };
 		526F54651D214C3B001EA8D8 /* matches.json in Resources */ = {isa = PBXBuildFile; fileRef = 52236AEA1D17ECB4004903AB /* matches.json */; };
@@ -175,10 +172,12 @@
 		52D8682D1FE92A440041B578 /* TVTwitterCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52D8682B1FE92A440041B578 /* TVTwitterCollectionCell.xib */; };
 		52D8682F1FE933C20041B578 /* VerticallyAlignedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D8682E1FE933C20041B578 /* VerticallyAlignedLabel.swift */; };
 		52D8C9C622D9D685006FCAB9 /* NextGameIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D8C9C522D9D685006FCAB9 /* NextGameIntentHandler.swift */; };
+		52DA841124D6AD3600E01C25 /* MenuBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DA841024D6AD3600E01C25 /* MenuBuilder.swift */; };
 		52DBCAA01D4A012E00D35F91 /* GameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DBCA9F1D4A012E00D35F91 /* GameSettings.swift */; };
 		52DBCAA11D4A012E00D35F91 /* GameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DBCA9F1D4A012E00D35F91 /* GameSettings.swift */; };
 		52DC9EAF1FC95C9E00AE02F6 /* FirebaseNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DC9EAE1FC95C9E00AE02F6 /* FirebaseNotifications.swift */; };
 		52DC9EB71FC9C30E00AE02F6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52DC9EB61FC9C30E00AE02F6 /* GoogleService-Info.plist */; };
+		52E261D124D6DE510059D6F8 /* TouchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E261D024D6DE510059D6F8 /* TouchBar.swift */; };
 		52E3DF771CD9FA78009F18BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E3DF761CD9FA78009F18BD /* AppDelegate.swift */; };
 		52E3DF791CD9FA78009F18BD /* WebPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E3DF781CD9FA78009F18BD /* WebPageViewController.swift */; };
 		52E3DF7E1CD9FA78009F18BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52E3DF7D1CD9FA78009F18BD /* Assets.xcassets */; };
@@ -198,8 +197,8 @@
 		52EACDA2215643FC008B8DE5 /* IntentsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52EACDA1215643FC008B8DE5 /* IntentsUI.framework */; };
 		52EACDA5215643FC008B8DE5 /* IntentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EACDA4215643FC008B8DE5 /* IntentViewController.swift */; };
 		52EACDA8215643FC008B8DE5 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52EACDA6215643FC008B8DE5 /* MainInterface.storyboard */; };
-		52EACDAC215643FC008B8DE5 /* LatestScoreIntentUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 52EACDA0215643FC008B8DE5 /* LatestScoreIntentUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		52EACDAF215643FC008B8DE5 /* LatestScoreIntent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 52EACD97215643FB008B8DE5 /* LatestScoreIntent.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		52EACDAC215643FC008B8DE5 /* LatestScoreIntentUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 52EACDA0215643FC008B8DE5 /* LatestScoreIntentUI.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		52EACDAF215643FC008B8DE5 /* LatestScoreIntent.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 52EACD97215643FB008B8DE5 /* LatestScoreIntent.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		52EACDB721564462008B8DE5 /* Intent.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 52EACDB621564462008B8DE5 /* Intent.intentdefinition */; };
 		52EACDB821564466008B8DE5 /* Intent.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 52EACDB621564462008B8DE5 /* Intent.intentdefinition */; };
 		52EACDB921564467008B8DE5 /* Intent.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 52EACDB621564462008B8DE5 /* Intent.intentdefinition */; };
@@ -218,7 +217,9 @@
 		52EACDC7215646DA008B8DE5 /* BaseSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52176BB21D4B62DC00B7EFAE /* BaseSettings.swift */; };
 		52F9CDB222D6687C00E0FFE8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9CDB122D6687C00E0FFE8 /* SceneDelegate.swift */; };
 		937784A0FE49B904B7681F19 /* Pods_LatestScoreIntentUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1EB3CDB05AFB690D5D25630 /* Pods_LatestScoreIntentUI.framework */; };
-		DB860C2661D34E99E75814F6 /* Pods_yeltzlandTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C59A5577BD1AF23F460D4B20 /* Pods_yeltzlandTVOS.framework */; };
+		A3EF45D9812E6A2A28C1480B /* Pods_YeltzlandTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92283CF6BA4404FBD866C82C /* Pods_YeltzlandTVOS.framework */; };
+		D40132971269818EC46584B4 /* Pods_Yeltzland.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0169FC4AAE3B4FA55E081580 /* Pods_Yeltzland.framework */; };
+		DAB3C264B2E8A47B5AA475FF /* Pods_YeltzlandUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FB55985341B9FD44EF024D0 /* Pods_YeltzlandUnitTests.framework */; };
 		F2C923D6766D78C589FBFD9A /* Pods_watchkitapp_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3CD79B24EF0B6634FC3AFFA /* Pods_watchkitapp_Extension.framework */; };
 /* End PBXBuildFile section */
 
@@ -313,6 +314,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0169FC4AAE3B4FA55E081580 /* Pods_Yeltzland.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Yeltzland.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2552AC500EB5468A6630D33E /* Pods-watchkitapp Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watchkitapp Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-watchkitapp Extension/Pods-watchkitapp Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		2C4284847AD21978846F1AA7 /* Pods-LatestScoreIntentUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LatestScoreIntentUI.release.xcconfig"; path = "Pods/Target Support Files/Pods-LatestScoreIntentUI/Pods-LatestScoreIntentUI.release.xcconfig"; sourceTree = "<group>"; };
 		2D1DEE9A8770E728E2386C61 /* Pods-yeltzlandUnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yeltzlandUnitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-yeltzlandUnitTests/Pods-yeltzlandUnitTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -329,7 +331,6 @@
 		5206BC5624CABBA200A927B3 /* Tweet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		5206BC5924CABC0D00A927B3 /* TwitterDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterDataProvider.swift; sourceTree = "<group>"; };
 		520C09A12157C46100CCC2D8 /* ShortcutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutManager.swift; sourceTree = "<group>"; };
-		5211F7291CDA53D70031496D /* TwitterUserTimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterUserTimelineViewController.swift; sourceTree = "<group>"; };
 		5211F72C1CDB1EE50031496D /* OtherLinksTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherLinksTableViewController.swift; sourceTree = "<group>"; };
 		52176BAA1D4A0D9A00B7EFAE /* yeltzland.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = yeltzland.entitlements; sourceTree = "<group>"; };
 		52176BAB1D4A0DB700B7EFAE /* Today.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Today.entitlements; sourceTree = "<group>"; };
@@ -366,17 +367,17 @@
 		523C841F1CE70806006F1865 /* ChromeActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChromeActivity.swift; sourceTree = "<group>"; };
 		523CE54B214F9A54002F29EF /* FixtureTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureTableViewCell.swift; sourceTree = "<group>"; };
 		523CE54C214F9A54002F29EF /* FixtureTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FixtureTableViewCell.xib; sourceTree = "<group>"; };
-		5252774024C42C5400F93050 /* yeltzlandUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = yeltzlandUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5252774024C42C5400F93050 /* YeltzlandUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YeltzlandUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5252774224C42C5400F93050 /* TimelineUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineUnitTests.swift; sourceTree = "<group>"; };
 		5252774424C42C5400F93050 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5252775A24C498DD00F93050 /* CurrentGameData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentGameData.swift; sourceTree = "<group>"; };
-		525719711FDE8AE1005F1D80 /* yeltzlandTVOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = yeltzlandTVOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		525719711FDE8AE1005F1D80 /* YeltzlandTVOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YeltzlandTVOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		525719731FDE8AE2005F1D80 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		525719751FDE8AE2005F1D80 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		525719781FDE8AE2005F1D80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5257197A1FDE8AE2005F1D80 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5257197C1FDE8AE2005F1D80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5257E8BA1CDB953400157CED /* yeltzlandUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = yeltzlandUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5257E8BA1CDB953400157CED /* YeltzlandUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YeltzlandUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5257E8BC1CDB953400157CED /* YeltzlandUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YeltzlandUITests.swift; sourceTree = "<group>"; };
 		5257E8BE1CDB953400157CED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5257E8C41CDB978700157CED /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
@@ -422,10 +423,12 @@
 		52D8682B1FE92A440041B578 /* TVTwitterCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TVTwitterCollectionCell.xib; sourceTree = "<group>"; };
 		52D8682E1FE933C20041B578 /* VerticallyAlignedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticallyAlignedLabel.swift; sourceTree = "<group>"; };
 		52D8C9C522D9D685006FCAB9 /* NextGameIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextGameIntentHandler.swift; sourceTree = "<group>"; };
+		52DA841024D6AD3600E01C25 /* MenuBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBuilder.swift; sourceTree = "<group>"; };
 		52DBCA9F1D4A012E00D35F91 /* GameSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSettings.swift; sourceTree = "<group>"; };
 		52DC9EAE1FC95C9E00AE02F6 /* FirebaseNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseNotifications.swift; sourceTree = "<group>"; };
 		52DC9EB61FC9C30E00AE02F6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		52E3DF731CD9FA78009F18BD /* yeltzland.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = yeltzland.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		52E261D024D6DE510059D6F8 /* TouchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchBar.swift; sourceTree = "<group>"; };
+		52E3DF731CD9FA78009F18BD /* Yeltzland.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yeltzland.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52E3DF761CD9FA78009F18BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		52E3DF781CD9FA78009F18BD /* WebPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebPageViewController.swift; sourceTree = "<group>"; };
 		52E3DF7D1CD9FA78009F18BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -447,16 +450,21 @@
 		52EACDBA21564586008B8DE5 /* LatestScoreIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestScoreIntentHandler.swift; sourceTree = "<group>"; };
 		52EBCF472340A1C300A2157A /* yeltzlandTVOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = yeltzlandTVOS.entitlements; sourceTree = "<group>"; };
 		52F9CDB122D6687C00E0FFE8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		684F68C317E1474E04B3AA97 /* Pods-YeltzlandUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YeltzlandUnitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-YeltzlandUnitTests/Pods-YeltzlandUnitTests.release.xcconfig"; sourceTree = "<group>"; };
+		6B5F6576A847D7567A17C4BF /* Pods-YeltzlandTVOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YeltzlandTVOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YeltzlandTVOS/Pods-YeltzlandTVOS.debug.xcconfig"; sourceTree = "<group>"; };
 		6C2886E0C6D579332BF2A5A8 /* Pods-yeltzland.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yeltzland.debug.xcconfig"; path = "Pods/Target Support Files/Pods-yeltzland/Pods-yeltzland.debug.xcconfig"; sourceTree = "<group>"; };
+		743038B5C1D95F1EFEEB6529 /* Pods-YeltzlandUnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YeltzlandUnitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YeltzlandUnitTests/Pods-YeltzlandUnitTests.debug.xcconfig"; sourceTree = "<group>"; };
+		7FB55985341B9FD44EF024D0 /* Pods_YeltzlandUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YeltzlandUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		84B09CCF34E827938262A3C5 /* Pods-yeltzlandUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yeltzlandUnitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-yeltzlandUnitTests/Pods-yeltzlandUnitTests.release.xcconfig"; sourceTree = "<group>"; };
 		8541FCDE5A3B1A03D43E3DBD /* Pods-watchkitapp Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watchkitapp Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-watchkitapp Extension/Pods-watchkitapp Extension.release.xcconfig"; sourceTree = "<group>"; };
+		8C3E078A39D9759D27B66C4F /* Pods-Yeltzland.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yeltzland.release.xcconfig"; path = "Pods/Target Support Files/Pods-Yeltzland/Pods-Yeltzland.release.xcconfig"; sourceTree = "<group>"; };
 		8ED64AAED15F6BBC43FC3EEB /* Pods-LatestScoreIntentUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LatestScoreIntentUI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LatestScoreIntentUI/Pods-LatestScoreIntentUI.debug.xcconfig"; sourceTree = "<group>"; };
-		9BE281ED4B32969698046889 /* Pods_yeltzland.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_yeltzland.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		92283CF6BA4404FBD866C82C /* Pods_YeltzlandTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YeltzlandTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1EB3CDB05AFB690D5D25630 /* Pods_LatestScoreIntentUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LatestScoreIntentUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C11AF69119A85B889C5CADB2 /* Pods-yeltzland.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yeltzland.release.xcconfig"; path = "Pods/Target Support Files/Pods-yeltzland/Pods-yeltzland.release.xcconfig"; sourceTree = "<group>"; };
 		C3CD79B24EF0B6634FC3AFFA /* Pods_watchkitapp_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_watchkitapp_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C59A5577BD1AF23F460D4B20 /* Pods_yeltzlandTVOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_yeltzlandTVOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D371F1D95F52270B381A5E0D /* Pods_yeltzlandUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_yeltzlandUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C540CE17AAE4D1270116423D /* Pods-YeltzlandTVOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YeltzlandTVOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-YeltzlandTVOS/Pods-YeltzlandTVOS.release.xcconfig"; sourceTree = "<group>"; };
+		D0B2AF15E7E7962D5F1ADFD6 /* Pods-Yeltzland.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Yeltzland.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Yeltzland/Pods-Yeltzland.debug.xcconfig"; sourceTree = "<group>"; };
 		F148785E694134A862B5222B /* Pods-yeltzlandTVOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yeltzlandTVOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-yeltzlandTVOS/Pods-yeltzlandTVOS.debug.xcconfig"; sourceTree = "<group>"; };
 		FA6F5775F3F24493B838AC89 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -474,7 +482,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1001EE7E1D9461A60DD351AC /* Pods_yeltzlandUnitTests.framework in Frameworks */,
+				DAB3C264B2E8A47B5AA475FF /* Pods_YeltzlandUnitTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -482,7 +490,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB860C2661D34E99E75814F6 /* Pods_yeltzlandTVOS.framework in Frameworks */,
+				A3EF45D9812E6A2A28C1480B /* Pods_YeltzlandTVOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -506,7 +514,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				526CE78E24CF0E9A00CC1023 /* SwiftUI.framework in Frameworks */,
-				481F530A2194ABBB0E4F3078 /* Pods_yeltzland.framework in Frameworks */,
+				D40132971269818EC46584B4 /* Pods_Yeltzland.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -549,6 +557,12 @@
 				2C4284847AD21978846F1AA7 /* Pods-LatestScoreIntentUI.release.xcconfig */,
 				2D1DEE9A8770E728E2386C61 /* Pods-yeltzlandUnitTests.debug.xcconfig */,
 				84B09CCF34E827938262A3C5 /* Pods-yeltzlandUnitTests.release.xcconfig */,
+				D0B2AF15E7E7962D5F1ADFD6 /* Pods-Yeltzland.debug.xcconfig */,
+				8C3E078A39D9759D27B66C4F /* Pods-Yeltzland.release.xcconfig */,
+				6B5F6576A847D7567A17C4BF /* Pods-YeltzlandTVOS.debug.xcconfig */,
+				C540CE17AAE4D1270116423D /* Pods-YeltzlandTVOS.release.xcconfig */,
+				743038B5C1D95F1EFEEB6529 /* Pods-YeltzlandUnitTests.debug.xcconfig */,
+				684F68C317E1474E04B3AA97 /* Pods-YeltzlandUnitTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -751,7 +765,6 @@
 				527DAF221D2D0F550092BB8F /* LocationsViewController.swift */,
 				5259F9031CDA1292009C2AA8 /* MainTabBarController.swift */,
 				5211F72C1CDB1EE50031496D /* OtherLinksTableViewController.swift */,
-				5211F7291CDA53D70031496D /* TwitterUserTimelineViewController.swift */,
 				52E3DF781CD9FA78009F18BD /* WebPageViewController.swift */,
 				5236ECD920CE99B80067AFFA /* LatestScoreViewController.swift */,
 				5236ECDA20CE99B80067AFFA /* LatestScoreViewController.xib */,
@@ -774,6 +787,15 @@
 				5231F500215B6C92003FAC68 /* Settings.plist */,
 			);
 			name = Assets;
+			sourceTree = "<group>";
+		};
+		52DA840F24D6AD1B00E01C25 /* Mac */ = {
+			isa = PBXGroup;
+			children = (
+				52DA841024D6AD3600E01C25 /* MenuBuilder.swift */,
+				52E261D024D6DE510059D6F8 /* TouchBar.swift */,
+			);
+			path = Mac;
 			sourceTree = "<group>";
 		};
 		52E3DF6A1CD9FA78009F18BD = {
@@ -801,15 +823,15 @@
 		52E3DF741CD9FA78009F18BD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				52E3DF731CD9FA78009F18BD /* yeltzland.app */,
-				5257E8BA1CDB953400157CED /* yeltzlandUITests.xctest */,
+				52E3DF731CD9FA78009F18BD /* Yeltzland.app */,
+				5257E8BA1CDB953400157CED /* YeltzlandUITests.xctest */,
 				526F54501D214705001EA8D8 /* Today.appex */,
 				52176BB71D4B6D5900B7EFAE /* watchkitapp.app */,
 				52176BC31D4B6D5900B7EFAE /* watchkitapp Extension.appex */,
-				525719711FDE8AE1005F1D80 /* yeltzlandTVOS.app */,
+				525719711FDE8AE1005F1D80 /* YeltzlandTVOS.app */,
 				52EACD97215643FB008B8DE5 /* LatestScoreIntent.appex */,
 				52EACDA0215643FC008B8DE5 /* LatestScoreIntentUI.appex */,
-				5252774024C42C5400F93050 /* yeltzlandUnitTests.xctest */,
+				5252774024C42C5400F93050 /* YeltzlandUnitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -820,6 +842,7 @@
 				522716C622D1B789008FD210 /* Activities */,
 				52C4DA861D4C83C6009AFD25 /* Assets */,
 				5206BC5524CABB2F00A927B3 /* Data Providers */,
+				52DA840F24D6AD1B00E01C25 /* Mac */,
 				522716C522D1B74A008FD210 /* Models */,
 				528C5CF824C9AA6C0019DA0F /* Model Extensions */,
 				5201D3B224CB1D7400726CAD /* Previews */,
@@ -901,13 +924,13 @@
 			children = (
 				526CE78D24CF0E9A00CC1023 /* SwiftUI.framework */,
 				FA6F5775F3F24493B838AC89 /* Pods.framework */,
-				9BE281ED4B32969698046889 /* Pods_yeltzland.framework */,
 				526F54511D214705001EA8D8 /* NotificationCenter.framework */,
 				C3CD79B24EF0B6634FC3AFFA /* Pods_watchkitapp_Extension.framework */,
-				C59A5577BD1AF23F460D4B20 /* Pods_yeltzlandTVOS.framework */,
 				52EACDA1215643FC008B8DE5 /* IntentsUI.framework */,
 				B1EB3CDB05AFB690D5D25630 /* Pods_LatestScoreIntentUI.framework */,
-				D371F1D95F52270B381A5E0D /* Pods_yeltzlandUnitTests.framework */,
+				0169FC4AAE3B4FA55E081580 /* Pods_Yeltzland.framework */,
+				92283CF6BA4404FBD866C82C /* Pods_YeltzlandTVOS.framework */,
+				7FB55985341B9FD44EF024D0 /* Pods_YeltzlandUnitTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -954,30 +977,29 @@
 			productReference = 52176BC31D4B6D5900B7EFAE /* watchkitapp Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
-		5252773F24C42C5400F93050 /* yeltzlandUnitTests */ = {
+		5252773F24C42C5400F93050 /* YeltzlandUnitTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5252774724C42C5400F93050 /* Build configuration list for PBXNativeTarget "yeltzlandUnitTests" */;
+			buildConfigurationList = 5252774724C42C5400F93050 /* Build configuration list for PBXNativeTarget "YeltzlandUnitTests" */;
 			buildPhases = (
 				6251F79858B4178980D1F24D /* [CP] Check Pods Manifest.lock */,
 				5252773C24C42C5400F93050 /* Sources */,
 				5252773D24C42C5400F93050 /* Frameworks */,
 				5252773E24C42C5400F93050 /* Resources */,
 				739FB51989B69864AF1D381C /* [CP] Embed Pods Frameworks */,
-				6BCF5FAD7B8A5C8EDAD2EA85 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				5252774624C42C5400F93050 /* PBXTargetDependency */,
 			);
-			name = yeltzlandUnitTests;
+			name = YeltzlandUnitTests;
 			productName = yeltzlandUnitTests;
-			productReference = 5252774024C42C5400F93050 /* yeltzlandUnitTests.xctest */;
+			productReference = 5252774024C42C5400F93050 /* YeltzlandUnitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		525719701FDE8AE1005F1D80 /* yeltzlandTVOS */ = {
+		525719701FDE8AE1005F1D80 /* YeltzlandTVOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5257197F1FDE8AE2005F1D80 /* Build configuration list for PBXNativeTarget "yeltzlandTVOS" */;
+			buildConfigurationList = 5257197F1FDE8AE2005F1D80 /* Build configuration list for PBXNativeTarget "YeltzlandTVOS" */;
 			buildPhases = (
 				EC464B1DCE93452ED32ED3F5 /* [CP] Check Pods Manifest.lock */,
 				5257196D1FDE8AE1005F1D80 /* Sources */,
@@ -990,14 +1012,14 @@
 			);
 			dependencies = (
 			);
-			name = yeltzlandTVOS;
+			name = YeltzlandTVOS;
 			productName = "yeltzland TVOS";
-			productReference = 525719711FDE8AE1005F1D80 /* yeltzlandTVOS.app */;
+			productReference = 525719711FDE8AE1005F1D80 /* YeltzlandTVOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		5257E8B91CDB953400157CED /* yeltzlandUITests */ = {
+		5257E8B91CDB953400157CED /* YeltzlandUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5257E8C31CDB953400157CED /* Build configuration list for PBXNativeTarget "yeltzlandUITests" */;
+			buildConfigurationList = 5257E8C31CDB953400157CED /* Build configuration list for PBXNativeTarget "YeltzlandUITests" */;
 			buildPhases = (
 				5257E8B61CDB953400157CED /* Sources */,
 				5257E8B71CDB953400157CED /* Frameworks */,
@@ -1008,9 +1030,9 @@
 			dependencies = (
 				5257E8C01CDB953400157CED /* PBXTargetDependency */,
 			);
-			name = yeltzlandUITests;
+			name = YeltzlandUITests;
 			productName = yeltzlandUITests;
-			productReference = 5257E8BA1CDB953400157CED /* yeltzlandUITests.xctest */;
+			productReference = 5257E8BA1CDB953400157CED /* YeltzlandUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 		526F544F1D214705001EA8D8 /* Today */ = {
@@ -1031,9 +1053,9 @@
 			productReference = 526F54501D214705001EA8D8 /* Today.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		52E3DF721CD9FA78009F18BD /* yeltzland */ = {
+		52E3DF721CD9FA78009F18BD /* Yeltzland */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 52E3DF851CD9FA79009F18BD /* Build configuration list for PBXNativeTarget "yeltzland" */;
+			buildConfigurationList = 52E3DF851CD9FA79009F18BD /* Build configuration list for PBXNativeTarget "Yeltzland" */;
 			buildPhases = (
 				71ADE6DF9E407B473C7C01FD /* [CP] Check Pods Manifest.lock */,
 				5284895A24B9B5AA00D626DE /* Download Latest Data */,
@@ -1043,7 +1065,6 @@
 				5211F7281CDA51EC0031496D /* Set Build Number from Git */,
 				521B9C4122C8E89E00185CF4 /* Swift Lint */,
 				A105CF8EDA0A39E089673162 /* [CP] Embed Pods Frameworks */,
-				63BB4CBBF5413A6045855209 /* [CP] Copy Pods Resources */,
 				52176BDF1D4B6D5900B7EFAE /* Embed Watch Content */,
 				526F54601D214705001EA8D8 /* Embed App Extensions */,
 			);
@@ -1055,9 +1076,9 @@
 				52EACDAB215643FC008B8DE5 /* PBXTargetDependency */,
 				52EACDAE215643FC008B8DE5 /* PBXTargetDependency */,
 			);
-			name = yeltzland;
+			name = Yeltzland;
 			productName = yeltzland;
-			productReference = 52E3DF731CD9FA78009F18BD /* yeltzland.app */;
+			productReference = 52E3DF731CD9FA78009F18BD /* Yeltzland.app */;
 			productType = "com.apple.product-type.application";
 		};
 		52EACD96215643FB008B8DE5 /* LatestScoreIntent */ = {
@@ -1202,7 +1223,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 52E3DF6E1CD9FA78009F18BD /* Build configuration list for PBXProject "yeltzland" */;
+			buildConfigurationList = 52E3DF6E1CD9FA78009F18BD /* Build configuration list for PBXProject "Yeltzland" */;
 			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -1215,15 +1236,15 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				52E3DF721CD9FA78009F18BD /* yeltzland */,
-				5257E8B91CDB953400157CED /* yeltzlandUITests */,
+				52E3DF721CD9FA78009F18BD /* Yeltzland */,
+				5257E8B91CDB953400157CED /* YeltzlandUITests */,
 				526F544F1D214705001EA8D8 /* Today */,
 				52176BB61D4B6D5900B7EFAE /* watchkitapp */,
 				52176BC21D4B6D5900B7EFAE /* watchkitapp Extension */,
-				525719701FDE8AE1005F1D80 /* yeltzlandTVOS */,
+				525719701FDE8AE1005F1D80 /* YeltzlandTVOS */,
 				52EACD96215643FB008B8DE5 /* LatestScoreIntent */,
 				52EACD9F215643FC008B8DE5 /* LatestScoreIntentUI */,
-				5252773F24C42C5400F93050 /* yeltzlandUnitTests */,
+				5252773F24C42C5400F93050 /* YeltzlandUnitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1367,15 +1388,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-yeltzlandTVOS/Pods-yeltzlandTVOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-YeltzlandTVOS/Pods-YeltzlandTVOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-yeltzlandTVOS/Pods-yeltzlandTVOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-YeltzlandTVOS/Pods-YeltzlandTVOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-yeltzlandTVOS/Pods-yeltzlandTVOS-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YeltzlandTVOS/Pods-YeltzlandTVOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		5211F7281CDA51EC0031496D /* Set Build Number from Git */ = {
@@ -1519,45 +1540,11 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-yeltzlandUnitTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-YeltzlandUnitTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		63BB4CBBF5413A6045855209 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-yeltzland/Pods-yeltzland-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-yeltzland/Pods-yeltzland-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-yeltzland/Pods-yeltzland-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6BCF5FAD7B8A5C8EDAD2EA85 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-yeltzlandUnitTests/Pods-yeltzlandUnitTests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-yeltzlandUnitTests/Pods-yeltzlandUnitTests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-yeltzlandUnitTests/Pods-yeltzlandUnitTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		71ADE6DF9E407B473C7C01FD /* [CP] Check Pods Manifest.lock */ = {
@@ -1571,7 +1558,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-yeltzland-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Yeltzland-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1584,15 +1571,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-yeltzlandUnitTests/Pods-yeltzlandUnitTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-YeltzlandUnitTests/Pods-YeltzlandUnitTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-yeltzlandUnitTests/Pods-yeltzlandUnitTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-YeltzlandUnitTests/Pods-YeltzlandUnitTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-yeltzlandUnitTests/Pods-yeltzlandUnitTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YeltzlandUnitTests/Pods-YeltzlandUnitTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		79633DFA921C528F9AE984BF /* [CP] Check Pods Manifest.lock */ = {
@@ -1619,15 +1606,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-yeltzland/Pods-yeltzland-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Yeltzland/Pods-Yeltzland-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-yeltzland/Pods-yeltzland-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Yeltzland/Pods-Yeltzland-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-yeltzland/Pods-yeltzland-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Yeltzland/Pods-Yeltzland-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EC464B1DCE93452ED32ED3F5 /* [CP] Check Pods Manifest.lock */ = {
@@ -1641,7 +1628,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-yeltzlandTVOS-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-YeltzlandTVOS-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1788,6 +1775,7 @@
 				5201D3B124CB1B0900726CAD /* TweetData.swift in Sources */,
 				523CE54D214F9A54002F29EF /* FixtureTableViewCell.swift in Sources */,
 				528A347820CFB98D00E8475C /* TeamImageManager.swift in Sources */,
+				52E261D124D6DE510059D6F8 /* TouchBar.swift in Sources */,
 				5211F72D1CDB1EE50031496D /* OtherLinksTableViewController.swift in Sources */,
 				5206BC5724CABBA200A927B3 /* Tweet.swift in Sources */,
 				52176BB31D4B62DC00B7EFAE /* BaseSettings.swift in Sources */,
@@ -1797,7 +1785,6 @@
 				52176BB01D4A1B3200B7EFAE /* GameScoreManager.swift in Sources */,
 				5201D3B424CB1DA300726CAD /* PreviewTwitterDataProvider.swift in Sources */,
 				523C84201CE70806006F1865 /* ChromeActivity.swift in Sources */,
-				5211F72A1CDA53D70031496D /* TwitterUserTimelineViewController.swift in Sources */,
 				528C5CFA24C9AAB20019DA0F /* TimelineEntry+Date.swift in Sources */,
 				522716C422D0D438008FD210 /* AppImages.swift in Sources */,
 				5201D3AF24CB14FE00726CAD /* TwitterTimelineView.swift in Sources */,
@@ -1822,6 +1809,7 @@
 				527DAF211D2D096B0092BB8F /* LocationManager.swift in Sources */,
 				527DAF231D2D0F550092BB8F /* LocationsViewController.swift in Sources */,
 				526B210B24C2CE66005CE9C7 /* TimelineEntry.swift in Sources */,
+				52DA841124D6AD3600E01C25 /* MenuBuilder.swift in Sources */,
 				528C5D0224C9AAF30019DA0F /* TimelineEntry+Opponent.swift in Sources */,
 				5259F9041CDA1292009C2AA8 /* MainTabBarController.swift in Sources */,
 				5201D3C524CD5F1800726CAD /* Tweet+Image.swift in Sources */,
@@ -1886,31 +1874,35 @@
 		};
 		52176BD61D4B6D5900B7EFAE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 52176BB61D4B6D5900B7EFAE /* watchkitapp */;
 			targetProxy = 52176BD51D4B6D5900B7EFAE /* PBXContainerItemProxy */;
 		};
 		5252774624C42C5400F93050 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 52E3DF721CD9FA78009F18BD /* yeltzland */;
+			target = 52E3DF721CD9FA78009F18BD /* Yeltzland */;
 			targetProxy = 5252774524C42C5400F93050 /* PBXContainerItemProxy */;
 		};
 		5257E8C01CDB953400157CED /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 52E3DF721CD9FA78009F18BD /* yeltzland */;
+			target = 52E3DF721CD9FA78009F18BD /* Yeltzland */;
 			targetProxy = 5257E8BF1CDB953400157CED /* PBXContainerItemProxy */;
 		};
 		526F545B1D214705001EA8D8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 526F544F1D214705001EA8D8 /* Today */;
 			targetProxy = 526F545A1D214705001EA8D8 /* PBXContainerItemProxy */;
 		};
 		52EACDAB215643FC008B8DE5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 52EACD9F215643FC008B8DE5 /* LatestScoreIntentUI */;
 			targetProxy = 52EACDAA215643FC008B8DE5 /* PBXContainerItemProxy */;
 		};
 		52EACDAE215643FC008B8DE5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 52EACD96215643FB008B8DE5 /* LatestScoreIntent */;
 			targetProxy = 52EACDAD215643FC008B8DE5 /* PBXContainerItemProxy */;
 		};
@@ -2065,7 +2057,7 @@
 		};
 		5252774824C42C5400F93050 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2D1DEE9A8770E728E2386C61 /* Pods-yeltzlandUnitTests.debug.xcconfig */;
+			baseConfigurationReference = 743038B5C1D95F1EFEEB6529 /* Pods-YeltzlandUnitTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -2090,13 +2082,13 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/yeltzland.app/yeltzland";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Yeltzland.app/Yeltzland";
 			};
 			name = Debug;
 		};
 		5252774924C42C5400F93050 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 84B09CCF34E827938262A3C5 /* Pods-yeltzlandUnitTests.release.xcconfig */;
+			baseConfigurationReference = 684F68C317E1474E04B3AA97 /* Pods-YeltzlandUnitTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -2119,13 +2111,13 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/yeltzland.app/yeltzland";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Yeltzland.app/Yeltzland";
 			};
 			name = Release;
 		};
 		5257197D1FDE8AE2005F1D80 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F148785E694134A862B5222B /* Pods-yeltzlandTVOS.debug.xcconfig */;
+			baseConfigurationReference = 6B5F6576A847D7567A17C4BF /* Pods-YeltzlandTVOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -2149,13 +2141,13 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 11.2;
+				TVOS_DEPLOYMENT_TARGET = 13.0;
 			};
 			name = Debug;
 		};
 		5257197E1FDE8AE2005F1D80 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 31D85CE3D6629F7148E43670 /* Pods-yeltzlandTVOS.release.xcconfig */;
+			baseConfigurationReference = C540CE17AAE4D1270116423D /* Pods-YeltzlandTVOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -2178,7 +2170,7 @@
 				SDKROOT = appletvos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 11.2;
+				TVOS_DEPLOYMENT_TARGET = 13.0;
 			};
 			name = Release;
 		};
@@ -2228,7 +2220,7 @@
 				DEVELOPMENT_TEAM = W8B3V597R9;
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = Today/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2237,6 +2229,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bravelocation.yeltzland.Today;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -2249,7 +2242,7 @@
 				DEVELOPMENT_TEAM = W8B3V597R9;
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = Today/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2258,6 +2251,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bravelocation.yeltzland.Today;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -2377,7 +2371,7 @@
 		};
 		52E3DF861CD9FA79009F18BD /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6C2886E0C6D579332BF2A5A8 /* Pods-yeltzland.debug.xcconfig */;
+			baseConfigurationReference = D0B2AF15E7E7962D5F1ADFD6 /* Pods-Yeltzland.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = yeltzland/yeltzland.entitlements;
@@ -2392,7 +2386,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = yeltzland/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2402,6 +2396,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "./yeltzland/yeltzland-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
@@ -2409,7 +2404,7 @@
 		};
 		52E3DF871CD9FA79009F18BD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C11AF69119A85B889C5CADB2 /* Pods-yeltzland.release.xcconfig */;
+			baseConfigurationReference = 8C3E078A39D9759D27B66C4F /* Pods-Yeltzland.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = yeltzland/yeltzland.entitlements;
@@ -2424,7 +2419,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = yeltzland/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2434,6 +2429,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "./yeltzland/yeltzland-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
@@ -2466,6 +2462,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bravelocation.yeltzland.LatestScoreIntentUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2498,6 +2495,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bravelocation.yeltzland.LatestScoreIntentUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2529,6 +2527,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bravelocation.yeltzland.LatestScoreIntent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2560,6 +2559,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bravelocation.yeltzland.LatestScoreIntent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2586,7 +2586,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5252774724C42C5400F93050 /* Build configuration list for PBXNativeTarget "yeltzlandUnitTests" */ = {
+		5252774724C42C5400F93050 /* Build configuration list for PBXNativeTarget "YeltzlandUnitTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5252774824C42C5400F93050 /* Debug */,
@@ -2595,7 +2595,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5257197F1FDE8AE2005F1D80 /* Build configuration list for PBXNativeTarget "yeltzlandTVOS" */ = {
+		5257197F1FDE8AE2005F1D80 /* Build configuration list for PBXNativeTarget "YeltzlandTVOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5257197D1FDE8AE2005F1D80 /* Debug */,
@@ -2604,7 +2604,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5257E8C31CDB953400157CED /* Build configuration list for PBXNativeTarget "yeltzlandUITests" */ = {
+		5257E8C31CDB953400157CED /* Build configuration list for PBXNativeTarget "YeltzlandUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5257E8C11CDB953400157CED /* Debug */,
@@ -2622,7 +2622,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		52E3DF6E1CD9FA78009F18BD /* Build configuration list for PBXProject "yeltzland" */ = {
+		52E3DF6E1CD9FA78009F18BD /* Build configuration list for PBXProject "Yeltzland" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				52E3DF831CD9FA79009F18BD /* Debug */,
@@ -2631,7 +2631,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		52E3DF851CD9FA79009F18BD /* Build configuration list for PBXNativeTarget "yeltzland" */ = {
+		52E3DF851CD9FA79009F18BD /* Build configuration list for PBXNativeTarget "Yeltzland" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				52E3DF861CD9FA79009F18BD /* Debug */,

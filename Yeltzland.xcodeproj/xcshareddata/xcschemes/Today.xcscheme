@@ -30,8 +30,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "52E3DF721CD9FA78009F18BD"
-               BuildableName = "yeltzland.app"
-               BlueprintName = "yeltzland"
+               BuildableName = "Yeltzland.app"
+               BlueprintName = "Yeltzland"
                ReferencedContainer = "container:yeltzland.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -57,8 +57,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5252773F24C42C5400F93050"
-               BuildableName = "yeltzlandUnitTests.xctest"
-               BlueprintName = "yeltzlandUnitTests"
+               BuildableName = "YeltzlandUnitTests.xctest"
+               BlueprintName = "YeltzlandUnitTests"
                ReferencedContainer = "container:yeltzland.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -91,8 +91,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "52E3DF721CD9FA78009F18BD"
-            BuildableName = "yeltzland.app"
-            BlueprintName = "yeltzland"
+            BuildableName = "Yeltzland.app"
+            BlueprintName = "Yeltzland"
             ReferencedContainer = "container:yeltzland.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -109,8 +109,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "52E3DF721CD9FA78009F18BD"
-            BuildableName = "yeltzland.app"
-            BlueprintName = "yeltzland"
+            BuildableName = "Yeltzland.app"
+            BlueprintName = "Yeltzland"
             ReferencedContainer = "container:yeltzland.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

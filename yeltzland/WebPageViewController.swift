@@ -64,7 +64,16 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         
         // Calculate position on screen of elements
         let progressBarHeight = CGFloat(2.0)
-        let topPosition = (self.navigationController?.navigationBar.frame.size.height)! + UIApplication.shared.statusBarFrame.height
+        
+        var barHeight: CGFloat = 0.0
+
+        if #available(iOS 13, *) {
+            barHeight = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0.0
+        } else {
+            barHeight = UIApplication.shared.statusBarFrame.height
+        }
+        
+        let topPosition = (self.navigationController?.navigationBar.frame.size.height)! + barHeight
         
         let webViewHeight = view.frame.height -
             (topPosition + progressBarHeight + (self.tabBarController?.tabBar.frame)!.height)
@@ -164,12 +173,21 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
     
     // MARK: - Keyboard options
     override var keyCommands: [UIKeyCommand]? {
-        return [
-            UIKeyCommand(input: UIKeyCommand.inputRightArrow, modifierFlags: .command, action: #selector(WebPageViewController.forwardButtonTouchUp), discoverabilityTitle: "Forward"),
-            UIKeyCommand(input: UIKeyCommand.inputLeftArrow, modifierFlags: .command, action: #selector(WebPageViewController.backButtonTouchUp), discoverabilityTitle: "Back"),
-            UIKeyCommand(input: "r", modifierFlags: .command, action: #selector(WebPageViewController.reloadButtonTouchUp), discoverabilityTitle: "Reload"),
-            UIKeyCommand(input: "h", modifierFlags: [.command, .shift], action: #selector(WebPageViewController.loadHomePage), discoverabilityTitle: "Home")
-        ]
+         if #available(iOS 13.0, *) {
+            return [
+                UIKeyCommand(title: "Forward", action: #selector(WebPageViewController.forwardButtonTouchUp), input: UIKeyCommand.inputRightArrow, modifierFlags: .command),
+                UIKeyCommand(title: "Back", action: #selector(WebPageViewController.backButtonTouchUp), input: UIKeyCommand.inputLeftArrow, modifierFlags: .command),
+                UIKeyCommand(title: "Reload", action: #selector(WebPageViewController.reloadButtonTouchUp), input: "R", modifierFlags: .command),
+                UIKeyCommand(title: "Home", action: #selector(WebPageViewController.loadHomePage), input: "H", modifierFlags: [.command, .shift])
+            ]
+         } else {
+            return [
+                UIKeyCommand(input: UIKeyCommand.inputRightArrow, modifierFlags: .command, action: #selector(WebPageViewController.forwardButtonTouchUp), discoverabilityTitle: "Forward"),
+                UIKeyCommand(input: UIKeyCommand.inputLeftArrow, modifierFlags: .command, action: #selector(WebPageViewController.backButtonTouchUp), discoverabilityTitle: "Back"),
+                UIKeyCommand(input: "R", modifierFlags: .command, action: #selector(WebPageViewController.reloadButtonTouchUp), discoverabilityTitle: "Reload"),
+                UIKeyCommand(input: "H", modifierFlags: [.command, .shift], action: #selector(WebPageViewController.loadHomePage), discoverabilityTitle: "Home")
+            ]
+        }
     }
     
     // MARK: - Nav bar actions
@@ -270,7 +288,6 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
             self.showSpinner()
             self.progressBar.setProgress(0, animated: false)
             UIView.animate(withDuration: 0.3, delay: 0, options: UIView.AnimationOptions(), animations: { self.progressBar.alpha = 1 }, completion: nil)
-            UIApplication.shared.isNetworkActivityIndicatorVisible = true
         })
     }
     
@@ -291,7 +308,6 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
 
             self.progressBar.setProgress(1, animated: true)
             UIView.animate(withDuration: 0.3, delay: 1, options: UIView.AnimationOptions(), animations: { self.progressBar.alpha = 0 }, completion: nil)
-            UIApplication.shared.isNetworkActivityIndicatorVisible = false
             
             self.backButton.isEnabled = webView.canGoBack
             self.forwardButton.isEnabled = webView.canGoForward
@@ -307,7 +323,6 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
             self.hideSpinner()
             self.progressBar.setProgress(1, animated: true)
             UIView.animate(withDuration: 0.3, delay: 1, options: UIView.AnimationOptions(), animations: { self.progressBar.alpha = 0 }, completion: nil)
-            UIApplication.shared.isNetworkActivityIndicatorVisible = false
             
             // Show brief error message
             let navigationError = error as NSError

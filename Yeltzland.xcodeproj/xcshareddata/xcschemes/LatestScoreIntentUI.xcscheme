@@ -15,9 +15,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "52EACD96215643FB008B8DE5"
-               BuildableName = "LatestScoreIntent.appex"
-               BlueprintName = "LatestScoreIntent"
+               BlueprintIdentifier = "52EACD9F215643FC008B8DE5"
+               BuildableName = "LatestScoreIntentUI.appex"
+               BlueprintName = "LatestScoreIntentUI"
                ReferencedContainer = "container:yeltzland.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -30,8 +30,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "52E3DF721CD9FA78009F18BD"
-               BuildableName = "yeltzland.app"
-               BlueprintName = "yeltzland"
+               BuildableName = "Yeltzland.app"
+               BlueprintName = "Yeltzland"
                ReferencedContainer = "container:yeltzland.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -45,9 +45,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "52EACD96215643FB008B8DE5"
-            BuildableName = "LatestScoreIntent.appex"
-            BlueprintName = "LatestScoreIntent"
+            BlueprintIdentifier = "52EACD9F215643FC008B8DE5"
+            BuildableName = "LatestScoreIntentUI.appex"
+            BlueprintName = "LatestScoreIntentUI"
             ReferencedContainer = "container:yeltzland.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -57,8 +57,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5252773F24C42C5400F93050"
-               BuildableName = "yeltzlandUnitTests.xctest"
-               BlueprintName = "yeltzlandUnitTests"
+               BuildableName = "YeltzlandUnitTests.xctest"
+               BlueprintName = "YeltzlandUnitTests"
                ReferencedContainer = "container:yeltzland.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -66,7 +66,7 @@
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
-      intentQueryString = "Who do we play next"
+      intentQueryString = "Next Game"
       selectedDebuggerIdentifier = ""
       selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
       launchStyle = "0"
@@ -80,15 +80,15 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "52E3DF721CD9FA78009F18BD"
-            BuildableName = "yeltzland.app"
-            BlueprintName = "yeltzland"
+            BuildableName = "Yeltzland.app"
+            BlueprintName = "Yeltzland"
             ReferencedContainer = "container:yeltzland.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
-      intentQueryString = "Who do we play next"
+      intentQueryString = "Next Game"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
@@ -99,8 +99,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "52E3DF721CD9FA78009F18BD"
-            BuildableName = "yeltzland.app"
-            BlueprintName = "yeltzland"
+            BuildableName = "Yeltzland.app"
+            BlueprintName = "Yeltzland"
             ReferencedContainer = "container:yeltzland.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

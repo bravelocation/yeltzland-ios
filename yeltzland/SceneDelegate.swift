@@ -27,6 +27,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window.rootViewController = initialTabViewController
             self.window = window
             window.makeKeyAndVisible()
+            
+            #if targetEnvironment(macCatalyst) 
+            if let titlebar = windowScene.titlebar {
+                titlebar.titleVisibility = .hidden
+                titlebar.toolbar = nil
+            }
+            #endif
         }
     }
     
@@ -55,6 +62,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         
         return completionHandler(true)
+    }
+    
+    @available(iOS 13.0, *)
+    func sceneDidEnterBackground(_ scene: UIScene) {
+        (UIApplication.shared.delegate as! AppDelegate).scheduleBackgroundFetch()
     }
     
     // MARK: - Private functions
