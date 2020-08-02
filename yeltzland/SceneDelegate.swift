@@ -27,6 +27,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             window.rootViewController = initialTabViewController
             self.window = window
             window.makeKeyAndVisible()
+            
+            #if targetEnvironment(macCatalyst) 
+            if let titlebar = windowScene.titlebar {
+                titlebar.titleVisibility = .hidden
+                titlebar.toolbar = nil
+            }
+            #endif
         }
     }
     
