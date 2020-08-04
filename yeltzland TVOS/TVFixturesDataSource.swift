@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class TVFixturesDataSource: NSObject, UICollectionViewDataSource {
-    private var allGames: [TimelineEntry] = []
+    private var allGames: [TimelineFixture] = []
     
     override init() {
         super.init()
@@ -35,7 +35,7 @@ class TVFixturesDataSource: NSObject, UICollectionViewDataSource {
         for fixture in FixtureManager.shared.allMatches {
             if (inProgressFixture != nil && nextGame != nil && inProgressFixture == nextGame) {
                 // Is it an in-progress game
-                self.allGames.append(TimelineEntry(
+                self.allGames.append(TimelineFixture(
                     opponent: fixture.opponent,
                     home: fixture.home,
                     date: fixture.fixtureDate,
@@ -43,7 +43,7 @@ class TVFixturesDataSource: NSObject, UICollectionViewDataSource {
                     opponentScore: fixture.opponentScore,
                     status: .inProgress))
             } else if (fixture.teamScore == nil) {
-                self.allGames.append(TimelineEntry(
+                self.allGames.append(TimelineFixture(
                     opponent: fixture.opponent,
                     home: fixture.home,
                     date: fixture.fixtureDate,
@@ -51,7 +51,7 @@ class TVFixturesDataSource: NSObject, UICollectionViewDataSource {
                     opponentScore: nil,
                     status: .fixture))
             } else {                
-                self.allGames.append(TimelineEntry(
+                self.allGames.append(TimelineFixture(
                     opponent: fixture.opponent,
                     home: fixture.home,
                     date: fixture.fixtureDate,
