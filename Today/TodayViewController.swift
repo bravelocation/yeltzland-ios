@@ -12,7 +12,7 @@ import NotificationCenter
 class TodayViewController: UICollectionViewController, NCWidgetProviding {
     
     private var timelineManager: TimelineManager!
-    private var timelineEntries: [TimelineEntry] = []
+    private var timelineEntries: [TimelineFixture] = []
     
     static var cellReuseIdentifier = "TodayFixtureCollectionViewCell"
     
@@ -70,7 +70,7 @@ class TodayViewController: UICollectionViewController, NCWidgetProviding {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TodayViewController.cellReuseIdentifier, for: indexPath) as! TodayFixtureCollectionViewCell
         
         // Figure out data to show
-        var entry: TimelineEntry?
+        var entry: TimelineFixture?
         
         if (self.timelineEntries.count >= indexPath.row) {
             entry = self.timelineEntries[indexPath.row]

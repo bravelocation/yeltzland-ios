@@ -80,7 +80,7 @@
 		5252774E24C42D1F00F93050 /* TimelineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B210324C2CD6E005CE9C7 /* TimelineManager.swift */; };
 		5252774F24C42D2800F93050 /* FixtureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236AE71D17E4D3004903AB /* FixtureManager.swift */; };
 		5252775024C42D2C00F93050 /* GameScoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52176BAF1D4A1B3200B7EFAE /* GameScoreManager.swift */; };
-		5252775124C42D5E00F93050 /* TimelineEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B210A24C2CE66005CE9C7 /* TimelineEntry.swift */; };
+		5252775124C42D5E00F93050 /* TimelineFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B210A24C2CE66005CE9C7 /* TimelineFixture.swift */; };
 		5252775224C42D6400F93050 /* Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236AE51D17DFF8004903AB /* Fixture.swift */; };
 		5252775324C42DF400F93050 /* CachedJSONData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522716CC22D1BB50008FD210 /* CachedJSONData.swift */; };
 		5252775424C42DF800F93050 /* BaseSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52176BB21D4B62DC00B7EFAE /* BaseSettings.swift */; };
@@ -103,12 +103,12 @@
 		5259F9041CDA1292009C2AA8 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5259F9031CDA1292009C2AA8 /* MainTabBarController.swift */; };
 		526B210424C2CD6E005CE9C7 /* TimelineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B210324C2CD6E005CE9C7 /* TimelineManager.swift */; };
 		526B210524C2CD6E005CE9C7 /* TimelineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B210324C2CD6E005CE9C7 /* TimelineManager.swift */; };
-		526B210B24C2CE66005CE9C7 /* TimelineEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B210A24C2CE66005CE9C7 /* TimelineEntry.swift */; };
-		526B210C24C2CE66005CE9C7 /* TimelineEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B210A24C2CE66005CE9C7 /* TimelineEntry.swift */; };
-		526B210D24C2CE66005CE9C7 /* TimelineEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B210A24C2CE66005CE9C7 /* TimelineEntry.swift */; };
-		526B210E24C2CE66005CE9C7 /* TimelineEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B210A24C2CE66005CE9C7 /* TimelineEntry.swift */; };
-		526B210F24C2CE66005CE9C7 /* TimelineEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B210A24C2CE66005CE9C7 /* TimelineEntry.swift */; };
-		526B211024C2CE66005CE9C7 /* TimelineEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B210A24C2CE66005CE9C7 /* TimelineEntry.swift */; };
+		526B210B24C2CE66005CE9C7 /* TimelineFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B210A24C2CE66005CE9C7 /* TimelineFixture.swift */; };
+		526B210C24C2CE66005CE9C7 /* TimelineFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B210A24C2CE66005CE9C7 /* TimelineFixture.swift */; };
+		526B210D24C2CE66005CE9C7 /* TimelineFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B210A24C2CE66005CE9C7 /* TimelineFixture.swift */; };
+		526B210E24C2CE66005CE9C7 /* TimelineFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B210A24C2CE66005CE9C7 /* TimelineFixture.swift */; };
+		526B210F24C2CE66005CE9C7 /* TimelineFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B210A24C2CE66005CE9C7 /* TimelineFixture.swift */; };
+		526B211024C2CE66005CE9C7 /* TimelineFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B210A24C2CE66005CE9C7 /* TimelineFixture.swift */; };
 		526B211A24C304BC005CE9C7 /* TodayFixtureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B211824C304BC005CE9C7 /* TodayFixtureCollectionViewCell.swift */; };
 		526B211B24C304BC005CE9C7 /* TodayFixtureCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B211824C304BC005CE9C7 /* TodayFixtureCollectionViewCell.swift */; };
 		526B211C24C304BC005CE9C7 /* TodayFixtureCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 526B211924C304BC005CE9C7 /* TodayFixtureCollectionViewCell.xib */; };
@@ -135,27 +135,27 @@
 		5286D3AE236336EE000DADFC /* CurrentGameHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286D3AD236336EE000DADFC /* CurrentGameHost.swift */; };
 		5287A2DD23648E67005EDBA0 /* ResultsListHost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5287A2DC23648E67005EDBA0 /* ResultsListHost.swift */; };
 		528A347820CFB98D00E8475C /* TeamImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A347720CFB98D00E8475C /* TeamImageManager.swift */; };
-		528C5CFA24C9AAB20019DA0F /* TimelineEntry+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C5CF924C9AAB20019DA0F /* TimelineEntry+Date.swift */; };
-		528C5CFB24C9AAB20019DA0F /* TimelineEntry+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C5CF924C9AAB20019DA0F /* TimelineEntry+Date.swift */; };
-		528C5CFC24C9AAB20019DA0F /* TimelineEntry+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C5CF924C9AAB20019DA0F /* TimelineEntry+Date.swift */; };
-		528C5CFD24C9AAB20019DA0F /* TimelineEntry+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C5CF924C9AAB20019DA0F /* TimelineEntry+Date.swift */; };
-		528C5CFE24C9AAB20019DA0F /* TimelineEntry+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C5CF924C9AAB20019DA0F /* TimelineEntry+Date.swift */; };
-		528C5CFF24C9AAB20019DA0F /* TimelineEntry+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C5CF924C9AAB20019DA0F /* TimelineEntry+Date.swift */; };
-		528C5D0024C9AAB20019DA0F /* TimelineEntry+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C5CF924C9AAB20019DA0F /* TimelineEntry+Date.swift */; };
-		528C5D0224C9AAF30019DA0F /* TimelineEntry+Opponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C5D0124C9AAF30019DA0F /* TimelineEntry+Opponent.swift */; };
-		528C5D0324C9AAF30019DA0F /* TimelineEntry+Opponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C5D0124C9AAF30019DA0F /* TimelineEntry+Opponent.swift */; };
-		528C5D0424C9AAF30019DA0F /* TimelineEntry+Opponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C5D0124C9AAF30019DA0F /* TimelineEntry+Opponent.swift */; };
-		528C5D0524C9AAF30019DA0F /* TimelineEntry+Opponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C5D0124C9AAF30019DA0F /* TimelineEntry+Opponent.swift */; };
-		528C5D0624C9AAF30019DA0F /* TimelineEntry+Opponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C5D0124C9AAF30019DA0F /* TimelineEntry+Opponent.swift */; };
-		528C5D0724C9AAF30019DA0F /* TimelineEntry+Opponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C5D0124C9AAF30019DA0F /* TimelineEntry+Opponent.swift */; };
-		528C5D0824C9AAF30019DA0F /* TimelineEntry+Opponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C5D0124C9AAF30019DA0F /* TimelineEntry+Opponent.swift */; };
-		528C5D0A24C9AB750019DA0F /* TimelineEntry+Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C5D0924C9AB750019DA0F /* TimelineEntry+Score.swift */; };
-		528C5D0B24C9AB750019DA0F /* TimelineEntry+Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C5D0924C9AB750019DA0F /* TimelineEntry+Score.swift */; };
-		528C5D0C24C9AB750019DA0F /* TimelineEntry+Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C5D0924C9AB750019DA0F /* TimelineEntry+Score.swift */; };
-		528C5D0D24C9AB750019DA0F /* TimelineEntry+Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C5D0924C9AB750019DA0F /* TimelineEntry+Score.swift */; };
-		528C5D0E24C9AB750019DA0F /* TimelineEntry+Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C5D0924C9AB750019DA0F /* TimelineEntry+Score.swift */; };
-		528C5D0F24C9AB750019DA0F /* TimelineEntry+Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C5D0924C9AB750019DA0F /* TimelineEntry+Score.swift */; };
-		528C5D1024C9AB750019DA0F /* TimelineEntry+Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C5D0924C9AB750019DA0F /* TimelineEntry+Score.swift */; };
+		528C5CFA24C9AAB20019DA0F /* TimelineFixture+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C5CF924C9AAB20019DA0F /* TimelineFixture+Date.swift */; };
+		528C5CFB24C9AAB20019DA0F /* TimelineFixture+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C5CF924C9AAB20019DA0F /* TimelineFixture+Date.swift */; };
+		528C5CFC24C9AAB20019DA0F /* TimelineFixture+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C5CF924C9AAB20019DA0F /* TimelineFixture+Date.swift */; };
+		528C5CFD24C9AAB20019DA0F /* TimelineFixture+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C5CF924C9AAB20019DA0F /* TimelineFixture+Date.swift */; };
+		528C5CFE24C9AAB20019DA0F /* TimelineFixture+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C5CF924C9AAB20019DA0F /* TimelineFixture+Date.swift */; };
+		528C5CFF24C9AAB20019DA0F /* TimelineFixture+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C5CF924C9AAB20019DA0F /* TimelineFixture+Date.swift */; };
+		528C5D0024C9AAB20019DA0F /* TimelineFixture+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C5CF924C9AAB20019DA0F /* TimelineFixture+Date.swift */; };
+		528C5D0224C9AAF30019DA0F /* TimelineFixture+Opponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C5D0124C9AAF30019DA0F /* TimelineFixture+Opponent.swift */; };
+		528C5D0324C9AAF30019DA0F /* TimelineFixture+Opponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C5D0124C9AAF30019DA0F /* TimelineFixture+Opponent.swift */; };
+		528C5D0424C9AAF30019DA0F /* TimelineFixture+Opponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C5D0124C9AAF30019DA0F /* TimelineFixture+Opponent.swift */; };
+		528C5D0524C9AAF30019DA0F /* TimelineFixture+Opponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C5D0124C9AAF30019DA0F /* TimelineFixture+Opponent.swift */; };
+		528C5D0624C9AAF30019DA0F /* TimelineFixture+Opponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C5D0124C9AAF30019DA0F /* TimelineFixture+Opponent.swift */; };
+		528C5D0724C9AAF30019DA0F /* TimelineFixture+Opponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C5D0124C9AAF30019DA0F /* TimelineFixture+Opponent.swift */; };
+		528C5D0824C9AAF30019DA0F /* TimelineFixture+Opponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C5D0124C9AAF30019DA0F /* TimelineFixture+Opponent.swift */; };
+		528C5D0A24C9AB750019DA0F /* TimelineFixture+Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C5D0924C9AB750019DA0F /* TimelineFixture+Score.swift */; };
+		528C5D0B24C9AB750019DA0F /* TimelineFixture+Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C5D0924C9AB750019DA0F /* TimelineFixture+Score.swift */; };
+		528C5D0C24C9AB750019DA0F /* TimelineFixture+Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C5D0924C9AB750019DA0F /* TimelineFixture+Score.swift */; };
+		528C5D0D24C9AB750019DA0F /* TimelineFixture+Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C5D0924C9AB750019DA0F /* TimelineFixture+Score.swift */; };
+		528C5D0E24C9AB750019DA0F /* TimelineFixture+Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C5D0924C9AB750019DA0F /* TimelineFixture+Score.swift */; };
+		528C5D0F24C9AB750019DA0F /* TimelineFixture+Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C5D0924C9AB750019DA0F /* TimelineFixture+Score.swift */; };
+		528C5D1024C9AB750019DA0F /* TimelineFixture+Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C5D0924C9AB750019DA0F /* TimelineFixture+Score.swift */; };
 		528D745A1CF2F4A400263685 /* DefaultPreferences.plist in Resources */ = {isa = PBXBuildFile; fileRef = 528D74591CF2F4A400263685 /* DefaultPreferences.plist */; };
 		528D745C1CF3201400263685 /* whistleshort.wav in Resources */ = {isa = PBXBuildFile; fileRef = 528D745B1CF3201400263685 /* whistleshort.wav */; };
 		5297C9E42156538800AB5D0F /* matches.json in Resources */ = {isa = PBXBuildFile; fileRef = 52236AEA1D17ECB4004903AB /* matches.json */; };
@@ -383,7 +383,7 @@
 		5257E8C41CDB978700157CED /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		5259F9031CDA1292009C2AA8 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		526B210324C2CD6E005CE9C7 /* TimelineManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineManager.swift; sourceTree = "<group>"; };
-		526B210A24C2CE66005CE9C7 /* TimelineEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineEntry.swift; sourceTree = "<group>"; };
+		526B210A24C2CE66005CE9C7 /* TimelineFixture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineFixture.swift; sourceTree = "<group>"; };
 		526B211124C2EF54005CE9C7 /* MockDataManagers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataManagers.swift; sourceTree = "<group>"; };
 		526B211824C304BC005CE9C7 /* TodayFixtureCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayFixtureCollectionViewCell.swift; sourceTree = "<group>"; };
 		526B211924C304BC005CE9C7 /* TodayFixtureCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodayFixtureCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -406,9 +406,9 @@
 		5286D3AD236336EE000DADFC /* CurrentGameHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentGameHost.swift; sourceTree = "<group>"; };
 		5287A2DC23648E67005EDBA0 /* ResultsListHost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsListHost.swift; sourceTree = "<group>"; };
 		528A347720CFB98D00E8475C /* TeamImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamImageManager.swift; sourceTree = "<group>"; };
-		528C5CF924C9AAB20019DA0F /* TimelineEntry+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimelineEntry+Date.swift"; sourceTree = "<group>"; };
-		528C5D0124C9AAF30019DA0F /* TimelineEntry+Opponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimelineEntry+Opponent.swift"; sourceTree = "<group>"; };
-		528C5D0924C9AB750019DA0F /* TimelineEntry+Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimelineEntry+Score.swift"; sourceTree = "<group>"; };
+		528C5CF924C9AAB20019DA0F /* TimelineFixture+Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimelineFixture+Date.swift"; sourceTree = "<group>"; };
+		528C5D0124C9AAF30019DA0F /* TimelineFixture+Opponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimelineFixture+Opponent.swift"; sourceTree = "<group>"; };
+		528C5D0924C9AB750019DA0F /* TimelineFixture+Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimelineFixture+Score.swift"; sourceTree = "<group>"; };
 		528D74561CF1A6FF00263685 /* yeltzland-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "yeltzland-Bridging-Header.h"; sourceTree = "<group>"; };
 		528D74591CF2F4A400263685 /* DefaultPreferences.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DefaultPreferences.plist; sourceTree = "<group>"; };
 		528D745B1CF3201400263685 /* whistleshort.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = whistleshort.wav; sourceTree = "<group>"; };
@@ -657,7 +657,7 @@
 			children = (
 				52236AE51D17DFF8004903AB /* Fixture.swift */,
 				527DAF1E1D2D082C0092BB8F /* Location.swift */,
-				526B210A24C2CE66005CE9C7 /* TimelineEntry.swift */,
+				526B210A24C2CE66005CE9C7 /* TimelineFixture.swift */,
 				5206BC5624CABBA200A927B3 /* Tweet.swift */,
 			);
 			path = Models;
@@ -747,9 +747,9 @@
 		528C5CF824C9AA6C0019DA0F /* Model Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				528C5CF924C9AAB20019DA0F /* TimelineEntry+Date.swift */,
-				528C5D0124C9AAF30019DA0F /* TimelineEntry+Opponent.swift */,
-				528C5D0924C9AB750019DA0F /* TimelineEntry+Score.swift */,
+				528C5CF924C9AAB20019DA0F /* TimelineFixture+Date.swift */,
+				528C5D0124C9AAF30019DA0F /* TimelineFixture+Opponent.swift */,
+				528C5D0924C9AB750019DA0F /* TimelineFixture+Score.swift */,
 				5201D3B724CC2E1600726CAD /* Tweet+Date.swift */,
 				5201D3C224CC821E00726CAD /* Tweet+Text.swift */,
 				5201D3C424CD5F1800726CAD /* Tweet+Image.swift */,
@@ -1671,17 +1671,17 @@
 				52E711A11D9CF5C90002446A /* FixtureManager.swift in Sources */,
 				5252775C24C4999100F93050 /* TimelineManager.swift in Sources */,
 				52176BCD1D4B6D5900B7EFAE /* ExtensionDelegate.swift in Sources */,
-				526B210D24C2CE66005CE9C7 /* TimelineEntry.swift in Sources */,
+				526B210D24C2CE66005CE9C7 /* TimelineFixture.swift in Sources */,
 				522C442524C768950018E89A /* ResultView.swift in Sources */,
 				52E711A41D9CF5F40002446A /* Fixture.swift in Sources */,
-				528C5D0424C9AAF30019DA0F /* TimelineEntry+Opponent.swift in Sources */,
+				528C5D0424C9AAF30019DA0F /* TimelineFixture+Opponent.swift in Sources */,
 				5286D3A823631085000DADFC /* AllGamesData.swift in Sources */,
 				5287A2DD23648E67005EDBA0 /* ResultsListHost.swift in Sources */,
 				52176BE01D4B6D7300B7EFAE /* BaseSettings.swift in Sources */,
-				528C5CFC24C9AAB20019DA0F /* TimelineEntry+Date.swift in Sources */,
+				528C5CFC24C9AAB20019DA0F /* TimelineFixture+Date.swift in Sources */,
 				522C442324C764170018E89A /* FixtureView.swift in Sources */,
 				5252775B24C498DD00F93050 /* CurrentGameData.swift in Sources */,
-				528C5D0C24C9AB750019DA0F /* TimelineEntry+Score.swift in Sources */,
+				528C5D0C24C9AB750019DA0F /* TimelineFixture+Score.swift in Sources */,
 				5286D3AC23633145000DADFC /* CurrentGameView.swift in Sources */,
 				522EA44220EA236A00B90146 /* TeamImageManager.swift in Sources */,
 			);
@@ -1692,18 +1692,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				5252774324C42C5400F93050 /* TimelineUnitTests.swift in Sources */,
-				528C5D1024C9AB750019DA0F /* TimelineEntry+Score.swift in Sources */,
+				528C5D1024C9AB750019DA0F /* TimelineFixture+Score.swift in Sources */,
 				5252775824C42DFE00F93050 /* SettingsManager.swift in Sources */,
 				5252775624C42DFE00F93050 /* Location.swift in Sources */,
 				5252775024C42D2C00F93050 /* GameScoreManager.swift in Sources */,
 				5252775524C42DFE00F93050 /* GameSettings.swift in Sources */,
 				5252774F24C42D2800F93050 /* FixtureManager.swift in Sources */,
 				5252775324C42DF400F93050 /* CachedJSONData.swift in Sources */,
-				528C5D0824C9AAF30019DA0F /* TimelineEntry+Opponent.swift in Sources */,
-				5252775124C42D5E00F93050 /* TimelineEntry.swift in Sources */,
+				528C5D0824C9AAF30019DA0F /* TimelineFixture+Opponent.swift in Sources */,
+				5252775124C42D5E00F93050 /* TimelineFixture.swift in Sources */,
 				5252775924C42DFE00F93050 /* TeamImageManager.swift in Sources */,
 				5252775424C42DF800F93050 /* BaseSettings.swift in Sources */,
-				528C5D0024C9AAB20019DA0F /* TimelineEntry+Date.swift in Sources */,
+				528C5D0024C9AAB20019DA0F /* TimelineFixture+Date.swift in Sources */,
 				5252775724C42DFE00F93050 /* LocationManager.swift in Sources */,
 				5252775224C42D6400F93050 /* Fixture.swift in Sources */,
 				5252774A24C42C7500F93050 /* MockDataManagers.swift in Sources */,
@@ -1716,7 +1716,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				522716D022D1BB50008FD210 /* CachedJSONData.swift in Sources */,
-				528C5D0D24C9AB750019DA0F /* TimelineEntry+Score.swift in Sources */,
+				528C5D0D24C9AB750019DA0F /* TimelineFixture+Score.swift in Sources */,
 				525719801FDE8BBB005F1D80 /* FixtureManager.swift in Sources */,
 				5206BC5824CABBA200A927B3 /* Tweet.swift in Sources */,
 				52D8682C1FE92A440041B578 /* TVTwitterCollectionCell.swift in Sources */,
@@ -1724,12 +1724,12 @@
 				525719821FDE8BC2005F1D80 /* GameScoreManager.swift in Sources */,
 				52E77DE81FDEBBB60069FCFB /* TVFixturesDataSource.swift in Sources */,
 				52D8682F1FE933C20041B578 /* VerticallyAlignedLabel.swift in Sources */,
-				528C5D0524C9AAF30019DA0F /* TimelineEntry+Opponent.swift in Sources */,
+				528C5D0524C9AAF30019DA0F /* TimelineFixture+Opponent.swift in Sources */,
 				52D868261FE81B6E0041B578 /* TVFixtureCollectionCell.swift in Sources */,
 				525719761FDE8AE2005F1D80 /* ViewController.swift in Sources */,
 				525719741FDE8AE2005F1D80 /* AppDelegate.swift in Sources */,
-				528C5CFD24C9AAB20019DA0F /* TimelineEntry+Date.swift in Sources */,
-				526B210E24C2CE66005CE9C7 /* TimelineEntry.swift in Sources */,
+				528C5CFD24C9AAB20019DA0F /* TimelineFixture+Date.swift in Sources */,
+				526B210E24C2CE66005CE9C7 /* TimelineFixture.swift in Sources */,
 				5206BC5B24CABC0D00A927B3 /* TwitterDataProvider.swift in Sources */,
 				5206BC5C24CABE8B00A927B3 /* SettingsManager.swift in Sources */,
 				5201D3B924CC2E1600726CAD /* Tweet+Date.swift in Sources */,
@@ -1752,16 +1752,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				52176BB11D4A200400B7EFAE /* GameScoreManager.swift in Sources */,
-				528C5CFB24C9AAB20019DA0F /* TimelineEntry+Date.swift in Sources */,
+				528C5CFB24C9AAB20019DA0F /* TimelineFixture+Date.swift in Sources */,
 				522716CE22D1BB50008FD210 /* CachedJSONData.swift in Sources */,
 				526F54631D214982001EA8D8 /* Fixture.swift in Sources */,
 				526B211B24C304BC005CE9C7 /* TodayFixtureCollectionViewCell.swift in Sources */,
-				526B210C24C2CE66005CE9C7 /* TimelineEntry.swift in Sources */,
+				526B210C24C2CE66005CE9C7 /* TimelineFixture.swift in Sources */,
 				52DBCAA11D4A012E00D35F91 /* GameSettings.swift in Sources */,
 				522716D322D1D4C1008FD210 /* AppColors.swift in Sources */,
 				526B210524C2CD6E005CE9C7 /* TimelineManager.swift in Sources */,
-				528C5D0324C9AAF30019DA0F /* TimelineEntry+Opponent.swift in Sources */,
-				528C5D0B24C9AB750019DA0F /* TimelineEntry+Score.swift in Sources */,
+				528C5D0324C9AAF30019DA0F /* TimelineFixture+Opponent.swift in Sources */,
+				528C5D0B24C9AB750019DA0F /* TimelineFixture+Score.swift in Sources */,
 				52176BB41D4B62DC00B7EFAE /* BaseSettings.swift in Sources */,
 				526F54641D214982001EA8D8 /* FixtureManager.swift in Sources */,
 				526F54551D214705001EA8D8 /* TodayViewController.swift in Sources */,
@@ -1785,7 +1785,7 @@
 				52176BB01D4A1B3200B7EFAE /* GameScoreManager.swift in Sources */,
 				5201D3B424CB1DA300726CAD /* PreviewTwitterDataProvider.swift in Sources */,
 				523C84201CE70806006F1865 /* ChromeActivity.swift in Sources */,
-				528C5CFA24C9AAB20019DA0F /* TimelineEntry+Date.swift in Sources */,
+				528C5CFA24C9AAB20019DA0F /* TimelineFixture+Date.swift in Sources */,
 				522716C422D0D438008FD210 /* AppImages.swift in Sources */,
 				5201D3AF24CB14FE00726CAD /* TwitterTimelineView.swift in Sources */,
 				52B4475522CF316000E745EB /* AppColors.swift in Sources */,
@@ -1795,7 +1795,7 @@
 				52236AE61D17DFF8004903AB /* Fixture.swift in Sources */,
 				5201D3C724CD622F00726CAD /* TweetImagesView.swift in Sources */,
 				526B210424C2CD6E005CE9C7 /* TimelineManager.swift in Sources */,
-				528C5D0A24C9AB750019DA0F /* TimelineEntry+Score.swift in Sources */,
+				528C5D0A24C9AB750019DA0F /* TimelineFixture+Score.swift in Sources */,
 				527DAF1F1D2D082C0092BB8F /* Location.swift in Sources */,
 				5201D3C124CC79E600726CAD /* TweetBodyView.swift in Sources */,
 				527DAF251D2D308F0092BB8F /* LocationAnnotation.swift in Sources */,
@@ -1808,9 +1808,9 @@
 				52E3DF771CD9FA78009F18BD /* AppDelegate.swift in Sources */,
 				527DAF211D2D096B0092BB8F /* LocationManager.swift in Sources */,
 				527DAF231D2D0F550092BB8F /* LocationsViewController.swift in Sources */,
-				526B210B24C2CE66005CE9C7 /* TimelineEntry.swift in Sources */,
+				526B210B24C2CE66005CE9C7 /* TimelineFixture.swift in Sources */,
 				52DA841124D6AD3600E01C25 /* MenuBuilder.swift in Sources */,
-				528C5D0224C9AAF30019DA0F /* TimelineEntry+Opponent.swift in Sources */,
+				528C5D0224C9AAF30019DA0F /* TimelineFixture+Opponent.swift in Sources */,
 				5259F9041CDA1292009C2AA8 /* MainTabBarController.swift in Sources */,
 				5201D3C524CD5F1800726CAD /* Tweet+Image.swift in Sources */,
 				522716CD22D1BB50008FD210 /* CachedJSONData.swift in Sources */,
@@ -1827,16 +1827,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				52EACDB821564466008B8DE5 /* Intent.intentdefinition in Sources */,
-				528C5CFE24C9AAB20019DA0F /* TimelineEntry+Date.swift in Sources */,
+				528C5CFE24C9AAB20019DA0F /* TimelineFixture+Date.swift in Sources */,
 				52EACDC6215646DA008B8DE5 /* BaseSettings.swift in Sources */,
 				52EACDBE215646C7008B8DE5 /* FixtureManager.swift in Sources */,
-				526B210F24C2CE66005CE9C7 /* TimelineEntry.swift in Sources */,
+				526B210F24C2CE66005CE9C7 /* TimelineFixture.swift in Sources */,
 				52D8C9C622D9D685006FCAB9 /* NextGameIntentHandler.swift in Sources */,
 				52EACDC2215646D0008B8DE5 /* GameScoreManager.swift in Sources */,
 				52EACDC0215646CD008B8DE5 /* Fixture.swift in Sources */,
 				52EACD9A215643FB008B8DE5 /* IntentHandler.swift in Sources */,
-				528C5D0624C9AAF30019DA0F /* TimelineEntry+Opponent.swift in Sources */,
-				528C5D0E24C9AB750019DA0F /* TimelineEntry+Score.swift in Sources */,
+				528C5D0624C9AAF30019DA0F /* TimelineFixture+Opponent.swift in Sources */,
+				528C5D0E24C9AB750019DA0F /* TimelineFixture+Score.swift in Sources */,
 				522716D122D1BB50008FD210 /* CachedJSONData.swift in Sources */,
 				52EACDBB21564586008B8DE5 /* LatestScoreIntentHandler.swift in Sources */,
 				52EACDC4215646D3008B8DE5 /* GameSettings.swift in Sources */,
@@ -1848,16 +1848,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				52EACDBF215646C8008B8DE5 /* FixtureManager.swift in Sources */,
-				528C5CFF24C9AAB20019DA0F /* TimelineEntry+Date.swift in Sources */,
+				528C5CFF24C9AAB20019DA0F /* TimelineFixture+Date.swift in Sources */,
 				522716D222D1BB50008FD210 /* CachedJSONData.swift in Sources */,
 				52EACDC3215646D0008B8DE5 /* GameScoreManager.swift in Sources */,
-				526B211024C2CE66005CE9C7 /* TimelineEntry.swift in Sources */,
+				526B211024C2CE66005CE9C7 /* TimelineFixture.swift in Sources */,
 				52EACDC5215646D3008B8DE5 /* GameSettings.swift in Sources */,
 				522716D422D1E3FC008FD210 /* AppColors.swift in Sources */,
 				52EACDB921564467008B8DE5 /* Intent.intentdefinition in Sources */,
 				52EACDC7215646DA008B8DE5 /* BaseSettings.swift in Sources */,
-				528C5D0724C9AAF30019DA0F /* TimelineEntry+Opponent.swift in Sources */,
-				528C5D0F24C9AB750019DA0F /* TimelineEntry+Score.swift in Sources */,
+				528C5D0724C9AAF30019DA0F /* TimelineFixture+Opponent.swift in Sources */,
+				528C5D0F24C9AB750019DA0F /* TimelineFixture+Score.swift in Sources */,
 				52EACDA5215643FC008B8DE5 /* IntentViewController.swift in Sources */,
 				5252774D24C42D1600F93050 /* TeamImageManager.swift in Sources */,
 				52EACDC1215646CE008B8DE5 /* Fixture.swift in Sources */,

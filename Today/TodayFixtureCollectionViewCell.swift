@@ -19,7 +19,7 @@ class TodayFixtureCollectionViewCell: UICollectionViewCell {
         // Initialization code
     }
     
-    public func updateData(_ entry: TimelineEntry) {
+    public func updateData(_ entry: TimelineFixture) {
         
         self.opponentLabel.text = entry.opponentPlusHomeAway
 

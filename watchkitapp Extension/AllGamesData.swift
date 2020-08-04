@@ -16,7 +16,7 @@ class AllGamesData: ObservableObject {
         case loaded
     }
     
-    @Published var games: [TimelineEntry] = []
+    @Published var games: [TimelineFixture] = []
     @Published var logos: [String: UIImage] = [:]
     @Published var title: String = ""
     @Published var state = State.isLoading
@@ -86,7 +86,7 @@ class AllGamesData: ObservableObject {
         return Image("blank_team")
     }
     
-    func resultColor(_ fixture: TimelineEntry) -> Color {
+    func resultColor(_ fixture: TimelineFixture) -> Color {
         switch fixture.result {
         case .win:
             return Color("watch-fixture-win")
@@ -116,13 +116,13 @@ class AllGamesData: ObservableObject {
     }
     
     fileprivate func resetData() {
-        var newFixtures: [TimelineEntry] = []
-        var newResults: [TimelineEntry] = []
+        var newFixtures: [TimelineFixture] = []
+        var newResults: [TimelineFixture] = []
 
         for fixture in self.fixtureManager.allMatches {
             if fixture.teamScore == nil && fixture.opponentScore == nil {
                 newFixtures.append(
-                    TimelineEntry(opponent: fixture.opponent,
+                    TimelineFixture(opponent: fixture.opponent,
                                   home: fixture.home,
                                   date: fixture.fixtureDate,
                                   teamScore: fixture.teamScore,
@@ -131,7 +131,7 @@ class AllGamesData: ObservableObject {
                 )
             } else {
                 newResults.append(
-                    TimelineEntry(opponent: fixture.opponent,
+                    TimelineFixture(opponent: fixture.opponent,
                                   home: fixture.home,
                                   date: fixture.fixtureDate,
                                   teamScore: fixture.teamScore,

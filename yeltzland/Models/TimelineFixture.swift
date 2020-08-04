@@ -1,5 +1,5 @@
 //
-//  TimelineEntry.swift
+//  TimelineFixture.swift
 //  yeltzland
 //
 //  Created by John Pollard on 18/07/2020.
@@ -8,28 +8,28 @@
 
 import Foundation
 
-public enum TimelineEntryStatus {
+public enum TimelineFixtureStatus {
     case result
     case inProgress
     case fixture
 }
 
-public enum TimelineEntryResult {
+public enum TimelineFixtureResult {
     case win
     case draw
     case lose
     case notFinished
 }
 
-public struct TimelineEntry: Equatable, Hashable {
+public struct TimelineFixture: Equatable, Hashable {
     var opponent: String
     var home: Bool
     var date: Date
     var teamScore: Int?
     var opponentScore: Int?
-    var status: TimelineEntryStatus
+    var status: TimelineFixtureStatus
     
-    init(opponent: String, home: Bool, date: Date, teamScore: Int?, opponentScore: Int?, status: TimelineEntryStatus) {
+    init(opponent: String, home: Bool, date: Date, teamScore: Int?, opponentScore: Int?, status: TimelineFixtureStatus) {
         self.opponent = opponent
         self.home = home
         self.date = date
@@ -38,7 +38,7 @@ public struct TimelineEntry: Equatable, Hashable {
         self.status = status
     }
 
-    var result: TimelineEntryResult {
+    var result: TimelineFixtureResult {
         if let teamScore = self.teamScore, let opponentScore = self.opponentScore {
             if teamScore > opponentScore {
                 return .win
@@ -52,7 +52,7 @@ public struct TimelineEntry: Equatable, Hashable {
         return .notFinished
     }
     
-    public static func == (lhs: TimelineEntry, rhs: TimelineEntry) -> Bool {
+    public static func == (lhs: TimelineFixture, rhs: TimelineFixture) -> Bool {
         return lhs.opponent == rhs.opponent && lhs.date == rhs.date && lhs.home == rhs.home
     }
 }

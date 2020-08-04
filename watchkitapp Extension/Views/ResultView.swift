@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 
 struct ResultView: View {
-    var fixture: TimelineEntry
+    var fixture: TimelineFixture
     var teamImage: Image
     var resultColor: Color
     
@@ -48,7 +48,7 @@ struct ResultView_Previews: PreviewProvider {
     
     static var previews: some View {
         Group {
-            ResultView(fixture: TimelineEntry(opponent: "Stourbridge",
+            ResultView(fixture: TimelineFixture(opponent: "Stourbridge",
                                                home: true,
                                                date: PreviewFixtureManager.makeDate(daysToAdd: 2),
                                                teamScore: 3,
@@ -58,7 +58,7 @@ struct ResultView_Previews: PreviewProvider {
                         resultColor: Color("watch-fixture-win")
             )
             
-            ResultView(fixture: TimelineEntry(opponent: "Kidderminster Harriers (WSC 2)",
+            ResultView(fixture: TimelineFixture(opponent: "Kidderminster Harriers (WSC 2)",
                                                home: false,
                                                date: PreviewFixtureManager.makeDate(daysToAdd: 0),
                                                teamScore: 1,
@@ -68,7 +68,7 @@ struct ResultView_Previews: PreviewProvider {
                         resultColor: Color("watch-fixture-draw")
             )
             
-            ResultView(fixture: TimelineEntry(opponent: "Stourbridge",
+            ResultView(fixture: TimelineFixture(opponent: "Stourbridge",
                                                home: true,
                                                date: PreviewFixtureManager.makeDate(daysToAdd: -14),
                                                teamScore: 0,

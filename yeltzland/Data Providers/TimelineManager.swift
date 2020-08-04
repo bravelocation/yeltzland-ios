@@ -12,9 +12,9 @@ class TimelineManager {
     private var fixtureManager: TimelineFixtureProvider
     private var gameScoreManager: TimelineGameScoreProvider
     
-    private var lastGame: TimelineEntry?
-    private var currentScore: TimelineEntry?
-    private var nextGames = Array<TimelineEntry>()
+    private var lastGame: TimelineFixture?
+    private var currentScore: TimelineFixture?
+    private var nextGames = Array<TimelineFixture>()
 
     required init(fixtureManager: TimelineFixtureProvider, gameScoreManager: TimelineGameScoreProvider) {
         self.fixtureManager = fixtureManager
@@ -27,9 +27,9 @@ class TimelineManager {
         self.loadLatestData()
     }
     
-    public var timelineEntries: [TimelineEntry] {
-        var firstEntry: TimelineEntry?
-        var secondEntry: TimelineEntry?
+    public var timelineEntries: [TimelineFixture] {
+        var firstEntry: TimelineFixture?
+        var secondEntry: TimelineFixture?
         
         // 1. Get last game, put it into slot 1
         firstEntry = self.lastGame
@@ -73,7 +73,7 @@ class TimelineManager {
         }
         
         // Return the first and second in an array
-        var entries: [TimelineEntry] = []
+        var entries: [TimelineFixture] = []
         if let first = firstEntry {
             entries.append(first)
         }
@@ -90,7 +90,7 @@ class TimelineManager {
 
         if let currentFixture = self.gameScoreManager.currentFixture {
             if currentFixture.inProgress {
-                self.currentScore = TimelineEntry(
+                self.currentScore = TimelineFixture(
                     opponent: currentFixture.opponent,
                     home: currentFixture.home,
                     date: currentFixture.fixtureDate,
@@ -103,7 +103,7 @@ class TimelineManager {
         self.lastGame = nil
         
         if let lastResult = self.fixtureManager.lastGame {
-            self.lastGame = TimelineEntry(
+            self.lastGame = TimelineFixture(
                     opponent: lastResult.opponent,
                     home: lastResult.home,
                     date: lastResult.fixtureDate,
@@ -116,7 +116,7 @@ class TimelineManager {
         self.nextGames.removeAll()
 
         for fixture in self.fixtureManager.nextFixtures(2) {
-           let fixtureData = TimelineEntry(
+           let fixtureData = TimelineFixture(
                opponent: fixture.opponent,
                home: fixture.home,
                date: fixture.fixtureDate,
@@ -127,7 +127,7 @@ class TimelineManager {
         }
     }
     
-    private func daysSinceResult(result: TimelineEntry) -> Int {
+    private func daysSinceResult(result: TimelineFixture) -> Int {
         let dayNumberForResult = FixtureManager.dayNumber(result.date)
         let dayNumberForToday = FixtureManager.dayNumber(Date())
         
