@@ -1,5 +1,5 @@
 //
-//  TimelineEntry+Score.swift
+//  TimelineFixture+Score.swift
 //  yeltzland
 //
 //  Created by John Pollard on 23/07/2020.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension TimelineEntry {
+extension TimelineFixture {
     var score: String {
         get {
             if let teamScore = self.teamScore, let opponentScore = self.opponentScore {

@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 
 struct FixtureView: View {
-    var fixture: TimelineEntry
+    var fixture: TimelineFixture
     var teamImage: Image
     
     let logoDim = CGFloat(40)
@@ -44,7 +44,7 @@ struct FixtureView_Previews: PreviewProvider {
     
     static var previews: some View {
         Group {
-            FixtureView(fixture: TimelineEntry(opponent: "Stourbridge",
+            FixtureView(fixture: TimelineFixture(opponent: "Stourbridge",
                                                home: true,
                                                date: PreviewFixtureManager.makeDate(daysToAdd: 2),
                                                teamScore: nil,
@@ -52,7 +52,7 @@ struct FixtureView_Previews: PreviewProvider {
                                                status: .fixture),
                         teamImage: Image("preview-team"))
             
-            FixtureView(fixture: TimelineEntry(opponent: "Maidenhead United (FAT 2)",
+            FixtureView(fixture: TimelineFixture(opponent: "Maidenhead United (FAT 2)",
                                                home: true,
                                                date: PreviewFixtureManager.makeDate(daysToAdd: 0),
                                                teamScore: nil,

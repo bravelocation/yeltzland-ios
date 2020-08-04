@@ -16,7 +16,7 @@ class TVFixtureCollectionCell: UICollectionViewCell {
     @IBOutlet weak var homeAwayLabel: UILabel!
     @IBOutlet weak var calendarImage: UIImageView!
     
-    func loadData(dataItem: TimelineEntry) {
+    func loadData(dataItem: TimelineFixture) {
         self.opponentLabel.text = dataItem.opponentPlusHomeAway
         self.scoreLabel.text = dataItem.score
         self.dateLabel.text = dataItem.kickoffTime

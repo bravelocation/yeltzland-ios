@@ -16,7 +16,7 @@ class CurrentGameData: ObservableObject {
         case loaded
     }
     
-    @Published var latest: TimelineEntry?
+    @Published var latest: TimelineFixture?
     @Published var teamImage: Image = Image("blank_team")
     @Published var state = State.isLoading
     

@@ -1,5 +1,5 @@
 //
-//  TimelineEntry+Date.swift
+//  TimelineFixture+Date.swift
 //  yeltzland
 //
 //  Created by John Pollard on 23/07/2020.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension TimelineEntry {
+extension TimelineFixture {
     var kickoffTime: String {
         get {
             // Is the game today?
