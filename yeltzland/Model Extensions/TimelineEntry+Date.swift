@@ -30,6 +30,15 @@ extension TimelineEntry {
         }
     }
     
+    var resultKickoffTime: String {
+        get {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "EEE dd MMM"
+                
+            return formatter.string(from: self.date)
+        }
+    }
+    
     var minimalKickoffTime: String {
         get {
            // Is the game today?

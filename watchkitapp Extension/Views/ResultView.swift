@@ -28,7 +28,7 @@ struct ResultView: View {
                 Text(fixture.opponentPlusHomeAway)
                     .fixedSize(horizontal: false, vertical: true)
                     .font(.body)
-                Text(fixture.kickoffTime)
+                Text(fixture.resultKickoffTime)
                     .fixedSize(horizontal: false, vertical: true)
                     .font(.footnote)
                 Text(fixture.score)
