@@ -34,6 +34,7 @@ extension MainTabBarController: NSTouchBarDelegate {
         return touchBar
     }
     
+    //swiftlint:disable:next cyclomatic_complexity
     func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItem.Identifier) -> NSTouchBarItem? {
         let touchBarItem: NSTouchBarItem?
         
