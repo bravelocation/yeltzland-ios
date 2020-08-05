@@ -17,7 +17,7 @@
                BlueprintIdentifier = "52176BB61D4B6D5900B7EFAE"
                BuildableName = "watchkitapp.app"
                BlueprintName = "watchkitapp"
-               ReferencedContainer = "container:yeltzland.xcodeproj">
+               ReferencedContainer = "container:Yeltzland.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -31,7 +31,7 @@
                BlueprintIdentifier = "52E3DF721CD9FA78009F18BD"
                BuildableName = "Yeltzland.app"
                BlueprintName = "Yeltzland"
-               ReferencedContainer = "container:yeltzland.xcodeproj">
+               ReferencedContainer = "container:Yeltzland.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -41,15 +41,6 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "52176BB61D4B6D5900B7EFAE"
-            BuildableName = "watchkitapp.app"
-            BlueprintName = "watchkitapp"
-            ReferencedContainer = "container:yeltzland.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <Testables>
          <TestableReference
             skipped = "NO">
@@ -58,7 +49,7 @@
                BlueprintIdentifier = "5252773F24C42C5400F93050"
                BuildableName = "YeltzlandUnitTests.xctest"
                BlueprintName = "YeltzlandUnitTests"
-               ReferencedContainer = "container:yeltzland.xcodeproj">
+               ReferencedContainer = "container:Yeltzland.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -82,7 +73,7 @@
             BlueprintIdentifier = "52176BB61D4B6D5900B7EFAE"
             BuildableName = "watchkitapp.app"
             BlueprintName = "watchkitapp"
-            ReferencedContainer = "container:yeltzland.xcodeproj">
+            ReferencedContainer = "container:Yeltzland.xcodeproj">
          </BuildableReference>
       </RemoteRunnable>
    </LaunchAction>
@@ -101,7 +92,7 @@
             BlueprintIdentifier = "52176BB61D4B6D5900B7EFAE"
             BuildableName = "watchkitapp.app"
             BlueprintName = "watchkitapp"
-            ReferencedContainer = "container:yeltzland.xcodeproj">
+            ReferencedContainer = "container:Yeltzland.xcodeproj">
          </BuildableReference>
       </RemoteRunnable>
       <MacroExpansion>
@@ -110,7 +101,7 @@
             BlueprintIdentifier = "52176BB61D4B6D5900B7EFAE"
             BuildableName = "watchkitapp.app"
             BlueprintName = "watchkitapp"
-            ReferencedContainer = "container:yeltzland.xcodeproj">
+            ReferencedContainer = "container:Yeltzland.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

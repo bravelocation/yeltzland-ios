@@ -7,6 +7,7 @@
 //
 
 import WatchKit
+import ClockKit
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
