@@ -48,7 +48,26 @@ struct CurrentGameView: View {
         .onAppear {
             self.data.refreshData()
         }
-        .navigationBarTitle(Text(self.data.state == .isLoading ? "Loading... " : "Yeltzland"))
+        .navigationBarTitle(Text(self.navTitle()))
+    }
+    
+    func navTitle() -> String {
+        if self.data.state == .isLoading {
+            return "Loading..."
+        }
+        
+        if let fixture = self.data.latest {
+            switch fixture.status {
+            case .fixture:
+                return "Next game"
+            case .inProgress:
+                return "Latest Score"
+            case .result:
+                return "Result"
+            }
+        }
+        
+        return "Yeltzland"
     }
 }
 
