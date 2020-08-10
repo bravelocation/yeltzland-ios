@@ -85,7 +85,7 @@ class TimelineManager {
     
     // Fetch the latest data
     private func loadLatestData() {
-        // Get last game details
+        // Get current score
         self.currentScore = nil
 
         if let currentFixture = self.gameScoreManager.currentFixture {
@@ -100,6 +100,7 @@ class TimelineManager {
            }
         }
         
+        // Get last game details
         self.lastGame = nil
         
         if let lastResult = self.fixtureManager.lastGame {
