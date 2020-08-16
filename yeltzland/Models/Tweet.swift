@@ -241,7 +241,7 @@ struct Media: Codable, Hashable, TweetEntity {
     }
     
     var linkUrl: String? {
-        return nil
+        return expandedUrl
     }
 }
 
