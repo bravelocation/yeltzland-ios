@@ -110,6 +110,8 @@ class TwitterDataProvider: TwitterDataProviderProtocol {
             session.dataTask(with: request) { data, _, error in
                 if let validData = data, error == nil {
                     
+                    // print(String(decoding: validData, as: UTF8.self))
+                    
                     let formatter = DateFormatter()
                     formatter.dateFormat = "EEE MMM dd HH:mm:ss Z yyyy"
                     

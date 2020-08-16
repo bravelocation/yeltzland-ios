@@ -38,9 +38,9 @@ struct TweetBodyView_Previews: PreviewProvider {
     static var previews: some View {
         TweetBodyView(
         textParts: [
-                TweetPart(text: "1 ", highlight: false),
-                TweetPart(text: "2", highlight: true),
-                TweetPart(text: " 3", highlight: false)
+                TweetPart(text: "1 ", linkUrl: nil),
+                TweetPart(text: "2", linkUrl: "https://yeltzland.net"),
+                TweetPart(text: " 3", linkUrl: nil)
             ]
         )
     }
