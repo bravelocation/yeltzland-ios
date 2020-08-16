@@ -177,6 +177,12 @@
 		52DBCAA11D4A012E00D35F91 /* GameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DBCA9F1D4A012E00D35F91 /* GameSettings.swift */; };
 		52DC9EAF1FC95C9E00AE02F6 /* FirebaseNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DC9EAE1FC95C9E00AE02F6 /* FirebaseNotifications.swift */; };
 		52DC9EB71FC9C30E00AE02F6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52DC9EB61FC9C30E00AE02F6 /* GoogleService-Info.plist */; };
+		52DE636824E909B6000DAA25 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE636724E909B6000DAA25 /* DateHelper.swift */; };
+		52DE636924E909B6000DAA25 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE636724E909B6000DAA25 /* DateHelper.swift */; };
+		52DE636A24E909B6000DAA25 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE636724E909B6000DAA25 /* DateHelper.swift */; };
+		52DE636B24E909B6000DAA25 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE636724E909B6000DAA25 /* DateHelper.swift */; };
+		52DE636C24E909B6000DAA25 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE636724E909B6000DAA25 /* DateHelper.swift */; };
+		52DE636D24E909B6000DAA25 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE636724E909B6000DAA25 /* DateHelper.swift */; };
 		52E261D124D6DE510059D6F8 /* TouchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E261D024D6DE510059D6F8 /* TouchBar.swift */; };
 		52E3DF771CD9FA78009F18BD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E3DF761CD9FA78009F18BD /* AppDelegate.swift */; };
 		52E3DF791CD9FA78009F18BD /* WebPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E3DF781CD9FA78009F18BD /* WebPageViewController.swift */; };
@@ -427,6 +433,7 @@
 		52DBCA9F1D4A012E00D35F91 /* GameSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSettings.swift; sourceTree = "<group>"; };
 		52DC9EAE1FC95C9E00AE02F6 /* FirebaseNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseNotifications.swift; sourceTree = "<group>"; };
 		52DC9EB61FC9C30E00AE02F6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		52DE636724E909B6000DAA25 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		52E261D024D6DE510059D6F8 /* TouchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchBar.swift; sourceTree = "<group>"; };
 		52E3DF731CD9FA78009F18BD /* Yeltzland.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Yeltzland.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52E3DF761CD9FA78009F18BD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -853,6 +860,7 @@
 				52DC9EAE1FC95C9E00AE02F6 /* FirebaseNotifications.swift */,
 				520C09A12157C46100CCC2D8 /* ShortcutManager.swift */,
 				52F9CDB122D6687C00E0FFE8 /* SceneDelegate.swift */,
+				52DE636724E909B6000DAA25 /* DateHelper.swift */,
 			);
 			path = yeltzland;
 			sourceTree = "<group>";
@@ -1131,7 +1139,7 @@
 					52176BB61D4B6D5900B7EFAE = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = W8B3V597R9;
-						LastSwiftMigration = 1100;
+						LastSwiftMigration = 1160;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -1680,6 +1688,7 @@
 				52176BE01D4B6D7300B7EFAE /* BaseSettings.swift in Sources */,
 				528C5CFC24C9AAB20019DA0F /* TimelineFixture+Date.swift in Sources */,
 				522C442324C764170018E89A /* FixtureView.swift in Sources */,
+				52DE636A24E909B6000DAA25 /* DateHelper.swift in Sources */,
 				5252775B24C498DD00F93050 /* CurrentGameData.swift in Sources */,
 				528C5D0C24C9AB750019DA0F /* TimelineFixture+Score.swift in Sources */,
 				5286D3AC23633145000DADFC /* CurrentGameView.swift in Sources */,
@@ -1727,6 +1736,7 @@
 				528C5D0524C9AAF30019DA0F /* TimelineFixture+Opponent.swift in Sources */,
 				52D868261FE81B6E0041B578 /* TVFixtureCollectionCell.swift in Sources */,
 				525719761FDE8AE2005F1D80 /* ViewController.swift in Sources */,
+				52DE636B24E909B6000DAA25 /* DateHelper.swift in Sources */,
 				525719741FDE8AE2005F1D80 /* AppDelegate.swift in Sources */,
 				528C5CFD24C9AAB20019DA0F /* TimelineFixture+Date.swift in Sources */,
 				526B210E24C2CE66005CE9C7 /* TimelineFixture.swift in Sources */,
@@ -1751,6 +1761,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52DE636924E909B6000DAA25 /* DateHelper.swift in Sources */,
 				52176BB11D4A200400B7EFAE /* GameScoreManager.swift in Sources */,
 				528C5CFB24C9AAB20019DA0F /* TimelineFixture+Date.swift in Sources */,
 				522716CE22D1BB50008FD210 /* CachedJSONData.swift in Sources */,
@@ -1781,6 +1792,7 @@
 				52176BB31D4B62DC00B7EFAE /* BaseSettings.swift in Sources */,
 				52E3DF791CD9FA78009F18BD /* WebPageViewController.swift in Sources */,
 				52F9CDB222D6687C00E0FFE8 /* SceneDelegate.swift in Sources */,
+				52DE636824E909B6000DAA25 /* DateHelper.swift in Sources */,
 				52E711AB1D9FB5B70002446A /* MakeToast.swift in Sources */,
 				52176BB01D4A1B3200B7EFAE /* GameScoreManager.swift in Sources */,
 				5201D3B424CB1DA300726CAD /* PreviewTwitterDataProvider.swift in Sources */,
@@ -1826,6 +1838,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52DE636C24E909B6000DAA25 /* DateHelper.swift in Sources */,
 				52EACDB821564466008B8DE5 /* Intent.intentdefinition in Sources */,
 				528C5CFE24C9AAB20019DA0F /* TimelineFixture+Date.swift in Sources */,
 				52EACDC6215646DA008B8DE5 /* BaseSettings.swift in Sources */,
@@ -1847,6 +1860,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52DE636D24E909B6000DAA25 /* DateHelper.swift in Sources */,
 				52EACDBF215646C8008B8DE5 /* FixtureManager.swift in Sources */,
 				528C5CFF24C9AAB20019DA0F /* TimelineFixture+Date.swift in Sources */,
 				522716D222D1BB50008FD210 /* CachedJSONData.swift in Sources */,

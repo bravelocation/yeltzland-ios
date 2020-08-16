@@ -103,11 +103,7 @@ public struct Fixture: Hashable {
     var displayKickoffTime: String {
         get {
             // Is the game today?
-            let now = Date()
-            let currentDayNumber = FixtureManager.dayNumber(now)
-            let fixtureDayNumber = FixtureManager.dayNumber(self.fixtureDate)
-            
-            if (currentDayNumber == fixtureDayNumber) {
+            if (self.isToday) {
                 let formatter = DateFormatter()
                 formatter.dateFormat = "HHmm"
                 
@@ -121,11 +117,7 @@ public struct Fixture: Hashable {
     var fullDisplayKickoffTime: String {
         get {
             // Is the game today?
-            let now = Date()
-            let currentDayNumber = FixtureManager.dayNumber(now)
-            let fixtureDayNumber = FixtureManager.dayNumber(self.fixtureDate)
-            
-            if (currentDayNumber == fixtureDayNumber) {
+            if (self.isToday) {
                 let formatter = DateFormatter()
                 formatter.dateFormat = "HHmm"
                 
@@ -151,11 +143,7 @@ public struct Fixture: Hashable {
             var prefix = ""
             
             // Is the game today?
-            let now = Date()
-            let currentDayNumber = FixtureManager.dayNumber(now)
-            let fixtureDayNumber = FixtureManager.dayNumber(self.fixtureDate)
-            
-            if (currentDayNumber == fixtureDayNumber) {
+            if (self.isToday) {
                 prefix = "at"
                 formatter.dateFormat = "h:mm a"
             } else {
@@ -170,11 +158,7 @@ public struct Fixture: Hashable {
     var tvResultDisplayKickoffTime: String {
         get {
             // Is the game today?
-            let now = Date()
-            let currentDayNumber = FixtureManager.dayNumber(now)
-            let fixtureDayNumber = FixtureManager.dayNumber(self.fixtureDate)
-            
-            if (currentDayNumber == fixtureDayNumber) {
+            if (self.isToday) {
                 let formatter = DateFormatter()
                 formatter.dateFormat = "HHmm"
                 
@@ -290,11 +274,11 @@ public struct Fixture: Hashable {
             
             let now = Date()
             let beforeKickoff = now.compare(self.fixtureDate) == ComparisonResult.orderedAscending
-            let todayDayNumber = FixtureManager.dayNumber(now)
-            let fixtureDayNumber = FixtureManager.dayNumber(self.fixtureDate)
+            let todayDayNumber = DateHelper.dayNumber(now)
+            let fixtureDayNumber = DateHelper.dayNumber(self.fixtureDate)
             
             // If next game is today, and we are before kickoff ...
-            if (todayDayNumber == fixtureDayNumber) {
+            if (self.isToday) {
                 if beforeKickoff {
                     return FixtureState.gameDayBefore
                 }
@@ -315,4 +299,22 @@ public struct Fixture: Hashable {
             }
         }
     }
+    
+    var isToday: Bool {
+        // Is the game today?
+        let now = Date()
+        let currentDayNumber = DateHelper.dayNumber(now)
+        let fixtureDayNumber = DateHelper.dayNumber(self.fixtureDate)
+        
+        return currentDayNumber == fixtureDayNumber
+    }
+}
+
+extension Fixture: Equatable {
+  static public func == (lhs: Fixture, rhs: Fixture) -> Bool {
+    return lhs.opponent == rhs.opponent &&
+        lhs.home == rhs.home &&
+        DateHelper.dayNumber(lhs.fixtureDate) == DateHelper.dayNumber(rhs.fixtureDate) &&
+        DateHelper.hourNumber(lhs.fixtureDate) == DateHelper.hourNumber(rhs.fixtureDate)
+  }
 }

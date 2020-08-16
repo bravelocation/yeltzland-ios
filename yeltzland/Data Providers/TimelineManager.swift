@@ -47,7 +47,7 @@ class TimelineManager {
             if nextGame != self.currentScore {
                 // If the last game was yesterday or today, put it into slot two, otherwise slot one
                 if let lastGame = self.lastGame {
-                    if daysSinceResult(result: lastGame) <= 1 {
+                    if lastGame.daysSinceResult <= 1 {
                         secondEntry = nextGame
                     } else {
                         firstEntry = nextGame
@@ -126,12 +126,5 @@ class TimelineManager {
                status: .fixture)
            self.nextGames.append(fixtureData)
         }
-    }
-    
-    private func daysSinceResult(result: TimelineFixture) -> Int {
-        let dayNumberForResult = FixtureManager.dayNumber(result.date)
-        let dayNumberForToday = FixtureManager.dayNumber(Date())
-        
-        return dayNumberForToday - dayNumberForResult
     }
 }
