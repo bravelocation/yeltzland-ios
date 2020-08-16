@@ -89,11 +89,11 @@ struct TweetView: View {
     }
     
     func openUserTwitterPage() {
-        UIApplication.shared.open(URL(string: "https://twitter.com/\(self.tweet.user.screenName)")!)
+        UIApplication.shared.open(self.tweet.userTwitterUrl)
     }
     
     func openTweetPage() {
-        UIApplication.shared.open(URL(string: "https://twitter.com/\(self.tweet.user.screenName)/status/\(self.tweet.id)")!)
+        UIApplication.shared.open(self.tweet.bodyTwitterUrl)
     }
 }
 

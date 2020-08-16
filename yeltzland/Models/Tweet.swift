@@ -18,6 +18,9 @@ protocol DisplayTweet {
     var quote: DisplayTweet? { get }
     
     var isRetweet: Bool { get }
+    
+    var userTwitterUrl: URL { get }
+    var bodyTwitterUrl: URL { get }
 }
 
 protocol TweetEntity {
@@ -49,6 +52,11 @@ struct Tweet: Codable, Hashable, DisplayTweet {
     
     var isRetweet: Bool { return false }
     var quote: DisplayTweet? { return quotedTweet }
+    var userTwitterUrl: URL { return URL(string: "https://twitter.com/\(self.user.screenName)")! }
+    var bodyTwitterUrl: URL {
+        let tweetUrl = "https://twitter.com/\(self.user.screenName)/status/\(self.id)"
+        return URL(string: tweetUrl)!
+    }
 }
 
 struct Retweet: Codable, Hashable, DisplayTweet {
@@ -72,6 +80,11 @@ struct Retweet: Codable, Hashable, DisplayTweet {
     
     var isRetweet: Bool { return true }
     var quote: DisplayTweet? { return quotedTweet }
+    var userTwitterUrl: URL { return URL(string: "https://twitter.com/\(self.user.screenName)")! }
+    var bodyTwitterUrl: URL {
+        let tweetUrl = "https://twitter.com/\(self.user.screenName)/status/\(self.id)"
+        return URL(string: tweetUrl)!
+    }
 }
 
 struct QuotedTweet: Codable, Hashable, DisplayTweet {
@@ -93,6 +106,11 @@ struct QuotedTweet: Codable, Hashable, DisplayTweet {
     
     var isRetweet: Bool { return false }
     var quote: DisplayTweet? { return nil }
+    var userTwitterUrl: URL { return URL(string: "https://twitter.com/\(self.user.screenName)")! }
+    var bodyTwitterUrl: URL {
+        let tweetUrl = "https://twitter.com/\(self.user.screenName)/status/\(self.id)"
+        return URL(string: tweetUrl)!
+    }
 }
 
 struct User: Codable, Hashable {
@@ -184,7 +202,7 @@ struct UserMention: Codable, Hashable, TweetEntity {
     }
     
     var linkUrl: String? {
-        return "https://twitter.com/\(self.name)"
+        return "https://twitter.com/\(self.screenName)"
     }
 }
 
@@ -223,7 +241,7 @@ struct Media: Codable, Hashable, TweetEntity {
     }
     
     var linkUrl: String? {
-        return self.expandedUrl
+        return nil
     }
 }
 
