@@ -23,6 +23,7 @@ protocol DisplayTweet {
 protocol TweetEntity {
     var indices: [Int] { get }
     var displayText: String { get }
+    var linkUrl: String? { get }
 }
 
 struct Tweet: Codable, Hashable, DisplayTweet {
@@ -131,6 +132,10 @@ struct Hashtag: Codable, Hashable, TweetEntity {
     var displayText: String {
         return "#\(self.text)"
     }
+    
+    var linkUrl: String? {
+        return "https://twitter.com/hashtag/\(self.text)"
+    }
 }
 
 struct TweetUrl: Codable, Hashable, TweetEntity {
@@ -155,6 +160,10 @@ struct TweetUrl: Codable, Hashable, TweetEntity {
         
         return self.expandedUrl
     }
+    
+    var linkUrl: String? {
+        return self.displayText
+    }
 }
 
 struct UserMention: Codable, Hashable, TweetEntity {
@@ -173,6 +182,10 @@ struct UserMention: Codable, Hashable, TweetEntity {
     var displayText: String {
         return "@\(self.screenName)"
     }
+    
+    var linkUrl: String? {
+        return "https://twitter.com/\(self.name)"
+    }
 }
 
 struct TweetSymbol: Codable, Hashable, TweetEntity {
@@ -181,6 +194,10 @@ struct TweetSymbol: Codable, Hashable, TweetEntity {
     
     var displayText: String {
         return "$\(self.text)"
+    }
+    
+    var linkUrl: String? {
+        return nil
     }
 }
 
@@ -203,6 +220,10 @@ struct Media: Codable, Hashable, TweetEntity {
     
     var displayText: String {
         return "" // Hide the media URL in the tweet, as we will load images directly
+    }
+    
+    var linkUrl: String? {
+        return self.expandedUrl
     }
 }
 
