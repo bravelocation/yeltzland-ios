@@ -12,11 +12,7 @@ extension TimelineFixture {
     var kickoffTime: String {
         get {
             // Is the game today?
-            let now = Date()
-            let currentDayNumber = FixtureManager.dayNumber(now)
-            let fixtureDayNumber = FixtureManager.dayNumber(self.date)
-            
-            if (currentDayNumber == fixtureDayNumber) {
+            if (self.isToday) {
                 let formatter = DateFormatter()
                 formatter.dateFormat = "HH:mm"
                 
@@ -42,11 +38,7 @@ extension TimelineFixture {
     var minimalKickoffTime: String {
         get {
            // Is the game today?
-           let now = Date()
-           let currentDayNumber = FixtureManager.dayNumber(now)
-           let fixtureDayNumber = FixtureManager.dayNumber(self.date)
-           
-           if (currentDayNumber == fixtureDayNumber) {
+           if (self.isToday) {
                let formatter = DateFormatter()
                formatter.dateFormat = "HHmm"
                
@@ -58,5 +50,21 @@ extension TimelineFixture {
                return formatter.string(from: self.date)
            }
         }
+    }
+    
+    var isToday: Bool {
+        // Is the game today?
+        let now = Date()
+        let currentDayNumber = DateHelper.dayNumber(now)
+        let fixtureDayNumber = DateHelper.dayNumber(self.date)
+        
+        return currentDayNumber == fixtureDayNumber
+    }
+    
+    var daysSinceResult: Int {
+        let dayNumberForResult = DateHelper.dayNumber(self.date)
+        let dayNumberForToday = DateHelper.dayNumber(Date())
+        
+        return dayNumberForToday - dayNumberForResult
     }
 }

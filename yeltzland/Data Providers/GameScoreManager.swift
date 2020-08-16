@@ -82,9 +82,8 @@ public class GameScoreManager: CachedJSONData, TimelineGameScoreProvider {
             // Is the game in progress?
             
             if let nextFixture = FixtureManager.shared.nextGame {
-                if (FixtureManager.dayNumber(nextFixture.fixtureDate) == FixtureManager.dayNumber(fixture.fixtureDate) &&
-                    FixtureManager.hourNumber(nextFixture.fixtureDate) == FixtureManager.hourNumber(fixture.fixtureDate)) {
-                    // If current score is on same day and hour as next fixture, then we are in progress
+                if (nextFixture == fixture) {
+                    // If same game
                     self.currentFixture = Fixture(date: fixture.fixtureDate,
                                                   opponent: fixture.opponent,
                                                   home: fixture.home,
