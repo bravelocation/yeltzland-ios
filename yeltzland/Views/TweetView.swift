@@ -63,17 +63,13 @@ struct TweetView: View {
                     
                     TweetBodyView(textParts: self.tweet.textParts)
                         .padding([.top, .bottom], 8)
-                        .onTapGesture {
-                            self.openTweetPage()
-                        }
                 
                     if self.tweet.allMedia.isEmpty == false {
                         TweetImagesView(mediaParts: self.tweet.allMedia)
                             .padding([.bottom], 8)
-                            .onTapGesture {
-                                self.openTweetPage()
-                            }
                     }
+                }.onTapGesture {
+                    self.openTweetPage()
                 }
             }
             
