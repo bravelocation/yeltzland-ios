@@ -29,6 +29,7 @@ struct PullToRefreshTwitterTimelineView: UIViewRepresentable {
     func makeUIView(context: Context) -> UIScrollView {
         let control = UIScrollView()
         control.refreshControl = UIRefreshControl()
+        control.tintColor = UIColor(named: "blue-tint")!
         control.refreshControl?.addTarget(context.coordinator, action: #selector(Coordinator.handleRefreshControl), for: .valueChanged)
 
         let childView = UIHostingController(rootView: TwitterTimelineView().environmentObject(self.tweetData))

@@ -23,13 +23,10 @@ struct TwitterTimelineView: View {
             }
             
             if self.tweetData.state == .isLoading {
-                VStack {
-                    Text("Loading...")
-                    ActivityIndicator(isAnimating: .constant(true), style: .large)
-                }
-                .padding()
-                .foregroundColor(Color("blue-tint"))
-
+                ActivityIndicator(
+                    isAnimating: .constant(true),
+                    style: .large,
+                    color: UIColor(named: "blue-tint"))
             }
             
         }
