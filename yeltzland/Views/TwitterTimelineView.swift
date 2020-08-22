@@ -15,16 +15,23 @@ struct TwitterTimelineView: View {
     @EnvironmentObject var tweetData: TweetData
         
     var body: some View {
-        Group {
-            if self.tweetData.state == .isLoading {
-                Text("Loading ...").padding()
-            } else {
-                List(self.tweetData.tweets, id: \.self) { tweet in
-                    TweetView(
-                        tweet: tweet.retweet ?? tweet
-                    ).padding([.top, .bottom], 8)
-                }
+        ZStack {
+            List(self.tweetData.tweets, id: \.self) { tweet in
+                TweetView(
+                    tweet: tweet.retweet ?? tweet
+                ).padding([.top, .bottom], 8)
             }
+            
+            if self.tweetData.state == .isLoading {
+                VStack {
+                    Text("Loading...")
+                    ActivityIndicator(isAnimating: .constant(true), style: .large)
+                }
+                .padding()
+                .foregroundColor(Color("blue-tint"))
+
+            }
+            
         }
         .frame(maxWidth: 800)
         .onAppear {
