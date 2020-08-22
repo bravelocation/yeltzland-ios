@@ -222,6 +222,9 @@
 		52EACDC6215646DA008B8DE5 /* BaseSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52176BB21D4B62DC00B7EFAE /* BaseSettings.swift */; };
 		52EACDC7215646DA008B8DE5 /* BaseSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52176BB21D4B62DC00B7EFAE /* BaseSettings.swift */; };
 		52F9CDB222D6687C00E0FFE8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F9CDB122D6687C00E0FFE8 /* SceneDelegate.swift */; };
+		52FA7EBF24F1043E001A3F8C /* LoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FA7EBE24F1043E001A3F8C /* LoadingIndicator.swift */; };
+		52FA7EC124F106C7001A3F8C /* PullToRefreshTwitterTimelineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FA7EC024F106C7001A3F8C /* PullToRefreshTwitterTimelineView.swift */; };
+		52FA7EC324F110E3001A3F8C /* TwitterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FA7EC224F110E3001A3F8C /* TwitterView.swift */; };
 		937784A0FE49B904B7681F19 /* Pods_LatestScoreIntentUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1EB3CDB05AFB690D5D25630 /* Pods_LatestScoreIntentUI.framework */; };
 		A3EF45D9812E6A2A28C1480B /* Pods_YeltzlandTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92283CF6BA4404FBD866C82C /* Pods_YeltzlandTVOS.framework */; };
 		D40132971269818EC46584B4 /* Pods_Yeltzland.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0169FC4AAE3B4FA55E081580 /* Pods_Yeltzland.framework */; };
@@ -457,6 +460,9 @@
 		52EACDBA21564586008B8DE5 /* LatestScoreIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestScoreIntentHandler.swift; sourceTree = "<group>"; };
 		52EBCF472340A1C300A2157A /* yeltzlandTVOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = yeltzlandTVOS.entitlements; sourceTree = "<group>"; };
 		52F9CDB122D6687C00E0FFE8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		52FA7EBE24F1043E001A3F8C /* LoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicator.swift; sourceTree = "<group>"; };
+		52FA7EC024F106C7001A3F8C /* PullToRefreshTwitterTimelineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullToRefreshTwitterTimelineView.swift; sourceTree = "<group>"; };
+		52FA7EC224F110E3001A3F8C /* TwitterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterView.swift; sourceTree = "<group>"; };
 		684F68C317E1474E04B3AA97 /* Pods-YeltzlandUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YeltzlandUnitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-YeltzlandUnitTests/Pods-YeltzlandUnitTests.release.xcconfig"; sourceTree = "<group>"; };
 		6B5F6576A847D7567A17C4BF /* Pods-YeltzlandTVOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YeltzlandTVOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YeltzlandTVOS/Pods-YeltzlandTVOS.debug.xcconfig"; sourceTree = "<group>"; };
 		6C2886E0C6D579332BF2A5A8 /* Pods-yeltzland.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yeltzland.debug.xcconfig"; path = "Pods/Target Support Files/Pods-yeltzland/Pods-yeltzland.debug.xcconfig"; sourceTree = "<group>"; };
@@ -581,6 +587,9 @@
 				5201D3C624CD622F00726CAD /* TweetImagesView.swift */,
 				5201D3AE24CB14FE00726CAD /* TwitterTimelineView.swift */,
 				5201D3B524CC246000726CAD /* TweetView.swift */,
+				52FA7EBE24F1043E001A3F8C /* LoadingIndicator.swift */,
+				52FA7EC024F106C7001A3F8C /* PullToRefreshTwitterTimelineView.swift */,
+				52FA7EC224F110E3001A3F8C /* TwitterView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1793,6 +1802,7 @@
 				52E3DF791CD9FA78009F18BD /* WebPageViewController.swift in Sources */,
 				52F9CDB222D6687C00E0FFE8 /* SceneDelegate.swift in Sources */,
 				52DE636824E909B6000DAA25 /* DateHelper.swift in Sources */,
+				52FA7EBF24F1043E001A3F8C /* LoadingIndicator.swift in Sources */,
 				52E711AB1D9FB5B70002446A /* MakeToast.swift in Sources */,
 				52176BB01D4A1B3200B7EFAE /* GameScoreManager.swift in Sources */,
 				5201D3B424CB1DA300726CAD /* PreviewTwitterDataProvider.swift in Sources */,
@@ -1827,8 +1837,10 @@
 				5201D3C524CD5F1800726CAD /* Tweet+Image.swift in Sources */,
 				522716CD22D1BB50008FD210 /* CachedJSONData.swift in Sources */,
 				527DAF1B1D2BA9BA0092BB8F /* SafariActivity.swift in Sources */,
+				52FA7EC324F110E3001A3F8C /* TwitterView.swift in Sources */,
 				5236ECDB20CE99B80067AFFA /* LatestScoreViewController.swift in Sources */,
 				52EACDB721564462008B8DE5 /* Intent.intentdefinition in Sources */,
+				52FA7EC124F106C7001A3F8C /* PullToRefreshTwitterTimelineView.swift in Sources */,
 				52236AEE1D1803C8004903AB /* FixturesTableViewController.swift in Sources */,
 				5206BC5A24CABC0D00A927B3 /* TwitterDataProvider.swift in Sources */,
 			);
