@@ -44,6 +44,7 @@ class TweetData: ObservableObject {
     }
     
     public func refreshData() {
+        print("Refreshing tweet data ...")
         self.setState(.isLoading)
         self.dataProvider.refreshData()
     }

@@ -283,7 +283,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
                 accountName: twitterAccountName
             )
             let tweetData = TweetData(dataProvider: twitterDataProvider, accountName: twitterAccountName)
-            let twitterViewController = UIHostingController(rootView: TwitterTimelineView().environmentObject(tweetData))
+            let twitterViewController = UIHostingController(rootView: TwitterView().environmentObject(tweetData))
             
             twitterNavigationController = UINavigationController(rootViewController: twitterViewController)
             twitterNavigationController?.tabBarItem = twitterIcon
