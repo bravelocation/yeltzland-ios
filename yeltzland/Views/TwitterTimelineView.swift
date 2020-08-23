@@ -20,6 +20,8 @@ struct TwitterTimelineView: View {
                 TweetView(
                     tweet: tweet.retweet ?? tweet
                 ).padding([.top, .bottom], 8)
+            }.onAppear {
+                UITableView.appearance().separatorStyle = .none
             }
             
             if self.tweetData.state == .isLoading {
