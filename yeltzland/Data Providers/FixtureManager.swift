@@ -189,30 +189,15 @@ public class FixtureManager: CachedJSONData, TimelineFixtureProvider {
         return nil
     }
     
-    public static func dayNumber(_ date: Date) -> Int {
-        // Removes the time components from a date
-        let calendar = Calendar.current
-        let unitFlags: NSCalendar.Unit = [.day, .month, .year]
-        let startOfDayComponents = (calendar as NSCalendar).components(unitFlags, from: date)
-        let startOfDay = calendar.date(from: startOfDayComponents)
-        let intervalToStaryOfDay = startOfDay!.timeIntervalSince1970
-        let daysDifference = floor(intervalToStaryOfDay) / 86400  // Number of seconds per day = 60 * 60 * 24 = 86400
-        return Int(daysDifference)
-    }
-    
-    public static func hourNumber(_ date: Date) -> Int {
-        return Calendar.current.component(.hour, from: date)
-    }
-    
     // MARK: - TimelineFixtureProvider implementation
     public func nextFixtures(_ numberOfFixtures: Int) -> [Fixture] {
         var fixtures: [Fixture] = []
-        let currentDayNumber = FixtureManager.dayNumber(Date())
+        let currentDayNumber = DateHelper.dayNumber(Date())
         
         for month in self.months {
             if let monthFixtures = self.fixturesForMonth(month) {
                 for fixture in monthFixtures {
-                    let matchDayNumber = FixtureManager.dayNumber(fixture.fixtureDate as Date)
+                    let matchDayNumber = DateHelper.dayNumber(fixture.fixtureDate as Date)
                     
                     // If no score and match is not before today
                     if (fixture.teamScore == nil && fixture.opponentScore == nil && currentDayNumber <= matchDayNumber) {

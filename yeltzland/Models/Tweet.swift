@@ -18,11 +18,15 @@ protocol DisplayTweet {
     var quote: DisplayTweet? { get }
     
     var isRetweet: Bool { get }
+    
+    var userTwitterUrl: URL { get }
+    var bodyTwitterUrl: URL { get }
 }
 
 protocol TweetEntity {
     var indices: [Int] { get }
     var displayText: String { get }
+    var linkUrl: String? { get }
 }
 
 struct Tweet: Codable, Hashable, DisplayTweet {
@@ -48,6 +52,11 @@ struct Tweet: Codable, Hashable, DisplayTweet {
     
     var isRetweet: Bool { return false }
     var quote: DisplayTweet? { return quotedTweet }
+    var userTwitterUrl: URL { return URL(string: "https://twitter.com/\(self.user.screenName)")! }
+    var bodyTwitterUrl: URL {
+        let tweetUrl = "https://twitter.com/\(self.user.screenName)/status/\(self.id)"
+        return URL(string: tweetUrl)!
+    }
 }
 
 struct Retweet: Codable, Hashable, DisplayTweet {
@@ -71,6 +80,11 @@ struct Retweet: Codable, Hashable, DisplayTweet {
     
     var isRetweet: Bool { return true }
     var quote: DisplayTweet? { return quotedTweet }
+    var userTwitterUrl: URL { return URL(string: "https://twitter.com/\(self.user.screenName)")! }
+    var bodyTwitterUrl: URL {
+        let tweetUrl = "https://twitter.com/\(self.user.screenName)/status/\(self.id)"
+        return URL(string: tweetUrl)!
+    }
 }
 
 struct QuotedTweet: Codable, Hashable, DisplayTweet {
@@ -92,6 +106,11 @@ struct QuotedTweet: Codable, Hashable, DisplayTweet {
     
     var isRetweet: Bool { return false }
     var quote: DisplayTweet? { return nil }
+    var userTwitterUrl: URL { return URL(string: "https://twitter.com/\(self.user.screenName)")! }
+    var bodyTwitterUrl: URL {
+        let tweetUrl = "https://twitter.com/\(self.user.screenName)/status/\(self.id)"
+        return URL(string: tweetUrl)!
+    }
 }
 
 struct User: Codable, Hashable {
@@ -131,6 +150,10 @@ struct Hashtag: Codable, Hashable, TweetEntity {
     var displayText: String {
         return "#\(self.text)"
     }
+    
+    var linkUrl: String? {
+        return "https://twitter.com/hashtag/\(self.text)"
+    }
 }
 
 struct TweetUrl: Codable, Hashable, TweetEntity {
@@ -155,6 +178,10 @@ struct TweetUrl: Codable, Hashable, TweetEntity {
         
         return self.expandedUrl
     }
+    
+    var linkUrl: String? {
+        return self.displayText
+    }
 }
 
 struct UserMention: Codable, Hashable, TweetEntity {
@@ -173,6 +200,10 @@ struct UserMention: Codable, Hashable, TweetEntity {
     var displayText: String {
         return "@\(self.screenName)"
     }
+    
+    var linkUrl: String? {
+        return "https://twitter.com/\(self.screenName)"
+    }
 }
 
 struct TweetSymbol: Codable, Hashable, TweetEntity {
@@ -181,6 +212,10 @@ struct TweetSymbol: Codable, Hashable, TweetEntity {
     
     var displayText: String {
         return "$\(self.text)"
+    }
+    
+    var linkUrl: String? {
+        return nil
     }
 }
 
@@ -203,6 +238,10 @@ struct Media: Codable, Hashable, TweetEntity {
     
     var displayText: String {
         return "" // Hide the media URL in the tweet, as we will load images directly
+    }
+    
+    var linkUrl: String? {
+        return expandedUrl
     }
 }
 

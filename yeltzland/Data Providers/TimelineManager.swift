@@ -47,7 +47,7 @@ class TimelineManager {
             if nextGame != self.currentScore {
                 // If the last game was yesterday or today, put it into slot two, otherwise slot one
                 if let lastGame = self.lastGame {
-                    if daysSinceResult(result: lastGame) <= 1 {
+                    if lastGame.daysSinceResult <= 1 {
                         secondEntry = nextGame
                     } else {
                         firstEntry = nextGame
@@ -85,7 +85,7 @@ class TimelineManager {
     
     // Fetch the latest data
     private func loadLatestData() {
-        // Get last game details
+        // Get current score
         self.currentScore = nil
 
         if let currentFixture = self.gameScoreManager.currentFixture {
@@ -100,6 +100,7 @@ class TimelineManager {
            }
         }
         
+        // Get last game details
         self.lastGame = nil
         
         if let lastResult = self.fixtureManager.lastGame {
@@ -125,12 +126,5 @@ class TimelineManager {
                status: .fixture)
            self.nextGames.append(fixtureData)
         }
-    }
-    
-    private func daysSinceResult(result: TimelineFixture) -> Int {
-        let dayNumberForResult = FixtureManager.dayNumber(result.date)
-        let dayNumberForToday = FixtureManager.dayNumber(Date())
-        
-        return dayNumberForToday - dayNumberForResult
     }
 }

@@ -139,10 +139,10 @@ extension CachedJSONData {
     }
     
     public func fetchLatestData(completion: ((Result<Bool, JSONDataError>) -> Void)?) {
-        let urlRequest = URLRequest(url: self.remoteURL, cachePolicy: NSURLRequest.CachePolicy.useProtocolCachePolicy, timeoutInterval: 60.0)
+        let urlRequest = URLRequest(url: self.remoteURL, cachePolicy: NSURLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData, timeoutInterval: 30.0)
         
         let config = URLSessionConfiguration.default
-        config.requestCachePolicy = .reloadIgnoringLocalCacheData
+        config.requestCachePolicy = .reloadIgnoringLocalAndRemoteCacheData
         config.urlCache = nil
         
         let session = URLSession.init(configuration: config)

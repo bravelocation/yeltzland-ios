@@ -10,7 +10,11 @@ import Foundation
 
 struct TweetPart {
     var text: String
-    var highlight: Bool
+    var linkUrl: String?
+    
+    var highlight: Bool {
+        return linkUrl != nil
+    }
 }
 
 extension DisplayTweet {
@@ -39,11 +43,11 @@ extension DisplayTweet {
             
             if currentPoint <= entityStart {
                 // Add the tweet text up to the entity
-                let textUpToEntityStart = String(self.fullText.dropFirst(currentPoint).prefix(entityStart - currentPoint))
-                textParts.append(TweetPart(text: textUpToEntityStart, highlight: false))
+                let textUpToEntityStart = String(self.fullText.dropFirstUnicode(currentPoint).prefixUnicode(entityStart - currentPoint))
+                textParts.append(TweetPart(text: textUpToEntityStart, linkUrl: nil))
                 
                 // Add the display text of the entity
-                textParts.append(TweetPart(text: entityPart.displayText, highlight: true))
+                textParts.append(TweetPart(text: entityPart.displayText, linkUrl: entityPart.linkUrl))
                 
                 // Move the current point past the entity
                 currentPoint = entityEnd
@@ -52,10 +56,26 @@ extension DisplayTweet {
         
         // Finally add any remaining text
         if (currentPoint < endPoint) {
-            let textUpToEntityStart = String(self.fullText.dropFirst(currentPoint).prefix(endPoint - currentPoint))
-            textParts.append(TweetPart(text: textUpToEntityStart, highlight: false))
+            let textUpToEntityStart = String(self.fullText.dropFirstUnicode(currentPoint).prefixUnicode(endPoint - currentPoint))
+            textParts.append(TweetPart(text: textUpToEntityStart, linkUrl: nil))
         }
         
         return textParts
+    }
+}
+
+extension String {
+    func dropFirstUnicode (_ count: Int) -> Substring {
+        let range = self.unicodeScalars.index(self.unicodeScalars.startIndex, offsetBy: count)..<self.unicodeScalars.endIndex
+        
+        return Substring(self.unicodeScalars[range])
+    }
+}
+
+extension Substring {
+    func prefixUnicode (_ count: Int) -> Substring {
+        let range = self.unicodeScalars.index(self.unicodeScalars.startIndex, offsetBy: 0)..<self.unicodeScalars.index(self.unicodeScalars.startIndex, offsetBy: count)
+        
+        return Substring(self.unicodeScalars[range])
     }
 }

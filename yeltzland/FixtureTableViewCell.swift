@@ -17,6 +17,9 @@ class FixtureTableViewCell: UITableViewCell {
     public func assignFixture(_ fixture: Fixture) {
         self.selectionStyle = .none
         self.accessoryType = .none
+        if #available(iOS 13.0, *) {
+            self.backgroundColor = .systemBackground
+        }
         
         var resultColor = AppColors.label
         

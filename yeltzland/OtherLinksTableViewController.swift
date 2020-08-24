@@ -210,6 +210,9 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         cell!.textLabel?.adjustsFontSizeToFitWidth = true
         cell!.textLabel?.textColor = AppColors.label
         cell!.detailTextLabel?.textColor = AppColors.secondaryLabel
+        if #available(iOS 13.0, *) {
+            cell!.backgroundColor = .systemBackground
+        }
         
         return cell!
     }

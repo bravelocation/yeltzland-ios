@@ -26,6 +26,11 @@ struct TweetImagesView: View {
                 .scaledToFit()
                 .cornerRadius(16.0)
                 .frame(maxWidth: 500)
+                .onTapGesture {
+                    if let linkUrl = media.linkUrl {
+                        UIApplication.shared.open(URL(string: linkUrl)!)
+                    }
+                }
             }
         }
     }

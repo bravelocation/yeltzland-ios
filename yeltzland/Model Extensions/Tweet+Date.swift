@@ -11,12 +11,7 @@ import Foundation
 extension DisplayTweet {
     var timeAgo: String {
         get {
-           // Is the game today?
-           let now = Date()
-           let currentDayNumber = FixtureManager.dayNumber(now)
-           let tweetDayNumber = FixtureManager.dayNumber(self.createdAt)
-           
-           if (currentDayNumber == tweetDayNumber) {
+            if (self.isToday) {
                let formatter = DateFormatter()
                formatter.dateFormat = "HH:mm"
                
@@ -28,5 +23,14 @@ extension DisplayTweet {
                return formatter.string(from: self.createdAt)
            }
         }
+    }
+    
+    var isToday: Bool {
+        // Is the game today?
+        let now = Date()
+        let currentDayNumber = DateHelper.dayNumber(now)
+        let fixtureDayNumber = DateHelper.dayNumber(self.createdAt)
+        
+        return currentDayNumber == fixtureDayNumber
     }
 }
