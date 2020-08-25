@@ -37,11 +37,6 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         self.setupNotificationWatcher()
         self.setupMenuCommandHandler()
     }
-
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-        print("Removed notification handler for URL updates")
-    }
     
     fileprivate func setupNotificationWatcher() {
         NotificationCenter.default.addObserver(self, selector: #selector(MainTabBarController.setupHandoff), name: NSNotification.Name(rawValue: WebPageViewController.UrlNotification), object: nil)

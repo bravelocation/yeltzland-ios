@@ -25,11 +25,6 @@ public class WatchGameSettings: BaseSettings, WCSessionDelegate {
         self.setupNotificationWatchers()
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-        print("Removed notification handler in watch game settings")
-    }
-    
     fileprivate func setupNotificationWatchers() {
         NotificationCenter.default.addObserver(self, selector: #selector(WatchGameSettings.updateLatestScoreSettings), name: .FixturesUpdated, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(WatchGameSettings.updateLatestScoreSettings), name: .GameScoreUpdated, object: nil)

@@ -45,11 +45,6 @@ class FixturesTableViewController: UITableViewController {
         self.setupNotificationWatcher()
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-        print("Removed notification handler for fixture updates")
-    }
-    
     fileprivate func setupNotificationWatcher() {
         NotificationCenter.default.addObserver(self, selector: #selector(FixturesTableViewController.fixturesUpdated), name: .FixturesUpdated, object: nil)
         print("Setup notification handler for fixture updates")

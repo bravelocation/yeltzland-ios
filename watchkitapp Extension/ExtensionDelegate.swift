@@ -18,11 +18,6 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         self.setupNotificationWatchers()
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-        print("Removed notification handler in watch extension delegate")
-    }
-    
     fileprivate func setupNotificationWatchers() {
         NotificationCenter.default.addObserver(self, selector: #selector(ExtensionDelegate.settingsUpdated), name: NSNotification.Name(rawValue: BaseSettings.SettingsUpdateNotification), object: nil)
         print("Setup notification handlers for settings updates in extension delegate")

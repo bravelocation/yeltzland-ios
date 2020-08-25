@@ -100,7 +100,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
                 template.tintColor = UIColor(named: "light-blue")
                 
                 entry = CLKComplicationTimelineEntry(date: now, complicationTemplate: template)
-        case .graphicCorner:
+            case .graphicCorner:
                 let template = CLKComplicationTemplateGraphicCornerStackText()
                 template.outerTextProvider = CLKSimpleTextProvider(text: fixture.opponentAbbreviation)
                 template.innerTextProvider = CLKSimpleTextProvider(text: abbreviatedScoreOrDate)

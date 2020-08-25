@@ -32,11 +32,6 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
         self.setupNotificationWatcher()
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-        print("Removed notification handler for game score updates")
-    }
-    
     fileprivate func setupNotificationWatcher() {
         NotificationCenter.default.addObserver(self, selector: #selector(LatestScoreViewController.gameScoreUpdated), name: .GameScoreUpdated, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(LatestScoreViewController.gameScoreUpdated), name: .FixturesUpdated, object: nil)
