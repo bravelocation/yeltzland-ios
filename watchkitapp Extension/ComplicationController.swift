@@ -119,6 +119,14 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
                 template.tintColor = UIColor(named: "light-blue")
                 
                 entry = CLKComplicationTimelineEntry(date: now, complicationTemplate: template)
+            case .graphicExtraLarge:
+                if #available(watchOS 7, *) {
+                    let template = CLKComplicationTemplateGraphicExtraLargeCircularStackText()
+                    template.line1TextProvider = CLKSimpleTextProvider(text: fixture.opponentAbbreviation)
+                    template.line2TextProvider = CLKSimpleTextProvider(text: abbreviatedScoreOrDate)
+                    template.tintColor = UIColor(named: "light-blue")
+                    entry = CLKComplicationTimelineEntry(date: now, complicationTemplate: template)
+                }
             default:
                 break
             }
@@ -207,6 +215,14 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             template.tintColor = UIColor(named: "light-blue")
             
             handler(template)
+        case .graphicExtraLarge:
+            if #available(watchOS 7, *) {
+                let template = CLKComplicationTemplateGraphicExtraLargeCircularStackText()
+                template.line1TextProvider = CLKSimpleTextProvider(text: "STOU")
+                template.line2TextProvider = CLKSimpleTextProvider(text: "10-0")
+                template.tintColor = UIColor(named: "light-blue")
+                handler(template)
+            }
         default:
             handler(nil)
         }
