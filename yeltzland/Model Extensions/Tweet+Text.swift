@@ -79,3 +79,9 @@ extension Substring {
         return Substring(self.unicodeScalars[range])
     }
 }
+
+extension String {
+    func decodeEntities() -> String {
+        return self.replacingOccurrences(of: "&amp;", with: "&")
+    }
+}
