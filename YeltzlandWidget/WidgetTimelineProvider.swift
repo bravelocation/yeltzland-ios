@@ -75,6 +75,15 @@ struct WidgetTimelineProvider: TimelineProvider {
                 expiryTime = Date().addingTimeInterval(60*5) // If in progress match, update every 5 minutes
             }
         }
+        
+        // Expiry time should never be after next game kickoff
+        if let secondMatch = second {
+            if secondMatch.status == .fixture {
+                if expiryTime.compare(secondMatch.date) == .orderedDescending {
+                    expiryTime = secondMatch.date
+                }
+            }
+        }
 
         // Add the timeline entry
         let data = WidgetTimelineData(
