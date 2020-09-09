@@ -50,6 +50,7 @@ struct WidgetTimelineProvider: TimelineProvider {
     func getTimeline(in context: Context, completion: @escaping (Timeline<WidgetTimelineData>) -> Void) {
         var entries: [WidgetTimelineData] = []
         
+        // Find the timeline entries for the widget
         let timelineManager = TimelineManager(fixtureManager: FixtureManager.shared, gameScoreManager: GameScoreManager.shared)
         let timelineEntries = timelineManager.timelineEntries
         
@@ -63,17 +64,27 @@ struct WidgetTimelineProvider: TimelineProvider {
         if timelineEntries.count > 1 {
             second = timelineEntries[1]
         }
+        
+        // Set the date of the timeline entry and expiry time based on the first match
+        var timelineDate = Date()
+        var expiryTime = Date().addingTimeInterval(60*60) // By default, update the widget every hour
+        
+        if let firstMatch = first {
+            timelineDate = firstMatch.date
+            if firstMatch.status == .inProgress {
+                expiryTime = Date().addingTimeInterval(60*5) // If in progress match, update every 5 minutes
+            }
+        }
 
-        // TODO: Set the proper expiry time for the date
+        // Add the timeline entry
         let data = WidgetTimelineData(
-            date: Date(),
+            date: timelineDate,
             first: first,
             second: second
         )
         
         entries.append(data)
-        
-        let timeline = Timeline(entries: entries, policy: .atEnd)
+        let timeline = Timeline(entries: entries, policy: .after(expiryTime))
         completion(timeline)
     }
     
