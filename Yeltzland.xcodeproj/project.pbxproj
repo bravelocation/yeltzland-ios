@@ -141,6 +141,12 @@
 		527C17ED2508B34D009FDBEB /* TimelineFixture+Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C5D0924C9AB750019DA0F /* TimelineFixture+Score.swift */; };
 		527C17EE2508B492009FDBEB /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE636724E909B6000DAA25 /* DateHelper.swift */; };
 		527C17F02508B5F8009FDBEB /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 521B94A622CBB621009DFF76 /* Colors.xcassets */; };
+		527C17F22508B699009FDBEB /* WidgetTimelineProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527C17F12508B699009FDBEB /* WidgetTimelineProvider.swift */; };
+		527C17F42508B6F5009FDBEB /* WidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527C17F32508B6F5009FDBEB /* WidgetView.swift */; };
+		527C17F62508B793009FDBEB /* WidgetTimelineData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527C17F52508B793009FDBEB /* WidgetTimelineData.swift */; };
+		527C17F82508C18C009FDBEB /* TimelineFixtureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527C17F72508C18C009FDBEB /* TimelineFixtureView.swift */; };
+		527C17F92508C252009FDBEB /* PreviewFixtureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E54D7F24C5A9B10007B44E /* PreviewFixtureManager.swift */; };
+		527C17FA2508C255009FDBEB /* PreviewGameScoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E54D8124C5AAE30007B44E /* PreviewGameScoreManager.swift */; };
 		527DAF1B1D2BA9BA0092BB8F /* SafariActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527DAF1A1D2BA9BA0092BB8F /* SafariActivity.swift */; };
 		527DAF1D1D2D08030092BB8F /* locations.json in Resources */ = {isa = PBXBuildFile; fileRef = 527DAF1C1D2D08030092BB8F /* locations.json */; };
 		527DAF1F1D2D082C0092BB8F /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527DAF1E1D2D082C0092BB8F /* Location.swift */; };
@@ -436,6 +442,10 @@
 		527C17D62508B2C1009FDBEB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		527C17D82508B2C1009FDBEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		527C17DC2508B2C2009FDBEB /* YeltzlandWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YeltzlandWidgetExtension.entitlements; sourceTree = "<group>"; };
+		527C17F12508B699009FDBEB /* WidgetTimelineProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetTimelineProvider.swift; sourceTree = "<group>"; };
+		527C17F32508B6F5009FDBEB /* WidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetView.swift; sourceTree = "<group>"; };
+		527C17F52508B793009FDBEB /* WidgetTimelineData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetTimelineData.swift; sourceTree = "<group>"; };
+		527C17F72508C18C009FDBEB /* TimelineFixtureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineFixtureView.swift; sourceTree = "<group>"; };
 		527DAF1A1D2BA9BA0092BB8F /* SafariActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafariActivity.swift; sourceTree = "<group>"; };
 		527DAF1C1D2D08030092BB8F /* locations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = locations.json; sourceTree = "<group>"; };
 		527DAF1E1D2D082C0092BB8F /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -806,9 +816,13 @@
 		527C17D32508B2BF009FDBEB /* YeltzlandWidget */ = {
 			isa = PBXGroup;
 			children = (
-				527C17D42508B2BF009FDBEB /* YeltzlandWidget.swift */,
 				527C17D62508B2C1009FDBEB /* Assets.xcassets */,
 				527C17D82508B2C1009FDBEB /* Info.plist */,
+				527C17F72508C18C009FDBEB /* TimelineFixtureView.swift */,
+				527C17F12508B699009FDBEB /* WidgetTimelineProvider.swift */,
+				527C17F52508B793009FDBEB /* WidgetTimelineData.swift */,
+				527C17F32508B6F5009FDBEB /* WidgetView.swift */,
+				527C17D42508B2BF009FDBEB /* YeltzlandWidget.swift */,
 			);
 			path = YeltzlandWidget;
 			sourceTree = "<group>";
@@ -1901,6 +1915,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				527C17F82508C18C009FDBEB /* TimelineFixtureView.swift in Sources */,
 				527C17EB2508B348009FDBEB /* TimelineFixture+Date.swift in Sources */,
 				527C17E32508B30F009FDBEB /* FixtureManager.swift in Sources */,
 				527C17D52508B2BF009FDBEB /* YeltzlandWidget.swift in Sources */,
@@ -1909,7 +1924,12 @@
 				527C17EC2508B34B009FDBEB /* TimelineFixture+Opponent.swift in Sources */,
 				527C17E22508B30D009FDBEB /* BaseSettings.swift in Sources */,
 				527C17E92508B33F009FDBEB /* Fixture.swift in Sources */,
+				527C17F62508B793009FDBEB /* WidgetTimelineData.swift in Sources */,
 				527C17EE2508B492009FDBEB /* DateHelper.swift in Sources */,
+				527C17F42508B6F5009FDBEB /* WidgetView.swift in Sources */,
+				527C17F92508C252009FDBEB /* PreviewFixtureManager.swift in Sources */,
+				527C17F22508B699009FDBEB /* WidgetTimelineProvider.swift in Sources */,
+				527C17FA2508C255009FDBEB /* PreviewGameScoreManager.swift in Sources */,
 				527C17EA2508B342009FDBEB /* TimelineFixture.swift in Sources */,
 				527C17ED2508B34D009FDBEB /* TimelineFixture+Score.swift in Sources */,
 				527C17E52508B31C009FDBEB /* TimelineManager.swift in Sources */,
