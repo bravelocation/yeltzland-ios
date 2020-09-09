@@ -17,7 +17,7 @@
                BlueprintIdentifier = "52176BB61D4B6D5900B7EFAE"
                BuildableName = "watchkitapp.app"
                BlueprintName = "watchkitapp"
-               ReferencedContainer = "container:yeltzland.xcodeproj">
+               ReferencedContainer = "container:Yeltzland.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -31,7 +31,7 @@
                BlueprintIdentifier = "52E3DF721CD9FA78009F18BD"
                BuildableName = "Yeltzland.app"
                BlueprintName = "Yeltzland"
-               ReferencedContainer = "container:yeltzland.xcodeproj">
+               ReferencedContainer = "container:Yeltzland.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -49,7 +49,7 @@
                BlueprintIdentifier = "5252773F24C42C5400F93050"
                BuildableName = "YeltzlandUnitTests.xctest"
                BlueprintName = "YeltzlandUnitTests"
-               ReferencedContainer = "container:yeltzland.xcodeproj">
+               ReferencedContainer = "container:Yeltzland.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -64,18 +64,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <RemoteRunnable
-         runnableDebuggingMode = "2"
-         BundleIdentifier = "com.apple.Carousel"
-         RemotePath = "/Yeltzland">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "52176BB61D4B6D5900B7EFAE"
             BuildableName = "watchkitapp.app"
             BlueprintName = "watchkitapp"
-            ReferencedContainer = "container:yeltzland.xcodeproj">
+            ReferencedContainer = "container:Yeltzland.xcodeproj">
          </BuildableReference>
-      </RemoteRunnable>
+      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -83,27 +81,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <RemoteRunnable
-         runnableDebuggingMode = "2"
-         BundleIdentifier = "com.apple.Carousel"
-         RemotePath = "/Yeltzland">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "52176BB61D4B6D5900B7EFAE"
             BuildableName = "watchkitapp.app"
             BlueprintName = "watchkitapp"
-            ReferencedContainer = "container:yeltzland.xcodeproj">
+            ReferencedContainer = "container:Yeltzland.xcodeproj">
          </BuildableReference>
-      </RemoteRunnable>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "52176BB61D4B6D5900B7EFAE"
-            BuildableName = "watchkitapp.app"
-            BlueprintName = "watchkitapp"
-            ReferencedContainer = "container:yeltzland.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
