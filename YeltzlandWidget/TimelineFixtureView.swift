@@ -15,39 +15,44 @@ struct TimelineFixtureView: View {
     
     var body: some View {
 
-        HStack {
+        HStack(alignment: .top) {
             VStack(alignment: .leading) {
-                if (fixture.status == .fixture) {
-                    Text("FIXTURE").font(.body)
-                }
-                if (fixture.status == .result) {
-                    Text("RESULT").font(.body)
-                }
-                if (fixture.status == .inProgress) {
-                    Text("LATEST SCORE").font(.body)
-                }
-                
-                Spacer()
+                TimelineMatchTitle(status: fixture.status)
                 
                 Text(fixture.opponentPlusHomeAway)
                     .fixedSize(horizontal: false, vertical: true)
-                    .font(.body)
-                
+                    
                 if (fixture.status == .fixture) {
                     Text(fixture.kickoffTime)
                         .multilineTextAlignment(.leading)
                         .fixedSize(horizontal: false, vertical: true)
-                        .font(.title)
+                        .font(.headline)
                 } else {
                     Text(fixture.score)
                         .multilineTextAlignment(.leading)
                         .fixedSize(horizontal: false, vertical: true)
-                        .font(.largeTitle)
+                        .font(.title)
                 }
+                Spacer()
             }
-            .padding(8)
             
             Spacer()
+        }
+        .foregroundColor(Color("light-blue"))
+        .background(ContainerRelativeShape().fill(Color("yeltz-blue")))
+    }
+}
+
+struct TimelineMatchTitle: View {
+    var status: TimelineFixtureStatus
+    
+    var body: some View {
+        if (status == .fixture) {
+            Text("FIXTURE").font(.subheadline)
+        } else if (status == .result) {
+            Text("RESULT").font(.subheadline)
+        } else {
+            Text("LATEST SCORE").font(.subheadline)
         }
     }
 }
