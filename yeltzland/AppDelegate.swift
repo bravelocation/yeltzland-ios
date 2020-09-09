@@ -11,6 +11,7 @@ import BackgroundTasks
 import Firebase
 import Intents
 import WebKit
+import WidgetKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -142,9 +143,18 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         
         Messaging.messaging().appDidReceiveMessage(response.notification.request.content.userInfo)
         
-        // Go and update the game score and fixtures
-        GameScoreManager.shared.fetchLatestData(completion: nil)
-        FixtureManager.shared.fetchLatestData(completion: nil)
+        // Go and update the game score and fixtures, and update widgets when updated
+        GameScoreManager.shared.fetchLatestData() { result in
+            if result == .success(true) {
+                WidgetCenter.shared.reloadAllTimelines()
+            }
+        }
+        
+        FixtureManager.shared.fetchLatestData() { result in
+            if result == .success(true) {
+                WidgetCenter.shared.reloadAllTimelines()
+            }
+        }
 
         // If app in foreground, show a toast
         if (UIApplication.shared.applicationState == .active) {
