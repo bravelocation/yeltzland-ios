@@ -24,8 +24,10 @@ struct WidgetView: View {
             }
 
             if data.second != nil && widgetFamily == .systemMedium {
+                Divider().background(Color("light-blue"))
                 TimelineFixtureView(fixture: data.second!)
             }
+            
             Spacer()
         }.padding()
         .foregroundColor(Color("light-blue"))

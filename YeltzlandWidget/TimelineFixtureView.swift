@@ -19,20 +19,35 @@ struct TimelineFixtureView: View {
             VStack(alignment: .leading) {
                 TimelineMatchTitle(status: fixture.status)
                 
+                Spacer()
+                
                 Text(fixture.opponentPlusHomeAway)
+                    .lineLimit(2)
+                    .allowsTightening(true)
+                    .minimumScaleFactor(0.5)
+                    .multilineTextAlignment(.leading)
                     .fixedSize(horizontal: false, vertical: true)
-                    
+                
+                Spacer()
+                
                 if (fixture.status == .fixture) {
                     Text(fixture.kickoffTime)
+                        .lineLimit(2)
+                        .allowsTightening(true)
+                        .minimumScaleFactor(0.5)
                         .multilineTextAlignment(.leading)
                         .fixedSize(horizontal: false, vertical: true)
-                        .font(.headline)
+                        .font(.title2)
                 } else {
                     Text(fixture.score)
+                        .lineLimit(2)
+                        .allowsTightening(true)
+                        .minimumScaleFactor(0.5)
                         .multilineTextAlignment(.leading)
                         .fixedSize(horizontal: false, vertical: true)
                         .font(.title)
                 }
+                
                 Spacer()
             }
             
@@ -48,11 +63,11 @@ struct TimelineMatchTitle: View {
     
     var body: some View {
         if (status == .fixture) {
-            Text("FIXTURE").font(.subheadline)
+            Text("FIXTURE").font(.caption)
         } else if (status == .result) {
-            Text("RESULT").font(.subheadline)
+            Text("RESULT").font(.caption)
         } else {
-            Text("LATEST SCORE").font(.subheadline)
+            Text("LATEST SCORE").font(.caption)
         }
     }
 }
