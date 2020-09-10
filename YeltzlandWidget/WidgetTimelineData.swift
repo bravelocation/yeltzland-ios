@@ -15,6 +15,16 @@ struct WidgetTimelineData: TimelineEntry {
     let second: TimelineFixture?
     
     var relevance: TimelineEntryRelevance? {
-        return TimelineEntryRelevance(score: 1.0) // TODO: Set a proper relevance
+        if let firstMatch = first {
+            if firstMatch.status == .inProgress {
+                return TimelineEntryRelevance(score: 10.0)
+            }
+            
+            if firstMatch.isToday {
+                return TimelineEntryRelevance(score: 5.0)
+            }
+        }
+        
+        return TimelineEntryRelevance(score: 1.0)
     }
 }
