@@ -58,7 +58,7 @@ struct WidgetView_Previews: PreviewProvider {
             first: buildPlaceholder(opponent: "Barnet (FAT QF)",
                                     home: false,
                                     date: "2020-02-29 15:00",
-                                    teamScore: 2,
+                                    teamScore: 0,
                                     opponentScore: 1,
                                     status: .result),
             second: buildPlaceholder(opponent: "Concord Rangers (FAT SF)",

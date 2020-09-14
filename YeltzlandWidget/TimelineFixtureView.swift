@@ -40,6 +40,7 @@ struct TimelineFixtureView: View {
                         .font(.title2)
                 } else {
                     Text(fixture.score)
+                        .foregroundColor(self.resultColor())
                         .lineLimit(2)
                         .allowsTightening(true)
                         .minimumScaleFactor(0.5)
@@ -55,6 +56,17 @@ struct TimelineFixtureView: View {
         }
         .foregroundColor(Color("light-blue"))
         .background(ContainerRelativeShape().fill(Color("yeltz-blue")))
+    }
+    
+    func resultColor() -> Color {
+        switch fixture.result {
+        case .win:
+            return Color("watch-fixture-win")
+        case .lose:
+            return Color("watch-fixture-lose")
+        default:
+            return Color("light-blue")
+        }
     }
 }
 
