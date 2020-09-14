@@ -66,13 +66,12 @@ struct WidgetTimelineProvider: TimelineProvider {
         }
         
         // Set the date of the timeline entry and expiry time based on the first match
-        var timelineDate = Date()
-        var expiryTime = Date().addingTimeInterval(60*60) // By default, update the widget every hour
+         var expiryTime = Date().addingTimeInterval(60*60) // By default, update the widget every hour
         
         if let firstMatch = first {
-            timelineDate = firstMatch.date
             if firstMatch.status == .inProgress {
                 expiryTime = Date().addingTimeInterval(60*5) // If in progress match, update every 5 minutes
+                print("Match in progress - widget expiry time \(expiryTime)")
             }
         }
         
@@ -81,19 +80,22 @@ struct WidgetTimelineProvider: TimelineProvider {
             if secondMatch.status == .fixture {
                 if expiryTime.compare(secondMatch.date) == .orderedDescending {
                     expiryTime = secondMatch.date
+                    print("Expiry time is 2nd match kickoff - widget expiry time \(expiryTime)")
                 }
             }
         }
 
         // Add the timeline entry
         let data = WidgetTimelineData(
-            date: timelineDate,
+            date: expiryTime,
             first: first,
             second: second
         )
         
         entries.append(data)
         let timeline = Timeline(entries: entries, policy: .after(expiryTime))
+        
+        print("Added widget entry - expiry time \(expiryTime)")
         completion(timeline)
     }
     
