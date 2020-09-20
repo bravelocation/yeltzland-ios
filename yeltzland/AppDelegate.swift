@@ -146,13 +146,17 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         // Go and update the game score and fixtures, and update widgets when updated
         GameScoreManager.shared.fetchLatestData() { result in
             if result == .success(true) {
-                WidgetCenter.shared.reloadAllTimelines()
+                if #available(iOS 14.0, *) {
+                    WidgetCenter.shared.reloadAllTimelines()
+                }
             }
         }
         
         FixtureManager.shared.fetchLatestData() { result in
             if result == .success(true) {
-                WidgetCenter.shared.reloadAllTimelines()
+                if #available(iOS 14.0, *) {
+                    WidgetCenter.shared.reloadAllTimelines()
+                }
             }
         }
 
