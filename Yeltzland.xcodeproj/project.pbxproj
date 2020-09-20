@@ -2453,6 +2453,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 698;
 				DEVELOPMENT_TEAM = W8B3V597R9;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = YeltzlandWidget/Info.plist;
@@ -2488,6 +2489,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 698;
 				DEVELOPMENT_TEAM = W8B3V597R9;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = YeltzlandWidget/Info.plist;
