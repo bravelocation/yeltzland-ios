@@ -8,6 +8,7 @@
 
 import UIKit
 import Intents
+import WidgetKit
 
 private func < <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
   switch (lhs, rhs) {
@@ -62,6 +63,10 @@ class FixturesTableViewController: UITableViewController {
                 self.tableView.scrollToRow(at: currentMonthIndexPath, at: UITableView.ScrollPosition.top, animated: true)
             }
         })
+        
+        if #available(iOS 14.0, *) {
+            WidgetCenter.shared.reloadAllTimelines()
+        }
     }
     
     fileprivate func currentMonthSection() -> Int {

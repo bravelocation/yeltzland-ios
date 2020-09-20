@@ -146,16 +146,12 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         // Go and update the game score and fixtures, and update widgets when updated
         GameScoreManager.shared.fetchLatestData() { result in
             if result == .success(true) {
-                if #available(iOS 14.0, *) {
-                    WidgetCenter.shared.reloadAllTimelines()
-                }
-            }
-        }
-        
-        FixtureManager.shared.fetchLatestData() { result in
-            if result == .success(true) {
-                if #available(iOS 14.0, *) {
-                    WidgetCenter.shared.reloadAllTimelines()
+                FixtureManager.shared.fetchLatestData() { result in
+                    if result == .success(true) {
+                        if #available(iOS 14.0, *) {
+                            WidgetCenter.shared.reloadAllTimelines()
+                        }
+                    }
                 }
             }
         }
@@ -222,9 +218,18 @@ extension AppDelegate {
         if let nextGame = FixtureManager.shared.nextGame {
             if let differenceInMinutes = (Calendar.current as NSCalendar).components(.minute, from: now, to: nextGame.fixtureDate, options: []).minute {
                 if (differenceInMinutes < 0) {
-                    // After game kicked off, so go get game score
-                    GameScoreManager.shared.fetchLatestData(completion: nil)
-                    FixtureManager.shared.fetchLatestData(completion: nil)
+                    // After game kicked off, so go get game score and update widgets
+                    GameScoreManager.shared.fetchLatestData() { result in
+                        if result == .success(true) {
+                            FixtureManager.shared.fetchLatestData() { result in
+                                if result == .success(true) {
+                                    if #available(iOS 14.0, *) {
+                                        WidgetCenter.shared.reloadAllTimelines()
+                                    }
+                                }
+                            }
+                        }
+                    }
                     
                     return true
                 }

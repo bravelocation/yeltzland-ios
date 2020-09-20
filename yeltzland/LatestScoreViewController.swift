@@ -9,6 +9,7 @@
 import UIKit
 import Intents
 import IntentsUI
+import WidgetKit
 
 class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewControllerDelegate {
     
@@ -104,6 +105,11 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
         GameScoreManager.shared.fetchLatestData() { result in
             if result == .success(true) {
                 self.gameScoreUpdated()
+                
+                if #available(iOS 14.0, *) {
+                    WidgetCenter.shared.reloadAllTimelines()
+                }
+
             }
         }
     }

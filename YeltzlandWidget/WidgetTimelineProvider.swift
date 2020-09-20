@@ -29,73 +29,14 @@ struct WidgetTimelineProvider: TimelineProvider {
     }
 
     func getSnapshot(in context: Context, completion: @escaping (WidgetTimelineData) -> Void) {
-        let entry = WidgetTimelineData(
-            date: Date(),
-            first: buildPlaceholder(opponent: "Barnet (FAT QF)",
-                                    home: false,
-                                    date: "2020-02-29 15:00",
-                                    teamScore: 2,
-                                    opponentScore: 1,
-                                    status: .result),
-            second: buildPlaceholder(opponent: "Concord Rangers (FAT SF)",
-                                     home: false,
-                                     date: "2020-09-05 15:00",
-                                     teamScore: nil,
-                                     opponentScore: nil,
-                                     status: .fixture))
+        let timeline = self.buildTimeline()
+        let entry = timeline.entries[0]
         
         completion(entry)
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<WidgetTimelineData>) -> Void) {
-        var entries: [WidgetTimelineData] = []
-        
-        // Find the timeline entries for the widget
-        let timelineManager = TimelineManager(fixtureManager: FixtureManager.shared, gameScoreManager: GameScoreManager.shared)
-        let timelineEntries = timelineManager.timelineEntries
-        
-        var first: TimelineFixture?
-        var second: TimelineFixture?
-        
-        if timelineEntries.count > 0 {
-            first = timelineEntries[0]
-        }
-        
-        if timelineEntries.count > 1 {
-            second = timelineEntries[1]
-        }
-        
-        // Set the date of the timeline entry and expiry time based on the first match
-         var expiryTime = Date().addingTimeInterval(60*60) // By default, update the widget every hour
-        
-        if let firstMatch = first {
-            if firstMatch.status == .inProgress {
-                expiryTime = Date().addingTimeInterval(60*5) // If in progress match, update every 5 minutes
-                print("Match in progress - widget expiry time \(expiryTime)")
-            }
-        }
-        
-        // Expiry time should never be after next game kickoff
-        if let secondMatch = second {
-            if secondMatch.status == .fixture {
-                if expiryTime.compare(secondMatch.date) == .orderedDescending {
-                    expiryTime = secondMatch.date
-                    print("Expiry time is 2nd match kickoff - widget expiry time \(expiryTime)")
-                }
-            }
-        }
-
-        // Add the timeline entry
-        let data = WidgetTimelineData(
-            date: expiryTime,
-            first: first,
-            second: second
-        )
-        
-        entries.append(data)
-        let timeline = Timeline(entries: entries, policy: .after(expiryTime))
-        
-        print("Added widget entry - expiry time \(expiryTime)")
+        let timeline = self.buildTimeline()
         completion(timeline)
     }
     
@@ -117,5 +58,54 @@ struct WidgetTimelineProvider: TimelineProvider {
             teamScore: teamScore,
             opponentScore: opponentScore,
             status: status)
+    }
+    
+    private func buildTimeline() -> Timeline<WidgetTimelineData> {
+        var entries: [WidgetTimelineData] = []
+        
+        // Find the timeline entries for the widget
+        let timelineManager = TimelineManager(fixtureManager: FixtureManager.shared, gameScoreManager: GameScoreManager.shared)
+        let timelineEntries = timelineManager.timelineEntries
+        
+        var first: TimelineFixture?
+        var second: TimelineFixture?
+        
+        if timelineEntries.count > 0 {
+            first = timelineEntries[0]
+        }
+        
+        if timelineEntries.count > 1 {
+            second = timelineEntries[1]
+        }
+        
+        // Set the date of the timeline entry and expiry time based on the first match
+         var expiryTime = Date().addingTimeInterval(60*60) // By default, update the widget every hour for fixture updates
+        
+        if let firstMatch = first {
+            if firstMatch.status == .inProgress {
+                expiryTime = Date().addingTimeInterval(60*15) // If in progress match, update every 15 minutes even if we get no in-game notifications
+                print("Match in progress - widget expiry time \(expiryTime)")
+            }
+        }
+        
+        // Expiry time should never be after next game kickoff
+        if let secondMatch = second {
+            if secondMatch.status == .fixture {
+                if expiryTime > secondMatch.date {
+                    expiryTime = secondMatch.date
+                    print("Expiry time is 2nd match kickoff - widget expiry time \(expiryTime)")
+                }
+            }
+        }
+
+        // Add the timeline entry
+        let data = WidgetTimelineData(
+            date: expiryTime,
+            first: first,
+            second: second
+        )
+        
+        entries.append(data)
+        return Timeline(entries: entries, policy: .after(expiryTime))
     }
 }
