@@ -65,6 +65,7 @@
 		522C442324C764170018E89A /* FixtureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522C442224C764170018E89A /* FixtureView.swift */; };
 		522C442524C768950018E89A /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522C442424C768950018E89A /* ResultView.swift */; };
 		522EA44220EA236A00B90146 /* TeamImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522EA44120EA236A00B90146 /* TeamImageManager.swift */; };
+		522F8CFA2518E89F0094AA42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52E3DF7D1CD9FA78009F18BD /* Assets.xcassets */; };
 		5231F4FF215B6C56003FAC68 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5231F4FE215B6C56003FAC68 /* SettingsManager.swift */; };
 		5231F501215B6C92003FAC68 /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5231F500215B6C92003FAC68 /* Settings.plist */; };
 		5236ECDB20CE99B80067AFFA /* LatestScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5236ECD920CE99B80067AFFA /* LatestScoreViewController.swift */; };
@@ -124,7 +125,6 @@
 		527C17D12508B2BF009FDBEB /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 527C17D02508B2BF009FDBEB /* WidgetKit.framework */; platformFilter = ios; };
 		527C17D22508B2BF009FDBEB /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 526CE78D24CF0E9A00CC1023 /* SwiftUI.framework */; };
 		527C17D52508B2BF009FDBEB /* YeltzlandWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527C17D42508B2BF009FDBEB /* YeltzlandWidget.swift */; };
-		527C17D72508B2C1009FDBEB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 527C17D62508B2C1009FDBEB /* Assets.xcassets */; };
 		527C17DB2508B2C1009FDBEB /* YeltzlandWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 527C17CF2508B2BF009FDBEB /* YeltzlandWidgetExtension.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		527C17E02508B2F5009FDBEB /* matches.json in Resources */ = {isa = PBXBuildFile; fileRef = 52236AEA1D17ECB4004903AB /* matches.json */; };
 		527C17E12508B2F9009FDBEB /* gamescore.json in Resources */ = {isa = PBXBuildFile; fileRef = 52176BAD1D4A1AF600B7EFAE /* gamescore.json */; };
@@ -439,7 +439,6 @@
 		527C17CF2508B2BF009FDBEB /* YeltzlandWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = YeltzlandWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		527C17D02508B2BF009FDBEB /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		527C17D42508B2BF009FDBEB /* YeltzlandWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YeltzlandWidget.swift; sourceTree = "<group>"; };
-		527C17D62508B2C1009FDBEB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		527C17D82508B2C1009FDBEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		527C17DC2508B2C2009FDBEB /* YeltzlandWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YeltzlandWidgetExtension.entitlements; sourceTree = "<group>"; };
 		527C17F12508B699009FDBEB /* WidgetTimelineProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetTimelineProvider.swift; sourceTree = "<group>"; };
@@ -816,7 +815,6 @@
 		527C17D32508B2BF009FDBEB /* YeltzlandWidget */ = {
 			isa = PBXGroup;
 			children = (
-				527C17D62508B2C1009FDBEB /* Assets.xcassets */,
 				527C17D82508B2C1009FDBEB /* Info.plist */,
 				527C17F72508C18C009FDBEB /* TimelineFixtureView.swift */,
 				527C17F12508B699009FDBEB /* WidgetTimelineProvider.swift */,
@@ -1430,9 +1428,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				527C17D72508B2C1009FDBEB /* Assets.xcassets in Resources */,
 				527C17F02508B5F8009FDBEB /* Colors.xcassets in Resources */,
 				527C17E02508B2F5009FDBEB /* matches.json in Resources */,
+				522F8CFA2518E89F0094AA42 /* Assets.xcassets in Resources */,
 				527C17E12508B2F9009FDBEB /* gamescore.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

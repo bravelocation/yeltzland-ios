@@ -27,8 +27,6 @@ struct WidgetView: View {
                 Divider().background(Color("light-blue"))
                 TimelineFixtureView(fixture: data.second!)
             }
-            
-            Spacer()
         }.padding()
         .foregroundColor(Color("light-blue"))
         .background(ContainerRelativeShape().fill(Color("yeltz-blue")))

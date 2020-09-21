@@ -19,8 +19,6 @@ struct TimelineFixtureView: View {
             VStack(alignment: .leading) {
                 TimelineMatchTitle(status: fixture.status)
                 
-                Spacer()
-                
                 Text(fixture.opponentPlusHomeAway)
                     .lineLimit(2)
                     .allowsTightening(true)
@@ -48,8 +46,6 @@ struct TimelineFixtureView: View {
                         .fixedSize(horizontal: false, vertical: true)
                         .font(.title)
                 }
-                
-                Spacer()
             }
             
             Spacer()
@@ -74,13 +70,19 @@ struct TimelineMatchTitle: View {
     var status: TimelineFixtureStatus
     
     var body: some View {
-        if (status == .fixture) {
-            Text("FIXTURE").font(.caption)
-        } else if (status == .result) {
-            Text("RESULT").font(.caption)
-        } else {
-            Text("LATEST SCORE").font(.caption)
+        HStack {
+            if (status == .fixture) {
+                Text("FIXTURE").font(.caption)
+            } else if (status == .result) {
+                Text("RESULT").font(.caption)
+            } else {
+                Text("LATEST SCORE").font(.caption)
+            }
+            
+            Spacer()
+            Image("club-badge")
         }
+
     }
 }
 
