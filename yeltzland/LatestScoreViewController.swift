@@ -9,7 +9,9 @@
 import UIKit
 import Intents
 import IntentsUI
+#if !targetEnvironment(macCatalyst)
 import WidgetKit
+#endif
 
 class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewControllerDelegate {
     
@@ -106,10 +108,11 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
             if result == .success(true) {
                 self.gameScoreUpdated()
                 
+                #if !targetEnvironment(macCatalyst)
                 if #available(iOS 14.0, *) {
                     WidgetCenter.shared.reloadAllTimelines()
                 }
-
+                #endif
             }
         }
     }

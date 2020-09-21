@@ -11,7 +11,10 @@ import BackgroundTasks
 import Firebase
 import Intents
 import WebKit
+
+#if !targetEnvironment(macCatalyst)
 import WidgetKit
+#endif
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -148,9 +151,11 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             if result == .success(true) {
                 FixtureManager.shared.fetchLatestData() { result in
                     if result == .success(true) {
+                        #if !targetEnvironment(macCatalyst)
                         if #available(iOS 14.0, *) {
                             WidgetCenter.shared.reloadAllTimelines()
                         }
+                        #endif
                     }
                 }
             }
@@ -224,7 +229,9 @@ extension AppDelegate {
                             FixtureManager.shared.fetchLatestData() { result in
                                 if result == .success(true) {
                                     if #available(iOS 14.0, *) {
+                                        #if !targetEnvironment(macCatalyst)
                                         WidgetCenter.shared.reloadAllTimelines()
+                                        #endif
                                     }
                                 }
                             }
