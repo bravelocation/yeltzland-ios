@@ -1146,9 +1146,9 @@
 			buildConfigurationList = 527C17DF2508B2C2009FDBEB /* Build configuration list for PBXNativeTarget "YeltzlandWidgetExtension" */;
 			buildPhases = (
 				527C17CB2508B2BF009FDBEB /* Sources */,
-				527C17EF2508B566009FDBEB /* Set Build Number from Git */,
 				527C17CC2508B2BF009FDBEB /* Frameworks */,
 				527C17CD2508B2BF009FDBEB /* Resources */,
+				527C17EF2508B566009FDBEB /* Set Build Number from Git */,
 			);
 			buildRules = (
 			);
