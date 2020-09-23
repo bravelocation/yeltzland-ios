@@ -100,7 +100,7 @@ struct WidgetTimelineProvider: TimelineProvider {
 
         // Add the timeline entry
         let data = WidgetTimelineData(
-            date: expiryTime,
+            date: Date(),
             first: first,
             second: second
         )

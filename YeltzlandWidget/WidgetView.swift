@@ -12,21 +12,30 @@ import SwiftUI
 struct WidgetView: View {
     var data: WidgetTimelineData
     @Environment(\.widgetFamily) var widgetFamily
+    
+    static let dateFormat: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return formatter
+    }()
 
     var body: some View {
-        HStack {
-            Group {
-                if data.first != nil {
-                    TimelineFixtureView(fixture: data.first!)
-                } else {
-                    Text("No data available")
+        VStack {
+            HStack {
+                Group {
+                    if data.first != nil {
+                        TimelineFixtureView(fixture: data.first!)
+                    } else {
+                        Text("No data available")
+                    }
+                }
+
+                if data.second != nil && widgetFamily == .systemMedium {
+                    Divider().background(Color("light-blue"))
+                    TimelineFixtureView(fixture: data.second!)
                 }
             }
-
-            if data.second != nil && widgetFamily == .systemMedium {
-                Divider().background(Color("light-blue"))
-                TimelineFixtureView(fixture: data.second!)
-            }
+            Text("\(data.date, formatter: Self.dateFormat)").font(.caption2)
         }.padding()
         .foregroundColor(Color("light-blue"))
         .background(ContainerRelativeShape().fill(Color("yeltz-blue")))
