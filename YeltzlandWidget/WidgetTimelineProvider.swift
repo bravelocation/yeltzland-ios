@@ -36,8 +36,13 @@ struct WidgetTimelineProvider: TimelineProvider {
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<WidgetTimelineData>) -> Void) {
-        let timeline = self.buildTimeline()
-        completion(timeline)
+        // Go and update the game score and fixtures, and update timeline when updated, even if failed to get data
+        GameScoreManager.shared.fetchLatestData() { _ in
+            FixtureManager.shared.fetchLatestData() { _ in
+                let timeline = self.buildTimeline()
+                completion(timeline)
+            }
+        }
     }
     
     private func buildPlaceholder(
