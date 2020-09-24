@@ -29,8 +29,20 @@ struct WidgetTimelineProvider: TimelineProvider {
     }
 
     func getSnapshot(in context: Context, completion: @escaping (WidgetTimelineData) -> Void) {
-        let timeline = self.buildTimeline()
-        let entry = timeline.entries[0]
+        let entry = WidgetTimelineData(
+            date: Date(),
+            first: buildPlaceholder(opponent: "Barnet (FAT QF)",
+                                    home: false,
+                                    date: "2020-02-29 15:00",
+                                    teamScore: 2,
+                                    opponentScore: 1,
+                                    status: .result),
+            second: buildPlaceholder(opponent: "Concord Rangers (FAT SF)",
+                                     home: false,
+                                     date: "2020-09-05 15:00",
+                                     teamScore: nil,
+                                     opponentScore: nil,
+                                     status: .fixture))
         
         completion(entry)
     }
