@@ -15,7 +15,7 @@ struct WidgetView: View {
     
     static let dateFormat: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        formatter.dateFormat = "HH:mm:ss"
         return formatter
     }()
 
