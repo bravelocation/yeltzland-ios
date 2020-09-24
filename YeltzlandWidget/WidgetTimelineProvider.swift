@@ -29,6 +29,9 @@ struct WidgetTimelineProvider: TimelineProvider {
     }
 
     func getSnapshot(in context: Context, completion: @escaping (WidgetTimelineData) -> Void) {
+        // Go and get the data in the background to prime the first showing of the widget
+        self.updateData()
+        
         let entry = WidgetTimelineData(
             date: Date(),
             first: buildPlaceholder(opponent: "Barnet (FAT QF)",
@@ -49,11 +52,15 @@ struct WidgetTimelineProvider: TimelineProvider {
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<WidgetTimelineData>) -> Void) {
         // Go and update the game score and fixtures, abut update the timeline immediately (otherwise might time out)
-        GameScoreManager.shared.fetchLatestData(completion: nil)
-        FixtureManager.shared.fetchLatestData(completion: nil)
+        self.updateData()
 
         let timeline = self.buildTimeline()
         completion(timeline)
+    }
+    
+    private func updateData() {
+        GameScoreManager.shared.fetchLatestData(completion: nil)
+        FixtureManager.shared.fetchLatestData(completion: nil)
     }
     
     private func buildPlaceholder(
