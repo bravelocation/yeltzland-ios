@@ -99,7 +99,7 @@ struct WidgetTimelineProvider: TimelineProvider {
         
         if let firstMatch = first {
             if firstMatch.status == .inProgress {
-                expiryTime = Date().addingTimeInterval(60*15) // If in progress match, update every 15 minutes even if we get no in-game notifications
+                expiryTime = Date().addingTimeInterval(60*5) // If in progress match, update every 5 minutes even if we get no in-game notifications
                 print("Match in progress - widget expiry time \(expiryTime)")
             }
         }
