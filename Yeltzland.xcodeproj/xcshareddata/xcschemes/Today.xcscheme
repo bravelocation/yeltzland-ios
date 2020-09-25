@@ -18,7 +18,7 @@
                BlueprintIdentifier = "526F544F1D214705001EA8D8"
                BuildableName = "Today.appex"
                BlueprintName = "Today"
-               ReferencedContainer = "container:yeltzland.xcodeproj">
+               ReferencedContainer = "container:Yeltzland.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -32,7 +32,7 @@
                BlueprintIdentifier = "52E3DF721CD9FA78009F18BD"
                BuildableName = "Yeltzland.app"
                BlueprintName = "Yeltzland"
-               ReferencedContainer = "container:yeltzland.xcodeproj">
+               ReferencedContainer = "container:Yeltzland.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -50,7 +50,7 @@
                BlueprintIdentifier = "5252773F24C42C5400F93050"
                BuildableName = "YeltzlandUnitTests.xctest"
                BlueprintName = "YeltzlandUnitTests"
-               ReferencedContainer = "container:yeltzland.xcodeproj">
+               ReferencedContainer = "container:Yeltzland.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -75,7 +75,7 @@
             BlueprintIdentifier = "526F544F1D214705001EA8D8"
             BuildableName = "Today.appex"
             BlueprintName = "Today"
-            ReferencedContainer = "container:yeltzland.xcodeproj">
+            ReferencedContainer = "container:Yeltzland.xcodeproj">
          </BuildableReference>
       </RemoteRunnable>
       <MacroExpansion>
@@ -84,7 +84,7 @@
             BlueprintIdentifier = "52E3DF721CD9FA78009F18BD"
             BuildableName = "Yeltzland.app"
             BlueprintName = "Yeltzland"
-            ReferencedContainer = "container:yeltzland.xcodeproj">
+            ReferencedContainer = "container:Yeltzland.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </LaunchAction>
@@ -102,7 +102,7 @@
             BlueprintIdentifier = "52E3DF721CD9FA78009F18BD"
             BuildableName = "Yeltzland.app"
             BlueprintName = "Yeltzland"
-            ReferencedContainer = "container:yeltzland.xcodeproj">
+            ReferencedContainer = "container:Yeltzland.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

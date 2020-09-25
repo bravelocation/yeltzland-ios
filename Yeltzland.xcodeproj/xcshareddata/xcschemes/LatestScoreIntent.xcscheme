@@ -18,7 +18,7 @@
                BlueprintIdentifier = "52EACD96215643FB008B8DE5"
                BuildableName = "LatestScoreIntent.appex"
                BlueprintName = "LatestScoreIntent"
-               ReferencedContainer = "container:yeltzland.xcodeproj">
+               ReferencedContainer = "container:Yeltzland.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -32,7 +32,7 @@
                BlueprintIdentifier = "52E3DF721CD9FA78009F18BD"
                BuildableName = "Yeltzland.app"
                BlueprintName = "Yeltzland"
-               ReferencedContainer = "container:yeltzland.xcodeproj">
+               ReferencedContainer = "container:Yeltzland.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -50,7 +50,7 @@
                BlueprintIdentifier = "5252773F24C42C5400F93050"
                BuildableName = "YeltzlandUnitTests.xctest"
                BlueprintName = "YeltzlandUnitTests"
-               ReferencedContainer = "container:yeltzland.xcodeproj">
+               ReferencedContainer = "container:Yeltzland.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -73,7 +73,7 @@
             BlueprintIdentifier = "52E3DF721CD9FA78009F18BD"
             BuildableName = "Yeltzland.app"
             BlueprintName = "Yeltzland"
-            ReferencedContainer = "container:yeltzland.xcodeproj">
+            ReferencedContainer = "container:Yeltzland.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -92,7 +92,7 @@
             BlueprintIdentifier = "52E3DF721CD9FA78009F18BD"
             BuildableName = "Yeltzland.app"
             BlueprintName = "Yeltzland"
-            ReferencedContainer = "container:yeltzland.xcodeproj">
+            ReferencedContainer = "container:Yeltzland.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

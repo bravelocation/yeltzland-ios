@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "52E3DF721CD9FA78009F18BD"
-               BuildableName = "Yeltzland.app"
-               BlueprintName = "Yeltzland"
+               BlueprintIdentifier = "525719701FDE8AE1005F1D80"
+               BuildableName = "YeltzlandTVOS.app"
+               BlueprintName = "YeltzlandTVOS"
                ReferencedContainer = "container:Yeltzland.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,26 +28,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5257E8B91CDB953400157CED"
-               BuildableName = "YeltzlandUITests.xctest"
-               BlueprintName = "YeltzlandUITests"
-               ReferencedContainer = "container:Yeltzland.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5252773F24C42C5400F93050"
-               BuildableName = "YeltzlandUnitTests.xctest"
-               BlueprintName = "YeltzlandUnitTests"
-               ReferencedContainer = "container:Yeltzland.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -64,25 +44,12 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "52E3DF721CD9FA78009F18BD"
-            BuildableName = "Yeltzland.app"
-            BlueprintName = "Yeltzland"
+            BlueprintIdentifier = "525719701FDE8AE1005F1D80"
+            BuildableName = "YeltzlandTVOS.app"
+            BlueprintName = "YeltzlandTVOS"
             ReferencedContainer = "container:Yeltzland.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <CommandLineArguments>
-         <CommandLineArgument
-            argument = "-FIRDebugEnabled"
-            isEnabled = "YES">
-         </CommandLineArgument>
-      </CommandLineArguments>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "OS_ACTIVITY_MODE"
-            value = "disable"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -94,9 +61,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "52E3DF721CD9FA78009F18BD"
-            BuildableName = "Yeltzland.app"
-            BlueprintName = "Yeltzland"
+            BlueprintIdentifier = "525719701FDE8AE1005F1D80"
+            BuildableName = "YeltzlandTVOS.app"
+            BlueprintName = "YeltzlandTVOS"
             ReferencedContainer = "container:Yeltzland.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
