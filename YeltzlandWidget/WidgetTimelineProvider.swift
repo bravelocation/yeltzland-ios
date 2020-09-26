@@ -51,11 +51,11 @@ struct WidgetTimelineProvider: TimelineProvider {
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<WidgetTimelineData>) -> Void) {
-        // Go and update the game score and fixtures, abut update the timeline immediately (otherwise might time out)
-        self.updateData()
-
         let timeline = self.buildTimeline()
         completion(timeline)
+        
+        // Go and update the game score and fixtures, but update the timeline immediately (otherwise might time out)
+        self.updateData()
     }
     
     private func updateData() {
