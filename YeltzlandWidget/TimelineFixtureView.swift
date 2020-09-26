@@ -76,7 +76,7 @@ struct TimelineMatchTitle: View {
             } else if (status == .result) {
                 Text("RESULT").font(.caption)
             } else {
-                Text("LATEST SCORE").font(.caption)
+                Text("LATEST").font(.caption)
             }
             
             Spacer()
