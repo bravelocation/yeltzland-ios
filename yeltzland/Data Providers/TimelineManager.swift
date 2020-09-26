@@ -110,7 +110,7 @@ class TimelineManager {
                     date: lastResult.fixtureDate,
                     teamScore: lastResult.teamScore,
                     opponentScore: lastResult.opponentScore,
-                    status: .result)
+                    status: lastResult.inProgress ? .inProgress : .result)
         }
        
         // Get next games
@@ -123,7 +123,7 @@ class TimelineManager {
                date: fixture.fixtureDate,
                teamScore: fixture.teamScore,
                opponentScore: fixture.opponentScore,
-               status: .fixture)
+               status: fixture.inProgress ? .inProgress : .fixture)
            self.nextGames.append(fixtureData)
         }
     }
