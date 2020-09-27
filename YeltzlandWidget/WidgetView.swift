@@ -13,12 +13,6 @@ struct WidgetView: View {
     var data: WidgetTimelineData
     @Environment(\.widgetFamily) var widgetFamily
     
-    static let dateFormat: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm:ss"
-        return formatter
-    }()
-
     var body: some View {
         VStack {
             HStack {
@@ -35,7 +29,7 @@ struct WidgetView: View {
                     TimelineFixtureView(fixture: data.second!)
                 }
             }
-            Text("\(data.date, formatter: Self.dateFormat)").font(.caption2)
+            Text(data.debugInfo ?? "").font(.caption2)
         }.padding()
         .foregroundColor(Color("light-blue"))
         .background(ContainerRelativeShape().fill(Color("yeltz-blue")))
@@ -46,6 +40,7 @@ struct WidgetView_Previews: PreviewProvider {
     static var previews: some View {
         WidgetView(data: WidgetTimelineData(
             date: Date(),
+            debugInfo: nil,
             first: buildPlaceholder(opponent: "Barnet (FAT QF)",
                                     home: false,
                                     date: "2020-02-29 15:00",
@@ -62,6 +57,7 @@ struct WidgetView_Previews: PreviewProvider {
         
         WidgetView(data: WidgetTimelineData(
             date: Date(),
+            debugInfo: nil,
             first: buildPlaceholder(opponent: "Barnet (FAT QF)",
                                     home: false,
                                     date: "2020-02-29 15:00",

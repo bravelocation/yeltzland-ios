@@ -14,6 +14,7 @@ struct WidgetTimelineProvider: TimelineProvider {
     func placeholder(in context: Context) -> WidgetTimelineData {
         return WidgetTimelineData(
             date: Date(),
+            debugInfo: nil,
             first: buildPlaceholder(opponent: "Barnet (FAT QF)",
                                     home: false,
                                     date: "2020-02-29 15:00",
@@ -25,7 +26,8 @@ struct WidgetTimelineProvider: TimelineProvider {
                                      date: "2020-09-05 15:00",
                                      teamScore: nil,
                                      opponentScore: nil,
-                                     status: .fixture))
+                                     status: .fixture)
+            )
     }
 
     func getSnapshot(in context: Context, completion: @escaping (WidgetTimelineData) -> Void) {
@@ -34,6 +36,7 @@ struct WidgetTimelineProvider: TimelineProvider {
         
         let entry = WidgetTimelineData(
             date: Date(),
+            debugInfo: nil,
             first: buildPlaceholder(opponent: "Barnet (FAT QF)",
                                     home: false,
                                     date: "2020-02-29 15:00",
@@ -121,10 +124,26 @@ struct WidgetTimelineProvider: TimelineProvider {
                 }
             }
         }
+        
+        var debugInfo: String = ""
+        let dateFormat: DateFormatter = {
+                let formatter = DateFormatter()
+                formatter.dateFormat = "HH:mm"
+                return formatter
+            }()
+        
+        if let gameUpdateTime = GameScoreManager.shared.fileModificationDate() {
+            debugInfo = "G:\(dateFormat.string(from: gameUpdateTime))"
+        }
+        
+        if let fixturesUpdateTime = FixtureManager.shared.fileModificationDate() {
+            debugInfo = "\(debugInfo) F:\(dateFormat.string(from: fixturesUpdateTime))"
+        }
 
         // Add the timeline entry
         let data = WidgetTimelineData(
             date: Date(),
+            debugInfo: debugInfo,
             first: first,
             second: second
         )
