@@ -146,20 +146,15 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         
         Messaging.messaging().appDidReceiveMessage(response.notification.request.content.userInfo)
         
-        // Go and update the game score and fixtures, and update widgets when updated
-        GameScoreManager.shared.fetchLatestData() { result in
-            if result == .success(true) {
-                FixtureManager.shared.fetchLatestData() { result in
-                    if result == .success(true) {
-                        #if !targetEnvironment(macCatalyst)
-                        if #available(iOS 14.0, *) {
-                            WidgetCenter.shared.reloadAllTimelines()
-                        }
-                        #endif
-                    }
-                }
-            }
+        // Go and update the game score and fixtures, and update widgets
+        GameScoreManager.shared.fetchLatestData(completion: nil)
+        FixtureManager.shared.fetchLatestData(completion: nil)
+        
+        #if !targetEnvironment(macCatalyst)
+        if #available(iOS 14.0, *) {
+            WidgetCenter.shared.reloadAllTimelines()
         }
+        #endif
 
         // If app in foreground, show a toast
         if (UIApplication.shared.applicationState == .active) {
