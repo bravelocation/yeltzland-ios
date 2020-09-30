@@ -136,9 +136,7 @@ struct WidgetTimelineProvider: TimelineProvider {
             debugInfo = "G:\(dateFormat.string(from: gameUpdateTime))"
         }
         
-        if let fixturesUpdateTime = FixtureManager.shared.fileModificationDate() {
-            debugInfo = "\(debugInfo) F:\(dateFormat.string(from: fixturesUpdateTime))"
-        }
+        debugInfo = "\(debugInfo) N:\(dateFormat.string(from: Date()))"
 
         // Add the timeline entry
         let data = WidgetTimelineData(

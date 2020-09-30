@@ -71,6 +71,10 @@ public struct Fixture: Hashable {
         if let parsedOpponentScore = fromJson["OpponentScore"] as? String {
             self.opponentScore = Int(parsedOpponentScore)
         }
+        
+        if self.teamScore == nil && self.opponentScore == nil && self.fixtureDate < Date() {
+            self.inProgress = true
+        }
     }
     
     init(date: Date, opponent: String, home: Bool, teamScore: Int?, opponentScore: Int?, inProgress: Bool) {

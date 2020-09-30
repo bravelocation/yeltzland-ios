@@ -91,8 +91,7 @@ public class GameScoreManager: CachedJSONData, TimelineGameScoreProvider {
                                                   opponentScore: opponentScore,
                                                   inProgress: true)
                 } else {
-                    let now = Date()
-                    let afterKickoff = now.compare(nextFixture.fixtureDate) == ComparisonResult.orderedDescending
+                    let afterKickoff = nextFixture.fixtureDate < Date()
                     
                     if (afterKickoff) {
                         // If after kickoff, we are in progress with no score yet
