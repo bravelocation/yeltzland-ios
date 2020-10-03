@@ -21,8 +21,7 @@ public class PreviewGameScoreManager: TimelineGameScoreProvider {
             opponent: opponent,
             home: home,
             teamScore: teamScore,
-            opponentScore: opponentScore,
-            inProgress: true)
+            opponentScore: opponentScore)
     }
     
     // MARK: - TimelineGameScoreProvider interface

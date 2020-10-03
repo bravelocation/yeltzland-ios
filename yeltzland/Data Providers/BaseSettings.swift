@@ -107,8 +107,7 @@ public class BaseSettings: NSObject {
                        opponent: self.currentGameOpponentName,
                        home: self.currentGameHome,
                        teamScore: self.currentGameYeltzScore,
-                       opponentScore: self.currentGameOpponentScore,
-                       inProgress: self.currentGameInProgress)
+                       opponentScore: self.currentGameOpponentScore)
     }
     
     public func pushAllSettingsToWatch(_ currentlyInGame: Bool) {

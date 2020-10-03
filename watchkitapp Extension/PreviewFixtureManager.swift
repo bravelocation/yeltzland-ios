@@ -39,8 +39,7 @@ public class PreviewFixtureManager: TimelineFixtureProvider {
             opponent: opponent,
             home: home,
             teamScore: nil,
-            opponentScore: nil,
-            inProgress: false))
+            opponentScore: nil))
     }
     
     private func createResult(daysToAdd: Int, opponent: String, home: Bool, teamScore: Int, opponentScore: Int) {
@@ -49,8 +48,7 @@ public class PreviewFixtureManager: TimelineFixtureProvider {
             opponent: opponent,
             home: home,
             teamScore: teamScore,
-            opponentScore: opponentScore,
-            inProgress: false)
+            opponentScore: opponentScore)
         )
     }
     
