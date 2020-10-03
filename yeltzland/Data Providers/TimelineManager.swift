@@ -80,6 +80,7 @@ class TimelineManager {
         if let second = secondEntry {
             entries.append(second)
         }
+        
         return entries
     }
     
@@ -110,7 +111,7 @@ class TimelineManager {
                     date: lastResult.fixtureDate,
                     teamScore: lastResult.teamScore,
                     opponentScore: lastResult.opponentScore,
-                    status: lastResult.inProgress ? .inProgress : .result)
+                    status: .result)
         }
        
         // Get next games
@@ -123,7 +124,7 @@ class TimelineManager {
                date: fixture.fixtureDate,
                teamScore: fixture.teamScore,
                opponentScore: fixture.opponentScore,
-               status: fixture.inProgress ? .inProgress : .fixture)
+               status: .fixture)
            self.nextGames.append(fixtureData)
         }
     }

@@ -80,14 +80,14 @@ public class MockGameScoreManager: TimelineGameScoreProvider {
         self.gameScore = nil
     }
     
-    public func createGameScore(daysToAdd: Int, opponent: String, home: Bool, teamScore: Int, opponentScore: Int) {
+    public func createGameScore(daysToAdd: Int, opponent: String, home: Bool, teamScore: Int, opponentScore: Int, inProgress: Bool = true) {
         self.gameScore = Fixture(
             date: MockFixtureManager.makeDate(daysToAdd: daysToAdd),
             opponent: opponent,
             home: home,
             teamScore: teamScore,
             opponentScore: opponentScore,
-            inProgress: true)
+            inProgress: inProgress)
     }
     
     // MARK: - TimelineGameScoreProvider interface
