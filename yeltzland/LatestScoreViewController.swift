@@ -120,23 +120,15 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
     // MARK: - Helper functions
 
     private func updateUI() {
-        var latestFixture: Fixture? = FixtureManager.shared.lastGame
+        let timelineManager = TimelineManager(fixtureManager: FixtureManager.shared, gameScoreManager: GameScoreManager.shared)
+        timelineManager.reloadData()
         
-        if let currentFixture = GameScoreManager.shared.currentFixture {
-            if currentFixture.inProgress {
-                latestFixture = currentFixture
-            }
-        }
-        
-        if latestFixture == nil {
-            if let nextFixture = FixtureManager.shared.nextGame {
-                latestFixture = nextFixture
-            }
-        }
+        let entries = timelineManager.timelineEntries
+        let latestFixture: TimelineFixture? = entries.first
         
         var homeOrAway = "vs"
         var resultColor = AppColors.label
-        var score = "TBD"
+        var score = ""
         
         if let fixture = latestFixture {
             if (fixture.home == false) {
@@ -147,7 +139,7 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
             let opponentScore = fixture.opponentScore
             
             if (teamScore != nil && opponentScore != nil) {
-                score = String(format: "%d-%d%@", teamScore!, opponentScore!, fixture.inProgress ? "*" : "")
+                score = String(format: "%d-%d%@", teamScore!, opponentScore!, fixture.status == .inProgress ? "*" : "")
                 
                 if (teamScore! > opponentScore!) {
                     resultColor = UIColor(named: "fixture-win")!
@@ -156,15 +148,17 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
                 } else {
                     resultColor = UIColor(named: "fixture-draw")!
                 }
+            } else {
+                score = fixture.kickoffTime
             }
  
-            self.opponentLabel.text = fixture.opponentNoCup
+            self.opponentLabel.text = fixture.opponent
             self.homeOrAwayLabel.text = homeOrAway
             self.latestScoreLabel.text = score
             self.latestScoreLabel.textColor = resultColor
             TeamImageManager.shared.loadTeamImage(teamName: fixture.opponent, view: self.opponentLogoImageView)
             
-            self.bestGuessLabel.isHidden = (fixture.inProgress == false)
+            self.bestGuessLabel.isHidden = (fixture.status != .inProgress)
         }
     }
     
