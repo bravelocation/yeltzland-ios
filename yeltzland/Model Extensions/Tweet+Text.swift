@@ -56,7 +56,7 @@ extension DisplayTweet {
         
         // Finally add any remaining text
         if (currentPoint < endPoint) {
-            let textUpToEntityStart = String(self.fullText.dropFirstUnicode(currentPoint).prefixUnicode(endPoint - currentPoint))
+            let textUpToEntityStart = String(self.fullText.dropFirstUnicode(currentPoint).prefixUnicode(endPoint - currentPoint + 1))
             textParts.append(TweetPart(text: textUpToEntityStart, linkUrl: nil))
         }
         
