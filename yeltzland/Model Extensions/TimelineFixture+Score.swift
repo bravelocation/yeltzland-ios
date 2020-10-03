@@ -19,6 +19,10 @@ extension TimelineFixture {
                 return "\(teamScore)-\(opponentScore)"
             }
         
+            if self.status == .inProgress {
+                return "0-0*"
+            }
+            
             return ""
         }
     }
