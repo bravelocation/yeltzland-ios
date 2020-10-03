@@ -28,16 +28,6 @@ private func > <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
   }
 }
 
-public enum FixtureState {
-    case manyDaysBefore
-    case daysBefore
-    case gameDayBefore
-    case during
-    case after
-    case dayAfter
-    case manyDaysAfter
-}
-
 public struct Fixture: Hashable {
     var fixtureDate: Date
     var opponent: String
@@ -234,73 +224,6 @@ public struct Fixture: Hashable {
             }
             
             return String.init(format: "%d-%d%@", self.teamScore!, self.opponentScore!, self.inProgress ? "*" : "")
-        }
-    }
-    
-    public var fullScoreOrDate: String {
-        get {
-            switch self.state {
-            case .manyDaysBefore, .daysBefore:
-                let formatter = DateFormatter()
-                formatter.dateFormat = "EEE dd MMM"
-                return formatter.string(from: self.fixtureDate)
-            case .gameDayBefore:
-                let formatter = DateFormatter()
-                formatter.dateFormat = "HHmm"
-                return formatter.string(from: self.fixtureDate)
-            case .during:
-                return self.inProgressScore
-            case .after, .dayAfter, .manyDaysAfter:
-                return self.score
-            }
-        }
-    }
-    
-    public var fullTitle: String {
-        get {
-            switch self.state {
-            case .manyDaysBefore, .daysBefore, .gameDayBefore:
-                return "Next game:"
-            case .during:
-                return "Current score"
-            case .after, .dayAfter, .manyDaysAfter:
-                return "Last game:"
-            }
-        }
-    }
-    
-    var state: FixtureState {
-        get {
-            // If in progress
-            if (self.inProgress) {
-                return FixtureState.during
-            }
-            
-            let now = Date()
-            let beforeKickoff = now.compare(self.fixtureDate) == ComparisonResult.orderedAscending
-            let todayDayNumber = DateHelper.dayNumber(now)
-            let fixtureDayNumber = DateHelper.dayNumber(self.fixtureDate)
-            
-            // If next game is today, and we are before kickoff ...
-            if (self.isToday) {
-                if beforeKickoff {
-                    return FixtureState.gameDayBefore
-                }
-            }
-         
-            // If before day today
-            if (fixtureDayNumber > todayDayNumber + 7) {
-                return FixtureState.manyDaysBefore
-            } else if (fixtureDayNumber >  todayDayNumber) {
-                return FixtureState.daysBefore
-            }
-
-            // If today or yesterday
-            if ((fixtureDayNumber == todayDayNumber - 1) || (fixtureDayNumber == todayDayNumber)) {
-                return FixtureState.dayAfter
-            } else {
-                return FixtureState.manyDaysAfter
-            }
         }
     }
     
