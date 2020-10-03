@@ -191,6 +191,7 @@
 		5297C9E921565A7600AB5D0F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52E3DF7D1CD9FA78009F18BD /* Assets.xcassets */; };
 		52A4596E1D89666E00822D8C /* gallery.ckcomplication in Resources */ = {isa = PBXBuildFile; fileRef = 52A4596D1D89666E00822D8C /* gallery.ckcomplication */; };
 		52B4475522CF316000E745EB /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B4475422CF316000E745EB /* AppColors.swift */; };
+		52C77EF02528799D000D55FA /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE636724E909B6000DAA25 /* DateHelper.swift */; };
 		52D868261FE81B6E0041B578 /* TVFixtureCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D868241FE81B6E0041B578 /* TVFixtureCollectionCell.swift */; };
 		52D868271FE81B6E0041B578 /* TVFixtureCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52D868251FE81B6E0041B578 /* TVFixtureCollectionCell.xib */; };
 		52D868291FE928DA0041B578 /* TwitterDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D868281FE928DA0041B578 /* TwitterDataSource.swift */; };
@@ -1846,6 +1847,7 @@
 				528C5D0024C9AAB20019DA0F /* TimelineFixture+Date.swift in Sources */,
 				5252775724C42DFE00F93050 /* LocationManager.swift in Sources */,
 				5252775224C42D6400F93050 /* Fixture.swift in Sources */,
+				52C77EF02528799D000D55FA /* DateHelper.swift in Sources */,
 				5252774A24C42C7500F93050 /* MockDataManagers.swift in Sources */,
 				5252774E24C42D1F00F93050 /* TimelineManager.swift in Sources */,
 			);

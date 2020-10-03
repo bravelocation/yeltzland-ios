@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import yeltzland
 
 public class MockFixtureManager: TimelineFixtureProvider {
 
