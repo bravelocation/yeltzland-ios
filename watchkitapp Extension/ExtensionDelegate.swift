@@ -56,22 +56,26 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         }
         
         // If the next fixture is missing or too far away, get next game
-        if latestFixture == nil {
+        if latestFixture == nil || latestFixture!.state == .manyDaysAfter {
             latestFixture = FixtureManager.shared.nextGame
         }
         
         if let fixture = latestFixture {
-            if fixture.inProgress {
-                backgroundRefreshMinutes = 15
-            } else if fixture.isToday {
+            switch (fixture.state) {
+            case .gameDayBefore:
+                // Calculate minutes to start of the game
                 var minutesToGameStart = (globalCalendar as NSCalendar).components([.minute], from: now, to: fixture.fixtureDate as Date, options: []).minute ?? 0
                 
-                if (minutesToGameStart > 60) {
+                if (minutesToGameStart <= 0) {
                     minutesToGameStart = 60
                 }
                 
                 backgroundRefreshMinutes = minutesToGameStart
-            } else {
+            case .during:
+                backgroundRefreshMinutes = 15;          // Every 15 mins during the game
+            case .after:
+                backgroundRefreshMinutes = 60;          // Every hour after the game
+            default:
                 backgroundRefreshMinutes = 6 * 60;      // Otherwise, every 6 hours
             }
         }

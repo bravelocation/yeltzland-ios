@@ -88,9 +88,10 @@ public class GameScoreManager: CachedJSONData, TimelineGameScoreProvider {
                                                   opponent: fixture.opponent,
                                                   home: fixture.home,
                                                   teamScore: yeltzScore,
-                                                  opponentScore: opponentScore)
+                                                  opponentScore: opponentScore,
+                                                  inProgress: true)
                 } else {
-                    let afterKickoff = Date() > nextFixture.fixtureDate
+                    let afterKickoff = nextFixture.fixtureDate < Date()
                     
                     if (afterKickoff) {
                         // If after kickoff, we are in progress with no score yet
@@ -98,7 +99,8 @@ public class GameScoreManager: CachedJSONData, TimelineGameScoreProvider {
                                                       opponent: nextFixture.opponent,
                                                       home: nextFixture.home,
                                                       teamScore: 0,
-                                                      opponentScore: 0)
+                                                      opponentScore: 0,
+                                                      inProgress: true)
                     } else if let lastResult = FixtureManager.shared.lastGame {
                         // Otherwise "latest score" must be last result
                         self.currentFixture = lastResult
