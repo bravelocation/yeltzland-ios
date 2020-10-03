@@ -124,7 +124,7 @@ class TimelineManager {
                date: fixture.fixtureDate,
                teamScore: fixture.teamScore,
                opponentScore: fixture.opponentScore,
-               status: .fixture)
+            status: fixture.afterKickoff ? .inProgress : .fixture)
            self.nextGames.append(fixtureData)
         }
     }

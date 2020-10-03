@@ -132,8 +132,8 @@ struct WidgetTimelineProvider: TimelineProvider {
                 return formatter
             }()
         
-        if let gameUpdateTime = GameScoreManager.shared.fileModificationDate() {
-            debugInfo = "G:\(dateFormat.string(from: gameUpdateTime))"
+        if let gameFixture = GameScoreManager.shared.currentFixture {
+            debugInfo = "\(gameFixture.opponent.first ?? "x"): \(gameFixture.teamScore ?? -1)-\(gameFixture.opponentScore ?? -1)"
         }
         
         debugInfo = "\(debugInfo) N:\(dateFormat.string(from: Date()))"
