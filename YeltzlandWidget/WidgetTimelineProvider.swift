@@ -14,7 +14,6 @@ struct WidgetTimelineProvider: TimelineProvider {
     func placeholder(in context: Context) -> WidgetTimelineData {
         return WidgetTimelineData(
             date: Date(),
-            debugInfo: nil,
             first: buildPlaceholder(opponent: "Barnet (FAT QF)",
                                     home: false,
                                     date: "2020-02-29 15:00",
@@ -37,7 +36,6 @@ struct WidgetTimelineProvider: TimelineProvider {
         
         let entry = WidgetTimelineData(
             date: Date(),
-            debugInfo: nil,
             first: buildPlaceholder(opponent: "Barnet (FAT QF)",
                                     home: false,
                                     date: "2020-02-29 15:00",
@@ -94,24 +92,10 @@ struct WidgetTimelineProvider: TimelineProvider {
                         }
                     }
                 }
-                
-                var debugInfo: String = ""
-                let dateFormat: DateFormatter = {
-                        let formatter = DateFormatter()
-                        formatter.dateFormat = "HH:mm"
-                        return formatter
-                    }()
-                
-                if let gameFixture = GameScoreManager.shared.currentFixture {
-                    debugInfo = "\(gameFixture.opponent.first ?? "x"): \(gameFixture.teamScore ?? -1)-\(gameFixture.opponentScore ?? -1)"
-                }
-                
-                debugInfo = "\(debugInfo) N:\(dateFormat.string(from: Date()))"
 
                 // Add the timeline entry
                 let data = WidgetTimelineData(
                     date: Date(),
-                    debugInfo: debugInfo,
                     first: first,
                     second: second
                 )
@@ -121,7 +105,6 @@ struct WidgetTimelineProvider: TimelineProvider {
                 completion(timeline)
             }
         }
-
     }
     
     private func buildPlaceholder(

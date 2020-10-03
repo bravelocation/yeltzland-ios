@@ -11,7 +11,6 @@ import SwiftUI
 
 struct WidgetTimelineData: TimelineEntry {
     let date: Date
-    let debugInfo: String?
     let first: TimelineFixture?
     let second: TimelineFixture?
     

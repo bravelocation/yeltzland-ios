@@ -80,7 +80,8 @@ struct TimelineMatchTitle: View {
             }
             
             Spacer()
-            Image("club-badge")
+            Image("club-badge").resizable()
+                .frame(width: 16.0, height: 16.0)
         }
 
     }
