@@ -71,6 +71,9 @@ struct TimelineMatchTitle: View {
     
     var body: some View {
         HStack {
+            Image("club-badge").resizable()
+                .frame(width: 16.0, height: 16.0)
+             
             if (status == .fixture) {
                 Text("FIXTURE").font(.caption)
             } else if (status == .result) {
@@ -80,10 +83,7 @@ struct TimelineMatchTitle: View {
             }
             
             Spacer()
-            Image("club-badge").resizable()
-                .frame(width: 16.0, height: 16.0)
         }
-
     }
 }
 
