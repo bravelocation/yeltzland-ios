@@ -7,7 +7,9 @@
 //
 
 import UIKit
+#if !targetEnvironment(macCatalyst)
 import WidgetKit
+#endif
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
