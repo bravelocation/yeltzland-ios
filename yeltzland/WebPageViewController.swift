@@ -16,12 +16,12 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
     var homePageUrl: URL!
     
     var homeUrl: URL! {
+        get {
+            return self.homePageUrl
+        }
         set {
             self.homePageUrl = newValue
             self.loadHomePage()
-        }
-        get {
-            return self.homePageUrl
         }
     }
     

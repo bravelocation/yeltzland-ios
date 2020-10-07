@@ -14,7 +14,7 @@ import IntentsUI
 class OtherLinksTableViewController: UITableViewController, SFSafariViewControllerDelegate {
 
     let firebaseNotifications = FirebaseNotifications()
-    let leagueTableUrl = URL(string: "https://southern-football-league.co.uk/league-table/Southern%20League%20Premier%20South/2020/2021/P")
+    let leagueTableUrl = URL(string: "https://southern-football-league.co.uk/league-table/Southern%20League%20Div%20One%20Central/2020/2021/P/")
     
     override func viewDidLoad() {
         super.viewDidLoad()

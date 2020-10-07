@@ -160,4 +160,51 @@ class TimelineUnitTests: XCTestCase {
             XCTAssert(secondEntry.status == .fixture, "Should show in progress game first")
         }
     }
+    
+    func testGameHasFinishedWithFixturesAndResults() throws {
+        self.fixtureManager.createResult(daysToAdd: 0, opponent: "Result Today", home: true, teamScore: 1, opponentScore: 0)
+        self.fixtureManager.addFixture(daysToAdd: 7, opponent: "Second Fixture", home: true)
+        self.gameScoreManager.createGameScore(daysToAdd: 0, opponent: "Result Today", home: true, teamScore: 1, opponentScore: 0, inProgress: false)
+        self.timelineManager.reloadData()
+        
+        let timeline = self.timelineManager.timelineEntries
+        
+        XCTAssert(timeline.count == 2, "Should show 2 entries")
+        
+        if (timeline.count > 0) {
+            let firstEntry = timeline[0]
+            XCTAssert(firstEntry.opponent == "Result Today", "Should show in today's result first")
+            XCTAssert(firstEntry.status == .result, "Should show in today's result first")
+        }
+
+        if (timeline.count > 1) {
+            let secondEntry = timeline[1]
+            XCTAssert(secondEntry.opponent == "Second Fixture", "Should show second fixture second")
+            XCTAssert(secondEntry.status == .fixture, "Should show in progress game first")
+        }
+    }
+    
+    func testNextFixtureAfterKickoffShownAsInProgress() throws {
+        self.fixtureManager.createResult(daysToAdd: -7, opponent: "Last Game", home: true, teamScore: 1, opponentScore: 0)
+        self.fixtureManager.addFixture(daysToAdd: -1, opponent: "Fixture Started", home: true)
+        self.fixtureManager.addFixture(daysToAdd: 7, opponent: "Second Fixture", home: true)
+        self.gameScoreManager.createGameScore(daysToAdd: -7, opponent: "Last Game", home: true, teamScore: 1, opponentScore: 0, inProgress: false)
+        self.timelineManager.reloadData()
+        
+        let timeline = self.timelineManager.timelineEntries
+        
+        XCTAssert(timeline.count == 2, "Should show 2 entries")
+        
+        if (timeline.count > 0) {
+            let firstEntry = timeline[0]
+            XCTAssert(firstEntry.opponent == "Fixture Started", "Should show in started fixture first")
+            XCTAssert(firstEntry.status == .inProgress, "Should show in progress")
+        }
+
+        if (timeline.count > 1) {
+            let secondEntry = timeline[1]
+            XCTAssert(secondEntry.opponent == "Second Fixture", "Should show second fixture second")
+            XCTAssert(secondEntry.status == .fixture, "Should show in progress game first")
+        }
+    }
 }

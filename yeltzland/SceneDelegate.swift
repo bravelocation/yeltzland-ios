@@ -7,6 +7,9 @@
 //
 
 import UIKit
+#if !targetEnvironment(macCatalyst)
+import WidgetKit
+#endif
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
@@ -67,6 +70,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     @available(iOS 13.0, *)
     func sceneDidEnterBackground(_ scene: UIScene) {
         (UIApplication.shared.delegate as! AppDelegate).scheduleBackgroundFetch()
+    }
+    
+    @available(iOS 13.0, *)
+    func sceneWillEnterForeground(_ scene: UIScene) {
+        print("In scene enter foreground ...")
+
+        GameScoreManager.shared.fetchLatestData() { result in
+            if result == .success(true) {
+                FixtureManager.shared.fetchLatestData() { result in
+                    if result == .success(true) {
+                        if #available(iOS 14.0, *) {
+                            #if !targetEnvironment(macCatalyst)
+                            WidgetCenter.shared.reloadAllTimelines()
+                            #endif
+                        }
+                    }
+                }
+            }
+        }
     }
     
     // MARK: - Private functions

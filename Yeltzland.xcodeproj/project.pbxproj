@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -65,6 +65,7 @@
 		522C442324C764170018E89A /* FixtureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522C442224C764170018E89A /* FixtureView.swift */; };
 		522C442524C768950018E89A /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522C442424C768950018E89A /* ResultView.swift */; };
 		522EA44220EA236A00B90146 /* TeamImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522EA44120EA236A00B90146 /* TeamImageManager.swift */; };
+		522F8CFA2518E89F0094AA42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52E3DF7D1CD9FA78009F18BD /* Assets.xcassets */; };
 		5231F4FF215B6C56003FAC68 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5231F4FE215B6C56003FAC68 /* SettingsManager.swift */; };
 		5231F501215B6C92003FAC68 /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5231F500215B6C92003FAC68 /* Settings.plist */; };
 		5236ECDB20CE99B80067AFFA /* LatestScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5236ECD920CE99B80067AFFA /* LatestScoreViewController.swift */; };
@@ -114,13 +115,38 @@
 		526B211C24C304BC005CE9C7 /* TodayFixtureCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 526B211924C304BC005CE9C7 /* TodayFixtureCollectionViewCell.xib */; };
 		526B211D24C304BC005CE9C7 /* TodayFixtureCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 526B211924C304BC005CE9C7 /* TodayFixtureCollectionViewCell.xib */; };
 		526CE78E24CF0E9A00CC1023 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 526CE78D24CF0E9A00CC1023 /* SwiftUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		526F54521D214705001EA8D8 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 526F54511D214705001EA8D8 /* NotificationCenter.framework */; };
+		526F54521D214705001EA8D8 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 526F54511D214705001EA8D8 /* NotificationCenter.framework */; platformFilter = ios; };
 		526F54551D214705001EA8D8 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526F54541D214705001EA8D8 /* TodayViewController.swift */; };
 		526F54581D214705001EA8D8 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 526F54561D214705001EA8D8 /* MainInterface.storyboard */; };
 		526F545C1D214705001EA8D8 /* Today.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 526F54501D214705001EA8D8 /* Today.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		526F54631D214982001EA8D8 /* Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236AE51D17DFF8004903AB /* Fixture.swift */; };
 		526F54641D214982001EA8D8 /* FixtureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236AE71D17E4D3004903AB /* FixtureManager.swift */; };
 		526F54651D214C3B001EA8D8 /* matches.json in Resources */ = {isa = PBXBuildFile; fileRef = 52236AEA1D17ECB4004903AB /* matches.json */; };
+		527C17D12508B2BF009FDBEB /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 527C17D02508B2BF009FDBEB /* WidgetKit.framework */; platformFilter = ios; };
+		527C17D22508B2BF009FDBEB /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 526CE78D24CF0E9A00CC1023 /* SwiftUI.framework */; };
+		527C17D52508B2BF009FDBEB /* YeltzlandWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527C17D42508B2BF009FDBEB /* YeltzlandWidget.swift */; };
+		527C17DB2508B2C1009FDBEB /* YeltzlandWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 527C17CF2508B2BF009FDBEB /* YeltzlandWidgetExtension.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		527C17E02508B2F5009FDBEB /* matches.json in Resources */ = {isa = PBXBuildFile; fileRef = 52236AEA1D17ECB4004903AB /* matches.json */; };
+		527C17E12508B2F9009FDBEB /* gamescore.json in Resources */ = {isa = PBXBuildFile; fileRef = 52176BAD1D4A1AF600B7EFAE /* gamescore.json */; };
+		527C17E22508B30D009FDBEB /* BaseSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52176BB21D4B62DC00B7EFAE /* BaseSettings.swift */; };
+		527C17E32508B30F009FDBEB /* FixtureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236AE71D17E4D3004903AB /* FixtureManager.swift */; };
+		527C17E42508B312009FDBEB /* GameScoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52176BAF1D4A1B3200B7EFAE /* GameScoreManager.swift */; };
+		527C17E52508B31C009FDBEB /* TimelineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B210324C2CD6E005CE9C7 /* TimelineManager.swift */; };
+		527C17E72508B330009FDBEB /* GameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DBCA9F1D4A012E00D35F91 /* GameSettings.swift */; };
+		527C17E82508B334009FDBEB /* CachedJSONData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522716CC22D1BB50008FD210 /* CachedJSONData.swift */; };
+		527C17E92508B33F009FDBEB /* Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236AE51D17DFF8004903AB /* Fixture.swift */; };
+		527C17EA2508B342009FDBEB /* TimelineFixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B210A24C2CE66005CE9C7 /* TimelineFixture.swift */; };
+		527C17EB2508B348009FDBEB /* TimelineFixture+Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C5CF924C9AAB20019DA0F /* TimelineFixture+Date.swift */; };
+		527C17EC2508B34B009FDBEB /* TimelineFixture+Opponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C5D0124C9AAF30019DA0F /* TimelineFixture+Opponent.swift */; };
+		527C17ED2508B34D009FDBEB /* TimelineFixture+Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528C5D0924C9AB750019DA0F /* TimelineFixture+Score.swift */; };
+		527C17EE2508B492009FDBEB /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE636724E909B6000DAA25 /* DateHelper.swift */; };
+		527C17F02508B5F8009FDBEB /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 521B94A622CBB621009DFF76 /* Colors.xcassets */; };
+		527C17F22508B699009FDBEB /* WidgetTimelineProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527C17F12508B699009FDBEB /* WidgetTimelineProvider.swift */; };
+		527C17F42508B6F5009FDBEB /* WidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527C17F32508B6F5009FDBEB /* WidgetView.swift */; };
+		527C17F62508B793009FDBEB /* WidgetTimelineData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527C17F52508B793009FDBEB /* WidgetTimelineData.swift */; };
+		527C17F82508C18C009FDBEB /* TimelineFixtureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527C17F72508C18C009FDBEB /* TimelineFixtureView.swift */; };
+		527C17F92508C252009FDBEB /* PreviewFixtureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E54D7F24C5A9B10007B44E /* PreviewFixtureManager.swift */; };
+		527C17FA2508C255009FDBEB /* PreviewGameScoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E54D8124C5AAE30007B44E /* PreviewGameScoreManager.swift */; };
 		527DAF1B1D2BA9BA0092BB8F /* SafariActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527DAF1A1D2BA9BA0092BB8F /* SafariActivity.swift */; };
 		527DAF1D1D2D08030092BB8F /* locations.json in Resources */ = {isa = PBXBuildFile; fileRef = 527DAF1C1D2D08030092BB8F /* locations.json */; };
 		527DAF1F1D2D082C0092BB8F /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527DAF1E1D2D082C0092BB8F /* Location.swift */; };
@@ -165,6 +191,7 @@
 		5297C9E921565A7600AB5D0F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52E3DF7D1CD9FA78009F18BD /* Assets.xcassets */; };
 		52A4596E1D89666E00822D8C /* gallery.ckcomplication in Resources */ = {isa = PBXBuildFile; fileRef = 52A4596D1D89666E00822D8C /* gallery.ckcomplication */; };
 		52B4475522CF316000E745EB /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B4475422CF316000E745EB /* AppColors.swift */; };
+		52C77EF02528799D000D55FA /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE636724E909B6000DAA25 /* DateHelper.swift */; };
 		52D868261FE81B6E0041B578 /* TVFixtureCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D868241FE81B6E0041B578 /* TVFixtureCollectionCell.swift */; };
 		52D868271FE81B6E0041B578 /* TVFixtureCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52D868251FE81B6E0041B578 /* TVFixtureCollectionCell.xib */; };
 		52D868291FE928DA0041B578 /* TwitterDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D868281FE928DA0041B578 /* TwitterDataSource.swift */; };
@@ -268,6 +295,13 @@
 			remoteGlobalIDString = 526F544F1D214705001EA8D8;
 			remoteInfo = Today;
 		};
+		527C17D92508B2C1009FDBEB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52E3DF6B1CD9FA78009F18BD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 527C17CE2508B2BF009FDBEB;
+			remoteInfo = YeltzlandWidgetExtension;
+		};
 		52EACDAA215643FC008B8DE5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 52E3DF6B1CD9FA78009F18BD /* Project object */;
@@ -315,6 +349,7 @@
 			files = (
 				52EACDAF215643FC008B8DE5 /* LatestScoreIntent.appex in Embed App Extensions */,
 				52EACDAC215643FC008B8DE5 /* LatestScoreIntentUI.appex in Embed App Extensions */,
+				527C17DB2508B2C1009FDBEB /* YeltzlandWidgetExtension.appex in Embed App Extensions */,
 				526F545C1D214705001EA8D8 /* Today.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
@@ -402,6 +437,15 @@
 		526F54541D214705001EA8D8 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		526F54571D214705001EA8D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		526F54591D214705001EA8D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		527C17CF2508B2BF009FDBEB /* YeltzlandWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = YeltzlandWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		527C17D02508B2BF009FDBEB /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		527C17D42508B2BF009FDBEB /* YeltzlandWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YeltzlandWidget.swift; sourceTree = "<group>"; };
+		527C17D82508B2C1009FDBEB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		527C17DC2508B2C2009FDBEB /* YeltzlandWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YeltzlandWidgetExtension.entitlements; sourceTree = "<group>"; };
+		527C17F12508B699009FDBEB /* WidgetTimelineProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetTimelineProvider.swift; sourceTree = "<group>"; };
+		527C17F32508B6F5009FDBEB /* WidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetView.swift; sourceTree = "<group>"; };
+		527C17F52508B793009FDBEB /* WidgetTimelineData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetTimelineData.swift; sourceTree = "<group>"; };
+		527C17F72508C18C009FDBEB /* TimelineFixtureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineFixtureView.swift; sourceTree = "<group>"; };
 		527DAF1A1D2BA9BA0092BB8F /* SafariActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafariActivity.swift; sourceTree = "<group>"; };
 		527DAF1C1D2D08030092BB8F /* locations.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = locations.json; sourceTree = "<group>"; };
 		527DAF1E1D2D082C0092BB8F /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
@@ -519,6 +563,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				526F54521D214705001EA8D8 /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		527C17CC2508B2BF009FDBEB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				527C17D22508B2BF009FDBEB /* SwiftUI.framework in Frameworks */,
+				527C17D12508B2BF009FDBEB /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -760,6 +813,19 @@
 			path = Today;
 			sourceTree = "<group>";
 		};
+		527C17D32508B2BF009FDBEB /* YeltzlandWidget */ = {
+			isa = PBXGroup;
+			children = (
+				527C17D82508B2C1009FDBEB /* Info.plist */,
+				527C17F72508C18C009FDBEB /* TimelineFixtureView.swift */,
+				527C17F12508B699009FDBEB /* WidgetTimelineProvider.swift */,
+				527C17F52508B793009FDBEB /* WidgetTimelineData.swift */,
+				527C17F32508B6F5009FDBEB /* WidgetView.swift */,
+				527C17D42508B2BF009FDBEB /* YeltzlandWidget.swift */,
+			);
+			path = YeltzlandWidget;
+			sourceTree = "<group>";
+		};
 		528C5CF824C9AA6C0019DA0F /* Model Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -817,6 +883,7 @@
 		52E3DF6A1CD9FA78009F18BD = {
 			isa = PBXGroup;
 			children = (
+				527C17DC2508B2C2009FDBEB /* YeltzlandWidgetExtension.entitlements */,
 				52EBCF472340A1C300A2157A /* yeltzlandTVOS.entitlements */,
 				52A4596D1D89666E00822D8C /* gallery.ckcomplication */,
 				52236AE91D17EC90004903AB /* data */,
@@ -830,6 +897,7 @@
 				52EACD98215643FB008B8DE5 /* LatestScoreIntent */,
 				52EACDA3215643FC008B8DE5 /* LatestScoreIntentUI */,
 				5252774124C42C5400F93050 /* yeltzlandUnitTests */,
+				527C17D32508B2BF009FDBEB /* YeltzlandWidget */,
 				52E3DF741CD9FA78009F18BD /* Products */,
 				D15072796B891DCF46FC1DA6 /* Frameworks */,
 				094D27B64A778A50E38BC04C /* Pods */,
@@ -848,6 +916,7 @@
 				52EACD97215643FB008B8DE5 /* LatestScoreIntent.appex */,
 				52EACDA0215643FC008B8DE5 /* LatestScoreIntentUI.appex */,
 				5252774024C42C5400F93050 /* YeltzlandUnitTests.xctest */,
+				527C17CF2508B2BF009FDBEB /* YeltzlandWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -948,6 +1017,7 @@
 				0169FC4AAE3B4FA55E081580 /* Pods_Yeltzland.framework */,
 				92283CF6BA4404FBD866C82C /* Pods_YeltzlandTVOS.framework */,
 				7FB55985341B9FD44EF024D0 /* Pods_YeltzlandUnitTests.framework */,
+				527C17D02508B2BF009FDBEB /* WidgetKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1070,6 +1140,24 @@
 			productReference = 526F54501D214705001EA8D8 /* Today.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		527C17CE2508B2BF009FDBEB /* YeltzlandWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 527C17DF2508B2C2009FDBEB /* Build configuration list for PBXNativeTarget "YeltzlandWidgetExtension" */;
+			buildPhases = (
+				527C17CB2508B2BF009FDBEB /* Sources */,
+				527C17CC2508B2BF009FDBEB /* Frameworks */,
+				527C17CD2508B2BF009FDBEB /* Resources */,
+				527C17EF2508B566009FDBEB /* Set Build Number from Git */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = YeltzlandWidgetExtension;
+			productName = YeltzlandWidgetExtension;
+			productReference = 527C17CF2508B2BF009FDBEB /* YeltzlandWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		52E3DF721CD9FA78009F18BD /* Yeltzland */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 52E3DF851CD9FA79009F18BD /* Build configuration list for PBXNativeTarget "Yeltzland" */;
@@ -1092,6 +1180,7 @@
 				52176BD61D4B6D5900B7EFAE /* PBXTargetDependency */,
 				52EACDAB215643FC008B8DE5 /* PBXTargetDependency */,
 				52EACDAE215643FC008B8DE5 /* PBXTargetDependency */,
+				527C17DA2508B2C1009FDBEB /* PBXTargetDependency */,
 			);
 			name = Yeltzland;
 			productName = yeltzland;
@@ -1141,8 +1230,8 @@
 		52E3DF6B1CD9FA78009F18BD /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1160;
-				LastUpgradeCheck = 1020;
+				LastSwiftUpdateCheck = 1200;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "John Pollard";
 				TargetAttributes = {
 					52176BB61D4B6D5900B7EFAE = {
@@ -1195,6 +1284,9 @@
 								enabled = 1;
 							};
 						};
+					};
+					527C17CE2508B2BF009FDBEB = {
+						CreatedOnToolsVersion = 12.0;
 					};
 					52E3DF721CD9FA78009F18BD = {
 						CreatedOnToolsVersion = 7.3;
@@ -1262,6 +1354,7 @@
 				52EACD96215643FB008B8DE5 /* LatestScoreIntent */,
 				52EACD9F215643FC008B8DE5 /* LatestScoreIntentUI */,
 				5252773F24C42C5400F93050 /* YeltzlandUnitTests */,
+				527C17CE2508B2BF009FDBEB /* YeltzlandWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -1329,6 +1422,17 @@
 				52176BAC1D4A14C700B7EFAE /* DefaultPreferences.plist in Resources */,
 				526F54651D214C3B001EA8D8 /* matches.json in Resources */,
 				526F54581D214705001EA8D8 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		527C17CD2508B2BF009FDBEB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				527C17F02508B5F8009FDBEB /* Colors.xcassets in Resources */,
+				527C17E02508B2F5009FDBEB /* matches.json in Resources */,
+				522F8CFA2518E89F0094AA42 /* Assets.xcassets in Resources */,
+				527C17E12508B2F9009FDBEB /* gamescore.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1484,6 +1588,25 @@
 			inputPaths = (
 			);
 			name = "Set Build Number from Git";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "git=`sh /etc/profile; which git`\nappBuild=`$git rev-list --all |wc -l`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\necho \"Updated ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\n";
+		};
+		527C17EF2508B566009FDBEB /* Set Build Number from Git */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Set Build Number from Git";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1724,6 +1847,7 @@
 				528C5D0024C9AAB20019DA0F /* TimelineFixture+Date.swift in Sources */,
 				5252775724C42DFE00F93050 /* LocationManager.swift in Sources */,
 				5252775224C42D6400F93050 /* Fixture.swift in Sources */,
+				52C77EF02528799D000D55FA /* DateHelper.swift in Sources */,
 				5252774A24C42C7500F93050 /* MockDataManagers.swift in Sources */,
 				5252774E24C42D1F00F93050 /* TimelineManager.swift in Sources */,
 			);
@@ -1785,6 +1909,32 @@
 				52176BB41D4B62DC00B7EFAE /* BaseSettings.swift in Sources */,
 				526F54641D214982001EA8D8 /* FixtureManager.swift in Sources */,
 				526F54551D214705001EA8D8 /* TodayViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		527C17CB2508B2BF009FDBEB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				527C17F82508C18C009FDBEB /* TimelineFixtureView.swift in Sources */,
+				527C17EB2508B348009FDBEB /* TimelineFixture+Date.swift in Sources */,
+				527C17E32508B30F009FDBEB /* FixtureManager.swift in Sources */,
+				527C17D52508B2BF009FDBEB /* YeltzlandWidget.swift in Sources */,
+				527C17E42508B312009FDBEB /* GameScoreManager.swift in Sources */,
+				527C17E82508B334009FDBEB /* CachedJSONData.swift in Sources */,
+				527C17EC2508B34B009FDBEB /* TimelineFixture+Opponent.swift in Sources */,
+				527C17E22508B30D009FDBEB /* BaseSettings.swift in Sources */,
+				527C17E92508B33F009FDBEB /* Fixture.swift in Sources */,
+				527C17F62508B793009FDBEB /* WidgetTimelineData.swift in Sources */,
+				527C17EE2508B492009FDBEB /* DateHelper.swift in Sources */,
+				527C17F42508B6F5009FDBEB /* WidgetView.swift in Sources */,
+				527C17F92508C252009FDBEB /* PreviewFixtureManager.swift in Sources */,
+				527C17F22508B699009FDBEB /* WidgetTimelineProvider.swift in Sources */,
+				527C17FA2508C255009FDBEB /* PreviewGameScoreManager.swift in Sources */,
+				527C17EA2508B342009FDBEB /* TimelineFixture.swift in Sources */,
+				527C17ED2508B34D009FDBEB /* TimelineFixture+Score.swift in Sources */,
+				527C17E52508B31C009FDBEB /* TimelineManager.swift in Sources */,
+				527C17E72508B330009FDBEB /* GameSettings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1919,6 +2069,12 @@
 			platformFilter = ios;
 			target = 526F544F1D214705001EA8D8 /* Today */;
 			targetProxy = 526F545A1D214705001EA8D8 /* PBXContainerItemProxy */;
+		};
+		527C17DA2508B2C1009FDBEB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = 527C17CE2508B2BF009FDBEB /* YeltzlandWidgetExtension */;
+			targetProxy = 527C17D92508B2C1009FDBEB /* PBXContainerItemProxy */;
 		};
 		52EACDAB215643FC008B8DE5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2255,8 +2411,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bravelocation.yeltzland.Today;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Debug;
 		};
@@ -2277,8 +2434,83 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bravelocation.yeltzland.Today;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,6";
+			};
+			name = Release;
+		};
+		527C17DD2508B2C2009FDBEB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = YeltzlandWidgetExtension.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 698;
+				DEAD_CODE_STRIPPING = NO;
+				DEVELOPMENT_TEAM = W8B3V597R9;
+				ENABLE_BITCODE = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = YeltzlandWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bravelocation.yeltzland.YeltzlandWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		527C17DE2508B2C2009FDBEB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = YeltzlandWidgetExtension.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 698;
+				DEAD_CODE_STRIPPING = NO;
+				DEVELOPMENT_TEAM = W8B3V597R9;
+				ENABLE_BITCODE = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = YeltzlandWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bravelocation.yeltzland.YeltzlandWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -2306,6 +2538,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -2330,12 +2563,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_VERIFY_BITCODE = NO;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				SHARED_VERSION_NUMBER = 5.0.0;
+				SHARED_VERSION_NUMBER = 5.1.0;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2365,6 +2598,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -2383,11 +2617,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_VERIFY_BITCODE = NO;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SHARED_VERSION_NUMBER = 5.0.0;
+				SHARED_VERSION_NUMBER = 5.1.0;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2399,6 +2633,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D0B2AF15E7E7962D5F1ADFD6 /* Pods-Yeltzland.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = yeltzland/yeltzland.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -2425,6 +2660,7 @@
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "./yeltzland/yeltzland-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Debug;
 		};
@@ -2432,6 +2668,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8C3E078A39D9759D27B66C4F /* Pods-Yeltzland.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = yeltzland/yeltzland.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -2458,6 +2695,7 @@
 				SUPPORTS_MACCATALYST = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "./yeltzland/yeltzland-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Release;
 		};
@@ -2488,10 +2726,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bravelocation.yeltzland.LatestScoreIntentUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Debug;
 		};
@@ -2521,9 +2759,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bravelocation.yeltzland.LatestScoreIntentUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Release;
 		};
@@ -2553,10 +2791,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bravelocation.yeltzland.LatestScoreIntent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Debug;
 		};
@@ -2585,9 +2823,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bravelocation.yeltzland.LatestScoreIntent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Release;
 		};
@@ -2644,6 +2882,15 @@
 			buildConfigurations = (
 				526F545E1D214705001EA8D8 /* Debug */,
 				526F545F1D214705001EA8D8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		527C17DF2508B2C2009FDBEB /* Build configuration list for PBXNativeTarget "YeltzlandWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				527C17DD2508B2C2009FDBEB /* Debug */,
+				527C17DE2508B2C2009FDBEB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

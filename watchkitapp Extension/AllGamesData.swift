@@ -41,10 +41,6 @@ class AllGamesData: ObservableObject {
         self.setup()
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
     private func setup() {
         if self.useResults {
             self.title = "Results"

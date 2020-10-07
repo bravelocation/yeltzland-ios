@@ -185,4 +185,14 @@ extension CachedJSONData {
         
         task.resume()
     }
+    
+    func fileModificationDate() -> Date? {
+        do {
+            let url = self.cacheFileUrl()
+            let attr = try FileManager.default.attributesOfItem(atPath: url.path)
+            return attr[FileAttributeKey.modificationDate] as? Date
+        } catch {
+            return nil
+        }
+    }
 }

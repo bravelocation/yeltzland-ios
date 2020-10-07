@@ -91,40 +91,40 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
                 template.tintColor = UIColor(named: "light-blue")
                 entry = CLKComplicationTimelineEntry(date: now, complicationTemplate: template)
             case .graphicBezel:
-                if #available(watchOS 5, *) {
-                    let template = CLKComplicationTemplateGraphicBezelCircularText()
-                    template.textProvider = CLKSimpleTextProvider(text: String(format: "%@ %@", fixture.opponentShortened, abbreviatedScoreOrDate))
-                    
-                    let imageProvider = CLKComplicationTemplateGraphicCircularImage()
-                    imageProvider.imageProvider = CLKFullColorImageProvider(fullColorImage: UIImage(named: "Complication/Graphic Bezel")!)
-                    template.circularTemplate = imageProvider
-                    template.tintColor = UIColor(named: "light-blue")
-                    
-                    entry = CLKComplicationTimelineEntry(date: now, complicationTemplate: template)
-                }
+                let template = CLKComplicationTemplateGraphicBezelCircularText()
+                template.textProvider = CLKSimpleTextProvider(text: String(format: "%@ %@", fixture.opponentShortened, abbreviatedScoreOrDate))
+                
+                let imageProvider = CLKComplicationTemplateGraphicCircularImage()
+                imageProvider.imageProvider = CLKFullColorImageProvider(fullColorImage: UIImage(named: "Complication/Graphic Bezel")!)
+                template.circularTemplate = imageProvider
+                template.tintColor = UIColor(named: "light-blue")
+                
+                entry = CLKComplicationTimelineEntry(date: now, complicationTemplate: template)
             case .graphicCorner:
-                if #available(watchOS 5, *) {
-                    let template = CLKComplicationTemplateGraphicCornerStackText()
-                    template.outerTextProvider = CLKSimpleTextProvider(text: fixture.opponentAbbreviation)
-                    template.innerTextProvider = CLKSimpleTextProvider(text: abbreviatedScoreOrDate)
-                    template.tintColor = UIColor(named: "light-blue")
-                    entry = CLKComplicationTimelineEntry(date: now, complicationTemplate: template)
-                }
+                let template = CLKComplicationTemplateGraphicCornerStackText()
+                template.outerTextProvider = CLKSimpleTextProvider(text: fixture.opponentAbbreviation)
+                template.innerTextProvider = CLKSimpleTextProvider(text: abbreviatedScoreOrDate)
+                template.tintColor = UIColor(named: "light-blue")
+                entry = CLKComplicationTimelineEntry(date: now, complicationTemplate: template)
             case .graphicCircular:
-                if #available(watchOS 5, *) {
-                    let template = CLKComplicationTemplateGraphicCircularImage()
-                    template.imageProvider = CLKFullColorImageProvider(fullColorImage: UIImage(named: "Complication/Graphic Circular")!)
-                    template.tintColor = UIColor(named: "light-blue")
-                    entry = CLKComplicationTimelineEntry(date: now, complicationTemplate: template)
-                }
+                let template = CLKComplicationTemplateGraphicCircularImage()
+                template.imageProvider = CLKFullColorImageProvider(fullColorImage: UIImage(named: "Complication/Graphic Circular")!)
+                template.tintColor = UIColor(named: "light-blue")
+                entry = CLKComplicationTimelineEntry(date: now, complicationTemplate: template)
             case .graphicRectangular:
-                if #available(watchOS 5, *) {
-                    let template = CLKComplicationTemplateGraphicRectangularStandardBody()
-                    template.headerTextProvider = CLKSimpleTextProvider(text: gameType)
-                    template.body1TextProvider = CLKSimpleTextProvider(text: fixture.opponentShortened)
-                    template.body2TextProvider = CLKSimpleTextProvider(text: fullScoreOrDate)
+                let template = CLKComplicationTemplateGraphicRectangularStandardBody()
+                template.headerTextProvider = CLKSimpleTextProvider(text: gameType)
+                template.body1TextProvider = CLKSimpleTextProvider(text: fixture.opponentShortened)
+                template.body2TextProvider = CLKSimpleTextProvider(text: fullScoreOrDate)
+                template.tintColor = UIColor(named: "light-blue")
+                
+                entry = CLKComplicationTimelineEntry(date: now, complicationTemplate: template)
+            case .graphicExtraLarge:
+                if #available(watchOS 7, *) {
+                    let template = CLKComplicationTemplateGraphicExtraLargeCircularStackText()
+                    template.line1TextProvider = CLKSimpleTextProvider(text: fixture.opponentAbbreviation)
+                    template.line2TextProvider = CLKSimpleTextProvider(text: abbreviatedScoreOrDate)
                     template.tintColor = UIColor(named: "light-blue")
-                    
                     entry = CLKComplicationTimelineEntry(date: now, complicationTemplate: template)
                 }
             default:
@@ -186,41 +186,41 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
             template.tintColor = UIColor(named: "light-blue")
             handler(template)
         case .graphicBezel:
-            if #available(watchOS 5, *) {
-                let template = CLKComplicationTemplateGraphicBezelCircularText()
-                template.textProvider = CLKSimpleTextProvider(text: "Stourbridge 10-0")
-                
-                let imageProvider = CLKComplicationTemplateGraphicCircularImage()
-                imageProvider.imageProvider = CLKFullColorImageProvider(fullColorImage: UIImage(named: "Complication/Graphic Bezel")!)
-                template.circularTemplate = imageProvider
-                template.tintColor = UIColor(named: "light-blue")
-                
-                handler(template)
-            }
+            let template = CLKComplicationTemplateGraphicBezelCircularText()
+            template.textProvider = CLKSimpleTextProvider(text: "Stourbridge 10-0")
+            
+            let imageProvider = CLKComplicationTemplateGraphicCircularImage()
+            imageProvider.imageProvider = CLKFullColorImageProvider(fullColorImage: UIImage(named: "Complication/Graphic Bezel")!)
+            template.circularTemplate = imageProvider
+            template.tintColor = UIColor(named: "light-blue")
+            
+            handler(template)
         case .graphicCorner:
-            if #available(watchOS 5, *) {
-                let template = CLKComplicationTemplateGraphicCornerStackText()
-                template.outerTextProvider = CLKSimpleTextProvider(text: "STOU")
-                template.innerTextProvider = CLKSimpleTextProvider(text: "2-0")
-                template.tintColor = UIColor(named: "light-blue")
-                handler(template)
-            }
+            let template = CLKComplicationTemplateGraphicCornerStackText()
+            template.outerTextProvider = CLKSimpleTextProvider(text: "STOU")
+            template.innerTextProvider = CLKSimpleTextProvider(text: "2-0")
+            template.tintColor = UIColor(named: "light-blue")
+            handler(template)
         case .graphicCircular:
-            if #available(watchOS 5, *) {
-                let template = CLKComplicationTemplateGraphicCircularImage()
-                template.imageProvider = CLKFullColorImageProvider(fullColorImage: UIImage(named: "Complication/Graphic Circular")!)
-                template.tintColor = UIColor(named: "light-blue")
+            let template = CLKComplicationTemplateGraphicCircularImage()
+            template.imageProvider = CLKFullColorImageProvider(fullColorImage: UIImage(named: "Complication/Graphic Circular")!)
+            template.tintColor = UIColor(named: "light-blue")
 
-                handler(template)
-            }
+            handler(template)
         case .graphicRectangular:
-            if #available(watchOS 5, *) {
-                let template = CLKComplicationTemplateGraphicRectangularStandardBody()
-                template.headerTextProvider = CLKSimpleTextProvider(text: "Next game:")
-                template.body1TextProvider = CLKSimpleTextProvider(text: "Stourbridge")
-                template.body2TextProvider = CLKSimpleTextProvider(text: "Tue 26 Dec")
+            let template = CLKComplicationTemplateGraphicRectangularStandardBody()
+            template.headerTextProvider = CLKSimpleTextProvider(text: "Next game:")
+            template.body1TextProvider = CLKSimpleTextProvider(text: "Stourbridge")
+            template.body2TextProvider = CLKSimpleTextProvider(text: "Tue 26 Dec")
+            template.tintColor = UIColor(named: "light-blue")
+            
+            handler(template)
+        case .graphicExtraLarge:
+            if #available(watchOS 7, *) {
+                let template = CLKComplicationTemplateGraphicExtraLargeCircularStackText()
+                template.line1TextProvider = CLKSimpleTextProvider(text: "STOU")
+                template.line2TextProvider = CLKSimpleTextProvider(text: "10-0")
                 template.tintColor = UIColor(named: "light-blue")
-                
                 handler(template)
             }
         default:

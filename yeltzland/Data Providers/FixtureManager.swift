@@ -136,19 +136,6 @@ public class FixtureManager: CachedJSONData, TimelineFixtureProvider {
         return foundGames
     }
     
-    public var fixtureCount: Int {
-        var fixtureCount = 0
-        
-        for month in self.months {
-            if let monthFixtures = self.fixturesForMonth(month) {
-                fixtureCount += monthFixtures.count
-            }
-        }
-        
-        return fixtureCount
-
-    }
-    
     public var nextGame: Fixture? {
         let fixtures = self.nextFixtures(1)
         
@@ -159,6 +146,7 @@ public class FixtureManager: CachedJSONData, TimelineFixtureProvider {
         return nil
     }
     
+    // MARK: - TimelineFixtureProvider implementation
     public var allMatches: [Fixture] {
         var fixtures: [Fixture] = []
         
@@ -173,23 +161,6 @@ public class FixtureManager: CachedJSONData, TimelineFixtureProvider {
         return fixtures
     }
     
-    public var currentGame: Fixture? {
-        let nextGame = self.nextGame
-        
-        if (nextGame != nil) {
-            // If within 120 minutes of kickoff date, the game is current
-            let now = Date()
-            let differenceInMinutes = (Calendar.current as NSCalendar).components(.minute, from: nextGame!.fixtureDate as Date, to: now, options: []).minute
-            
-            if (differenceInMinutes! >= 0 && differenceInMinutes! < 120) {
-                return nextGame
-            }
-        }
-        
-        return nil
-    }
-    
-    // MARK: - TimelineFixtureProvider implementation
     public func nextFixtures(_ numberOfFixtures: Int) -> [Fixture] {
         var fixtures: [Fixture] = []
         let currentDayNumber = DateHelper.dayNumber(Date())

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1020"
+   LastUpgradeVersion = "1200"
    version = "2.0">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -17,7 +17,7 @@
                BlueprintIdentifier = "52176BB61D4B6D5900B7EFAE"
                BuildableName = "watchkitapp.app"
                BlueprintName = "watchkitapp"
-               ReferencedContainer = "container:yeltzland.xcodeproj">
+               ReferencedContainer = "container:Yeltzland.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -31,7 +31,7 @@
                BlueprintIdentifier = "52E3DF721CD9FA78009F18BD"
                BuildableName = "Yeltzland.app"
                BlueprintName = "Yeltzland"
-               ReferencedContainer = "container:yeltzland.xcodeproj">
+               ReferencedContainer = "container:Yeltzland.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -41,15 +41,6 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "52176BB61D4B6D5900B7EFAE"
-            BuildableName = "watchkitapp.app"
-            BlueprintName = "watchkitapp"
-            ReferencedContainer = "container:yeltzland.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <Testables>
          <TestableReference
             skipped = "NO">
@@ -58,7 +49,7 @@
                BlueprintIdentifier = "5252773F24C42C5400F93050"
                BuildableName = "YeltzlandUnitTests.xctest"
                BlueprintName = "YeltzlandUnitTests"
-               ReferencedContainer = "container:yeltzland.xcodeproj">
+               ReferencedContainer = "container:Yeltzland.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -74,18 +65,16 @@
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES"
       launchAutomaticallySubstyle = "32">
-      <RemoteRunnable
-         runnableDebuggingMode = "2"
-         BundleIdentifier = "com.apple.Carousel"
-         RemotePath = "/Yeltzland">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "52176BB61D4B6D5900B7EFAE"
             BuildableName = "watchkitapp.app"
             BlueprintName = "watchkitapp"
-            ReferencedContainer = "container:yeltzland.xcodeproj">
+            ReferencedContainer = "container:Yeltzland.xcodeproj">
          </BuildableReference>
-      </RemoteRunnable>
+      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -94,27 +83,16 @@
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES"
       launchAutomaticallySubstyle = "32">
-      <RemoteRunnable
-         runnableDebuggingMode = "2"
-         BundleIdentifier = "com.apple.Carousel"
-         RemotePath = "/Yeltzland">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "52176BB61D4B6D5900B7EFAE"
             BuildableName = "watchkitapp.app"
             BlueprintName = "watchkitapp"
-            ReferencedContainer = "container:yeltzland.xcodeproj">
+            ReferencedContainer = "container:Yeltzland.xcodeproj">
          </BuildableReference>
-      </RemoteRunnable>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "52176BB61D4B6D5900B7EFAE"
-            BuildableName = "watchkitapp.app"
-            BlueprintName = "watchkitapp"
-            ReferencedContainer = "container:yeltzland.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

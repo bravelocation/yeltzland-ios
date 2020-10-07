@@ -39,10 +39,6 @@ class TweetData: ObservableObject {
         self.refreshData()
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
     public func refreshData() {
         print("Refreshing tweet data ...")
         self.setState(.isLoading)

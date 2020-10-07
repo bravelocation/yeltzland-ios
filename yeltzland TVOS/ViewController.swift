@@ -26,11 +26,6 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         self.setupNotificationWatcher()
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-        print("Removed notification handler for updates")
-    }
-    
     fileprivate func setupNotificationWatcher() {
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.fixturesUpdated), name: .FixturesUpdated, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.fixturesUpdated), name: .GameScoreUpdated, object: nil)

@@ -8,6 +8,9 @@
 
 import UIKit
 import Intents
+#if !targetEnvironment(macCatalyst)
+import WidgetKit
+#endif
 
 private func < <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
   switch (lhs, rhs) {
@@ -45,11 +48,6 @@ class FixturesTableViewController: UITableViewController {
         self.setupNotificationWatcher()
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-        print("Removed notification handler for fixture updates")
-    }
-    
     fileprivate func setupNotificationWatcher() {
         NotificationCenter.default.addObserver(self, selector: #selector(FixturesTableViewController.fixturesUpdated), name: .FixturesUpdated, object: nil)
         print("Setup notification handler for fixture updates")
@@ -67,6 +65,12 @@ class FixturesTableViewController: UITableViewController {
                 self.tableView.scrollToRow(at: currentMonthIndexPath, at: UITableView.ScrollPosition.top, animated: true)
             }
         })
+        
+        #if !targetEnvironment(macCatalyst)
+        if #available(iOS 14.0, *) {
+            WidgetCenter.shared.reloadAllTimelines()
+        }
+        #endif
     }
     
     fileprivate func currentMonthSection() -> Int {

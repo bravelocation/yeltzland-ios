@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1020"
+   LastUpgradeVersion = "1200"
    wasCreatedForAppExtension = "YES"
    version = "2.0">
    <BuildAction
@@ -18,7 +18,7 @@
                BlueprintIdentifier = "526F544F1D214705001EA8D8"
                BuildableName = "Today.appex"
                BlueprintName = "Today"
-               ReferencedContainer = "container:yeltzland.xcodeproj">
+               ReferencedContainer = "container:Yeltzland.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -32,7 +32,7 @@
                BlueprintIdentifier = "52E3DF721CD9FA78009F18BD"
                BuildableName = "Yeltzland.app"
                BlueprintName = "Yeltzland"
-               ReferencedContainer = "container:yeltzland.xcodeproj">
+               ReferencedContainer = "container:Yeltzland.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -42,15 +42,6 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "526F544F1D214705001EA8D8"
-            BuildableName = "Today.appex"
-            BlueprintName = "Today"
-            ReferencedContainer = "container:yeltzland.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <Testables>
          <TestableReference
             skipped = "NO">
@@ -59,7 +50,7 @@
                BlueprintIdentifier = "5252773F24C42C5400F93050"
                BuildableName = "YeltzlandUnitTests.xctest"
                BlueprintName = "YeltzlandUnitTests"
-               ReferencedContainer = "container:yeltzland.xcodeproj">
+               ReferencedContainer = "container:Yeltzland.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -84,7 +75,7 @@
             BlueprintIdentifier = "526F544F1D214705001EA8D8"
             BuildableName = "Today.appex"
             BlueprintName = "Today"
-            ReferencedContainer = "container:yeltzland.xcodeproj">
+            ReferencedContainer = "container:Yeltzland.xcodeproj">
          </BuildableReference>
       </RemoteRunnable>
       <MacroExpansion>
@@ -93,7 +84,7 @@
             BlueprintIdentifier = "52E3DF721CD9FA78009F18BD"
             BuildableName = "Yeltzland.app"
             BlueprintName = "Yeltzland"
-            ReferencedContainer = "container:yeltzland.xcodeproj">
+            ReferencedContainer = "container:Yeltzland.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </LaunchAction>
@@ -111,7 +102,7 @@
             BlueprintIdentifier = "52E3DF721CD9FA78009F18BD"
             BuildableName = "Yeltzland.app"
             BlueprintName = "Yeltzland"
-            ReferencedContainer = "container:yeltzland.xcodeproj">
+            ReferencedContainer = "container:Yeltzland.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

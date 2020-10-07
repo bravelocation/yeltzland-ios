@@ -34,10 +34,6 @@ class AllGamesData: ObservableObject {
         self.setup()
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
     private func setup() {
         //Add notification handler for updating on updated fixtures
         NotificationCenter.default.addObserver(self, selector: #selector(AllGamesData.userSettingsUpdated(_:)), name: NSNotification.Name(rawValue: BaseSettings.SettingsUpdateNotification), object: nil)
