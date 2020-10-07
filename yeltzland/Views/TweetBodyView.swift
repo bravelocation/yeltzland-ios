@@ -21,7 +21,7 @@ struct TweetBodyView: View {
         var combined: Text = Text("")
         
         for part in self.textParts {
-            var nextText = Text(part.text)
+            var nextText = Text(part.text.decodeEntities())
             if (part.highlight) {
                 nextText = nextText.foregroundColor(Color("blue-tint"))
             }
