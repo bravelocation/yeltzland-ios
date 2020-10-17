@@ -152,6 +152,11 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
                 score = fixture.kickoffTime
             }
  
+            if self.opponentLabel == nil {
+                // UI not loaded
+                return
+            }
+            
             self.opponentLabel.text = fixture.opponent
             self.homeOrAwayLabel.text = homeOrAway
             self.latestScoreLabel.text = score
