@@ -20,71 +20,60 @@ public class NavigationManager {
     init() {
         // Add Statistics Section
         var stats = NavigationSection(title: "Statistics", elements: [])
-        stats.elements.append(NavigationElement(title: "Fixture List",
-                                                subtitle: nil,
+                                      
+        stats.elements.append(NavigationElement.controller(title: "Fixture List",
                                                 imageName: "fixtures",
-                                                type: .controller(FixturesTableViewController(style: .grouped))))
+                                                controller: FixturesTableViewController(style: .grouped)))
         
-        stats.elements.append(NavigationElement(title: "Latest Score",
-                                                subtitle: nil,
+        stats.elements.append(NavigationElement.controller(title: "Latest Score",
                                                 imageName: "latest-score",
-                                                type: .controller(LatestScoreViewController())))
+                                                controller: LatestScoreViewController()))
         
-        stats.elements.append(NavigationElement(title: "Where's the Ground",
-                                                subtitle: nil,
+        stats.elements.append(NavigationElement.controller(title: "Where's the Ground",
                                                 imageName: "map",
-                                                type: .controller(LocationsViewController())))
+                                                controller: LocationsViewController()))
         
-        stats.elements.append(NavigationElement(title: "League Table",
-                                                subtitle: nil,
+        stats.elements.append(NavigationElement.link(title: "League Table",
                                                 imageName: "table",
-                                                type: .link(URL(string: "https://southern-football-league.co.uk/league-table/Southern%20League%20Div%20One%20Central/2020/2021/P/")!)))
+                                                url: "https://southern-football-league.co.uk/league-table/Southern%20League%20Div%20One%20Central/2020/2021/P/"))
         sections.append(stats)
         
         // Other websites section
         var websites = NavigationSection(title: "Other websites", elements: [])
-        websites.elements.append(NavigationElement(title: "HTFC on Facebook",
-                                                   subtitle: nil,
+        websites.elements.append(NavigationElement.link(title: "HTFC on Facebook",
                                                    imageName: "facebook",
-                                                   type: .link(URL(string: "https://www.facebook.com/HalesowenTown1873")!)))
+                                                   url: "https://www.facebook.com/HalesowenTown1873"))
         
-        websites.elements.append(NavigationElement(title: "Southern League site",
-                                                   subtitle: nil,
+        websites.elements.append(NavigationElement.link(title: "Southern League site",
                                                    imageName: "southern-league",
-                                                   type: .link(URL(string: "https://southern-football-league.co.uk")!)))
+                                                   url: "https://southern-football-league.co.uk"))
         
-        websites.elements.append(NavigationElement(title: "Fantasy Island",
-                                                   subtitle: nil,
+        websites.elements.append(NavigationElement.link(title: "Fantasy Island",
                                                    imageName: "fantasy-island",
-                                                   type: .link(URL(string: "https://fantasyisland.yeltz.co.uk")!)))
+                                                   url: "https://fantasyisland.yeltz.co.uk"))
         
-        websites.elements.append(NavigationElement(title: "Stourbridge Town FC",
-                                                   subtitle: nil,
+        websites.elements.append(NavigationElement.link(title: "Stourbridge Town FC",
                                                    imageName: "stourbridge",
-                                                   type: .link(URL(string: "https://www.youtube.com/watch?v=dQw4w9WgXcQ")!)))
+                                                   url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ"))
         
-        websites.elements.append(NavigationElement(title: "Yeltz Club Shop",
-                                                   subtitle: nil,
+        websites.elements.append(NavigationElement.link(title: "Yeltz Club Shop",
                                                    imageName: "club-shop",
-                                                   type: .link(URL(string: "https://www.yeltzclubshop.com")!)))
+                                                   url: "https://www.yeltzclubshop.com"))
         sections.append(websites)
         
         // History section
         var history = NavigationSection(title: "Other websites", elements: [])
-        history.elements.append(NavigationElement(title: "Follow Your Instinct",
-                                                   subtitle: nil,
+        history.elements.append(NavigationElement.link(title: "Follow Your Instinct",
                                                    imageName: "fyi",
-                                                   type: .link(URL(string: "https://www.yeltzland.net/followyourinstinct/")!)))
+                                                   url: "https://www.yeltzland.net/followyourinstinct/"))
         
-        history.elements.append(NavigationElement(title: "Yeltz Archives",
-                                                   subtitle: nil,
+        history.elements.append(NavigationElement.link(title: "Yeltz Archives",
                                                    imageName: "yeltz-archive",
-                                                   type: .link(URL(string: "http://www.yeltzarchives.com")!)))
+                                                   url: "http://www.yeltzarchives.com"))
         
-        history.elements.append(NavigationElement(title: "News Archive (1997-2006)",
-                                                   subtitle: nil,
+        history.elements.append(NavigationElement.link(title: "News Archive (1997-2006)",
                                                    imageName: "news-archive",
-                                                   type: .link(URL(string: "https://www.yeltzland.net/news.html")!)))
+                                                   url: "https://www.yeltzland.net/news.html"))
         sections.append(history)
         
         // Options section
@@ -98,62 +87,50 @@ public class NavigationManager {
         
         // More links section
         var moreLinks = NavigationSection(title: "More from Yeltzland", elements: [])
-        moreLinks.elements.append(NavigationElement(title: "Yeltzland on Amazon Echo",
-                                                   subtitle: nil,
+        moreLinks.elements.append(NavigationElement.link(title: "Yeltzland on Amazon Echo",
                                                    imageName: "amazon",
-                                                   type: .link(URL(string: "https://www.amazon.co.uk/Yeltzland-stuff-about-Halesowen-Town/dp/B01MTJOHBY/")!)))
+                                                   url: "https://www.amazon.co.uk/Yeltzland-stuff-about-Halesowen-Town/dp/B01MTJOHBY/"))
         
-        moreLinks.elements.append(NavigationElement(title: "Yeltzland on Google Assistant",
-                                                   subtitle: nil,
+        moreLinks.elements.append(NavigationElement.link(title: "Yeltzland on Google Assistant",
                                                    imageName: "google",
-                                                   type: .link(URL(string: "https://assistant.google.com/services/a/uid/000000a862d84885?hl=en-GB")!)))
+                                                   url: "https://assistant.google.com/services/a/uid/000000a862d84885?hl=en-GB"))
         
-        moreLinks.elements.append(NavigationElement(title: "Add Fixture List to Calendar",
-                                                   subtitle: nil,
+        moreLinks.elements.append(NavigationElement.link(title: "Add Fixture List to Calendar",
                                                    imageName: "fixtures",
-                                                   type: .link(URL(string: "https://yeltzland.net/calendar-instructions")!)))
+                                                   url: "https://yeltzland.net/calendar-instructions"))
         
         sections.append(moreLinks)
         
         // Add to Siri section
         var siri = NavigationSection(title: "Add to Siri", elements: [])
         
-        siri.elements.append(NavigationElement(title: "What's the latest score?",
-                                               subtitle: nil,
-                                               imageName: "siri",
-                                               type: .siri(ShortcutManager.shared.latestScoreIntent())))
+        siri.elements.append(NavigationElement.siri(title: "What's the latest score?",
+                                               intent: ShortcutManager.shared.latestScoreIntent()))
         
-        siri.elements.append(NavigationElement(title: "Who do we play next?",
-                                               subtitle: nil,
-                                               imageName: "siri",
-                                               type: .siri(ShortcutManager.shared.nextGameIntent())))
+        siri.elements.append(NavigationElement.siri(title: "Who do we play next?",
+                                                    intent: ShortcutManager.shared.nextGameIntent()))
         sections.append(siri)
 
         // About section
         var about = NavigationSection(title: "About", elements: [])
         
-        about.elements.append(NavigationElement(title: "Privacy Policy",
-                                               subtitle: nil,
+        about.elements.append(NavigationElement.link(title: "Privacy Policy",
                                                imageName: nil,
-                                               type: .link(URL(string: "https://bravelocation.com/privacy/yeltzland")!)))
+                                               url: "https://bravelocation.com/privacy/yeltzland"))
         
-        about.elements.append(NavigationElement(title: "Icons from icons8.com",
-                                               subtitle: nil,
+        about.elements.append(NavigationElement.link(title: "Icons from icons8.com",
                                                imageName: nil,
-                                               type: .link(URL(string: "https://icons8.com")!)))
+                                               url: "https://icons8.com"))
         
-        about.elements.append(NavigationElement(title: "More Brave Location Apps",
-                                               subtitle: nil,
+        about.elements.append(NavigationElement.link(title: "More Brave Location Apps",
                                                imageName: nil,
-                                               type: .link(URL(string: "https://bravelocation.com/apps")!)))
+                                               url: "https://bravelocation.com/apps"))
         
         let infoDictionary = Bundle.main.infoDictionary!
         let version = infoDictionary["CFBundleShortVersionString"]
         let build = infoDictionary["CFBundleVersion"]
-        about.elements.append(NavigationElement(title: "",
-                                               subtitle: "v\(version!).\(build!)",
-                                               imageName: nil,
-                                               type: .info))
+        about.elements.append(NavigationElement.info(info: "v\(version!).\(build!)"))
+        
         sections.append(about)
     }
 }
