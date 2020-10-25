@@ -7,18 +7,77 @@
 //
 
 import Foundation
+import UIKit
+
+#if canImport(SwiftUI)
+import SwiftUI
+#endif
 
 public class NavigationManager {
-    private var sections: [NavigationSection] = []
+    private var _main: NavigationSection = NavigationSection(title: "Yeltzland", elements: [])
+    private var _moreSections: [NavigationSection] = []
+    
+    var mainSection: NavigationSection {
+        get {
+            self._main
+        }
+    }
     
     var moreSections: [NavigationSection] {
         get {
-            self.sections
+            self._moreSections
         }
     }
     
     init() {
-        // Add Statistics Section
+        if #available(iOS 14, *) {
+            self.addMainNavigation()
+        }
+        
+        self.addStatisticsSection()
+        self.addOtherWebsitesSection()
+        self.addHistorySection()
+        self.addOptionsSection()
+        self.addMoreLinksSection()
+        self.addSiriSection()
+        self.addAboutSection()
+    }
+    
+    @available(iOS 14, *)
+    private func addMainNavigation() {
+        self._main.elements.append(NavigationElement.link(title: "Yeltz Forum",
+                                                                imageName: "forum",
+                                                                url: "https://www.yeltz.co.uk"))
+        
+        self._main.elements.append(NavigationElement.link(title: "Official Site",
+                                                                imageName: "official",
+                                                                url: "https://www.ht-fc.co.uk"))
+        
+        self._main.elements.append(NavigationElement.link(title: "Yeltz TV",
+                                                                imageName: "yeltztv",
+                                                                url: "https://www.youtube.com/channel/UCGZMWQtMsC4Tep6uLm5V0nQ"))
+        
+        // Twitter
+        let twitterAccountName = "halesowentownfc"        
+        let twitterConsumerKey = SettingsManager.shared.getSetting("TwitterConsumerKey") as! String
+        let twitterConsumerSecret = SettingsManager.shared.getSetting("TwitterConsumerSecret") as! String
+        
+        let twitterDataProvider = TwitterDataProvider(
+            twitterConsumerKey: twitterConsumerKey,
+            twitterConsumerSecret: twitterConsumerSecret,
+            tweetCount: 20,
+            accountName: twitterAccountName
+        )
+        
+        let tweetData = TweetData(dataProvider: twitterDataProvider, accountName: twitterAccountName)
+        let twitterViewController = UIHostingController(rootView: TwitterView().environmentObject(tweetData))
+        
+        self._main.elements.append(NavigationElement.controller(title: "@\(twitterAccountName)",
+                                                                imageName: "twitter",
+                                                                controller: twitterViewController))
+    }
+    
+    private func addStatisticsSection() {
         var stats = NavigationSection(title: "Statistics", elements: [])
                                       
         stats.elements.append(NavigationElement.controller(title: "Fixture List",
@@ -36,9 +95,11 @@ public class NavigationManager {
         stats.elements.append(NavigationElement.link(title: "League Table",
                                                 imageName: "table",
                                                 url: "https://southern-football-league.co.uk/league-table/Southern%20League%20Div%20One%20Central/2020/2021/P/"))
-        sections.append(stats)
+        _moreSections.append(stats)
+    }
+    
+    private func addOtherWebsitesSection() {
         
-        // Other websites section
         var websites = NavigationSection(title: "Other websites", elements: [])
         websites.elements.append(NavigationElement.link(title: "HTFC on Facebook",
                                                    imageName: "facebook",
@@ -59,9 +120,11 @@ public class NavigationManager {
         websites.elements.append(NavigationElement.link(title: "Yeltz Club Shop",
                                                    imageName: "club-shop",
                                                    url: "https://www.yeltzclubshop.com"))
-        sections.append(websites)
-        
-        // History section
+        _moreSections.append(websites)
+    }
+    
+    private func addHistorySection() {
+
         var history = NavigationSection(title: "Other websites", elements: [])
         history.elements.append(NavigationElement.link(title: "Follow Your Instinct",
                                                    imageName: "fyi",
@@ -74,18 +137,23 @@ public class NavigationManager {
         history.elements.append(NavigationElement.link(title: "News Archive (1997-2006)",
                                                    imageName: "news-archive",
                                                    url: "https://www.yeltzland.net/news.html"))
-        sections.append(history)
-        
-        // Options section
+        _moreSections.append(history)
+    }
+    
+    private func addOptionsSection() {
+
         var options = NavigationSection(title: "Options", elements: [])
         options.elements.append(NavigationElement(title: "Game time tweets",
                                                   subtitle: "Enable notifications",
                                                   imageName: "game-time",
                                                   type: .notificationsSettings))
         
-        sections.append(options)
+        _moreSections.append(options)
         
-        // More links section
+    }
+    
+    private func addMoreLinksSection() {
+
         var moreLinks = NavigationSection(title: "More from Yeltzland", elements: [])
         moreLinks.elements.append(NavigationElement.link(title: "Yeltzland on Amazon Echo",
                                                    imageName: "amazon",
@@ -99,9 +167,11 @@ public class NavigationManager {
                                                    imageName: "fixtures",
                                                    url: "https://yeltzland.net/calendar-instructions"))
         
-        sections.append(moreLinks)
+        _moreSections.append(moreLinks)
+    }
+    
+    private func addSiriSection() {
         
-        // Add to Siri section
         var siri = NavigationSection(title: "Add to Siri", elements: [])
         
         siri.elements.append(NavigationElement.siri(title: "What's the latest score?",
@@ -109,9 +179,11 @@ public class NavigationManager {
         
         siri.elements.append(NavigationElement.siri(title: "Who do we play next?",
                                                     intent: ShortcutManager.shared.nextGameIntent()))
-        sections.append(siri)
-
-        // About section
+        _moreSections.append(siri)
+    }
+    
+    private func addAboutSection() {
+        
         var about = NavigationSection(title: "About", elements: [])
         
         about.elements.append(NavigationElement.link(title: "Privacy Policy",
@@ -131,6 +203,6 @@ public class NavigationManager {
         let build = infoDictionary["CFBundleVersion"]
         about.elements.append(NavigationElement.info(info: "v\(version!).\(build!)"))
         
-        sections.append(about)
+        _moreSections.append(about)
     }
 }

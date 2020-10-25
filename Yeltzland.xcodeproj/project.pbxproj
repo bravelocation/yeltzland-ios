@@ -68,6 +68,7 @@
 		522F8CFA2518E89F0094AA42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52E3DF7D1CD9FA78009F18BD /* Assets.xcassets */; };
 		5231F4FF215B6C56003FAC68 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5231F4FE215B6C56003FAC68 /* SettingsManager.swift */; };
 		5231F501215B6C92003FAC68 /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5231F500215B6C92003FAC68 /* Settings.plist */; };
+		52348A6B25457B8B00D6B733 /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52348A6A25457B8B00D6B733 /* SidebarViewController.swift */; };
 		5236ECDB20CE99B80067AFFA /* LatestScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5236ECD920CE99B80067AFFA /* LatestScoreViewController.swift */; };
 		5236ECDC20CE99B80067AFFA /* LatestScoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5236ECDA20CE99B80067AFFA /* LatestScoreViewController.xib */; };
 		523C841E1CE47F06006F1865 /* HTFC2016LOGO.png in Resources */ = {isa = PBXBuildFile; fileRef = 523C841D1CE47F06006F1865 /* HTFC2016LOGO.png */; };
@@ -408,6 +409,7 @@
 		522EA44120EA236A00B90146 /* TeamImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamImageManager.swift; sourceTree = "<group>"; };
 		5231F4FE215B6C56003FAC68 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		5231F500215B6C92003FAC68 /* Settings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Settings.plist; sourceTree = "<group>"; };
+		52348A6A25457B8B00D6B733 /* SidebarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		5236ECD920CE99B80067AFFA /* LatestScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestScoreViewController.swift; sourceTree = "<group>"; };
 		5236ECDA20CE99B80067AFFA /* LatestScoreViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LatestScoreViewController.xib; sourceTree = "<group>"; };
 		523C841D1CE47F06006F1865 /* HTFC2016LOGO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HTFC2016LOGO.png; sourceTree = "<group>"; };
@@ -859,6 +861,7 @@
 				52E3DF781CD9FA78009F18BD /* WebPageViewController.swift */,
 				5236ECD920CE99B80067AFFA /* LatestScoreViewController.swift */,
 				5236ECDA20CE99B80067AFFA /* LatestScoreViewController.xib */,
+				52348A6A25457B8B00D6B733 /* SidebarViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -1971,6 +1974,7 @@
 				5201D3AF24CB14FE00726CAD /* TwitterTimelineView.swift in Sources */,
 				52B4475522CF316000E745EB /* AppColors.swift in Sources */,
 				5201D3B824CC2E1600726CAD /* Tweet+Date.swift in Sources */,
+				52348A6B25457B8B00D6B733 /* SidebarViewController.swift in Sources */,
 				526B211A24C304BC005CE9C7 /* TodayFixtureCollectionViewCell.swift in Sources */,
 				52C32D7F253AD862003D8F2C /* NavigationSection.swift in Sources */,
 				520C09A22157C46100CCC2D8 /* ShortcutManager.swift in Sources */,

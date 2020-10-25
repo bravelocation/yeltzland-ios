@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import Intents
 
-public enum NavigationElementType {
+public enum NavigationElementType: Hashable {
     case controller(UIViewController)
     case link(URL)
     case notificationsSettings
@@ -18,7 +18,7 @@ public enum NavigationElementType {
     case info
 }
 
-public struct NavigationElement {
+public struct NavigationElement: Hashable {
     var title: String
     var subtitle: String?
     var imageName: String?
@@ -50,5 +50,9 @@ public struct NavigationElement {
                                  subtitle: info,
                                  imageName: nil,
                                  type: .info)
+    }
+    
+    public static func == (lhs: NavigationElement, rhs: NavigationElement) -> Bool {
+        return lhs.title == rhs.title
     }
 }

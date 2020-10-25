@@ -75,8 +75,10 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         
         let topPosition = (self.navigationController?.navigationBar.frame.size.height)! + barHeight
         
-        let webViewHeight = view.frame.height -
-            (topPosition + progressBarHeight + (self.tabBarController?.tabBar.frame)!.height)
+        var webViewHeight = view.frame.height - (topPosition + progressBarHeight)
+        if let tabController = self.tabBarController {
+            webViewHeight -= tabController.tabBar.frame.height
+        }
 
         // Add elements to view
         self.webView.frame = CGRect(x: 0, y: topPosition + progressBarHeight, width: view.frame.width, height: webViewHeight)

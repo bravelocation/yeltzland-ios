@@ -21,13 +21,27 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
             
-            let initialTabViewController = MainTabBarController()
+            var initialController: UIViewController?
             
-            if let userActivity = connectionOptions.userActivities.first ?? session.stateRestorationActivity {
-                initialTabViewController.restoreUserActivityState(userActivity)
+            // Try using the split bar view if appropriate
+            if #available(iOS 14, *) {
+                if window.traitCollection.userInterfaceIdiom == .pad {
+                    if let splitViewController = createTwoColumnSplitViewController() {
+                        initialController = splitViewController
+                    }
+                }
             }
             
-            window.rootViewController = initialTabViewController
+            if initialController == nil {
+                initialController = MainTabBarController()
+                
+                if let userActivity = connectionOptions.userActivities.first ?? session.stateRestorationActivity {
+                    initialController!.restoreUserActivityState(userActivity)
+                }
+            }
+            
+            window.rootViewController = initialController
+            
             self.window = window
             window.makeKeyAndVisible()
             
@@ -107,5 +121,27 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         default:
             return 0
         }
+    }
+}
+
+@available(iOS 14, *)
+extension SceneDelegate {
+    private func createTwoColumnSplitViewController() -> UISplitViewController? {
+        // TODO(JP): get this from navigation manager
+        let webViewController = WebPageViewController()
+        webViewController.homeUrl = URL(string: "https://yeltz.co.uk")!
+        webViewController.pageTitle = "Yeltz Forum"
+        let navViewController = UINavigationController(rootViewController: webViewController)
+        
+        let sidebarViewController = SidebarViewController()
+
+        let splitViewController = UISplitViewController(style: .doubleColumn)
+        splitViewController.primaryBackgroundStyle = .sidebar
+        splitViewController.preferredDisplayMode = .oneBesideSecondary
+
+        splitViewController.setViewController(sidebarViewController, for: .primary)
+        splitViewController.setViewController(navViewController, for: .secondary)
+        
+        return splitViewController
     }
 }
