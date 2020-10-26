@@ -15,7 +15,7 @@ import IntentsUI
 class SidebarViewController: UIViewController {
     
     private enum SidebarItemType: Int {
-        case header, row, expandableRow
+        case header, row
     }
     
     private enum SidebarSection: Int {
@@ -30,13 +30,6 @@ class SidebarViewController: UIViewController {
         static func header(title: String, id: UUID = UUID()) -> Self {
             let titleElement = NavigationElement(title: title, subtitle: nil, imageName: nil, type: .info)
             return SidebarItem(id: id, type: .header, element: titleElement)
-        }
-        
-        static func expandableRow(element: NavigationElement, id: UUID = UUID()) -> Self {
-            return SidebarItem(id: id,
-                               type: .expandableRow,
-                               element: element
-            )
         }
         
         static func row(element: NavigationElement, id: UUID = UUID()) -> Self {
@@ -154,20 +147,8 @@ extension SidebarViewController {
             
             var contentConfiguration = UIListContentConfiguration.sidebarHeader()
             contentConfiguration.text = item.element.title
-            contentConfiguration.textProperties.font = .preferredFont(forTextStyle: .subheadline)
+            contentConfiguration.textProperties.font = .preferredFont(forTextStyle: .headline)
             contentConfiguration.textProperties.color = .secondaryLabel
-            
-            cell.contentConfiguration = contentConfiguration
-            cell.accessories = [.outlineDisclosure()]
-        }
-        
-        let expandableRowRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, SidebarItem> {
-            (cell, _, item) in
-            
-            var contentConfiguration = UIListContentConfiguration.sidebarSubtitleCell()
-            contentConfiguration.text = item.element.title
-            contentConfiguration.secondaryText = item.element.subtitle
-            contentConfiguration.image = item.elementImage()
             
             cell.contentConfiguration = contentConfiguration
             cell.accessories = [.outlineDisclosure()]
@@ -190,8 +171,6 @@ extension SidebarViewController {
             switch item.type {
             case .header:
                 return collectionView.dequeueConfiguredReusableCell(using: headerRegistration, for: indexPath, item: item)
-            case .expandableRow:
-                return collectionView.dequeueConfiguredReusableCell(using: expandableRowRegistration, for: indexPath, item: item)
             default:
                 return collectionView.dequeueConfiguredReusableCell(using: rowRegistration, for: indexPath, item: item)
             }
@@ -201,17 +180,12 @@ extension SidebarViewController {
     private func mainElementsSnapshot() -> NSDiffableDataSourceSectionSnapshot<SidebarItem> {
         var snapshot = NSDiffableDataSourceSectionSnapshot<SidebarItem>()
         
-        // Add the main navigation elements
-        let header = SidebarItem.header(title: self.navigationData.mainSection.title)
-        
         var mainNavItems: [SidebarItem] = []
         for mainNavElement in self.navigationData.mainSection.elements {
             mainNavItems.append(SidebarItem.row(element: mainNavElement))
         }
             
-        snapshot.append([header])
-        snapshot.expand([header])
-        snapshot.append(mainNavItems, to: header)
+        snapshot.append(mainNavItems)
         
         return snapshot
     }

@@ -125,7 +125,7 @@ public class NavigationManager {
     
     private func addHistorySection() {
 
-        var history = NavigationSection(title: "Other websites", elements: [])
+        var history = NavigationSection(title: "Know your history", elements: [])
         history.elements.append(NavigationElement.link(title: "Follow Your Instinct",
                                                    imageName: "fyi",
                                                    url: "https://www.yeltzland.net/followyourinstinct/"))
