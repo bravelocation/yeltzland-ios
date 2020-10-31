@@ -147,10 +147,9 @@ extension SidebarViewController {
             var contentConfiguration = UIListContentConfiguration.sidebarHeader()
             contentConfiguration.text = item.element.title
             contentConfiguration.textProperties.font = .preferredFont(forTextStyle: .headline)
-            contentConfiguration.textProperties.color = .secondaryLabel
+            contentConfiguration.textProperties.color = UIColor(named: "blue-tint") ?? .systemBlue
             
             cell.contentConfiguration = contentConfiguration
-            cell.accessories = [.outlineDisclosure()]
         }
         
         let rowRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, SidebarItem> {
