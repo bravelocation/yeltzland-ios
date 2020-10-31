@@ -134,7 +134,8 @@ extension SidebarViewController: UICollectionViewDelegate {
         
         switch sidebarItem.element.type {
         case .controller(let viewController):
-            self.updateDetailViewController(controller: viewController)
+            let navViewController = UINavigationController(rootViewController: viewController)
+            self.updateDetailViewController(controller: navViewController)
             return 
         case .siri(let intent):
             self.addToSiriAction(intent: intent)
