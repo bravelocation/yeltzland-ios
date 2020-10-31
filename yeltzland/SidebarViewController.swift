@@ -39,10 +39,10 @@ class SidebarViewController: UIViewController {
             )
         }
         
-        func elementImage() -> UIImage? {
+        func elementImage(color: UIColor) -> UIImage? {
             var itemImage: UIImage?
             if let imageName = self.element.imageName {
-                itemImage = UIImage(named: imageName)?.sd_tintedImage(with: UIColor(named: "blue-tint")!)
+                itemImage = UIImage(named: imageName)?.sd_tintedImage(with: color)
             }
             
             return itemImage
@@ -63,6 +63,7 @@ class SidebarViewController: UIViewController {
     private var collectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<SidebarSection, SidebarItem>!
     private var navigationData: NavigationManager = NavigationManager()
+    private var highlightColor: UIColor = UIColor(named: "blue-tint") ?? .systemBlue
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,6 +81,7 @@ extension SidebarViewController {
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         collectionView.backgroundColor = .systemBackground
         collectionView.delegate = self
+        collectionView.tintColor = self.highlightColor
         view.addSubview(collectionView)
     }
     
@@ -105,8 +107,14 @@ extension SidebarViewController: UICollectionViewDelegate {
         case SidebarSection.main.rawValue, SidebarSection.more.rawValue:
             didSelectItem(sidebarItem, at: indexPath)
         default:
-            collectionView.deselectItem(at: indexPath, animated: true)
+            didDeselectItem(sidebarItem, at: indexPath)
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        guard let sidebarItem = dataSource.itemIdentifier(for: indexPath) else { return }
+        
+        didDeselectItem(sidebarItem, at: indexPath)
     }
     
     private func updateDetailViewController(controller: UIViewController) {
@@ -116,6 +124,14 @@ extension SidebarViewController: UICollectionViewDelegate {
     }
     
     private func didSelectItem(_ sidebarItem: SidebarItem, at indexPath: IndexPath) {
+        // Change the color of the image
+        if let cell = collectionView.cellForItem(at: indexPath) as? UICollectionViewListCell {
+            if var config = cell.contentConfiguration as? UIListContentConfiguration {
+                config.image = sidebarItem.elementImage(color: UIColor.white)
+                cell.contentConfiguration = config
+            }
+        }
+        
         switch sidebarItem.element.type {
         case .controller(let viewController):
             self.updateDetailViewController(controller: viewController)
@@ -136,6 +152,16 @@ extension SidebarViewController: UICollectionViewDelegate {
             // NO action on other types
         }
     }
+    
+    private func didDeselectItem(_ sidebarItem: SidebarItem, at indexPath: IndexPath) {
+        // Change the color of the image
+        if let cell = collectionView.cellForItem(at: indexPath) as? UICollectionViewListCell {
+            if var config = cell.contentConfiguration as? UIListContentConfiguration {
+                config.image = sidebarItem.elementImage(color: self.highlightColor)
+                cell.contentConfiguration = config
+            }
+        }
+    }
 }
 
 @available(iOS 14, *)
@@ -147,7 +173,7 @@ extension SidebarViewController {
             var contentConfiguration = UIListContentConfiguration.sidebarHeader()
             contentConfiguration.text = item.element.title
             contentConfiguration.textProperties.font = .preferredFont(forTextStyle: .headline)
-            contentConfiguration.textProperties.color = UIColor(named: "blue-tint") ?? .systemBlue
+            contentConfiguration.textProperties.color = self.highlightColor
             
             cell.contentConfiguration = contentConfiguration
         }
@@ -158,7 +184,7 @@ extension SidebarViewController {
             var contentConfiguration = UIListContentConfiguration.sidebarSubtitleCell()
             contentConfiguration.text = item.element.title
             contentConfiguration.secondaryText = item.element.subtitle
-            contentConfiguration.image = item.elementImage()
+            contentConfiguration.image = item.elementImage(color: cell.isSelected ? UIColor.white : self.highlightColor)
             
             cell.contentConfiguration = contentConfiguration
         }
