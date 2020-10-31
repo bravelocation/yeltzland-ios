@@ -22,18 +22,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let window = UIWindow(windowScene: windowScene)
             
             var initialController: UIViewController?
+            let tabController = MainTabBarController()
             
             // Try using the split bar view if appropriate
             if #available(iOS 14, *) {
                 if window.traitCollection.userInterfaceIdiom == .pad {
-                    if let splitViewController = createTwoColumnSplitViewController() {
+                    if let splitViewController = createTwoColumnSplitViewController(tabController) {
                         initialController = splitViewController
                     }
                 }
             }
             
             if initialController == nil {
-                initialController = MainTabBarController()
+                initialController = tabController
                 
                 if let userActivity = connectionOptions.userActivities.first ?? session.stateRestorationActivity {
                     initialController!.restoreUserActivityState(userActivity)
@@ -126,7 +127,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 @available(iOS 14, *)
 extension SceneDelegate {
-    private func createTwoColumnSplitViewController() -> UISplitViewController? {
+    private func createTwoColumnSplitViewController(_ tabController: MainTabBarController) -> UISplitViewController? {
         // TODO(JP): get this from navigation manager
         let webViewController = WebPageViewController()
         webViewController.homeUrl = URL(string: "https://yeltz.co.uk")!
@@ -141,6 +142,7 @@ extension SceneDelegate {
 
         splitViewController.setViewController(sidebarViewController, for: .primary)
         splitViewController.setViewController(navViewController, for: .secondary)
+        splitViewController.setViewController(tabController, for: .compact)
         
         return splitViewController
     }
