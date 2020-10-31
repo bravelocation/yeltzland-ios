@@ -121,8 +121,7 @@ extension SidebarViewController: UICollectionViewDelegate {
             self.updateDetailViewController(controller: viewController)
             return 
         case .siri(let intent):
-            // TODO(JP): Load the appropriate controller
-            // self.addToSiriAction(intent: intent)
+            self.addToSiriAction(intent: intent)
             return
         case .link(let url):
             let webViewController = WebPageViewController()
@@ -212,5 +211,28 @@ extension SidebarViewController {
     private func applyInitialSnapshot() {
         dataSource.apply(mainElementsSnapshot(), to: .main, animatingDifferences: false)
         dataSource.apply(moreElementsSnapshot(), to: .more, animatingDifferences: false)
+    }
+}
+
+@available(iOS 14, *)
+extension SidebarViewController: INUIAddVoiceShortcutViewControllerDelegate {
+    func addToSiriAction(intent: INIntent) {
+        if let shortcut = INShortcut(intent: intent) {
+            let viewController = INUIAddVoiceShortcutViewController(shortcut: shortcut)
+            viewController.modalPresentationStyle = .formSheet
+            viewController.delegate = self
+            self.present(viewController, animated: true, completion: nil)
+        }
+    }
+    
+    // MARK: - INUIAddVoiceShortcutViewControllerDelegate
+    func addVoiceShortcutViewController(_ controller: INUIAddVoiceShortcutViewController, didFinishWith voiceShortcut: INVoiceShortcut?, error: Error?) {
+        print("Added shortcut")
+        controller.dismiss(animated: true, completion: nil)
+    }
+    
+    func addVoiceShortcutViewControllerDidCancel(_ controller: INUIAddVoiceShortcutViewController) {
+        print("Cancelled shortcut")
+        controller.dismiss(animated: true, completion: nil)
     }
 }
