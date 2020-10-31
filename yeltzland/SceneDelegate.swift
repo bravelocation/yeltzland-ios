@@ -144,6 +144,9 @@ extension SceneDelegate {
         splitViewController.setViewController(navViewController, for: .secondary)
         splitViewController.setViewController(tabController, for: .compact)
         
+        // Set color of expand button and expanders
+        splitViewController.view.tintColor = UIColor.white
+        
         return splitViewController
     }
 }
