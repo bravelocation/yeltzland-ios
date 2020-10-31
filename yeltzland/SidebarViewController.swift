@@ -204,12 +204,16 @@ extension SidebarViewController {
     private func mainElementsSnapshot() -> NSDiffableDataSourceSectionSnapshot<SidebarItem> {
         var snapshot = NSDiffableDataSourceSectionSnapshot<SidebarItem>()
         
+        let sectionHeader = SidebarItem.header(title: "Yeltzland")
+        
         var mainNavItems: [SidebarItem] = []
         for mainNavElement in self.navigationData.mainSection.elements {
             mainNavItems.append(SidebarItem.row(element: mainNavElement))
         }
             
-        snapshot.append(mainNavItems)
+        snapshot.append([sectionHeader])
+        snapshot.expand([sectionHeader])
+        snapshot.append(mainNavItems, to: sectionHeader)
         
         return snapshot
     }
