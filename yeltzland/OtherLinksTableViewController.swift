@@ -142,22 +142,6 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         self.tableView(self.tableView, didSelectRowAt: indexPath)
     }
     
-    public func openLocations() {
-        print("Opening Where's The Ground ...")
-        
-        let indexPath = IndexPath(row: 2, section: 0)
-        self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableView.ScrollPosition.top)
-        self.tableView(self.tableView, didSelectRowAt: indexPath)
-    }
-    
-    public func openLeagueTable() {
-        print("Opening League Table ...")
-        
-        let indexPath = IndexPath(row: 3, section: 0)
-        self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableView.ScrollPosition.top)
-        self.tableView(self.tableView, didSelectRowAt: indexPath)
-    }
-    
     // MARK: - SFSafariViewControllerDelegate methods
     func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
         controller.dismiss(animated: true, completion: nil)

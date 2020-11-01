@@ -165,7 +165,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
     }
     
     // MARK: - Private functions
-    
+
     func goToFixturesView() {
         // Set selected tab as More tab
         self.selectedIndex = self.otherTabIndex
@@ -186,30 +186,6 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
             currentController.popToRootViewController(animated: false)
             if let selectedController = currentController.viewControllers[0] as? OtherLinksTableViewController {
                 selectedController.openLatestScore()
-            }
-        }
-    }
-    
-    func goToLocations() {
-        // Set selected tab as More tab
-        self.selectedIndex = self.otherTabIndex
-        
-        if let currentController = self.viewControllers![self.selectedIndex] as? UINavigationController {
-            currentController.popToRootViewController(animated: false)
-            if let selectedController = currentController.viewControllers[0] as? OtherLinksTableViewController {
-                selectedController.openLocations()
-            }
-        }
-    }
-
-    func goToLeagueTable() {
-        // Set selected tab as More tab
-        self.selectedIndex = self.otherTabIndex
-        
-        if let currentController = self.viewControllers![self.selectedIndex] as? UINavigationController {
-            currentController.popToRootViewController(animated: false)
-            if let selectedController = currentController.viewControllers[0] as? OtherLinksTableViewController {
-                selectedController.openLeagueTable()
             }
         }
     }
