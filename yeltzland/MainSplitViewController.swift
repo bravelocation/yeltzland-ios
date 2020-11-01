@@ -8,21 +8,28 @@
 
 import UIKit
 
+#if canImport(SwiftUI)
+import Combine
+#endif
+
 class MainSplitViewController: UISplitViewController {
     
-    let tabController: MainTabBarController
+    private var navigationData: NavigationManager = NavigationManager()
+    
+    @available(iOS 13.0, *)
+    private lazy var menuSubscriber: AnyCancellable? = nil
+    
+    @available(iOS 14.0, *)
+    private lazy var sidebarViewController = SidebarViewController()
     
     init?(tabController: MainTabBarController) {
-        self.tabController = tabController
-
         if #available(iOS 14.0, *) {
             super.init(style: .doubleColumn)
             
             self.primaryBackgroundStyle = .sidebar
             self.preferredDisplayMode = .oneBesideSecondary
             
-            let sidebarViewController = SidebarViewController()
-            self.setViewController(sidebarViewController, for: .primary)
+            self.setViewController(self.sidebarViewController, for: .primary)
             
             let initalView = self.initialSecondaryView()
             self.setViewController(initalView, for: .secondary)
@@ -47,11 +54,36 @@ class MainSplitViewController: UISplitViewController {
         webViewController.pageTitle = "Yeltz Forum"
         return UINavigationController(rootViewController: webViewController)
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+}
 
-        // Do any additional setup after loading the view.
+// MARK: - Keyboard options
+extension MainSplitViewController {
+    override var keyCommands: [UIKeyCommand]? {
+        return self.navigationData.keyCommands(selector: #selector(MainSplitViewController.keyboardSelectTab), useMore: true)
     }
 
+    @objc func keyboardSelectTab(sender: UIKeyCommand) {
+        if #available(iOS 14.0, *) {
+            if let keyInput = sender.input {
+                if let inputValue = Int(keyInput) {
+                    self.sidebarViewController.handleMainShortcut(inputValue)
+                } else {
+                    self.sidebarViewController.handleOtherShortcut(keyInput)
+                }
+            }
+        }
+    }
+    
+    // MARK: - Menu options
+    func setupMenuCommandHandler() {
+        if #available(iOS 13.0, *) {
+            self.menuSubscriber = NotificationCenter.default.publisher(for: .navigationCommand)
+                .receive(on: RunLoop.main)
+                .sink(receiveValue: { notification in
+                    if let command = notification.object as? UIKeyCommand {
+                        self.keyboardSelectTab(sender: command)
+                    }
+                })
+        }
+    }
 }

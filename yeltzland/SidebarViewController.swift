@@ -293,3 +293,40 @@ extension SidebarViewController: INUIAddVoiceShortcutViewControllerDelegate {
         controller.dismiss(animated: true, completion: nil)
     }
 }
+
+@available(iOS 14, *)
+extension SidebarViewController {
+    func handleMainShortcut(_ index: Int) {
+        self.shortcutToIndexPath(IndexPath(row: index, section: 0))
+    }
+    
+    func handleOtherShortcut(_ keyboardShortcut: String) {
+        var section = 1
+        for otherNavSection in self.navigationData.moreSections {
+            var row = 1 // Start at 1 because of the header element
+            for otherNavElement in otherNavSection.elements {
+                if let key = otherNavElement.keyboardShortcut {
+                    if key == keyboardShortcut {
+                        self.shortcutToIndexPath(IndexPath(row: row, section: section))
+                        return
+                    }
+                }
+                
+                row += 1
+            }
+            
+            section += 1
+        }
+    }
+    
+    private func shortcutToIndexPath(_ indexPath: IndexPath) {
+        // Deselect the previously selected item
+        if let currentIndexPath = collectionView.indexPathsForSelectedItems?.first {
+            self.collectionView(self.collectionView, didDeselectItemAt: currentIndexPath)
+        }
+        
+        // Then select the new cell
+        self.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredVertically)
+        self.collectionView(self.collectionView, didSelectItemAt: indexPath)
+    }
+}
