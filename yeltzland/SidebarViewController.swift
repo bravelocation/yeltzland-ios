@@ -150,6 +150,7 @@ extension SidebarViewController: UICollectionViewDelegate {
             if var config = cell.contentConfiguration as? UIListContentConfiguration {
                 config.image = sidebarItem.elementImage(color: self.highlightTextColor)
                 config.textProperties.color = self.highlightTextColor
+                config.secondaryTextProperties.color = self.highlightTextColor
                 cell.contentConfiguration = config
             }
         }
@@ -182,6 +183,7 @@ extension SidebarViewController: UICollectionViewDelegate {
             if var config = cell.contentConfiguration as? UIListContentConfiguration {
                 config.image = sidebarItem.elementImage(color: self.highlightColor)
                 config.textProperties.color = self.rowTextColor
+                config.secondaryTextProperties.color = self.rowTextColor
                 cell.contentConfiguration = config
             }
         }
@@ -210,6 +212,7 @@ extension SidebarViewController {
             contentConfiguration.secondaryText = item.element.subtitle
             contentConfiguration.image = item.elementImage(color: self.highlightColor)
             contentConfiguration.textProperties.color = self.rowTextColor
+            contentConfiguration.secondaryTextProperties.color = self.rowTextColor
             
             cell.contentConfiguration = contentConfiguration
         }

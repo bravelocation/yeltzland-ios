@@ -146,7 +146,7 @@ public class NavigationManager {
 
         var options = NavigationSection(title: "Options", elements: [])
         options.elements.append(NavigationElement(title: "Game time tweets",
-                                                  subtitle: "Enable notifications",
+                                                  subtitle: "Notifications during the match",
                                                   imageName: "game-time",
                                                   type: .controller(GameTimeTweetsViewController())))
         
