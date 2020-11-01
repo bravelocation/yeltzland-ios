@@ -27,12 +27,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             // Try using the split bar view if appropriate
             if #available(iOS 14, *) {
                 if window.traitCollection.userInterfaceIdiom == .pad {
-                    if let splitViewController = createTwoColumnSplitViewController(tabController) {
-                        initialController = splitViewController
-                    }
+                    initialController = MainSplitViewController(tabController: tabController)
                 }
             }
             
+            // Otherwise use the tab bar controller
             if initialController == nil {
                 initialController = tabController
                 
@@ -122,31 +121,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         default:
             return 0
         }
-    }
-}
-
-@available(iOS 14, *)
-extension SceneDelegate {
-    private func createTwoColumnSplitViewController(_ tabController: MainTabBarController) -> UISplitViewController? {
-        // TODO(JP): get this from navigation manager
-        let webViewController = WebPageViewController()
-        webViewController.homeUrl = URL(string: "https://yeltz.co.uk")!
-        webViewController.pageTitle = "Yeltz Forum"
-        let navViewController = UINavigationController(rootViewController: webViewController)
-        
-        let sidebarViewController = SidebarViewController()
-
-        let splitViewController = UISplitViewController(style: .doubleColumn)
-        splitViewController.primaryBackgroundStyle = .sidebar
-        splitViewController.preferredDisplayMode = .oneBesideSecondary
-
-        splitViewController.setViewController(sidebarViewController, for: .primary)
-        splitViewController.setViewController(navViewController, for: .secondary)
-        splitViewController.setViewController(tabController, for: .compact)
-        
-        // Set color of expand button and expanders
-        splitViewController.view.tintColor = UIColor.white
-        
-        return splitViewController
     }
 }
