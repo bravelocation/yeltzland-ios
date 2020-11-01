@@ -147,11 +147,8 @@ extension SidebarViewController: UICollectionViewDelegate {
     private func didSelectItem(_ sidebarItem: SidebarItem, at indexPath: IndexPath) {
         // Change the color of the image and text
         if let cell = collectionView.cellForItem(at: indexPath) as? UICollectionViewListCell {
-            if var config = cell.contentConfiguration as? UIListContentConfiguration {
-                config.image = sidebarItem.elementImage(color: self.highlightTextColor)
-                config.textProperties.color = self.highlightTextColor
-                config.secondaryTextProperties.color = self.highlightTextColor
-                cell.contentConfiguration = config
+            if let config = cell.contentConfiguration as? UIListContentConfiguration {
+                cell.contentConfiguration = self.setConfigurationColors(config, item: sidebarItem, selected: true)
             }
         }
         
@@ -180,11 +177,8 @@ extension SidebarViewController: UICollectionViewDelegate {
     private func didDeselectItem(_ sidebarItem: SidebarItem, at indexPath: IndexPath) {
         // Change the color of the image and text
         if let cell = collectionView.cellForItem(at: indexPath) as? UICollectionViewListCell {
-            if var config = cell.contentConfiguration as? UIListContentConfiguration {
-                config.image = sidebarItem.elementImage(color: self.highlightColor)
-                config.textProperties.color = self.rowTextColor
-                config.secondaryTextProperties.color = self.rowTextColor
-                cell.contentConfiguration = config
+            if let config = cell.contentConfiguration as? UIListContentConfiguration {
+                cell.contentConfiguration = self.setConfigurationColors(config, item: sidebarItem, selected: false)
             }
         }
     }
@@ -210,11 +204,8 @@ extension SidebarViewController {
             var contentConfiguration = UIListContentConfiguration.sidebarSubtitleCell()
             contentConfiguration.text = item.element.title
             contentConfiguration.secondaryText = item.element.subtitle
-            contentConfiguration.image = item.elementImage(color: self.highlightColor)
-            contentConfiguration.textProperties.color = self.rowTextColor
-            contentConfiguration.secondaryTextProperties.color = self.rowTextColor
             
-            cell.contentConfiguration = contentConfiguration
+            cell.contentConfiguration = self.setConfigurationColors(contentConfiguration, item: item, selected: cell.isSelected)
         }
         
         self.dataSource = UICollectionViewDiffableDataSource<SidebarSection, SidebarItem>(collectionView: collectionView) {
@@ -227,6 +218,15 @@ extension SidebarViewController {
                 return collectionView.dequeueConfiguredReusableCell(using: rowRegistration, for: indexPath, item: item)
             }
         }
+    }
+    
+    private func setConfigurationColors(_ config: UIListContentConfiguration, item: SidebarItem, selected: Bool) -> UIListContentConfiguration {
+        var contentConfiguration = config
+        contentConfiguration.image = item.elementImage(color: selected ? self.highlightTextColor : self.highlightColor)
+        contentConfiguration.textProperties.color = selected ? self.highlightTextColor : self.rowTextColor
+        contentConfiguration.secondaryTextProperties.color = selected ? self.highlightTextColor : self.rowTextColor
+        
+        return contentConfiguration
     }
     
     private func mainElementsSnapshot() -> NSDiffableDataSourceSectionSnapshot<SidebarItem> {
