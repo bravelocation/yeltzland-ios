@@ -111,6 +111,20 @@ extension SidebarViewController: UICollectionViewDelegate {
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        guard let sidebarItem = dataSource.itemIdentifier(for: indexPath) else { return false }
+        
+        if sidebarItem.type == .header {
+            return false
+        }
+        
+        if sidebarItem.element.type == .info {
+            return false
+        }
+        
+        return true
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         guard let sidebarItem = dataSource.itemIdentifier(for: indexPath) else { return }
         
