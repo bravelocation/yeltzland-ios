@@ -130,9 +130,11 @@ public class NavigationManager {
                                                    imageName: "fyi",
                                                    url: "https://www.yeltzland.net/followyourinstinct/"))
         
+        /*
         history.elements.append(NavigationElement.link(title: "Yeltz Archives",
                                                    imageName: "yeltz-archive",
                                                    url: "http://www.yeltzarchives.com"))
+         */
         
         history.elements.append(NavigationElement.link(title: "News Archive (1997-2006)",
                                                    imageName: "news-archive",

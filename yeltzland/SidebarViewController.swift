@@ -63,7 +63,9 @@ class SidebarViewController: UIViewController {
     private var collectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<SidebarSection, SidebarItem>!
     private var navigationData: NavigationManager = NavigationManager()
-    private var highlightColor: UIColor = UIColor(named: "blue-tint") ?? .systemBlue
+    private var highlightColor: UIColor = UIColor(named: "blue-tint")!
+    private var highlightTextColor: UIColor = UIColor(named: "row-highlight-text-color")!
+    private var rowTextColor: UIColor = UIColor(named: "row-text-color")!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,6 +73,11 @@ class SidebarViewController: UIViewController {
         self.configureCollectionView()
         self.configureDataSource()
         self.applyInitialSnapshot()
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        // Reload the table on trait change, in particular to change images on dark mode change
+        self.collectionView.reloadData()
     }
 }
 
@@ -138,10 +145,11 @@ extension SidebarViewController: UICollectionViewDelegate {
     }
     
     private func didSelectItem(_ sidebarItem: SidebarItem, at indexPath: IndexPath) {
-        // Change the color of the image
+        // Change the color of the image and text
         if let cell = collectionView.cellForItem(at: indexPath) as? UICollectionViewListCell {
             if var config = cell.contentConfiguration as? UIListContentConfiguration {
-                config.image = sidebarItem.elementImage(color: UIColor.white)
+                config.image = sidebarItem.elementImage(color: self.highlightTextColor)
+                config.textProperties.color = self.highlightTextColor
                 cell.contentConfiguration = config
             }
         }
@@ -169,10 +177,11 @@ extension SidebarViewController: UICollectionViewDelegate {
     }
     
     private func didDeselectItem(_ sidebarItem: SidebarItem, at indexPath: IndexPath) {
-        // Change the color of the image
+        // Change the color of the image and text
         if let cell = collectionView.cellForItem(at: indexPath) as? UICollectionViewListCell {
             if var config = cell.contentConfiguration as? UIListContentConfiguration {
                 config.image = sidebarItem.elementImage(color: self.highlightColor)
+                config.textProperties.color = self.rowTextColor
                 cell.contentConfiguration = config
             }
         }
@@ -199,7 +208,8 @@ extension SidebarViewController {
             var contentConfiguration = UIListContentConfiguration.sidebarSubtitleCell()
             contentConfiguration.text = item.element.title
             contentConfiguration.secondaryText = item.element.subtitle
-            contentConfiguration.image = item.elementImage(color: cell.isSelected ? UIColor.white : self.highlightColor)
+            contentConfiguration.image = item.elementImage(color: self.highlightColor)
+            contentConfiguration.textProperties.color = self.rowTextColor
             
             cell.contentConfiguration = contentConfiguration
         }
