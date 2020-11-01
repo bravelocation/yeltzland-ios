@@ -219,6 +219,8 @@
 		52E3DF791CD9FA78009F18BD /* WebPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E3DF781CD9FA78009F18BD /* WebPageViewController.swift */; };
 		52E3DF7E1CD9FA78009F18BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52E3DF7D1CD9FA78009F18BD /* Assets.xcassets */; };
 		52E3DF811CD9FA78009F18BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52E3DF7F1CD9FA78009F18BD /* LaunchScreen.storyboard */; };
+		52E40A00254EA675001414CB /* GameTimeTweetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E409FE254EA675001414CB /* GameTimeTweetsViewController.swift */; };
+		52E40A01254EA675001414CB /* GameTimeTweetsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52E409FF254EA675001414CB /* GameTimeTweetsViewController.xib */; };
 		52E54D8024C5A9B10007B44E /* PreviewFixtureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E54D7F24C5A9B10007B44E /* PreviewFixtureManager.swift */; };
 		52E54D8224C5AAE30007B44E /* PreviewGameScoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E54D8124C5AAE30007B44E /* PreviewGameScoreManager.swift */; };
 		52E711A11D9CF5C90002446A /* FixtureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236AE71D17E4D3004903AB /* FixtureManager.swift */; };
@@ -496,6 +498,8 @@
 		52E3DF7D1CD9FA78009F18BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		52E3DF801CD9FA78009F18BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		52E3DF821CD9FA78009F18BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		52E409FE254EA675001414CB /* GameTimeTweetsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTimeTweetsViewController.swift; sourceTree = "<group>"; };
+		52E409FF254EA675001414CB /* GameTimeTweetsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameTimeTweetsViewController.xib; sourceTree = "<group>"; };
 		52E54D7F24C5A9B10007B44E /* PreviewFixtureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewFixtureManager.swift; sourceTree = "<group>"; };
 		52E54D8124C5AAE30007B44E /* PreviewGameScoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewGameScoreManager.swift; sourceTree = "<group>"; };
 		52E711AA1D9FB5B70002446A /* MakeToast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakeToast.swift; sourceTree = "<group>"; };
@@ -862,6 +866,8 @@
 				5236ECD920CE99B80067AFFA /* LatestScoreViewController.swift */,
 				5236ECDA20CE99B80067AFFA /* LatestScoreViewController.xib */,
 				52348A6A25457B8B00D6B733 /* SidebarViewController.swift */,
+				52E409FE254EA675001414CB /* GameTimeTweetsViewController.swift */,
+				52E409FF254EA675001414CB /* GameTimeTweetsViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -1462,6 +1468,7 @@
 				523CE54E214F9A54002F29EF /* FixtureTableViewCell.xib in Resources */,
 				5236ECDC20CE99B80067AFFA /* LatestScoreViewController.xib in Resources */,
 				526B211C24C304BC005CE9C7 /* TodayFixtureCollectionViewCell.xib in Resources */,
+				52E40A01254EA675001414CB /* GameTimeTweetsViewController.xib in Resources */,
 				52DC9EB71FC9C30E00AE02F6 /* GoogleService-Info.plist in Resources */,
 				52A4596E1D89666E00822D8C /* gallery.ckcomplication in Resources */,
 				52E3DF7E1CD9FA78009F18BD /* Assets.xcassets in Resources */,
@@ -2007,6 +2014,7 @@
 				5236ECDB20CE99B80067AFFA /* LatestScoreViewController.swift in Sources */,
 				52EACDB721564462008B8DE5 /* Intent.intentdefinition in Sources */,
 				52FA7EC124F106C7001A3F8C /* PullToRefreshTwitterTimelineView.swift in Sources */,
+				52E40A00254EA675001414CB /* GameTimeTweetsViewController.swift in Sources */,
 				52236AEE1D1803C8004903AB /* FixturesTableViewController.swift in Sources */,
 				5206BC5A24CABC0D00A927B3 /* TwitterDataProvider.swift in Sources */,
 			);

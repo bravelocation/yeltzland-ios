@@ -13,7 +13,6 @@ import Intents
 public enum NavigationElementType: Hashable {
     case controller(UIViewController)
     case link(URL)
-    case notificationsSettings
     case siri(INIntent)
     case info
 }

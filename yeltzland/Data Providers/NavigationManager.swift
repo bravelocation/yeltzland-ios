@@ -148,7 +148,7 @@ public class NavigationManager {
         options.elements.append(NavigationElement(title: "Game time tweets",
                                                   subtitle: "Enable notifications",
                                                   imageName: "game-time",
-                                                  type: .notificationsSettings))
+                                                  type: .controller(GameTimeTweetsViewController())))
         
         _moreSections.append(options)
         

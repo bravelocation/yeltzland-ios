@@ -13,7 +13,6 @@ import IntentsUI
 
 class OtherLinksTableViewController: UITableViewController, SFSafariViewControllerDelegate {
 
-    let firebaseNotifications = FirebaseNotifications()
     let navigationData = NavigationManager().moreSections
     
     override func viewDidLoad() {
@@ -26,7 +25,6 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         self.tableView.separatorColor = AppColors.systemBackground
         
         self.tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "Cell")
-        self.tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "SettingsCell")
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -50,17 +48,6 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         
         // Get correct cell type
         switch element.type {
-        case .notificationsSettings:
-            cell = UITableViewCell(style: UITableViewCell.CellStyle.subtitle, reuseIdentifier: "SettingsCell")
-            cell!.selectionStyle = .none
-            cell!.accessoryType = .none
-            
-            let switchView = UISwitch(frame: CGRect.zero)
-            switchView.onTintColor = UIColor(named: "blue-tint")
-            cell!.accessoryView = switchView
-            
-            switchView.isOn = self.firebaseNotifications.enabled
-            switchView.addTarget(self, action: #selector(OtherLinksTableViewController.notificationsSwitchChanged), for: UIControl.Event.valueChanged)
         case .info:
             cell = UITableViewCell(style: UITableViewCell.CellStyle.subtitle, reuseIdentifier: "Cell")
             cell!.selectionStyle = .none
@@ -147,12 +134,6 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         let indexPath = IndexPath(row: 3, section: 0)
         self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableView.ScrollPosition.top)
         self.tableView(self.tableView, didSelectRowAt: indexPath)
-    }
-
-    // MARK: - Event handler for switch
-    @objc func notificationsSwitchChanged(_ sender: AnyObject) {
-        let switchControl = sender as! UISwitch
-        self.firebaseNotifications.enabled = switchControl.isOn
     }
     
     // MARK: - SFSafariViewControllerDelegate methods
