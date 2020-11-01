@@ -30,10 +30,7 @@ public class NavigationManager {
     }
     
     init() {
-        if #available(iOS 14, *) {
-            self.addMainNavigation()
-        }
-        
+        self.addMainNavigation()
         self.addStatisticsSection()
         self.addOtherWebsitesSection()
         self.addHistorySection()
@@ -43,7 +40,6 @@ public class NavigationManager {
         self.addAboutSection()
     }
     
-    @available(iOS 14, *)
     private func addMainNavigation() {
         self._main.elements.append(NavigationElement.link(title: "Yeltz Forum",
                                                                 imageName: "forum",
@@ -57,24 +53,32 @@ public class NavigationManager {
                                                                 imageName: "yeltztv",
                                                                 url: "https://www.youtube.com/channel/UCGZMWQtMsC4Tep6uLm5V0nQ"))
         
+        
         // Twitter
-        let twitterAccountName = "halesowentownfc"        
-        let twitterConsumerKey = SettingsManager.shared.getSetting("TwitterConsumerKey") as! String
-        let twitterConsumerSecret = SettingsManager.shared.getSetting("TwitterConsumerSecret") as! String
+        let twitterAccountName = "halesowentownfc"
         
-        let twitterDataProvider = TwitterDataProvider(
-            twitterConsumerKey: twitterConsumerKey,
-            twitterConsumerSecret: twitterConsumerSecret,
-            tweetCount: 20,
-            accountName: twitterAccountName
-        )
-        
-        let tweetData = TweetData(dataProvider: twitterDataProvider, accountName: twitterAccountName)
-        let twitterViewController = UIHostingController(rootView: TwitterView().environmentObject(tweetData))
-        
-        self._main.elements.append(NavigationElement.controller(title: "@\(twitterAccountName)",
-                                                                imageName: "twitter",
-                                                                controller: twitterViewController))
+        if #available(iOS 13.0, *) {
+            let twitterConsumerKey = SettingsManager.shared.getSetting("TwitterConsumerKey") as! String
+            let twitterConsumerSecret = SettingsManager.shared.getSetting("TwitterConsumerSecret") as! String
+            
+            let twitterDataProvider = TwitterDataProvider(
+                twitterConsumerKey: twitterConsumerKey,
+                twitterConsumerSecret: twitterConsumerSecret,
+                tweetCount: 20,
+                accountName: twitterAccountName
+            )
+            
+            let tweetData = TweetData(dataProvider: twitterDataProvider, accountName: twitterAccountName)
+            let twitterViewController = UIHostingController(rootView: TwitterView().environmentObject(tweetData))
+            
+            self._main.elements.append(NavigationElement.controller(title: "@\(twitterAccountName)",
+                                                                    imageName: "twitter",
+                                                                    controller: twitterViewController))
+        } else {
+            self._main.elements.append(NavigationElement.link(title: "@\(twitterAccountName)",
+                                                                    imageName: "twitter",
+                                                                    url: "https://mobile.twitter.com/\(twitterAccountName)"))
+        }
     }
     
     private func addStatisticsSection() {
