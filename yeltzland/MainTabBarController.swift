@@ -19,8 +19,11 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
     
     // MARK: Private variables
     private let defaults = UserDefaults.standard
-    private let otherTabIndex = 4
     private var navigationData: NavigationManager = NavigationManager()
+    
+    private var otherTabIndex: Int {
+        return self.navigationData.mainSection.elements.count
+    }
     
     @available(iOS 13.0, *)
     private lazy var menuSubscriber: AnyCancellable? = nil
