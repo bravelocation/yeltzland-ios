@@ -20,6 +20,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
     // MARK: Private variables
     private let defaults = UserDefaults.standard
     private let otherTabIndex = 4
+    private var navigationData: NavigationManager = NavigationManager()
     
     @available(iOS 13.0, *)
     private lazy var menuSubscriber: AnyCancellable? = nil
@@ -235,63 +236,33 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
     
     /// Sets up the child controllers for the tabs
     func addChildViewControllers() {
-        // Forum
-        let forumViewController = WebPageViewController()
-        forumViewController.homeUrl = URL(string: "https://www.yeltz.co.uk")
-        forumViewController.pageTitle = "Yeltz Forum"
-        let forumNavigationController = UINavigationController(rootViewController: forumViewController)
+        var controllers: [UINavigationController] = []
         
-        let forumIcon = UITabBarItem(title: "Yeltz Forum", image: UIImage(named: "forum"), selectedImage: nil)
-        forumNavigationController.tabBarItem = forumIcon
-        
-        // Official Site
-        let officialViewController = WebPageViewController()
-        officialViewController.homeUrl = URL(string: "https://www.ht-fc.co.uk")
-        officialViewController.pageTitle = "Official Site"
-        let officialNavigationController = UINavigationController(rootViewController: officialViewController)
-        
-        let officialIcon = UITabBarItem(title: "Official Site", image: UIImage(named: "official"), selectedImage: nil)
-        officialNavigationController.tabBarItem = officialIcon
-        
-        // Yeltz TV
-        let tvViewController = WebPageViewController()
-        tvViewController.homeUrl = URL(string: "https://www.youtube.com/channel/UCGZMWQtMsC4Tep6uLm5V0nQ")
-        tvViewController.pageTitle = "Yeltz TV"
-        let tvNavigationController = UINavigationController(rootViewController: tvViewController)
-        
-        let tvIcon = UITabBarItem(title: "Yeltz TV", image: UIImage(named: "yeltztv"), selectedImage: nil)
-        tvNavigationController.tabBarItem = tvIcon
-        
-        // Twitter
-        let twitterAccountName = "halesowentownfc"
-        let twitterIcon = UITabBarItem(title: "@\(twitterAccountName)", image: UIImage(named: "twitter"), selectedImage: nil)
-        var twitterNavigationController: UINavigationController?
-        
-        if #available(iOS 13.0, *) {
-            let twitterConsumerKey = SettingsManager.shared.getSetting("TwitterConsumerKey") as! String
-            let twitterConsumerSecret = SettingsManager.shared.getSetting("TwitterConsumerSecret") as! String
-            
-            let twitterDataProvider = TwitterDataProvider(
-                twitterConsumerKey: twitterConsumerKey,
-                twitterConsumerSecret: twitterConsumerSecret,
-                tweetCount: 20,
-                accountName: twitterAccountName
-            )
-            let tweetData = TweetData(dataProvider: twitterDataProvider, accountName: twitterAccountName)
-            let twitterViewController = UIHostingController(rootView: TwitterView().environmentObject(tweetData))
-            
-            twitterNavigationController = UINavigationController(rootViewController: twitterViewController)
-            twitterNavigationController?.tabBarItem = twitterIcon
-        } else {
-            let twitterViewController = WebPageViewController()
-            twitterViewController.homeUrl = URL(string: "https://mobile.twitter.com/\(twitterAccountName)")
-            twitterViewController.pageTitle = "Twitter"
-            
-            twitterNavigationController = UINavigationController(rootViewController: twitterViewController)
-            twitterNavigationController?.tabBarItem = twitterIcon
+        for mainNavElement in self.navigationData.mainSection.elements {
+            switch mainNavElement.type {
+            case .controller(let viewController):
+                let navController = UINavigationController(rootViewController: viewController)
+                
+                let tabIcon = UITabBarItem(title: mainNavElement.title, image: UIImage(named: mainNavElement.imageName!), selectedImage: nil)
+                navController.tabBarItem = tabIcon
+                
+                controllers.append(navController)
+            case .link(let url):
+                let webViewController = WebPageViewController()
+                webViewController.homeUrl = url
+                webViewController.pageTitle = mainNavElement.title
+                let webNavigationController = UINavigationController(rootViewController: webViewController)
+                
+                let tabIcon = UITabBarItem(title: mainNavElement.title, image: UIImage(named: mainNavElement.imageName!), selectedImage: nil)
+                webNavigationController.tabBarItem = tabIcon
+                
+                controllers.append(webNavigationController)
+            default:
+                break
+            }
         }
         
-        // Other Links
+        // Other page
         var tableStyle: UITableView.Style = .grouped
         
         if #available(iOS 13.0, *) {
@@ -304,8 +275,9 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         let otherIcon = UITabBarItem(tabBarSystemItem: .more, tag: self.otherTabIndex)
         otherNavigationController.tabBarItem = otherIcon
         
+        controllers.append(otherNavigationController)
+        
         // Add controllers
-        let controllers = [forumNavigationController, officialNavigationController, tvNavigationController, twitterNavigationController!, otherNavigationController]
         self.viewControllers = controllers
     }
     
