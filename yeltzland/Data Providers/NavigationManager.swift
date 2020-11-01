@@ -40,6 +40,45 @@ public class NavigationManager {
         self.addAboutSection()
     }
     
+    public func keyCommands(selector: Selector, useMore: Bool) -> [UIKeyCommand] {
+        var commands: [UIKeyCommand] = []
+        
+        var i = 1
+        for mainNavElement in self._main.elements {
+            if #available(iOS 13.0, *) {
+                commands.append(UIKeyCommand(title: mainNavElement.title, action: selector, input: "\(i)", modifierFlags: .command))
+            } else {
+                commands.append(UIKeyCommand(input: "\(i)", modifierFlags: .command, action: selector, discoverabilityTitle: mainNavElement.title))
+            }
+            
+            i += 1
+        }
+        
+        if useMore {
+            if #available(iOS 13.0, *) {
+                commands.append(UIKeyCommand(title: "More", action: selector, input: "\(i)", modifierFlags: .command))
+            } else {
+                commands.append(UIKeyCommand(input: "\(i)", modifierFlags: .command, action: selector, discoverabilityTitle: "More"))
+            }
+        }
+        
+        // Find any additional elements
+        for moreNavElement in self._moreSections {
+            for moreElement in moreNavElement.elements {
+                if let keyboardShort = moreElement.keyboardShortcut {
+                    if #available(iOS 13.0, *) {
+                        commands.append(UIKeyCommand(title: moreElement.title, action: selector, input: keyboardShort, modifierFlags: .command))
+                    } else {
+                        commands.append(UIKeyCommand(input: keyboardShort, modifierFlags: .command, action: selector, discoverabilityTitle: moreElement.title))
+                    }
+                }
+            }
+        }
+        
+        return commands
+    }
+    
+    // MARK: - Navigation setup
     private func addMainNavigation() {
         self._main.elements.append(NavigationElement.link(title: "Yeltz Forum",
                                                                 imageName: "forum",
@@ -52,7 +91,6 @@ public class NavigationManager {
         self._main.elements.append(NavigationElement.link(title: "Yeltz TV",
                                                                 imageName: "yeltztv",
                                                                 url: "https://www.youtube.com/channel/UCGZMWQtMsC4Tep6uLm5V0nQ"))
-        
         
         // Twitter
         let twitterAccountName = "halesowentownfc"
@@ -86,19 +124,23 @@ public class NavigationManager {
                                       
         stats.elements.append(NavigationElement.controller(title: "Fixture List",
                                                 imageName: "fixtures",
-                                                controller: FixturesTableViewController(style: .grouped)))
+                                                controller: FixturesTableViewController(style: .grouped),
+                                                keyboardShortcut: "F"))
         
         stats.elements.append(NavigationElement.controller(title: "Latest Score",
                                                 imageName: "latest-score",
-                                                controller: LatestScoreViewController()))
+                                                controller: LatestScoreViewController(),
+                                                keyboardShortcut: "L"))
         
         stats.elements.append(NavigationElement.controller(title: "Where's the Ground",
                                                 imageName: "map",
-                                                controller: LocationsViewController()))
+                                                controller: LocationsViewController(),
+                                                keyboardShortcut: "G"))
         
         stats.elements.append(NavigationElement.link(title: "League Table",
                                                 imageName: "table",
-                                                url: "https://southern-football-league.co.uk/league-table/Southern%20League%20Div%20One%20Central/2020/2021/P/"))
+                                                url: "https://southern-football-league.co.uk/league-table/Southern%20League%20Div%20One%20Central/2020/2021/P/",
+                                                keyboardShortcut: "T"))
         _moreSections.append(stats)
     }
     

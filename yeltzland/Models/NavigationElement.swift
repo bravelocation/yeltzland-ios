@@ -22,19 +22,22 @@ public struct NavigationElement: Hashable {
     var subtitle: String?
     var imageName: String?
     var type: NavigationElementType
+    var keyboardShortcut: String?
     
-    static func controller(title: String, imageName: String, controller: UIViewController) -> NavigationElement {
+    static func controller(title: String, imageName: String, controller: UIViewController, keyboardShortcut: String? = nil) -> NavigationElement {
         return NavigationElement(title: title,
                                  subtitle: nil,
                                  imageName: imageName,
-                                 type: .controller(controller))
+                                 type: .controller(controller),
+                                 keyboardShortcut: keyboardShortcut)
     }
     
-    static func link(title: String, imageName: String?, url: String) -> NavigationElement {
+    static func link(title: String, imageName: String?, url: String, keyboardShortcut: String? = nil) -> NavigationElement {
         return NavigationElement(title: title,
                                  subtitle: nil,
                                  imageName: imageName,
-                                 type: .link(URL(string: url)!))
+                                 type: .link(URL(string: url)!),
+                                 keyboardShortcut: keyboardShortcut)
     }
     
     static func siri(title: String, intent: INIntent) -> NavigationElement {

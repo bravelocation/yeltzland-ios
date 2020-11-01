@@ -56,33 +56,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
     
     // MARK: - Keyboard options
     override var keyCommands: [UIKeyCommand]? {
-         if #available(iOS 13.0, *) {
-            return [
-                UIKeyCommand(title: "Yeltz Forum", action: #selector(MainTabBarController.keyboardSelectTab), input: "1", modifierFlags: .command),
-                UIKeyCommand(title: "Official Site", action: #selector(MainTabBarController.keyboardSelectTab), input: "2", modifierFlags: .command),
-                UIKeyCommand(title: "Yeltz TV", action: #selector(MainTabBarController.keyboardSelectTab), input: "3", modifierFlags: .command),
-                UIKeyCommand(title: "Twitter", action: #selector(MainTabBarController.keyboardSelectTab), input: "4", modifierFlags: .command),
-                UIKeyCommand(title: "More", action: #selector(MainTabBarController.keyboardSelectTab), input: "5", modifierFlags: .command),
-                
-                UIKeyCommand(title: "Fixture List", action: #selector(MainTabBarController.keyboardSelectTab), input: "F", modifierFlags: .command),
-                UIKeyCommand(title: "Latest Score", action: #selector(MainTabBarController.keyboardSelectTab), input: "L", modifierFlags: .command),
-                UIKeyCommand(title: "Where's the Ground", action: #selector(MainTabBarController.keyboardSelectTab), input: "G", modifierFlags: .command),
-                UIKeyCommand(title: "League Table", action: #selector(MainTabBarController.keyboardSelectTab), input: "T", modifierFlags: .command)      
-            ]
-         } else {
-            return [
-                UIKeyCommand(input: "1", modifierFlags: .command, action: #selector(MainTabBarController.keyboardSelectTab), discoverabilityTitle: "Yeltz Forum"),
-                UIKeyCommand(input: "2", modifierFlags: .command, action: #selector(MainTabBarController.keyboardSelectTab), discoverabilityTitle: "Official Site"),
-                UIKeyCommand(input: "3", modifierFlags: .command, action: #selector(MainTabBarController.keyboardSelectTab), discoverabilityTitle: "Yeltz TV"),
-                UIKeyCommand(input: "4", modifierFlags: .command, action: #selector(MainTabBarController.keyboardSelectTab), discoverabilityTitle: "Twitter"),
-                UIKeyCommand(input: "5", modifierFlags: .command, action: #selector(MainTabBarController.keyboardSelectTab), discoverabilityTitle: "More"),
-                
-                UIKeyCommand(input: "F", modifierFlags: .command, action: #selector(MainTabBarController.keyboardSelectTab), discoverabilityTitle: "Fixture List"),
-                UIKeyCommand(input: "L", modifierFlags: .command, action: #selector(MainTabBarController.keyboardSelectTab), discoverabilityTitle: "Latest Score"),
-                UIKeyCommand(input: "G", modifierFlags: .command, action: #selector(MainTabBarController.keyboardSelectTab), discoverabilityTitle: "Where's the Ground"),
-                UIKeyCommand(input: "T", modifierFlags: .command, action: #selector(MainTabBarController.keyboardSelectTab), discoverabilityTitle: "League Table")
-            ]
-        }
+        return self.navigationData.keyCommands(selector: #selector(MainTabBarController.keyboardSelectTab), useMore: true)
     }
 
     @objc func keyboardSelectTab(sender: UIKeyCommand) {
