@@ -67,12 +67,15 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
             if let inputValue = Int(keyInput) {
                 self.selectedIndex = inputValue - 1
             } else {
-                switch keyInput {
-                case "F": self.goToFixturesView()
-                case "L": self.goToLatestScore()
-                case "G": self.goToLocations()
-                case "T": self.goToLeagueTable()
-                default: break
+                // Set selected tab as More tab
+                self.selectedIndex = self.otherTabIndex
+                
+                // Pass through to other links controller
+                if let currentController = self.viewControllers![self.selectedIndex] as? UINavigationController {
+                    currentController.popToRootViewController(animated: false)
+                    if let selectedController = currentController.viewControllers[0] as? OtherLinksTableViewController {
+                        selectedController.handleOtherShortcut(keyInput)
+                    }
                 }
             }
         }

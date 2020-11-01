@@ -104,6 +104,28 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         return navigationData[section].title
     }
     
+    func handleOtherShortcut(_ keyboardShortcut: String) {
+        var section = 1
+        for otherNavSection in self.navigationData {
+            var row = 1 // Start at 1 because of the header element
+            for otherNavElement in otherNavSection.elements {
+                if let key = otherNavElement.keyboardShortcut {
+                    if key == keyboardShortcut {
+                        let indexPath = IndexPath(row: row, section: section)
+                        
+                        self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableView.ScrollPosition.top)
+                        self.tableView(self.tableView, didSelectRowAt: indexPath)
+                        return
+                    }
+                }
+                
+                row += 1
+            }
+            
+            section += 1
+        }
+    }
+    
     public func openFixtures() {
         print("Opening Fixtures ...")
         
