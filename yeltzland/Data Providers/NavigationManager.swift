@@ -82,15 +82,18 @@ public class NavigationManager {
     private func addMainNavigation() {
         self._main.elements.append(NavigationElement.link(title: "Yeltz Forum",
                                                                 imageName: "forum",
-                                                                url: "https://www.yeltz.co.uk"))
+                                                                url: "https://www.yeltz.co.uk",
+                                                                shortcutName: "com.bravelocation.yeltzland.forum"))
         
         self._main.elements.append(NavigationElement.link(title: "Official Site",
                                                                 imageName: "official",
-                                                                url: "https://www.ht-fc.co.uk"))
+                                                                url: "https://www.ht-fc.co.uk",
+                                                                shortcutName: "com.bravelocation.yeltzland.official"))
         
         self._main.elements.append(NavigationElement.link(title: "Yeltz TV",
                                                                 imageName: "yeltztv",
-                                                                url: "https://www.youtube.com/channel/UCGZMWQtMsC4Tep6uLm5V0nQ"))
+                                                                url: "https://www.youtube.com/channel/UCGZMWQtMsC4Tep6uLm5V0nQ",
+                                                                shortcutName: "com.bravelocation.yeltzland.yeltztv"))
         
         // Twitter
         let twitterAccountName = "halesowentownfc"
@@ -111,11 +114,13 @@ public class NavigationManager {
             
             self._main.elements.append(NavigationElement.controller(title: "@\(twitterAccountName)",
                                                                     imageName: "twitter",
-                                                                    controller: twitterViewController))
+                                                                    controller: twitterViewController,
+                                                                    shortcutName: "com.bravelocation.yeltzland.twitter"))
         } else {
             self._main.elements.append(NavigationElement.link(title: "@\(twitterAccountName)",
                                                                     imageName: "twitter",
-                                                                    url: "https://mobile.twitter.com/\(twitterAccountName)"))
+                                                                    url: "https://mobile.twitter.com/\(twitterAccountName)",
+                                                                    shortcutName: "com.bravelocation.yeltzland.twitter"))
         }
     }
     

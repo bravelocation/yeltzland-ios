@@ -120,18 +120,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func handleShortcut(_ shortcutItem: UIApplicationShortcutItem) -> Int {
         print("Handling shortcut item %@", shortcutItem.type)
         
-        switch shortcutItem.type {
-        case "com.bravelocation.yeltzland.forum":
-            return 0
-        case "com.bravelocation.yeltzland.official":
-            return 1
-        case "com.bravelocation.yeltzland.yeltztv":
-            return 2
-        case "com.bravelocation.yeltzland.twitter":
-            return 3
-        default:
-            return 0
+        let navigationManager = NavigationManager()
+        
+        var i = 0
+        for navigationElement in navigationManager.mainSection.elements {
+            if let shortcutName = navigationElement.shortcutName {
+                if shortcutItem.type == shortcutName {
+                    return i
+                }
+            }
+            
+            i += 1
         }
+        
+        // If no match found, go to the first element
+        return 0
     }
 }
 
