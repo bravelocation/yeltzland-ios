@@ -19,40 +19,67 @@ extension AppDelegate {
         
         guard builder.system == UIMenuSystem.main else { return }
         
-        let navigationManager = NavigationManager()
+        let forumCommand = UIKeyCommand(title: "Yeltz Forum", action: #selector(forumMenuCalled), input: "1", modifierFlags: .command)
+        let officialSiteCommand = UIKeyCommand(title: "Official Site", action: #selector(officialSiteMenuCalled), input: "2", modifierFlags: .command)
+        let yeltzTVCommand = UIKeyCommand(title: "Yeltz TV", action: #selector(yeltzTVMenuCalled), input: "3", modifierFlags: .command)
+        let twitterCommand = UIKeyCommand(title: "Twitter", action: #selector(twitterMenuCalled), input: "4", modifierFlags: .command)
+        let moreCommand = UIKeyCommand(title: "More", action: #selector(moreMenuCalled), input: "5", modifierFlags: .command)
         
-        // Add the main page elements
-        var pagesCommands: [UIKeyCommand] = []
-        var i = 1
-        for mainElement in navigationManager.mainSection.elements {
-            let command = UIKeyCommand(title: mainElement.title, action: #selector(menuItemCalled), input: "\(i)", modifierFlags: .command)
-            pagesCommands.append(command)
-            
-            i += 1
-        }
+        let pagesMenu = UIMenu(title: "", options: .displayInline, children: [forumCommand, officialSiteCommand, yeltzTVCommand, twitterCommand, moreCommand])
         
-        let pagesMenu = UIMenu(title: "", options: .displayInline, children: pagesCommands)
+        let fixturesCommand = UIKeyCommand(title: "Fixture List", action: #selector(fixturesMenuCalled), input: "F", modifierFlags: .command)
+        let latestScoreCommand = UIKeyCommand(title: "Latest Score", action: #selector(latestScoreMenuCalled), input: "L", modifierFlags: .command)
+        let groundCommand = UIKeyCommand(title: "Where's the Ground", action: #selector(groundMenuCalled), input: "G", modifierFlags: .command)
+        let tableCommand = UIKeyCommand(title: "League Table", action: #selector(tableMenuCalled), input: "T", modifierFlags: .command)
         
-        // Add any other elements
-        var moreCommands: [UIKeyCommand] = []
-        
-        for otherNavSection in navigationManager.moreSections {
-            for otherNavElement in otherNavSection.elements {
-                if let key = otherNavElement.keyboardShortcut {
-                    let command = UIKeyCommand(title: otherNavElement.title, action: #selector(menuItemCalled), input: key, modifierFlags: .command)
-                    moreCommands.append(command)
-                }
-            }
-        }
-        
-        let moreMenu = UIMenu(title: "", options: .displayInline, children: moreCommands)
+        let moreMenu = UIMenu(title: "", options: .displayInline, children: [fixturesCommand, latestScoreCommand, groundCommand, tableCommand])
         
         let navigationMenu = UIMenu(title: "Navigation", children: [pagesMenu, moreMenu])
         builder.insertSibling(navigationMenu, afterMenu: .edit)
     }
-   
+    
     @objc
-    func menuItemCalled(_ sender: UIKeyCommand) {
+    func forumMenuCalled(_ sender: UIKeyCommand) {
+        NotificationCenter.default.post(name: .navigationCommand, object: sender)
+    }
+
+    @objc
+    func officialSiteMenuCalled(_ sender: UIKeyCommand) {
+        NotificationCenter.default.post(name: .navigationCommand, object: sender)
+    }
+    
+    @objc
+    func yeltzTVMenuCalled(_ sender: UIKeyCommand) {
+        NotificationCenter.default.post(name: .navigationCommand, object: sender)
+    }
+    
+    @objc
+    func twitterMenuCalled(_ sender: UIKeyCommand) {
+        NotificationCenter.default.post(name: .navigationCommand, object: sender)
+    }
+    
+    @objc
+    func moreMenuCalled(_ sender: UIKeyCommand) {
+        NotificationCenter.default.post(name: .navigationCommand, object: sender)
+    }
+    
+    @objc
+    func fixturesMenuCalled(_ sender: UIKeyCommand) {
+        NotificationCenter.default.post(name: .navigationCommand, object: sender)
+    }
+    
+    @objc
+    func latestScoreMenuCalled(_ sender: UIKeyCommand) {
+        NotificationCenter.default.post(name: .navigationCommand, object: sender)
+    }
+    
+    @objc
+    func groundMenuCalled(_ sender: UIKeyCommand) {
+        NotificationCenter.default.post(name: .navigationCommand, object: sender)
+    }
+    
+    @objc
+    func tableMenuCalled(_ sender: UIKeyCommand) {
         NotificationCenter.default.post(name: .navigationCommand, object: sender)
     }
 }
