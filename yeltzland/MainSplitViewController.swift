@@ -27,7 +27,7 @@ class MainSplitViewController: UISplitViewController {
             super.init(style: .doubleColumn)
             
             self.primaryBackgroundStyle = .sidebar
-            self.preferredDisplayMode = .oneBesideSecondary
+            self.preferredDisplayMode = .oneOverSecondary
             
             self.setViewController(self.sidebarViewController, for: .primary)
             
