@@ -243,11 +243,9 @@ class FixturesTableViewController: UITableViewController {
         activity.isEligibleForSearch = true
         activity.title = "Yeltz Fixture List"
         
-        if #available(iOS 12.0, *) {
-            activity.isEligibleForPrediction = true            
-            activity.suggestedInvocationPhrase = "Fixture List"
-            activity.persistentIdentifier = String(format: "%@.com.bravelocation.yeltzland.fixtures", Bundle.main.bundleIdentifier!)
-        }
+        activity.isEligibleForPrediction = true
+        activity.suggestedInvocationPhrase = "Fixture List"
+        activity.persistentIdentifier = String(format: "%@.com.bravelocation.yeltzland.fixtures", Bundle.main.bundleIdentifier!)
                 
         // Set the title
         activity.needsSave = true

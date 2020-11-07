@@ -177,11 +177,9 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
         activity.isEligibleForSearch = true
         activity.title = "Latest Yeltz Score"
 
-        if #available(iOS 12.0, *) {
-            activity.isEligibleForPrediction = true
-            activity.suggestedInvocationPhrase = "Latest Yeltz Score"
-            activity.persistentIdentifier = String(format: "%@.com.bravelocation.yeltzland.latestscore", Bundle.main.bundleIdentifier!)
-        }
+        activity.isEligibleForPrediction = true
+        activity.suggestedInvocationPhrase = "Latest Yeltz Score"
+        activity.persistentIdentifier = String(format: "%@.com.bravelocation.yeltzland.latestscore", Bundle.main.bundleIdentifier!)
         
         // Set the title
         activity.needsSave = true
@@ -196,34 +194,30 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
     
     // MARK: - Siri Intents
     func addSiriButton() {
-        if #available(iOS 12.0, *) {
-            var buttonStyle: INUIAddVoiceShortcutButtonStyle = .whiteOutline
-            
-            if #available(iOS 13.0, *) {
-                buttonStyle = .automaticOutline
-            }
-            
-            let button = INUIAddVoiceShortcutButton(style: buttonStyle)
-            button.translatesAutoresizingMaskIntoConstraints = false
-            self.view.addSubview(button)
-            button.addTarget(self, action: #selector(addToSiri(_:)), for: .touchUpInside)
-
-            self.view.centerXAnchor.constraint(equalTo: button.centerXAnchor).isActive = true
-            self.view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: button.bottomAnchor, constant: 16.0).isActive = true
+        var buttonStyle: INUIAddVoiceShortcutButtonStyle = .whiteOutline
+        
+        if #available(iOS 13.0, *) {
+            buttonStyle = .automaticOutline
         }
+        
+        let button = INUIAddVoiceShortcutButton(style: buttonStyle)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(button)
+        button.addTarget(self, action: #selector(addToSiri(_:)), for: .touchUpInside)
+
+        self.view.centerXAnchor.constraint(equalTo: button.centerXAnchor).isActive = true
+        self.view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: button.bottomAnchor, constant: 16.0).isActive = true
     }
     
     @objc
     func addToSiri(_ sender: Any) {
-        if #available(iOS 12.0, *) {
-            let intent = ShortcutManager.shared.latestScoreIntent()
-            
-            if let shortcut = INShortcut(intent: intent) {
-                let viewController = INUIAddVoiceShortcutViewController(shortcut: shortcut)
-                viewController.modalPresentationStyle = .formSheet
-                viewController.delegate = self
-                self.present(viewController, animated: true, completion: nil)
-            }
+        let intent = ShortcutManager.shared.latestScoreIntent()
+        
+        if let shortcut = INShortcut(intent: intent) {
+            let viewController = INUIAddVoiceShortcutViewController(shortcut: shortcut)
+            viewController.modalPresentationStyle = .formSheet
+            viewController.delegate = self
+            self.present(viewController, animated: true, completion: nil)
         }
     }
     
