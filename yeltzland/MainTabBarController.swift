@@ -239,49 +239,22 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
     
     /// Called when we need to save user activity
     @objc func setupHandoff() {
-        // Set activity for handoff
-        let activity = NSUserActivity(activityType: "com.bravelocation.yeltzland.currenttab")
-        activity.delegate = self
+        if self.selectedIndex >= self.navigationData.mainSection.elements.count {
+            return
+        }
         
-        // Eligible for handoff
-        activity.isEligibleForHandoff = true
-        activity.isEligibleForSearch = true
-
-        // Set the title
-        self.setActivitySearchTitleAndPhrase(activity)
-        activity.needsSave = true
+        // Set activity for handoff
+        let activity = self.navigationData.buildUserActivity(
+            activityType: "com.bravelocation.yeltzland.currenttab",
+            persistentIdentifier: String(format: "%@.com.bravelocation.yeltzland.currenttab.%d", Bundle.main.bundleIdentifier!, self.selectedIndex),
+            delegate: self,
+            navigationElement: self.navigationData.mainSection.elements[self.selectedIndex])
 
         self.userActivity = activity
         self.userActivity?.becomeCurrent()
-    }
-    
-    /// Sets the title and invocation phrase for the user activity
-    /// - Parameter activity: User activity to configure
-    private func setActivitySearchTitleAndPhrase(_ activity: NSUserActivity) {
-        var activityTitle = "Open Yeltzland"
-        var activityInvocationPhrase = "Open Yeltzland"
         
-        switch self.selectedIndex {
-        case 0:
-            activityTitle = "Read Yeltz Forum"
-            activityInvocationPhrase = "Read the forum"
-        case 1:
-            activityTitle = "Read HTFC Official Site"
-            activityInvocationPhrase = "Read the club website"
-        case 2:
-            activityTitle = "Watch Yeltz TV"
-            activityInvocationPhrase = "Watch Yeltz TV"
-        case 3:
-            activityTitle = "Read HTFC Twitter Feed"
-            activityInvocationPhrase = "Read the club twitter"
-        default:
-            break
+        if #available(iOS 13.0, *) {
+            self.view.window?.windowScene?.userActivity = activity
         }
-        
-        activity.title = activityTitle
-
-        activity.suggestedInvocationPhrase = activityInvocationPhrase
-        activity.isEligibleForPrediction = true
-        activity.persistentIdentifier = String(format: "%@.com.bravelocation.yeltzland.currenttab.%d", Bundle.main.bundleIdentifier!, self.selectedIndex)
     }
 }

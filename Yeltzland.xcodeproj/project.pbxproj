@@ -673,17 +673,17 @@
 			isa = PBXGroup;
 			children = (
 				52176BB21D4B62DC00B7EFAE /* BaseSettings.swift */,
+				522716CC22D1BB50008FD210 /* CachedJSONData.swift */,
 				52236AE71D17E4D3004903AB /* FixtureManager.swift */,
 				52176BAF1D4A1B3200B7EFAE /* GameScoreManager.swift */,
-				527DAF201D2D096B0092BB8F /* LocationManager.swift */,
-				5231F4FE215B6C56003FAC68 /* SettingsManager.swift */,
-				526B210324C2CD6E005CE9C7 /* TimelineManager.swift */,
-				528A347720CFB98D00E8475C /* TeamImageManager.swift */,
 				52DBCA9F1D4A012E00D35F91 /* GameSettings.swift */,
-				522716CC22D1BB50008FD210 /* CachedJSONData.swift */,
-				5206BC5924CABC0D00A927B3 /* TwitterDataProvider.swift */,
-				5201D3B024CB1B0900726CAD /* TweetData.swift */,
+				527DAF201D2D096B0092BB8F /* LocationManager.swift */,
 				52C32D72253AD7CB003D8F2C /* NavigationManager.swift */,
+				5231F4FE215B6C56003FAC68 /* SettingsManager.swift */,
+				528A347720CFB98D00E8475C /* TeamImageManager.swift */,
+				526B210324C2CD6E005CE9C7 /* TimelineManager.swift */,
+				5201D3B024CB1B0900726CAD /* TweetData.swift */,
+				5206BC5924CABC0D00A927B3 /* TwitterDataProvider.swift */,
 			);
 			path = "Data Providers";
 			sourceTree = "<group>";

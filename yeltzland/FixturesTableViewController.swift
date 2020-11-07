@@ -236,20 +236,33 @@ class FixturesTableViewController: UITableViewController {
     // MARK: Handoff
     @objc func setupHandoff() {
         // Set activity for handoff
-        let activity = NSUserActivity(activityType: "com.bravelocation.yeltzland.fixtures")
         
-        // Eligible for handoff
-        activity.isEligibleForHandoff = true
-        activity.isEligibleForSearch = true
-        activity.title = "Yeltz Fixture List"
+        let navigationData = NavigationManager()
         
-        activity.isEligibleForPrediction = true
-        activity.suggestedInvocationPhrase = "Fixture List"
-        activity.persistentIdentifier = String(format: "%@.com.bravelocation.yeltzland.fixtures", Bundle.main.bundleIdentifier!)
-                
-        // Set the title
-        activity.needsSave = true
+        // Find navigation element
+        var navigationElement: NavigationElement?
         
+        // Find navigation element
+        for section in navigationData.moreSections {
+            for element in section.elements {
+                switch element.type {
+                case .controller(let viewController):
+                    if viewController is FixturesTableViewController {
+                        navigationElement = element
+                        break
+                    }
+                default:
+                    continue
+                }
+            }
+        }
+        
+        let activity = navigationData.buildUserActivity(
+            activityType: "com.bravelocation.yeltzland.fixtures",
+            persistentIdentifier: String(format: "%@.com.bravelocation.yeltzland.fixtures", Bundle.main.bundleIdentifier!),
+            delegate: nil,
+            navigationElement: navigationElement)
+
         self.userActivity = activity
         self.userActivity?.becomeCurrent()
         

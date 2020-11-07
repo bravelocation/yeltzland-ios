@@ -17,6 +17,11 @@ public enum NavigationElementType: Hashable {
     case info
 }
 
+public struct ActivityInfo: Hashable {
+    var title: String
+    var invocationPhrase: String
+}
+
 public struct NavigationElement: Hashable {
     var title: String
     var subtitle: String?
@@ -24,33 +29,38 @@ public struct NavigationElement: Hashable {
     var type: NavigationElementType
     var keyboardShortcut: String?
     var shortcutName: String?
+    var activityInfo: ActivityInfo?
     
     static func controller(title: String,
                            imageName: String,
                            controller: UIViewController,
                            keyboardShortcut: String? = nil,
-                           shortcutName: String? = nil
+                           shortcutName: String? = nil,
+                           activityInfo: ActivityInfo? = nil
     ) -> NavigationElement {
         return NavigationElement(title: title,
                                  subtitle: nil,
                                  imageName: imageName,
                                  type: .controller(controller),
                                  keyboardShortcut: keyboardShortcut,
-                                 shortcutName: shortcutName)
+                                 shortcutName: shortcutName,
+                                 activityInfo: activityInfo)
     }
     
     static func link(title: String,
                      imageName: String?,
                      url: String,
                      keyboardShortcut: String? = nil,
-                     shortcutName: String? = nil
+                     shortcutName: String? = nil,
+                     activityInfo: ActivityInfo? = nil
     ) -> NavigationElement {
         return NavigationElement(title: title,
                                  subtitle: nil,
                                  imageName: imageName,
                                  type: .link(URL(string: url)!),
                                  keyboardShortcut: keyboardShortcut,
-                                 shortcutName: shortcutName)
+                                 shortcutName: shortcutName,
+                                 activityInfo: activityInfo)
     }
     
     static func siri(title: String, intent: INIntent) -> NavigationElement {

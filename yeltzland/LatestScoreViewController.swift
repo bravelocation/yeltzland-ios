@@ -169,23 +169,35 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
     
     // MARK: - Handoff
     @objc func setupHandoff() {
-        // Set activity for handoff
-        let activity = NSUserActivity(activityType: "com.bravelocation.yeltzland.latestscore")
         
-        // Eligible for handoff
-        activity.isEligibleForHandoff = true
-        activity.isEligibleForSearch = true
-        activity.title = "Latest Yeltz Score"
+        let navigationData = NavigationManager()
+        
+        // Find navigation element
+        var navigationElement: NavigationElement?
+        
+        for section in navigationData.moreSections {
+            for element in section.elements {
+                switch element.type {
+                case .controller(let viewController):
+                    if viewController is LatestScoreViewController {
+                        navigationElement = element
+                        break
+                    }
+                default:
+                    continue
+                }
+            }
+        }
+        
+        let activity = navigationData.buildUserActivity(
+            activityType: "com.bravelocation.yeltzland.latestscore",
+            persistentIdentifier: String(format: "%@.com.bravelocation.yeltzland.latestscore", Bundle.main.bundleIdentifier!),
+            delegate: nil,
+            navigationElement: navigationElement)
 
-        activity.isEligibleForPrediction = true
-        activity.suggestedInvocationPhrase = "Latest Yeltz Score"
-        activity.persistentIdentifier = String(format: "%@.com.bravelocation.yeltzland.latestscore", Bundle.main.bundleIdentifier!)
-        
-        // Set the title
-        activity.needsSave = true
-        
         self.userActivity = activity
         self.userActivity?.becomeCurrent()
+        
         
         if #available(iOS 13.0, *) {
             self.view.window?.windowScene?.userActivity = activity

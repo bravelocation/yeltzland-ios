@@ -78,22 +78,65 @@ public class NavigationManager {
         return commands
     }
     
+    public func buildUserActivity(activityType: String,
+                                  persistentIdentifier: String,
+                                  delegate: NSUserActivityDelegate?,
+                                  navigationElement: NavigationElement?
+                                  ) -> NSUserActivity {
+        // Set activity for handoff
+        let activity = NSUserActivity(activityType: activityType)
+        activity.delegate = delegate
+        
+        // Eligible for handoff
+        activity.isEligibleForHandoff = true
+        activity.isEligibleForSearch = true
+
+        // Set the title
+        var activityTitle = "Open Yeltzland"
+        var activityInvocationPhrase = "Open Yeltzland"
+        
+        if let navElement = navigationElement {
+            if let activityInfo = navElement.activityInfo {
+                activityTitle = activityInfo.title
+                activityInvocationPhrase = activityInfo.invocationPhrase
+            }
+        }
+        
+        activity.title = activityTitle
+        activity.suggestedInvocationPhrase = activityInvocationPhrase
+        
+        activity.isEligibleForPrediction = true
+        activity.persistentIdentifier = persistentIdentifier
+        activity.needsSave = true
+        
+        return activity
+    }
+    
     // MARK: - Navigation setup
     private func addMainNavigation() {
         self._main.elements.append(NavigationElement.link(title: "Yeltz Forum",
                                                                 imageName: "forum",
                                                                 url: "https://www.yeltz.co.uk",
-                                                                shortcutName: "com.bravelocation.yeltzland.forum"))
+                                                                shortcutName: "com.bravelocation.yeltzland.forum",
+                                                                activityInfo: ActivityInfo(
+                                                                    title: "Read Yeltz Forum",
+                                                                    invocationPhrase: "Read the forum")))
         
         self._main.elements.append(NavigationElement.link(title: "Official Site",
                                                                 imageName: "official",
                                                                 url: "https://www.ht-fc.co.uk",
-                                                                shortcutName: "com.bravelocation.yeltzland.official"))
+                                                                shortcutName: "com.bravelocation.yeltzland.official",
+                                                                activityInfo: ActivityInfo(
+                                                                    title: "Read HTFC Official Site",
+                                                                    invocationPhrase: "Read the club website")))
         
         self._main.elements.append(NavigationElement.link(title: "Yeltz TV",
                                                                 imageName: "yeltztv",
                                                                 url: "https://www.youtube.com/channel/UCGZMWQtMsC4Tep6uLm5V0nQ",
-                                                                shortcutName: "com.bravelocation.yeltzland.yeltztv"))
+                                                                shortcutName: "com.bravelocation.yeltzland.yeltztv",
+                                                                activityInfo: ActivityInfo(
+                                                                    title: "Watch Yeltz TV",
+                                                                    invocationPhrase: "Watch Yeltz TV")))
         
         // Twitter
         let twitterAccountName = "halesowentownfc"
@@ -115,12 +158,18 @@ public class NavigationManager {
             self._main.elements.append(NavigationElement.controller(title: "@\(twitterAccountName)",
                                                                     imageName: "twitter",
                                                                     controller: twitterViewController,
-                                                                    shortcutName: "com.bravelocation.yeltzland.twitter"))
+                                                                    shortcutName: "com.bravelocation.yeltzland.twitter",
+                                                                    activityInfo: ActivityInfo(
+                                                                        title: "Read HTFC Twitter Feed",
+                                                                        invocationPhrase: "Read the club twitter")))
         } else {
             self._main.elements.append(NavigationElement.link(title: "@\(twitterAccountName)",
                                                                     imageName: "twitter",
                                                                     url: "https://mobile.twitter.com/\(twitterAccountName)",
-                                                                    shortcutName: "com.bravelocation.yeltzland.twitter"))
+                                                                    shortcutName: "com.bravelocation.yeltzland.twitter",
+                                                                    activityInfo: ActivityInfo(
+                                                                        title: "Read HTFC Twitter Feed",
+                                                                        invocationPhrase: "Read the club twitter")))
         }
     }
     
@@ -130,12 +179,18 @@ public class NavigationManager {
         stats.elements.append(NavigationElement.controller(title: "Fixture List",
                                                 imageName: "fixtures",
                                                 controller: FixturesTableViewController(style: .grouped),
-                                                keyboardShortcut: "F"))
+                                                keyboardShortcut: "F",
+                                                activityInfo: ActivityInfo(
+                                                    title: "Yeltz Fixture List",
+                                                    invocationPhrase: "Fixture List")))
         
         stats.elements.append(NavigationElement.controller(title: "Latest Score",
                                                 imageName: "latest-score",
                                                 controller: LatestScoreViewController(),
-                                                keyboardShortcut: "L"))
+                                                keyboardShortcut: "L",
+                                                activityInfo: ActivityInfo(
+                                                    title: "Latest Yeltz Score",
+                                                    invocationPhrase: "Latest Yeltz Score")))
         
         stats.elements.append(NavigationElement.controller(title: "Where's the Ground",
                                                 imageName: "map",
