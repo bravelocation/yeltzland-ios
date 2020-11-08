@@ -13,7 +13,18 @@ import IntentsUI
 
 class OtherLinksTableViewController: UITableViewController, SFSafariViewControllerDelegate {
 
-    let navigationData = NavigationManager().moreSections
+    var navigationData: [NavigationSection]!
+    
+    override init(style: UITableView.Style) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        navigationData = appDelegate.navigationManager.moreSections
+        
+        super.init(style: style)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

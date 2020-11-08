@@ -236,28 +236,11 @@ class FixturesTableViewController: UITableViewController {
     // MARK: Handoff
     @objc func setupHandoff() {
         // Set activity for handoff
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let navigationManager = appDelegate.navigationManager
+        let navigationElement = navigationManager.fixtureList
         
-        let navigationData = NavigationManager()
-        
-        // Find navigation element
-        var navigationElement: NavigationElement?
-        
-        // Find navigation element
-        for section in navigationData.moreSections {
-            for element in section.elements {
-                switch element.type {
-                case .controller(let viewController):
-                    if viewController is FixturesTableViewController {
-                        navigationElement = element
-                        break
-                    }
-                default:
-                    continue
-                }
-            }
-        }
-        
-        let activity = navigationData.buildUserActivity(
+        let activity = navigationManager.buildUserActivity(
             activityType: "com.bravelocation.yeltzland.fixtures",
             persistentIdentifier: String(format: "%@.com.bravelocation.yeltzland.fixtures", Bundle.main.bundleIdentifier!),
             delegate: nil,

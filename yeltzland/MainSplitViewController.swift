@@ -14,8 +14,6 @@ import Combine
 
 class MainSplitViewController: UISplitViewController {
     
-    private var navigationData: NavigationManager = NavigationManager()
-    
     @available(iOS 13.0, *)
     private lazy var menuSubscriber: AnyCancellable? = nil
     
@@ -59,7 +57,10 @@ class MainSplitViewController: UISplitViewController {
 // MARK: - Keyboard options
 extension MainSplitViewController {
     override var keyCommands: [UIKeyCommand]? {
-        return self.navigationData.keyCommands(selector: #selector(MainSplitViewController.keyboardSelectTab), useMore: true)
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let navigationManager = appDelegate.navigationManager
+        
+        return navigationManager.keyCommands(selector: #selector(MainSplitViewController.keyboardSelectTab), useMore: true)
     }
 
     @objc func keyboardSelectTab(sender: UIKeyCommand) {

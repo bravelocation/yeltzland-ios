@@ -17,6 +17,22 @@ public class NavigationManager {
     private var _main: NavigationSection = NavigationSection(title: "Yeltzland", elements: [])
     private var _moreSections: [NavigationSection] = []
     
+    private let _fixtureList: NavigationElement = NavigationElement.controller(title: "Fixture List",
+                                                                               imageName: "fixtures",
+                                                                               controller: FixturesTableViewController(style: .grouped),
+                                                                               keyboardShortcut: "F",
+                                                                               activityInfo: ActivityInfo(
+                                                                                   title: "Yeltz Fixture List",
+                                                                                   invocationPhrase: "Fixture List"))
+    
+    private let _latestScore: NavigationElement = NavigationElement.controller(title: "Latest Score",
+                                                                               imageName: "latest-score",
+                                                                               controller: LatestScoreViewController(),
+                                                                               keyboardShortcut: "L",
+                                                                               activityInfo: ActivityInfo(
+                                                                                   title: "Latest Yeltz Score",
+                                                                                   invocationPhrase: "Latest Yeltz Score"))
+    
     var mainSection: NavigationSection {
         get {
             self._main
@@ -26,6 +42,18 @@ public class NavigationManager {
     var moreSections: [NavigationSection] {
         get {
             self._moreSections
+        }
+    }
+    
+    var fixtureList: NavigationElement {
+        get {
+            self._fixtureList
+        }
+    }
+    
+    var latestScore: NavigationElement {
+        get {
+            self._latestScore
         }
     }
     
@@ -176,21 +204,8 @@ public class NavigationManager {
     private func addStatisticsSection() {
         var stats = NavigationSection(title: "Statistics", elements: [])
                                       
-        stats.elements.append(NavigationElement.controller(title: "Fixture List",
-                                                imageName: "fixtures",
-                                                controller: FixturesTableViewController(style: .grouped),
-                                                keyboardShortcut: "F",
-                                                activityInfo: ActivityInfo(
-                                                    title: "Yeltz Fixture List",
-                                                    invocationPhrase: "Fixture List")))
-        
-        stats.elements.append(NavigationElement.controller(title: "Latest Score",
-                                                imageName: "latest-score",
-                                                controller: LatestScoreViewController(),
-                                                keyboardShortcut: "L",
-                                                activityInfo: ActivityInfo(
-                                                    title: "Latest Yeltz Score",
-                                                    invocationPhrase: "Latest Yeltz Score")))
+        stats.elements.append(self.fixtureList)
+        stats.elements.append(self.latestScore)
         
         stats.elements.append(NavigationElement.controller(title: "Where's the Ground",
                                                 imageName: "map",

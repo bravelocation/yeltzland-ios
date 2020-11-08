@@ -62,11 +62,22 @@ class SidebarViewController: UIViewController {
     
     private var collectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<SidebarSection, SidebarItem>!
-    private var navigationData: NavigationManager = NavigationManager()
+    private var navigationManager: NavigationManager!
     private var highlightColor: UIColor = UIColor(named: "blue-tint")!
     private var highlightTextColor: UIColor = UIColor(named: "row-highlight-text-color")!
     private var rowTextColor: UIColor = UIColor(named: "row-text-color")!
 
+    init() {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        navigationManager = appDelegate.navigationManager
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -235,7 +246,7 @@ extension SidebarViewController {
         let sectionHeader = SidebarItem.header(title: "Yeltzland")
         
         var mainNavItems: [SidebarItem] = []
-        for mainNavElement in self.navigationData.mainSection.elements {
+        for mainNavElement in self.navigationManager.mainSection.elements {
             mainNavItems.append(SidebarItem.row(element: mainNavElement))
         }
             
@@ -249,7 +260,7 @@ extension SidebarViewController {
     private func moreElementsSnapshot() -> NSDiffableDataSourceSectionSnapshot<SidebarItem> {
         var snapshot = NSDiffableDataSourceSectionSnapshot<SidebarItem>()
         
-        for moreSection in self.navigationData.moreSections {
+        for moreSection in self.navigationManager.moreSections {
             let sectionHeader = SidebarItem.header(title: moreSection.title)
             
             var moreSectionNavItems: [SidebarItem] = []
@@ -302,7 +313,7 @@ extension SidebarViewController {
     
     func handleOtherShortcut(_ keyboardShortcut: String) {
         var section = 1
-        for otherNavSection in self.navigationData.moreSections {
+        for otherNavSection in self.navigationManager.moreSections {
             var row = 1 // Start at 1 because of the header element
             for otherNavElement in otherNavSection.elements {
                 if let key = otherNavElement.keyboardShortcut {

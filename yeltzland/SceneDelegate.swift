@@ -109,7 +109,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func handleShortcut(_ shortcutItem: UIApplicationShortcutItem) -> Int {
         print("Handling shortcut item %@", shortcutItem.type)
         
-        let navigationManager = NavigationManager()
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let navigationManager = appDelegate.navigationManager
         
         var i = 0
         for navigationElement in navigationManager.mainSection.elements {

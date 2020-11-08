@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var firebaseNotifications: FirebaseNotifications?
     var processPool: WKProcessPool = WKProcessPool()
+    let navigationManager = NavigationManager()
     
     // MARK: - UIApplicationDelegate functions
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -120,10 +121,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func handleShortcut(_ shortcutItem: UIApplicationShortcutItem) -> Int {
         print("Handling shortcut item %@", shortcutItem.type)
         
-        let navigationManager = NavigationManager()
-        
         var i = 0
-        for navigationElement in navigationManager.mainSection.elements {
+        for navigationElement in self.navigationManager.mainSection.elements {
             if let shortcutName = navigationElement.shortcutName {
                 if shortcutItem.type == shortcutName {
                     return i

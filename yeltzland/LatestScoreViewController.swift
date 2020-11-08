@@ -87,7 +87,7 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
          } else {
             return [
                 UIKeyCommand(input: "r", modifierFlags: .command, action: #selector(LatestScoreViewController.reloadButtonTouchUp), discoverabilityTitle: "Reload"),
-                UIKeyCommand(input: UIKeyCommand.inputLeftArrow, modifierFlags: .command, action: #selector(FixturesTableViewController.goBack), discoverabilityTitle: "Back")
+                UIKeyCommand(input: UIKeyCommand.inputLeftArrow, modifierFlags: .command, action: #selector(LatestScoreViewController.goBack), discoverabilityTitle: "Back")
             ]
         }
     }
@@ -169,27 +169,11 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
     
     // MARK: - Handoff
     @objc func setupHandoff() {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let navigationManager = appDelegate.navigationManager
+        let navigationElement = navigationManager.latestScore
         
-        let navigationData = NavigationManager()
-        
-        // Find navigation element
-        var navigationElement: NavigationElement?
-        
-        for section in navigationData.moreSections {
-            for element in section.elements {
-                switch element.type {
-                case .controller(let viewController):
-                    if viewController is LatestScoreViewController {
-                        navigationElement = element
-                        break
-                    }
-                default:
-                    continue
-                }
-            }
-        }
-        
-        let activity = navigationData.buildUserActivity(
+        let activity = navigationManager.buildUserActivity(
             activityType: "com.bravelocation.yeltzland.latestscore",
             persistentIdentifier: String(format: "%@.com.bravelocation.yeltzland.latestscore", Bundle.main.bundleIdentifier!),
             delegate: nil,
@@ -197,8 +181,7 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
 
         self.userActivity = activity
         self.userActivity?.becomeCurrent()
-        
-        
+                
         if #available(iOS 13.0, *) {
             self.view.window?.windowScene?.userActivity = activity
         }

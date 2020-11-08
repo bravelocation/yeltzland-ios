@@ -19,10 +19,10 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
     
     // MARK: Private variables
     private let defaults = UserDefaults.standard
-    private var navigationData: NavigationManager = NavigationManager()
+    private var navigationManager: NavigationManager!
     
     private var otherTabIndex: Int {
-        return self.navigationData.mainSection.elements.count
+        return self.navigationManager.mainSection.elements.count
     }
     
     @available(iOS 13.0, *)
@@ -36,6 +36,9 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
     }
     
     init() {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        navigationManager = appDelegate.navigationManager
+        
         super.init(nibName: nil, bundle: nil)
         self.addChildViewControllers()
         self.setupNotificationWatcher()
@@ -59,7 +62,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
     
     // MARK: - Keyboard options
     override var keyCommands: [UIKeyCommand]? {
-        return self.navigationData.keyCommands(selector: #selector(MainTabBarController.keyboardSelectTab), useMore: true)
+        return self.navigationManager.keyCommands(selector: #selector(MainTabBarController.keyboardSelectTab), useMore: true)
     }
 
     @objc func keyboardSelectTab(sender: UIKeyCommand) {
@@ -194,7 +197,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
     func addChildViewControllers() {
         var controllers: [UINavigationController] = []
         
-        for mainNavElement in self.navigationData.mainSection.elements {
+        for mainNavElement in self.navigationManager.mainSection.elements {
             switch mainNavElement.type {
             case .controller(let viewController):
                 let navController = UINavigationController(rootViewController: viewController)
@@ -239,16 +242,16 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
     
     /// Called when we need to save user activity
     @objc func setupHandoff() {
-        if self.selectedIndex >= self.navigationData.mainSection.elements.count {
+        if self.selectedIndex >= self.navigationManager.mainSection.elements.count {
             return
         }
         
         // Set activity for handoff
-        let activity = self.navigationData.buildUserActivity(
+        let activity = self.navigationManager.buildUserActivity(
             activityType: "com.bravelocation.yeltzland.currenttab",
             persistentIdentifier: String(format: "%@.com.bravelocation.yeltzland.currenttab.%d", Bundle.main.bundleIdentifier!, self.selectedIndex),
             delegate: self,
-            navigationElement: self.navigationData.mainSection.elements[self.selectedIndex])
+            navigationElement: self.navigationManager.mainSection.elements[self.selectedIndex])
 
         self.userActivity = activity
         self.userActivity?.becomeCurrent()
