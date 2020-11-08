@@ -28,6 +28,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             if #available(iOS 14, *) {
                 if window.traitCollection.userInterfaceIdiom == .pad {
                     initialController = MainSplitViewController(tabController: tabController)
+                    
+                    if let userActivity = connectionOptions.userActivities.first ?? session.stateRestorationActivity {
+                        initialController!.restoreUserActivityState(userActivity)
+                    }
                 }
             }
             
@@ -73,9 +77,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         startingActivity.userInfo = [:]
         startingActivity.userInfo?["com.bravelocation.yeltzland.currenttab.key"] = self.handleShortcut(shortcutItem)
         
-        // Reset selected tab
-        if let mainViewController = self.window?.rootViewController as? MainTabBarController {
-            mainViewController.restoreUserActivityState(startingActivity)
+        // Reset selected window
+        if let tabViewController = self.window?.rootViewController as? MainTabBarController {
+            tabViewController.restoreUserActivityState(startingActivity)
+        } else if let mainSplitViewController = self.window?.rootViewController as? MainSplitViewController {
+            mainSplitViewController.restoreUserActivityState(startingActivity)
         }
         
         return completionHandler(true)

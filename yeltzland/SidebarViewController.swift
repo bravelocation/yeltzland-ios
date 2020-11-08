@@ -341,3 +341,82 @@ extension SidebarViewController {
         self.collectionView(self.collectionView, didSelectItemAt: indexPath)
     }
 }
+
+// MARK: - UIResponder function
+@available(iOS 14, *)
+extension SidebarViewController {
+
+    /// Description Restores the tab state based on the juser activity
+    /// - Parameter activity: Activity state to restore
+    func restoreUserActivity(_ activity: NSUserActivity) {
+        print("Restoring user activity in sidebar controller ...")
+
+        if (activity.activityType == "com.bravelocation.yeltzland.currenttab") {
+            print("Detected tab activity ...")
+            
+            self.restoreTabActivity(activity)
+        } else if (activity.activityType == "com.bravelocation.yeltzland.fixtures") {
+            print("Detected fixture list activity ...")
+            
+            if let indexPath = self.findMoreNavigationElementPath(self.navigationManager.fixtureList) {
+                self.shortcutToIndexPath(indexPath)
+            }
+        } else if (activity.activityType == "com.bravelocation.yeltzland.latestscore") {
+            print("Detected Latest score activity ...")
+            
+            if let indexPath = self.findMoreNavigationElementPath(self.navigationManager.latestScore) {
+                self.shortcutToIndexPath(indexPath)
+            }
+        }
+    }
+    
+    private func restoreTabActivity(_ activity: NSUserActivity) {
+        if let info = activity.userInfo {
+            if let row = info["com.bravelocation.yeltzland.currenttab.key"] as? Int {
+                guard row < self.navigationManager.mainSection.elements.count else { return }
+                
+                let navElement = self.navigationManager.mainSection.elements[row]
+
+                switch navElement.type {
+                case .link(let url):
+                    let webViewController = WebPageViewController()
+                    webViewController.homeUrl = url
+                    webViewController.pageTitle = navElement.title
+                    
+                    let navViewController = UINavigationController(rootViewController: webViewController)
+                    
+                    self.updateDetailViewController(controller: navViewController)
+                    if let currentUrl = info["com.bravelocation.yeltzland.currenttab.currenturl"] as? URL {
+                        webViewController.loadPage(currentUrl)
+                        print("Restoring URL to be \(currentUrl)")
+                    }
+                default:
+                    break
+                }
+ 
+                // Select the element in the main section (don't forget the header!)
+                let indexPath = IndexPath(row: row + 1, section: 0)
+                self.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredVertically)
+                self.collectionView(self.collectionView, didSelectItemAt: indexPath)
+            }
+        }
+    }
+    
+    private func findMoreNavigationElementPath(_ navElement: NavigationElement) -> IndexPath? {
+        var section = 1
+        for sectionElements in self.navigationManager.moreSections {
+            var row = 1 // Don't count the header
+            for element in sectionElements.elements {
+                if element == navElement {
+                    return IndexPath(row: row, section: section)
+                }
+                
+                row += 1
+            }
+            
+            section += 1
+        }
+        
+        return nil
+    }
+}

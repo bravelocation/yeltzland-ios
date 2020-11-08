@@ -92,6 +92,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Reset selected tab
         if let mainViewController = self.window?.rootViewController as? MainTabBarController {
             mainViewController.restoreUserActivityState(startingActivity)
+        } else if let mainSplitViewController = self.window?.rootViewController as? MainSplitViewController {
+            mainSplitViewController.restoreUserActivityState(startingActivity)
         }
         
         return completionHandler(true)

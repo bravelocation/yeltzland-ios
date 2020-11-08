@@ -88,3 +88,18 @@ extension MainSplitViewController {
         }
     }
 }
+
+// MARK: - UIResponder function
+extension MainSplitViewController {
+
+    /// Description Restores the tab state based on the juser activity
+    /// - Parameter activity: Activity state to restore
+    override func restoreUserActivityState(_ activity: NSUserActivity) {
+        print("Restoring user activity in split controller ...")
+        
+        // Pass through directly to sidebar controller
+        if #available(iOS 14.0, *) {
+            self.sidebarViewController.restoreUserActivity(activity)
+        }
+    }
+}
