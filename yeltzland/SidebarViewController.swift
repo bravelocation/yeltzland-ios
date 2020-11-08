@@ -167,10 +167,8 @@ extension SidebarViewController: UICollectionViewDelegate {
         case .controller(let viewController):
             let navViewController = UINavigationController(rootViewController: viewController)
             self.updateDetailViewController(controller: navViewController)
-            return 
         case .siri(let intent):
             self.addToSiriAction(intent: intent)
-            return
         case .link(let url):
             let webViewController = WebPageViewController()
             webViewController.homeUrl = url
@@ -178,11 +176,11 @@ extension SidebarViewController: UICollectionViewDelegate {
             let navViewController = UINavigationController(rootViewController: webViewController)
             
             self.updateDetailViewController(controller: navViewController)
-            return
         default:
-            return
-            // NO action on other types
+            break
         }
+        
+        self.setupTabHandoff(indexPath: indexPath)
     }
     
     private func didDeselectItem(_ sidebarItem: SidebarItem, at indexPath: IndexPath) {
@@ -418,5 +416,74 @@ extension SidebarViewController {
         }
         
         return nil
+    }
+}
+
+@available(iOS 14, *)
+extension SidebarViewController: NSUserActivityDelegate {
+    /// Called when we need to save user activity
+    @objc func setupTabHandoff(indexPath: IndexPath) {
+        guard indexPath.section == 0 else {
+            return
+        }
+        
+        let elementIndex = indexPath.row - 1
+        
+        guard elementIndex >= 0 && elementIndex < self.navigationManager.mainSection.elements.count else {
+            return
+        }
+        
+        // Set activity for handoff
+        let activity = self.navigationManager.buildUserActivity(
+            activityType: "com.bravelocation.yeltzland.currenttab",
+            persistentIdentifier: String(format: "%@.com.bravelocation.yeltzland.currenttab.%d", Bundle.main.bundleIdentifier!, elementIndex),
+            delegate: self,
+            navigationElement: self.navigationManager.mainSection.elements[elementIndex])
+
+        self.userActivity = activity
+        self.userActivity?.becomeCurrent()
+        self.view.window?.windowScene?.userActivity = activity
+    }
+    
+    // MARK: - NSUserActivityDelegate functions
+    func userActivityWillSave(_ userActivity: NSUserActivity) {
+        
+        DispatchQueue.main.async {
+            if let currentIndexPath = self.collectionView.indexPathsForSelectedItems?.first {
+                guard currentIndexPath.section == 0 else {
+                    return
+                }
+                
+                let selectedIndex = currentIndexPath.row - 1
+                
+                var currentUrl: URL? = nil
+                
+                userActivity.userInfo = [
+                    "com.bravelocation.yeltzland.currenttab.key": NSNumber(value: selectedIndex)
+                ]
+                
+                // Add current URL if a web view
+                if let splitViewController = self.splitViewController {
+                    if splitViewController.viewControllers.count > 1 {
+                        if let currentController = splitViewController.viewControllers[1] as? UINavigationController {
+                            if let selectedController = currentController.viewControllers[0] as? WebPageViewController {
+                                currentUrl = selectedController.webView.url
+                            }
+                        }
+                    }
+                }
+                
+                if (currentUrl != nil) {
+                    userActivity.userInfo = [
+                        "com.bravelocation.yeltzland.currenttab.key": NSNumber(value: selectedIndex),
+                        "com.bravelocation.yeltzland.currenttab.currenturl": currentUrl!
+                    ]
+                    
+                    print("Saving user activity current URL to be \(currentUrl!)")
+                }
+                
+                self.view.window?.windowScene?.userActivity = userActivity
+            }
+        }
     }
 }
