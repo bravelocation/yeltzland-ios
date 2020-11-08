@@ -13,19 +13,35 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
     
     static let UrlNotification: String = "YLZUrlNotification"
     
-    var homePageUrl: URL!
+    private var homePageUrl: URL!
     
     var homeUrl: URL! {
         get {
             return self.homePageUrl
         }
+    }
+    
+    private var _navElement: NavigationElement?
+    var navigationElement: NavigationElement? {
+        get {
+            return self._navElement
+        }
         set {
-            self.homePageUrl = newValue
-            self.loadHomePage()
+            self._navElement = newValue
+            
+            switch self._navElement?.type {
+            case .link(let url):
+                self.homePageUrl = url
+                self.pageTitle = self._navElement?.title
+                self.loadHomePage()
+            default:
+                break
+            }
         }
     }
     
-    var pageTitle: String!
+    private var pageTitle: String!
+    
     var homeButton: UIBarButtonItem!
     var backButton: UIBarButtonItem!
     var forwardButton: UIBarButtonItem!

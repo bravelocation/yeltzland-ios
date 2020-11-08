@@ -241,8 +241,6 @@ class FixturesTableViewController: UITableViewController {
         let navigationElement = navigationManager.fixtureList
         
         let activity = navigationManager.buildUserActivity(
-            activityType: "com.bravelocation.yeltzland.fixtures",
-            persistentIdentifier: String(format: "%@.com.bravelocation.yeltzland.fixtures", Bundle.main.bundleIdentifier!),
             delegate: nil,
             navigationElement: navigationElement)
 

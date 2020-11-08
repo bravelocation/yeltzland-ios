@@ -46,10 +46,12 @@ class MainSplitViewController: UISplitViewController {
     }
     
     private func initialSecondaryView() -> UIViewController {
-        // TODO(JP): get this from navigation manager
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let navigationManager = appDelegate.navigationManager
+        
         let webViewController = WebPageViewController()
-        webViewController.homeUrl = URL(string: "https://yeltz.co.uk")!
-        webViewController.pageTitle = "Yeltz Forum"
+        webViewController.navigationElement = navigationManager.mainSection.elements.first
+        
         return UINavigationController(rootViewController: webViewController)
     }
 }

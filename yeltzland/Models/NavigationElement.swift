@@ -31,6 +31,25 @@ public struct NavigationElement: Hashable {
     var shortcutName: String?
     var activityInfo: ActivityInfo?
     
+    var id: String {
+        get {
+            var typeName = "none"
+            
+            switch self.type {
+            case .controller:
+                typeName = "controller"
+            case .info:
+                typeName = "info"
+            case .link:
+                typeName = "link"
+            case .siri:
+                typeName = "siri"
+            }
+            
+            return String(format: "%@:%@", self.title.replacingOccurrences(of: " ", with: ".").lowercased(), typeName)
+        }
+    }
+    
     static func controller(title: String,
                            imageName: String,
                            controller: UIViewController,

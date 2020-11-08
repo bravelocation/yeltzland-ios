@@ -41,9 +41,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 initialController!.restoreUserActivityState(userActivity)
             } else {
                 // Calculate the correct user activity to pre-populate the selected tab
-                let startingActivity = NSUserActivity(activityType: "com.bravelocation.yeltzland.currenttab")
-                startingActivity.userInfo = [:]
-                startingActivity.userInfo?["com.bravelocation.yeltzland.currenttab.key"] = GameSettings.shared.lastSelectedTab
+                let startingActivity = NSUserActivity(activityType: "com.bravelocation.yeltzland.navigation")
+                
+                let navigationManager = (UIApplication.shared.delegate as! AppDelegate).navigationManager
+                startingActivity.userInfo = NavigationActivity(main: true, navElementId: navigationManager.mainSection.elements[0].id).userInfo
                 initialController!.restoreUserActivityState(startingActivity)
             }
             
@@ -65,11 +66,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func stateRestorationActivity(for scene: UIScene) -> NSUserActivity? {
         
         // Calculate the correct user activity to pre-populate the selected tab
-        let startingActivity = NSUserActivity(activityType: "com.bravelocation.yeltzland.currenttab")
-        startingActivity.userInfo = [:]
-        startingActivity.userInfo?["com.bravelocation.yeltzland.currenttab.key"] = GameSettings.shared.lastSelectedTab
+        let startingActivity = NSUserActivity(activityType: "com.bravelocation.yeltzland.navigation")
         
-        return startingActivity
+        let navigationManager = (UIApplication.shared.delegate as! AppDelegate).navigationManager
+        
+        if GameSettings.shared.lastSelectedTab < navigationManager.mainSection.elements.count {
+            let navActivity = NavigationActivity(main: true, navElementId: navigationManager.mainSection.elements[GameSettings.shared.lastSelectedTab].id)
+            startingActivity.userInfo = navActivity.userInfo
+            
+            return startingActivity
+        }
+        
+        return nil
     }
     
     @available(iOS 13.0, *)
@@ -82,9 +90,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     @available(iOS 13.0, *)
     func windowScene(_ windowScene: UIWindowScene, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
         print("3D Touch when from shortcut action")
-        let startingActivity = NSUserActivity(activityType: "com.bravelocation.yeltzland.currenttab")
-        startingActivity.userInfo = [:]
-        startingActivity.userInfo?["com.bravelocation.yeltzland.currenttab.key"] = self.handleShortcut(shortcutItem)
+        let startingActivity = NSUserActivity(activityType: "com.bravelocation.yeltzland.navigation")
+        startingActivity.userInfo = self.handleShortcut(shortcutItem).userInfo
         
         // Reset selected window
         if let tabViewController = self.window?.rootViewController as? MainTabBarController {
@@ -121,24 +128,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     // MARK: - Private functions
-    func handleShortcut(_ shortcutItem: UIApplicationShortcutItem) -> Int {
+    func handleShortcut(_ shortcutItem: UIApplicationShortcutItem) -> NavigationActivity {
         print("Handling shortcut item %@", shortcutItem.type)
         
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let navigationManager = appDelegate.navigationManager
+        let navigationManager = (UIApplication.shared.delegate as! AppDelegate).navigationManager
         
-        var i = 0
         for navigationElement in navigationManager.mainSection.elements {
             if let shortcutName = navigationElement.shortcutName {
                 if shortcutItem.type == shortcutName {
-                    return i
+                    return NavigationActivity(main: true, navElementId: navigationElement.id)
                 }
             }
-            
-            i += 1
         }
         
         // If no match found, go to the first element
-        return 0
+        return NavigationActivity(main: true, navElementId: navigationManager.mainSection.elements[0].id)
     }
 }

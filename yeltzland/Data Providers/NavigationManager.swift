@@ -106,13 +106,9 @@ public class NavigationManager {
         return commands
     }
     
-    public func buildUserActivity(activityType: String,
-                                  persistentIdentifier: String,
-                                  delegate: NSUserActivityDelegate?,
-                                  navigationElement: NavigationElement?
-                                  ) -> NSUserActivity {
+    public func buildUserActivity(delegate: NSUserActivityDelegate?, navigationElement: NavigationElement, url: URL? = nil) -> NSUserActivity {
         // Set activity for handoff
-        let activity = NSUserActivity(activityType: activityType)
+        let activity = NSUserActivity(activityType: "com.bravelocation.yeltzland.navigation")
         activity.delegate = delegate
         
         // Eligible for handoff
@@ -123,21 +119,33 @@ public class NavigationManager {
         var activityTitle = "Open Yeltzland"
         var activityInvocationPhrase = "Open Yeltzland"
         
-        if let navElement = navigationElement {
-            if let activityInfo = navElement.activityInfo {
-                activityTitle = activityInfo.title
-                activityInvocationPhrase = activityInfo.invocationPhrase
-            }
+        if let activityInfo = navigationElement.activityInfo {
+            activityTitle = activityInfo.title
+            activityInvocationPhrase = activityInfo.invocationPhrase
         }
-        
+    
         activity.title = activityTitle
         activity.suggestedInvocationPhrase = activityInvocationPhrase
         
+        let navigationActivity = NavigationActivity(main: self.isMainElement(navigationElement),
+                                                    navElementId: navigationElement.id,
+                                                    url: url)
+        
+        activity.userInfo = navigationActivity.userInfo
+        
         activity.isEligibleForPrediction = true
-        activity.persistentIdentifier = persistentIdentifier
+        activity.persistentIdentifier = String(format: "%@.com.bravelocation.yeltzland.navigation.%@", Bundle.main.bundleIdentifier!, navigationElement.id)
         activity.needsSave = true
         
         return activity
+    }
+    
+    public func isMainElement(_ navElement: NavigationElement) -> Bool {
+        for element in self._main.elements where element.id == navElement.id {
+            return true
+        }
+        
+        return false
     }
     
     // MARK: - Navigation setup

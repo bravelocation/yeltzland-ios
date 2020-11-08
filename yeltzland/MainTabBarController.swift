@@ -108,7 +108,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
     
     // MARK: - NSUserActivityDelegate functions
     func userActivityWillSave(_ userActivity: NSUserActivity) {
-
+        
         DispatchQueue.main.async {
             // If in split view controller and not in compact mode, don't save the activity
             if (self.usedWithSplitViewController && self.traitCollection.horizontalSizeClass != .compact) {
@@ -118,10 +118,6 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
             
             var currentUrl: URL? = nil
             
-            userActivity.userInfo = [
-                "com.bravelocation.yeltzland.currenttab.key": NSNumber(value: self.selectedIndex)
-            ]
-            
             // Add current URL if a web view
             if let currentController = self.viewControllers![self.selectedIndex] as? UINavigationController {
                 if let selectedController = currentController.viewControllers[0] as? WebPageViewController {
@@ -129,13 +125,16 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
                 }
             }
             
-            if (currentUrl != nil) {
-                userActivity.userInfo = [
-                    "com.bravelocation.yeltzland.currenttab.key": NSNumber(value: self.selectedIndex),
-                    "com.bravelocation.yeltzland.currenttab.currenturl": currentUrl!
-                ]
-                
-                print("Saving user activity current URL to be \(currentUrl!)")
+            if self.selectedIndex == self.otherTabIndex {
+                let moreActivity = NavigationActivity(main: false,
+                                                  navElementId: self.navigationManager.moreSections[0].elements[0].id, // TODO: Get this from the more controller
+                                              url: currentUrl)
+                userActivity.userInfo = moreActivity.userInfo
+            } else {
+                let activity = NavigationActivity(main: true,
+                                              navElementId: self.navigationManager.mainSection.elements[self.selectedIndex].id,
+                                              url: currentUrl)
+                userActivity.userInfo = activity.userInfo
             }
             
             if #available(iOS 13.0, *) {
@@ -151,57 +150,78 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
     override func restoreUserActivityState(_ activity: NSUserActivity) {
         print("Restoring user activity in tab controller ...")
         
-        if (activity.activityType == "com.bravelocation.yeltzland.currenttab") {
+        var navigationActivity: NavigationActivity?
+        
+        if (activity.activityType == "com.bravelocation.yeltzland.navigation") {
+            navigationActivity = NavigationActivity(userInfo: activity.userInfo!)
+        } else if (activity.activityType == "com.bravelocation.yeltzland.currenttab") {
             if let info = activity.userInfo {
                 if let tab = info["com.bravelocation.yeltzland.currenttab.key"] {
-                    self.selectedIndex = tab as! Int
-                    print("Set tab to \(tab) due to userActivity call")
+                    let tabIndex = tab as! Int
+                    navigationActivity = NavigationActivity(main: true,
+                                                            navElementId: self.navigationManager.mainSection.elements[tabIndex].id)
                     
-                    if let currentController = self.viewControllers![self.selectedIndex] as? UINavigationController {
-                        if let selectedController = currentController.viewControllers[0] as? WebPageViewController {
-                            if let currentUrl = info["com.bravelocation.yeltzland.currenttab.currenturl"] as? URL {
-                                selectedController.loadPage(currentUrl)
-                                print("Restoring URL to be \(currentUrl)")
-                            }
-                        }
+                    if let currentUrl = info["com.bravelocation.yeltzland.currenttab.currenturl"] as? NSURL {
+                        navigationActivity?.url = URL(string: currentUrl.path!)
                     }
                 }
             }
         } else if (activity.activityType == "com.bravelocation.yeltzland.fixtures") {
             print("Detected fixture list activity ...")
-            self.goToFixturesView()
+            
+            navigationActivity = NavigationActivity(main: false,
+                                                    navElementId: self.navigationManager.fixtureList.id)
+            
         } else if (activity.activityType == "com.bravelocation.yeltzland.latestscore") {
             print("Detected Latest score activity ...")
-            self.goToLatestScore()
+            
+            navigationActivity = NavigationActivity(main: false,
+                                                    navElementId: self.navigationManager.latestScore.id)
         }
+        
+        // Go to navigation activity (main or more)
+        self.handleUserActivityNavigation(navigationActivity: navigationActivity)
     }
     
     // MARK: - Private functions
+    
+    func handleUserActivityNavigation(navigationActivity: NavigationActivity?) {
+        if let navActivity = navigationActivity {
+            if navActivity.main {
+                var tabIndex = 0
+                
+                for mainElement in self.navigationManager.mainSection.elements {
+                    if mainElement.id == navActivity.navElementId {
+                        self.selectedIndex = tabIndex
+                        
+                        if let restoreUrl = navActivity.url {
+                            if let currentController = self.viewControllers![self.selectedIndex] as? UINavigationController {
+                                if let selectedController = currentController.viewControllers[0] as? WebPageViewController {
+                                    selectedController.loadPage(restoreUrl as URL)
+                                    print("Restoring URL to be \(restoreUrl)")
+                                }
+                            }
+                        }
+                        
+                        return
+                    }
+                    
+                    tabIndex += 1
+                }
+            } else {
+                // Go to the more tab, and load the element
+                self.selectedIndex = self.otherTabIndex
+                
+                if let currentController = self.viewControllers![self.selectedIndex] as? UINavigationController {
+                    currentController.popToRootViewController(animated: false)
+                    if let selectedController = currentController.viewControllers[0] as? OtherLinksTableViewController {
+                        // selectedController.handleUserActivityNavigation(navigationActivity)
+                    }
+                }
+            }
+        }
+    }
 
-    func goToFixturesView() {
-        // Set selected tab as More tab
-        self.selectedIndex = self.otherTabIndex
-        
-        if let currentController = self.viewControllers![self.selectedIndex] as? UINavigationController {
-            currentController.popToRootViewController(animated: false)
-            if let selectedController = currentController.viewControllers[0] as? OtherLinksTableViewController {
-                selectedController.openFixtures()
-            }
-        }
-    }
-    
-    func goToLatestScore() {
-        // Set selected tab as More tab
-        self.selectedIndex = self.otherTabIndex
-        
-        if let currentController = self.viewControllers![self.selectedIndex] as? UINavigationController {
-            currentController.popToRootViewController(animated: false)
-            if let selectedController = currentController.viewControllers[0] as? OtherLinksTableViewController {
-                selectedController.openLatestScore()
-            }
-        }
-    }
-    
     /// Sets up the child controllers for the tabs
     func addChildViewControllers() {
         var controllers: [UINavigationController] = []
@@ -215,10 +235,10 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
                 navController.tabBarItem = tabIcon
                 
                 controllers.append(navController)
-            case .link(let url):
+            case .link:
                 let webViewController = WebPageViewController()
-                webViewController.homeUrl = url
-                webViewController.pageTitle = mainNavElement.title
+                webViewController.navigationElement = mainNavElement
+
                 let webNavigationController = UINavigationController(rootViewController: webViewController)
                 
                 let tabIcon = UITabBarItem(title: mainNavElement.title, image: UIImage(named: mainNavElement.imageName!), selectedImage: nil)
@@ -257,8 +277,6 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         
         // Set activity for handoff
         let activity = self.navigationManager.buildUserActivity(
-            activityType: "com.bravelocation.yeltzland.currenttab",
-            persistentIdentifier: String(format: "%@.com.bravelocation.yeltzland.currenttab.%d", Bundle.main.bundleIdentifier!, self.selectedIndex),
             delegate: self,
             navigationElement: self.navigationManager.mainSection.elements[self.selectedIndex])
 

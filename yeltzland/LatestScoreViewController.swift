@@ -174,8 +174,6 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
         let navigationElement = navigationManager.latestScore
         
         let activity = navigationManager.buildUserActivity(
-            activityType: "com.bravelocation.yeltzland.latestscore",
-            persistentIdentifier: String(format: "%@.com.bravelocation.yeltzland.latestscore", Bundle.main.bundleIdentifier!),
             delegate: nil,
             navigationElement: navigationElement)
 

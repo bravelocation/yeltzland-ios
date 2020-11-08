@@ -169,10 +169,9 @@ extension SidebarViewController: UICollectionViewDelegate {
             self.updateDetailViewController(controller: navViewController)
         case .siri(let intent):
             self.addToSiriAction(intent: intent)
-        case .link(let url):
+        case .link:
             let webViewController = WebPageViewController()
-            webViewController.homeUrl = url
-            webViewController.pageTitle = sidebarItem.element.title
+            webViewController.navigationElement = sidebarItem.element
             let navViewController = UINavigationController(rootViewController: webViewController)
             
             self.updateDetailViewController(controller: navViewController)
@@ -180,7 +179,7 @@ extension SidebarViewController: UICollectionViewDelegate {
             break
         }
         
-        self.setupTabHandoff(indexPath: indexPath)
+        self.setupHandoff(indexPath: indexPath)
     }
     
     private func didDeselectItem(_ sidebarItem: SidebarItem, at indexPath: IndexPath) {
@@ -347,77 +346,81 @@ extension SidebarViewController {
     /// Description Restores the tab state based on the juser activity
     /// - Parameter activity: Activity state to restore
     func restoreUserActivity(_ activity: NSUserActivity) {
-        print("Restoring user activity in sidebar controller ...")
-
-        if (activity.activityType == "com.bravelocation.yeltzland.currenttab") {
-            print("Detected tab activity ...")
-            
-            self.restoreTabActivity(activity)
+        
+        var navigationActivity: NavigationActivity?
+        
+        if (activity.activityType == "com.bravelocation.yeltzland.navigation") {
+            navigationActivity = NavigationActivity(userInfo: activity.userInfo!)
+        } else if (activity.activityType == "com.bravelocation.yeltzland.currenttab") {
+            if let info = activity.userInfo {
+                if let tab = info["com.bravelocation.yeltzland.currenttab.key"] {
+                    let tabIndex = tab as! Int
+                    navigationActivity = NavigationActivity(main: true,
+                                                            navElementId: self.navigationManager.mainSection.elements[tabIndex].id)
+                    
+                    if let currentUrl = info["com.bravelocation.yeltzland.currenttab.currenturl"] as? NSURL {
+                        navigationActivity?.url = URL(string: currentUrl.path!)
+                    }
+                }
+            }
         } else if (activity.activityType == "com.bravelocation.yeltzland.fixtures") {
             print("Detected fixture list activity ...")
             
-            if let indexPath = self.findMoreNavigationElementPath(self.navigationManager.fixtureList) {
-                self.shortcutToIndexPath(indexPath)
-            }
+            navigationActivity = NavigationActivity(main: false,
+                                                    navElementId: self.navigationManager.fixtureList.id)
+            
         } else if (activity.activityType == "com.bravelocation.yeltzland.latestscore") {
             print("Detected Latest score activity ...")
             
-            if let indexPath = self.findMoreNavigationElementPath(self.navigationManager.latestScore) {
-                self.shortcutToIndexPath(indexPath)
-            }
+            navigationActivity = NavigationActivity(main: false,
+                                                    navElementId: self.navigationManager.latestScore.id)
         }
+        
+        // Go to navigation activity (main or more)
+        self.handleUserActivityNavigation(navigationActivity: navigationActivity)
     }
     
-    private func restoreTabActivity(_ activity: NSUserActivity) {
-        if let info = activity.userInfo {
-            if let row = info["com.bravelocation.yeltzland.currenttab.key"] as? Int {
-                guard row < self.navigationManager.mainSection.elements.count else { return }
-                
-                let navElement = self.navigationManager.mainSection.elements[row]
-
-                switch navElement.type {
-                case .link(let url):
-                    let webViewController = WebPageViewController()
-                    webViewController.homeUrl = url
-                    webViewController.pageTitle = navElement.title
-                    
-                    let navViewController = UINavigationController(rootViewController: webViewController)
-                    
-                    self.updateDetailViewController(controller: navViewController)
-                    if let currentUrl = info["com.bravelocation.yeltzland.currenttab.currenturl"] as? URL {
-                        webViewController.loadPage(currentUrl)
-                        print("Restoring URL to be \(currentUrl)")
-                    }
-                default:
-                    break
-                }
- 
-                // Select the element in the main section (don't forget the header!)
-                let indexPath = IndexPath(row: row + 1, section: 0)
-                
+    private func handleUserActivityNavigation(navigationActivity: NavigationActivity?) {
+        if let navActivity = navigationActivity {
+            if let indexPath = self.findNavigationActivity(navActivity) {
                 if self.collectionView != nil {
                     self.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredVertically)
                     self.collectionView(self.collectionView, didSelectItemAt: indexPath)
+                    
+                    // TODO: Can we restore the URL
                 }
             }
         }
     }
     
-    private func findMoreNavigationElementPath(_ navElement: NavigationElement) -> IndexPath? {
-        var section = 1
-        for sectionElements in self.navigationManager.moreSections {
-            var row = 1 // Don't count the header
-            for element in sectionElements.elements {
-                if element == navElement {
-                    return IndexPath(row: row, section: section)
+    private func findNavigationActivity(_ navActivity: NavigationActivity) -> IndexPath? {
+        if navActivity.main {
+            var row = 1 // Headers!
+            
+            for mainElement in self.navigationManager.mainSection.elements {
+                if mainElement.id == navActivity.navElementId {
+                    return IndexPath(row: row, section: 0)
                 }
                 
                 row += 1
             }
+        } else {
+            var section = 1
             
-            section += 1
+            for moreSection in self.navigationManager.moreSections {
+                var row = 1 // Headers!
+                for moreElement in moreSection.elements {
+                    if moreElement.id == navActivity.navElementId {
+                        return IndexPath(row: row, section: section)
+                    }
+                    
+                    row += 1
+                }
+                
+                section += 1
+            }
         }
-        
+    
         return nil
     }
 }
@@ -425,30 +428,13 @@ extension SidebarViewController {
 @available(iOS 14, *)
 extension SidebarViewController: NSUserActivityDelegate {
     /// Called when we need to save user activity
-    @objc func setupTabHandoff(indexPath: IndexPath) {
-        guard indexPath.section == 0 else {
-            return
+    @objc func setupHandoff(indexPath: IndexPath) {
+        if let activity = self.findUserActivityForIndexPath(indexPath) {
+            self.userActivity = activity
+            self.userActivity?.becomeCurrent()
+            self.view.window?.windowScene?.userActivity = activity
         }
-        
-        let elementIndex = indexPath.row - 1
-        
-        guard elementIndex >= 0 && elementIndex < self.navigationManager.mainSection.elements.count else {
-            return
-        }
-        
-        // Save selected tab
-        GameSettings.shared.lastSelectedTab = elementIndex
-        
-        // Set activity for handoff
-        let activity = self.navigationManager.buildUserActivity(
-            activityType: "com.bravelocation.yeltzland.currenttab",
-            persistentIdentifier: String(format: "%@.com.bravelocation.yeltzland.currenttab.%d", Bundle.main.bundleIdentifier!, elementIndex),
-            delegate: self,
-            navigationElement: self.navigationManager.mainSection.elements[elementIndex])
 
-        self.userActivity = activity
-        self.userActivity?.becomeCurrent()
-        self.view.window?.windowScene?.userActivity = activity
     }
     
     // MARK: - NSUserActivityDelegate functions
@@ -456,40 +442,56 @@ extension SidebarViewController: NSUserActivityDelegate {
         
         DispatchQueue.main.async {
             if let currentIndexPath = self.collectionView.indexPathsForSelectedItems?.first {
-                guard currentIndexPath.section == 0 else {
-                    return
-                }
-                
-                let selectedIndex = currentIndexPath.row - 1
-                
-                var currentUrl: URL? = nil
-                
-                userActivity.userInfo = [
-                    "com.bravelocation.yeltzland.currenttab.key": NSNumber(value: selectedIndex)
-                ]
-                
-                // Add current URL if a web view
-                if let splitViewController = self.splitViewController {
-                    if splitViewController.viewControllers.count > 1 {
-                        if let currentController = splitViewController.viewControllers[1] as? UINavigationController {
-                            if let selectedController = currentController.viewControllers[0] as? WebPageViewController {
-                                currentUrl = selectedController.webView.url
+                if let activity = self.findUserActivityForIndexPath(currentIndexPath) {
+                    
+                    // Add current URL if a web view
+                    /*
+                    if let splitViewController = self.splitViewController {
+                        if splitViewController.viewControllers.count > 1 {
+                            if let currentController = splitViewController.viewControllers[1] as? UINavigationController {
+                                if let selectedController = currentController.viewControllers[0] as? WebPageViewController {
+                                    selectedController.webView.url
+                                }
                             }
                         }
                     }
-                }
+ */
+                    userActivity.userInfo = activity.userInfo
                 
-                if (currentUrl != nil) {
-                    userActivity.userInfo = [
-                        "com.bravelocation.yeltzland.currenttab.key": NSNumber(value: selectedIndex),
-                        "com.bravelocation.yeltzland.currenttab.currenturl": currentUrl!
-                    ]
-                    
-                    print("Saving user activity current URL to be \(currentUrl!)")
+                    self.view.window?.windowScene?.userActivity = userActivity
                 }
-                
-                self.view.window?.windowScene?.userActivity = userActivity
             }
+        }
+    }
+    
+    private func findUserActivityForIndexPath(_ indexPath: IndexPath) -> NSUserActivity? {
+        let elementIndex = indexPath.row - 1
+        
+        if (indexPath.section == 0) {
+            guard elementIndex >= 0 && elementIndex < self.navigationManager.mainSection.elements.count else {
+                return nil
+            }
+            
+            // Set activity for handoff
+            return self.navigationManager.buildUserActivity(
+                delegate: self,
+                navigationElement: self.navigationManager.mainSection.elements[elementIndex])
+        } else {
+            let sectionIndex = indexPath.section - 1
+            guard sectionIndex >= 0 && sectionIndex < self.navigationManager.moreSections.count else {
+                return nil
+            }
+            
+            let section = self.navigationManager.moreSections[sectionIndex]
+            
+            guard elementIndex >= 0 && elementIndex < section.elements.count else {
+                return nil
+            }
+            
+            // Set activity for handoff
+            return self.navigationManager.buildUserActivity(
+                delegate: self,
+                navigationElement: section.elements[elementIndex])
         }
     }
 }

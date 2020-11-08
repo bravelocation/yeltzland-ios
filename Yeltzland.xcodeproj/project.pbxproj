@@ -71,6 +71,7 @@
 		52348A6B25457B8B00D6B733 /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52348A6A25457B8B00D6B733 /* SidebarViewController.swift */; };
 		5236ECDB20CE99B80067AFFA /* LatestScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5236ECD920CE99B80067AFFA /* LatestScoreViewController.swift */; };
 		5236ECDC20CE99B80067AFFA /* LatestScoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5236ECDA20CE99B80067AFFA /* LatestScoreViewController.xib */; };
+		5238E15B2558458000878CCE /* NavigationActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5238E15A2558458000878CCE /* NavigationActivity.swift */; };
 		523C841E1CE47F06006F1865 /* HTFC2016LOGO.png in Resources */ = {isa = PBXBuildFile; fileRef = 523C841D1CE47F06006F1865 /* HTFC2016LOGO.png */; };
 		523C84201CE70806006F1865 /* ChromeActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523C841F1CE70806006F1865 /* ChromeActivity.swift */; };
 		523CE54D214F9A54002F29EF /* FixtureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523CE54B214F9A54002F29EF /* FixtureTableViewCell.swift */; };
@@ -415,6 +416,7 @@
 		52348A6A25457B8B00D6B733 /* SidebarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		5236ECD920CE99B80067AFFA /* LatestScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestScoreViewController.swift; sourceTree = "<group>"; };
 		5236ECDA20CE99B80067AFFA /* LatestScoreViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LatestScoreViewController.xib; sourceTree = "<group>"; };
+		5238E15A2558458000878CCE /* NavigationActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationActivity.swift; sourceTree = "<group>"; };
 		523C841D1CE47F06006F1865 /* HTFC2016LOGO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HTFC2016LOGO.png; sourceTree = "<group>"; };
 		523C841F1CE70806006F1865 /* ChromeActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChromeActivity.swift; sourceTree = "<group>"; };
 		523CE54B214F9A54002F29EF /* FixtureTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureTableViewCell.swift; sourceTree = "<group>"; };
@@ -741,10 +743,11 @@
 			children = (
 				52236AE51D17DFF8004903AB /* Fixture.swift */,
 				527DAF1E1D2D082C0092BB8F /* Location.swift */,
-				526B210A24C2CE66005CE9C7 /* TimelineFixture.swift */,
-				5206BC5624CABBA200A927B3 /* Tweet.swift */,
+				5238E15A2558458000878CCE /* NavigationActivity.swift */,
 				52C32D66253AD6E3003D8F2C /* NavigationElement.swift */,
 				52C32D7E253AD862003D8F2C /* NavigationSection.swift */,
+				526B210A24C2CE66005CE9C7 /* TimelineFixture.swift */,
+				5206BC5624CABBA200A927B3 /* Tweet.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2016,6 +2019,7 @@
 				52FA7EC324F110E3001A3F8C /* TwitterView.swift in Sources */,
 				52E40A0D254ECF76001414CB /* MainSplitViewController.swift in Sources */,
 				5236ECDB20CE99B80067AFFA /* LatestScoreViewController.swift in Sources */,
+				5238E15B2558458000878CCE /* NavigationActivity.swift in Sources */,
 				52EACDB721564462008B8DE5 /* Intent.intentdefinition in Sources */,
 				52FA7EC124F106C7001A3F8C /* PullToRefreshTwitterTimelineView.swift in Sources */,
 				52E40A00254EA675001414CB /* GameTimeTweetsViewController.swift in Sources */,

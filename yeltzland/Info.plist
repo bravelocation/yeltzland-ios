@@ -64,6 +64,7 @@
 		<string>com.bravelocation.yeltzland.currenttab</string>
 		<string>com.bravelocation.yeltzland.fixtures</string>
 		<string>com.bravelocation.yeltzland.latestscore</string>
+		<string>com.bravelocation.yeltzland.navigation</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
