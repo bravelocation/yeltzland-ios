@@ -179,6 +179,10 @@ extension SidebarViewController: UICollectionViewDelegate {
             break
         }
         
+        if indexPath.section == 0 {
+            GameSettings.shared.lastSelectedTab = indexPath.row
+        }
+        
         self.setupHandoff(indexPath: indexPath)
     }
     
