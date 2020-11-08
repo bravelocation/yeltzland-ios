@@ -436,6 +436,9 @@ extension SidebarViewController: NSUserActivityDelegate {
             return
         }
         
+        // Save selected tab
+        GameSettings.shared.lastSelectedTab = elementIndex
+        
         // Set activity for handoff
         let activity = self.navigationManager.buildUserActivity(
             activityType: "com.bravelocation.yeltzland.currenttab",

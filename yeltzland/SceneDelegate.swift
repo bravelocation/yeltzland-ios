@@ -29,20 +29,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 if window.traitCollection.userInterfaceIdiom == .pad {
                     initialController = MainSplitViewController(tabController: tabController)
                     tabController.usedWithSplitViewController = true
-                    
-                    if let userActivity = connectionOptions.userActivities.first ?? session.stateRestorationActivity {
-                        initialController!.restoreUserActivityState(userActivity)
-                    }
                 }
             }
             
             // Otherwise use the tab bar controller
             if initialController == nil {
                 initialController = tabController
-                
-                if let userActivity = connectionOptions.userActivities.first ?? session.stateRestorationActivity {
-                    initialController!.restoreUserActivityState(userActivity)
-                }
+            }
+            
+            if let userActivity = connectionOptions.userActivities.first ?? session.stateRestorationActivity {
+                initialController!.restoreUserActivityState(userActivity)
+            } else {
+                // Calculate the correct user activity to pre-populate the selected tab
+                let startingActivity = NSUserActivity(activityType: "com.bravelocation.yeltzland.currenttab")
+                startingActivity.userInfo = [:]
+                startingActivity.userInfo?["com.bravelocation.yeltzland.currenttab.key"] = GameSettings.shared.lastSelectedTab
+                initialController!.restoreUserActivityState(startingActivity)
             }
             
             window.rootViewController = initialController
@@ -61,7 +63,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     @available(iOS 13.0, *)
     func stateRestorationActivity(for scene: UIScene) -> NSUserActivity? {
-        return scene.userActivity
+        
+        // Calculate the correct user activity to pre-populate the selected tab
+        let startingActivity = NSUserActivity(activityType: "com.bravelocation.yeltzland.currenttab")
+        startingActivity.userInfo = [:]
+        startingActivity.userInfo?["com.bravelocation.yeltzland.currenttab.key"] = GameSettings.shared.lastSelectedTab
+        
+        return startingActivity
     }
     
     @available(iOS 13.0, *)

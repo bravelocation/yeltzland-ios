@@ -74,8 +74,8 @@ public class FirebaseNotifications: NSObject, MessagingDelegate {
     }
     
     // MARK: - MessagingDelegate    
-    public func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
-        print("Firebase registration token: \(fcmToken)")
+    public func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        print("Firebase registration token: \(fcmToken ?? "Missing")")
         
         self.subscribe(self.enabled)
     }
