@@ -171,7 +171,6 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
             
             navigationActivity = NavigationActivity(main: false,
                                                     navElementId: self.navigationManager.fixtureList.id)
-            
         } else if (activity.activityType == "com.bravelocation.yeltzland.latestscore") {
             print("Detected Latest score activity ...")
             
@@ -275,10 +274,11 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
             return
         }
         
-        // Set activity for handoff
-        let activity = self.navigationManager.buildUserActivity(
-            delegate: self,
-            navigationElement: self.navigationManager.mainSection.elements[self.selectedIndex])
+        let indexPath = IndexPath(row: self.selectedIndex, section: 0)
+        let activity = self.navigationManager.userActivity(for: indexPath,
+                                                           delegate: self,
+                                                           adjustForHeaders: false,
+                                                           moreOnly: false)
 
         self.userActivity = activity
         self.userActivity?.becomeCurrent()

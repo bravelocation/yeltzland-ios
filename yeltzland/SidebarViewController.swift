@@ -304,18 +304,19 @@ extension SidebarViewController: INUIAddVoiceShortcutViewControllerDelegate {
 
 @available(iOS 14, *)
 extension SidebarViewController {
-    func handleMainShortcut(_ index: Int) {
-        self.shortcutToIndexPath(IndexPath(row: index, section: 0))
+
+    func handleMainKeyboardCommand(_ index: Int) {
+        self.keyboardCommandToIndexPath(IndexPath(row: index, section: 0))
     }
     
-    func handleOtherShortcut(_ keyboardShortcut: String) {
+    func handleOtherKeyboardCommand(_ keyboardShortcut: String) {
         var section = 1
         for otherNavSection in self.navigationManager.moreSections {
             var row = 1 // Start at 1 because of the header element
             for otherNavElement in otherNavSection.elements {
                 if let key = otherNavElement.keyboardShortcut {
                     if key == keyboardShortcut {
-                        self.shortcutToIndexPath(IndexPath(row: row, section: section))
+                        self.keyboardCommandToIndexPath(IndexPath(row: row, section: section))
                         return
                     }
                 }
@@ -327,7 +328,7 @@ extension SidebarViewController {
         }
     }
     
-    private func shortcutToIndexPath(_ indexPath: IndexPath) {
+    private func keyboardCommandToIndexPath(_ indexPath: IndexPath) {
         // Deselect the previously selected item
         if let currentIndexPath = collectionView.indexPathsForSelectedItems?.first {
             self.collectionView(self.collectionView, didDeselectItemAt: currentIndexPath)
@@ -337,6 +338,7 @@ extension SidebarViewController {
         self.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredVertically)
         self.collectionView(self.collectionView, didSelectItemAt: indexPath)
     }
+
 }
 
 // MARK: - UIResponder function
@@ -382,7 +384,7 @@ extension SidebarViewController {
     
     private func handleUserActivityNavigation(navigationActivity: NavigationActivity?) {
         if let navActivity = navigationActivity {
-            if let indexPath = self.findNavigationActivity(navActivity) {
+            if let indexPath = self.navigationManager.findIndexPathForSidebarNavigationActivity(navActivity) {
                 if self.collectionView != nil {
                     self.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredVertically)
                     self.collectionView(self.collectionView, didSelectItemAt: indexPath)
@@ -392,44 +394,16 @@ extension SidebarViewController {
             }
         }
     }
-    
-    private func findNavigationActivity(_ navActivity: NavigationActivity) -> IndexPath? {
-        if navActivity.main {
-            var row = 1 // Headers!
-            
-            for mainElement in self.navigationManager.mainSection.elements {
-                if mainElement.id == navActivity.navElementId {
-                    return IndexPath(row: row, section: 0)
-                }
-                
-                row += 1
-            }
-        } else {
-            var section = 1
-            
-            for moreSection in self.navigationManager.moreSections {
-                var row = 1 // Headers!
-                for moreElement in moreSection.elements {
-                    if moreElement.id == navActivity.navElementId {
-                        return IndexPath(row: row, section: section)
-                    }
-                    
-                    row += 1
-                }
-                
-                section += 1
-            }
-        }
-    
-        return nil
-    }
 }
 
 @available(iOS 14, *)
 extension SidebarViewController: NSUserActivityDelegate {
     /// Called when we need to save user activity
     @objc func setupHandoff(indexPath: IndexPath) {
-        if let activity = self.findUserActivityForIndexPath(indexPath) {
+        if let activity = self.navigationManager.userActivity(for: indexPath,
+                                                              delegate: self,
+                                                              adjustForHeaders: true,
+                                                              moreOnly: false) {
             self.userActivity = activity
             self.userActivity?.becomeCurrent()
             self.view.window?.windowScene?.userActivity = activity
@@ -442,7 +416,10 @@ extension SidebarViewController: NSUserActivityDelegate {
         
         DispatchQueue.main.async {
             if let currentIndexPath = self.collectionView.indexPathsForSelectedItems?.first {
-                if let activity = self.findUserActivityForIndexPath(currentIndexPath) {
+                if let activity = self.navigationManager.userActivity(for: currentIndexPath,
+                                                                      delegate: self,
+                                                                      adjustForHeaders: true,
+                                                                      moreOnly: false) {
                     
                     // Add current URL if a web view
                     /*
@@ -463,35 +440,5 @@ extension SidebarViewController: NSUserActivityDelegate {
             }
         }
     }
-    
-    private func findUserActivityForIndexPath(_ indexPath: IndexPath) -> NSUserActivity? {
-        let elementIndex = indexPath.row - 1
-        
-        if (indexPath.section == 0) {
-            guard elementIndex >= 0 && elementIndex < self.navigationManager.mainSection.elements.count else {
-                return nil
-            }
-            
-            // Set activity for handoff
-            return self.navigationManager.buildUserActivity(
-                delegate: self,
-                navigationElement: self.navigationManager.mainSection.elements[elementIndex])
-        } else {
-            let sectionIndex = indexPath.section - 1
-            guard sectionIndex >= 0 && sectionIndex < self.navigationManager.moreSections.count else {
-                return nil
-            }
-            
-            let section = self.navigationManager.moreSections[sectionIndex]
-            
-            guard elementIndex >= 0 && elementIndex < section.elements.count else {
-                return nil
-            }
-            
-            // Set activity for handoff
-            return self.navigationManager.buildUserActivity(
-                delegate: self,
-                navigationElement: section.elements[elementIndex])
-        }
-    }
+
 }

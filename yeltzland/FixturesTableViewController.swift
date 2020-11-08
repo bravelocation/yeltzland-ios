@@ -238,17 +238,20 @@ class FixturesTableViewController: UITableViewController {
         // Set activity for handoff
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let navigationManager = appDelegate.navigationManager
-        let navigationElement = navigationManager.fixtureList
         
-        let activity = navigationManager.buildUserActivity(
-            delegate: nil,
-            navigationElement: navigationElement)
-
-        self.userActivity = activity
-        self.userActivity?.becomeCurrent()
+        if let indexPath = navigationManager.fixtureListIndexPath {
         
-        if #available(iOS 13.0, *) {
-            self.view.window?.windowScene?.userActivity = activity
+            let activity = navigationManager.userActivity(for: indexPath,
+                                           delegate: nil,
+                                           adjustForHeaders: false,
+                                           moreOnly: true)
+            
+            self.userActivity = activity
+            self.userActivity?.becomeCurrent()
+            
+            if #available(iOS 13.0, *) {
+                self.view.window?.windowScene?.userActivity = activity
+            }
         }
     }
 }

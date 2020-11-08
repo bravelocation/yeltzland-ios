@@ -63,13 +63,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Window initialisation will be handled by the scene delegate in iOS 13+
         } else {
             // Calculate the correct user activity to pre-populate the selected tab
-            let startingActivity = NSUserActivity(activityType: "com.bravelocation.yeltzland.currenttab")
-            startingActivity.userInfo = [:]
-            startingActivity.userInfo?["com.bravelocation.yeltzland.currenttab.key"] = GameSettings.shared.lastSelectedTab
+            let startingActivity = NSUserActivity(activityType: "com.bravelocation.yeltzland.navigation")
+            if GameSettings.shared.lastSelectedTab <  self.navigationManager.mainSection.elements.count {
+                let navActivity = NavigationActivity(main: true,
+                                                     navElementId: self.navigationManager.mainSection.elements[GameSettings.shared.lastSelectedTab].id)
+                startingActivity.userInfo = navActivity.userInfo
+            }
             
             // If came from a shortcut
             if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] {
-                startingActivity.userInfo?["com.bravelocation.yeltzland.currenttab.key"] =  self.handleShortcut(shortcutItem as! UIApplicationShortcutItem)
+                let navActivity = self.navigationManager.handleShortcut(shortcutItem as! UIApplicationShortcutItem)
+                startingActivity.userInfo = navActivity.userInfo
             }
             
             self.window = UIWindow(frame: UIScreen.main.bounds)
@@ -86,7 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
         print("3D Touch when from shortcut action")
         let startingActivity = NSUserActivity(activityType: "com.bravelocation.yeltzland.navigation")
-        startingActivity.userInfo = self.handleShortcut(shortcutItem).userInfo
+        startingActivity.userInfo = self.navigationManager.handleShortcut(shortcutItem).userInfo
 
         // Reset selected tab
         if let mainViewController = self.window?.rootViewController as? MainTabBarController {
@@ -116,22 +120,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let tokenError = error as NSError
         print(tokenError.description)
-    }
-    
-    // MARK: - Private functions
-    func handleShortcut(_ shortcutItem: UIApplicationShortcutItem) -> NavigationActivity {
-        print("Handling shortcut item %@", shortcutItem.type)
-        
-        for navigationElement in self.navigationManager.mainSection.elements {
-            if let shortcutName = navigationElement.shortcutName {
-                if shortcutItem.type == shortcutName {
-                    return NavigationActivity(main: true, navElementId: navigationElement.id)
-                }
-            }
-        }
-        
-        // If no match found, go to the first element
-        return NavigationActivity(main: true, navElementId: self.navigationManager.mainSection.elements[0].id)
     }
 }
 

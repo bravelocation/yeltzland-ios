@@ -69,9 +69,9 @@ extension MainSplitViewController {
         if #available(iOS 14.0, *) {
             if let keyInput = sender.input {
                 if let inputValue = Int(keyInput) {
-                    self.sidebarViewController.handleMainShortcut(inputValue)
+                    self.sidebarViewController.handleMainKeyboardCommand(inputValue)
                 } else {
-                    self.sidebarViewController.handleOtherShortcut(keyInput)
+                    self.sidebarViewController.handleOtherKeyboardCommand(keyInput)
                 }
             }
         }

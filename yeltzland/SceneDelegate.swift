@@ -91,7 +91,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func windowScene(_ windowScene: UIWindowScene, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
         print("3D Touch when from shortcut action")
         let startingActivity = NSUserActivity(activityType: "com.bravelocation.yeltzland.navigation")
-        startingActivity.userInfo = self.handleShortcut(shortcutItem).userInfo
+        
+        let navigationManager = (UIApplication.shared.delegate as! AppDelegate).navigationManager
+        startingActivity.userInfo = navigationManager.handleShortcut(shortcutItem).userInfo
         
         // Reset selected window
         if let tabViewController = self.window?.rootViewController as? MainTabBarController {
@@ -125,23 +127,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 }
             }
         }
-    }
-    
-    // MARK: - Private functions
-    func handleShortcut(_ shortcutItem: UIApplicationShortcutItem) -> NavigationActivity {
-        print("Handling shortcut item %@", shortcutItem.type)
-        
-        let navigationManager = (UIApplication.shared.delegate as! AppDelegate).navigationManager
-        
-        for navigationElement in navigationManager.mainSection.elements {
-            if let shortcutName = navigationElement.shortcutName {
-                if shortcutItem.type == shortcutName {
-                    return NavigationActivity(main: true, navElementId: navigationElement.id)
-                }
-            }
-        }
-        
-        // If no match found, go to the first element
-        return NavigationActivity(main: true, navElementId: navigationManager.mainSection.elements[0].id)
     }
 }

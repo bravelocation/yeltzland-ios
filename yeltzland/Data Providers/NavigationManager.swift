@@ -46,14 +46,26 @@ public class NavigationManager {
     }
     
     var fixtureList: NavigationElement {
-        get {
-            self._fixtureList
-        }
+       get {
+           self._fixtureList
+       }
     }
     
     var latestScore: NavigationElement {
         get {
             self._latestScore
+        }
+     }
+    
+    var fixtureListIndexPath: IndexPath? {
+        get {
+            return self.findMoreElement(self._fixtureList)
+        }
+    }
+    
+    var latestScoreIndexPath: IndexPath? {
+        get {
+            return self.findMoreElement(self._latestScore)
         }
     }
     
@@ -106,7 +118,85 @@ public class NavigationManager {
         return commands
     }
     
-    public func buildUserActivity(delegate: NSUserActivityDelegate?, navigationElement: NavigationElement, url: URL? = nil) -> NSUserActivity {
+    public func userActivity(for indexPath: IndexPath, delegate: NSUserActivityDelegate?, adjustForHeaders: Bool, moreOnly: Bool) -> NSUserActivity? {
+        let elementIndex = adjustForHeaders ? indexPath.row - 1: indexPath.row // Adjust for header in sidebar
+        
+        if (indexPath.section == 0 && moreOnly == false) {
+            guard elementIndex >= 0 && elementIndex < self.mainSection.elements.count else {
+                return nil
+            }
+            
+            // Set activity for handoff
+            return self.buildUserActivity(
+                delegate: delegate,
+                navigationElement: self.mainSection.elements[elementIndex])
+        }
+        
+        let sectionIndex = moreOnly ? indexPath.section : indexPath.section - 1
+        
+        guard sectionIndex >= 0 && sectionIndex < self.moreSections.count else {
+            return nil
+        }
+        
+        let section = self.moreSections[sectionIndex]
+        
+        guard elementIndex >= 0 && elementIndex < section.elements.count else {
+            return nil
+        }
+        
+        // Set activity for handoff
+        return self.buildUserActivity(
+            delegate: delegate,
+            navigationElement: section.elements[elementIndex])
+    }
+    
+    public func findIndexPathForSidebarNavigationActivity(_ navActivity: NavigationActivity) -> IndexPath? {
+        if navActivity.main {
+            var row = 1 // Headers!
+            
+            for mainElement in self.mainSection.elements {
+                if mainElement.id == navActivity.navElementId {
+                    return IndexPath(row: row, section: 0)
+                }
+                
+                row += 1
+            }
+        } else {
+            var section = 1
+            
+            for moreSection in self.moreSections {
+                var row = 1 // Headers!
+                for moreElement in moreSection.elements {
+                    if moreElement.id == navActivity.navElementId {
+                        return IndexPath(row: row, section: section)
+                    }
+                    
+                    row += 1
+                }
+                
+                section += 1
+            }
+        }
+    
+        return nil
+    }
+    
+    public func handleShortcut(_ shortcutItem: UIApplicationShortcutItem) -> NavigationActivity {
+        print("Handling shortcut item %@", shortcutItem.type)
+        
+        for navigationElement in self.mainSection.elements {
+            if let shortcutName = navigationElement.shortcutName {
+                if shortcutItem.type == shortcutName {
+                    return NavigationActivity(main: true, navElementId: navigationElement.id)
+                }
+            }
+        }
+        
+        // If no match found, go to the first element
+        return NavigationActivity(main: true, navElementId: self.mainSection.elements[0].id)
+    }
+    
+    private func buildUserActivity(delegate: NSUserActivityDelegate?, navigationElement: NavigationElement, url: URL? = nil) -> NSUserActivity {
         // Set activity for handoff
         let activity = NSUserActivity(activityType: "com.bravelocation.yeltzland.navigation")
         activity.delegate = delegate
@@ -146,6 +236,26 @@ public class NavigationManager {
         }
         
         return false
+    }
+    
+    private func findMoreElement(_ element: NavigationElement) -> IndexPath? {
+        var section = 0
+        
+        for moreSection in self._moreSections {
+            var row = 0
+            
+            for moreElement in moreSection.elements {
+                if moreElement.id == element.id {
+                    return IndexPath(row: row, section: section)
+                }
+                
+                row += 1
+            }
+            
+            section += 1
+        }
+        
+        return nil
     }
     
     // MARK: - Navigation setup
@@ -212,8 +322,8 @@ public class NavigationManager {
     private func addStatisticsSection() {
         var stats = NavigationSection(title: "Statistics", elements: [])
                                       
-        stats.elements.append(self.fixtureList)
-        stats.elements.append(self.latestScore)
+        stats.elements.append(self._fixtureList)
+        stats.elements.append(self._latestScore)
         
         stats.elements.append(NavigationElement.controller(title: "Where's the Ground",
                                                 imageName: "map",
