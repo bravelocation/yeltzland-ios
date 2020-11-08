@@ -28,6 +28,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             if #available(iOS 14, *) {
                 if window.traitCollection.userInterfaceIdiom == .pad {
                     initialController = MainSplitViewController(tabController: tabController)
+                    tabController.usedWithSplitViewController = true
                     
                     if let userActivity = connectionOptions.userActivities.first ?? session.stateRestorationActivity {
                         initialController!.restoreUserActivityState(userActivity)

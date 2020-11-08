@@ -17,6 +17,9 @@ import Combine
 /// Main tab bar controller
 class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUserActivityDelegate {
     
+    // Are we running with a split view controller?
+    public var usedWithSplitViewController: Bool = false
+    
     // MARK: Private variables
     private let defaults = UserDefaults.standard
     private var navigationManager: NavigationManager!
@@ -107,6 +110,12 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
     func userActivityWillSave(_ userActivity: NSUserActivity) {
 
         DispatchQueue.main.async {
+            // If in split view controller and not in compact mode, don't save the activity
+            if (self.usedWithSplitViewController && self.traitCollection.horizontalSizeClass != .compact) {
+                print("Not saving user activity for tab bar in non-compact mode")
+                return
+            }
+            
             var currentUrl: URL? = nil
             
             userActivity.userInfo = [
@@ -242,7 +251,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
     
     /// Called when we need to save user activity
     @objc func setupHandoff() {
-        if self.selectedIndex >= self.navigationManager.mainSection.elements.count {
+        guard self.selectedIndex < self.navigationManager.mainSection.elements.count else {
             return
         }
         

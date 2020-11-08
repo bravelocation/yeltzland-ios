@@ -394,8 +394,11 @@ extension SidebarViewController {
  
                 // Select the element in the main section (don't forget the header!)
                 let indexPath = IndexPath(row: row + 1, section: 0)
-                self.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredVertically)
-                self.collectionView(self.collectionView, didSelectItemAt: indexPath)
+                
+                if self.collectionView != nil {
+                    self.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredVertically)
+                    self.collectionView(self.collectionView, didSelectItemAt: indexPath)
+                }
             }
         }
     }
