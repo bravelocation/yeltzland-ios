@@ -73,7 +73,6 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
         
         self.updateUI()
         
-        self.setupHandoff()
         self.addSiriButton()
     }
     
@@ -164,25 +163,6 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
             TeamImageManager.shared.loadTeamImage(teamName: fixture.opponent, view: self.opponentLogoImageView)
             
             self.bestGuessLabel.isHidden = (fixture.status != .inProgress)
-        }
-    }
-    
-    // MARK: - Handoff
-    @objc func setupHandoff() {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let navigationManager = appDelegate.navigationManager
-        if let indexPath = navigationManager.latestScoreIndexPath {
-            let activity = navigationManager.userActivity(for: indexPath,
-                                           delegate: nil,
-                                           adjustForHeaders: false,
-                                           moreOnly: true)
-            
-            self.userActivity = activity
-            self.userActivity?.becomeCurrent()
-                    
-            if #available(iOS 13.0, *) {
-                self.view.window?.windowScene?.userActivity = activity
-            }
         }
     }
     

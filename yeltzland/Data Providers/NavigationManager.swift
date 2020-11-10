@@ -17,7 +17,7 @@ public class NavigationManager {
     private var _main: NavigationSection = NavigationSection(title: "Yeltzland", elements: [])
     private var _moreSections: [NavigationSection] = []
     
-    private let _fixtureList: NavigationElement = NavigationElement.controller(title: "Fixture List",
+    private let fixtureList: NavigationElement = NavigationElement.controller(title: "Fixture List",
                                                                                imageName: "fixtures",
                                                                                controller: FixturesTableViewController(style: .grouped),
                                                                                keyboardShortcut: "F",
@@ -25,7 +25,7 @@ public class NavigationManager {
                                                                                    title: "Yeltz Fixture List",
                                                                                    invocationPhrase: "Fixture List"))
     
-    private let _latestScore: NavigationElement = NavigationElement.controller(title: "Latest Score",
+    private let latestScore: NavigationElement = NavigationElement.controller(title: "Latest Score",
                                                                                imageName: "latest-score",
                                                                                controller: LatestScoreViewController(),
                                                                                keyboardShortcut: "L",
@@ -45,27 +45,15 @@ public class NavigationManager {
         }
     }
     
-    var fixtureList: NavigationElement {
-       get {
-           self._fixtureList
-       }
-    }
-    
-    var latestScore: NavigationElement {
+    private var fixtureListIndexPath: IndexPath? {
         get {
-            self._latestScore
-        }
-     }
-    
-    var fixtureListIndexPath: IndexPath? {
-        get {
-            return self.findMoreElement(self._fixtureList)
+            return self.findMoreElement(self.fixtureList)
         }
     }
     
-    var latestScoreIndexPath: IndexPath? {
+    private var latestScoreIndexPath: IndexPath? {
         get {
-            return self.findMoreElement(self._latestScore)
+            return self.findMoreElement(self.latestScore)
         }
     }
     
@@ -196,6 +184,42 @@ public class NavigationManager {
         return NavigationActivity(main: true, navElementId: self.mainSection.elements[0].id)
     }
     
+    public func convertLegacyActivity(_ activity: NSUserActivity) -> NSUserActivity? {
+        if (activity.activityType == "com.bravelocation.yeltzland.navigation") {
+            return activity
+        }
+        
+        if (activity.activityType == "com.bravelocation.yeltzland.currenttab") {
+            if let info = activity.userInfo {
+                if let tab = info["com.bravelocation.yeltzland.currenttab.key"] {
+                    let tabIndex = tab as! Int
+                    
+                    if tabIndex >= 0 && tabIndex < self.mainSection.elements.count {
+                        var url: URL?
+                        
+                        if let currentUrl = info["com.bravelocation.yeltzland.currenttab.currenturl"] as? NSURL {
+                            url = URL(string: currentUrl.path!)
+                        }
+                        
+                        return self.buildUserActivity(delegate: activity.delegate, navigationElement: self.mainSection.elements[tabIndex], url: url)
+                    }
+                }
+            }
+        }
+        
+        if (activity.activityType == "com.bravelocation.yeltzland.fixtures") {
+            return self.buildUserActivity(delegate: activity.delegate, navigationElement: self.fixtureList)
+        }
+        
+        if (activity.activityType == "com.bravelocation.yeltzland.latestscore") {
+            print("Detected Latest score activity ...")
+            
+            return self.buildUserActivity(delegate: activity.delegate, navigationElement: self.latestScore)
+        }
+        
+        return nil
+    }
+    
     private func buildUserActivity(delegate: NSUserActivityDelegate?, navigationElement: NavigationElement, url: URL? = nil) -> NSUserActivity {
         // Set activity for handoff
         let activity = NSUserActivity(activityType: "com.bravelocation.yeltzland.navigation")
@@ -322,8 +346,8 @@ public class NavigationManager {
     private func addStatisticsSection() {
         var stats = NavigationSection(title: "Statistics", elements: [])
                                       
-        stats.elements.append(self._fixtureList)
-        stats.elements.append(self._latestScore)
+        stats.elements.append(self.fixtureList)
+        stats.elements.append(self.latestScore)
         
         stats.elements.append(NavigationElement.controller(title: "Where's the Ground",
                                                 imageName: "map",

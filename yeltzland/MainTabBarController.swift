@@ -150,36 +150,10 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
     override func restoreUserActivityState(_ activity: NSUserActivity) {
         print("Restoring user activity in tab controller ...")
         
-        var navigationActivity: NavigationActivity?
-        
-        if (activity.activityType == "com.bravelocation.yeltzland.navigation") {
-            navigationActivity = NavigationActivity(userInfo: activity.userInfo!)
-        } else if (activity.activityType == "com.bravelocation.yeltzland.currenttab") {
-            if let info = activity.userInfo {
-                if let tab = info["com.bravelocation.yeltzland.currenttab.key"] {
-                    let tabIndex = tab as! Int
-                    navigationActivity = NavigationActivity(main: true,
-                                                            navElementId: self.navigationManager.mainSection.elements[tabIndex].id)
-                    
-                    if let currentUrl = info["com.bravelocation.yeltzland.currenttab.currenturl"] as? NSURL {
-                        navigationActivity?.url = URL(string: currentUrl.path!)
-                    }
-                }
-            }
-        } else if (activity.activityType == "com.bravelocation.yeltzland.fixtures") {
-            print("Detected fixture list activity ...")
-            
-            navigationActivity = NavigationActivity(main: false,
-                                                    navElementId: self.navigationManager.fixtureList.id)
-        } else if (activity.activityType == "com.bravelocation.yeltzland.latestscore") {
-            print("Detected Latest score activity ...")
-            
-            navigationActivity = NavigationActivity(main: false,
-                                                    navElementId: self.navigationManager.latestScore.id)
+        if let userActivity = self.navigationManager.convertLegacyActivity(activity) {
+            let navigationActivity = NavigationActivity(userInfo: userActivity.userInfo!)
+            self.handleUserActivityNavigation(navigationActivity: navigationActivity)
         }
-        
-        // Go to navigation activity (main or more)
-        self.handleUserActivityNavigation(navigationActivity: navigationActivity)
     }
     
     // MARK: - Private functions
