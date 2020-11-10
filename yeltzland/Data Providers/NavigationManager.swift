@@ -14,6 +14,8 @@ import SwiftUI
 #endif
 
 public class NavigationManager {
+    // MARK: - Private variables
+    
     private var _main: NavigationSection = NavigationSection(title: "Yeltzland", elements: [])
     private var _moreSections: [NavigationSection] = []
     
@@ -33,31 +35,23 @@ public class NavigationManager {
                                                                                    title: "Latest Yeltz Score",
                                                                                    invocationPhrase: "Latest Yeltz Score"))
     
-    var mainSection: NavigationSection {
+    // MARK: - Public properties
+    
+    public var mainSection: NavigationSection {
         get {
             self._main
         }
     }
     
-    var moreSections: [NavigationSection] {
+    public var moreSections: [NavigationSection] {
         get {
             self._moreSections
         }
     }
     
-    private var fixtureListIndexPath: IndexPath? {
-        get {
-            return self.findMoreElement(self.fixtureList)
-        }
-    }
+    // MARK: - Initialisation
     
-    private var latestScoreIndexPath: IndexPath? {
-        get {
-            return self.findMoreElement(self.latestScore)
-        }
-    }
-    
-    init() {
+    public init() {
         self.addMainNavigation()
         self.addStatisticsSection()
         self.addOtherWebsitesSection()
@@ -67,6 +61,8 @@ public class NavigationManager {
         self.addSiriSection()
         self.addAboutSection()
     }
+    
+    // MARK: - Public functions
     
     public func keyCommands(selector: Selector, useMore: Bool) -> [UIKeyCommand] {
         var commands: [UIKeyCommand] = []
@@ -220,6 +216,8 @@ public class NavigationManager {
         return nil
     }
     
+    // MARK: - Private helper methods
+    
     private func buildUserActivity(delegate: NSUserActivityDelegate?, navigationElement: NavigationElement, url: URL? = nil) -> NSUserActivity {
         // Set activity for handoff
         let activity = NSUserActivity(activityType: "com.bravelocation.yeltzland.navigation")
@@ -254,7 +252,7 @@ public class NavigationManager {
         return activity
     }
     
-    public func isMainElement(_ navElement: NavigationElement) -> Bool {
+    private func isMainElement(_ navElement: NavigationElement) -> Bool {
         for element in self._main.elements where element.id == navElement.id {
             return true
         }
