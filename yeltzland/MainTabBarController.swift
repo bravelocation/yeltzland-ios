@@ -126,10 +126,31 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
             }
             
             if self.selectedIndex == self.otherTabIndex {
-                let moreActivity = NavigationActivity(main: false,
-                                                  navElementId: self.navigationManager.moreSections[0].elements[0].id, // TODO: Get this from the more controller
-                                              url: currentUrl)
-                userActivity.userInfo = moreActivity.userInfo
+                if let currentController = self.viewControllers![self.selectedIndex] as? UINavigationController {
+                    if let selectedController = currentController.viewControllers[0] as? OtherLinksTableViewController {
+                        if let moreIndexPath = selectedController.selectedIndexPath {
+                            if let moreActivity = self.navigationManager.userActivity(for: moreIndexPath,
+                                                                               delegate: self,
+                                                                               adjustForHeaders: false,
+                                                                               moreOnly: true) {
+                                // Copy activity details
+                                userActivity.userInfo = moreActivity.userInfo
+                                userActivity.title = moreActivity.title
+                                userActivity.suggestedInvocationPhrase = moreActivity.suggestedInvocationPhrase
+                                userActivity.isEligibleForHandoff = moreActivity.isEligibleForHandoff
+                                userActivity.isEligibleForSearch = moreActivity.isEligibleForSearch
+                                userActivity.isEligibleForPrediction = moreActivity.isEligibleForPrediction
+                                userActivity.persistentIdentifier = moreActivity.persistentIdentifier
+                                userActivity.needsSave = moreActivity.needsSave
+                            }
+                        } else {
+                            let moreActivity = NavigationActivity(main: false,
+                                                                  navElementId: self.navigationManager.moreSections[0].elements[0].id, // TODO: Get this from the more controller
+                                                                url: currentUrl)
+                            userActivity.userInfo = moreActivity.userInfo
+                        }
+                    }
+                }
             } else {
                 let activity = NavigationActivity(main: true,
                                               navElementId: self.navigationManager.mainSection.elements[self.selectedIndex].id,
@@ -188,7 +209,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
                 if let currentController = self.viewControllers![self.selectedIndex] as? UINavigationController {
                     currentController.popToRootViewController(animated: false)
                     if let selectedController = currentController.viewControllers[0] as? OtherLinksTableViewController {
-                        // selectedController.handleUserActivityNavigation(navigationActivity)
+                        selectedController.handleUserActivityNavigation(navigationActivity: navigationActivity)
                     }
                 }
             }
@@ -244,15 +265,28 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
     
     /// Called when we need to save user activity
     @objc func setupHandoff() {
-        guard self.selectedIndex < self.navigationManager.mainSection.elements.count else {
-            return
+        
+        var indexPath = IndexPath(row: self.selectedIndex, section: 0)
+        var useMoreOnly = false
+        
+        if self.selectedIndex == self.otherTabIndex {
+            useMoreOnly = true
+            
+            if let currentController = self.viewControllers![self.selectedIndex] as? UINavigationController {
+                if let selectedController = currentController.viewControllers[0] as? OtherLinksTableViewController {
+                    if let selectedIndex = selectedController.selectedIndexPath {
+                        indexPath = selectedIndex
+                    } else {
+                        indexPath = IndexPath(row: 0, section: 0)
+                    }
+                }
+            }
         }
         
-        let indexPath = IndexPath(row: self.selectedIndex, section: 0)
         let activity = self.navigationManager.userActivity(for: indexPath,
                                                            delegate: self,
                                                            adjustForHeaders: false,
-                                                           moreOnly: false)
+                                                           moreOnly: useMoreOnly)
 
         self.userActivity = activity
         self.userActivity?.becomeCurrent()

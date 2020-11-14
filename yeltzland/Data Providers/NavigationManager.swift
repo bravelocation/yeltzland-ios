@@ -228,8 +228,8 @@ public class NavigationManager {
         activity.isEligibleForSearch = true
 
         // Set the title
-        var activityTitle = "Open Yeltzland"
-        var activityInvocationPhrase = "Open Yeltzland"
+        var activityTitle = "Open \(navigationElement.title)"
+        var activityInvocationPhrase = "Open \(navigationElement.title)"
         
         if let activityInfo = navigationElement.activityInfo {
             activityTitle = activityInfo.title

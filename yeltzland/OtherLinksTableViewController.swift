@@ -13,11 +13,12 @@ import IntentsUI
 
 class OtherLinksTableViewController: UITableViewController, SFSafariViewControllerDelegate {
 
-    var navigationData: [NavigationSection]!
+    var navigationManager: NavigationManager!
+    var selectedIndexPath: IndexPath?
     
     override init(style: UITableView.Style) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        navigationData = appDelegate.navigationManager.moreSections
+        self.navigationManager = appDelegate.navigationManager
         
         super.init(style: style)
     }
@@ -45,17 +46,17 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
 
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return navigationData.count
+        return self.navigationManager.moreSections.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return navigationData[section].elements.count
+        return  self.navigationManager.moreSections[section].elements.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: UITableViewCell? = nil
         
-        let element: NavigationElement = navigationData[indexPath.section].elements[indexPath.row]
+        let element: NavigationElement = self.navigationManager.moreSections[indexPath.section].elements[indexPath.row]
         
         // Get correct cell type
         switch element.type {
@@ -87,7 +88,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let element: NavigationElement = navigationData[indexPath.section].elements[indexPath.row]
+        let element: NavigationElement = self.navigationManager.moreSections[indexPath.section].elements[indexPath.row]
         
         switch element.type {
         case .controller(let viewController):
@@ -98,7 +99,6 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             } else {
                 MakeToast.show(self, title: "Sorry!", message: "You need to be running iOS 13 or above to use this shortcut")
             }
-            return
         case .link(let url):
             let svc = SFSafariViewController(url: url)
             svc.delegate = self
@@ -106,51 +106,15 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
             
             self.present(svc, animated: true, completion: nil)
         default:
-            return
+            break
             // NO action on other types
         }
+        
+        self.selectedIndexPath = indexPath
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String {
-        return navigationData[section].title
-    }
-    
-    func handleOtherShortcut(_ keyboardShortcut: String) {
-        var section = 1
-        for otherNavSection in self.navigationData {
-            var row = 1 // Start at 1 because of the header element
-            for otherNavElement in otherNavSection.elements {
-                if let key = otherNavElement.keyboardShortcut {
-                    if key == keyboardShortcut {
-                        let indexPath = IndexPath(row: row, section: section)
-                        
-                        self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableView.ScrollPosition.top)
-                        self.tableView(self.tableView, didSelectRowAt: indexPath)
-                        return
-                    }
-                }
-                
-                row += 1
-            }
-            
-            section += 1
-        }
-    }
-    
-    public func openFixtures() {
-        print("Opening Fixtures ...")
-        
-        let indexPath = IndexPath(row: 0, section: 0)
-        self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableView.ScrollPosition.top)
-        self.tableView(self.tableView, didSelectRowAt: indexPath)
-    }
-    
-    public func openLatestScore() {
-        print("Opening Latest Score ...")
-        
-        let indexPath = IndexPath(row: 1, section: 0)
-        self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableView.ScrollPosition.top)
-        self.tableView(self.tableView, didSelectRowAt: indexPath)
+        return self.navigationManager.moreSections[section].title
     }
     
     // MARK: - SFSafariViewControllerDelegate methods
@@ -190,5 +154,52 @@ extension OtherLinksTableViewController: INUIAddVoiceShortcutViewControllerDeleg
     func addVoiceShortcutViewControllerDidCancel(_ controller: INUIAddVoiceShortcutViewController) {
         print("Cancelled shortcut")
         controller.dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: - Navigation methods
+extension OtherLinksTableViewController {
+    
+    func handleUserActivityNavigation(navigationActivity: NavigationActivity?) {
+        if let navActivity = navigationActivity {
+            if navActivity.main == false {
+                var section = 0
+                
+                for moreSection in self.navigationManager.moreSections {
+                    var row = 0
+                    for moreElement in moreSection.elements where moreElement.id == navActivity.navElementId {
+                        let indexPath = IndexPath(row: row, section: section)
+                        self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableView.ScrollPosition.top)
+                        self.tableView(self.tableView, didSelectRowAt: indexPath)
+                    }
+
+                    row += 1
+                }
+                
+                section += 1
+            }
+        }
+    }
+
+    func handleOtherShortcut(_ keyboardShortcut: String) {
+        var section = 0
+        for otherNavSection in self.navigationManager.moreSections {
+            var row = 0
+            for otherNavElement in otherNavSection.elements {
+                if let key = otherNavElement.keyboardShortcut {
+                    if key == keyboardShortcut {
+                        let indexPath = IndexPath(row: row, section: section)
+                        
+                        self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableView.ScrollPosition.top)
+                        self.tableView(self.tableView, didSelectRowAt: indexPath)
+                        return
+                    }
+                }
+                
+                row += 1
+            }
+            
+            section += 1
+        }
     }
 }
