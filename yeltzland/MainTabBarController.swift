@@ -135,7 +135,8 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
                             if let moreActivity = self.navigationManager.userActivity(for: moreIndexPath,
                                                                                delegate: self,
                                                                                adjustForHeaders: false,
-                                                                               moreOnly: true) {
+                                                                               moreOnly: true,
+                                                                               url: currentUrl) {
                                 // Copy activity details
                                 userActivity.userInfo = moreActivity.userInfo
                                 userActivity.title = moreActivity.title
@@ -290,18 +291,29 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
                     }
                 }
             }
-        } else {
-            // Set the last selected element as the tab if not more tab
-            self.navigationManager.lastSelectedElement = self.navigationManager.mainSection.elements[self.selectedIndex]
+        }
+        
+        var currentUrl: URL? = nil
+        
+        // Add current URL if a web view
+        if let currentController = self.viewControllers![self.selectedIndex] as? UINavigationController {
+            if let selectedController = currentController.viewControllers[0] as? WebPageViewController {
+                currentUrl = selectedController.webView.url
+            }
         }
         
         let activity = self.navigationManager.userActivity(for: indexPath,
                                                            delegate: self,
                                                            adjustForHeaders: false,
-                                                           moreOnly: useMoreOnly)
+                                                           moreOnly: useMoreOnly,
+                                                           url: currentUrl)
 
         self.userActivity = activity
         self.userActivity?.becomeCurrent()
+        
+        if self.selectedIndex != self.otherTabIndex {
+            self.navigationManager.lastUserActivity = activity
+        }
         
         if #available(iOS 13.0, *) {
             self.view.window?.windowScene?.userActivity = activity

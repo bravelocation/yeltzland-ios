@@ -18,7 +18,7 @@ public class NavigationManager {
     
     private var _main: NavigationSection = NavigationSection(title: "Yeltzland", elements: [])
     private var _moreSections: [NavigationSection] = []
-    private var _lastSelectedElement: NavigationElement?
+    private var _lastUserActivity: NSUserActivity?
     
     private let fixtureList: NavigationElement = NavigationElement.controller(title: "Fixture List",
                                                                                imageName: "fixtures",
@@ -50,20 +50,12 @@ public class NavigationManager {
         }
     }
     
-    public var lastSelectedElement: NavigationElement {
+    public var lastUserActivity: NSUserActivity? {
         get {
-            return _lastSelectedElement ?? self._main.elements.first!
+            return self._lastUserActivity
         }
         set {
-            _lastSelectedElement = newValue
-        }
-    }
-    
-    public var lastUserActivity: NSUserActivity {
-        get {
-            return self.buildUserActivity(
-                delegate: nil,
-                navigationElement: self.lastSelectedElement)
+            self._lastUserActivity = newValue
         }
     }
     
@@ -120,7 +112,11 @@ public class NavigationManager {
         return commands
     }
     
-    public func userActivity(for indexPath: IndexPath, delegate: NSUserActivityDelegate?, adjustForHeaders: Bool, moreOnly: Bool) -> NSUserActivity? {
+    public func userActivity(for indexPath: IndexPath,
+                             delegate: NSUserActivityDelegate?,
+                             adjustForHeaders: Bool,
+                             moreOnly: Bool,
+                             url: URL?) -> NSUserActivity? {
         let elementIndex = adjustForHeaders ? indexPath.row - 1: indexPath.row // Adjust for header in sidebar
         
         if (indexPath.section == 0 && moreOnly == false) {
@@ -131,7 +127,8 @@ public class NavigationManager {
             // Set activity for handoff
             return self.buildUserActivity(
                 delegate: delegate,
-                navigationElement: self.mainSection.elements[elementIndex])
+                navigationElement: self.mainSection.elements[elementIndex],
+                url: url)
         }
         
         let sectionIndex = moreOnly ? indexPath.section : indexPath.section - 1
@@ -212,7 +209,7 @@ public class NavigationManager {
                         var url: URL?
                         
                         if let currentUrl = info["com.bravelocation.yeltzland.currenttab.currenturl"] as? NSURL {
-                            url = URL(string: currentUrl.path!)
+                            url = currentUrl.absoluteURL
                         }
                         
                         return self.buildUserActivity(delegate: activity.delegate, navigationElement: self.mainSection.elements[tabIndex], url: url)

@@ -111,7 +111,10 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         }
         
         self.selectedIndexPath = indexPath
-        self.navigationManager.lastSelectedElement = element
+        
+        if let activity = self.navigationManager.userActivity(for: indexPath, delegate: nil, adjustForHeaders: false, moreOnly: true, url: nil) {
+            self.navigationManager.lastUserActivity = activity
+        }
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String {

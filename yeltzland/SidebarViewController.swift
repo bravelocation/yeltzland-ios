@@ -66,17 +66,28 @@ class SidebarViewController: UIViewController {
     private var highlightColor: UIColor = UIColor(named: "blue-tint")!
     private var highlightTextColor: UIColor = UIColor(named: "row-highlight-text-color")!
     private var rowTextColor: UIColor = UIColor(named: "row-text-color")!
-    private var restorableIndexPath: IndexPath?
+    private var restorableActivity: NSUserActivity?
+    private var lastSelectedIndex: IndexPath?
 
     init() {
+        super.init(nibName: nil, bundle: nil)
+        
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         navigationManager = appDelegate.navigationManager
         
-        super.init(nibName: nil, bundle: nil)
+        self.setupNotificationWatcher()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    fileprivate func setupNotificationWatcher() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(SidebarViewController.setupHandoff),
+                                               name: NSNotification.Name(rawValue: WebPageViewController.UrlNotification),
+                                               object: nil)
+        print("Setup notification handler for URL updates")
     }
     
     override func viewDidLoad() {
@@ -87,9 +98,8 @@ class SidebarViewController: UIViewController {
         self.applyInitialSnapshot()
         
         // If we are restoring from a previous view, open that cell
-        if let indexPath = self.restorableIndexPath {
-            self.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredVertically)
-            self.collectionView(self.collectionView, didSelectItemAt: indexPath)
+        if let activity = self.restorableActivity {
+            self.restoreUserActivity(activity)
         }
     }
     
@@ -186,9 +196,8 @@ extension SidebarViewController: UICollectionViewDelegate {
             break
         }
         
-        self.navigationManager.lastSelectedElement = sidebarItem.element
-        
-        self.setupHandoff(indexPath: indexPath)
+        self.lastSelectedIndex = indexPath
+        self.setupHandoff()
     }
     
     private func didDeselectItem(_ sidebarItem: SidebarItem, at indexPath: IndexPath) {
@@ -359,8 +368,14 @@ extension SidebarViewController {
     func restoreUserActivity(_ activity: NSUserActivity) {
         
         if let userActivity = self.navigationManager.convertLegacyActivity(activity) {
-            let navigationActivity = NavigationActivity(userInfo: userActivity.userInfo!)
-            self.handleUserActivityNavigation(navigationActivity: navigationActivity)
+            if self.collectionView != nil {
+                let navigationActivity = NavigationActivity(userInfo: userActivity.userInfo!)
+                self.handleUserActivityNavigation(navigationActivity: navigationActivity)
+                
+                self.restorableActivity = nil
+            } else {
+                self.restorableActivity = activity
+            }
         }
     }
     
@@ -370,53 +385,75 @@ extension SidebarViewController {
                 if self.collectionView != nil {
                     self.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredVertically)
                     self.collectionView(self.collectionView, didSelectItemAt: indexPath)
-                    
-                    // TODO: Can we restore the URL
-                } else {
-                    self.restorableIndexPath = indexPath
+             
+                    // Can we restore the URL
+                    if let restoreUrl = navActivity.url {
+                        if let webController = self.currentWebController() {
+                            webController.loadPage(restoreUrl)
+                        }
+                    }
                 }
             }
         }
+    }
+    
+    private func currentWebController() -> WebPageViewController? {
+        if let splitViewController = self.splitViewController {
+            if splitViewController.viewControllers.count > 1 {
+                if let currentController = splitViewController.viewControllers[1] as? UINavigationController {
+                    return currentController.viewControllers[0] as? WebPageViewController
+                }
+            }
+        }
+        
+        return nil
     }
 }
 
 @available(iOS 14, *)
 extension SidebarViewController: NSUserActivityDelegate {
     /// Called when we need to save user activity
-    @objc func setupHandoff(indexPath: IndexPath) {
-        if let activity = self.navigationManager.userActivity(for: indexPath,
-                                                              delegate: self,
-                                                              adjustForHeaders: true,
-                                                              moreOnly: false) {
-            self.userActivity = activity
-            self.userActivity?.becomeCurrent()
-            self.view.window?.windowScene?.userActivity = activity
-        }
+    @objc func setupHandoff() {
+        // Add current URL if a web view
+        var currentUrl: URL?
 
+        if let currentWebController = self.currentWebController() {
+            currentUrl = currentWebController.webView.url
+        }
+        
+        if let currentIndexPath = self.lastSelectedIndex {
+            if let activity = self.navigationManager.userActivity(for: currentIndexPath,
+                                                                  delegate: self,
+                                                                  adjustForHeaders: true,
+                                                                  moreOnly: false,
+                                                                  url: currentUrl) {
+                self.userActivity = activity
+                self.userActivity?.becomeCurrent()
+                self.view.window?.windowScene?.userActivity = activity
+                
+                self.navigationManager.lastUserActivity = activity
+            }
+        }
     }
     
     // MARK: - NSUserActivityDelegate functions
     func userActivityWillSave(_ userActivity: NSUserActivity) {
         
         DispatchQueue.main.async {
-            if let currentIndexPath = self.collectionView.indexPathsForSelectedItems?.first {
+            if let currentIndexPath = self.lastSelectedIndex {
+                // Add current URL if a web view
+                var currentUrl: URL?
+
+                if let currentWebController = self.currentWebController() {
+                    currentUrl = currentWebController.webView.url
+                }
+                
                 if let activity = self.navigationManager.userActivity(for: currentIndexPath,
                                                                       delegate: self,
                                                                       adjustForHeaders: true,
-                                                                      moreOnly: false) {
+                                                                      moreOnly: false,
+                                                                      url: currentUrl) {
                     
-                    // Add current URL if a web view
-                    /*
-                    if let splitViewController = self.splitViewController {
-                        if splitViewController.viewControllers.count > 1 {
-                            if let currentController = splitViewController.viewControllers[1] as? UINavigationController {
-                                if let selectedController = currentController.viewControllers[0] as? WebPageViewController {
-                                    selectedController.webView.url
-                                }
-                            }
-                        }
-                    }
- */
                     userActivity.userInfo = activity.userInfo
                 
                     self.view.window?.windowScene?.userActivity = userActivity
@@ -424,5 +461,4 @@ extension SidebarViewController: NSUserActivityDelegate {
             }
         }
     }
-
 }

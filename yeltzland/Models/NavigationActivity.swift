@@ -25,7 +25,7 @@ public struct NavigationActivity: Hashable {
         self.navElementId = userInfo["navElementId"] as? String ?? ""
         
         if let savedUrl = userInfo["url"] as? NSURL {
-            self.url = URL(string: savedUrl.path!)
+            self.url = savedUrl.absoluteURL
         }
     }
     
@@ -39,7 +39,7 @@ public struct NavigationActivity: Hashable {
                 return [
                     "navType": self.main ? NSString("main") :NSString( "more"),
                     "navElementId": self.navElementId,
-                    "url": NSURL(string: url.path)!
+                    "url": url.absoluteURL
                 ]
             } else {
                 return [
