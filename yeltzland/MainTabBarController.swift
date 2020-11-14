@@ -102,6 +102,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
     
     // MARK: - UITabBarControllerDelegate methods
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        GameSettings.shared.lastSelectedTab = selectedIndex // Just for legacy iOS 12
         self.setupHandoff()
     }
     
@@ -214,6 +215,8 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
                         selectedController.handleUserActivityNavigation(navigationActivity: navigationActivity)
                     }
                 }
+            } else {
+                self.selectedIndex = GameSettings.shared.lastSelectedTab
             }
         }
     }
