@@ -66,6 +66,7 @@ class SidebarViewController: UIViewController {
     private var highlightColor: UIColor = UIColor(named: "blue-tint")!
     private var highlightTextColor: UIColor = UIColor(named: "row-highlight-text-color")!
     private var rowTextColor: UIColor = UIColor(named: "row-text-color")!
+    private var restorableIndexPath: IndexPath?
 
     init() {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -84,6 +85,12 @@ class SidebarViewController: UIViewController {
         self.configureCollectionView()
         self.configureDataSource()
         self.applyInitialSnapshot()
+        
+        // If we are restoring from a previous view, open that cell
+        if let indexPath = self.restorableIndexPath {
+            self.collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredVertically)
+            self.collectionView(self.collectionView, didSelectItemAt: indexPath)
+        }
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -179,9 +186,7 @@ extension SidebarViewController: UICollectionViewDelegate {
             break
         }
         
-        if indexPath.section == 0 {
-            GameSettings.shared.lastSelectedTab = indexPath.row
-        }
+        self.navigationManager.lastSelectedElement = sidebarItem.element
         
         self.setupHandoff(indexPath: indexPath)
     }
@@ -367,6 +372,8 @@ extension SidebarViewController {
                     self.collectionView(self.collectionView, didSelectItemAt: indexPath)
                     
                     // TODO: Can we restore the URL
+                } else {
+                    self.restorableIndexPath = indexPath
                 }
             }
         }

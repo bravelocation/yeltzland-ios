@@ -18,6 +18,7 @@ public class NavigationManager {
     
     private var _main: NavigationSection = NavigationSection(title: "Yeltzland", elements: [])
     private var _moreSections: [NavigationSection] = []
+    private var _lastSelectedElement: NavigationElement?
     
     private let fixtureList: NavigationElement = NavigationElement.controller(title: "Fixture List",
                                                                                imageName: "fixtures",
@@ -46,6 +47,23 @@ public class NavigationManager {
     public var moreSections: [NavigationSection] {
         get {
             self._moreSections
+        }
+    }
+    
+    public var lastSelectedElement: NavigationElement {
+        get {
+            return _lastSelectedElement ?? self._main.elements.first!
+        }
+        set {
+            _lastSelectedElement = newValue
+        }
+    }
+    
+    public var lastUserActivity: NSUserActivity {
+        get {
+            return self.buildUserActivity(
+                delegate: nil,
+                navigationElement: self.lastSelectedElement)
         }
     }
     

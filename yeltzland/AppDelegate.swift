@@ -63,11 +63,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Window initialisation will be handled by the scene delegate in iOS 13+
         } else {
             // Calculate the correct user activity to pre-populate the selected tab
-            let startingActivity = NSUserActivity(activityType: "com.bravelocation.yeltzland.navigation")
-            if GameSettings.shared.lastSelectedTab <  self.navigationManager.mainSection.elements.count {
-                let navActivity = NavigationActivity(main: true,
-                                                     navElementId: self.navigationManager.mainSection.elements[GameSettings.shared.lastSelectedTab].id)
-                startingActivity.userInfo = navActivity.userInfo
+            var startingActivity = NSUserActivity(activityType: "com.bravelocation.yeltzland.navigation")
+            
+            // Restore any incoming user activity info
+            if let activityType = launchOptions?[UIApplication.LaunchOptionsKey.userActivityType] as? String {
+                startingActivity = NSUserActivity(activityType: activityType)
+                
+                if let activityInfo = launchOptions?[UIApplication.LaunchOptionsKey.userActivityDictionary] as? [AnyHashable: Any] {
+                    startingActivity.userInfo = activityInfo
+                }
             }
             
             // If came from a shortcut

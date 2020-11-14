@@ -102,12 +102,14 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
     
     // MARK: - UITabBarControllerDelegate methods
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        GameSettings.shared.lastSelectedTab = selectedIndex
         self.setupHandoff()
     }
     
     // MARK: - NSUserActivityDelegate functions
     func userActivityWillSave(_ userActivity: NSUserActivity) {
+        if self.usedWithSplitViewController {
+            return
+        }
         
         DispatchQueue.main.async {
             // If in split view controller and not in compact mode, don't save the activity
@@ -202,7 +204,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
                     
                     tabIndex += 1
                 }
-            } else {
+            } else if navActivity.navElementId.count > 0 {
                 // Go to the more tab, and load the element
                 self.selectedIndex = self.otherTabIndex
                 
@@ -266,6 +268,10 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
     /// Called when we need to save user activity
     @objc func setupHandoff() {
         
+        if self.usedWithSplitViewController {
+            return
+        }
+        
         var indexPath = IndexPath(row: self.selectedIndex, section: 0)
         var useMoreOnly = false
         
@@ -281,6 +287,9 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
                     }
                 }
             }
+        } else {
+            // Set the last selected element as the tab if not more tab
+            self.navigationManager.lastSelectedElement = self.navigationManager.mainSection.elements[self.selectedIndex]
         }
         
         let activity = self.navigationManager.userActivity(for: indexPath,

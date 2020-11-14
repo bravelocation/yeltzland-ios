@@ -64,20 +64,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     @available(iOS 13.0, *)
     func stateRestorationActivity(for scene: UIScene) -> NSUserActivity? {
-        
-        // Calculate the correct user activity to pre-populate the selected tab
-        let startingActivity = NSUserActivity(activityType: "com.bravelocation.yeltzland.navigation")
-        
         let navigationManager = (UIApplication.shared.delegate as! AppDelegate).navigationManager
-        
-        if GameSettings.shared.lastSelectedTab < navigationManager.mainSection.elements.count {
-            let navActivity = NavigationActivity(main: true, navElementId: navigationManager.mainSection.elements[GameSettings.shared.lastSelectedTab].id)
-            startingActivity.userInfo = navActivity.userInfo
-            
-            return startingActivity
-        }
-        
-        return nil
+        return navigationManager.lastUserActivity
     }
     
     @available(iOS 13.0, *)

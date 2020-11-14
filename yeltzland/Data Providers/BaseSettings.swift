@@ -38,11 +38,6 @@ public class BaseSettings: NSObject {
         set { self.writeObjectToStore(newValue as AnyObject, key: "GameTimeTweetsEnabled") }
     }
     
-    public var lastSelectedTab: Int {
-        get { return self.readObjectFromStore("LastSelectedTab") as! Int }
-        set { self.writeObjectToStore(newValue as AnyObject, key: "LastSelectedTab") }
-    }
-    
     public var migratedToGroupSettings: Bool {
         get { return self.readObjectFromStore("migratedToGroupSettings") as! Bool }
         set { self.writeObjectToStore(newValue as AnyObject, key: "migratedToGroupSettings") }
@@ -137,7 +132,6 @@ public class BaseSettings: NSObject {
         
         let defaults = UserDefaults.standard
         
-        self.lastSelectedTab = defaults.integer(forKey: "LastSelectedTab")
         self.gameTimeTweetsEnabled = defaults.bool(forKey: "GameTimeTweetsEnabled")
         self.migratedToGroupSettings = true
         

@@ -111,6 +111,7 @@ class OtherLinksTableViewController: UITableViewController, SFSafariViewControll
         }
         
         self.selectedIndexPath = indexPath
+        self.navigationManager.lastSelectedElement = element
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String {
@@ -167,16 +168,17 @@ extension OtherLinksTableViewController {
                 
                 for moreSection in self.navigationManager.moreSections {
                     var row = 0
-                    for moreElement in moreSection.elements where moreElement.id == navActivity.navElementId {
-                        let indexPath = IndexPath(row: row, section: section)
-                        self.tableView.selectRow(at: indexPath, animated: false, scrollPosition: UITableView.ScrollPosition.top)
-                        self.tableView(self.tableView, didSelectRowAt: indexPath)
+                    for moreElement in moreSection.elements {
+                        if moreElement.id == navActivity.navElementId {
+                            let indexPath = IndexPath(row: row, section: section)
+                            self.tableView(self.tableView, didSelectRowAt: indexPath)
+                        }
+                        
+                        row += 1
                     }
-
-                    row += 1
+                    
+                    section += 1
                 }
-                
-                section += 1
             }
         }
     }
