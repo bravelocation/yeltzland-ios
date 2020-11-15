@@ -26,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             
             // Try using the split bar view if appropriate
             if #available(iOS 14, *) {
-                if window.traitCollection.userInterfaceIdiom == .pad {
+                if window.traitCollection.userInterfaceIdiom == .pad || window.traitCollection.userInterfaceIdiom == .mac {
                     initialController = MainSplitViewController(tabController: tabController)
                     tabController.usedWithSplitViewController = true
                 }
