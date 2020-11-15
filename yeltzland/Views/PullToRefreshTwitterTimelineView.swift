@@ -28,12 +28,9 @@ struct PullToRefreshTwitterTimelineView: UIViewRepresentable {
 
     func makeUIView(context: Context) -> UIScrollView {
         let control = UIScrollView()
-        control.tintColor = UIColor(named: "blue-tint")!
-        
-        #if !targetEnvironment(macCatalyst)
         control.refreshControl = UIRefreshControl()
+        control.tintColor = UIColor(named: "blue-tint")!
         control.refreshControl?.addTarget(context.coordinator, action: #selector(Coordinator.handleRefreshControl), for: .valueChanged)
-        #endif
 
         let childView = UIHostingController(rootView: TwitterTimelineView().environmentObject(self.tweetData))
         childView.view.frame = CGRect(x: 0, y: 0, width: width, height: height)
@@ -57,11 +54,9 @@ struct PullToRefreshTwitterTimelineView: UIViewRepresentable {
             self.tweetData = tweetData
         }
 
-        #if !targetEnvironment(macCatalyst)
         @objc func handleRefreshControl(sender: UIRefreshControl) {
             sender.endRefreshing()
             self.tweetData.refreshData()
         }
-        #endif
     }
 }
