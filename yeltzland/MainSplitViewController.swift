@@ -18,7 +18,7 @@ class MainSplitViewController: UISplitViewController {
     private lazy var menuSubscriber: AnyCancellable? = nil
     
     @available(iOS 14.0, *)
-    private lazy var sidebarViewController = SidebarViewController()
+    lazy var sidebarViewController = SidebarViewController()
     
     init?(tabController: MainTabBarController) {
         if #available(iOS 14.0, *) {
