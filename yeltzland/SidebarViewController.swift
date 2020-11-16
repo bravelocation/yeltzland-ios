@@ -68,6 +68,8 @@ class SidebarViewController: UIViewController {
     private var rowTextColor: UIColor = UIColor(named: "row-text-color")!
     private var restorableActivity: NSUserActivity?
     private var lastSelectedIndex: IndexPath?
+    
+    private var controllers: [IndexPath: UIViewController] = [:]
 
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -180,20 +182,36 @@ extension SidebarViewController: UICollectionViewDelegate {
             }
         }
         
-        switch sidebarItem.element.type {
-        case .controller(let viewController):
-            let navViewController = UINavigationController(rootViewController: viewController)
-            self.updateDetailViewController(controller: navViewController)
-        case .siri(let intent):
-            self.addToSiriAction(intent: intent)
-        case .link:
-            let webViewController = WebPageViewController()
-            webViewController.navigationElement = sidebarItem.element
-            let navViewController = UINavigationController(rootViewController: webViewController)
+        // Check if we've already opened a controller for this path
+        var cachedController = self.controllers[indexPath]
+        
+        // If not, get one if required based on the navigation elements
+        if cachedController == nil {
+            switch sidebarItem.element.type {
+            case .controller(let viewController):
+                let navViewController = UINavigationController(rootViewController: viewController)
+                cachedController = navViewController
+            case .siri(let intent):
+                self.addToSiriAction(intent: intent)
+            case .link:
+                let webViewController = WebPageViewController()
+                webViewController.navigationElement = sidebarItem.element
+                
+                let navViewController = UINavigationController(rootViewController: webViewController)
+                cachedController = navViewController
+            default:
+                break
+            }
             
-            self.updateDetailViewController(controller: navViewController)
-        default:
-            break
+            // If we found an controller, add it to the cache
+            if cachedController != nil {
+                self.controllers[indexPath] = cachedController
+            }
+        }
+        
+        // If we have a controller to show, update the details pane
+        if let foundController = cachedController {
+            self.updateDetailViewController(controller: foundController)
         }
         
         self.lastSelectedIndex = indexPath
