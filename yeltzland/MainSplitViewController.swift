@@ -36,6 +36,8 @@ class MainSplitViewController: UISplitViewController {
             
             // Set color of expand button and expanders
             self.view.tintColor = UIColor.white
+            
+            self.setupMenuCommandHandler()
         } else {
             super.init(coder: NSCoder())
         }

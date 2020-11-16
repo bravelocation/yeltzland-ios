@@ -401,7 +401,9 @@ extension SidebarViewController {
         if let splitViewController = self.splitViewController {
             if splitViewController.viewControllers.count > 1 {
                 if let currentController = splitViewController.viewControllers[1] as? UINavigationController {
-                    return currentController.viewControllers[0] as? WebPageViewController
+                    if currentController.viewControllers.count > 0 {
+                        return currentController.viewControllers[0] as? WebPageViewController
+                    }
                 }
             }
         }
