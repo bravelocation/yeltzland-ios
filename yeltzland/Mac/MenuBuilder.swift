@@ -23,9 +23,8 @@ extension AppDelegate {
         let officialSiteCommand = UIKeyCommand(title: "Official Site", action: #selector(officialSiteMenuCalled), input: "2", modifierFlags: .command)
         let yeltzTVCommand = UIKeyCommand(title: "Yeltz TV", action: #selector(yeltzTVMenuCalled), input: "3", modifierFlags: .command)
         let twitterCommand = UIKeyCommand(title: "Twitter", action: #selector(twitterMenuCalled), input: "4", modifierFlags: .command)
-        let moreCommand = UIKeyCommand(title: "More", action: #selector(moreMenuCalled), input: "5", modifierFlags: .command)
         
-        let pagesMenu = UIMenu(title: "", options: .displayInline, children: [forumCommand, officialSiteCommand, yeltzTVCommand, twitterCommand, moreCommand])
+        let pagesMenu = UIMenu(title: "", options: .displayInline, children: [forumCommand, officialSiteCommand, yeltzTVCommand, twitterCommand])
         
         let fixturesCommand = UIKeyCommand(title: "Fixture List", action: #selector(fixturesMenuCalled), input: "F", modifierFlags: .command)
         let latestScoreCommand = UIKeyCommand(title: "Latest Score", action: #selector(latestScoreMenuCalled), input: "L", modifierFlags: .command)
