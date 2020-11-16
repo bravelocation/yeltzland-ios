@@ -8,9 +8,7 @@
 
 import UIKit
 import Intents
-#if !targetEnvironment(macCatalyst)
 import WidgetKit
-#endif
 
 private func < <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
   switch (lhs, rhs) {
@@ -66,11 +64,9 @@ class FixturesTableViewController: UITableViewController {
             }
         })
         
-        #if !targetEnvironment(macCatalyst)
         if #available(iOS 14.0, *) {
             WidgetCenter.shared.reloadAllTimelines()
         }
-        #endif
     }
     
     fileprivate func currentMonthSection() -> Int {

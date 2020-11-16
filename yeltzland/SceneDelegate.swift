@@ -7,9 +7,7 @@
 //
 
 import UIKit
-#if !targetEnvironment(macCatalyst)
 import WidgetKit
-#endif
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
@@ -107,9 +105,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 FixtureManager.shared.fetchLatestData() { result in
                     if result == .success(true) {
                         if #available(iOS 14.0, *) {
-                            #if !targetEnvironment(macCatalyst)
                             WidgetCenter.shared.reloadAllTimelines()
-                            #endif
                         }
                     }
                 }
