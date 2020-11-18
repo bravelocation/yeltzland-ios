@@ -99,7 +99,6 @@ class LocationsViewController: UIViewController, MKMapViewDelegate {
 
 extension LocationsViewController: CLLocationManagerDelegate {
     func setupLocationManager() {
-        #if !targetEnvironment(macCatalyst)
         // Setup location manager
         self.locationManager = CLLocationManager()
         
@@ -109,6 +108,5 @@ extension LocationsViewController: CLLocationManagerDelegate {
         self.locationManager?.startUpdatingLocation()
         
         self.mapView.showsUserLocation = true
-        #endif
     }
 }
