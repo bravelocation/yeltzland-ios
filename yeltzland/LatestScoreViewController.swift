@@ -9,9 +9,7 @@
 import UIKit
 import Intents
 import IntentsUI
-#if !targetEnvironment(macCatalyst)
 import WidgetKit
-#endif
 
 class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewControllerDelegate {
     
@@ -73,7 +71,6 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
         
         self.updateUI()
         
-        self.setupHandoff()
         self.addSiriButton()
     }
     
@@ -87,7 +84,7 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
          } else {
             return [
                 UIKeyCommand(input: "r", modifierFlags: .command, action: #selector(LatestScoreViewController.reloadButtonTouchUp), discoverabilityTitle: "Reload"),
-                UIKeyCommand(input: UIKeyCommand.inputLeftArrow, modifierFlags: .command, action: #selector(FixturesTableViewController.goBack), discoverabilityTitle: "Back")
+                UIKeyCommand(input: UIKeyCommand.inputLeftArrow, modifierFlags: .command, action: #selector(LatestScoreViewController.goBack), discoverabilityTitle: "Back")
             ]
         }
     }
@@ -108,11 +105,9 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
             if result == .success(true) {
                 self.gameScoreUpdated()
                 
-                #if !targetEnvironment(macCatalyst)
                 if #available(iOS 14.0, *) {
                     WidgetCenter.shared.reloadAllTimelines()
                 }
-                #endif
             }
         }
     }
@@ -152,6 +147,11 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
                 score = fixture.kickoffTime
             }
  
+            if self.opponentLabel == nil {
+                // UI not loaded
+                return
+            }
+            
             self.opponentLabel.text = fixture.opponent
             self.homeOrAwayLabel.text = homeOrAway
             self.latestScoreLabel.text = score
@@ -162,63 +162,32 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
         }
     }
     
-    // MARK: - Handoff
-    @objc func setupHandoff() {
-        // Set activity for handoff
-        let activity = NSUserActivity(activityType: "com.bravelocation.yeltzland.latestscore")
-        
-        // Eligible for handoff
-        activity.isEligibleForHandoff = true
-        activity.isEligibleForSearch = true
-        activity.title = "Latest Yeltz Score"
-
-        if #available(iOS 12.0, *) {
-            activity.isEligibleForPrediction = true
-            activity.suggestedInvocationPhrase = "Latest Yeltz Score"
-            activity.persistentIdentifier = String(format: "%@.com.bravelocation.yeltzland.latestscore", Bundle.main.bundleIdentifier!)
-        }
-        
-        // Set the title
-        activity.needsSave = true
-        
-        self.userActivity = activity
-        self.userActivity?.becomeCurrent()
-        
-        if #available(iOS 13.0, *) {
-            self.view.window?.windowScene?.userActivity = activity
-        }
-    }
-    
     // MARK: - Siri Intents
     func addSiriButton() {
-        if #available(iOS 12.0, *) {
-            var buttonStyle: INUIAddVoiceShortcutButtonStyle = .whiteOutline
-            
-            if #available(iOS 13.0, *) {
-                buttonStyle = .automaticOutline
-            }
-            
-            let button = INUIAddVoiceShortcutButton(style: buttonStyle)
-            button.translatesAutoresizingMaskIntoConstraints = false
-            self.view.addSubview(button)
-            button.addTarget(self, action: #selector(addToSiri(_:)), for: .touchUpInside)
-
-            self.view.centerXAnchor.constraint(equalTo: button.centerXAnchor).isActive = true
-            self.view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: button.bottomAnchor, constant: 16.0).isActive = true
+        var buttonStyle: INUIAddVoiceShortcutButtonStyle = .whiteOutline
+        
+        if #available(iOS 13.0, *) {
+            buttonStyle = .automaticOutline
         }
+        
+        let button = INUIAddVoiceShortcutButton(style: buttonStyle)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(button)
+        button.addTarget(self, action: #selector(addToSiri(_:)), for: .touchUpInside)
+
+        self.view.centerXAnchor.constraint(equalTo: button.centerXAnchor).isActive = true
+        self.view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: button.bottomAnchor, constant: 16.0).isActive = true
     }
     
     @objc
     func addToSiri(_ sender: Any) {
-        if #available(iOS 12.0, *) {
-            let intent = ShortcutManager.shared.latestScoreIntent()
-            
-            if let shortcut = INShortcut(intent: intent) {
-                let viewController = INUIAddVoiceShortcutViewController(shortcut: shortcut)
-                viewController.modalPresentationStyle = .formSheet
-                viewController.delegate = self
-                self.present(viewController, animated: true, completion: nil)
-            }
+        let intent = ShortcutManager.shared.latestScoreIntent()
+        
+        if let shortcut = INShortcut(intent: intent) {
+            let viewController = INUIAddVoiceShortcutViewController(shortcut: shortcut)
+            viewController.modalPresentationStyle = .formSheet
+            viewController.delegate = self
+            self.present(viewController, animated: true, completion: nil)
         }
     }
     

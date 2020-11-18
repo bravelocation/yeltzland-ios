@@ -7,9 +7,7 @@
 //
 
 import UIKit
-#if !targetEnvironment(macCatalyst)
 import WidgetKit
-#endif
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
@@ -21,13 +19,35 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
             
-            let initialTabViewController = MainTabBarController()
+            var initialController: UIViewController?
+            let tabController = MainTabBarController()
             
-            if let userActivity = connectionOptions.userActivities.first ?? session.stateRestorationActivity {
-                initialTabViewController.restoreUserActivityState(userActivity)
+            // Try using the split bar view if appropriate
+            if #available(iOS 14, *) {
+                if window.traitCollection.userInterfaceIdiom == .pad || window.traitCollection.userInterfaceIdiom == .mac {
+                    initialController = MainSplitViewController(tabController: tabController)
+                    tabController.usedWithSplitViewController = true
+                }
             }
             
-            window.rootViewController = initialTabViewController
+            // Otherwise use the tab bar controller
+            if initialController == nil {
+                initialController = tabController
+            }
+            
+            if let userActivity = connectionOptions.userActivities.first ?? session.stateRestorationActivity {
+                initialController!.restoreUserActivityState(userActivity)
+            } else {
+                // Calculate the correct user activity to pre-populate the selected tab
+                let startingActivity = NSUserActivity(activityType: "com.bravelocation.yeltzland.navigation")
+                
+                let navigationManager = (UIApplication.shared.delegate as! AppDelegate).navigationManager
+                startingActivity.userInfo = NavigationActivity(main: true, navElementId: navigationManager.mainSection.elements[0].id).userInfo
+                initialController!.restoreUserActivityState(startingActivity)
+            }
+            
+            window.rootViewController = initialController
+            
             self.window = window
             window.makeKeyAndVisible()
             
@@ -42,7 +62,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     @available(iOS 13.0, *)
     func stateRestorationActivity(for scene: UIScene) -> NSUserActivity? {
-        return scene.userActivity
+        let navigationManager = (UIApplication.shared.delegate as! AppDelegate).navigationManager
+        return navigationManager.lastUserActivity
     }
     
     @available(iOS 13.0, *)
@@ -55,13 +76,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     @available(iOS 13.0, *)
     func windowScene(_ windowScene: UIWindowScene, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
         print("3D Touch when from shortcut action")
-        let startingActivity = NSUserActivity(activityType: "com.bravelocation.yeltzland.currenttab")
-        startingActivity.userInfo = [:]
-        startingActivity.userInfo?["com.bravelocation.yeltzland.currenttab.key"] = self.handleShortcut(shortcutItem)
+        let startingActivity = NSUserActivity(activityType: "com.bravelocation.yeltzland.navigation")
         
-        // Reset selected tab
-        if let mainViewController = self.window?.rootViewController as? MainTabBarController {
-            mainViewController.restoreUserActivityState(startingActivity)
+        let navigationManager = (UIApplication.shared.delegate as! AppDelegate).navigationManager
+        startingActivity.userInfo = navigationManager.handleShortcut(shortcutItem).userInfo
+        
+        // Reset selected window
+        if let tabViewController = self.window?.rootViewController as? MainTabBarController {
+            tabViewController.restoreUserActivityState(startingActivity)
+        } else if let mainSplitViewController = self.window?.rootViewController as? MainSplitViewController {
+            mainSplitViewController.restoreUserActivityState(startingActivity)
         }
         
         return completionHandler(true)
@@ -81,31 +105,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 FixtureManager.shared.fetchLatestData() { result in
                     if result == .success(true) {
                         if #available(iOS 14.0, *) {
-                            #if !targetEnvironment(macCatalyst)
                             WidgetCenter.shared.reloadAllTimelines()
-                            #endif
                         }
                     }
                 }
             }
-        }
-    }
-    
-    // MARK: - Private functions
-    func handleShortcut(_ shortcutItem: UIApplicationShortcutItem) -> Int {
-        print("Handling shortcut item %@", shortcutItem.type)
-        
-        switch shortcutItem.type {
-        case "com.bravelocation.yeltzland.forum":
-            return 0
-        case "com.bravelocation.yeltzland.official":
-            return 1
-        case "com.bravelocation.yeltzland.yeltztv":
-            return 2
-        case "com.bravelocation.yeltzland.twitter":
-            return 3
-        default:
-            return 0
         }
     }
 }

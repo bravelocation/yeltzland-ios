@@ -37,7 +37,7 @@ public class BaseSettings: NSObject {
         get { return self.readObjectFromStore("GameTimeTweetsEnabled") as! Bool }
         set { self.writeObjectToStore(newValue as AnyObject, key: "GameTimeTweetsEnabled") }
     }
-    
+ 
     public var lastSelectedTab: Int {
         get { return self.readObjectFromStore("LastSelectedTab") as! Int }
         set { self.writeObjectToStore(newValue as AnyObject, key: "LastSelectedTab") }

@@ -13,19 +13,35 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
     
     static let UrlNotification: String = "YLZUrlNotification"
     
-    var homePageUrl: URL!
+    private var homePageUrl: URL!
     
     var homeUrl: URL! {
         get {
             return self.homePageUrl
         }
+    }
+    
+    private var _navElement: NavigationElement?
+    var navigationElement: NavigationElement? {
+        get {
+            return self._navElement
+        }
         set {
-            self.homePageUrl = newValue
-            self.loadHomePage()
+            self._navElement = newValue
+            
+            switch self._navElement?.type {
+            case .link(let url):
+                self.homePageUrl = url
+                self.pageTitle = self._navElement?.title
+                self.loadHomePage()
+            default:
+                break
+            }
         }
     }
     
-    var pageTitle: String!
+    private var pageTitle: String!
+    
     var homeButton: UIBarButtonItem!
     var backButton: UIBarButtonItem!
     var forwardButton: UIBarButtonItem!
@@ -75,8 +91,10 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         
         let topPosition = (self.navigationController?.navigationBar.frame.size.height)! + barHeight
         
-        let webViewHeight = view.frame.height -
-            (topPosition + progressBarHeight + (self.tabBarController?.tabBar.frame)!.height)
+        var webViewHeight = view.frame.height - (topPosition + progressBarHeight)
+        if let tabController = self.tabBarController {
+            webViewHeight -= tabController.tabBar.frame.height
+        }
 
         // Add elements to view
         self.webView.frame = CGRect(x: 0, y: topPosition + progressBarHeight, width: view.frame.width, height: webViewHeight)
@@ -153,13 +171,17 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         self.webView.allowsBackForwardNavigationGestures = true
         
         // Add pull to refresh
+        #if !targetEnvironment(macCatalyst)
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshWebView(_:)), for: UIControl.Event.valueChanged)
         self.webView.scrollView.addSubview(refreshControl)
+        #endif
+        
         self.webView.scrollView.bounces = true
     }
     
     // MARK: - Pull to refresh
+    #if !targetEnvironment(macCatalyst)
     @objc
     func refreshWebView(_ sender: UIRefreshControl) {
         // Give haptic feedback
@@ -170,6 +192,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         self.reloadButtonTouchUp()
         sender.endRefreshing()
     }
+    #endif
     
     // MARK: - Keyboard options
     override var keyCommands: [UIKeyCommand]? {

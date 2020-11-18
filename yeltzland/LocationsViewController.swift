@@ -10,12 +10,12 @@ import UIKit
 import MapKit
 import SDWebImage
 
-class LocationsViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+class LocationsViewController: UIViewController, MKMapViewDelegate {
 
     var mapToggleButton: UIBarButtonItem!
     
     var mapView = MKMapView()
-    var locationManager = CLLocationManager()
+    var locationManager: CLLocationManager?
     
     let regionRadius: CLLocationDistance = 600000
     
@@ -35,19 +35,14 @@ class LocationsViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         self.navigationItem.rightBarButtonItems = [self.mapToggleButton]
         
         self.navigationItem.title = "Where's The Ground?"
-        
-        // Setup location manager
-        self.locationManager.delegate = self
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        self.locationManager.requestWhenInUseAuthorization()
-        self.locationManager.startUpdatingLocation()
 
         // Setup map settings
         self.mapView.mapType = .standard
         self.mapView.frame = view.bounds
         self.mapView.delegate = self
-        self.mapView.showsUserLocation = true
         self.mapView.isZoomEnabled = true
+        
+        self.setupLocationManager()
         
         // Setup initial view covering points
         self.mapView.setRegion(LocationManager.shared.mapRegion(), animated: true)
@@ -99,5 +94,19 @@ class LocationsViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         } else {
             return nil
         }
+    }
+}
+
+extension LocationsViewController: CLLocationManagerDelegate {
+    func setupLocationManager() {
+        // Setup location manager
+        self.locationManager = CLLocationManager()
+        
+        self.locationManager?.delegate = self
+        self.locationManager?.desiredAccuracy = kCLLocationAccuracyBest
+        self.locationManager?.requestWhenInUseAuthorization()
+        self.locationManager?.startUpdatingLocation()
+        
+        self.mapView.showsUserLocation = true
     }
 }

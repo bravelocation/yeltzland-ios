@@ -11,10 +11,7 @@ import BackgroundTasks
 import Firebase
 import Intents
 import WebKit
-
-#if !targetEnvironment(macCatalyst)
 import WidgetKit
-#endif
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var firebaseNotifications: FirebaseNotifications?
     var processPool: WKProcessPool = WKProcessPool()
+    let navigationManager = NavigationManager()
     
     // MARK: - UIApplicationDelegate functions
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -62,13 +60,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Window initialisation will be handled by the scene delegate in iOS 13+
         } else {
             // Calculate the correct user activity to pre-populate the selected tab
-            let startingActivity = NSUserActivity(activityType: "com.bravelocation.yeltzland.currenttab")
-            startingActivity.userInfo = [:]
-            startingActivity.userInfo?["com.bravelocation.yeltzland.currenttab.key"] = GameSettings.shared.lastSelectedTab
+            var startingActivity = NSUserActivity(activityType: "com.bravelocation.yeltzland.navigation")
+            
+            // Restore any incoming user activity info
+            if let activityType = launchOptions?[UIApplication.LaunchOptionsKey.userActivityType] as? String {
+                startingActivity = NSUserActivity(activityType: activityType)
+                
+                if let activityInfo = launchOptions?[UIApplication.LaunchOptionsKey.userActivityDictionary] as? [AnyHashable: Any] {
+                    startingActivity.userInfo = activityInfo
+                }
+            }
             
             // If came from a shortcut
             if let shortcutItem = launchOptions?[UIApplication.LaunchOptionsKey.shortcutItem] {
-                startingActivity.userInfo?["com.bravelocation.yeltzland.currenttab.key"] =  self.handleShortcut(shortcutItem as! UIApplicationShortcutItem)
+                let navActivity = self.navigationManager.handleShortcut(shortcutItem as! UIApplicationShortcutItem)
+                startingActivity.userInfo = navActivity.userInfo
             }
             
             self.window = UIWindow(frame: UIScreen.main.bounds)
@@ -84,13 +90,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
         print("3D Touch when from shortcut action")
-        let startingActivity = NSUserActivity(activityType: "com.bravelocation.yeltzland.currenttab")
-        startingActivity.userInfo = [:]
-        startingActivity.userInfo?["com.bravelocation.yeltzland.currenttab.key"] = self.handleShortcut(shortcutItem)
+        let startingActivity = NSUserActivity(activityType: "com.bravelocation.yeltzland.navigation")
+        startingActivity.userInfo = self.navigationManager.handleShortcut(shortcutItem).userInfo
 
         // Reset selected tab
         if let mainViewController = self.window?.rootViewController as? MainTabBarController {
             mainViewController.restoreUserActivityState(startingActivity)
+        } else if let mainSplitViewController = self.window?.rootViewController as? MainSplitViewController {
+            mainSplitViewController.restoreUserActivityState(startingActivity)
         }
         
         return completionHandler(true)
@@ -115,24 +122,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tokenError = error as NSError
         print(tokenError.description)
     }
-    
-    // MARK: - Private functions
-    func handleShortcut(_ shortcutItem: UIApplicationShortcutItem) -> Int {
-        print("Handling shortcut item %@", shortcutItem.type)
-        
-        switch shortcutItem.type {
-        case "com.bravelocation.yeltzland.forum":
-            return 0
-        case "com.bravelocation.yeltzland.official":
-            return 1
-        case "com.bravelocation.yeltzland.yeltztv":
-            return 2
-        case "com.bravelocation.yeltzland.twitter":
-            return 3
-        default:
-            return 0
-        }
-    }
 }
 
 // MARK: - UNUserNotificationCenterDelegate
@@ -150,11 +139,9 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         GameScoreManager.shared.fetchLatestData(completion: nil)
         FixtureManager.shared.fetchLatestData(completion: nil)
         
-        #if !targetEnvironment(macCatalyst)
         if #available(iOS 14.0, *) {
             WidgetCenter.shared.reloadAllTimelines()
         }
-        #endif
 
         // If app in foreground, show a toast
         if (UIApplication.shared.applicationState == .active) {
@@ -224,9 +211,7 @@ extension AppDelegate {
                             FixtureManager.shared.fetchLatestData() { result in
                                 if result == .success(true) {
                                     if #available(iOS 14.0, *) {
-                                        #if !targetEnvironment(macCatalyst)
                                         WidgetCenter.shared.reloadAllTimelines()
-                                        #endif
                                     }
                                 }
                             }

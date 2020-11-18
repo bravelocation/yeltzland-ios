@@ -68,8 +68,10 @@
 		522F8CFA2518E89F0094AA42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52E3DF7D1CD9FA78009F18BD /* Assets.xcassets */; };
 		5231F4FF215B6C56003FAC68 /* SettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5231F4FE215B6C56003FAC68 /* SettingsManager.swift */; };
 		5231F501215B6C92003FAC68 /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5231F500215B6C92003FAC68 /* Settings.plist */; };
+		52348A6B25457B8B00D6B733 /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52348A6A25457B8B00D6B733 /* SidebarViewController.swift */; };
 		5236ECDB20CE99B80067AFFA /* LatestScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5236ECD920CE99B80067AFFA /* LatestScoreViewController.swift */; };
 		5236ECDC20CE99B80067AFFA /* LatestScoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5236ECDA20CE99B80067AFFA /* LatestScoreViewController.xib */; };
+		5238E15B2558458000878CCE /* NavigationActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5238E15A2558458000878CCE /* NavigationActivity.swift */; };
 		523C841E1CE47F06006F1865 /* HTFC2016LOGO.png in Resources */ = {isa = PBXBuildFile; fileRef = 523C841D1CE47F06006F1865 /* HTFC2016LOGO.png */; };
 		523C84201CE70806006F1865 /* ChromeActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523C841F1CE70806006F1865 /* ChromeActivity.swift */; };
 		523CE54D214F9A54002F29EF /* FixtureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523CE54B214F9A54002F29EF /* FixtureTableViewCell.swift */; };
@@ -191,6 +193,9 @@
 		5297C9E921565A7600AB5D0F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52E3DF7D1CD9FA78009F18BD /* Assets.xcassets */; };
 		52A4596E1D89666E00822D8C /* gallery.ckcomplication in Resources */ = {isa = PBXBuildFile; fileRef = 52A4596D1D89666E00822D8C /* gallery.ckcomplication */; };
 		52B4475522CF316000E745EB /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B4475422CF316000E745EB /* AppColors.swift */; };
+		52C32D67253AD6E3003D8F2C /* NavigationElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C32D66253AD6E3003D8F2C /* NavigationElement.swift */; };
+		52C32D73253AD7CB003D8F2C /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C32D72253AD7CB003D8F2C /* NavigationManager.swift */; };
+		52C32D7F253AD862003D8F2C /* NavigationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C32D7E253AD862003D8F2C /* NavigationSection.swift */; };
 		52C77EF02528799D000D55FA /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE636724E909B6000DAA25 /* DateHelper.swift */; };
 		52D868261FE81B6E0041B578 /* TVFixtureCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D868241FE81B6E0041B578 /* TVFixtureCollectionCell.swift */; };
 		52D868271FE81B6E0041B578 /* TVFixtureCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52D868251FE81B6E0041B578 /* TVFixtureCollectionCell.xib */; };
@@ -215,6 +220,9 @@
 		52E3DF791CD9FA78009F18BD /* WebPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E3DF781CD9FA78009F18BD /* WebPageViewController.swift */; };
 		52E3DF7E1CD9FA78009F18BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52E3DF7D1CD9FA78009F18BD /* Assets.xcassets */; };
 		52E3DF811CD9FA78009F18BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52E3DF7F1CD9FA78009F18BD /* LaunchScreen.storyboard */; };
+		52E40A00254EA675001414CB /* GameTimeTweetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E409FE254EA675001414CB /* GameTimeTweetsViewController.swift */; };
+		52E40A01254EA675001414CB /* GameTimeTweetsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52E409FF254EA675001414CB /* GameTimeTweetsViewController.xib */; };
+		52E40A0D254ECF76001414CB /* MainSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E40A0C254ECF76001414CB /* MainSplitViewController.swift */; };
 		52E54D8024C5A9B10007B44E /* PreviewFixtureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E54D7F24C5A9B10007B44E /* PreviewFixtureManager.swift */; };
 		52E54D8224C5AAE30007B44E /* PreviewGameScoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E54D8124C5AAE30007B44E /* PreviewGameScoreManager.swift */; };
 		52E711A11D9CF5C90002446A /* FixtureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236AE71D17E4D3004903AB /* FixtureManager.swift */; };
@@ -405,8 +413,10 @@
 		522EA44120EA236A00B90146 /* TeamImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamImageManager.swift; sourceTree = "<group>"; };
 		5231F4FE215B6C56003FAC68 /* SettingsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsManager.swift; sourceTree = "<group>"; };
 		5231F500215B6C92003FAC68 /* Settings.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Settings.plist; sourceTree = "<group>"; };
+		52348A6A25457B8B00D6B733 /* SidebarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		5236ECD920CE99B80067AFFA /* LatestScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestScoreViewController.swift; sourceTree = "<group>"; };
 		5236ECDA20CE99B80067AFFA /* LatestScoreViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LatestScoreViewController.xib; sourceTree = "<group>"; };
+		5238E15A2558458000878CCE /* NavigationActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationActivity.swift; sourceTree = "<group>"; };
 		523C841D1CE47F06006F1865 /* HTFC2016LOGO.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HTFC2016LOGO.png; sourceTree = "<group>"; };
 		523C841F1CE70806006F1865 /* ChromeActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChromeActivity.swift; sourceTree = "<group>"; };
 		523CE54B214F9A54002F29EF /* FixtureTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureTableViewCell.swift; sourceTree = "<group>"; };
@@ -469,6 +479,9 @@
 		5297C9E3215652AB00AB5D0F /* LatestScoreIntent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LatestScoreIntent.entitlements; sourceTree = "<group>"; };
 		52A4596D1D89666E00822D8C /* gallery.ckcomplication */ = {isa = PBXFileReference; lastKnownFileType = folder; path = gallery.ckcomplication; sourceTree = "<group>"; };
 		52B4475422CF316000E745EB /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
+		52C32D66253AD6E3003D8F2C /* NavigationElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationElement.swift; sourceTree = "<group>"; };
+		52C32D72253AD7CB003D8F2C /* NavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
+		52C32D7E253AD862003D8F2C /* NavigationSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationSection.swift; sourceTree = "<group>"; };
 		52D868241FE81B6E0041B578 /* TVFixtureCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVFixtureCollectionCell.swift; sourceTree = "<group>"; };
 		52D868251FE81B6E0041B578 /* TVFixtureCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TVFixtureCollectionCell.xib; sourceTree = "<group>"; };
 		52D868281FE928DA0041B578 /* TwitterDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterDataSource.swift; sourceTree = "<group>"; };
@@ -488,6 +501,9 @@
 		52E3DF7D1CD9FA78009F18BD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		52E3DF801CD9FA78009F18BD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		52E3DF821CD9FA78009F18BD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		52E409FE254EA675001414CB /* GameTimeTweetsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTimeTweetsViewController.swift; sourceTree = "<group>"; };
+		52E409FF254EA675001414CB /* GameTimeTweetsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GameTimeTweetsViewController.xib; sourceTree = "<group>"; };
+		52E40A0C254ECF76001414CB /* MainSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSplitViewController.swift; sourceTree = "<group>"; };
 		52E54D7F24C5A9B10007B44E /* PreviewFixtureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewFixtureManager.swift; sourceTree = "<group>"; };
 		52E54D8124C5AAE30007B44E /* PreviewGameScoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewGameScoreManager.swift; sourceTree = "<group>"; };
 		52E711AA1D9FB5B70002446A /* MakeToast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MakeToast.swift; sourceTree = "<group>"; };
@@ -659,16 +675,17 @@
 			isa = PBXGroup;
 			children = (
 				52176BB21D4B62DC00B7EFAE /* BaseSettings.swift */,
+				522716CC22D1BB50008FD210 /* CachedJSONData.swift */,
 				52236AE71D17E4D3004903AB /* FixtureManager.swift */,
 				52176BAF1D4A1B3200B7EFAE /* GameScoreManager.swift */,
-				527DAF201D2D096B0092BB8F /* LocationManager.swift */,
-				5231F4FE215B6C56003FAC68 /* SettingsManager.swift */,
-				526B210324C2CD6E005CE9C7 /* TimelineManager.swift */,
-				528A347720CFB98D00E8475C /* TeamImageManager.swift */,
 				52DBCA9F1D4A012E00D35F91 /* GameSettings.swift */,
-				522716CC22D1BB50008FD210 /* CachedJSONData.swift */,
-				5206BC5924CABC0D00A927B3 /* TwitterDataProvider.swift */,
+				527DAF201D2D096B0092BB8F /* LocationManager.swift */,
+				52C32D72253AD7CB003D8F2C /* NavigationManager.swift */,
+				5231F4FE215B6C56003FAC68 /* SettingsManager.swift */,
+				528A347720CFB98D00E8475C /* TeamImageManager.swift */,
+				526B210324C2CD6E005CE9C7 /* TimelineManager.swift */,
 				5201D3B024CB1B0900726CAD /* TweetData.swift */,
+				5206BC5924CABC0D00A927B3 /* TwitterDataProvider.swift */,
 			);
 			path = "Data Providers";
 			sourceTree = "<group>";
@@ -726,6 +743,9 @@
 			children = (
 				52236AE51D17DFF8004903AB /* Fixture.swift */,
 				527DAF1E1D2D082C0092BB8F /* Location.swift */,
+				5238E15A2558458000878CCE /* NavigationActivity.swift */,
+				52C32D66253AD6E3003D8F2C /* NavigationElement.swift */,
+				52C32D7E253AD862003D8F2C /* NavigationSection.swift */,
 				526B210A24C2CE66005CE9C7 /* TimelineFixture.swift */,
 				5206BC5624CABBA200A927B3 /* Tweet.swift */,
 			);
@@ -845,11 +865,15 @@
 				523CE548214F9A15002F29EF /* Cells */,
 				52236AED1D1803C8004903AB /* FixturesTableViewController.swift */,
 				527DAF221D2D0F550092BB8F /* LocationsViewController.swift */,
+				52E40A0C254ECF76001414CB /* MainSplitViewController.swift */,
 				5259F9031CDA1292009C2AA8 /* MainTabBarController.swift */,
 				5211F72C1CDB1EE50031496D /* OtherLinksTableViewController.swift */,
 				52E3DF781CD9FA78009F18BD /* WebPageViewController.swift */,
 				5236ECD920CE99B80067AFFA /* LatestScoreViewController.swift */,
 				5236ECDA20CE99B80067AFFA /* LatestScoreViewController.xib */,
+				52348A6A25457B8B00D6B733 /* SidebarViewController.swift */,
+				52E409FE254EA675001414CB /* GameTimeTweetsViewController.swift */,
+				52E409FF254EA675001414CB /* GameTimeTweetsViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -1450,6 +1474,7 @@
 				523CE54E214F9A54002F29EF /* FixtureTableViewCell.xib in Resources */,
 				5236ECDC20CE99B80067AFFA /* LatestScoreViewController.xib in Resources */,
 				526B211C24C304BC005CE9C7 /* TodayFixtureCollectionViewCell.xib in Resources */,
+				52E40A01254EA675001414CB /* GameTimeTweetsViewController.xib in Resources */,
 				52DC9EB71FC9C30E00AE02F6 /* GoogleService-Info.plist in Resources */,
 				52A4596E1D89666E00822D8C /* gallery.ckcomplication in Resources */,
 				52E3DF7E1CD9FA78009F18BD /* Assets.xcassets in Resources */,
@@ -1962,7 +1987,9 @@
 				5201D3AF24CB14FE00726CAD /* TwitterTimelineView.swift in Sources */,
 				52B4475522CF316000E745EB /* AppColors.swift in Sources */,
 				5201D3B824CC2E1600726CAD /* Tweet+Date.swift in Sources */,
+				52348A6B25457B8B00D6B733 /* SidebarViewController.swift in Sources */,
 				526B211A24C304BC005CE9C7 /* TodayFixtureCollectionViewCell.swift in Sources */,
+				52C32D7F253AD862003D8F2C /* NavigationSection.swift in Sources */,
 				520C09A22157C46100CCC2D8 /* ShortcutManager.swift in Sources */,
 				52236AE61D17DFF8004903AB /* Fixture.swift in Sources */,
 				5201D3C724CD622F00726CAD /* TweetImagesView.swift in Sources */,
@@ -1973,11 +2000,13 @@
 				527DAF251D2D308F0092BB8F /* LocationAnnotation.swift in Sources */,
 				5231F4FF215B6C56003FAC68 /* SettingsManager.swift in Sources */,
 				52DC9EAF1FC95C9E00AE02F6 /* FirebaseNotifications.swift in Sources */,
+				52C32D73253AD7CB003D8F2C /* NavigationManager.swift in Sources */,
 				5201D3C324CC821E00726CAD /* Tweet+Text.swift in Sources */,
 				5201D3B624CC246000726CAD /* TweetView.swift in Sources */,
 				52236AE81D17E4D3004903AB /* FixtureManager.swift in Sources */,
 				52DBCAA01D4A012E00D35F91 /* GameSettings.swift in Sources */,
 				52E3DF771CD9FA78009F18BD /* AppDelegate.swift in Sources */,
+				52C32D67253AD6E3003D8F2C /* NavigationElement.swift in Sources */,
 				527DAF211D2D096B0092BB8F /* LocationManager.swift in Sources */,
 				527DAF231D2D0F550092BB8F /* LocationsViewController.swift in Sources */,
 				526B210B24C2CE66005CE9C7 /* TimelineFixture.swift in Sources */,
@@ -1988,9 +2017,12 @@
 				522716CD22D1BB50008FD210 /* CachedJSONData.swift in Sources */,
 				527DAF1B1D2BA9BA0092BB8F /* SafariActivity.swift in Sources */,
 				52FA7EC324F110E3001A3F8C /* TwitterView.swift in Sources */,
+				52E40A0D254ECF76001414CB /* MainSplitViewController.swift in Sources */,
 				5236ECDB20CE99B80067AFFA /* LatestScoreViewController.swift in Sources */,
+				5238E15B2558458000878CCE /* NavigationActivity.swift in Sources */,
 				52EACDB721564462008B8DE5 /* Intent.intentdefinition in Sources */,
 				52FA7EC124F106C7001A3F8C /* PullToRefreshTwitterTimelineView.swift in Sources */,
+				52E40A00254EA675001414CB /* GameTimeTweetsViewController.swift in Sources */,
 				52236AEE1D1803C8004903AB /* FixturesTableViewController.swift in Sources */,
 				5206BC5A24CABC0D00A927B3 /* TwitterDataProvider.swift in Sources */,
 			);
@@ -2411,7 +2443,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bravelocation.yeltzland.Today;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
@@ -2434,7 +2466,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bravelocation.yeltzland.Today;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
@@ -2461,6 +2493,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = YeltzlandWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2471,7 +2504,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bravelocation.yeltzland.YeltzlandWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2499,6 +2532,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = YeltzlandWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2508,7 +2542,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bravelocation.yeltzland.YeltzlandWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2568,7 +2602,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				SHARED_VERSION_NUMBER = 5.1.0;
+				SHARED_VERSION_NUMBER = 5.2.0;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2621,7 +2655,7 @@
 				LD_VERIFY_BITCODE = NO;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SHARED_VERSION_NUMBER = 5.1.0;
+				SHARED_VERSION_NUMBER = 5.2.0;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2648,6 +2682,7 @@
 				);
 				INFOPLIST_FILE = yeltzland/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2658,6 +2693,7 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "./yeltzland/yeltzland-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,6";
@@ -2683,6 +2719,7 @@
 				);
 				INFOPLIST_FILE = yeltzland/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2693,6 +2730,7 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "./yeltzland/yeltzland-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,6";

@@ -14,10 +14,9 @@ extension NSTouchBarItem.Identifier {
     static let officialSite = NSTouchBarItem.Identifier("com.bravelocation.yeltzland.touchbar.officialSite")
     static let yeltzTV = NSTouchBarItem.Identifier("com.bravelocation.yeltzland.touchbar.yeltzTV")
     static let twitter = NSTouchBarItem.Identifier("com.bravelocation.yeltzland.touchbar.twitter")
-    static let more = NSTouchBarItem.Identifier("com.bravelocation.yeltzland.touchbar.more")
 }
 
-extension MainTabBarController: NSTouchBarDelegate {
+extension MainSplitViewController: NSTouchBarDelegate {
     override func makeTouchBar() -> NSTouchBar? {
         let touchBar = NSTouchBar()
         touchBar.delegate = self
@@ -27,48 +26,41 @@ extension MainTabBarController: NSTouchBarDelegate {
             .officialSite,
             .yeltzTV,
             .twitter,
-            .more,
             .flexibleSpace
         ]
         
         return touchBar
     }
     
-    //swiftlint:disable:next cyclomatic_complexity
     func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItem.Identifier) -> NSTouchBarItem? {
         let touchBarItem: NSTouchBarItem?
+        let imageTintColor = UIColor.white
         
         switch identifier {
         case .forum:
-            guard let image = UIImage(named: "forum") else { return nil }
+            guard let image = UIImage(named: "forum")?.sd_tintedImage(with: imageTintColor) else { return nil }
             touchBarItem = NSButtonTouchBarItem(identifier: identifier,
                                                 image: image,
                                                 target: self,
-                                                action: #selector(MainTabBarController.handleForumTouchbar(_:)))
+                                                action: #selector(MainSplitViewController.handleForumTouchbar(_:)))
         case .officialSite:
-            guard let image = UIImage(named: "official") else { return nil }
+            guard let image = UIImage(named: "official")?.sd_tintedImage(with: imageTintColor) else { return nil }
             touchBarItem = NSButtonTouchBarItem(identifier: identifier,
                                                 image: image,
                                                 target: self,
-                                                action: #selector(MainTabBarController.handleOfficialSiteTouchbar(_:)))
+                                                action: #selector(MainSplitViewController.handleOfficialSiteTouchbar(_:)))
         case .yeltzTV:
-            guard let image = UIImage(named: "yeltztv") else { return nil }
+            guard let image = UIImage(named: "yeltztv")?.sd_tintedImage(with: imageTintColor) else { return nil }
             touchBarItem = NSButtonTouchBarItem(identifier: identifier,
                                                 image: image,
                                                 target: self,
-                                                action: #selector(MainTabBarController.handleYeltzTVTouchbar))
+                                                action: #selector(MainSplitViewController.handleYeltzTVTouchbar))
         case .twitter:
-            guard let image = UIImage(named: "twitter") else { return nil }
+            guard let image = UIImage(named: "twitter")?.sd_tintedImage(with: imageTintColor) else { return nil }
             touchBarItem = NSButtonTouchBarItem(identifier: identifier,
                                                 image: image,
                                                 target: self,
-                                                action: #selector(MainTabBarController.handleTwitterTouchbar(_:)))
-        case .more:
-            guard let image = UIImage(systemName: "ellipsis") else { return nil }
-            touchBarItem = NSButtonTouchBarItem(identifier: identifier,
-                                                image: image,
-                                                target: self,
-                                                action: #selector(MainTabBarController.handleMoreTouchbar(_:)))
+                                                action: #selector(MainSplitViewController.handleTwitterTouchbar(_:)))
                 
         default:
             touchBarItem = nil
@@ -79,27 +71,30 @@ extension MainTabBarController: NSTouchBarDelegate {
     
     @objc
     func handleForumTouchbar(_ sender: Any?) {
-        self.selectedIndex = 0
+        if #available(macCatalyst 14.0, *) {
+            self.sidebarViewController.handleMainKeyboardCommand(1)
+        }
     }
     
     @objc
     func handleOfficialSiteTouchbar(_ sender: Any?) {
-        self.selectedIndex = 1
+        if #available(macCatalyst 14.0, *) {
+            self.sidebarViewController.handleMainKeyboardCommand(2)
+        }
     }
     
     @objc
     func handleYeltzTVTouchbar(_ sender: Any?) {
-        self.selectedIndex = 2
+        if #available(macCatalyst 14.0, *) {
+            self.sidebarViewController.handleMainKeyboardCommand(3)
+        }
     }
     
     @objc
     func handleTwitterTouchbar(_ sender: Any?) {
-        self.selectedIndex = 3
-    }
-    
-    @objc
-    func handleMoreTouchbar(_ sender: Any?) {
-        self.selectedIndex = 4
+        if #available(macCatalyst 14, *) {
+            self.sidebarViewController.handleMainKeyboardCommand(4)
+        }
     }
 }
 

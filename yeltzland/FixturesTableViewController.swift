@@ -8,9 +8,7 @@
 
 import UIKit
 import Intents
-#if !targetEnvironment(macCatalyst)
 import WidgetKit
-#endif
 
 private func < <T: Comparable>(lhs: T?, rhs: T?) -> Bool {
   switch (lhs, rhs) {
@@ -36,7 +34,10 @@ class FixturesTableViewController: UITableViewController {
     
     var reloadButton: UIBarButtonItem!
     private let cellIdentifier: String = "FixtureTableViewCell"
+    
+    #if !targetEnvironment(macCatalyst)
     private let fixturesRefreshControl = UIRefreshControl()
+    #endif
     
     override init(style: UITableView.Style) {
         super.init(style: style)
@@ -55,7 +56,10 @@ class FixturesTableViewController: UITableViewController {
     
     @objc fileprivate func fixturesUpdated() {
         DispatchQueue.main.async(execute: { () -> Void in
+            #if !targetEnvironment(macCatalyst)
             self.fixturesRefreshControl.endRefreshing()
+            #endif
+            
             self.tableView.reloadData()
             
             let currentMonthIndexPath = IndexPath(row: 0, section: self.currentMonthSection())
@@ -66,11 +70,9 @@ class FixturesTableViewController: UITableViewController {
             }
         })
         
-        #if !targetEnvironment(macCatalyst)
         if #available(iOS 14.0, *) {
             WidgetCenter.shared.reloadAllTimelines()
         }
-        #endif
     }
     
     fileprivate func currentMonthSection() -> Int {
@@ -125,10 +127,10 @@ class FixturesTableViewController: UITableViewController {
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationItem.rightBarButtonItems = [self.reloadButton]
         
+        #if !targetEnvironment(macCatalyst)
         self.tableView.refreshControl = self.fixturesRefreshControl
-        
         self.fixturesRefreshControl.addTarget(self, action: #selector(FixturesTableViewController.refreshSearchData), for: .valueChanged)
-        self.setupHandoff()
+        #endif
     }
     
     @objc private func refreshSearchData(_ sender: Any) {
@@ -231,32 +233,5 @@ class FixturesTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.0
-    }
-    
-    // MARK: Handoff
-    @objc func setupHandoff() {
-        // Set activity for handoff
-        let activity = NSUserActivity(activityType: "com.bravelocation.yeltzland.fixtures")
-        
-        // Eligible for handoff
-        activity.isEligibleForHandoff = true
-        activity.isEligibleForSearch = true
-        activity.title = "Yeltz Fixture List"
-        
-        if #available(iOS 12.0, *) {
-            activity.isEligibleForPrediction = true            
-            activity.suggestedInvocationPhrase = "Fixture List"
-            activity.persistentIdentifier = String(format: "%@.com.bravelocation.yeltzland.fixtures", Bundle.main.bundleIdentifier!)
-        }
-                
-        // Set the title
-        activity.needsSave = true
-        
-        self.userActivity = activity
-        self.userActivity?.becomeCurrent()
-        
-        if #available(iOS 13.0, *) {
-            self.view.window?.windowScene?.userActivity = activity
-        }
     }
 }
