@@ -171,13 +171,17 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         self.webView.allowsBackForwardNavigationGestures = true
         
         // Add pull to refresh
+        #if !targetEnvironment(macCatalyst)
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshWebView(_:)), for: UIControl.Event.valueChanged)
         self.webView.scrollView.addSubview(refreshControl)
+        #endif
+        
         self.webView.scrollView.bounces = true
     }
     
     // MARK: - Pull to refresh
+    #if !targetEnvironment(macCatalyst)
     @objc
     func refreshWebView(_ sender: UIRefreshControl) {
         // Give haptic feedback
@@ -188,6 +192,7 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         self.reloadButtonTouchUp()
         sender.endRefreshing()
     }
+    #endif
     
     // MARK: - Keyboard options
     override var keyCommands: [UIKeyCommand]? {
