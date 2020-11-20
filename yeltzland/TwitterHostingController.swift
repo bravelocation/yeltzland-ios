@@ -36,4 +36,16 @@ class TwitterHostingController<Content: View>: UIHostingController<Content> {
     @objc required dynamic init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    // MARK: - Keyboard options
+    override var keyCommands: [UIKeyCommand]? {
+        return [
+            UIKeyCommand(title: "Reload", action: #selector(TwitterHostingController.reloadButtonTouchUp), input: "R", modifierFlags: .command)
+        ]
+    }
+    
+    @objc func reloadButtonTouchUp() {
+        print("Reloading tweet data from keyboard command ...")
+        self.tweetData.refreshData()
+    }
 }
