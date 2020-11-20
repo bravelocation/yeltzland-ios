@@ -20,6 +20,9 @@ class MainSplitViewController: UISplitViewController {
     @available(iOS 13.0, *)
     private lazy var reloadCommandSubscriber: AnyCancellable? = nil
     
+    @available(iOS 13.0, *)
+    private lazy var historyCommandSubscriber: AnyCancellable? = nil
+    
     @available(iOS 14.0, *)
     lazy var sidebarViewController = SidebarViewController()
     
@@ -96,9 +99,15 @@ extension MainSplitViewController {
             self.reloadCommandSubscriber = NotificationCenter.default.publisher(for: .reloadCommand)
                 .receive(on: RunLoop.main)
                 .sink(receiveValue: { notification in
-                    if let _ = notification.object as? UIKeyCommand {
-                        print("Handle reload command ...")
-                        self.sidebarViewController.handleReloadKeyboardCommand()
+                    print("Handle reload command ...")
+                    self.sidebarViewController.handleReloadKeyboardCommand()
+                })
+            
+            self.historyCommandSubscriber = NotificationCenter.default.publisher(for: .historyCommand)
+                .receive(on: RunLoop.main)
+                .sink(receiveValue: { notification in
+                    if let command = notification.object as? UIKeyCommand {
+                        self.sidebarViewController.handleHistoryKeyboardCommand(sender: command)
                     }
                 })
         }

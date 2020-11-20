@@ -383,6 +383,21 @@ extension SidebarViewController {
         }
     }
     
+    func handleHistoryKeyboardCommand(sender: UIKeyCommand) {
+        if let webController = self.currentWebController() {
+            switch sender.input {
+            case "[":
+                webController.backButtonTouchUp()
+            case "]":
+                webController.forwardButtonTouchUp()
+            case "H":
+                webController.loadHomePage()
+            default:
+                break
+            }
+        }
+    }
+    
     private func keyboardCommandToIndexPath(_ indexPath: IndexPath) {
         // Deselect the previously selected item
         if let currentIndexPath = collectionView.indexPathsForSelectedItems?.first {

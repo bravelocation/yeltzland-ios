@@ -11,6 +11,7 @@ import UIKit
 extension Notification.Name {
     static let navigationCommand = Notification.Name("com.bravelocation.yeltzland.menu.navigation")
     static let reloadCommand = Notification.Name("com.bravelocation.yeltzland.menu.reload")
+    static let historyCommand = Notification.Name("com.bravelocation.yeltzland.menu.history")
 }
 
 @available(iOS 13.0, *)
@@ -42,6 +43,14 @@ extension AppDelegate {
         let reloadCommand = UIKeyCommand(title: "Reload", action: #selector(reloadCalled), input: "R", modifierFlags: .command)
         let reloadMenu = UIMenu(title: "", options: .displayInline, children: [reloadCommand])
         builder.insertChild(reloadMenu, atEndOfMenu: .view)
+        
+        // Add a History menu
+        let backCommand = UIKeyCommand(title: "Back", action: #selector(backCalled), input: "[", modifierFlags: .command)
+        let forwardCommand = UIKeyCommand(title: "Forward", action: #selector(forwardCalled), input: "]", modifierFlags: .command)
+        let homeCommand = UIKeyCommand(title: "Home", action: #selector(homeCalled), input: "H", modifierFlags: [.command, .shift])
+        
+        let historyMenu = UIMenu(title: "History", children: [backCommand, forwardCommand, homeCommand])
+        builder.insertSibling(historyMenu, afterMenu: .view)
     }
     
     @objc
@@ -92,5 +101,20 @@ extension AppDelegate {
     @objc
     func reloadCalled(_ sender: UIKeyCommand) {
         NotificationCenter.default.post(name: .reloadCommand, object: sender)
+    }
+    
+    @objc
+    func backCalled(_ sender: UIKeyCommand) {
+        NotificationCenter.default.post(name: .historyCommand, object: sender)
+    }
+    
+    @objc
+    func forwardCalled(_ sender: UIKeyCommand) {
+        NotificationCenter.default.post(name: .historyCommand, object: sender)
+    }
+    
+    @objc
+    func homeCalled(_ sender: UIKeyCommand) {
+        NotificationCenter.default.post(name: .historyCommand, object: sender)
     }
 }
