@@ -87,7 +87,7 @@ extension MainSplitViewController {
     
     // MARK: - Menu options
     func setupMenuCommandHandler() {
-        if #available(iOS 13.0, *) {
+        if #available(iOS 14.0, *) {
             self.navigationCommandSubscriber = NotificationCenter.default.publisher(for: .navigationCommand)
                 .receive(on: RunLoop.main)
                 .sink(receiveValue: { notification in
@@ -98,7 +98,7 @@ extension MainSplitViewController {
             
             self.reloadCommandSubscriber = NotificationCenter.default.publisher(for: .reloadCommand)
                 .receive(on: RunLoop.main)
-                .sink(receiveValue: { notification in
+                .sink(receiveValue: { _ in
                     print("Handle reload command ...")
                     self.sidebarViewController.handleReloadKeyboardCommand()
                 })
