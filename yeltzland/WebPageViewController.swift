@@ -58,9 +58,14 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         // Use a single process pool for all web views
         let webConfiguration = WKWebViewConfiguration()
         webConfiguration.processPool = appDelegate.processPool
+        
+        // Make sure web view uses default data store
+        webConfiguration.websiteDataStore = WKWebsiteDataStore.default()
 
         let webView = WKWebView(frame: .zero, configuration: webConfiguration)
+        
         webView.navigationDelegate = self
+        webView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         return webView
     }()
@@ -96,13 +101,8 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
             webViewHeight -= tabController.tabBar.frame.height
         }
 
-        // Add elements to view
+        // Set web view to correct size before adding to view
         self.webView.frame = CGRect(x: 0, y: topPosition + progressBarHeight, width: view.frame.width, height: webViewHeight)
-        self.webView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.webView.navigationDelegate = self
-        
-        // Make sure web view uses default data store
-        self.webView.configuration.websiteDataStore = WKWebsiteDataStore.default()
         
         self.progressBar.frame = CGRect(x: 0, y: topPosition, width: view.frame.width, height: progressBarHeight)
         self.progressBar.alpha = 0
