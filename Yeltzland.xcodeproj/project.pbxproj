@@ -197,6 +197,7 @@
 		52C32D73253AD7CB003D8F2C /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C32D72253AD7CB003D8F2C /* NavigationManager.swift */; };
 		52C32D7F253AD862003D8F2C /* NavigationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C32D7E253AD862003D8F2C /* NavigationSection.swift */; };
 		52C77EF02528799D000D55FA /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DE636724E909B6000DAA25 /* DateHelper.swift */; };
+		52D68C4F2567EF1900C39D37 /* TwitterHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D68C4E2567EF1900C39D37 /* TwitterHostingController.swift */; };
 		52D868261FE81B6E0041B578 /* TVFixtureCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D868241FE81B6E0041B578 /* TVFixtureCollectionCell.swift */; };
 		52D868271FE81B6E0041B578 /* TVFixtureCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52D868251FE81B6E0041B578 /* TVFixtureCollectionCell.xib */; };
 		52D868291FE928DA0041B578 /* TwitterDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D868281FE928DA0041B578 /* TwitterDataSource.swift */; };
@@ -482,6 +483,7 @@
 		52C32D66253AD6E3003D8F2C /* NavigationElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationElement.swift; sourceTree = "<group>"; };
 		52C32D72253AD7CB003D8F2C /* NavigationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
 		52C32D7E253AD862003D8F2C /* NavigationSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationSection.swift; sourceTree = "<group>"; };
+		52D68C4E2567EF1900C39D37 /* TwitterHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterHostingController.swift; sourceTree = "<group>"; };
 		52D868241FE81B6E0041B578 /* TVFixtureCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVFixtureCollectionCell.swift; sourceTree = "<group>"; };
 		52D868251FE81B6E0041B578 /* TVFixtureCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TVFixtureCollectionCell.xib; sourceTree = "<group>"; };
 		52D868281FE928DA0041B578 /* TwitterDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterDataSource.swift; sourceTree = "<group>"; };
@@ -874,6 +876,7 @@
 				52348A6A25457B8B00D6B733 /* SidebarViewController.swift */,
 				52E409FE254EA675001414CB /* GameTimeTweetsViewController.swift */,
 				52E409FF254EA675001414CB /* GameTimeTweetsViewController.xib */,
+				52D68C4E2567EF1900C39D37 /* TwitterHostingController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -1969,6 +1972,7 @@
 			files = (
 				5201D3B124CB1B0900726CAD /* TweetData.swift in Sources */,
 				523CE54D214F9A54002F29EF /* FixtureTableViewCell.swift in Sources */,
+				52D68C4F2567EF1900C39D37 /* TwitterHostingController.swift in Sources */,
 				528A347820CFB98D00E8475C /* TeamImageManager.swift in Sources */,
 				52E261D124D6DE510059D6F8 /* TouchBar.swift in Sources */,
 				5211F72D1CDB1EE50031496D /* OtherLinksTableViewController.swift in Sources */,
