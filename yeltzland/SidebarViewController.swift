@@ -11,6 +11,11 @@ import SafariServices
 import Intents
 import IntentsUI
 
+#if canImport(SwiftUI)
+import SwiftUI
+import Combine
+#endif
+
 @available(iOS 14, *)
 class SidebarViewController: UIViewController {
     
@@ -364,6 +369,20 @@ extension SidebarViewController {
         }
     }
     
+    func handleReloadKeyboardCommand() {
+        if let currentController = self.currentUIViewController() {
+            if let webPageController = currentController as? WebPageViewController {
+                webPageController.reloadButtonTouchUp()
+            } else if let fixtureController = currentController as? FixturesTableViewController {
+                fixtureController.reloadButtonTouchUp()
+            } else if let latestScoreController = currentController as? LatestScoreViewController {
+                latestScoreController.reloadButtonTouchUp()
+            } else if let twitterController = currentController as? TwitterHostingController<AnyView> {
+                twitterController.reloadButtonTouchUp()
+            }
+        }
+    }
+    
     private func keyboardCommandToIndexPath(_ indexPath: IndexPath) {
         // Deselect the previously selected item
         if let currentIndexPath = collectionView.indexPathsForSelectedItems?.first {
@@ -413,6 +432,20 @@ extension SidebarViewController {
                 }
             }
         }
+    }
+    
+    private func currentUIViewController() -> UIViewController? {
+        if let splitViewController = self.splitViewController {
+            if splitViewController.viewControllers.count > 1 {
+                if let currentController = splitViewController.viewControllers[1] as? UINavigationController {
+                    if currentController.viewControllers.count > 0 {
+                        return currentController.viewControllers[0]
+                    }
+                }
+            }
+        }
+        
+        return nil
     }
     
     private func currentWebController() -> WebPageViewController? {

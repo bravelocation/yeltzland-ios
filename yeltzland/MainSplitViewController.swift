@@ -15,7 +15,10 @@ import Combine
 class MainSplitViewController: UISplitViewController {
     
     @available(iOS 13.0, *)
-    private lazy var menuSubscriber: AnyCancellable? = nil
+    private lazy var navigationCommandSubscriber: AnyCancellable? = nil
+    
+    @available(iOS 13.0, *)
+    private lazy var reloadCommandSubscriber: AnyCancellable? = nil
     
     @available(iOS 14.0, *)
     lazy var sidebarViewController = SidebarViewController()
@@ -82,11 +85,20 @@ extension MainSplitViewController {
     // MARK: - Menu options
     func setupMenuCommandHandler() {
         if #available(iOS 13.0, *) {
-            self.menuSubscriber = NotificationCenter.default.publisher(for: .navigationCommand)
+            self.navigationCommandSubscriber = NotificationCenter.default.publisher(for: .navigationCommand)
                 .receive(on: RunLoop.main)
                 .sink(receiveValue: { notification in
                     if let command = notification.object as? UIKeyCommand {
                         self.keyboardSelectTab(sender: command)
+                    }
+                })
+            
+            self.reloadCommandSubscriber = NotificationCenter.default.publisher(for: .reloadCommand)
+                .receive(on: RunLoop.main)
+                .sink(receiveValue: { notification in
+                    if let _ = notification.object as? UIKeyCommand {
+                        print("Handle reload command ...")
+                        self.sidebarViewController.handleReloadKeyboardCommand()
                     }
                 })
         }
