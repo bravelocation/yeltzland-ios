@@ -79,12 +79,10 @@ class LatestScoreViewController: UIViewController, INUIAddVoiceShortcutViewContr
          if #available(iOS 13.0, *) {
             return [
                 UIKeyCommand(title: "Reload", action: #selector(LatestScoreViewController.reloadButtonTouchUp), input: "R", modifierFlags: .command),
-                UIKeyCommand(title: "Back", action: #selector(LatestScoreViewController.goBack), input: UIKeyCommand.inputLeftArrow, modifierFlags: .command)
             ]
          } else {
             return [
                 UIKeyCommand(input: "r", modifierFlags: .command, action: #selector(LatestScoreViewController.reloadButtonTouchUp), discoverabilityTitle: "Reload"),
-                UIKeyCommand(input: UIKeyCommand.inputLeftArrow, modifierFlags: .command, action: #selector(LatestScoreViewController.goBack), discoverabilityTitle: "Back")
             ]
         }
     }
