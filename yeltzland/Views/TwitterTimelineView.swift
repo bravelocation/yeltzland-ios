@@ -44,7 +44,10 @@ struct TwitterTimelineView: View {
                 },
                 label: {
                     Image(systemName: "arrow.clockwise").foregroundColor(Color.white)
-                }).padding()
+                })
+                .buttonStyle(PlainButtonStyle())
+                .padding()
+
         )
     }
 }
