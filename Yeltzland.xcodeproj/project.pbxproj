@@ -2680,6 +2680,15 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					"$(inherited)",
+					"PB_FIELD_32BIT=1",
+					"PB_NO_PACKED_STRUCTS=1",
+					"PB_ENABLE_MALLOC=1",
+					"FIREBASE_ANALYTICS_SUPPRESS_WARNING=1",
+				);
 				INFOPLIST_FILE = yeltzland/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
@@ -2716,6 +2725,15 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					"$(inherited)",
+					"PB_FIELD_32BIT=1",
+					"PB_NO_PACKED_STRUCTS=1",
+					"PB_ENABLE_MALLOC=1",
+					"FIREBASE_ANALYTICS_SUPPRESS_WARNING=1",
 				);
 				INFOPLIST_FILE = yeltzland/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;

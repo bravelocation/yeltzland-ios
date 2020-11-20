@@ -54,6 +54,7 @@ struct WidgetTimelineProvider: TimelineProvider {
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<WidgetTimelineData>) -> Void) {
         // Go and get fresh data before updating the timeline
+        print("Updating timeline ...")
         FixtureManager.shared.fetchLatestData() { _ in
             GameScoreManager.shared.fetchLatestData() { _ in
                 var entries: [WidgetTimelineData] = []
