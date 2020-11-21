@@ -84,8 +84,10 @@ extension MainSplitViewController {
             }
         }
     }
-    
-    // MARK: - Menu options
+}
+
+// MARK: - Menu options
+extension MainSplitViewController {
     func setupMenuCommandHandler() {
         if #available(iOS 14.0, *) {
             self.navigationCommandSubscriber = NotificationCenter.default.publisher(for: .navigationCommand)
@@ -111,6 +113,34 @@ extension MainSplitViewController {
                     }
                 })
         }
+    }
+    
+    func isBackMenuEnabled() -> Bool {
+        if #available(iOS 14.0, *) {
+            if let webViewController = self.sidebarViewController.currentWebController() {
+                return webViewController.webView?.canGoBack ?? false
+            }
+        }
+        
+        return false
+    }
+    
+    func isForwardMenuEnabled() -> Bool {
+        if #available(iOS 14.0, *) {
+            if let webViewController = self.sidebarViewController.currentWebController() {
+                return webViewController.webView?.canGoForward ?? false
+            }
+        }
+        
+        return false
+    }
+    
+    func isHomeMenuEnabled() -> Bool {
+        if #available(iOS 14.0, *) {
+            return self.sidebarViewController.currentWebController() != nil
+        }
+        
+        return false
     }
 }
 

@@ -118,3 +118,43 @@ extension AppDelegate {
         NotificationCenter.default.post(name: .historyCommand, object: sender)
     }
 }
+
+extension AppDelegate {
+    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+        if #available(iOS 13.0, *) {
+            switch action {
+            case #selector(backCalled):
+                if let splitViewController = findMainSplitViewController() {
+                    return splitViewController.isBackMenuEnabled()
+                }
+                
+                return false
+            case #selector(forwardCalled):
+                if let splitViewController = findMainSplitViewController() {
+                    return splitViewController.isForwardMenuEnabled()
+                }
+                
+                return false
+            case #selector(homeCalled):
+                if let splitViewController = findMainSplitViewController() {
+                    return splitViewController.isHomeMenuEnabled()
+                }
+                
+                return false
+            default:
+                break
+            }
+        }
+        
+        return true
+    }
+    
+    @available(iOS 13.0, *)
+    private func findMainSplitViewController() -> MainSplitViewController? {
+        if let sceneDelegate = UIApplication.shared.connectedScenes.first!.delegate as? SceneDelegate {
+            return sceneDelegate.window?.rootViewController as? MainSplitViewController
+        }
+            
+        return nil
+    }
+}

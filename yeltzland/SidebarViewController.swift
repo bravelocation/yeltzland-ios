@@ -463,7 +463,7 @@ extension SidebarViewController {
         return nil
     }
     
-    private func currentWebController() -> WebPageViewController? {
+    func currentWebController() -> WebPageViewController? {
         if let splitViewController = self.splitViewController {
             if splitViewController.viewControllers.count > 1 {
                 if let currentController = splitViewController.viewControllers[1] as? UINavigationController {
