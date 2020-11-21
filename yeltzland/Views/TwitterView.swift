@@ -13,9 +13,7 @@ struct TwitterView: View {
     @EnvironmentObject var tweetData: TweetData
     
     var body: some View {
-        GeometryReader { geometry in
-            PullToRefreshTwitterTimelineView(width: geometry.size.width, height: geometry.size.height, tweetData: self.tweetData)
-        }
+        TwitterTimelineView().environmentObject(self.tweetData)
     }
 }
 
