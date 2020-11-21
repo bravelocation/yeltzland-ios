@@ -76,7 +76,6 @@
 		523C84201CE70806006F1865 /* ChromeActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523C841F1CE70806006F1865 /* ChromeActivity.swift */; };
 		523CE54D214F9A54002F29EF /* FixtureTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523CE54B214F9A54002F29EF /* FixtureTableViewCell.swift */; };
 		523CE54E214F9A54002F29EF /* FixtureTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 523CE54C214F9A54002F29EF /* FixtureTableViewCell.xib */; };
-		5248096C25695E4B0010B3AA /* AttributedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5248096B25695E4A0010B3AA /* AttributedText.swift */; };
 		5252774324C42C5400F93050 /* TimelineUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5252774224C42C5400F93050 /* TimelineUnitTests.swift */; };
 		5252774A24C42C7500F93050 /* MockDataManagers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B211124C2EF54005CE9C7 /* MockDataManagers.swift */; };
 		5252774C24C42D1400F93050 /* TeamImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A347720CFB98D00E8475C /* TeamImageManager.swift */; };
@@ -423,7 +422,6 @@
 		523C841F1CE70806006F1865 /* ChromeActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChromeActivity.swift; sourceTree = "<group>"; };
 		523CE54B214F9A54002F29EF /* FixtureTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureTableViewCell.swift; sourceTree = "<group>"; };
 		523CE54C214F9A54002F29EF /* FixtureTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FixtureTableViewCell.xib; sourceTree = "<group>"; };
-		5248096B25695E4A0010B3AA /* AttributedText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttributedText.swift; sourceTree = "<group>"; };
 		5252774024C42C5400F93050 /* YeltzlandUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YeltzlandUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5252774224C42C5400F93050 /* TimelineUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineUnitTests.swift; sourceTree = "<group>"; };
 		5252774424C42C5400F93050 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -663,7 +661,6 @@
 				52FA7EBE24F1043E001A3F8C /* LoadingIndicator.swift */,
 				52FA7EC024F106C7001A3F8C /* PullToRefreshTwitterTimelineView.swift */,
 				52FA7EC224F110E3001A3F8C /* TwitterView.swift */,
-				5248096B25695E4A0010B3AA /* AttributedText.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2021,7 +2018,6 @@
 				528C5D0224C9AAF30019DA0F /* TimelineFixture+Opponent.swift in Sources */,
 				5259F9041CDA1292009C2AA8 /* MainTabBarController.swift in Sources */,
 				5201D3C524CD5F1800726CAD /* Tweet+Image.swift in Sources */,
-				5248096C25695E4B0010B3AA /* AttributedText.swift in Sources */,
 				522716CD22D1BB50008FD210 /* CachedJSONData.swift in Sources */,
 				527DAF1B1D2BA9BA0092BB8F /* SafariActivity.swift in Sources */,
 				52FA7EC324F110E3001A3F8C /* TwitterView.swift in Sources */,
