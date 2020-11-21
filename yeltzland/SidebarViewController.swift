@@ -486,7 +486,7 @@ extension SidebarViewController: NSUserActivityDelegate {
         var currentUrl: URL?
 
         if let currentWebController = self.currentWebController() {
-            currentUrl = currentWebController.webView.url
+            currentUrl = currentWebController.webView?.url
         }
         
         if let currentIndexPath = self.lastSelectedIndex {
@@ -513,7 +513,7 @@ extension SidebarViewController: NSUserActivityDelegate {
                 var currentUrl: URL?
 
                 if let currentWebController = self.currentWebController() {
-                    currentUrl = currentWebController.webView.url
+                    currentUrl = currentWebController.webView?.url
                 }
                 
                 if let activity = self.navigationManager.userActivity(for: currentIndexPath,

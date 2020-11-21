@@ -124,7 +124,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
             // Add current URL if a web view
             if let currentController = self.viewControllers![self.selectedIndex] as? UINavigationController {
                 if let selectedController = currentController.viewControllers[0] as? WebPageViewController {
-                    currentUrl = selectedController.webView.url
+                    currentUrl = selectedController.webView?.url
                 }
             }
             
@@ -298,7 +298,7 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate, NSUs
         // Add current URL if a web view
         if let currentController = self.viewControllers![self.selectedIndex] as? UINavigationController {
             if let selectedController = currentController.viewControllers[0] as? WebPageViewController {
-                currentUrl = selectedController.webView.url
+                currentUrl = selectedController.webView?.url
             }
         }
         
