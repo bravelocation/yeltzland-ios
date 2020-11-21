@@ -153,5 +153,7 @@
 	<array>
 		<string>com.bravelocation.yeltzland.backgroundRefresh</string>
 	</array>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.sports</string>
 </dict>
 </plist>

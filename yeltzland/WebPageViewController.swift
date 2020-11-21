@@ -33,7 +33,6 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
             case .link(let url):
                 self.homePageUrl = url
                 self.pageTitle = self._navElement?.title
-                self.loadHomePage()
             default:
                 break
             }
@@ -51,33 +50,18 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
     let progressBar = UIProgressView(progressViewStyle: .bar)
     var spinner: UIActivityIndicatorView!
     
-    lazy var webView: WKWebView = {
-        // Setting configuration based on LinhT_24 comment in https://forums.developer.apple.com/thread/99674
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
-        // Use a single process pool for all web views
-        let webConfiguration = WKWebViewConfiguration()
-        webConfiguration.processPool = appDelegate.processPool
-
-        let webView = WKWebView(frame: .zero, configuration: webConfiguration)
-        webView.navigationDelegate = self
-        
-        return webView
-    }()
-
-    // Initializers
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)!
-    }
-    
-    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: Bundle!) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        self.loadHomePage()
-    }
+    var webView: WKWebView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.setupWebView()
+        self.setupNavigationBar()
+
+        self.view.backgroundColor = AppColors.systemBackground
+    }
+    
+    private func setupWebView() {
         // Calculate position on screen of elements
         let progressBarHeight = CGFloat(2.0)
         
@@ -95,24 +79,47 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         if let tabController = self.tabBarController {
             webViewHeight -= tabController.tabBar.frame.height
         }
-
-        // Add elements to view
-        self.webView.frame = CGRect(x: 0, y: topPosition + progressBarHeight, width: view.frame.width, height: webViewHeight)
-        self.webView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        self.webView.navigationDelegate = self
+        
+        // Setting configuration based on LinhT_24 comment in https://forums.developer.apple.com/thread/99674
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        // Use a single process pool for all web views
+        let webConfiguration = WKWebViewConfiguration()
+        webConfiguration.processPool = appDelegate.processPool
         
         // Make sure web view uses default data store
-        self.webView.configuration.websiteDataStore = WKWebsiteDataStore.default()
-        
+        webConfiguration.websiteDataStore = WKWebsiteDataStore.default()
+
+        // Set web view to correct size before adding to view
+        self.webView = WKWebView(frame: CGRect(x: 0, y: topPosition + progressBarHeight, width: view.frame.width, height: webViewHeight), configuration: webConfiguration)
+
+        self.webView?.navigationDelegate = self
+        self.webView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+
         self.progressBar.frame = CGRect(x: 0, y: topPosition, width: view.frame.width, height: progressBarHeight)
         self.progressBar.alpha = 0
         self.progressBar.tintColor = UIColor(named: "yeltz-blue")
         self.progressBar.autoresizingMask = .flexibleWidth
         
         self.view.addSubview(self.progressBar)
-        self.view.addSubview(self.webView)
-        self.view.backgroundColor = AppColors.systemBackground
+        self.view.addSubview(self.webView!)
         
+        // Swipe gestures automatically supported
+        self.webView?.allowsBackForwardNavigationGestures = true
+        
+        // Add pull to refresh
+        #if !targetEnvironment(macCatalyst)
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshWebView(_:)), for: UIControl.Event.valueChanged)
+        self.webView?.scrollView.addSubview(refreshControl)
+        #endif
+        
+        self.webView?.scrollView.bounces = true
+        
+        self.loadHomePage()
+    }
+    
+    private func setupNavigationBar() {
         // Setup navigation
         self.navigationItem.title = self.pageTitle
         
@@ -166,18 +173,6 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
         self.reloadButton.tintColor = UIColor.white
         self.homeButton.tintColor = UIColor.white
         self.shareButton.tintColor = UIColor.white
-        
-        // Swipe gestures automatically supported
-        self.webView.allowsBackForwardNavigationGestures = true
-        
-        // Add pull to refresh
-        #if !targetEnvironment(macCatalyst)
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(refreshWebView(_:)), for: UIControl.Event.valueChanged)
-        self.webView.scrollView.addSubview(refreshControl)
-        #endif
-        
-        self.webView.scrollView.bounces = true
     }
     
     // MARK: - Pull to refresh
@@ -198,15 +193,15 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
     override var keyCommands: [UIKeyCommand]? {
          if #available(iOS 13.0, *) {
             return [
-                UIKeyCommand(title: "Forward", action: #selector(WebPageViewController.forwardButtonTouchUp), input: UIKeyCommand.inputRightArrow, modifierFlags: .command),
-                UIKeyCommand(title: "Back", action: #selector(WebPageViewController.backButtonTouchUp), input: UIKeyCommand.inputLeftArrow, modifierFlags: .command),
+                UIKeyCommand(title: "Forward", action: #selector(WebPageViewController.forwardButtonTouchUp), input: "]", modifierFlags: .command),
+                UIKeyCommand(title: "Back", action: #selector(WebPageViewController.backButtonTouchUp), input: "[", modifierFlags: .command),
                 UIKeyCommand(title: "Reload", action: #selector(WebPageViewController.reloadButtonTouchUp), input: "R", modifierFlags: .command),
                 UIKeyCommand(title: "Home", action: #selector(WebPageViewController.loadHomePage), input: "H", modifierFlags: [.command, .shift])
             ]
          } else {
             return [
-                UIKeyCommand(input: UIKeyCommand.inputRightArrow, modifierFlags: .command, action: #selector(WebPageViewController.forwardButtonTouchUp), discoverabilityTitle: "Forward"),
-                UIKeyCommand(input: UIKeyCommand.inputLeftArrow, modifierFlags: .command, action: #selector(WebPageViewController.backButtonTouchUp), discoverabilityTitle: "Back"),
+                UIKeyCommand(input: "]", modifierFlags: .command, action: #selector(WebPageViewController.forwardButtonTouchUp), discoverabilityTitle: "Forward"),
+                UIKeyCommand(input: "[", modifierFlags: .command, action: #selector(WebPageViewController.backButtonTouchUp), discoverabilityTitle: "Back"),
                 UIKeyCommand(input: "R", modifierFlags: .command, action: #selector(WebPageViewController.reloadButtonTouchUp), discoverabilityTitle: "Reload"),
                 UIKeyCommand(input: "H", modifierFlags: [.command, .shift], action: #selector(WebPageViewController.loadHomePage), discoverabilityTitle: "Home")
             ]
@@ -216,40 +211,40 @@ class WebPageViewController: UIViewController, WKNavigationDelegate {
     // MARK: - Nav bar actions
     @objc func reloadButtonTouchUp() {
         self.progressBar.setProgress(0, animated: false)
-        self.webView.reloadFromOrigin()
+        self.webView?.reloadFromOrigin()
     }
     
     @objc func backButtonTouchUp() {
-        self.webView.goBack()
+        self.webView?.goBack()
     }
     
     @objc func forwardButtonTouchUp() {
-        self.webView.goForward()
+        self.webView?.goForward()
     }
     
     @objc func loadHomePage() {
-        self.webView.stopLoading()
+        self.webView?.stopLoading()
         progressBar.setProgress(0, animated: false)
         
         if let requestUrl = self.homeUrl {
             let req = URLRequest(url: requestUrl)
-            self.webView.load(req)
+            self.webView?.load(req)
             print("Loading home page:", requestUrl)
         }
     }
     
     func loadPage(_ requestUrl: URL) {
-        self.webView.stopLoading()
+        self.webView?.stopLoading()
         progressBar.setProgress(0, animated: false)
         
         let req = URLRequest(url: requestUrl)
-        self.webView.load(req)
+        self.webView?.load(req)
 
         print("Loading page:", requestUrl)
     }
     
     @objc func shareButtonTouchUp() {
-        if let requestUrl = self.webView.url {
+        if let requestUrl = self.webView?.url {
             let objectsToShare = [requestUrl]
 
             // Add custom activities as appropriate

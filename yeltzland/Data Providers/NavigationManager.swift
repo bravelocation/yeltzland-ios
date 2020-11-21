@@ -325,18 +325,7 @@ public class NavigationManager {
         let twitterAccountName = "halesowentownfc"
         
         if #available(iOS 13.0, *) {
-            let twitterConsumerKey = SettingsManager.shared.getSetting("TwitterConsumerKey") as! String
-            let twitterConsumerSecret = SettingsManager.shared.getSetting("TwitterConsumerSecret") as! String
-            
-            let twitterDataProvider = TwitterDataProvider(
-                twitterConsumerKey: twitterConsumerKey,
-                twitterConsumerSecret: twitterConsumerSecret,
-                tweetCount: 20,
-                accountName: twitterAccountName
-            )
-            
-            let tweetData = TweetData(dataProvider: twitterDataProvider, accountName: twitterAccountName)
-            let twitterViewController = UIHostingController(rootView: TwitterView().environmentObject(tweetData))
+            let twitterViewController = TwitterHostingController<AnyView>(twitterAccountName: twitterAccountName)
             
             self._main.elements.append(NavigationElement.controller(title: "@\(twitterAccountName)",
                                                                     imageName: "twitter",

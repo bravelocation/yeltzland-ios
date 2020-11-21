@@ -15,7 +15,13 @@ import Combine
 class MainSplitViewController: UISplitViewController {
     
     @available(iOS 13.0, *)
-    private lazy var menuSubscriber: AnyCancellable? = nil
+    private lazy var navigationCommandSubscriber: AnyCancellable? = nil
+    
+    @available(iOS 13.0, *)
+    private lazy var reloadCommandSubscriber: AnyCancellable? = nil
+    
+    @available(iOS 13.0, *)
+    private lazy var historyCommandSubscriber: AnyCancellable? = nil
     
     @available(iOS 14.0, *)
     lazy var sidebarViewController = SidebarViewController()
@@ -78,18 +84,63 @@ extension MainSplitViewController {
             }
         }
     }
-    
-    // MARK: - Menu options
+}
+
+// MARK: - Menu options
+extension MainSplitViewController {
     func setupMenuCommandHandler() {
-        if #available(iOS 13.0, *) {
-            self.menuSubscriber = NotificationCenter.default.publisher(for: .navigationCommand)
+        if #available(iOS 14.0, *) {
+            self.navigationCommandSubscriber = NotificationCenter.default.publisher(for: .navigationCommand)
                 .receive(on: RunLoop.main)
                 .sink(receiveValue: { notification in
                     if let command = notification.object as? UIKeyCommand {
                         self.keyboardSelectTab(sender: command)
                     }
                 })
+            
+            self.reloadCommandSubscriber = NotificationCenter.default.publisher(for: .reloadCommand)
+                .receive(on: RunLoop.main)
+                .sink(receiveValue: { _ in
+                    print("Handle reload command ...")
+                    self.sidebarViewController.handleReloadKeyboardCommand()
+                })
+            
+            self.historyCommandSubscriber = NotificationCenter.default.publisher(for: .historyCommand)
+                .receive(on: RunLoop.main)
+                .sink(receiveValue: { notification in
+                    if let command = notification.object as? UIKeyCommand {
+                        self.sidebarViewController.handleHistoryKeyboardCommand(sender: command)
+                    }
+                })
         }
+    }
+    
+    func isBackMenuEnabled() -> Bool {
+        if #available(iOS 14.0, *) {
+            if let webViewController = self.sidebarViewController.currentWebController() {
+                return webViewController.webView?.canGoBack ?? false
+            }
+        }
+        
+        return false
+    }
+    
+    func isForwardMenuEnabled() -> Bool {
+        if #available(iOS 14.0, *) {
+            if let webViewController = self.sidebarViewController.currentWebController() {
+                return webViewController.webView?.canGoForward ?? false
+            }
+        }
+        
+        return false
+    }
+    
+    func isHomeMenuEnabled() -> Bool {
+        if #available(iOS 14.0, *) {
+            return self.sidebarViewController.currentWebController() != nil
+        }
+        
+        return false
     }
 }
 
