@@ -146,7 +146,7 @@ extension AppDelegate {
             }
         }
         
-        return true
+        return super.canPerformAction(action, withSender: sender)
     }
     
     @available(iOS 13.0, *)
