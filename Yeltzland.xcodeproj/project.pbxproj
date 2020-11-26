@@ -124,7 +124,7 @@
 		526F54631D214982001EA8D8 /* Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236AE51D17DFF8004903AB /* Fixture.swift */; };
 		526F54641D214982001EA8D8 /* FixtureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236AE71D17E4D3004903AB /* FixtureManager.swift */; };
 		526F54651D214C3B001EA8D8 /* matches.json in Resources */ = {isa = PBXBuildFile; fileRef = 52236AEA1D17ECB4004903AB /* matches.json */; };
-		527C17D12508B2BF009FDBEB /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 527C17D02508B2BF009FDBEB /* WidgetKit.framework */; platformFilter = ios; };
+		527C17D12508B2BF009FDBEB /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 527C17D02508B2BF009FDBEB /* WidgetKit.framework */; };
 		527C17D22508B2BF009FDBEB /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 526CE78D24CF0E9A00CC1023 /* SwiftUI.framework */; };
 		527C17D52508B2BF009FDBEB /* YeltzlandWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527C17D42508B2BF009FDBEB /* YeltzlandWidget.swift */; };
 		527C17DB2508B2C1009FDBEB /* YeltzlandWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 527C17CF2508B2BF009FDBEB /* YeltzlandWidgetExtension.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -2507,11 +2507,13 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bravelocation.yeltzland.YeltzlandWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SHARED_VERSION_NUMBER = 5.2.1;
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Debug;
 		};
@@ -2545,10 +2547,12 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bravelocation.yeltzland.YeltzlandWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SHARED_VERSION_NUMBER = 5.2.1;
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Release;
 		};
