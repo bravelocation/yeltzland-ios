@@ -23,7 +23,7 @@ struct TVOSTweetView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 64, height: 64, alignment: .center)
-                    .cornerRadius(16)
+                    .cornerRadius(32)
                     
                     if (tweet.isRetweet) {
                         Image(systemName: "arrow.right.arrow.left")
