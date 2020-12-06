@@ -6,23 +6,52 @@
 //  Copyright © 2017 John Pollard. All rights reserved.
 //
 
-import UIKit
+import SwiftUI
 
+@main
+struct SwiftUIAppLifeCycleApp: App {
+    @Environment(\.scenePhase) var scenePhase
+    
+    var body: some Scene {
+        WindowGroup {
+            TVOSTabView().environmentObject(self.tweetData)
+        }
+        .onChange(of: scenePhase) { newScenePhase in
+            switch newScenePhase {
+                case .active:
+                    // Update the fixture and game score caches
+                    FixtureManager.shared.fetchLatestData(completion: nil)
+                    GameScoreManager.shared.fetchLatestData(completion: nil)
+                case .inactive:
+                    print("App is inactive")
+                case .background:
+                    print("App is in background")
+                @unknown default:
+                    print("Oh - interesting: I received an unexpected new value.")
+            }
+        }
+    }
+    
+    var tweetData: TweetData {
+        let twitterConsumerKey = SettingsManager.shared.getSetting("TwitterConsumerKey") as! String
+        let twitterConsumerSecret = SettingsManager.shared.getSetting("TwitterConsumerSecret") as! String
+        let twitterAccountName = "halesowentownfc"
+        
+        let twitterDataProvider = TwitterDataProvider(
+            twitterConsumerKey: twitterConsumerKey,
+            twitterConsumerSecret: twitterConsumerSecret,
+            tweetCount: 20,
+            accountName: twitterAccountName
+        )
+        
+        return TweetData(dataProvider: twitterDataProvider, accountName: twitterAccountName)
+    }
+}
+
+/*
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var window: UIWindow?
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        return true
-    }
-
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        // Update the fixture and game score caches
-        FixtureManager.shared.fetchLatestData(completion: nil)
-        GameScoreManager.shared.fetchLatestData(completion: nil)
-    }
     
     func application(_ application: UIApplication,
                      performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
@@ -45,3 +74,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         completionHandler(UIBackgroundFetchResult.noData)
     }
 }
+ */
