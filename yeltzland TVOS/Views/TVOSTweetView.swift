@@ -13,6 +13,8 @@ struct TVOSTweetView: View {
     
     @EnvironmentObject var tweetData: TweetData
     
+    @State private var borderColor = Color.clear
+    
     var tweet: DisplayTweet
     
     var body: some View {
@@ -65,11 +67,18 @@ struct TVOSTweetView: View {
                 TVOSTweetView(tweet: self.tweet.quote!)
                     .padding()
                     .overlay(
-                        RoundedRectangle(cornerRadius: 16)
+                        RoundedRectangle(cornerRadius: 32)
                             .stroke(Color("light-blue"), lineWidth: 1)
                     )
             }
-        }.focusable(true)
+        }.focusable(true) { isFocused in
+            self.borderColor = isFocused ? Color.yellow : Color.clear
+        }
+        .padding()
+        .overlay(
+            RoundedRectangle(cornerRadius: 32)
+                .stroke(self.borderColor, lineWidth: 1)
+        )
     }
 }
 
