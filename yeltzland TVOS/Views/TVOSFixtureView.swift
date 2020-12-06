@@ -22,7 +22,7 @@ struct TVOSFixtureView: View {
                 .frame(width: 64, height: 64, alignment: .center)
                 .cornerRadius(32)
                 
-                Text(self.fixture.opponent)
+                Text(self.fixture.opponentPlusHomeAway)
                 
                 Spacer()
                 
@@ -33,7 +33,8 @@ struct TVOSFixtureView: View {
                         .foregroundColor(self.resultColor())
                 }
             }
-        }.focusable(true) { isFocused in
+        }
+        .focusable(true) { isFocused in
             self.borderColor = isFocused ? Color.yellow : Color.clear
         }
         .padding()

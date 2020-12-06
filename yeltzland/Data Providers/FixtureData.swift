@@ -37,13 +37,19 @@ class FixtureData: ObservableObject {
         NotificationCenter.default.addObserver(self, selector: #selector(FixtureData.dataUpdated(_:)), name: .GameScoreUpdated, object: nil)
     }
     
-    public func refreshData() {
+    public func refreshData(completion: (() -> Void)? = nil) {
         print("Refreshing fixtures data ...")
         self.setState(.isLoading)
         
         FixtureManager.shared.fetchLatestData() { result in
             if result == .success(true) {
                 self.reloadFixtures()
+                
+                if let completion = completion {
+                    DispatchQueue.main.async {
+                        completion()
+                    }
+                }
             }
         }
         GameScoreManager.shared.fetchLatestData() { result in
