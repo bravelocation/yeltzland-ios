@@ -10,6 +10,8 @@ import SwiftUI
 
 @main
 struct SwiftUIAppLifeCycleApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    
     @Environment(\.scenePhase) var scenePhase
     
     var body: some Scene {
@@ -19,13 +21,12 @@ struct SwiftUIAppLifeCycleApp: App {
         .onChange(of: scenePhase) { newScenePhase in
             switch newScenePhase {
                 case .active:
-                    // Update the fixture and game score caches
+                    // Update the fixture and game score caches when the app becomes active
                     FixtureManager.shared.fetchLatestData(completion: nil)
                     GameScoreManager.shared.fetchLatestData(completion: nil)
-                case .inactive:
-                    print("App is inactive")
-                case .background:
-                    print("App is in background")
+                    
+                case .inactive, .background:
+                    break
                 @unknown default:
                     print("Oh - interesting: I received an unexpected new value.")
             }
@@ -48,11 +49,8 @@ struct SwiftUIAppLifeCycleApp: App {
     }
 }
 
-/*
-@UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    
     func application(_ application: UIApplication,
                      performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         print("In background refresh ...")
@@ -74,4 +72,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         completionHandler(UIBackgroundFetchResult.noData)
     }
 }
- */
