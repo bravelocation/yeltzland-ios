@@ -22,7 +22,7 @@ struct TVOSTweetView: View {
                     self.tweetData.profilePic(tweet)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 32, height: 32, alignment: .center)
+                    .frame(width: 64, height: 64, alignment: .center)
                     .cornerRadius(16)
                     
                     if (tweet.isRetweet) {
@@ -69,7 +69,7 @@ struct TVOSTweetView: View {
                             .stroke(Color("light-blue"), lineWidth: 1)
                     )
             }
-        }
+        }.focusable(true)
     }
 }
 

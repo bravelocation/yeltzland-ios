@@ -95,8 +95,6 @@
 		5252775B24C498DD00F93050 /* CurrentGameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5252775A24C498DD00F93050 /* CurrentGameData.swift */; };
 		5252775C24C4999100F93050 /* TimelineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B210324C2CD6E005CE9C7 /* TimelineManager.swift */; };
 		525719741FDE8AE2005F1D80 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525719731FDE8AE2005F1D80 /* AppDelegate.swift */; };
-		525719761FDE8AE2005F1D80 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525719751FDE8AE2005F1D80 /* ViewController.swift */; };
-		525719791FDE8AE2005F1D80 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 525719771FDE8AE2005F1D80 /* Main.storyboard */; };
 		5257197B1FDE8AE2005F1D80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5257197A1FDE8AE2005F1D80 /* Assets.xcassets */; };
 		525719801FDE8BBB005F1D80 /* FixtureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236AE71D17E4D3004903AB /* FixtureManager.swift */; };
 		525719811FDE8BBF005F1D80 /* Fixture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52236AE51D17DFF8004903AB /* Fixture.swift */; };
@@ -200,9 +198,6 @@
 		52D68C4F2567EF1900C39D37 /* TwitterHostingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D68C4E2567EF1900C39D37 /* TwitterHostingController.swift */; };
 		52D868261FE81B6E0041B578 /* TVFixtureCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D868241FE81B6E0041B578 /* TVFixtureCollectionCell.swift */; };
 		52D868271FE81B6E0041B578 /* TVFixtureCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52D868251FE81B6E0041B578 /* TVFixtureCollectionCell.xib */; };
-		52D868291FE928DA0041B578 /* TwitterDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D868281FE928DA0041B578 /* TwitterDataSource.swift */; };
-		52D8682C1FE92A440041B578 /* TVTwitterCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D8682A1FE92A440041B578 /* TVTwitterCollectionCell.swift */; };
-		52D8682D1FE92A440041B578 /* TVTwitterCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52D8682B1FE92A440041B578 /* TVTwitterCollectionCell.xib */; };
 		52D8682F1FE933C20041B578 /* VerticallyAlignedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D8682E1FE933C20041B578 /* VerticallyAlignedLabel.swift */; };
 		52D8C9C622D9D685006FCAB9 /* NextGameIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D8C9C522D9D685006FCAB9 /* NextGameIntentHandler.swift */; };
 		52DA841124D6AD3600E01C25 /* MenuBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DA841024D6AD3600E01C25 /* MenuBuilder.swift */; };
@@ -439,8 +434,6 @@
 		5252775A24C498DD00F93050 /* CurrentGameData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentGameData.swift; sourceTree = "<group>"; };
 		525719711FDE8AE1005F1D80 /* YeltzlandTVOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YeltzlandTVOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		525719731FDE8AE2005F1D80 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		525719751FDE8AE2005F1D80 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		525719781FDE8AE2005F1D80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5257197A1FDE8AE2005F1D80 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5257197C1FDE8AE2005F1D80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5257E8BA1CDB953400157CED /* YeltzlandUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YeltzlandUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -497,9 +490,6 @@
 		52D68C4E2567EF1900C39D37 /* TwitterHostingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterHostingController.swift; sourceTree = "<group>"; };
 		52D868241FE81B6E0041B578 /* TVFixtureCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVFixtureCollectionCell.swift; sourceTree = "<group>"; };
 		52D868251FE81B6E0041B578 /* TVFixtureCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TVFixtureCollectionCell.xib; sourceTree = "<group>"; };
-		52D868281FE928DA0041B578 /* TwitterDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterDataSource.swift; sourceTree = "<group>"; };
-		52D8682A1FE92A440041B578 /* TVTwitterCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVTwitterCollectionCell.swift; sourceTree = "<group>"; };
-		52D8682B1FE92A440041B578 /* TVTwitterCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TVTwitterCollectionCell.xib; sourceTree = "<group>"; };
 		52D8682E1FE933C20041B578 /* VerticallyAlignedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticallyAlignedLabel.swift; sourceTree = "<group>"; };
 		52D8C9C522D9D685006FCAB9 /* NextGameIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextGameIntentHandler.swift; sourceTree = "<group>"; };
 		52DA841024D6AD3600E01C25 /* MenuBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBuilder.swift; sourceTree = "<group>"; };
@@ -814,16 +804,11 @@
 			children = (
 				52FE6CB7257CCAA80034A75E /* Views */,
 				525719731FDE8AE2005F1D80 /* AppDelegate.swift */,
-				525719751FDE8AE2005F1D80 /* ViewController.swift */,
-				525719771FDE8AE2005F1D80 /* Main.storyboard */,
 				5257197A1FDE8AE2005F1D80 /* Assets.xcassets */,
 				5257197C1FDE8AE2005F1D80 /* Info.plist */,
 				52E77DE71FDEBBB60069FCFB /* TVFixturesDataSource.swift */,
 				52D868241FE81B6E0041B578 /* TVFixtureCollectionCell.swift */,
 				52D868251FE81B6E0041B578 /* TVFixtureCollectionCell.xib */,
-				52D868281FE928DA0041B578 /* TwitterDataSource.swift */,
-				52D8682A1FE92A440041B578 /* TVTwitterCollectionCell.swift */,
-				52D8682B1FE92A440041B578 /* TVTwitterCollectionCell.xib */,
 				52D8682E1FE933C20041B578 /* VerticallyAlignedLabel.swift */,
 			);
 			path = "yeltzland TVOS";
@@ -1454,10 +1439,8 @@
 				5206BC5424CABAE500A927B3 /* Settings.plist in Resources */,
 				520C09A02157A73100CCC2D8 /* DefaultPreferences.plist in Resources */,
 				5257197B1FDE8AE2005F1D80 /* Assets.xcassets in Resources */,
-				52D8682D1FE92A440041B578 /* TVTwitterCollectionCell.xib in Resources */,
 				521B94AB22CBB621009DFF76 /* Colors.xcassets in Resources */,
 				52E77DEB1FDEC0740069FCFB /* matches.json in Resources */,
-				525719791FDE8AE2005F1D80 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1919,9 +1902,7 @@
 				528C5D0D24C9AB750019DA0F /* TimelineFixture+Score.swift in Sources */,
 				525719801FDE8BBB005F1D80 /* FixtureManager.swift in Sources */,
 				5206BC5824CABBA200A927B3 /* Tweet.swift in Sources */,
-				52D8682C1FE92A440041B578 /* TVTwitterCollectionCell.swift in Sources */,
 				52FE6DB2257CD12C0034A75E /* TVOSTweetImagesView.swift in Sources */,
-				52D868291FE928DA0041B578 /* TwitterDataSource.swift in Sources */,
 				52FE6D72257CCE010034A75E /* TimelineManager.swift in Sources */,
 				52FE6D0F257CCD860034A75E /* Tweet+Text.swift in Sources */,
 				52FE6CCF257CCC100034A75E /* TVOSFixturesView.swift in Sources */,
@@ -1932,7 +1913,6 @@
 				528C5D0524C9AAF30019DA0F /* TimelineFixture+Opponent.swift in Sources */,
 				52FE6D1A257CCD890034A75E /* Tweet+Image.swift in Sources */,
 				52D868261FE81B6E0041B578 /* TVFixtureCollectionCell.swift in Sources */,
-				525719761FDE8AE2005F1D80 /* ViewController.swift in Sources */,
 				52DE636B24E909B6000DAA25 /* DateHelper.swift in Sources */,
 				525719741FDE8AE2005F1D80 /* AppDelegate.swift in Sources */,
 				528C5CFD24C9AAB20019DA0F /* TimelineFixture+Date.swift in Sources */,
@@ -2173,14 +2153,6 @@
 				52176BBA1D4B6D5900B7EFAE /* Base */,
 			);
 			name = Interface.storyboard;
-			sourceTree = "<group>";
-		};
-		525719771FDE8AE2005F1D80 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				525719781FDE8AE2005F1D80 /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		526F54561D214705001EA8D8 /* MainInterface.storyboard */ = {

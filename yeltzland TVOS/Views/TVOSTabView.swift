@@ -15,20 +15,21 @@ struct TVOSTabView: View {
      
         var body: some View {
             TabView(selection: $selection){
-                TVOSFixturesView()
+
+                TVOSTwitterView()
                     .tabItem {
                         HStack {
-                            Image(systemName: "chart.pie")
-                            Text("Fixtures")
+                            Image("TwitterLogo")
+                            Text("@halesowentownfc")
                         }
                     }
                     .tag(0)
                 
-                TVOSTwitterView()
+                TVOSFixturesView()
                     .tabItem {
                         HStack {
-                            Image(systemName: "dollarsign.circle")
-                            Text("Twitter")
+                            Image("Fixtures")
+                            Text("Fixtures")
                         }
                     }
                     .tag(1)
