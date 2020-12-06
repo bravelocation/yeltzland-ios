@@ -12,24 +12,26 @@ import SwiftUI
 
 struct TVOSFixtureListView: View {
     @EnvironmentObject var fixtureData: FixtureData
+    @State private var buttonBorderColor: Color = Color.blue
+    var resultsOnly: Bool
         
     var body: some View {
         ScrollViewReader { scrollReader in
             List {
                 ForEach(self.fixtureData.months, id: \.self) { month in
-                    Text(self.fixtureData.monthName(month))
-                        .font(.headline)
-                        .focusable(true)
+                    if self.fixtureData.fixturesForMonth(month, resultsOnly: self.resultsOnly).count > 0 {
+                        Text(self.fixtureData.monthName(month))
+                            .font(.headline)
+                            .focusable(true)
+                    }
                     
-                    ForEach(self.fixtureData.fixturesForMonth(month), id: \.self) { fixture in
+                    ForEach(self.fixtureData.fixturesForMonth(month, resultsOnly: self.resultsOnly), id: \.self) { fixture in
                         TVOSFixtureView(fixture: fixture).environmentObject(self.fixtureData)
                     }
                 }
             }
             .onAppear {
-                self.fixtureData.refreshData() {
-                    scrollReader.scrollTo(self.currentMonthSection())
-                }
+                self.fixtureData.refreshData()
             }
         }
     }
@@ -59,6 +61,6 @@ struct TVOSFixtureListView: View {
 
 struct TVOSFixtureListView_Previews: PreviewProvider {
     static var previews: some View {
-        TVOSFixtureListView().environmentObject(FixtureData())
+        TVOSFixtureListView(resultsOnly: true).environmentObject(FixtureData())
     }
 }

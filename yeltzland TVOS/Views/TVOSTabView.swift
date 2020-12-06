@@ -34,13 +34,21 @@ struct TVOSTabView: View {
                     }
                     .tag(1)
                 
-                TVOSFixtureListView()
+                TVOSFixtureListView(resultsOnly: false)
                     .tabItem {
                         HStack {
-                            Text("Fixture List")
+                            Text("Fixtures")
                         }
                     }
                     .tag(2)
+                
+                TVOSFixtureListView(resultsOnly: true)
+                    .tabItem {
+                        HStack {
+                            Text("Results")
+                        }
+                    }
+                    .tag(3)
             }
         }
 }

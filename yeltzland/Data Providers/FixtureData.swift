@@ -108,7 +108,7 @@ class FixtureData: ObservableObject {
         return Image("blank_team")
     }
     
-    func fixturesForMonth(_ month: String) -> [TimelineFixture] {
+    func fixturesForMonth(_ month: String, resultsOnly: Bool) -> [TimelineFixture] {
         
         var timelineFixtures: [TimelineFixture] = []
         
@@ -123,7 +123,7 @@ class FixtureData: ObservableObject {
                 } else if fixture.teamScore == nil || fixture.opponentScore == nil {
                     fixtureStatus = .fixture
                 }
-                
+   
                 let timelineFixture = TimelineFixture(
                     opponent: fixture.opponent,
                     home: fixture.home,
@@ -131,9 +131,14 @@ class FixtureData: ObservableObject {
                     teamScore: fixture.teamScore,
                     opponentScore: fixture.opponentScore,
                     status: fixtureStatus)
-            
-                timelineFixtures.append(timelineFixture)
-                self.fetchTeamImage(fixture: timelineFixture)
+                
+                if resultsOnly && fixtureStatus == .result {
+                    timelineFixtures.append(timelineFixture)
+                    self.fetchTeamImage(fixture: timelineFixture)
+                } else if resultsOnly == false && fixtureStatus != .result {
+                    timelineFixtures.append(timelineFixture)
+                    self.fetchTeamImage(fixture: timelineFixture)
+                }
             }
         }
         
