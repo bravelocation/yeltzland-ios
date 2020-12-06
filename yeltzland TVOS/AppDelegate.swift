@@ -19,6 +19,7 @@ struct SwiftUIAppLifeCycleApp: App {
             TVOSTabView()
                 .environmentObject(self.tweetData)
                 .environmentObject(FixtureData())
+                .environmentObject(TimelineData())
         }
         .onChange(of: scenePhase) { newScenePhase in
             switch newScenePhase {

@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct TVOSTabView: View {
+    @EnvironmentObject var timelineData: TimelineData
     @EnvironmentObject var tweetData: TweetData
     @EnvironmentObject var fixtureData: FixtureData
     
@@ -16,6 +17,14 @@ struct TVOSTabView: View {
      
         var body: some View {
             TabView(selection: $selection) {
+                TVOSTimelineView()
+                    .tabItem {
+                        HStack {
+                            Text("Latest")
+                        }
+                    }
+                    .tag(0)
+                
                 TVOSTwitterView()
                     .tabItem {
                         HStack {
@@ -23,7 +32,7 @@ struct TVOSTabView: View {
                             Text("@halesowentownfc")
                         }
                     }
-                    .tag(0)
+                    .tag(1)
                 
                 TVOSFixtureListView()
                     .tabItem {
@@ -31,7 +40,7 @@ struct TVOSTabView: View {
                             Text("Fixture List")
                         }
                     }
-                    .tag(1)
+                    .tag(2)
             }
         }
 }
