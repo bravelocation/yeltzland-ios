@@ -22,15 +22,15 @@ struct SwiftUIAppLifeCycleApp: App {
         }
         .onChange(of: scenePhase) { newScenePhase in
             switch newScenePhase {
-                case .active:
-                    // Update the fixture and game score caches when the app becomes active
-                    FixtureManager.shared.fetchLatestData(completion: nil)
-                    GameScoreManager.shared.fetchLatestData(completion: nil)
-                    
-                case .inactive, .background:
-                    break
-                @unknown default:
-                    print("Oh - interesting: I received an unexpected new value.")
+            case .active:
+                // Update the fixture and game score caches when the app becomes active
+                FixtureManager.shared.fetchLatestData(completion: nil)
+                GameScoreManager.shared.fetchLatestData(completion: nil)
+                
+            case .inactive, .background:
+                break
+            @unknown default:
+                print("Oh - interesting: I received an unexpected new value.")
             }
         }
     }

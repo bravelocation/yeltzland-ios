@@ -147,7 +147,6 @@ class FixtureData: ObservableObject {
         }
     }
     
-    
     private func loadImage(imageUrl: URL, completion: @escaping (UIImage?) -> Void) {
         SDWebImageManager.shared.loadImage(with: imageUrl,
                                        options: .continueInBackground,

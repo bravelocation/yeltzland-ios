@@ -10,8 +10,7 @@
 import SwiftUI
 #endif
 
-@available(iOS 13.0.0, *)
-struct FixtureListView: View {
+struct TVOSFixtureListView: View {
     @EnvironmentObject var fixtureData: FixtureData
         
     var body: some View {
@@ -21,7 +20,7 @@ struct FixtureListView: View {
                     .font(.headline)
                 
                 ForEach(self.fixtureData.fixturesForMonth(month), id: \.self) { fixture in
-                    FixtureView(fixture: fixture).environmentObject(self.fixtureData)
+                    TVOSFixtureView(fixture: fixture).environmentObject(self.fixtureData)
                 }
             }
         }
@@ -31,9 +30,8 @@ struct FixtureListView: View {
     }
 }
 
-@available(iOS 13.0.0, *)
-struct FixtureListView_Previews: PreviewProvider {
+struct TVOSFixtureListView_Previews: PreviewProvider {
     static var previews: some View {
-        FixtureListView().environmentObject(FixtureData())
+        TVOSFixtureListView().environmentObject(FixtureData())
     }
 }

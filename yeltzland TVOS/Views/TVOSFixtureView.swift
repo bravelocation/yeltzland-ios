@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct FixtureView: View {
+struct TVOSFixtureView: View {
     @EnvironmentObject var fixtureData: FixtureData
     @State private var borderColor = Color.clear
     var fixture: TimelineFixture
@@ -55,9 +55,9 @@ struct FixtureView: View {
     }
 }
 
-struct FixtureView_Previews: PreviewProvider {
+struct TVOSFixtureView_Previews: PreviewProvider {
     static var previews: some View {
-        FixtureView(fixture: TimelineFixture(opponent: "Barnet",
+        TVOSFixtureView(fixture: TimelineFixture(opponent: "Barnet",
                                              home: false,
                                              date: Date(),
                                              teamScore: 2,

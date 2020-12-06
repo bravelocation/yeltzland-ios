@@ -8,13 +8,10 @@
 
 import SwiftUI
 
-
 struct TVOSTweetView: View {
     
     @EnvironmentObject var tweetData: TweetData
-    
     @State private var borderColor = Color.clear
-    
     var tweet: DisplayTweet
     
     var body: some View {
@@ -119,4 +116,3 @@ struct TVOSTweetView_Previews: PreviewProvider {
                           accountName: "halesowentownfc"))
     }
 }
-

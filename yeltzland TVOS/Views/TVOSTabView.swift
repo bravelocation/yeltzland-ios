@@ -15,8 +15,7 @@ struct TVOSTabView: View {
     @State private var selection = 0
      
         var body: some View {
-            TabView(selection: $selection){
-
+            TabView(selection: $selection) {
                 TVOSTwitterView()
                     .tabItem {
                         HStack {
@@ -26,11 +25,10 @@ struct TVOSTabView: View {
                     }
                     .tag(0)
                 
-                FixtureListView()
+                TVOSFixtureListView()
                     .tabItem {
                         HStack {
-                            Image("Fixtures")
-                            Text("Fixtures")
+                            Text("Fixture List")
                         }
                     }
                     .tag(1)
