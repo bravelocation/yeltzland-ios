@@ -16,7 +16,9 @@ struct SwiftUIAppLifeCycleApp: App {
     
     var body: some Scene {
         WindowGroup {
-            TVOSTabView().environmentObject(self.tweetData)
+            TVOSTabView()
+                .environmentObject(self.tweetData)
+                .environmentObject(FixtureData())
         }
         .onChange(of: scenePhase) { newScenePhase in
             switch newScenePhase {

@@ -10,6 +10,7 @@ import SwiftUI
 
 struct TVOSTabView: View {
     @EnvironmentObject var tweetData: TweetData
+    @EnvironmentObject var fixtureData: FixtureData
     
     @State private var selection = 0
      
@@ -25,7 +26,7 @@ struct TVOSTabView: View {
                     }
                     .tag(0)
                 
-                TVOSFixturesView()
+                FixtureListView()
                     .tabItem {
                         HStack {
                             Image("Fixtures")

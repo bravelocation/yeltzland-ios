@@ -267,6 +267,12 @@
 		52FE6D72257CCE010034A75E /* TimelineManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526B210324C2CD6E005CE9C7 /* TimelineManager.swift */; };
 		52FE6D92257CD0310034A75E /* TVOSTweetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE6D91257CD0310034A75E /* TVOSTweetView.swift */; };
 		52FE6DB2257CD12C0034A75E /* TVOSTweetImagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE6DB1257CD12C0034A75E /* TVOSTweetImagesView.swift */; };
+		52FE6E3A257CE7540034A75E /* FixtureData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE6E39257CE7540034A75E /* FixtureData.swift */; };
+		52FE6E3B257CE7540034A75E /* FixtureData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE6E39257CE7540034A75E /* FixtureData.swift */; };
+		52FE6E47257CF29C0034A75E /* FixtureListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE6E46257CF29C0034A75E /* FixtureListView.swift */; };
+		52FE6E48257CF29C0034A75E /* FixtureListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE6E46257CF29C0034A75E /* FixtureListView.swift */; };
+		52FE6E54257CFEE10034A75E /* FixtureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE6E53257CFEE10034A75E /* FixtureView.swift */; };
+		52FE6E55257CFEE10034A75E /* FixtureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FE6E53257CFEE10034A75E /* FixtureView.swift */; };
 		937784A0FE49B904B7681F19 /* Pods_LatestScoreIntentUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B1EB3CDB05AFB690D5D25630 /* Pods_LatestScoreIntentUI.framework */; };
 		A3EF45D9812E6A2A28C1480B /* Pods_YeltzlandTVOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92283CF6BA4404FBD866C82C /* Pods_YeltzlandTVOS.framework */; };
 		D40132971269818EC46584B4 /* Pods_Yeltzland.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0169FC4AAE3B4FA55E081580 /* Pods_Yeltzland.framework */; };
@@ -531,6 +537,9 @@
 		52FE6CF9257CCC480034A75E /* TVOSTwitterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVOSTwitterView.swift; sourceTree = "<group>"; };
 		52FE6D91257CD0310034A75E /* TVOSTweetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVOSTweetView.swift; sourceTree = "<group>"; };
 		52FE6DB1257CD12C0034A75E /* TVOSTweetImagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVOSTweetImagesView.swift; sourceTree = "<group>"; };
+		52FE6E39257CE7540034A75E /* FixtureData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureData.swift; sourceTree = "<group>"; };
+		52FE6E46257CF29C0034A75E /* FixtureListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureListView.swift; sourceTree = "<group>"; };
+		52FE6E53257CFEE10034A75E /* FixtureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FixtureView.swift; sourceTree = "<group>"; };
 		684F68C317E1474E04B3AA97 /* Pods-YeltzlandUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YeltzlandUnitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-YeltzlandUnitTests/Pods-YeltzlandUnitTests.release.xcconfig"; sourceTree = "<group>"; };
 		6B5F6576A847D7567A17C4BF /* Pods-YeltzlandTVOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YeltzlandTVOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-YeltzlandTVOS/Pods-YeltzlandTVOS.debug.xcconfig"; sourceTree = "<group>"; };
 		6C2886E0C6D579332BF2A5A8 /* Pods-yeltzland.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-yeltzland.debug.xcconfig"; path = "Pods/Target Support Files/Pods-yeltzland/Pods-yeltzland.debug.xcconfig"; sourceTree = "<group>"; };
@@ -667,6 +676,8 @@
 				52FA7EBE24F1043E001A3F8C /* LoadingIndicator.swift */,
 				52FA7EC024F106C7001A3F8C /* PullToRefreshTwitterTimelineView.swift */,
 				52FA7EC224F110E3001A3F8C /* TwitterView.swift */,
+				52FE6E46257CF29C0034A75E /* FixtureListView.swift */,
+				52FE6E53257CFEE10034A75E /* FixtureView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -684,6 +695,7 @@
 			children = (
 				52176BB21D4B62DC00B7EFAE /* BaseSettings.swift */,
 				522716CC22D1BB50008FD210 /* CachedJSONData.swift */,
+				52FE6E39257CE7540034A75E /* FixtureData.swift */,
 				52236AE71D17E4D3004903AB /* FixtureManager.swift */,
 				52176BAF1D4A1B3200B7EFAE /* GameScoreManager.swift */,
 				52DBCA9F1D4A012E00D35F91 /* GameSettings.swift */,
@@ -1911,7 +1923,10 @@
 				52E77DE81FDEBBB60069FCFB /* TVFixturesDataSource.swift in Sources */,
 				52D8682F1FE933C20041B578 /* VerticallyAlignedLabel.swift in Sources */,
 				528C5D0524C9AAF30019DA0F /* TimelineFixture+Opponent.swift in Sources */,
+				52FE6E55257CFEE10034A75E /* FixtureView.swift in Sources */,
 				52FE6D1A257CCD890034A75E /* Tweet+Image.swift in Sources */,
+				52FE6E48257CF29C0034A75E /* FixtureListView.swift in Sources */,
+				52FE6E3B257CE7540034A75E /* FixtureData.swift in Sources */,
 				52D868261FE81B6E0041B578 /* TVFixtureCollectionCell.swift in Sources */,
 				52DE636B24E909B6000DAA25 /* DateHelper.swift in Sources */,
 				525719741FDE8AE2005F1D80 /* AppDelegate.swift in Sources */,
@@ -2006,6 +2021,8 @@
 				52176BB01D4A1B3200B7EFAE /* GameScoreManager.swift in Sources */,
 				5201D3B424CB1DA300726CAD /* PreviewTwitterDataProvider.swift in Sources */,
 				523C84201CE70806006F1865 /* ChromeActivity.swift in Sources */,
+				52FE6E54257CFEE10034A75E /* FixtureView.swift in Sources */,
+				52FE6E47257CF29C0034A75E /* FixtureListView.swift in Sources */,
 				528C5CFA24C9AAB20019DA0F /* TimelineFixture+Date.swift in Sources */,
 				522716C422D0D438008FD210 /* AppImages.swift in Sources */,
 				5201D3AF24CB14FE00726CAD /* TwitterTimelineView.swift in Sources */,
@@ -2035,6 +2052,7 @@
 				527DAF231D2D0F550092BB8F /* LocationsViewController.swift in Sources */,
 				526B210B24C2CE66005CE9C7 /* TimelineFixture.swift in Sources */,
 				52DA841124D6AD3600E01C25 /* MenuBuilder.swift in Sources */,
+				52FE6E3A257CE7540034A75E /* FixtureData.swift in Sources */,
 				528C5D0224C9AAF30019DA0F /* TimelineFixture+Opponent.swift in Sources */,
 				5259F9041CDA1292009C2AA8 /* MainTabBarController.swift in Sources */,
 				5201D3C524CD5F1800726CAD /* Tweet+Image.swift in Sources */,
