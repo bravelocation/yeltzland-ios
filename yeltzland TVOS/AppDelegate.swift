@@ -10,6 +10,8 @@ import SwiftUI
 
 @main
 struct SwiftUIAppLifeCycleApp: App {
+    
+    //swiftlint:disable:next weak_delegate
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
     @Environment(\.scenePhase) var scenePhase

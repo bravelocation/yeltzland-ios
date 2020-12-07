@@ -22,7 +22,7 @@ struct TVOSTimelineView: View {
                     }
                 }
 
-                if data.fixtures.count > 1  {
+                if data.fixtures.count > 1 {
                     Divider().background(Color("light-blue"))
                     TVOSTimelineFixtureView(fixture: data.fixtures[1])
                 }

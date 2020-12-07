@@ -83,7 +83,6 @@ class TimelineData: ObservableObject {
         return Image("blank_team")
     }
 
-    
     private func fetchTeamImage(fixture: TimelineFixture) {
         // Fetch team image
         if self.images[fixture.opponent] == nil {
