@@ -25,7 +25,7 @@ struct TwitterTimelineView: View {
                     HStack {
                         Image("club-badge")
                         Text(self.tweetData.state == .isLoading ? "Loading ..." : "All club tweets ...")
-                            .foregroundColor(Color("yeltz-blue"))
+                            .foregroundColor(Color("blue-tint"))
                     }
                 }) {
                     ForEach(self.tweetData.tweets, id: \.self) { tweet in
