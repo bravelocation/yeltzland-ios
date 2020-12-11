@@ -16,11 +16,26 @@ struct TwitterTimelineView: View {
         
     var body: some View {
         ZStack {
-            List(self.tweetData.tweets, id: \.self) { tweet in
-                TweetView(
-                    tweet: tweet.retweet ?? tweet
-                ).padding([.top, .bottom], 8)
-            }.onAppear {
+            List {
+                Section(footer: Button(action: {
+                    if let url = URL(string: "https://twitter.com/halesowentownfc") {
+                       UIApplication.shared.open(url)
+                   }
+                }) {
+                    HStack {
+                        Image("club-badge")
+                        Text(self.tweetData.state == .isLoading ? "Loading ..." : "All club tweets ...")
+                            .foregroundColor(Color("yeltz-blue"))
+                    }
+                }) {
+                    ForEach(self.tweetData.tweets, id: \.self) { tweet in
+                        TweetView(
+                            tweet: tweet.retweet ?? tweet
+                        ).padding([.top, .bottom], 8)
+                    }
+                }
+            }
+            .onAppear {
                 UITableView.appearance().separatorStyle = .none
             }
             
