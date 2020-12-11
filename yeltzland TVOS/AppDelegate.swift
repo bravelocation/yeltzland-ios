@@ -46,7 +46,7 @@ struct SwiftUIAppLifeCycleApp: App {
         let twitterDataProvider = TwitterDataProvider(
             twitterConsumerKey: twitterConsumerKey,
             twitterConsumerSecret: twitterConsumerSecret,
-            tweetCount: 20,
+            tweetCount: 50,
             accountName: twitterAccountName
         )
         
