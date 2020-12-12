@@ -24,7 +24,7 @@ class TwitterHostingController<Content: View>: UIHostingController<Content> {
         let twitterDataProvider = TwitterDataProvider(
             twitterConsumerKey: twitterConsumerKey,
             twitterConsumerSecret: twitterConsumerSecret,
-            tweetCount: 20,
+            tweetCount: 50,
             accountName: twitterAccountName
         )
         
