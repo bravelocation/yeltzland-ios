@@ -11,6 +11,9 @@ import SwiftUI
 struct TVOSTimelineView: View {
     @EnvironmentObject var data: TimelineData
     
+    // Time to refresh data every minute
+    let timer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
+    
     var body: some View {
         VStack {
             HStack {
@@ -35,6 +38,9 @@ struct TVOSTimelineView: View {
                 .stroke(Color("light-blue"), lineWidth: 1)
         )
         .onAppear() {
+            data.refreshData()
+        }
+        .onReceive(timer) { _ in
             data.refreshData()
         }
     }
