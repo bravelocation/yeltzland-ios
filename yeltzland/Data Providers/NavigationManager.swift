@@ -461,9 +461,9 @@ public class NavigationManager {
                                                imageName: nil,
                                                url: "https://icons8.com"))
         
-        about.elements.append(NavigationElement.link(title: "More Brave Location Apps",
+        about.elements.append(NavigationElement.link(title: "About Brave Location",
                                                imageName: nil,
-                                               url: "https://bravelocation.com/apps"))
+                                               url: "https://bravelocation.com/about"))
         
         let infoDictionary = Bundle.main.infoDictionary!
         let version = infoDictionary["CFBundleShortVersionString"]
