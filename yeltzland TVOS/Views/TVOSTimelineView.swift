@@ -34,6 +34,9 @@ struct TVOSTimelineView: View {
             RoundedRectangle(cornerRadius: 32)
                 .stroke(Color("light-blue"), lineWidth: 1)
         )
+        .onAppear() {
+            data.refreshData()
+        }
     }
 }
 

@@ -44,6 +44,9 @@ struct TVOSTimelineFixtureView: View {
             Spacer()
         }
         .foregroundColor(Color("light-blue"))
+        .onAppear() {
+            data.refreshData()
+        }
     }
     
     func resultColor() -> Color {
